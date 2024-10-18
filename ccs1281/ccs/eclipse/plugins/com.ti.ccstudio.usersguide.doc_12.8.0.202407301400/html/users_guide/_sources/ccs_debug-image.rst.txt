@@ -1,0 +1,308 @@
+Image Analyzer
+**************
+
+An advanced image visualization tool is available in CCS. It can display arrays of bitmapped data in an image viewport. The arrays of bitmaps are stored in a device’s memory and, by reading them through a Debug Probe connection and performing post processing on the host PC, it can show images in various formats (RGB, Bayer, Bitonal, YUV), packed/unpacked, etc.
+
+The following types of images can be configured:
+
+-  YUV (Packed, Planar, Semi-Planar)
+
+   -  4:2:2
+   -  4:2:0
+   -  4:4:4
+   -  4:1:1
+
+-  Bayer (Packed)
+-  Bitonal
+-  RGB (Packed, Planar, Semi-Planar)
+
+The supported data formats: 
+
+- Datapath size: 8, 16 and 32 bits. 
+- Packed or Planar formats. 
+- Masks and pixel grouping can be set to each color channel.
+
+The data can be updated in several ways: 
+
+- Refresh. Update the data when this button is pressed. Depending on the device and mode of operation, the data will be updated only when the device is halted. 
+- Continuous Refresh. Update the data continuously at a rate defined by CCS Properties (no faster than 100ms). 
+- Refresh on halt. Update the data when the device is halted. 
+- Breakpoints can be set to automatically update the data when reached. 
+
+	- Update View
+	- Refresh All Windows
+	- Target Halt and Refresh
+
+.. note::
+ Image analyzer can be used with either an image on the target device or on the local host.
+
+From the main menu click on **Tools → Image Analyzer**. Both an Image and a Properties views will be opened side by side.
+
+After setting the image source and properties, click on the Refresh button in the Image view toolbar. The Image Analyzer fetches the data from the file or the target memory and perfors the processing.
+
+Types of images
+===============
+
+YUV
+---
+YUV images are color or grayscale in nature and are physically stored in bytes of data in encoded format. The encoding method can be packed or unpacked, while the bit depth and the chroma subsampling method can be set to various formats. 
+
+Bayer
+-----
+Bayer images are color or grayscale in nature and are physically stored in bytes of data and arranged in a pattern typically set by an image sensor. The pattern and bit depth can be set to various formats. 
+
+RGB
+---
+RGB images are color or grayscale in nature and are phyisically stored in bytes of data in encoded format. The encoding method can be packed or unpacked, but there is no chroma subsampling. 
+
+Bitonal
+-------
+Bitonal images are black and white in nature and are phyisically stored as a bitstream of data (no encoding). In other words, each bit represents one pixel on the image. 
+
+Packed and Unpacked
+-------------------
+Packing is a method of storing the color channels of the image pixel in an interleaved form. This in contrast with the unpacked method, where each color channel is stored contiguously in memory. 
+
+For example, a 4x4 image in YUV 4:2:2 packed format stored in memory in a little endian byte-addressable device:
+
+===== ===== ===== =====
+(0,0) (1,0) (2,0) (3,0)
+(0,1) (1,1) (2,1) (3,1)
+(0,2) (1,2) (2,2) (3,2)
+(0,3) (1,3) (2,3) (3,3)
+===== ===== ===== =====
+
++--------------+--------------+--------------+--------------+--------------+--------------+--------------+
+| Base Address | Base + 5     | Base + 4     | Base + 3     | Base + 2     | Base + 1     | Base + 0     |
++==============+==============+==============+==============+==============+==============+==============+
+| 0x80000000   | V(0~1,0~1)   | U(0~1,0~1)   | Y(1,1)       | Y(1,0)       | Y(0,1)       | Y(0,0)       | 
++--------------+--------------+--------------+--------------+--------------+--------------+--------------+
+| 0x80000006   | V(2~3,0~1)   | U(2~3,0~1)   | Y(3,1)       | Y(2,1)       | Y(3,0)       | Y(2,0)       | 
++--------------+--------------+--------------+--------------+--------------+--------------+--------------+
+| 0x8000000C   | V(0~1,2~3)   | U(0~1,2~3)   | Y(1,3)       | Y(0,3)       | Y(1,2)       | Y(0,2)       | 
++--------------+--------------+--------------+--------------+--------------+--------------+--------------+
+| 0x80000012   | V(2~3,2~3)   | U(2~3,2~3)   | Y(3,3)       | Y(2,3)       | Y(3,2)       | Y(2,2)       | 
++--------------+--------------+--------------+--------------+--------------+--------------+--------------+
+
+In unpacked format it would be: 
+
++--------------+--------------+--------------+--------------+--------------+
+| Base Address | Base + 3     | Base + 2     | Base + 1     | Base + 0     |
++==============+==============+==============+==============+==============+
+| 0x80000000   | Y(1,1)       | Y(1,0)       | Y(0,1)       | Y(0,0)       | 
++--------------+--------------+--------------+--------------+--------------+
+| 0x80000004   | Y(3,1)       | Y(2,1)       | Y(3,0)       | Y(2,0)       | 
++--------------+--------------+--------------+--------------+--------------+
+| 0x80000008   | Y(1,3)       | Y(0,3)       | Y(1,2)       | Y(0,2)       | 
++--------------+--------------+--------------+--------------+--------------+
+| 0x8000000C   | Y(3,3)       | Y(2,3)       | Y(3,2)       | Y(2,2)       | 
++--------------+--------------+--------------+--------------+--------------+
+| 0x80000010   | U(2~3,2~3)   | U(0~1,2~3)   | U(2~3,0~1)   | U(0~1,0~1)   | 
++--------------+--------------+--------------+--------------+--------------+
+| 0x80000014   | V(2~3,2~3)   | V(0~1,2~3)   | V(2~3,0~1)   | V(0~1,0~1)   | 
++--------------+--------------+--------------+--------------+--------------+
+
+.. raw:: html
+
+      <!--
+      --------------+--------------+
+       Base + 5     | Base + 4     |
+      ==============+==============+
+       V(0~1,0~1)   | U(0~1,0~1)   |
+      --------------+--------------+
+       V(2~3,0~1)   | U(2~3,0~1)   |
+      --------------+--------------+
+       V(0~1,2~3)   | U(0~1,2~3)   |
+      --------------+--------------+
+       V(2~3,2~3)   | U(2~3,2~3)   |
+      --------------+--------------+
+      
+      
+      +==============+==============+==============+==============+==============+
+      | 0x80000004   | V(1,0)       | U(1,0)       | Y(1,0) MSB   | Y(1,0) LSB   | 
+      +--------------+--------------+--------------+--------------+--------------+
+      | 0x80000008   | V(2,0)       | U(2,0)       | Y(2,0) MSB   | Y(2,0) LSB   | 
+      +--------------+--------------+--------------+--------------+--------------+
+      | 0x8000000C   | V(0,1)       | U(0,1)       | Y(0,1) MSB   | Y(0,1) LSB   | 
+      +--------------+--------------+--------------+--------------+--------------+
+      | 0x80000010   | V(1,1)       | U(1,1)       | Y(1,1) MSB   | Y(1,1) LSB   | 
+      +--------------+--------------+--------------+--------------+--------------+
+      | 0x80000014   | V(2,1)       | U(2,1)       | Y(2,1) MSB   | Y(2,1) LSB   | 
+      +--------------+--------------+--------------+--------------+--------------+
+      | 0x80000018   | V(0,2)       | U(0,2)       | Y(0,2) MSB   | Y(0,2) LSB   | 
+      +--------------+--------------+--------------+--------------+--------------+
+      | 0x8000001C   | V(1,2)       | U(1,2)       | Y(1,2) MSB   | Y(1,2) LSB   | 
+      +--------------+--------------+--------------+--------------+--------------+
+      | 0x80000020   | V(2,2)       | U(2,2)       | Y(2,2) MSB   | Y(2,2) LSB   | 
+      +--------------+--------------+--------------+--------------+--------------+
+      -->
+
+Image Analyzer properties
+==========================
+
+General 
+-------
+
+- Title 
+- Background Color 
+- Image Format: RGB, Bayer, YUV, Bitonal
+
+RGB
+----
+
+- Number of pixels per line 
+- Number of lines 
+- Data format 
+- Pixel stride (bytes) 
+- Red mask 
+- Green mask 
+- Blue mask 
+- Alpha mask (if any) 
+- Line stride (bytes)
+
+Bayer
+------
+
+- Number of pixels per line 
+- Number of lines 
+- Line order 
+- Pixel stride (bytes) 
+- Component mask 
+- Line stride (bytes)
+
+YUV
+----
+
+- Number of pixels per line 
+- Number of lines 
+- Data format: Planar or Packed 
+- Resolution: 4:4:4, 4:2:2, 4:2:0, or 4:1:1 
+- YUV order: for Packed formats 
+- Y Pixel stride (bytes): The number of bytes to skip to get the valueof the Y component for the next pixel. Typical values:
+
+	-  Planar : 1 byte
+	-  Packed 4:4:4 : 3 bytes
+	-  Packed 4:2:2 or 4:2:0 : 2 bytes
+
+- Y mask: Image Analyzer reads packets of bytes of the size specified in Y Pixel stride. The byte order of the packets is Big Endian. Y mask specifies which of the bits in the packet represent the value of the Y component. Typical values:
+
+   -  Planar : 0xFF
+   -  Packed 4:4:4 : 0xFF0000
+   -  Packed 4:2:2 or 4:2:0 : 0xFF00
+
+- Y Line stride (bytes): Only used for Planar formats. The number of bytes to skip to get to the first pixel of the next line (counting from the first pixel of the current line, i.e. (Number of pixels per line) x (number of bytes per pixel). This is typically the same as the Number of pixels per line.
+
+- U Pixel stride (bytes): The number of bytes to skip to get the value of the U component for the next pixel. Typical values:
+
+   -  Planar : 1 byte
+   -  Packed 4:4:4 : 3 bytes
+   -  Packed 4:2:2 or 4:2:0 : 4 bytes
+
+- U mask: Image Analyzer reads packets of bytes of the size specified in U Pixel stride. The byte order of the packets is Big Endian. U mask specifies which of the bits in the packet represent the value of the U component. Typical values:
+
+   -  Planar : 0xFF
+   -  Packed 4:4:4 : 0xFF0000
+   -  Packed 4:2:2 or 4:2:0 : 0xFF000000
+
+- U Line stride (bytes): Only used for Planar formats. The number of bytes to skip to get to the first pixel of the next line (counting from the first pixel of the current line, i.e. (Number of pixels per line) x (number of bytes per pixel). Typical values:
+
+   -  4:4:4 : Number of pixels per line
+   -  4:2:2 or 4:2:0 : (Number of pixels per line) / 2
+   -  4:1:1 : (Number of pixels per line) / 4
+
+- V Pixel stride (bytes): The number of bytes to skip to get the value of the V component for the next pixel. Typical values:
+
+   -  Planar : 1 byte
+   -  Packed 4:4:4 : 3 bytes
+   -  Packed 4:2:2 or 4:2:0 : 4 bytes
+
+- V mask: Image Analyzer reads packets of bytes of the size specified in V Pixel stride. The byte order of the packets is Big Endian. V mask specifies which of the bits in the packet represent the value of the V component. Typical values:
+
+   -  Planar : 0xFF
+   -  Packed 4:4:4 : 0xFF0000
+   -  Packed 4:2:2 or 4:2:0 : 0xFF000000
+
+- V Line stride (bytes): Only used for Planar formats. The number of bytes to skip to get to the first pixel of the next line (counting from the first pixel of the current line, i.e. (Number of pixels per line) x (number of bytes per pixel). Typical values:
+
+   -  4:4:4 : Number of pixels per line
+   -  4:2:2 or 4:2:0 : (Number of pixels per line) / 2
+   -  4:1:1 : (Number of pixels per line) / 4
+- Alpha Pixel stride (bytes): The number of bytes to skip to get the value of the Alpha component for the next pixel. This is optional. If your image doesn’t have any Alpha component set this to 0.
+- Alpha mask: Image Analyzer reads packets of bytes of the size specified in Alpha Pixel stride. The byte order of the packets is BigEndian. Alpha mask specifies which of the bits in the packet represent the value of the Alpha component. This is optional. If your image doesn’t have any Alpha component set this to 0.
+- Alpha Line stride (bytes): Only used for Planar formats. The number of bytes to skip to get to the first pixel of the next line (counting from the first pixel of the current line), i.e. (Number of pixels perline) x (number of bytes per pixel). This is typically the same as the Number of pixels per line. This is optional. If your image doesn’t have any Alpha component set this to 0.
+- Line stride: Only used for Packed formats. The number of bytes to skip to get to the first pixel of the next line (counting from the first pixel of the current line), i.e. (Number of pixels per line) x (number of bytes per pixel). Typical values are Number of pixels per line) x (YPixel stride).
+
+Bitonal 
+--------
+
+- Foreground color 
+- Background color
+- Number of pixels per line 
+- Number of lines 
+- Pixel order
+
+Source
+-------
+
+- Image Source: Connected Device, File 
+- Start address 
+- Filename 
+- Read data as 
+- File Format (YUV only): Single File, Single File with CustomOffsets, Multiple Files 
+- Y Offset (bytes) 
+- U Offset (bytes) 
+- V Offset (bytes) 
+- Alpha Offset (bytes) 
+- Y Filename 
+- U Filename 
+- V Filename 
+- Alpha Filename
+
+Examples
+========
+
+The zip files below have example image data with properties that show how to configure the Image Analyzer for various image formats. 
+
+The properties files can be imported by right-clicking on the Image Analyzer view and selecting the option **Import Properties...**
+
+- The `Bayer <./files/Bayer.zip>`__ file contains the following images:
+
+   - bayer720480_8of16_image.dat: 720 x 480 pixels, even B lines, GR/BG order, 8 bits out of 16 bits
+   - bayer720480_10of16_image.dat: 720 x 480 pixels, even B lines, GR/BG order, 10 bits out of 16 bits
+
+- `YUV 4:2:0 planar <./files/Yuv420planar.zip>`__: 512 x 482 pixels, YUV 4:2:0 planar
+
+- `YUV 4:2:2 packed <./files/Yuv422packed.zip>`__: 512 x 512 pixels, YUV 4:2:2 packed YVYU order
+
+- `YUV 4:2:2 planar <./files/Yuv422planar.zip>`__: 720 x 480 pixels, YUV 4:2:2 planar, alpha channel
+
+- The `DaVinci HD <./files/DaVinciHD.zip>`__ file contains the following images:
+
+   - davinciHD1280x720: 1280 x 720 pixels, YUV 4:2:0 semiplanar (Y planar, UV interleaved)
+   - davinciHD1080x720: 1080 x 720 pixels, YUV 4:2:2 semiplanar (Y planar, UV interleaved)
+
+- The `NV12 Tiled <./files/Nv12 tiled.zip>`__: 176 x 144 pixels, YUV 4:2:0 tiled
+
+
+
+Troubleshooting
+================
+
+Data considerations
+-------------------
+
+Given the Image Analyzer tool is able to work with
+data in several different types of data arrangments, it is mandatory to
+keep close track of how the pixels are actually formatted in the device
+memory for a proper data plot.
+
+A very common scenario is to have all color masks set to 0, which shows
+a completely blank image on the canvas. Also, wrong color masks show the
+image correctly but with distorted colors.
+
+Another very common mistake is to use a different encoding, which shows
+a completely corrupted image.
+
+.. note::
+ The Image Analyzer only displays bitmapped images. It does not perform decoding of compressed images in popular file formats such as .GIF, .JPG, .PNG, .TIFF, etc.
+

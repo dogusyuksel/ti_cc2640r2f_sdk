@@ -1,0 +1,44 @@
+GEL_Run()
+---------
+
+Runs code.
+
+**Syntax**
+
+**GEL_Run(** [**"**\ Condition\ **"**] **);**
+
+**Parameters**
+
+Condition: (optional) specifies the condition that must be satisfied
+while the target is executing. Once the execution reaches a breakpoint
+and the condition is evaluated to be false, the Code Composer Studio
+debugger stops at that address. The condition must be enclosed in
+quotation marks.
+
+**Description**
+
+This function starts executing code on the target. If a condition is
+specified, the run function becomes a conditional run statement. That
+is, execution continues while the statement is true. The statement is
+evaluated at each breakpoint that is encountered.
+
+**Synchronous**
+
+Synchronous from GEL: No
+
+Completely synchronous: No
+
+**Example**
+
+| GEL_Run();
+| GEL_Run("A != B");
+
+**Related Topics**
+
+`GEL_Restart <GEL_Restart.html>`__
+
+`GEL_Go <GEL_Go.html>`__
+
+`GEL_Halt <GEL_Halt.html>`__
+
+`GEL_RunF <GEL_RunF.html>`__

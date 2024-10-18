@@ -1,0 +1,46 @@
+GEL_UnloadAllSymbols()
+----------------------
+
+Unloads all symbols.
+
+**Syntax**
+
+**GEL_UnloadAllSymbols();**
+
+**Parameters**
+
+None.
+
+**Description**
+
+Unloads all currently loaded symbols.
+
+**Synchronous**
+
+Synchronous from GEL: No
+
+Completely synchronous: No
+
+**Example**
+
+GEL_UnloadAllSymbols();
+
+**Related Topics**
+
+`GEL_Load() <GEL_Load.html>`__
+
+`GEL_SymbolAdd() <GEL_SymbolAdd.html>`__
+
+`GEL_SymbolAddRel() <GEL_SymbolAddRel.html>`__
+
+`GEL_SymbolHideSection() <GEL_SymbolHideSection.html>`__
+
+`GEL_SymbolLoad() <GEL_SymbolLoad.html>`__
+
+`GEL_SymbolLoadRel() <GEL_SymbolLoadRel.html>`__
+
+`GEL_SymbolAddRel() <GEL_SymbolAddRel.html>`__
+
+`GEL_SymbolRemove() <GEL_SymbolRemove.html>`__
+
+`GEL_UnloadAllSymbols() <#gel_unloadallsymbols>`__

@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset="utf-8" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>4 Linking C/C++ Code</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../Resources/Stylesheets/headerfooter.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="content">
+            <div id="contentBody">
+                <div class="row collapse">
+                    <div class="sideContent">
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                    <div id="loadContentArea">
+                        <div class="c12 docHeader">
+                            <div class="c4 docTitle">
+                                <p>
+                                    <strong>ARM Optimizing
+							C/C++ Compiler
+			v18.1.0.LTS User's Guide</strong>
+                                    <br />
+                                    <span id="litnumber">SPNU151R</span> - REVISED JANUARY 2018</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="odsHeader">
+                        <p class="pdf">
+                            <a class="downloadPDF" href="http://www.ti.com/litv/SPNU151R" target="_new">Download PDF</a>
+                        </p>
+                    </div>
+                    <div id="loadContentArea1">
+                        <div class="subsection">
+                            <h2 id="STDZ0561472">
+                                <a MadCap:generatedBookmark="TOC" name="4_Linking_C_C++_Code">
+                                </a>
+                                <span class="section-label">4 </span>Linking C/C++ Code</h2>
+                            <div class="subsection"> The C/C++ compiler and assembly language tools provide two methods for linking your programs: <ul><li value="1">You can compile individual modules and link them together. This method is especially useful when you have multiple source files. </li><li value="2">You can compile and link in one step. This method is useful when you have a single source module.</li></ul><p>This chapter describes how to invoke the linker with each method. It also discusses special requirements of linking C/C++ code, including the run-time-support libraries, specifying the type of initialization, and allocating the program into memory. For a complete description of the linker, see the <i><span>ARM </span>Assembly Language Tools User's Guide</i>.</p></div>
+                            <div class="subsection">
+                                <h3 id="STDZ0567971">
+                                    <a MadCap:generatedBookmark="TOC" name="4.1_Invoking_the_Linker_Through_the_Compiler_(-z_Option)">
+                                    </a>
+                                    <span class="section-label">4.1 </span>Invoking the Linker Through the Compiler (-z Option)</h3>
+                                <p>This section explains how to invoke the linker after you have compiled and assembled your programs: as a separate step or as part of the compile step. </p>
+                                <div class="subsection">
+                                    <h4 id="STDZ0566013">
+                                        <a MadCap:generatedBookmark="TOC" name="4.1.1_Invoking_the_Linker_Separately">
+                                        </a>
+                                        <span class="section-label">4.1.1 </span>Invoking the Linker Separately</h4>
+                                    <p>This is the general syntax for linking C/C++ programs as a separate step: </p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col />
+                                                <col />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="2"> <b> <span>armcl</span> <![CDATA[ ]]></b><b>--run_linker</b> {<b>--rom_model | --ram_model</b>} <i>filenames</i> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td />
+                                                    <td> [<i>options</i>] [<b>--output_file=</b><i>name.out</i>] <b>--library=</b><i>library</i> [<i>lnk.cmd</i>]</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col />
+                                                <col />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b> <span>armcl </span>--run_linker</b> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">The command that invokes the linker. </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>--rom_model </b>| <b>--ram_model</b></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Options that tell the linker to use special conventions defined by the C/C++ environment. When you use <span>armcl --run_linker</span>, you must use <b>--rom_model</b> or <b>--ram_model</b>. The --rom_model option uses automatic variable initialization at run time; the --ram_model option uses variable initialization at load time.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>filenames</i> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Names of object files, linker command files, or archive libraries. The default extension for all input files is .<i>obj</i>; any other extension must be explicitly specified. The linker can determine whether the input file is an object or ASCII file that contains linker commands. The default output filename is <i>a.out</i>, unless you use the --output_file option to name the output file.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>options</i> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Options affect how the linker handles your object files. Linker options can only appear after the <b>--run_linker</b> option on the command line, but otherwise may be in any order. (Options are discussed in detail in the <i><span>ARM </span>Assembly Language Tools User's Guide</i>.)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>--output_file=</b><i>name.out</i></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> Names the output file.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>--library=</b><i>library</i></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Identifies the appropriate archive library containing C/C++ run-time-support and floating-point math functions, or linker command files. If you are linking C/C++ code, you must use a run-time-support library. You can use the libraries included with the compiler, or you can create your own run-time-support library. If you have specified a run-time-support library in a linker command file, you do not need this parameter. The --library option's short form is -l.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>lnk.cmd</i> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Contains options, filenames, directives, or commands for the linker.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>When you specify a library as linker input, the linker includes and links only those library members that resolve undefined references. The linker uses a default allocation algorithm to allocate your program into memory. You can use the MEMORY and SECTIONS directives in the linker command file to customize the allocation process. For information, see the <i><span>ARM </span>Assembly Language Tools User's Guide</i>.</p>
+                                    <p>You can link a C/C++ program consisting of object files prog1.obj, prog2.obj, and prog3.obj, with an executable object file filename of prog.out with the command:</p>
+                                    <code>armcl --run_linker --rom_model prog1 prog2 prog3 --output_file=prog.out
+ --library=rtsv4_A_be_eabi.lib</code>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0560842">
+                                        <a MadCap:generatedBookmark="TOC" name="4.1.2_Invoking_the_Linker_as_Part_of_the_Compile_Step">
+                                        </a>
+                                        <span class="section-label">4.1.2 </span>Invoking the Linker as Part of the Compile Step</h4>
+                                    <p>This is the general syntax for linking C/C++ programs as part of the compile step: </p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col />
+                                                <col />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="2"> <b> <span>armcl</span></b><i>filenames</i> [<i>options</i>] <b>--run_linker</b> {<b>--rom_model | --ram_model</b>} <i>filenames</i> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td />
+                                                    <td> [<i>options</i>] [<b>--output_file=</b><i>name.out</i>] <b>--library=</b><i>library</i> [<i>lnk.cmd</i>]</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>The <b>--run_linker</b> option divides the command line into the compiler options (the options before --run_linker) and the linker options (the options following --run_linker). The --run_linker option must follow all source files and compiler options on the command line.</p>
+                                    <p>All arguments that follow --run_linker on the command line are passed to the linker. These arguments can be linker command files, additional object files, linker options, or libraries. These arguments are the same as described in <span class="crossreference"><a href="#STDZ0566013">Section 4.1.1</a></span>.</p>
+                                    <p>All arguments that precede --run_linker on the command line are compiler arguments. These arguments can be C/C++ source files, assembly files, or compiler options. These arguments are described in <span class="crossreference"><a href="using-the-c-c-compiler.html#STDZ0588355">Section 2.2</a></span>.</p>
+                                    <p>You can compile and link a C/C++ program consisting of object files prog1.c, prog2.c, and prog3.c, with an executable object file filename of prog.out with the command:</p>
+                                    <code>armcl prog1.c prog2.c prog3.c --run_linker --rom_model --output_file=prog.out 
+ --library=rtsv4_A_be_eabi.lib</code>
+                                    <span class="note">
+                                        <p class="note_title">NOTE</p>
+                                        <p>
+                                            <b>Order of Processing Arguments in the Linker</b>
+                                        </p>
+                                        <p>The order in which the linker processes arguments is important. The compiler passes arguments to the linker in the following order:</p>
+                                        <ol>
+                                            <li value="1">Object filenames from the command line</li>
+                                            <li value="2">Arguments following the --run_linker option on the command line</li>
+                                            <li value="3">Arguments following the --run_linker option from the <span>TI_ARM_C_OPTION</span> environment variable</li>
+                                        </ol>
+                                    </span>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="IDdisablelinker">
+                                        <a MadCap:generatedBookmark="TOC" name="4.1.3_Disabling_the_Linker_(--compile_only_Compiler_Option)">
+                                        </a>
+                                        <span class="section-label">4.1.3 </span>Disabling the Linker (--compile_only Compiler Option)</h4>
+                                    <p>You can override the --run_linker option by using the --compile_only compiler option. The -run_linker option's short form is -z and the --compile_only option's short form is -c. </p>
+                                    <p>The --compile_only option is especially helpful if you specify the --run_linker option in the <span>TI_ARM_C_OPTION </span>environment variable and want to selectively disable linking with the --compile_only option on the command line.</p>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0562645">
+                                    <a MadCap:generatedBookmark="TOC" name="4.2_Linker_Code_Optimizations">
+                                    </a>
+                                    <span class="section-label">4.2 </span>Linker Code Optimizations</h3>
+                                <p>These techniques are used to further optimize your code.</p>
+                                <div class="subsection">
+                                    <h4 id="STDZ0563647">
+                                        <a MadCap:generatedBookmark="TOC" name="4.2.1_Generate_List_of_Dead_Functions_(--generate_dead_funcs_list_Option)">
+                                        </a>
+                                        <span class="section-label">4.2.1 </span>Generate List of Dead Functions (--generate_dead_funcs_list Option)</h4>
+                                    <p>In order to facilitate the removal of unused code, the linker generates a feedback file containing a list of functions that are never referenced. The feedback file must be used the next time you compile the source files. The syntax for the --generate_dead_funcs_list option is:</p>
+                                    <p>
+                                        <b>--generate_dead_funcs_list=</b>
+                                        <i>filename</i>
+                                    </p>
+                                    <p>If <i>filename</i> is not specified, a default filename of dead_funcs.txt is used.</p>
+                                    <p>Proper creation and use of the feedback file entails the following steps:</p>
+                                    <ol>
+                                        <li value="1">Compile all source files using the --gen_func_subsections compiler option. For example:</li>
+                                        <code>armcl file1.c file2.c --gen_func_subsections</code>
+                                        <li value="2">During the linker, use the --generate_dead_funcs_list option to generate the feedback file based on the generated object files. For example:</li>
+                                        <code>armcl --run_linker file1.obj file2.obj --generate_dead_funcs_list=feedback.txt</code>
+                                        <p>Alternatively, you can combine steps 1 and 2 into one step. When you do this, you are not required to specify --gen_func_subsections when compiling the source files as this is done for you automatically. For example:</p>
+                                        <code>armcl file1.c file2.c --run_linker --generate_dead_funcs_list=feedback.txt</code>
+                                        <li value="3">Once you have the feedback file, rebuild the source. Give the feedback file to the compiler using the --use_dead_funcs_list option. This option forces each dead function listed in the file into its own subsection. For example:</li>
+                                        <code>armcl file1.c file2.c --use_dead_funcs_list=feedback.txt</code>
+                                        <li value="4">Invoke the linker with the newly built object files. The linker removes the subsections. For example:</li>
+                                        <code>armcl --run_linker file1.obj file2.obj</code>
+                                        <p>Alternatively, you can combine steps 3 and 4 into one step. For example:</p>
+                                        <code>armcl file1.c file2.c --use_dead_funcs_list=feedback.txt --run_linker</code>
+                                    </ol>
+                                    <span class="note">
+                                        <p class="note_title">NOTE</p>
+                                        <p>
+                                            <b>Dead Functions Feedback</b>
+                                        </p>
+                                        <p>The format of the feedback file generated with --generate_dead_funcs_list is tightly controlled. It must be generated by the linker in order to be processed correctly by the compiler. The format of this file may change over time, so the file contains a version format number to allow backward compatibility. </p>
+                                    </span>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="SPNU1514123">
+                                        <a MadCap:generatedBookmark="TOC" name="4.2.2_Generating_Aggregate_Data_Subsections_(--gen_data_subsections_Compiler_...">
+                                        </a>
+                                        <span class="section-label">4.2.2 </span>Generating Aggregate Data Subsections (--gen_data_subsections Compiler Option)</h4>
+                                    <p>Similarly to code sections described in the previous section, data can either be placed in a single section or multiple sections. The benefit of multiple data sections is that the linker may omit unused data structures from the executable. By default, the --gen_data_subsections option is on. This option causes aggregate data—arrays, structs, and unions—to be placed in separate subsections of the data section.</p>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0566811">
+                                    <a MadCap:generatedBookmark="TOC" name="4.3_Controlling_the_Linking_Process">
+                                    </a>
+                                    <span class="section-label">4.3 </span>Controlling the Linking Process</h3>
+                                <p>Regardless of the method you choose for invoking the linker, special requirements apply when linking C/C++ programs. You must: </p>
+                                <ul>
+                                    <li value="1">Include the compiler's run-time-support library</li>
+                                    <li value="2">Specify the type of boot-time initialization</li>
+                                    <li value="3">Determine how you want to allocate your program into memory</li>
+                                </ul>
+                                <p>This section discusses how these factors are controlled and provides an example of the standard default linker command file. For more information about how to operate the linker, see the linker description in the <i><span>ARM </span>Assembly Language Tools User's Guide</i></p>
+                                <div class="subsection">
+                                    <h4 id="STDZ0562451">
+                                        <a MadCap:generatedBookmark="TOC" name="4.3.1_Including_the_Run-Time-Support_Library">
+                                        </a>
+                                        <span class="section-label">4.3.1 </span>Including the Run-Time-Support Library</h4>
+                                    <p>You must link all C/C++ programs with a run-time-support library. The library contains standard C/C++ functions as well as functions used by the compiler to manage the C/C++ environment. The following sections describe two methods for including the run-time-support library. </p>
+                                    <div class="subsection">
+                                        <h4 id="STDZ0564809">
+                                            <a MadCap:generatedBookmark="TOC" name="4.3.1.1_Automatic_Run-Time-Support_Library_Selection">
+                                            </a>
+                                            <span class="section-label">4.3.1.1 </span>Automatic Run-Time-Support Library Selection</h4>
+                                        <p>The linker assumes you are using the C and C++ conventions if either the --rom_model or --ram_model linker option is specified, or if the link step includes the compile step for a C or C++ file, or if you link against the index library libc.a. </p>
+                                        <p>If the linker assumes you are using the C and C++ conventions and the entry point for the program (normally c_int00) is not resolved by any specified object file or library, the linker attempts to automatically include the most compatible run-time-support library for your program. The run-time-support library chosen by the compiler is searched after any other libraries specified with the --library option on the command line or in the linker command file. If libc.a is explicitly used, the appropriate run-time-support library is included in the search order where libc.a is specified. </p>
+                                        <p>You can disable the automatic selection of a run-time-support library by using the --disable_auto_rts option.</p>
+                                        <p>If the --issue_remarks option is specified before the --run_linker option during the linker, a remark is generated indicating which run-time support library was linked in. If a different run-time-support library is desired than the one reported by --issue_remarks, you must specify the name of the desired run-time-support library using the --library option and in your linker command files when necessary.</p>
+                                        <div class="example">
+                                            <h4 id="HTMLI039761">
+                                                <a MadCap:generatedBookmark="TOC" name="Example_4-1_Using_the_--issue_remarks_Option">
+                                                </a>
+                                                <span class="example-label">Example 4-1 </span>Using the --issue_remarks Option</h4>
+                                            <code>armcl --code_state=16 --issue_remarks main.c --run_linker --rom_model
+
+&lt;Linking&gt;remark: linking in "libc.a"remark: linking in "rtsv4_A_be_eabi.lib" in place of "libc.a"</code>
+                                        </div>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="STDZ0560843">
+                                            <a MadCap:generatedBookmark="TOC" name="4.3.1.2_Manual_Run-Time-Support_Library_Selection">
+                                            </a>
+                                            <span class="section-label">4.3.1.2 </span>Manual Run-Time-Support Library Selection</h4>
+                                        <p>You can bypass automatic library selection by explicitly specifying the desired run-time-support library to use. Use the --library linker option to specify the name of the library. The linker will search the path specified by the --search_path option and then the <span>TI_ARM_C_DIR</span> environment variable for the named library. You can use the --library linker option on the command line or in a command file.</p>
+                                        <div class="subsection">
+                                            <table class="tabbedtext">
+                                                <colgroup>
+                                                    <col />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td> <b> <span>armcl --run_linker</span> <![CDATA[ ]]></b>{<b>--rom_model</b> | <b>--ram_model</b>} <i>filenames </i><b>--library=</b><i>libraryname</i> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="STDZ0567618">
+                                            <a MadCap:generatedBookmark="TOC" name="4.3.1.3_Library_Order_for_Searching_for_Symbols">
+                                            </a>
+                                            <span class="section-label">4.3.1.3 </span>Library Order for Searching for Symbols</h4>
+                                        <p>Generally, you should specify the run-time-support library as the last name on the command line because the linker searches libraries for unresolved references in the order that files are specified on the command line. If any object files follow a library, references from those object files to that library are not resolved. You can use the --reread_libs option to force the linker to reread all libraries until references are resolved. Whenever you specify a library as linker input, the linker includes and links only those library members that resolve undefined references.</p>
+                                        <p>By default, if a library introduces an unresolved reference and multiple libraries have a definition for it, then the definition from the same library that introduced the unresolved reference is used. Use the --priority option if you want the linker to use the definition from the first library on the command line that contains the definition.</p>
+                                    </div>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0560844">
+                                        <a MadCap:generatedBookmark="TOC" name="4.3.2_Run-Time_Initialization">
+                                        </a>
+                                        <span class="section-label">4.3.2 </span>Run-Time Initialization</h4>
+                                    <p>You must link all C/C++ programs with code to initialize and execute the program called a bootstrap routine. The bootstrap routine is responsible for the following tasks:</p>
+                                    <ol>
+                                        <li value="1">Switch to user mode and sets up the user mode stack</li>
+                                        <li value="2">Set up status and configuration registers</li>
+                                        <li value="3">Set up the stack and secondary system stack</li>
+                                        <li value="4">Process special binit copy table, if present.</li>
+                                        <li value="5">Process the run-time initialization table to autoinitialize global variables (when using the --rom_model option)</li>
+                                        <li value="6">Call all global constructors</li>
+                                        <li value="7">Call the main() function</li>
+                                        <li value="8">Call exit() when main() returns</li>
+                                    </ol>
+                                    <span class="note">
+                                        <p class="note_title">NOTE</p>
+                                        <p>
+                                            <b>The _c_int00 Symbol</b>
+                                        </p>
+                                        <p>If you use the --ram_model or --rom_model link option, _c_int00 is automatically defined as the entry point for the program. Otherwise, an entry point is not automatically selected and you will receive a linker warning.</p>
+                                    </span>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="lit374412">
+                                        <a MadCap:generatedBookmark="TOC" name="4.3.3_Initialization_of_Cinit_and_Watchdog_Timer_Hold">
+                                        </a>
+                                        <span class="section-label">4.3.3 </span>Initialization of Cinit and Watchdog Timer Hold</h4>
+                                    <p>You can use the --cinit_hold_wdt option to specify whether the watchdog timer should be held (on) or not held (off) during cinit auto-initialization. Setting this option causes an RTS auto-initialization routine to be linked in with the program to handle the desired watchdog timer behavior.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0560845">
+                                        <a MadCap:generatedBookmark="TOC" name="4.3.4_Global_Object_Constructors">
+                                        </a>
+                                        <span class="section-label">4.3.4 </span>Global Object Constructors</h4>
+                                    <p>Global C++ variables that have constructors and destructors require their constructors to be called during program initialization and their destructors to be called during program termination. The C++ compiler produces a table of constructors to be called at startup.</p>
+                                    <p>Constructors for global objects from a single module are invoked in the order declared in the source code, but the relative order of objects from different object files is unspecified.</p>
+                                    <p>Global constructors are called after initialization of other global variables and before the main() function is called. Global destructors are invoked during the exit run-time support function, similar to functions registered through atexit.</p>
+                                    <p>
+                                        <span class="crossreference">
+                                            <a href="run-time-environment.html#STDZ0545810">Section 6.10.3.6</a>
+                                        </span> discusses the format of the global constructor table<span> for EABI mode</span>.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ056610">
+                                        <a MadCap:generatedBookmark="TOC" name="4.3.5_Specifying_the_Type_of_Global_Variable_Initialization">
+                                        </a>
+                                        <span class="section-label">4.3.5 </span>Specifying the Type of Global Variable Initialization</h4>
+                                    <p> The C/C++ compiler produces data tables for initializing global variables. <span><span class="crossreference"><a href="run-time-environment.html#STDZ0545680">Section 6.10.3.4</a></span> discusses the format of these initialization tables.</span> The initialization tables are used in one of the following ways:</p>
+                                    <ul>
+                                        <li value="1"> Global variables are initialized at <i>run time</i>. Use the --rom_model linker option.</li>
+                                        <li value="2"> Global variables are initialized at <i>load time</i>. Use the --ram_model linker option.</li>
+                                    </ul>
+                                    <p>When you link a C/C++ program, you must use either the --rom_model or --ram_model option. These options tell the linker to select initialization at run time or load time. When you compile and link programs, the --rom_model option is the default. If used, the --rom_model option must follow the --run_linker option (see <span class="crossreference"><a href="#STDZ0567971">Section 4.1</a></span>). </p>
+                                    <p>For details on linking conventions<span> for EABI</span> used with --rom_model and --ram_model, see <span class="crossreference"><a href="run-time-environment.html#STDZ054428">Section 6.10.3.3</a></span> and <span class="crossreference"><a href="run-time-environment.html#STDZ0546592">Section 6.10.3.5</a></span>, respectively.</p>
+                                </div>
+                                <span class="note">
+                                    <p class="note_title">NOTE</p>
+                                    <p>
+                                        <b>Boot Loader</b>
+                                    </p>
+                                    <p>A loader is not included as part of the C/C++ compiler tools. <span>You can use the ARM simulator or emulator with the source debugger as a loader.</span> See the "Program Loading and Running" chapter of the <i><span>ARM </span>Assembly Language Tools User's Guide</i> for more about boot loading.</p>
+                                </span>
+                                <div class="subsection">
+                                    <h4 id="STDZ0560846">
+                                        <a MadCap:generatedBookmark="TOC" name="4.3.6_Specifying_Where_to_Allocate_Sections_in_Memory">
+                                        </a>
+                                        <span class="section-label">4.3.6 </span>Specifying Where to Allocate Sections in Memory</h4>
+                                    <p>The compiler produces relocatable blocks of code and data. These blocks, called <i>sections</i>, are allocated in memory in a variety of ways to conform to a variety of system configurations. See <span class="crossreference"><a href="run-time-environment.html#STDZ0542969">Section 6.1.1</a></span> for a complete description of how the compiler uses these sections.</p>
+                                    <p>The compiler creates two basic kinds of sections: initialized and uninitialized. <span class="crossreference"><a href="#STDZ0569435">Table 4-1</a></span> summarizes the initialized sections. <span class="crossreference"><a href="#STDZ0561977">Table 4-2</a></span> summarizes the uninitialized sections.</p>
+                                    <div class="subsection">
+                                        <p class="table" id="STDZ0569435">
+                                            <span class="table-label">Table 4-1 </span>Initialized Sections Created by the Compiler </p>
+                                        <table class="gentable">
+                                            <colgroup>
+                                                <col />
+                                                <col />
+                                            </colgroup>
+                                            <thead class="tbl_hdr_gray">
+                                                <tr>
+                                                    <th align="left" class="noBorderRight" valign="bottom">Name</th>
+                                                    <th align="left" class="noBorderRight" valign="bottom">Contents</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">.binit</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> Boot time copy tables (See the <i>Assembly Language Tools User's Guide</i> for information on BINIT in linker command files.) </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">.cinit</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Tables for explicitly initialized global and static variables.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">.const</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Global and static const variables that are explicitly initialized.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">.data </td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Global and static non-const variables that are explicitly initialized.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">.init_array </td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Table of constructors to be called at startup.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">.ovly</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Copy tables other than boot time (.binit) copy tables. Read-only data.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">.text</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Executable code and constants. <span>Also contains string literals and switch tables. See <span class="crossreference"><a href="run-time-environment.html#STDZ0542969">Section 6.1.1</a></span> for exceptions.</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">.TI.crctab</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Generated CRC checking tables. Read-only data.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="subsection">
+                                        <p class="table" id="STDZ0561977">
+                                            <span class="table-label">Table 4-2 </span>Uninitialized Sections Created by the Compiler </p>
+                                        <table class="gentable">
+                                            <colgroup>
+                                                <col />
+                                                <col />
+                                            </colgroup>
+                                            <thead class="tbl_hdr_gray">
+                                                <tr>
+                                                    <th align="left" class="noBorderRight" valign="top">Name</th>
+                                                    <th align="left" class="noBorderRight" valign="top">Contents</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">.bss </td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Uninitialized global and static variables </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">.cio</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Buffers for stdio functions from the run-time support library</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">.stack </td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                        <span>Stack</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">.sysmem </td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Memory pool (heap) for dynamic memory allocation (malloc, etc)</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>When you link your program, you must specify where to allocate the sections in memory. In general, initialized sections are linked into ROM or RAM; uninitialized sections are linked into RAM. </p>
+                                    <p>The linker provides MEMORY and SECTIONS directives for allocating sections. For more information about allocating sections into memory, see the <i><span>ARM </span>Assembly Language Tools User's Guide</i>.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0565032">
+                                        <a MadCap:generatedBookmark="TOC" name="4.3.7_A_Sample_Linker_Command_File">
+                                        </a>
+                                        <span class="section-label">4.3.7 </span>A Sample Linker Command File</h4>
+                                    <p>
+                                        <span class="crossreference">
+                                            <a href="#STDZ0561142">Example 4-2</a>
+                                        </span> shows a typical linker command file that links a 32-bit C program. The command file in this example is named lnk32.cmd and lists several link options: </p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col />
+                                                <col />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td> <b>--rom_model</b> <![CDATA[ ]]></td>
+                                                    <td>Tells the linker to use autoinitialization at run time</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>--stack_size</b> <![CDATA[ ]]></td>
+                                                    <td>Tells the linker to set the C stack size at 0x8000 bytes</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>--heap_size</b> <![CDATA[ ]]></td>
+                                                    <td>Tells the linker to set the heap size to 0x2000 bytes</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>To link the program, use the following syntax:</p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td> <b>armcl --run_linker </b><i>object_file</i>(s) <b>--output_file </b><i>outfile</i><b> --map_file </b><i>mapfile</i><b> lnk32.cmd</b> <![CDATA[ ]]></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="example">
+                                        <h4 id="STDZ0561142">
+                                            <a MadCap:generatedBookmark="TOC" name="Example_4-2_Linker_Command_File">
+                                            </a>
+                                            <span class="example-label">Example 4-2 </span>Linker Command File</h4>
+                                        <code>--rom_model /* LINK USING C CONVENTIONS */
+--stack_size=0x8000 /* SOFTWARE STACK SIZE */
+--heap_size=0x2000 /* HEAP AREA SIZE */
+
+/* SPECIFY THE SYSTEM MEMORY MAP */
+
+MEMORY
+{
+ P_MEM : org = 0x00000000 len = 0x00030000 /* PROGRAM MEMORY (ROM) */
+ D_MEM : org = 0x00030000 len = 0x00050000 /* DATA MEMORY (RAM) */
+}
+
+/* SPECIFY THE SECTIONS ALLOCATION INTO MEMORY */
+
+SECTIONS
+{ 
+ .intvecs : {} &gt; 0x0 /* INTERRUPT VECTORS */
+ .bss : {} &gt; D_MEM /* GLOBAL &amp; STATIC VARS */
+ .sysmem : {} &gt; D_MEM /* DYNAMIC MEMORY ALLOCATION AREA */
+ .stack : {} &gt; D_MEM /* SOFTWARE SYSTEM STACK */
+
+ .text : {} &gt; P_MEM /* CODE */
+ .cinit : {} &gt; P_MEM /* INITIALIZATION TABLES */
+ .const : {} &gt; P_MEM /* CONSTANT DATA */
+ .pinit : {} &gt; P_MEM /* TEMPLATE INITIALIZATION TABLES */</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="abstract.html">Back to Top</a>
+                    <p />
+                    <a href="http://www.go-dsp.com/forms/techdoc/doc_feedback.htm?litnum=SPNU151R&amp;partnum=ARM">Submit Documentation Feedback</a>
+                    <p>Copyright© 2018, Texas Instruments Incorporated. An <a href="includes/important_notice.html">IMPORTANT NOTICE</a> for this document addresses availability, warranty, changes, use in safety-critical applications, intellectual property matters and other important disclaimers.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+    <title>ULP Advisor Rule 15.1 Use bit-masks instead of bit-fields</title>
+  </head>
+  <body>
+    <h1> <span class="mw-headline"
+        id="ULP_Advisor_.3E_Rule_15.1_Use_bit-masks_instead_of_bit-fields">
+        <a href="http://processors.wiki.ti.com/index.php/ULP_Advisor"
+          title="ULP Advisor">ULP Advisor</a> &gt; Rule 15.1 Use
+        bit-masks instead of bit-fields </span></h1>
+    <table style="float: right; background: #F9F9F9;" border="5"
+      cellpadding="10" cellspacing="0">
+      <tbody>
+        <tr>
+          <td>
+            <div class="center">
+              <div class="floatnone"><a
+                  href="http://processors.wiki.ti.com/index.php/ULP_Advisor"
+                  title="ULP Advisor"><img alt="ULPAdvisorBanner.PNG"
+src="http://processors.wiki.ti.com/images/thumb/b/b9/ULPAdvisorBanner.PNG/320px-ULPAdvisorBanner.PNG"
+                    height="107" width="320"></a></div>
+            </div>
+            <h2> <span class="mw-headline"
+                id="ULP_Advisor_-_Rule_Table"> <a
+                  href="http://processors.wiki.ti.com/index.php/ULP_Advisor"
+                  title="ULP Advisor"><span style="color:#1F2BB8;"> ULP
+                    Advisor</span></a> - Rule Table </span></h2>
+            <p><a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/10371"
+                title="Compiler/diagnostic messages/MSP430/10371"><span
+                  style="color:#1F2BB8;"> ULP 1.1 Ensure LPM usage</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1527"
+                title="Compiler/diagnostic messages/MSP430/1527"><span
+                  style="color:#1F2BB8;"> ULP 2.1 Leverage timer module
+                  for delay loops</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1528"
+                title="Compiler/diagnostic messages/MSP430/1528"><span
+                  style="color:#1F2BB8;"> ULP 3.1 Use ISRs instead of
+                  flag polling</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/10372"
+                title="Compiler/diagnostic messages/MSP430/10372"><span
+                  style="color:#1F2BB8;"> ULP 4.1 Terminate unused GPIOs</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1530"
+                title="Compiler/diagnostic messages/MSP430/1530"><span
+                  style="color:#1F2BB8;"> ULP 5.1 Avoid
+                  processing-intensive operations: modulo, divide.</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1531"
+                title="Compiler/diagnostic messages/MSP430/1531"><span
+                  style="color:#1F2BB8;"> ULP 5.2 Avoid
+                  processing-intensive operations: floating point</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1532"
+                title="Compiler/diagnostic messages/MSP430/1532"><span
+                  style="color:#1F2BB8;"> ULP 5.3 Avoid
+                  processing-intensive operations: (s)printf()</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1533"
+                title="Compiler/diagnostic messages/MSP430/1533"><span
+                  style="color:#1F2BB8;"> ULP 6.1 Avoid multiplication
+                  on devices without hardware multiplier </span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/10422"
+                title="Compiler/diagnostic messages/MSP430/10422"><span
+                  style="color:#1F2BB8;"> ULP 6.2 Use MATHLIB for
+                  complex math operations </span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/10436"
+                title="Compiler/diagnostic messages/MSP430/10436"><span
+                   style="color:#1F2BB8;"> ULP 6.3 Use Low Energy Accelerator (LEA) software
+      library </span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1534"
+                title="Compiler/diagnostic messages/MSP430/1534"><span
+                  style="color:#1F2BB8;"> ULP 7.1 Use local instead of
+                  global variables where possible</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1535"
+                title="Compiler/diagnostic messages/MSP430/1535"><span
+                  style="color:#1F2BB8;"> ULP 8.1 Use 'static' &amp;
+                  'const' modifiers for local variables</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1537"
+                title="Compiler/diagnostic messages/MSP430/1537"><span
+                  style="color:#1F2BB8;"> ULP 9.1 Use pass by reference
+                  for large variables</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1538"
+                title="Compiler/diagnostic messages/MSP430/1538"><span
+                  style="color:#1F2BB8;"> ULP 10.1 Minimize function
+                  calls from within ISRs</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1539"
+                title="Compiler/diagnostic messages/MSP430/1539"><span
+                  style="color:#1F2BB8;"> ULP 11.1 Use lower bits for
+                  loop program control flow</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1540"
+                title="Compiler/diagnostic messages/MSP430/1540"><span
+                  style="color:#1F2BB8;"> ULP 11.2 Use lower bits for
+                  port bit-banging</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1541"
+                title="Compiler/diagnostic messages/MSP430/1541"><span
+                  style="color:#1F2BB8;"> ULP 12.1 Use DMA for large
+                  memcpy() calls</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1542"
+                title="Compiler/diagnostic messages/MSP430/1542"><span
+                  style="color:#1F2BB8;"> ULP 12.1b Use DMA for
+                  potentially large memcpy() calls</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1543"
+                title="Compiler/diagnostic messages/MSP430/1543"><span
+                  style="color:#1F2BB8;">ULP 12.2 Use DMA for repetitive
+                  transfer</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1544"
+                title="Compiler/diagnostic messages/MSP430/1544"><span
+                  style="color:#1F2BB8;"> ULP 13.1 Count down in loops</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1545"
+                title="Compiler/diagnostic messages/MSP430/1545"><span
+                  style="color:#1F2BB8;"> ULP 14.1 Use unsigned
+                  variables for indexing</span></a> <br>
+              <strong class="selflink"><span style="color:#1F2BB8;"> ULP
+                  15.1 Use bit-masks instead of bit-fields</span></strong>
+              <br>
+            </p>
+            <p><b>Let us know what you think!</b> Feedback, suggestions
+              &amp; comments <br>
+              are welcome @ ULPAdvisorFeedback@list.ti.com </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2><span class="mw-headline" id="What_it_means">What it means</span><span
+        class="mw-editsection"><span class="mw-editsection-bracket"></span><span
+          class="mw-editsection-bracket"></span></span></h2>
+    <p>It is common practice in embedded C code to store multiple bits
+      of information into a single variable via the use of bit-fields or
+      bit-mask. The advantage of bit-mask over bit-field is that several
+      bit-masks can be combined into one single bit-mask, allowing the
+      compiler to issue a single instruction to access the variable. On
+      the other hand, the compiler cannot roll consecutive bit-field
+      instructions into one instruction. This results in additional code
+      execution and consequently draws more power to execute the same
+      amount of effective code. </p>
+    <h2><span class="mw-headline" id="Risks.2C_Severity">Risks, Severity</span><span
+        class="mw-editsection"><span class="mw-editsection-bracket"></span><span
+          class="mw-editsection-bracket"></span></span></h2>
+    <p>Additional instructions might be executed, depending on the width
+      and/or the number of bits of the bit-field being
+      accessed/modified. The effect increases when the instructions in
+      question are part of a loop/function. </p>
+    <h2><span class="mw-headline" id="Why_it_is_happening">Why it is
+        happening</span><span class="mw-editsection"><span
+          class="mw-editsection-bracket"></span><span
+          class="mw-editsection-bracket"></span></span></h2>
+    <p>Consecutive instructions accessing the volatile bit-field
+      variable(s) (such as hardware registers) cannot be combined by the
+      compiler and hence requires more power &amp; energy to execute. <br>
+    </p>
+    <h2><span class="mw-headline" id="Remedy">Remedy</span><span
+        class="mw-editsection"><span class="mw-editsection-bracket"></span><span
+          class="mw-editsection-bracket"></span></span></h2>
+    <p>Use bit-mask instead of bit-field.<br>
+    </p>
+    <h2><span class="mw-headline" id="Code_Example">Code Example</span><span
+        class="mw-editsection"><span class="mw-editsection-bracket"></span></span></h2>
+    <pre> #define FLAG_1     1
+ #define FLAG_2     2
+ #define FLAG_3     4
+ #define FLAG_4     8
+    
+    
+ void functionA(unsigned char variable)
+ { 
+   unsigned int i, variable=FLAG_1;
+   if ( variable &amp; FLAG_1)
+   {
+    /* Execute application code */
+   }
+   
+   if ( variable &amp; FLAG_2)
+   {
+    /* Execute application code */
+   }
+ 
+   if ( variable &amp; FLAG_4)
+   {
+    /* Execute application code */
+   }      
+ } 
+     
+ void main(void)
+ {
+   unsigned int variable1 = FLAG_4;
+   /* Execute application code */
+   variable1|= FLAG_1 | FLAG_2 | FLAG_3;      
+   functionA(variable1);
+ }
+</pre>
+    <p><a class="external text"
+        href="http://focus.ti.com/mcu/docs/mcusplash.tsp?contentId=128826#CE"
+        rel="nofollow">See the rest of the code examples for all MSP430
+        devices here!</a> </p>
+    <h2> <span class="mw-headline" id="More_Resources"> More Resources
+      </span></h2>
+    <p>Want to squeeze a few more nanoAmps out of your application?
+      Leverage the e2e (Engineer-to-Engineer) online community to get
+      all of your ULP questions answered! Or, if you are an Ultra-Low
+      Power pro, give back to the community with your expertise. </p>
+    <p><a
+href="http://e2e.ti.com/support/microcontrollers/msp43016-bit_ultra-low_power_mcus/f/166.aspx"
+        class="external text" rel="nofollow" target="_blank">Go to
+        MSP430's e2e online forum!</a>&nbsp; </p>
+    <p>If you are posting on the forums in relation to this rule, try
+      using the tag "ULP_15.1" </p>
+    <table style="text-align:center; background:white; width:100%;
+      text-align:left; height: 65px border-top: 1px solid;
+      border-bottom: 1px solid; border-left: 1px solid; border-right:
+      1px solid; border-width: 1px; border-style: solid;">
+      <tbody>
+        <tr>
+          <td width="305px"><a
+              href="http://processors.wiki.ti.com/index.php/File:E2e.jpg"
+              class="image"><img alt="E2e.jpg"
+                src="http://processors.wiki.ti.com/images/8/82/E2e.jpg"
+                height="63" width="305"></a> </td>
+          <td><i>For technical support please post your questions at <a
+                href="http://e2e.ti.com" class="external free"
+                rel="nofollow" target="_blank">http://e2e.ti.com</a>.
+              Please post only comments about the article <b>Compiler/diagnostic
+
+                messages/MSP430/1546</b> here.</i></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

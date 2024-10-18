@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.5"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="EnergyTrace"
+            id="com.ti.dvt.energytrace">
+      </category>
+      <view
+            name="EnergyTrace&#x2122; Technology"
+            icon="icons/ETLogo.png"
+            category="com.ti.dvt.energytrace"
+            class="com.ti.dvt.energytrace.views.Dashboard"
+            restorable="true"
+            id="com.ti.dvt.energytrace.views.Dashboard">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml" plugin="com.ti.dvt.energytrace">
+      </contexts>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml" plugin="com.ti.dvt.ui">
+      </contexts>
+   </extension>
+   <extension point="org.eclipse.help.toc">
+      <toc file="toc.xml" primary="true" />
+   </extension>
+<!-- Tool menu item -->   
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="com.ti.dvt.energytrace.actionSet"
+            label="EnergyTrace Views"
+            visible="false">
+         <menu
+               id="com.ti.dvt.tools.menu"
+               label="&amp;Tools">
+            <separator
+                  name="energytraceTools">
+            </separator>
+            <groupMarker
+                  name="powerprofiler">
+            </groupMarker>
+         </menu>
+         <action
+               class="com.ti.dvt.energytrace.actions.DashboardAction"
+               icon="icons/ETLogo.png"
+               id="energytrace"
+               label="EnergyTrace&#x2122;"
+               menubarPath="com.ti.dvt.tools.menu/com.ti.dvt.energytrace"
+               style="push"
+               toolbarPath="energytrace"
+               tooltip="EnergyTrace&#x2122; Technology">
+         </action>
+      </actionSet>
+   </extension>
+<!-- -->   
+	<extension point="org.eclipse.ui.perspectiveExtensions">
+		<perspectiveExtension targetID="com.ti.ccstudio.TIDebugPerspective">
+			<actionSet id="com.ti.dvt.energytrace.actionSet"/>
+		</perspectiveExtension>	
+		<perspectiveExtension targetID="com.ti.ccstudio.TICPerspective">
+			<actionSet id="com.ti.dvt.energytrace.actionSet"/>
+		</perspectiveExtension>	
+		<perspectiveExtension targetID="com.ti.ccstudio.TISimplePerspective">
+			<actionSet id="com.ti.dvt.energytrace.actionSet"/>
+		</perspectiveExtension>	
+		<!-- Use below for attaching ET to DVT  
+		<perspectiveExtension targetID="com.ti.dvt.perspective">
+			<actionSet id="com.ti.dvt.energytrace.actionSet"/>
+		</perspectiveExtension>	
+ 		-->   
+	</extension>
+   <extension point="org.eclipse.core.runtime.preferences">
+      <initializer class="com.ti.dvt.energytrace.PreferencePage$PreferenceInitializer"/>
+   </extension>	
+   <extension point="org.eclipse.ui.preferencePages">
+      <page
+            category="com.ti.dvt.datamodel.ui.preferences.page"
+            class="com.ti.dvt.energytrace.PreferencePage"
+            id="com.ti.dvt.energytrace.preferences.page"
+            name="EnergyTrace&#x2122; Technology">
+         <keywordReference id="com.ti.dvt.energytrace.preferences.page.keyword"/>
+      </page>
+   </extension>
+   <extension
+         point="com.ti.dvt.ui.toolBarActionProviders">
+      <toolBarActionProvider
+            class="com.ti.dvt.energytrace.DVTActionProvider"
+            id="com.ti.dvt.energytrace.toolBarActionProvider1">
+      </toolBarActionProvider>
+   </extension>
+   <extension
+         point="com.ti.ccstudio.branding.highlightsProvider2">
+      <hightlightsProvider2
+            bundle="com.ti.dvt.energytrace"
+            description="EnergyTrace Technology Getting Started"
+            href="html/EnergyTrace CCS Welcome Page.html"
+            label="EnergyTrace&lt;sup&gt;&lt;small&gt;TM&lt;/small&gt;&lt;/sup&gt; Technology">
+      </hightlightsProvider2>
+   </extension>
+</plugin>

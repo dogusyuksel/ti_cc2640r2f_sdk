@@ -1,0 +1,1901 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6.1. Creating and Managing Projects &mdash; Code Composer Studio 12.8.0 Documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Code Composer Studio 12.8.0 Documentation" href="index.html"/>
+        <link rel="up" title="6. Projects and Build" href="index_project-management.html"/>
+        <link rel="next" title="6.8. Analysis and Optimization Tools" href="ccs_project-analysis.html"/>
+        <link rel="prev" title="6. Projects and Build" href="index_project-management.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="https://www.ti.com">
+            <img src="_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Code Composer Studio
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                12.8.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ccs_glossary.html">1. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_overview.html">2. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_installation.html">3. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_updates.html">4. Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_getting-started.html">5. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index_project-management.html">6. Projects and Build</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6.1. Creating and Managing Projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#projects-overview">6.1.1. Projects Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#workspaces">6.1.1.1. Workspaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#projects">6.1.1.2. Projects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#project-explorer-view">6.1.1.3. Project Explorer View</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#types-of-projects">6.1.1.4. Types of Projects</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#working-with-projects">6.1.2. Working with Projects</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#creating-new-projects">6.1.2.1. Creating New Projects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adding-or-linking-source-files-to-project">6.1.2.2. Adding or Linking Source Files to Project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#importing-projects">6.1.2.3. Importing Projects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#renaming-projects">6.1.2.4. Renaming Projects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#copying-projects">6.1.2.5. Copying Projects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deleting-projects">6.1.2.6. Deleting Projects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sharing-projects">6.1.2.7. Sharing Projects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#organizing-projects">6.1.2.8. Organizing Projects</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-projects">6.1.3. Configuring Projects</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#project-properties">6.1.3.1. Project Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advanced-project-settings">6.1.3.2. Advanced Project Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parallel-builds">6.1.3.3. Parallel Builds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pre-and-post-build-steps">6.1.3.4. Pre and Post Build Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changing-the-make-utility">6.1.3.5. Changing the Make Utility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#project-dependencies">6.1.3.6. Project Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#file-specific-options">6.1.3.7. File Specific Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exclude-files-from-build">6.1.3.8. Exclude Files from Build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changing-compiler-versions">6.1.3.9. Changing Compiler Versions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changing-sysbios-xdctools-and-product-versions">6.1.3.10. Changing SYSBIOS/XDCtools and Product Versions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-configurations">6.1.3.11. Build Configurations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#building-projects">6.2. Building Projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#project-files-and-build-system-overview">6.2.1. Project Files and Build System Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#create-project">6.2.1.1. Create Project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-rebuild-project">6.2.1.2. Build/Rebuild Project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#console-view">6.2.1.3. Console View</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#problems-view">6.2.1.4. Problems View</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-and-building-projects-from-command-line">6.3. Creating and Building Projects from Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#system-projects">6.4. System Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#working-with-source-control">6.5. Working with Source Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#understanding-tools-versioning">6.6. Understanding Tools Versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">6.7. Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_project-analysis.html">6.8. Analysis and Optimization Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_project-references.html">6.9. References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index_debug.html">7. Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_faqs.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_troubleshooting.html">9. Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ccs_legal.html">10. License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Code Composer Studio</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index_project-management.html">6. Projects and Build</a> &raquo;</li>
+      
+    <li>6.1. Creating and Managing Projects</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="https://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="creating-and-managing-projects">
+<h1>6.1. Creating and Managing Projects<a class="headerlink" href="#creating-and-managing-projects" title="Permalink to this headline">¶</a></h1>
+<p>In software development projects for embedded systems, there is quite
+commonly the need to create a single project that builds related
+versions of the application for different target hardware/memory
+configurations, with different build options, etc. In large-scale
+projects, there is also the need to organize files in a structure that
+is easily navigated and maintained by multiple team members.</p>
+<p>The CCS IDE is a flexible development environment that allows you to
+(among other features):</p>
+<ul class="simple">
+<li>Organize files in a structure that is easily navigated and maintained.</li>
+<li>Customize project properties.</li>
+<li>Create multiple build configurations for a single project, each with its own set of build options.</li>
+<li>Specify different version of build tools for each build configuration.</li>
+<li>Create a system level project that simplifies maintaining multiple projects required for a multicore device.</li>
+</ul>
+<p>This section discusses the project model used by CCS. It covers how to
+create, organize and configure projects to help you handle different
+versions of your applications.</p>
+<div class="section" id="projects-overview">
+<h2>6.1.1. Projects Overview<a class="headerlink" href="#projects-overview" title="Permalink to this headline">¶</a></h2>
+<p>This section provides an overview of workspaces and projects, and the
+types of projects supported by CCS.</p>
+<p>All work in CCS is based on projects, which are typically a collection
+of files and folders. Projects are stored and organized in workspaces.</p>
+<div class="section" id="workspaces">
+<h3>6.1.1.1. Workspaces<a class="headerlink" href="#workspaces" title="Permalink to this headline">¶</a></h3>
+<p>A workspace is the main working folder for CCS and contains information
+to manage all the projects defined to it.</p>
+<p>When CCS is launched, it will prompt for the workspace folder location.
+To avoid being prompted in the future, you can enable the option to use
+the selected folder as the default folder.</p>
+<p>After it launches, the <strong>CCS Edit</strong>
+<a class="reference external" href="ccs_overview.html#perspective">perspective</a> will be visible by
+default. This perspective contains views most commonly used during code
+development, such as the Project Explorer, Editor and Problems view.</p>
+<p>The default location of new projects will be within the workspace
+folder. Once a project has been added to the workspace, it will be
+visible in the <strong>Project Explorer</strong> view.</p>
+<p>The workspace folder also stores user information such as user interface
+preferences and settings.</p>
+<p>Workspaces are user specific, hence typically not checked into source
+control or shared between users. Instead, projects are checked into
+source control and each user would have their own workspace that
+references the projects.</p>
+<p>It is possible to have multiple workspaces. Only one workspace is active
+at a time in Code Composer Studio but you can switch workspaces using
+the menu <strong>File → Switch Workspace…</strong>.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">It is advisable to periodically <a class="reference external" href="./ccs_troubleshooting.html#general-ide">clean your workspace</a> as they could get corrupted over time. Before cleaning, if there are workspace settings you’d like to preserve, you can save the current workspace settings so they can be imported into the new workspace. Projects will have to be re-imported after cleaning the workspace.</p>
+</div>
+<div class="section" id="saving-workspaces">
+<h4>6.1.1.1.1. Saving Workspaces<a class="headerlink" href="#saving-workspaces" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>To save workspace settings: <strong>File → Export → General → Preferences →
+To preference file</strong>.</li>
+<li>To import workspace settings: <strong>File → Import → General → Preferences
+→ From preference file</strong>.</li>
+</ul>
+<p>To see a video demo of how to save/import workspace settings, check the
+<a class="reference internal" href="ccs_project-references.html#project-references"><span class="std std-ref">References</span></a> section.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although it is the recommended method, not all settings are preserved using the above method. Another way of saving all preferences is to copy over the ‘.metadata.plugins\org.eclipse.core.runtime.settings’ folder into the new workspace. This is only recommended if you are using the same version of CCS as was used with the older workspace.</p>
+</div>
+</div>
+<div class="section" id="deleting-workspaces">
+<h4>6.1.1.1.2. Deleting Workspaces<a class="headerlink" href="#deleting-workspaces" title="Permalink to this headline">¶</a></h4>
+<p>To delete a workspace, simply delete the workspace folder from the file
+system. Note that this will also delete all projects contained within
+that workspace.</p>
+<p>Deleting a workspace does not automatically remove it from the list of
+recent workspaces displayed by CCS during launch. To delete workspaces
+from the recent workspace list:</p>
+<ul class="simple">
+<li>Edit the file org.eclipse.ui.ide.prefs file found in &lt;install dir&gt;\ccsv[x]\eclipse\configuration.settings and remove the desired workspaces. OR</li>
+<li>Remove the workspaces from CCS menu <strong>Window → Preferences → General → Startup and Shutdown → Workspaces</strong>.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="projects">
+<h3>6.1.1.2. Projects<a class="headerlink" href="#projects" title="Permalink to this headline">¶</a></h3>
+<p>A project stores all the information needed to build an individual
+program or library, including:</p>
+<ul class="simple">
+<li>Filenames and paths of source code and object libraries.</li>
+<li>Build-tool options.</li>
+<li>Include file dependencies.</li>
+<li>Build-tool version used to build the project.</li>
+</ul>
+<p>Projects typically contain files and folders. Similar to the workspace,
+a project maps to a physical folder in the file system. When a new
+project is created, its default location is in a subfolder (of the
+project name) within the workspace folder. However you can also choose a
+folder outside the workspace.</p>
+<p>Once the project is created, a reference to it will be made in the
+workspace and the project will be visible and available for use from the
+<strong>Project Explorer</strong> view. Each project in the workspace must have a
+unique name.</p>
+<p>Projects are either <strong>open</strong> or <strong>closed</strong>. When you create or import a
+project into the workspace it is automatically open. Multiple projects
+can be open simultaneously.</p>
+<p>When you close a project, it is still defined to the workspace, but it
+cannot be modified by the Workbench. The resources of a closed project
+will not appear in the Workbench, but the resources still reside on the
+local file system. Closed projects require less memory and are not
+scanned during routine activity. Hence closing unnecessary projects can
+improve performance of CCS. Closed projects are still visible in the
+<strong>Project Explorer</strong> view with a ‘closed’ folder icon, so they can be
+easily opened when needed.</p>
+<p><img alt="image0" src="_images/open_closed_project2.png" /></p>
+<p>To open or close a project:</p>
+<ul class="simple">
+<li>Right-click on the project name in the <strong>Project Explorer</strong> view and select <strong>Open Project</strong> or <strong>Close Project</strong> respectively.</li>
+</ul>
+</div>
+<div class="section" id="project-explorer-view">
+<h3>6.1.1.3. Project Explorer View<a class="headerlink" href="#project-explorer-view" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Project Explorer</strong> view displays all projects that are part of the
+active workspace. The view is mostly a representation of the file system
+of the project folder. When you create a subfolder and move files to
+that subfolder from within the <strong>Project Explorer</strong> view, the actual
+filesystem is being altered. Similarly, changes made to the filesystem
+will be reflected in the <strong>Project Explorer</strong> view.</p>
+<p>Note that not all files that appear in the view will exist in the
+filesystem and vice versa. Linked files will appear in the view but
+because they are references and not actual copies, they will not appear
+in the actual filesystem. The ‘Binaries’ and ‘Includes’ folders that
+appear in the <strong>Project Explorer</strong> view also are just references. The
+‘Binaries’ folder points to the executable file in your active build
+configuration sub-folder (example, ‘Debug’).</p>
+<p>The screenshot below shows the contents of the ‘c6748_sinewave’ project
+in the <strong>Project Explorer</strong> view and how it maps to the physical project
+folder in the workspace in Windows Explorer. Note how the CCS generated
+project files (.ccsproject, .cproject, .project) and .settings folder
+shown in Windows Explorer are hidden in the <strong>Project Explorer</strong> view
+and how the ‘Binaries’ and ‘Includes’ folders in the <strong>Project
+Explorer</strong> view do not exist in Windows Explorer. Otherwise the rest of
+the folders and files are structured the same in the <strong>Project
+Explorer</strong> view and Windows explorer.</p>
+<p><img alt="image1" src="_images/proj_explorer.png" /></p>
+<p>The <strong>Project Explorer</strong> view can be customized to show/hide
+various file types to reduce clutter in the view.</p>
+<img alt="_images/proj_explorer_filter.png" src="_images/proj_explorer_filter.png" />
+</div>
+<div class="section" id="types-of-projects">
+<h3>6.1.1.4. Types of Projects<a class="headerlink" href="#types-of-projects" title="Permalink to this headline">¶</a></h3>
+<p>Code Composer Studio supports a few different types of projects. The
+project type can be specified when creating a new project. The project
+type will determine the toolchain and settings that the build interface
+will use and display.</p>
+<ul class="simple">
+<li><strong>CCS Project</strong> - type of project most commonly used when working
+with the TI toolchain, or with supported GCC compilers. In this type of project, the
+makefile is generated automatically. Select this project type if you
+are working with TI embedded processors and want to create a project
+to load and debug on a TI device/kit using JTAG.</li>
+<li><strong>C or C++ Project</strong> - standard Eclipse C or C++ project which
+requires an external toolchain such as GCC. The project wizard
+allows you to select a project type that can either generate
+makefile automatically or not.
+For example, if you select the Project type to be “Executable,
+Shared Library or Static Library” , by default it will create the
+makefile automatically. If you select the Project type to be
+“Makefile project” it will not create makefile automatically. You
+can also create a “Executable” project, and then modify the project
+property to not generate makefile automatically. Select this
+project type if you want to create a standard Eclipse C/C++ project
+and have it use a toolchain such as GCC.</li>
+<li><strong>Makefile Project with Existing Code</strong> - empty project that does not
+create makefile automatically. This is used for importing, modifying
+and building existing makefile based code. Select this type of
+project if you have a code base that has its own makefile but you
+wish to build the project through a GUI interface. When creating the
+project you specify the location where the code and makefile reside,
+as well as the toolchain used for the build.</li>
+</ul>
+<p>For more information on standard Eclipse C/C++ Projects and Makefile
+projects, refer to the <a class="reference external" href="https://help.eclipse.org/2020-12/index.jsp?topic=%2Forg.eclipse.cdt.doc.user%2Fgetting_started%2Fcdt_w_newproj.htm">Eclipse online
+documentation</a>.</p>
+</div>
+</div>
+<div class="section" id="working-with-projects">
+<h2>6.1.2. Working with Projects<a class="headerlink" href="#working-with-projects" title="Permalink to this headline">¶</a></h2>
+<p>This section covers the steps for creating, importing and working with
+projects.</p>
+<div class="section" id="creating-new-projects">
+<h3>6.1.2.1. Creating New Projects<a class="headerlink" href="#creating-new-projects" title="Permalink to this headline">¶</a></h3>
+<p>The steps below describe how to create new projects for the different
+types of projects supported by CCS.</p>
+<div class="section" id="creating-new-ccs-project">
+<h4>6.1.2.1.1. Creating New CCS Project<a class="headerlink" href="#creating-new-ccs-project" title="Permalink to this headline">¶</a></h4>
+<p>To create a new CCS project, follow the procedure in the relevant
+section in the <a class="reference external" href="./ccs_getting-started.html#creating-a-new-ccs-project">Getting Started
+chapter</a>.</p>
+</div>
+<div class="section" id="creating-new-c-c-project">
+<h4>6.1.2.1.2. Creating New C/C++ Project<a class="headerlink" href="#creating-new-c-c-project" title="Permalink to this headline">¶</a></h4>
+<p>The general steps for creating a new managed make or standard make C/C++
+project are described in the Eclipse online documentation at <a class="reference external" href="https://help.eclipse.org/2020-12/index.jsp?topic=%2Forg.eclipse.cdt.doc.user%2Ftasks%2Fcdt_t_proj_new.htm">this
+link</a>.</p>
+</div>
+<div class="section" id="creating-new-makefile-project">
+<h4>6.1.2.1.3. Creating New Makefile project<a class="headerlink" href="#creating-new-makefile-project" title="Permalink to this headline">¶</a></h4>
+<p>The general steps for creating a makefile project are described in the
+Eclipse online documentation at <a class="reference external" href="https://help.eclipse.org/2020-12/index.jsp?topic=%2Forg.eclipse.cdt.doc.user%2Fgetting_started%2Fcdt_w_newproj.htm">this
+link</a>.</p>
+</div>
+</div>
+<div class="section" id="adding-or-linking-source-files-to-project">
+<h3>6.1.2.2. Adding or Linking Source Files to Project<a class="headerlink" href="#adding-or-linking-source-files-to-project" title="Permalink to this headline">¶</a></h3>
+<p>CCS supports two methods of adding source files and/or folders to
+projects. You can either <strong>add</strong> files or <strong>link</strong> files.</p>
+<p>When you <strong>add</strong> a file/folder to a project, it is physically copied to
+the root location of the project directory.</p>
+<p>When you <strong>link</strong> a file/folder to a project, the project will create a
+reference to the file/folder in the file system instead of copying it
+into the project directory. Linked files appear in the CCS <strong>Project
+Explorer</strong> view with a special icon as shown below.</p>
+<p><img alt="image2" src="_images/linked_file_icon.png" /></p>
+<p>All files contained in a project (either copied or linked) will be
+included in the project build unless specifically excluded. To exclude a
+file from build, refer to <a class="reference external" href="#exclude-files-from-build">Exclude files from
+build</a>.</p>
+<p>To copy or link <strong>files</strong> to a project, either:</p>
+<ul class="simple">
+<li>Select <strong>Add Files</strong> from project’s context menu, browse and select the file(s) you wish to add, or</li>
+<li>Select the file(s) in your system’s File Explorer (Windows Explorer on Windows, Finder on macOS etc) and drag and drop them into the project in the <strong>Project Explorer</strong> view, or</li>
+<li>Copy the file(s) directly into the project directory in the file system.</li>
+</ul>
+<p>If you use either of the first two methods, the dialog will prompt you to select whether to <strong>Copy files</strong> or <strong>Link to files</strong>.</p>
+<p><img alt="image3" src="_images/add_link_dialog.png" /></p>
+<p>If you choose <strong>Copy files</strong>, the files will be copied into the project directory.</p>
+<p>If you choose <strong>Link to files</strong>, the files will be linked. You can set
+the link location to be either an absolute path or a path relative to a
+<a class="reference external" href="../ccs_portable-projects.html#variables">path variable</a>. For
+projects that will be shared among multiple users, use relative link
+paths as described in the <a class="reference external" href="../ccs_portable-projects.html">Portable
+Projects</a> page.</p>
+<p>To see a video demo of how to add files to a project, check the
+<a class="reference internal" href="ccs_project-references.html#project-references"><span class="std std-ref">References</span></a> section.</p>
+<p>To copy or link <strong>folders</strong> to a project, either:</p>
+<ul>
+<li><p class="first">Select the folder(s) in your system’s File Explorer (Windows Explorer on Windows, Finder on macOS etc) and drag and drop them into the project in the <strong>Project Explorer</strong> view (this allows for copying or linking), or</p>
+</li>
+<li><p class="first">To link a folder, follow this procedure:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Right-click on the project and select <strong>New → Folder</strong>.</li>
+<li>Click on <strong>Advanced &gt;&gt;</strong>.</li>
+<li>Select <strong>Link to alternate location (Linked Folder)</strong>.</li>
+</ul>
+<p><img alt="image4" src="_images/link_folders_1.png" /></p>
+<ul class="simple">
+<li>Click <strong>Browse</strong> to browse to the folder you want to link (or click <strong>Variables</strong> to add a path using a <a class="reference external" href="../ccs_portable-projects.html#variables">variable</a>).</li>
+</ul>
+<p><img alt="image5" src="_images/link_folders_2.png" /></p>
+<ul class="simple">
+<li>The folder should now be linked to the project.</li>
+</ul>
+<p><img alt="image6" src="_images/link_folders_3.png" /></p>
+</div></blockquote>
+</li>
+</ul>
+<p>If you find that the <strong>Link to files</strong> is not working as expected (for example, the file does not appear in the <strong>Project Explorer</strong> view after the selection), check that your Drag and Drop Settings has <strong>Enable linked resources</strong> enabled.</p>
+<p><img alt="image7" src="_images/linkfile1.png" /></p>
+<p><img alt="image8" src="_images/linkfile2.png" /></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Since linked files actually reside in a location outside the project folder, be aware that editing these files will modify the file not only for the current project but also for any other project that links to the same file. This is especially important when working with TI software packages and SDKs that may share source files among multiple projects.</p>
+</div>
+<div class="section" id="export-resources-to-archive-file">
+<h4>6.1.2.2.1. Export Resources to Archive File<a class="headerlink" href="#export-resources-to-archive-file" title="Permalink to this headline">¶</a></h4>
+<p>To archive a copy of all source files that are part a project (whether
+copied or linked) so they can be saved to a code repository or shared
+with another user, you can export the resources to an Archive file.</p>
+<ol class="arabic simple">
+<li>Right-click on the project in the <strong>Project Explorer</strong> view, select
+<strong>Export</strong>, expand <strong>General</strong> and choose <strong>Archive File</strong>.</li>
+<li>Click <strong>Next</strong>.</li>
+<li>Enable the checkbox <strong>Resolve and export linked resources</strong> if you wish to export linked resources.</li>
+<li><strong>Select All</strong> or select just the desired resources.</li>
+</ol>
+<p><img alt="image9" src="_images/export_archive_1.png" /></p>
+<ol class="arabic simple" start="5">
+<li>In the <strong>To archive file:</strong> field, specify the name and location of archive file.</li>
+<li>Click <strong>Finish</strong>.</li>
+</ol>
+<p>The resulting archive file will contain a copy of the selected resources.</p>
+<p>Note that when the archive is imported into another workspace, all the
+resources (including linked resources) will be extracted into the root
+project folder instead of preserving the original directory structure
+for the linked files. So this technique allows you to export/share
+resources, however it will not recreate exactly the original build
+environment upon import.</p>
+</div>
+</div>
+<div class="section" id="importing-projects">
+<h3>6.1.2.3. Importing Projects<a class="headerlink" href="#importing-projects" title="Permalink to this headline">¶</a></h3>
+<p>A more common scenario than creating a new project is to work with an
+existing project. This could be either your own development project or
+an example project provided by TI. In this case, you must first import
+the project into CCS.</p>
+<p>CCS can import projects that are created with the same version or older
+versions of CCS, including legacy CCSv3 projects. However, bear in mind
+that the greater the variance in CCS version used to create the project
+vs.&nbsp;version used to import the project, the more error-prone the import
+process could be.</p>
+<p>There are a few different methods of importing projects, depending on
+the type and source of project.</p>
+<p><strong>Import TI Example Projects Using Resource Explorer (recommended
+whenever possible):</strong></p>
+<p>Resource Explorer (in CCS versions 7 and higher) helps you browse
+examples for your chosen platform, download software packages and import
+projects all from within a single interface. Projects imported using
+Resource Explorer will be inherently copied to workspace.</p>
+<p>More information on Resource Explorer is available
+<a class="reference external" href="../ccs_resource_explorer_new.html">here</a>. Also refer
+to this section in the <a class="reference external" href="./ccs_getting-started.html#resource-explorer">Getting Started</a> chapter .</p>
+<p>To import a project from Resource Explorer:</p>
+<ol class="arabic simple">
+<li>Open <strong>Resource Explorer</strong> view from menu <strong>View</strong>.</li>
+<li>Under <strong>Software</strong>, expand the software package for your chosen device.</li>
+<li>Navigate to the example project and select it.</li>
+<li>In the right pane, click on <strong>Import to IDE</strong>.</li>
+</ol>
+<p>Note: If the software package containing the example has already been downloaded and installed, the project will import. Otherwise you will be prompted to install the software package first, after which the project can be imported.</p>
+<blockquote>
+<div><img alt="_images/project_import_rex4.png" src="_images/project_import_rex4.png" />
+</div></blockquote>
+<p><br /></p>
+<p><strong>Import TI Example Projects Using Resource Explorer Classic (Legacy):</strong></p>
+<p>If you are using CCS 5.2+ to CCSv6, you may be
+interested in this import method. The Resource Explorer interface in
+these older CCS versions is different than the one in CCSv7 and higher. You cannot download software packages from this interface but you can still browse and import example projects from older software packages (like TI-RTOS, ControlSuite etc) if it is already installed on your machine.</p>
+<p>This Resource Explorer interface (now called Resource Explorer Classic) is still included in CCSv7 and v8 but is not recommended for use with newer software packages. Also note that Resource Explorer Classic is not available in CCSv9 and higher.</p>
+<p>More information on Resource Explorer Classic is available
+<a class="reference external" href="../ccs_resource_explorer_classic.html">here</a>.</p>
+<p>To import a project from Resource Explorer Classic:</p>
+<ol class="arabic simple">
+<li>Open <strong>Resource Explorer Classic</strong> from menu <strong>View</strong>.</li>
+<li>Navigate to project you wish to import and click on <strong>Import the example project into CCS</strong>.</li>
+</ol>
+<p><img alt="image11" src="_images/project_import_rex_classic.png" /></p>
+<p><br />
+<strong>Import a CCS Project (other than CCSv3 project):</strong></p>
+<p>To import a CCS project using the CCS menu, please refer to the relevent
+section in the <a class="reference external" href="./ccs_getting-started.html#importing-a-ccs-project">Getting Started</a> chapter.</p>
+<p><br />
+<strong>Import a Standard Eclipse C/C++ Project (not recommended for CCS
+projects):</strong></p>
+<ol class="arabic simple">
+<li>Go to menu <strong>File → Import → General → Existing Projects into Workspace</strong>.</li>
+<li>Follow the steps presented in the import wizard.</li>
+</ol>
+<p><br />
+<strong>Import a Legacy CCSv3 Project:</strong></p>
+<ol class="arabic simple">
+<li>Go to menu <strong>Project → Import Legacy CCSv3.3 Projects</strong>.</li>
+<li>Next to <strong>Select a project file</strong>, click <strong>Browse</strong> and browse to the CCSv3.3 project file (.pjt) OR Choose <strong>Select search-directory</strong> and click on <strong>Browse</strong> to browse to directory that contains the CCSv3.3 project file.</li>
+<li>Follow the steps presented in the project wizard.</li>
+</ol>
+<p>A more detailed reference is available
+<a class="reference external" href="../ccs_legacy-project-import.html">here</a>.</p>
+<div class="section" id="project-import-errors">
+<h4>6.1.2.3.1. Project Import Errors<a class="headerlink" href="#project-import-errors" title="Permalink to this headline">¶</a></h4>
+<p>Refer to the <a class="reference external" href="#troubleshooting">Troubleshooting</a> section for
+information on resolving common project import errors.</p>
+</div>
+<div class="section" id="variables-in-imported-projects">
+<h4>6.1.2.3.2. Variables in Imported Projects<a class="headerlink" href="#variables-in-imported-projects" title="Permalink to this headline">¶</a></h4>
+<p>The CCS variable PROJECT_ROOT is set to the project’s root folder (the
+folder that contains the .*project files) by default. When a project is
+imported (with the “Copy project into workspace” checkbox enabled), CCS
+will create a new variable/macro named ORIGINAL_PROJECT_ROOT whose value
+is set to the original project’s root directory.</p>
+<p>If the original project specifies the macro ${PROJECT_ROOT} in any paths
+such as compiler include paths, it will be replaced with
+${ORIGINAL_PROJECT_ROOT} in the imported project. This is done because
+the project may still need to reference resources whose paths are set up
+relative to the original project location.</p>
+<p>Many projects are structured such that the include files reside in a
+common folder and several projects can use/reference the same set of
+common include files. Several TI software packages such as TivaWare,
+C2000Ware are also set up this way. When projects from these packages
+are imported and copied to workspace, the include folders are not
+necessarily copied over. So, if the original project has compiler
+include paths set up relative to the variable PROJECT_ROOT, those paths
+will be converted to use ORIGINAL_PROJECT_ROOT after project import, so
+the include files are still correctly referenced relative to the
+original project.</p>
+<p>In your custom project, if you wish to specify include paths to always
+be relative to the “current” project directory rather than the
+“original” project directory, use the variable ProjDirPath instead of
+PROJECT_ROOT.</p>
+</div>
+</div>
+<div class="section" id="renaming-projects">
+<h3>6.1.2.4. Renaming Projects<a class="headerlink" href="#renaming-projects" title="Permalink to this headline">¶</a></h3>
+<p>To rename a project that is open in the <strong>Project Explorer</strong> view:</p>
+<ol class="arabic simple">
+<li>Right click on the Project and select <strong>Rename</strong>.</li>
+<li>Give it a new name and click OK.</li>
+</ol>
+</div>
+<div class="section" id="copying-projects">
+<h3>6.1.2.5. Copying Projects<a class="headerlink" href="#copying-projects" title="Permalink to this headline">¶</a></h3>
+<p>To make a copy of a project that is already imported and open in the
+<strong>Project Explorer</strong> view:</p>
+<ol class="arabic simple">
+<li>Right click on the Project and select <strong>Copy</strong>.</li>
+<li>Right click in the <strong>Project Explorer</strong> view and select <strong>Paste</strong>.</li>
+<li><dl class="first docutils">
+<dt>In the <strong>Copy Project</strong> dialog</dt>
+<dd><ul class="first last">
+<li>give the new project a different name, and</li>
+<li>use the default location or specify a different location</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+<p>The copy process will copy over the files/resources from the original
+project folder into the copied project folder. However, if the project
+contains linked resources they will still point to their original
+location. It is the user’s responsibility to check if the project
+references linked files/resources from another location before directly
+editing such files. Refer to this section on <a class="reference external" href="#adding-or-linking-source-files-to-project">linked
+files</a> for more
+information.</p>
+<!-- When you copy a project, the new project "name" is saved in the .project file. This is the name used to identify the new project and what you would use if you import the new project via command line. However, many other settings (like name of output file, map file) and build definitions are kept the same as the original project until you explicitly change those as well. For this reason the .cproject file of the copied project may still contain references to the original project name.
+
+If you go into the **Properties &rarr; Variables** tab of the copied project and enable **Show System Variables*, you will see that all build paths have been adjusted to the location of the copied project. However, things like **BuildArtifactFileBaseName** and **BuildArtifactFileName** are still kept as the old names.
+If these variables are used in specifying the output file name, map file name etc, then they will still have the old name. It is the user's responsibility to customize these properties, and once they are done, they will reflect in the .cproject file.
+--></div>
+<div class="section" id="deleting-projects">
+<h3>6.1.2.6. Deleting Projects<a class="headerlink" href="#deleting-projects" title="Permalink to this headline">¶</a></h3>
+<p>To delete a project that is in the <strong>Project Explorer</strong> view:</p>
+<ol class="arabic simple">
+<li>Right click on the Project and select <strong>Delete</strong>.</li>
+<li>In the <strong>Delete Resources</strong> dialog choose whether to additionally delete project contents on disk. <br /> If the checkbox is enabled, the project directory in the file system will be deleted. If the checkbox is not enabled, the project will be deleted from the CCS workspace, but the directory will still be in the file system, so the project can be imported again at a later time.</li>
+</ol>
+</div>
+<div class="section" id="sharing-projects">
+<h3>6.1.2.7. Sharing Projects<a class="headerlink" href="#sharing-projects" title="Permalink to this headline">¶</a></h3>
+<p>The structure of a project is important when there is a need to share a
+project with another user or to facilitate having multiple users working
+on the same project at the same time. The most common use cases for
+sharing projects are discussed here.</p>
+<ul class="simple">
+<li>Sharing “simple” projects or “linked file” projects. Use this method
+if you wish to share the project folder and all needed source files
+to build the project. The source files can be either fully contained
+within the project folder or linked to the project. <br /> See the page
+below to learn how to share such projects. <br />
+<a class="reference external" href="../ccs_sharing-projects.html">Sharing Projects</a> <br /></li>
+<li>Sharing only project folder of “linked file” projects. Use this
+method if you wish to share the project folder only. It is assumed
+that the person receiving the project already has their own copy or
+access to the source files. This is a common use-case for projects
+maintained in source control. In this case, the project should be
+made portable so it can be easily shared among multiple users. The
+key to portable projects is to avoid absolute paths. Creating
+portable projects involves the use of
+<a class="reference external" href="../ccs_portable-projects.html#variables">variables</a> - linked
+resource path variables and build variables. <br /> See the article to learn more about these variables and how to
+create portable projects. <br />
+<a class="reference external" href="../ccs_portable-projects.html">Portable Projects</a> <br /></li>
+</ul>
+<div class="section" id="portability-across-operating-systems">
+<h4>6.1.2.7.1. Portability Across Operating Systems<a class="headerlink" href="#portability-across-operating-systems" title="Permalink to this headline">¶</a></h4>
+<p>In addition to creating projects without any absolute paths, other
+things to consider if the project needs to be portable across OS:</p>
+<ul class="simple">
+<li>Use forward slashes in all settings and options.</li>
+<li>Avoid upper/lowercase characters in file names, as Windows does not differentiate between them but Linux does.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="organizing-projects">
+<h3>6.1.2.8. Organizing Projects<a class="headerlink" href="#organizing-projects" title="Permalink to this headline">¶</a></h3>
+<p>The Eclipse framework (and by extension, CCS) provides a lot of
+flexibility for organizing and navigating your project resources. Some
+of the features are described here.</p>
+<div class="section" id="working-sets">
+<h4>6.1.2.8.1. Working Sets<a class="headerlink" href="#working-sets" title="Permalink to this headline">¶</a></h4>
+<p>Working sets are used to group elements for display in views or for
+operations on a set of elements.</p>
+<p>You can use working sets to restrict the set of resources that are
+displayed in the <strong>Project Explorer</strong> view. If you select a working set
+in the view, only resources, children of resources, and parents of
+resources contained in the working set are shown.</p>
+<p>This is useful if you have a large number of projects in the view but
+wish to work on only on a sub-set of them at a given time.</p>
+<p>To create a working set:</p>
+<ol class="arabic simple">
+<li>Click on the <strong>View Menu</strong> in the <strong>Project Explorer</strong> view and go to <strong>Select Working Set</strong>.</li>
+</ol>
+<p><img alt="image12" src="_images/working_set_1.png" /></p>
+<ol class="arabic simple" start="2">
+<li>Enable <strong>Selected Working Sets</strong> and click <strong>New</strong> to create a new working set.</li>
+</ol>
+<p><img alt="image13" src="_images/working_set_2.png" /></p>
+<ol class="arabic simple" start="3">
+<li>Select <strong>C/C++</strong> as the Working set type and click <strong>Next</strong>.</li>
+</ol>
+<p><img alt="image14" src="_images/working_set_3.png" /></p>
+<ol class="arabic simple" start="4">
+<li>Provide a name for the working set and select the projects that should be part of the working set.</li>
+</ol>
+<p><img alt="image15" src="_images/working_set_4.png" /></p>
+<ol class="arabic simple" start="5">
+<li>Click <strong>Finish</strong>.</li>
+<li>After the working set is created, select it and click <strong>OK</strong>.</li>
+</ol>
+<p><img alt="image16" src="_images/working_set_5.png" /></p>
+<ol class="arabic simple" start="7">
+<li>Use the <strong>View menu</strong> in the <strong>Project Explorer</strong> view to select/deselect working sets and to control how projects are displayed.</li>
+<li>In this example, the Top Level Elements are set to show both working sets and ‘other projects’.</li>
+</ol>
+<p><img alt="image17" src="_images/working_set_6.png" /></p>
+<p><img alt="image18" src="_images/working_set_7.png" /></p>
+<p>To see a video demo of how to use working sets, check the
+<a class="reference internal" href="ccs_project-references.html#project-references"><span class="std std-ref">References</span></a> section.</p>
+</div>
+<div class="section" id="virtual-folders">
+<h4>6.1.2.8.2. Virtual Folders<a class="headerlink" href="#virtual-folders" title="Permalink to this headline">¶</a></h4>
+<p>Virtual folders are folders that exist only in the CCS workspace tree,
+and have no file system location. By using virtual folders, files and
+folders can be organized in a project hierarchy that is independent of
+their location in the file system.</p>
+<p>Regular file and folder resources can not be created under a virtual
+folder. Only other virtual folders or linked resources can be created
+directly under a virtual folder.</p>
+<p>To create a virtual folder:</p>
+<ol class="arabic simple">
+<li>In <strong>Project Explorer</strong> view, right-click on the project or folder
+where you want to create the virtual folder.</li>
+<li>Select <strong>New → Folder</strong>.</li>
+<li>In the <strong>Folder name</strong> field, specify the name of the folder as it
+will appear in the workbench. This name can be different from the
+name of the folder in the file system.</li>
+<li>Click <strong>Advanced</strong>.</li>
+<li>Select <strong>Folder is not located in the file system (Virtual Folder)</strong>.</li>
+<li>Click <strong>Finish</strong>.</li>
+</ol>
+<p>You can now <a class="reference external" href="#adding-or-linking-source-files-to-project">link files</a>
+to the virtual folder.</p>
+<p>To see a video demo of how to use virtual folders, check the
+<a class="reference internal" href="ccs_project-references.html#project-references"><span class="std std-ref">References</span></a> section.</p>
+</div>
+</div>
+</div>
+<div class="section" id="configuring-projects">
+<h2>6.1.3. Configuring Projects<a class="headerlink" href="#configuring-projects" title="Permalink to this headline">¶</a></h2>
+<p>CCS provides a lot of flexibility when it comes to project configuration
+and management.</p>
+<div class="section" id="project-properties">
+<h3>6.1.3.1. Project Properties<a class="headerlink" href="#project-properties" title="Permalink to this headline">¶</a></h3>
+<p>There are many settings that define the properties of a project, such as
+the toolset used for the build, compiler and linker build options,
+project dependencies and environment variables, to name a few. These
+settings can be viewed and customized through the Project Properties.
+This section describes the more commonly used settings for a project.</p>
+<div class="section" id="general-properties">
+<h4>6.1.3.1.1. General Properties<a class="headerlink" href="#general-properties" title="Permalink to this headline">¶</a></h4>
+<p>To view and customize General Properties, right-click on a project and
+go to <strong>Properties</strong>, then click on <strong>General</strong> in the left pane.</p>
+<p>The <strong>Project</strong> tab in the right pane (previously named <strong>Main</strong> in CCS
+7.3 and lower versions) contains the following:</p>
+<ul class="simple">
+<li>Device and connection details</li>
+<li>Compiler version</li>
+<li>Output Type, Output format and Device endianness</li>
+<li>Linker command file</li>
+<li>Runtime support library</li>
+</ul>
+<p><img alt="image19" src="_images/general_proj_properties_1.png" /></p>
+<p>For more information on <strong>Linker command file</strong> and <strong>Runtime support
+library</strong>, see the articles <a class="reference external" href="../ccs_files_in_projects.html#linker-command-files">Linker command files</a>
+and <a class="reference external" href="../ccs_files_in_projects.html#runtime-support-library">Runtime support library</a>.</p>
+<p>The <strong>Output format</strong> field determines the <a class="reference external" href="../ccs_files_in_projects.html#executable-file">format of the executable
+(.out)</a>.</p>
+<p>The <strong>Compiler version</strong> field shows the version of compiler tools being
+used for the build. If the project imported into CCS was originally
+created with a version of compiler tools different than what is
+installed in your machine or what CCS is set to use, CCS will let you
+know that the version used for build is different than the original
+version. This information will be displayed in the <strong>Compiler version</strong>
+field as shown below.</p>
+<p><img alt="image20" src="_images/general_proj_compiler_version_2.png" /></p>
+<p>The <strong>Products</strong> tab in the right pane (previously named <strong>RTSC</strong> in CCS
+7.3 and lower versions) contains the following:</p>
+<ul class="simple">
+<li>List of Products installed and enabled for the project</li>
+</ul>
+<p>For RTSC/TI-RTOS based projects, it also contains:</p>
+<ul class="simple">
+<li>XDCpath Package Repositories</li>
+<li>Target</li>
+<li>Platform</li>
+<li>Build-Profile</li>
+</ul>
+<a class="reference internal image-reference" href="_images/general_proj_properties_rtsc_3.png"><img alt="_images/general_proj_properties_rtsc_3.png" src="_images/general_proj_properties_rtsc_3.png" style="width: 1000px;" /></a>
+<p>The <strong>Target</strong> field is automatically populated based on the <strong>Device
+Variant</strong> selected in the <strong>Project</strong> tab.</p>
+<p>The <strong>Platform</strong> field is selectable by the user based on the target
+board. It is usually auto-populated for example projects.</p>
+<p>The <strong>Build-profile</strong> field shows which RTSC and SYS/BIOS libraries the
+configuration build should link in. The selection applies compile
+options to the C file generated when building the RTSC configuration
+(.cfg). Note that this is different from the compile options selected
+under Compiler Properties that apply to the user source code. For
+example, if you choose the <strong>release</strong> RTSC profile, a -O2 optimization
+option may be added to the build, while for the <strong>debug</strong> RTSC profile,
+there would not be a -O2 optimization option. Building with <strong>release</strong>
+is a good choice as the RTSC and SYS/BIOS runtime functions will be
+faster and will use less code memory. Building with <strong>debug</strong> makes the
+build faster, but the runtime application will be less efficient.</p>
+</div>
+<div class="section" id="build-properties">
+<h4>6.1.3.1.2. Build Properties<a class="headerlink" href="#build-properties" title="Permalink to this headline">¶</a></h4>
+<p>To view and customize Build Properties, right-click on a project and go
+to <strong>Properties</strong>, then click on <strong>Build</strong> in the left pane. The right
+pane will display several tabs. The settings in each tab are described
+below. More details on these settings and their usage come in later
+sections.</p>
+<p><strong>Builder:</strong> Defines the build command, makefile generation and a few
+other build settings.</p>
+<p>Most users will not need to adjust the default settings under
+<strong>Builder</strong> and <strong>Makefile generation</strong>. These are set to use the
+default build command and to generate makefiles automatically. <br />
+Advanced users may wish to customize the gmake command or even use a different
+make utility. <br /> See <a class="reference external" href="#changing-the-make-utility">Changing the make utility</a> if you wish to use a make
+utility other than the default gmake.</p>
+<p>The <strong>Stop on first build error</strong> check box controls whether the build
+should stop immediately after the first build error or not. By default,
+this box is unchecked. This passes the -k (–keep-going) option to gmake
+that tells it to “keep going” or continue with the build as much as
+possible after an error. If this box is checked, the -k option will go
+away and the build will stop at the first build error.</p>
+<p>Note that even if this box is checked, it will still finish building the current source
+file and report all the errors found in that file. However, it will not
+continue with building other source files. In addition, if the <strong>Enable
+parallel build</strong> option is enabled, more than one source files may begin
+building concurrently, in which case the build will stop after all of
+those files are completed. Removing the -k option may be desired if
+using a <a class="reference external" href="#changing-the-make-utility">custom build step</a>.</p>
+<p>The <strong>Enable parallel build</strong> setting is enabled by default and takes
+advantage of PCs with multiple cores to run parallel builds, thereby
+speeding up the build time. See the section <a class="reference external" href="#parallel-builds">Parallel
+builds</a> for more details.</p>
+<p><strong>Validator:</strong> Sets level of adherence to different tools versions.</p>
+<p>This tab is visible in CCS 7.4 and higher. This setting configures the
+criticality of tools version mismatches. This is useful if you want
+strict control over which version of compiler and other products are to
+be used for project build.</p>
+<p><strong>Steps:</strong> Pre-build and Post-build steps.</p>
+<p>Pre-build steps are steps that run before the main project build takes
+place. <br /> Post-build steps are steps that run after the main project build
+takes place. <br /> See <a class="reference external" href="#pre-and-post-build-steps">Pre and Post Build
+Steps</a> for more information.</p>
+<p><strong>Variables:</strong> Displays Build variables.</p>
+<p>Enabling <strong>Show system variables</strong> shows all system level and built-in
+variables, otherwise only project level variables are shown. <br /> Build
+variables can be used in compiler and linker build options, for example,
+to specify paths to include files or libraries relative to a build
+variable. <br /> See <a class="reference external" href="../ccs_portable-projects.html#variables">Portable Projects</a>
+for more information on build variables.</p>
+<p><strong>Environment:</strong> Defines environment variables.</p>
+<p><strong>Link Order:</strong> Defines the order in which files are passed to the
+linker.</p>
+<p>If you need strict control over the linking order you can add the
+required files here and control the order in which they get passed to
+the linker.</p>
+<p><strong>Dependencies:</strong> Defines dependencies between projects, allowing
+referenced projects to be built before dependent project.</p>
+<p>See <a class="reference external" href="#project-dependencies">Project Dependencies</a> for more
+information.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In CCS 7.3 and lower, the <strong>Behavior</strong> tab defined build settings and workbench build behavior. In CCS 7.4 and higher these settings moved into the <strong>Builder</strong> tab.</p>
+</div>
+<p>Under the <strong>Build</strong> category there are several sub-categories:</p>
+<ul class="simple">
+<li><strong>Compiler</strong>, <strong>Linker</strong> and <strong>Hex Utility</strong> are for configuring and setting options for the code generation tools</li>
+<li><strong>XDCtools</strong> is for configuring a RTSC/TI-RTOS project</li>
+<li><strong>SysConfig</strong> is for configuring a SysConfig project</li>
+</ul>
+<p><strong>Compiler/Linker</strong>: Compiler and Linker options</p>
+<p>There are several compiler and linker options available to control your
+build. The list of options is too vast to go into detail here. Refer to
+the <a class="reference external" href="https://www.ti.com/tool/TI-CGT#technicaldocuments">Compiler and Assembly Language Tools Users
+Guides</a>
+for details on the options supported by the compiler and linker
+respectively. In the CCS Build Properties dialog, these options are
+categorized into groups for easy identification. You can drill down into
+the Compiler and Linker sections in the CCS GUI to access all of the
+available options.</p>
+<p>Compiler and linker flags can also be added or removed directly via the
+<strong>Edit Flags</strong> button.</p>
+<p><img alt="image22" src="_images/compiler_linker_options.png" /></p>
+<p><strong>Hex Utility</strong>: Hex utility options</p>
+<p>The Hex Utility can be enabled and invoked as part of the build in CCS. By default, the Hex Utility is disabled for a new CCS project. Once enabled, there are several options available. Refer to
+the <a class="reference external" href="https://www.ti.com/tool/TI-CGT#technicaldocuments">Assembly Language Tools Users
+Guides</a>
+for details on the options supported by the Hex Conversion Utility.</p>
+<p>Hex utility flags can also be added or removed directly via the
+<strong>Edit Flags</strong> button.</p>
+<img alt="_images/project_properties_hexutility.png" src="_images/project_properties_hexutility.png" />
+<p>For additional information on the Hex Utility integration into CCS, refer to the <a class="reference external" href="../ccs_hex-utility.html">Hex Utility in CCS</a> page.</p>
+<p><strong>XDCtools</strong>: XDCtools options</p>
+<p>Refer to the <a class="reference external" href="https://www.ti.com//lit/spruex3">SYS/BIOS Users Guide</a> for supported options.</p>
+</div>
+</div>
+<div class="section" id="advanced-project-settings">
+<h3>6.1.3.2. Advanced Project Settings<a class="headerlink" href="#advanced-project-settings" title="Permalink to this headline">¶</a></h3>
+<p>There are some advanced project settings that give the user control over
+features such as Code Analysis, Indexer, Code Style and others.</p>
+<p>To view and customize these advanced settings, right-click on a project
+and go to <strong>Properties</strong>, then click on <strong>Show advanced settings</strong> at
+the bottom of the left pane. The <strong>C/C++ General</strong> selection allows
+access to these settings.</p>
+<p>Some of the more commonly using setting, such as Code Analysis and Indexer, are described in more detail in the subsections below.
+For more information on the other settings, please refer to the the <a class="reference external" href="https://help.eclipse.org/2020-12/index.jsp?topic=%2Forg.eclipse.cdt.doc.user%2Freference%2Fcdt_o_prop_proj.htm&amp;cp%3D10_4_7_0">Eclipse CDT documentation</a>.</p>
+<div class="section" id="code-analysis">
+<h4>6.1.3.2.1. Code Analysis<a class="headerlink" href="#code-analysis" title="Permalink to this headline">¶</a></h4>
+<p>This is the built-in static code analyzer that comes with Eclipse CDT that
+reports on programming errors, syntax and semantic errors, etc. The
+default settings are set at workspace level, but can be configured at
+either workspace level or project level.</p>
+<p>The settings can be accessed from <strong>Project Properties → C/C++ General →
+Code Analysis</strong>. Make sure to click on <strong>Show advanced settings</strong> at the
+bottom left corner of the dialog for this setting to become visible.</p>
+<img alt="_images/code_analysis_v9.png" src="_images/code_analysis_v9.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">By default, Code Analysis checks are internally disabled for CCS projects.</p>
+</div>
+<p>The reason they are disabled by default is that the rules defined in the Eclipse static analysis tool are
+somewhat different than those defined by the TI tools. Users who are typically developing for TI embedded parts using TI compiler tools are more interested in the errors reported by the TI tools rather than the generic Eclipse CDT errors. To avoid confusion between the two sets of error checks, code analysis checks are disabled.</p>
+<p>To confirm that code analysis is disabled, go to <strong>Project Properties → C/C++ General → Code Analysis → Launching</strong>, and observe that the “Run with build” and “Run as you type” boxes are unchecked.</p>
+<p>If you click on <strong>Apply</strong> or <strong>Apply and Close</strong> in the <strong>Code Analysis</strong> dialog, it will turn on code analysis. This may trigger syntax and programming errors. If errors are reported only in the <strong>Problems</strong> view and CCS editor margins but not in the CCS build console, then they are likely coming from Eclipse CDT and not from TI compiler tools, hence do not impact the build.</p>
+<p>Another way to confirm the source of the error is to look at the <strong>Type</strong> field in the <strong>Problems</strong> view.</p>
+<p>If the <strong>Type</strong> is C/C++ Problem, it is coming from the TI build tools.</p>
+<img alt="_images/code_analysis_v9_c_problem.png" src="_images/code_analysis_v9_c_problem.png" />
+<p>If the <strong>Type</strong> is Semantic Error or Syntax Error it is coming from the Eclipse Code Analysis tool.</p>
+<img alt="_images/code_analysis_v9_semanticerror.png" src="_images/code_analysis_v9_semanticerror.png" />
+<p><br />
+If code analysis checks were inadvertently turned on for a project, use
+the following steps to turn it off again so the errors in the editor no longer appear:</p>
+<ol class="arabic simple">
+<li>In the <strong>Problems</strong> view, select all messages/errors and hit <strong>Delete</strong>.</li>
+<li>Right-click on the project and click <strong>Refresh</strong>.</li>
+<li>Close the source file from the editor view and reopen it.</li>
+</ol>
+<p>To leave code analysis on but disable or customize individual settings, select the specific item and click on <strong>Customize Selected</strong>.</p>
+</div>
+<div class="section" id="indexer">
+<h4>6.1.3.2.2. Indexer<a class="headerlink" href="#indexer" title="Permalink to this headline">¶</a></h4>
+<p>This is the built-in Eclipse parser. It parses source and
+header files in the project to create a database that provides the basis
+for C/C++ search, navigation features and content assist (code
+completion).</p>
+<p>To configure or disable the indexer (at workspace level), go to menu
+<strong>Window → Preferences → C/C++ → Indexer</strong>. Make sure to click on <strong>Show
+advanced settings</strong> at the bottom left corner of the dialog for this
+setting to become visible.</p>
+<p>The default settings are set at workspace level, but can be configured
+at either workspace level or project level (by enabling the checkbox
+highlighted below).</p>
+<img alt="_images/ccs_indexer_v9.png" src="_images/ccs_indexer_v9.png" />
+<p>By default the indexer is enabled, but you can turn it off if you don’t
+use the CCS editor or don’t need the advanced editor features. The
+indexer constantly scans all open projects to support some advanced
+editor features and uses a decent amount of system resources, sometimes
+causing CCS to appear sluggish. This is usually more evident with large
+projects or when there are many open projects in the workspace (or
+both). Turning off the indexer may improve performance in such
+situations.</p>
+<p>In some cases, there may be <strong>Syntax</strong> errors or <strong>Symbol could not be
+resolved</strong> errors reported by the indexer even when there is no issue
+with the build itself. In other words the <strong>Build Console</strong> and
+<strong>Problems</strong> view do not report errors, but there are errors highlighted
+in the editor margin.</p>
+<p>The first thing to try, especially if you are the only one experiencing
+such errors within a team on a known good project, is to open a new,
+clean workspace and re-import the project into it. If the errors persist
+or you experience these in your own custom project, you can look at
+adjusting the indexer settings or even disabling the indexer. This can
+be done from <strong>Project Properties → C/C++ General → Indexer</strong>. However,
+disabling the indexer completely means losing capabilities such as code
+completion and navigation to declaration/definition. A better option may
+be to disable the indexer markers without disabling the indexer itself.
+To do this, go to <strong>Window → Preferences → General → Editors → Text
+Editors → Annotations</strong> and uncheck all three checkboxes for <strong>C/C++
+Indexer Markers</strong>.</p>
+<div class="section" id="rebuild-index">
+<h5>6.1.3.2.2.1. Rebuild Index<a class="headerlink" href="#rebuild-index" title="Permalink to this headline">¶</a></h5>
+<p>If you find the advanced editor features such as Code completion, Open
+declaration etc. not working correctly, it could be due to a corrupted
+database/cache. In this case, rebuilding the Index could resolve the
+issue.</p>
+<p>To rebuild the indexed database for a project, right-click on the
+project in the <strong>Project Explorer</strong> view and select <strong>Index → Rebuild</strong>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="parallel-builds">
+<h3>6.1.3.3. Parallel Builds<a class="headerlink" href="#parallel-builds" title="Permalink to this headline">¶</a></h3>
+<p>Enabling the parallel build option speeds up compilation time by taking
+advantage of the multi core PCs that are very common these days.
+This can be especially beneficial when working with large projects.</p>
+<p>This option is enabled by default in new CCS projects and most TI
+example projects.</p>
+<p><img alt="image25" src="_images/parallel_build_default.png" /></p>
+<p>To customize the setting, right-click on the project in <strong>Project
+Explorer</strong> view and go to <strong>Properties → Build → Builder</strong> tab (or
+<strong>Behavior</strong> tab in CCS 7.3 and earlier).</p>
+<p>The number of parallel jobs to run can be customized here. The default
+value will be set to the amount of available processors on the machine,
+but you may find a more optimal number by trial and error.
+Note that setting the number of jobs to a value much higher than the
+number of processors in your computer or setting it to use unlimited
+jobs may result in the system using up more memory and becoming
+sluggish.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When parallel builds are enabled, the messages/banners in the CCS build console will be interleaved due to the multiple jobs running at the same time.</p>
+</div>
+<p>To see a video demo of parallel builds, check the
+<a class="reference internal" href="ccs_project-references.html#project-references"><span class="std std-ref">References</span></a> section.</p>
+</div>
+<div class="section" id="pre-and-post-build-steps">
+<h3>6.1.3.4. Pre and Post Build Steps<a class="headerlink" href="#pre-and-post-build-steps" title="Permalink to this headline">¶</a></h3>
+<p>As part of the CCS build, you can define pre-build and post-build steps.</p>
+<p><strong>Pre-build steps</strong> are steps that run before the main project build
+takes place. <br /> The pre-build step is always executed even if the state of
+the main build is up to date. An attempt to execute the main build will
+occur regardless of the success or failure of executing the pre-build
+step.</p>
+<p><strong>Post-build steps</strong> are steps that run after the main project build
+takes place. <br /> The post-build step is not executed if the state of the
+main build is determined to be up to date. It will be executed only if
+the main-build has executed successfully.</p>
+<p>One common use-case for post-build step is to convert the executable
+(.out) created by the project into a hex or binary format using the
+<strong>hex converter</strong> or other utilities such as <strong>tiobj2bin</strong>. The hex
+converter is part of the compiler toolset (can be found in
+<code class="docutils literal notranslate"><span class="pre">\ccs\tools\compiler\&lt;compiler_version&gt;\bin</span></code> within CCS installation) and
+tiobj2bin is included with CCS (can be found in
+<code class="docutils literal notranslate"><span class="pre">\ccs\utils\tiobj2bin</span></code> within CCS installation).</p>
+<p>To set pre and post build steps in CCS, right-click on the project in
+the <strong>Project Explorer</strong> view, go to <strong>Properties → Build → Steps</strong> tab
+and enter the desired commands in the <strong>Pre-build steps</strong> or
+<strong>Post-build steps</strong> fields.</p>
+<p>For example, to convert the executable (.out) to binary format (.bin),
+the following command can be used as post-build step:</p>
+<p><strong>&quot;${CCS_INSTALL_ROOT}/utils/tiobj2bin/tiobj2bin&quot; &quot;${BuildArtifactFileName}&quot;
+&quot;${BuildArtifactFileBaseName}.bin&quot; &quot;${CG_TOOL_ROOT}/bin/ofd2000&quot;
+&quot;${CG_TOOL_ROOT}/bin/hex2000&quot; &quot;${CCS_INSTALL_ROOT}/utils/tiobj2bin/mkhex4bin&quot;</strong></p>
+<p>Be sure to replace ofd2000 and hex2000 with the respective binaries for
+your device, for example, ofd6x and hex6x (for c6000) or armofd and
+armhex (for ARM).</p>
+<p>Note that some example projects in software packages like TivaWare and
+Simplelink SDKs already have a similar post-build, which you can use as
+reference as well.</p>
+<!--
+**`Legacy Predefined Step in CCSv5:`** <br>
+CCSv5 had a few predefined steps available under **Apply Predefined Step*, such as converting the executable to Intel-hex or TI-TXT format.
+If you select one of them the command will be automatically populated.
+
+![](./images/post_build_step1.png)
+<br>
+The **Apply Predefined Step** has been removed since CCSv6 as the hex utility integration is now different. You can go into the Project Properties, enable the Hex Utility and then have access to all the options available for the utility.
+![](./images/hex_enable.png)
+<br>
+--><div class="section" id="running-multiple-commands">
+<h4>6.1.3.4.1. Running Multiple Commands<a class="headerlink" href="#running-multiple-commands" title="Permalink to this headline">¶</a></h4>
+<p>The fields for pre and post build steps allows for multiple commands to
+be added, each on a new line.</p>
+<p><img alt="image26" src="_images/pre_post_build.png" /></p>
+<!--
+**`Legacy behavior in CCSv5:`** <br>
+In CCSv5, the Command field did not allow for multiple commands, so you could either put all the commands in a batch file/shell script and call the batch file in the Command field, or you could use the applicable command processing symbol for running multiple commands on one line (cmd1 & cmd2 for DOS). <br>
+
+When invoking batch files, a question that often comes up is whether the batch file can access CCS variables such as  CG_TOOL_ROOT etc, so for example, variables within the batch file automatically change as the compiler version changes.
+You cannot directly access CCS variables from within the batch file, but you could pass it as an argument to the batch file.
+
+So, for example, you could do something like this in the batch file:
+<pre>
+@ECHO OFF
+set HexUtil=%1%
+set CCSOutFile=Project.out
+%HexUtil% -a %CCSOutFile%
+</pre><br>
+and invoke the post build step as: <br>
+**postbuildstep.bat "${CG_TOOL_ROOT}/bin/hex2000.exe"**
+<br>
+--></div>
+<div class="section" id="adding-custom-steps">
+<h4>6.1.3.4.2. Adding Custom Steps<a class="headerlink" href="#adding-custom-steps" title="Permalink to this headline">¶</a></h4>
+<p>To add some custom steps or call a batch file after the compile step but
+before the link step, you can add a pre-link step to the command field
+in the Linker options, as shown below. The custom step is basically
+prepended before the existing command and separated with an ampersand.
+The below example adds a pre-link step to call a batch file.</p>
+<p><img alt="image27" src="_images/pre-link-command.png" /></p>
+</div>
+</div>
+<div class="section" id="changing-the-make-utility">
+<h3>6.1.3.5. Changing the Make Utility<a class="headerlink" href="#changing-the-make-utility" title="Permalink to this headline">¶</a></h3>
+<p>CCS uses gmake (GNU make) to build projects. If you have a need to use a
+different make utility or custom build step, you can do the following:</p>
+<ol class="arabic simple">
+<li>In <strong>Project Explorer</strong> view, right-click on the project and select <strong>Properties</strong>.</li>
+<li>Select <strong>Build</strong> in the left pane and <strong>Builder</strong> tab in the right pane.</li>
+<li>Uncheck <strong>Use default build command</strong>.</li>
+<li>In the <strong>Build command</strong> field type in the custom command to use for the build.</li>
+</ol>
+<p>You can also use this if you want to simply modify the default build
+command to pass additional options to gmake.</p>
+<p>When using a custom build step, you may want to consider enabling the
+build setting <strong>Stop on first build error</strong>. If this is not enabled it
+will add a -k (–keep-going) option to the end of the command (for gmake,
+this option tells it to “keep going” or continue with the build as much
+as possible after an error), which may not be desired for certain custom
+build commands.</p>
+<p><img alt="image28" src="_images/builder_custom_gmake.png" /></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This setting has to be changed at the project level. There is no global way to change the default builder or builder options.</p>
+</div>
+</div>
+<div class="section" id="project-dependencies">
+<h3>6.1.3.6. Project Dependencies<a class="headerlink" href="#project-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>Projects may be constructed such that the main project is dependent on
+other projects. A common use case is when a main project links in a
+library and the project for the library is set up as a referenced
+project. In this set up, when you build the main project, the referenced
+project will be built first and then the main project.</p>
+<p>Project dependencies can be set up when creating a new CCS project or
+from the Project Properties of an existing project. In order to create a
+dependency, all referenced projects must be in the same workspace as the
+main project.</p>
+<p>To create a project dependency:</p>
+<ol class="arabic simple">
+<li>In <strong>Project Explorer</strong> view, right-click on the project and select <strong>Properties</strong>.</li>
+<li>Select <strong>Build</strong> in the left pane and <strong>Dependencies</strong> tab in the right pane.</li>
+<li>Click on <strong>Add</strong>, choose the project to add to the list of references and click <strong>OK</strong>.</li>
+</ol>
+<p><img alt="image29" src="_images/dependency1.png" /></p>
+<p>The <strong>Referenced Build-configuration</strong> column allows you to choose which
+<a class="reference external" href="#build-configurations">build configuration</a> to use when building the
+referenced project. Note that this setting will apply for the active
+build configuration of the main project. This setting lets you control
+which build configuration of the referenced project will be built prior
+to building a specific build configuration of the main project.</p>
+<p><img alt="image30" src="_images/dependency2.png" /></p>
+<p>Creating a dependency does not mean that the library generated by the
+dependent project is automatically linked into the main project. It
+simply means that the dependent project will be built prior to the main
+project so any changes made to the dependent project since last build
+will be picked up. The library file will still need to be manually
+linked to the main project. This can be done either by
+<a class="reference external" href="#adding-or-linking-source-files-to-project">linking</a> the library
+file to the main project or by adding the library name and path to the
+main project’s linker options.</p>
+<p>To see a video demo of how to set up project dependencies, check the
+<a class="reference internal" href="ccs_project-references.html#project-references"><span class="std std-ref">References</span></a> section.</p>
+<div class="section" id="inherited-variables">
+<h4>6.1.3.6.1. Inherited Variables<a class="headerlink" href="#inherited-variables" title="Permalink to this headline">¶</a></h4>
+<p>Starting with CCSv7, projects that have a dependency on a library
+project may show the following variables in the compiler include path
+and linker library and search path options:</p>
+<p>&quot;${INHERITED_INCLUDE_PATH}&quot; <br />
+&quot;${INHERITED_LIBRARIES}&quot; <br />
+&quot;${INHERITED_LIBRARY_PATH}&quot;</p>
+<p>It may appear that these variables are being inherited from the
+dependent project, however, in reality these variables are not being
+used by CCS at this time. Although the variables are added to the
+project, they currently do not resolve to anything or serve any purpose.</p>
+<p>One way to confirm is that hovering over the three dots (...) next to the variable shows that it resolves to &lt;none&gt;.</p>
+<img alt="_images/inherited_variables.png" src="_images/inherited_variables.png" />
+</div>
+</div>
+<div class="section" id="file-specific-options">
+<h3>6.1.3.7. File Specific Options<a class="headerlink" href="#file-specific-options" title="Permalink to this headline">¶</a></h3>
+<p>It is possible to set file level build options that are different than
+the project level options. This is useful, for example, when specific
+files require a higher or lower level of optimization than other files.</p>
+<p>To set file-specific options, right-click on the file (or folder) in the
+<strong>Project Explorer</strong> view, go to <strong>Properties</strong>, and set the desired
+options.</p>
+<p>Files with file-specific options appear with a special icon (push pin)
+in the <strong>Project Explorer</strong> view.</p>
+<p><img alt="image31" src="_images/file_specific_option.png" /></p>
+<p>To revert the file back to its default settings:</p>
+<ol class="arabic simple">
+<li>Right-click on the file in the <strong>Project Explorer</strong> view.</li>
+<li>Select <strong>Resource Configurations → Reset to Default</strong>.</li>
+<li>Select the <a class="reference external" href="#build-configurations">resource configuration</a> to restore to default settings and click <strong>OK</strong>.</li>
+</ol>
+<p><img alt="image32" src="_images/file_specific_restore.png" /></p>
+<p>The special icon will disappear when the settings reset back to default.</p>
+<p>To see a video demo of setting file specific options, check the
+<a class="reference internal" href="ccs_project-references.html#project-references"><span class="std std-ref">References</span></a> section.</p>
+<p>When you add file specific options, a section is added to the project
+metadata file to indicate that there are file specific options and which
+default options to override. When you use the <strong>Resource Configurations
+→ Reset to Default</strong> option on the file, it will remove that whole
+section. Hence the project sees it as not having any file specific
+options in the project anymore and the special icon is also removed for
+that file.</p>
+<p>If you instead go to the file’s <strong>Properties → Resource</strong> and click on
+<strong>Restore Defaults</strong>, it will restore the options back to default but
+will not remove the special icon. This is because even though the
+override options are removed, the special section for the file that was
+previously added is still there and so the icon remains.</p>
+<p>If you wish to know which file specific options are set for a certain
+source file, there are a couple of ways to find out:</p>
+<ul class="simple">
+<li>Using the GUI: <br /> Right-click on the source file, select <strong>Properties</strong>, and browse through the options. The file specific options will be highlighted in <strong>bold</strong>.</li>
+</ul>
+<blockquote>
+<div><img alt="image33" src="_images/file_specific_option_bold.png" /></div></blockquote>
+<ul class="simple">
+<li>Using the.cproject file in the project folder: <br /> When file specific options are added, a section is added to this project file (look for it between &lt;fileInfo&gt; tags).</li>
+</ul>
+</div>
+<div class="section" id="exclude-files-from-build">
+<h3>6.1.3.8. Exclude Files from Build<a class="headerlink" href="#exclude-files-from-build" title="Permalink to this headline">¶</a></h3>
+<p>By default all files and folders within the CCS project folder are
+assumed to be part of the project build.</p>
+<p>To exclude file(s) or folders from the CCS project build, right-click on
+the file or folder in the <strong>Project Explorer</strong> view and select <strong>Exclude
+from Build</strong>.</p>
+<p>If the project has multiple build configurations, you can specify for
+which build configurations you want to exclude the file. To do this,
+right-click on the file or folder in the <strong>Project Explorer</strong> view and
+select <strong>Resource Configurations → Exclude from Build</strong>. In the pop-up
+dialog select the <a class="reference external" href="#build-configurations">build configurations</a> for
+which you want to exclude that file.</p>
+<p>With the default settings, files (or folders) excluded from build will
+appear grayed out in <strong>Project Explorer</strong> view.</p>
+<p><img alt="image34" src="_images/exclude_from_build.png" /></p>
+<p>If the file(s) excluded from build are not visible in the <strong>Project Explorer</strong> view at all, check if the below option is enabled in the <a class="reference external" href="#project-explorer-view">view filter</a> for the <strong>Project Explorer</strong> view.</p>
+<p><img alt="image35" src="_images/viewfilter.png" /></p>
+</div>
+<div class="section" id="changing-compiler-versions">
+<h3>6.1.3.9. Changing Compiler Versions<a class="headerlink" href="#changing-compiler-versions" title="Permalink to this headline">¶</a></h3>
+<p>All CCS releases come bundled with specific version(s) of compiler
+tools. During project development phase you may want to build your
+project with a different version of compiler tools than what is included
+with CCS. One reason may be to avail of bug fixes and enhancements in
+newer versions of compilers, another reason may be to stay locked down
+on an older version of the compiler. CCS is very flexible in allowing
+you to do this.</p>
+<p>To view the version of compiler used for the project build, right-click
+on the project in the <strong>Project Explorer</strong> view and go to <strong>Properties →
+General → Project</strong> tab, and view the <strong>Compiler version</strong> field. If the
+project imported into CCS was originally created with a version of
+compiler tools different than what is installed in your machine or what
+CCS is set to use, that information will be shown when you hover over
+the <strong>Compiler version</strong> field.</p>
+<p>The drop-down menu in the <strong>Compiler version</strong> field will show the
+different versions available to use if there is more than one version
+discovered/installed into CCS.</p>
+<p>If you wish to build with a different version of compiler tools than
+what is already available, you can install the specific version and have
+CCS discover it. Please see the <a class="reference external" href="../ccs_compiler-installation-selection.html">Compiler Installation and
+Selection</a> article for
+details.</p>
+<!--
+The first two ways described below show how to install from within CCS and the last shows to install from outside CCS.
+
+1. Install compiler tools using CCS menu:
+    - **Help->Check for Updates** (only finds versions newer than the one currently installed).
+    - **Help->Install Code Generation Compiler Tools** (finds older and newer versions - this menu is available in CCS 7.4 and higher). <br> To see a demo video, check the [References](#video-demos) section.
+
+ In this case, CCS will automatically recognize the compiler tools and show it in the drop-down menu under **Compiler version**.
+
+ A more detailed explanation of how compiler updates work from within CCS is in this article: [Compiler Updates](https://software-dl.ti.com/ccs/esd/documents/ccs_compiler-updates.html)
+
+2. Install the latest available compiler tools from the **CCS App Center** (menu **View->CCS App Center**).
+
+ Note that only the very latest compiler version is available here. There isn't a way to select and install a specific older version using the App Center.
+
+ In this case, CCS will automatically recognize the compiler tools and show it in the drop-down menu under **Compiler version**.
+
+3. Install compiler tools using a separate stand-alone installer (download from [this page](https://www-a.ti.com/downloads/sds_support/TICodegenerationTools/index.htm)).
+
+ In this case, CCS can be made to detect it by following the steps described here: [Compiler Installation and Selection](https://software-dl.ti.com/ccs/esd/documents/ccs_compiler-installation-selection.html)
+
+####Discovered Tools
+
+To see which versions of compiler tools are discovered/known to CCS, go to menu **Window->Preferences->Code Composer Studio->Build->Compilers**, and check the versions listed under **Discovered tools**.
+
+There are some paths that CCS always searches by default (typically the folder where CCS was installed). These are listed under **Tool discovery path**.
+You can also add your own paths to this list by clicking the **Add** button and browsing to the compiler tool's installation directory or to it's parent directory. After the tools are discovered they will appear in the **Discovered tools** list.
+
+Discovery paths added by the user (not the default paths) are stored in metadata information in the file <tt> &lt;CCS INSTALL DIR&gt;\ccsv6\eclipse\configuration\ccs.properties </tt>
+
+![](./images/cgt_discovery.png)
+<br>
+When there is more than one version of compiler tools discovered by CCS, they will appear in the drop-down menu in the **Compiler version** field from where you can select the desired version. The version selected in this field will be the version used for building the project.
+![](./images/compiler_versions.png)
+<br>
+
+To see a video demo of how to change the version of compiler tools used to build a project, check the [References](#video-demos) section.
+--></div>
+<div class="section" id="changing-sysbios-xdctools-and-product-versions">
+<h3>6.1.3.10. Changing SYSBIOS/XDCtools and Product Versions<a class="headerlink" href="#changing-sysbios-xdctools-and-product-versions" title="Permalink to this headline">¶</a></h3>
+<p>Similar to changing the version of compiler tools, you can also change
+the version of XDCtools and products like SDKs used to build a project.</p>
+<p>To view the current version of XDCtools used for the build and other
+Product details, right-click on the project and go to <strong>Properties →
+General → Products</strong> tab. This tab displays the version of XDCtools used
+for the build, and Products and Repositories available and enabled,
+among other things.</p>
+<p>The drop-down menu under <strong>XDCtools version</strong> will show the different
+versions available to use if there is more than one version
+discovered/installed into CCS. Similarly, the <strong>Products and
+Repositories</strong> view will show all the products discovered/installed into
+CCS.</p>
+<p>If you wish to build with a different version of XDCtools or SDK than
+what is already available, you can install the specific version and have
+CCS discover it (a.k.a. Product Discovery). Please see the <a class="reference external" href="../ccs_product-installation-selection.html">Product
+Installation and
+Selection</a> article for
+details.</p>
+<!--
+####Discovered Products
+At any give time, to check which versions of products are discovered/known to CCS, go to menu **Window->Preferences->Code Composer Studio->Products**, and check the versions listed under **Installed products**.
+
+There are some paths that CCS always searches by default. These are listed under **Product discovery path**.
+You can also add your own paths to this list by clicking the **Add** button and browsing to the directory to search for new products. Then to have CCS discover the products in those paths click the **Rediscover** button. After the products are installed they will appear in the **Installed products** list.
+
+![](./images/rtsc_discovered_products.png)
+<br>
+Once additional Products and Repositories have been installed, you can enable which version to use in your project from the drop-down menu for **XDCtools version** (for XDCtools) and from the **Products and Repositories** tab.
+![](./images/rtsc_version_selection.png)
+--></div>
+<div class="section" id="build-configurations">
+<h3>6.1.3.11. Build Configurations<a class="headerlink" href="#build-configurations" title="Permalink to this headline">¶</a></h3>
+<p>During development, it is quite common to have the need to create a
+single project that builds executables (.out files) with different
+project options, source files or even for different memory
+configurations. In CCS this is done with Project Build Configurations.</p>
+<p>A Project Build Configuration defines a set of build options and
+resources at the project level that can be labeled and easily accessible
+with a very minimal number of steps. Therefore, by creating multiple
+build configurations within a single project it is possible to organize
+and quickly switch between different sets of options and resources.</p>
+<p>When a new project is created in CCS, two build configurations are
+created by default: <strong>Debug</strong> and <strong>Release</strong>. The Debug build
+configuration usually has no optimization and full symbolic debug
+enabled, to enable easy debugging. The Release build configuration will
+often have optimization enabled and symbolic debug disabled, to get your
+code as small or fast as possible without the need for source level
+debug. These are just the options usually set for the default build
+configurations, it could be different for different device families, so
+it is best to check the default options set for each build configuration
+and tweak it as necessary.</p>
+<p>When a new project is created or an existing project is imported into
+CCS, the first configuration (in alphabetical order) is set to active in
+the workspace. Usually this is the <strong>Debug</strong> configuration but may be
+different depending on the configuration names.</p>
+<p>Note that some example projects provided by TI may have custom
+configuration names other than Debug and Release. For example, projects
+in C2000Ware may have RAM and Flash configurations, where one is set up
+to run from RAM and the other to run from Flash. Based on the
+configuration, the project may use a different linker command fle and
+may or may not include certain source files.</p>
+<!--
+Since the Debug configuration comes up by default users usually start tweaking the Debug configuration directly when they are ready to start optimizing their code or modifying other compiler and linker options. Instead it would be advisable to switch to the Release configuration when you are ready to optimize your code. That way you can easily switch back to a known good debuggable configuration quickly whenever needed.
+--><p>When a project is built, the output files generated by the build are
+placed in a configuration-specific subdirectory. For example, if the
+project is in the directory MyProjects, the output files for the Debug
+configuration will be placed in MyProjects\Debug.
+Similarly, the output files for the Release configuration will be placed
+in MyProjects\Release.</p>
+<p>To change the active configuration:</p>
+<ul class="simple">
+<li>Right-click on the project in the <strong>Project Explorer</strong> view.</li>
+<li>Go to <strong>Build Configurations → Set Active</strong> and select the desired configuration. <br /> OR <br /></li>
+<li>Right-click on the project in the <strong>Project Explorer</strong> view and go to <strong>Properties</strong>.</li>
+<li>Select <strong>General</strong> in the left pane.</li>
+<li>Click on <strong>Manage Configurations</strong>.</li>
+<li>Select the desired configuration and click <strong>Set Active</strong>.</li>
+</ul>
+<p>To see a video demo of how to change the build configuration, check the
+<a class="reference internal" href="ccs_project-references.html#project-references"><span class="std std-ref">References</span></a> section.</p>
+<p>To create and manage your own custom configurations:</p>
+<ul class="simple">
+<li>Right-click on the project in the <strong>Project Explorer</strong> view.</li>
+<li>Go to <strong>Build Configurations → Manage</strong>. <br /> OR <br /></li>
+<li>Right-click on the project in the <strong>Project Explorer</strong> view and go to <strong>Properties</strong>.</li>
+<li>Select <strong>General</strong> in the left pane.</li>
+<li>Click on <strong>Manage Configurations</strong>.</li>
+</ul>
+<p>Here you can delete, rename and create new configurations. When creating a new
+configuration there are several options available to copy a base set of
+options/settings.</p>
+<p>To see a video demo of how to create and manage build configurations,
+check the <a class="reference internal" href="ccs_project-references.html#project-references"><span class="std std-ref">References</span></a> section.</p>
+<p>To build all the build configurations of a project:</p>
+<ul class="simple">
+<li>Right-click on the project in the <strong>Project Explorer</strong> view.</li>
+<li>Go to <strong>Build Configurations → Build All</strong>.</li>
+</ul>
+<!--
+See [this video ](https://software-dl.ti.com/sdo/sdo_apps_public_sw/CCSv5/Demos/Project_Build_Configurations/Project_Build_Configurations.html) for a tutorial that shows
+the procedure to create and use a project with multiple build configurations.
+--></div>
+</div>
+</div>
+<div class="section" id="building-projects">
+<h1>6.2. Building Projects<a class="headerlink" href="#building-projects" title="Permalink to this headline">¶</a></h1>
+<p>There are several options available for building projects:</p>
+<ol class="arabic simple">
+<li><strong>Full Builds</strong> - re-build and re-link all the source files. <br /> To re-build
+the currently active project: Select <strong>Rebuild Project</strong> from
+project’s context menu. <br /> To re-build all the open projects in the
+workspace: Select menu <strong>Project → Clean</strong>. Then <strong>Project → Build</strong>. <br /></li>
+<li><strong>Incremental Builds</strong> - build and re-link only the source files that
+were modified since last build. <br /> To build the currently active
+project: Select menu <strong>Project → Build Project</strong> or select <strong>Build
+Project</strong> from project’s context menu. <br /> To build all the open projects
+in the workspace: Select menu <strong>Project → Build All</strong>. This will build the active build configuration of all the projects in the workspace.</li>
+<li><strong>Build Automatically</strong> - performs an incremental build automatically
+whenever any source files or relevant header files are saved. <br /> Select
+menu <strong>Project → Build Automatically</strong>.</li>
+</ol>
+<p>During the build, the <a class="reference external" href="#console-view">Console view</a> displays the standard and error outputs of the build tools. <br /> When the build is finished, the <a class="reference external" href="#problems-view">Problems
+view</a> displays any errors or warnings.</p>
+<p>If there are errors encountered during build, refer to the <a class="reference external" href="../sdto_ccs_build-errors.html">Build errors
+in CCS</a> page. It discusses some of the
+more common build errors and warnings and how to resolve them.</p>
+<div class="section" id="project-files-and-build-system-overview">
+<h2>6.2.1. Project Files and Build System Overview<a class="headerlink" href="#project-files-and-build-system-overview" title="Permalink to this headline">¶</a></h2>
+<p>CCS projects use the Eclipse managed make system where the makefile is
+generated automatically and takes care of managing the toolchain and
+build details.</p>
+<p>This section provides an overview of the project metadata files and
+describes what happens under the hood during the project create and
+build steps.</p>
+<div class="section" id="create-project">
+<h3>6.2.1.1. Create Project<a class="headerlink" href="#create-project" title="Permalink to this headline">¶</a></h3>
+<p>When a new CCS project is created, the following project metadata files
+and folders are created in the project folder:</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt><strong>.ccsproject</strong>: Stores project settings contributed by TI.</dt>
+<dd><ul class="first last">
+<li>Ex: Stores initial device/toolchain settings entered by user at project creation.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>.cproject</strong>: Stores project settings contributed by CDT (C/C++ Development Tooling).</dt>
+<dd><ul class="first last">
+<li>Ex: Stores most of the build properties under the ‘Build’ section (most of the compiler/linker options).</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>.project</strong>: Stores project settings contributed by Eclipse.</dt>
+<dd><ul class="first last">
+<li>Ex: Stores information for linked resources, linked resource variables, resource filters.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>.settings (folder)</strong>: Stores project specific settings that differ from the default CCS settings.</dt>
+<dd><ul class="first last">
+<li>Ex: Workspace preferences</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><strong>makefile.defs (SYS/BIOS)</strong>: Additional make rules included by the generated project makefile for SYS/BIOS projects.</li>
+</ul>
+<p>The .ccsproject file holds a snapshot of selections made at the time of
+project creation, and rarely changes after that. So if you change
+properties such as the device-variant or compiler tools version, the
+change is not stored in the .ccsproject file, but instead stored in the
+.cproject file.</p>
+<p>The .ccsproject file is mainly a historical left-over from the days when
+some settings were stored on a project-level (as opposed to
+build-configuration-level). But the file is still currently used to:</p>
+<ul class="simple">
+<li>Allow the user to roll back certain settings to their original values.</li>
+<li>Store some project-wide settings, such as the connection for debugging ( and maybe other settings in the future).</li>
+</ul>
+<p>Although it seems like this file stores some unnecessary information, it
+could be helpful when trying to debug issues.</p>
+<p>The .ccsproject, .cproject, .project files are XML files. It is
+generally NOT recommended to manually edit these files unless you are an
+expert user and have a good understanding of what you are modifying.</p>
+</div>
+<div class="section" id="build-rebuild-project">
+<h3>6.2.1.2. Build/Rebuild Project<a class="headerlink" href="#build-rebuild-project" title="Permalink to this headline">¶</a></h3>
+<p>When a CCS project is built for the first time or rebuilt, it goes
+through the following steps:</p>
+<ol class="arabic simple">
+<li><strong>Auto-generate makefiles</strong>: <br /> Generates main makefile and several
+*.mk include files in the active project configuration folder (such
+as Debug folder, by default).<ul>
+<li>makefile: Main makefile that includes the generated *.mk files</li>
+<li>All of the sources participating in the build are defined in the
+below *.mk files<ul>
+<li>objects.mk</li>
+<li>subdir.mk</li>
+<li>subdir_vars.mk</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Optionally clean using ‘gmake’</strong> (when selecting <strong>Rebuild
+Project</strong> or <strong>Clean Project</strong>). <br /> Deletes .obj, .pp and .out files in
+the active configuration folder (such as Debug folder,
+by default). It does not delete makefiles and .map files.</li>
+<li><strong>Build the main makefile using ‘gmake’</strong>. <br /> The main make build in
+turn invokes the pre-build (if any), main-build and post-build (if
+any) steps. These steps are described in more detail below.</li>
+</ol>
+<p>A typical project build looks like the following:</p>
+<p><img alt="image36" src="_images/project_build_flow.png" /></p>
+<div class="section" id="makefiles">
+<h4>6.2.1.2.1. Makefiles<a class="headerlink" href="#makefiles" title="Permalink to this headline">¶</a></h4>
+<p>The makefile auto-generated by CCS includes a few other files, namely
+makefile.init, makefile.defs and makefile.targets.</p>
+<p>makefile.defs is used for defining additional make rules for SYS/BIOS
+projects. <br /> makefile.init and makefile.targets are not used by the TI
+build environment. They are inserted into the makefile by one of the
+Eclipse components(CDT) and can be used to extend the behavior. For
+example, you can create these optional makefiles in the top-level folder
+of the project:</p>
+<ul class="simple">
+<li>makefile.init – included early in the build</li>
+<li>makefile.targets – for adding rules for additional make targets</li>
+</ul>
+<p>Each file, if it exists, gets included at a specific point along the
+build. You can see where they get included by taking a look at the
+makefile in the active project configuration folder.</p>
+<p><strong>Example of using makefile.targets:</strong></p>
+<p>If you wish to add some additional clean commands (i.e. perform some clean
+actions in addition to what the default clean does) you could do the
+following:</p>
+<p>1. Create a makefile.targets that contains rules for the
+additional make targets and place the file in the top-level folder of
+the project. For example, a makefile.targets file to perform additional
+clean commands (in this case, delete the main.asm file) could look like
+this:</p>
+<pre>
+myclean:
+-$(RM) "main.asm"
+-@echo 'Finished my custom clean'
+</pre><p>2. Modify the <strong>Build → Builder</strong> tab in CCS to add “myclean” in
+addition to the default clean.</p>
+<p><img alt="image37" src="_images/custom_clean_1.png" /></p>
+<p>Now when you select <strong>Clean Project</strong>, it will perform the default clean
+as well as the custom myclean rule, as shown in the output below.</p>
+<pre>
+**** Clean-only build of configuration Debug for project test_f28377D ****
+
+"C:\\CCStudio_v6.1.1.00022\\ccsv6\\utils\\bin\\gmake" -k clean myclean
+DEL /F "test_f28377D.out" "test_f28377D.hex"
+DEL /F "main.pp"
+DEL /F "main.obj"
+'Finished clean'
+' '
+DEL /F "main.asm"
+
+'Finished my custom clean'
+</pre><p><br />
+<strong>Example of using makefile.init:</strong></p>
+<p>This example illustrates how to hook into the generated makefile to
+script a custom pre-build step. This is useful in cases where the
+commands cannot be run as a pre-build step in CCS (for example, in cases
+where you want the main build to fail if the pre-build fails).</p>
+<ol class="arabic">
+<li><p class="first">Create a makefile.init file that contains custom commands and place
+the file in the top-level folder of the project. For example, a
+makefile.init file could look like this:</p>
+<pre>
+all: custom-step
+custom-step:
+ @echo Custom pre-build step
+ @mkdir a**b
+</pre></li>
+<li><p class="first">Go to <strong>Project Properties → Build → Builder</strong> tab, enable <strong>Stop on
+first build error</strong>, and make sure that <strong>Enable parallel build</strong> is
+not enabled.</p>
+</li>
+</ol>
+<p>Now, when you build your project, the build will stop immediately after
+failing to execute the &quot;&#64;mkdir a**b&quot; command in the custom-step. And if
+you change the command to “&#64;mkdir ab”, the custom-step will succeed and
+the rest of the build will proceed.</p>
+<p>This is just a simple example that shows how to hook into the generated
+makefile to script a custom pre-build or post-build step. Similarly,
+hooks can be scripted for individual source files.</p>
+<p>To completely customize the makefile, you can go to <strong>Project Properties
+→ Build → Builder</strong> tab, and deselect “Generate Makefiles
+automatically”. After the project is built once you can
+edit (or completely rewrite) the generated makefiles.</p>
+<p>As additional reference, these external web posts touch on the subject of
+these makefiles: <br />
+<a class="reference external" href="https://www.eclipse.org/forums/index.php?t=msg&amp;goto=153134&amp;">Eclipse Community forum thread</a> <br />
+<a class="reference external" href="https://stackoverflow.com/questions/25575244/eclipse-cdt-generate-makefile-with-makefile-init-makefile-defs-makefile-target">https://stackoverflow.com/questions/25575244/eclipse-cdt-generate-makefile-with-makefile-init-makefile-defs-makefile-target</a></p>
+</div>
+<div class="section" id="pre-build">
+<h4>6.2.1.2.2. Pre-build<a class="headerlink" href="#pre-build" title="Permalink to this headline">¶</a></h4>
+<p>Pre-build steps are steps that run before the main project build takes
+place.</p>
+<p>For details on setting up and using the pre-build step in CCS, see the
+section <a class="reference external" href="#pre-and-post-build-steps">Pre and Post Build Steps</a>.</p>
+</div>
+<div class="section" id="main-build">
+<h4>6.2.1.2.3. Main Build<a class="headerlink" href="#main-build" title="Permalink to this headline">¶</a></h4>
+<p>When a project is built in CCS, the main build is the step where the build commands and input files are passed to the Compiler
+tools, and optionally to RTSC tools. RTSC tools are invoked only for projects that involve RTSC components (IPC, SYS/BIOS etc) and are called prior to the compiler tools. Starting with CCS 8.2, there is also support for the <a class="reference external" href="https://software-dl.ti.com/ccs/esd/documents/ccs_sysconfig_projects.html">SysConfig tool</a> that can be used to configure components like TI Drivers and device-specific components (such as the networking stack, EasyLink, and WiFi) on SimpleLink devices. Each build tool takes in a set of input files and generates a set of output files.</p>
+<p>The figure below shows a typical software development flow and gives an
+idea of the build tools and files involved when a project is built in
+CCS. All of this is handled in the background by the makefile, however
+it is helpful to have an understanding of the build flow to better
+understand the build output that appears in the CCS build console.</p>
+<p>The build tools components are highlighted in blue and the input/output
+files are highlighted in white . The RTSC Tools and SysConfig Tools are dotted to
+show that they come into play only when working with RTSC and/or SysConfig.</p>
+<a class="reference internal image-reference" href="_images/main_build_flow_syscfg_1.png"><img alt="_images/main_build_flow_syscfg_1.png" src="_images/main_build_flow_syscfg_1.png" style="width: 864.0px; height: 648.0px;" /></a>
+<p>The most common path of software development flow, in the absence of RTSC or SysConfig, is the straight path
+going from C/C++ Source Files down to the Executable file through the
+Compiler, Assembler and Linker. The Assembler step usually runs in the
+background and is hidden from the user. The Archiver and Library build
+utility are peripheral functions that enhance the process and may or may
+not be run depending on the requirements.</p>
+<p>If the project is a RTSC project, the XDCtools run first and generate
+output files that are then passed to the compiler and linker.</p>
+<p>If the SysConfig tool is used to configure components, the SysConfig command runs prior to the compiler and generates output files (.c, .h) that are then passed to the compiler. The files generated by SysConfig will depend on which SDK components are integrated into the application. As more SDK components start to be integrated with SysConfig, more files will be generated.</p>
+<p>For more information on each of the tools shown in figure, please see
+the references below:</p>
+<ul>
+<li><p class="first"><strong>Compiler:</strong> accepts C/C++ source files and produces assembly language source code. <br /> See the <a class="reference external" href="https://www.ti.com/tool/TI-CGT#technicaldocuments">Compiler Users Guide</a> for your specific processor family.</p>
+</li>
+<li><p class="first"><strong>Assembler:</strong> translates assembly language source files into machine language relocatable object files. <br /> See the <a class="reference external" href="https://www.ti.com/tool/TI-CGT#technicaldocuments">Assembly Language Tools Users Guide</a> for your specific processor family.</p>
+</li>
+<li><p class="first"><strong>Linker:</strong> combines relocatable object files into a single absolute executable object file. It accepts relocatable object files and object libraries as input. <br /> See the “Linker Description” chapter in the <a class="reference external" href="https://www.ti.com/tool/TI-CGT#technicaldocuments">Assembly Language Tools Users Guide</a> for your specific processor family.</p>
+</li>
+<li><p class="first"><strong>Archiver:</strong> collects a group of files into a single archive file, called a library. It also allows you to modify a library by deleting, replacing, extracting, or adding members. <br /> See the “Archiver Description” chapter in the <a class="reference external" href="https://www.ti.com/tool/TI-CGT#technicaldocuments">Assembly Language Tools Users Guide</a> for your specific processor family.</p>
+</li>
+<li><p class="first"><strong>Library build utility:</strong> builds customized run-time-support libraries. <br /> See the <a class="reference external" href="https://www.ti.com/tool/TI-CGT#technicaldocuments">Assembly Language Tools Users Guide</a> for your specific processor family.</p>
+</li>
+<li><p class="first"><strong>XDCtools:</strong> provides configuration tools used to create and build a static configuration as part of your application. <br /> See the <a class="reference external" href="https://software-dl.ti.com/dsps/dsps_public_sw/sdo_sb/targetcontent/rtsc/3_16_02_32/exports/docs/rtscpedia/XDCtools_User%27s_Guide/XDCtools_User%27s_Guide.html">XDCtools User's Guide</a> for more information.</p>
+</li>
+<li><p class="first"><strong>SysConfig Tool:</strong> tools used to create and build system configuration as part of your application. <br /> See <a class="reference external" href="https://software-dl.ti.com/ccs/esd/documents/ccs_sysconfig_projects.html">this article</a> for more information. Also refer to the below documentation:</p>
+<blockquote>
+<div><ul class="simple">
+<li>SimpleLink: <a class="reference external" href="https://dev.ti.com/tirex/content/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/docs/simplelink_mcu_sdk/Users_Guide.html#sysconfig">SimpleLink MCU SDK User's Guide</a></li>
+<li>C2000: <a class="reference external" href="https://dev.ti.com/tirex/content/c2000_academy_2.00.01.41_all/modules/Module_5_SysConfig/module_5_sysconfig.html">C2000 Academy</a></li>
+<li>Sitara MCU: <a class="reference external" href="https://dev.ti.com/tirex/content/mcu_plus_academy_01_00_01_00/modules/sysconfig.html">Sitara MCU+ Academy</a></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>For more information on some of the input and output files in a typical
+CCS project build flow refer to the article <a class="reference external" href="../ccs_files_in_projects.html">Files in CCS
+Projects</a>.</p>
+</div>
+<div class="section" id="post-build">
+<h4>6.2.1.2.4. Post-build<a class="headerlink" href="#post-build" title="Permalink to this headline">¶</a></h4>
+<p>The main build step discussed above results in a executable file (.out).
+This file can be directly loaded to a target device and debugged using
+Code Composer Studio, or can be converted to a hex format and programmed
+to a target device by a hex programmer. Other types of post processing
+can also be performed on the .out file using utilities included with the
+compiler tools.</p>
+<p>The figure below shows some of the typical post build operations.</p>
+<a class="reference internal image-reference" href="_images/post_build.png"><img alt="_images/post_build.png" src="_images/post_build.png" style="width: 810.0px; height: 352.2px;" /></a>
+<p>For more information on each of the tools shown in figure, please see
+the references below:</p>
+<ul class="simple">
+<li><strong>Hex conversion utility:</strong> converts an object file into other hex formats.</li>
+<li><strong>Absolute Lister:</strong> accepts linked object files as input and creates .abs files as output. The .abs files can be assembled to produce a listing that contains absolute, rather than relative, addresses.</li>
+<li><strong>Cross-reference Lister:</strong> uses object files to produce a cross-reference listing showing symbols, their definitions, and their references in the linked source files.</li>
+<li><strong>Object file utilities:</strong> comprises of utilities such as Object File Display utility, Disassembler, Name utility and Strip utility.</li>
+</ul>
+<p>Details on all the above tools are in the <a class="reference external" href="https://www.ti.com/tool/TI-CGT#technicaldocuments">Assembly Language Tools Users
+Guide</a>.</p>
+<p>For details on setting up and using the post-build step in CCS, see the
+section <a class="reference external" href="#pre-and-post-build-steps">Pre and Post Build Steps</a>.</p>
+</div>
+</div>
+<div class="section" id="console-view">
+<h3>6.2.1.3. Console View<a class="headerlink" href="#console-view" title="Permalink to this headline">¶</a></h3>
+<p>At build time, the Console view displays the standard and error outputs of the build tools. When building multiple projects, the Console view will show the output for the active project selected in the <strong>Project Explorer</strong> view.</p>
+<p>The view displays the options passed to the various build tools and any diagnostic messages reported by the build tools. The information reported in this view are often more detailed and useful than the summary reported in the <a class="reference external" href="#problems-view">Problems view</a>.</p>
+<img alt="_images/console_view_build.png" src="_images/console_view_build.png" />
+</div>
+<div class="section" id="problems-view">
+<h3>6.2.1.4. Problems View<a class="headerlink" href="#problems-view" title="Permalink to this headline">¶</a></h3>
+<p>The Problems view provides a summary of errors and warnings encountered during project build.</p>
+<p>Some messages will have a clickable link that provides more details about the diagnostic.</p>
+<p>The view contains the following information in the columns:</p>
+<ul class="simple">
+<li><strong>Description:</strong> Description of the error.</li>
+<li><strong>Resource:</strong> Resource/file where the error occured.</li>
+<li><strong>Path:</strong> Path to the resource that generated the error.</li>
+<li><strong>Location:</strong> Location/Line in the resource that generated the error.</li>
+<li><strong>Type:</strong> Type of error.</li>
+</ul>
+<p>If the <strong>Type</strong> column says <strong>C/C++ Problem</strong>, it indicates the error is coming from the TI build tools. If it says <strong>Semantic Error</strong> or <strong>Syntax Error</strong>, the error could be coming from the Eclipse Code Analysis tool.</p>
+<p>For more information on Code Analysis errors, refer to the <a class="reference external" href="#code-analysis">Code Analysis</a> section.</p>
+<a class="reference internal image-reference" href="_images/problems_view_build.png"><img alt="_images/problems_view_build.png" src="_images/problems_view_build.png" style="width: 1000px;" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="creating-and-building-projects-from-command-line">
+<h1>6.3. Creating and Building Projects from Command Line<a class="headerlink" href="#creating-and-building-projects-from-command-line" title="Permalink to this headline">¶</a></h1>
+<p>CCS has terminal commands for creating, building, and importing
+projects. This is very convenient for nightly automated builds, or
+simply to perform these actions without bringing up the GUI interface.</p>
+<p>Please refer to the article below for details on all the supported
+commands and their usage.</p>
+<p><a class="reference external" href="../ccs_projects-command-line.html">Create and Build Projects Using Command
+Line</a></p>
+</div>
+<div class="section" id="system-projects">
+<h1>6.4. System Projects<a class="headerlink" href="#system-projects" title="Permalink to this headline">¶</a></h1>
+<p>System Projects were introduced starting with CCS 9.x. It is a special type of project designed to simplify management of multiple projects that are associated with different individual cores of a multicore device. In the <strong>System Project</strong>, associations are made between cores on a device and projects in the workspace. Building the <strong>System Project</strong> would build all associated projects and debugging a <strong>System Project</strong> would launch a debug session for the device and load the program build from the project associated with each core.</p>
+<p>For more details on how to use <strong>System Projects</strong>, Please refer to <a class="reference external" href="../application_notes/appnote-system_project_debug_launch.html">this article</a>.</p>
+</div>
+<div class="section" id="working-with-source-control">
+<h1>6.5. Working with Source Control<a class="headerlink" href="#working-with-source-control" title="Permalink to this headline">¶</a></h1>
+<p>Please refer to the article below for information on working with source
+control in CCS.</p>
+<p><a class="reference external" href="../sdto_ccs_source-control.html">Source control with CCS</a></p>
+</div>
+<div class="section" id="understanding-tools-versioning">
+<h1>6.6. Understanding Tools Versioning<a class="headerlink" href="#understanding-tools-versioning" title="Permalink to this headline">¶</a></h1>
+<p>The Code Composer Studio toolset consists of different components such
+as the Compiler tools and XDCtools. It is important to understand that
+each component has its own version number and updates for each component
+may be released independent of a CCS release.</p>
+<p>For example, CCS 10.0 includes the following:</p>
+<ul class="simple">
+<li>ARM TI compiler tools version 20.2.0.LTS</li>
+<li>XDCtools version 3.60.02.34</li>
+</ul>
+<p>Updates to each of these components can be installed individually while
+still working with CCS 10.0.</p>
+<p>To install compiler updates refer to the <a class="reference external" href="../ccs_compiler-installation-selection.html">Compiler Installation and
+Selection</a> article. <br /> To specifically understand how compiler tools are versioned and
+released, please see <a class="reference external" href="../sdto_cgt_lts-and-sts-compiler-releases.html">this article</a>.</p>
+<p>To install XDCtools and other Target Content updates refer to the
+<a class="reference external" href="../ccs_product-installation-selection.html">Product Installation and Selection</a> article.</p>
+<p>A CCS project can be modified to build with any of the available versions of <a class="reference external" href="#changing-compiler-versions">compiler
+tools</a> or <a class="reference external" href="#changing-sysbios-xdctools-and-product-versions">RTSC products</a>. The same can be done with different versions of SDKs as well.</p>
+<p>When reporting an issue to TI, it is important to not only include the
+version of CCS, but also the version of Compiler tools, SYS/BIOS,
+XDCtools, SDK, or any other relevant components and software, depending on the issue.</p>
+<ul class="simple">
+<li>The Compiler version will be listed under <strong>Project → Properties → General → Project (or Main)</strong> tab.</li>
+<li>If it is a RTSC project, the versions of target content components will be listed under <strong>Project → Properties → General → Product (or RTSC)</strong> tab.</li>
+<li>Versions of other relevant components, such as emulation, can be found under menu <strong>Help → About Code Composer Studio → Installation Details</strong>.</li>
+</ul>
+</div>
+<div class="section" id="troubleshooting">
+<h1>6.7. Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h1>
+<p>If there are errors encountered during project import or build, refer to this troubleshooting page: <a class="reference external" href="../sdto_ccs_build-errors.html">Project Import and Build errors in CCS</a>.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ccs_project-analysis.html" class="btn btn-neutral float-right" title="6.8. Analysis and Optimization Tools" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index_project-management.html" class="btn btn-neutral" title="6. Projects and Build" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyight 1995-2019</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'12.8.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="https://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

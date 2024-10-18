@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="This topic covers how to use Debug Server Scripting (DSS) and/or Code Composer Studio (CCS) to do the post-crash analysis"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Composer Studio Product Page">
+<meta name="product-link" content="https://www.ti.com/tool/CCStudio">
+
+<!-- Change the title text for your page -->
+<title>Crash Dump Analysis</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+# Overview
+
+Crash dump analysis is the ability to record the state of the system when a crash occurs and then analyze that state at a later time to determine the cause of the failure. For instance, the state of the stack may be collected in order to generate a call stack showing the calls leading up to the failure. This may be necessary in a production environment where a JTAG connection cannot be made to the live system to debug it, but where problems may still occur and must be analyzed and fixed.
+
+This topic covers how to use Debug Server Scripting (DSS) and/or Code Composer Studio (CCS) to do the post-crash analysis. At this time, it does not cover how to capture the state of the target when a crash occurs. It assumes you already have a way of capturing that state and transfering it to the host.
+
+# Crash Dump Format
+
+In order for DSS or CCS to analyze the crash dump, the data must first be converted to a format that the debugger understands. At this time there is only one available format, however, since it is text-based, it should not be difficult to write a small script that convert datas from any format into this format.
+
+The format consists of header line and then multiple register or memory entries. An example of this file for a 64+ DSP is available in the install at:
+- CCSv4: <tt>\ccsv4\scripting\examples\DebugServerExamples\ExampleCrashDump.txt</tt>
+- CCSv5 and CCSv6: <tt>\ccsv(x)\ccs_base\scripting\examples\DebugServerExamples\ExampleCrashDump.txt</tt>
+- CCSv7 and greater: Download [ccs_crash-dump-analysis-files.zip](./ccs_crash-dump-analysis-files.zip) and extract in <tt>\ccsv(x)\ccs_base\scripting\examples\DebugServerExamples</tt>
+
+## Header 
+
+The first line of the file is a header indicating the file and target type. 521177 is a unique id which indicates that the file is a crash dump. The target type is determined by taking the first two digits of the processor family expressed as hex and then converted to decimal. For instance, a 64xx DSP would be 100 (64h = 100d). The first line for a 64xx would therefore be:
+
+<pre>
+521177 100    
+</pre>
+
+## Register Entry
+
+A register entry is an "R" followed by the name of the register, the format of the register value in hex, and the register value in hex. The format field is intended to allow values to be entered as decimal or floating point instead of hex, but currently the only format type supported is hex. As such, the format type must always be 0x0000000B.
+
+For instance, if the register A5 contained 0x23 at the time of the crash, the entry in the file would be:
+
+<pre>
+M 0x00000000 0x00008000 0x4
+0x00
+0x01
+0x02
+0x03    
+</pre>
+
+# Memory Entry
+
+A memory entry is a "M" followed by the memory page, start address and length. The actual memory contents are then listed per address, in order, on separate lines. All numbers must be in hex format. The length field is the number of addresses for which there is data. Memory contents should be formatted for the smallest addressable data type for that target. If the target does not use memory pages, the page parameter is zero.
+
+For instance, a memory entry for a four byte region, starting at address 0x8000 on a 6000 family DSP would appear as follows:
+
+<pre>
+M 0x00000000 0x00008000 0x4
+0x00
+0x01
+0x02
+0x03
+</pre>
+
+On a 5500 DSP, which is 16 bit addressable and has paged memory, a four byte region on the data page would appear as follows:
+
+<pre>
+M 0x00000001 0x00008000 0x2
+0x0000
+0x0001
+</pre>
+
+# Crash Analysis Configuration
+
+In order to use DSS or CCS to analyze a crash dump, one must first define a target configuration on which to load the crash dump. A simulator, or even actual hardware, could be used, but a better choice would be to use the **Data Snapshot Viewer** configuration. That connection type will only expose the data contained within the crash dump. By comparison, a simulator or emulation target will already have values in memory and registers making it difficult to know if the data comes from the crash dump or not. Incorrect conclusions should be drawn from an analysis on existing data that's not part of the crash, particularly if higer level features such as the callstack are used where it's less clear where the data came from.
+
+A ccxml file to analyze crash dumps from a 64+ DSP already exists in the install: 
+- CCSv4: <tt>\ccsv4\scripting\examples\DebugServerExamples\CrashDumpAnalysis (64+).ccxml</tt>
+- CCSv5 and CCSv6: <tt>\ccsv(x)\ccs_base\scripting\examples\DebugServerExamples\CrashDumpAnalysis (64+).ccxml</tt>
+- CCSv7 and greater: Download [ccs_crash-dump-analysis-files.zip](./ccs_crash-dump-analysis-files.zip) and extract in <tt>\ccsv(x)\ccs_base\scripting\examples\DebugServerExamples</tt>
+
+A new configuration (for crashes from other target types) can be created in the Target Configuration editor in CCS.
+
+1. From the File menu, select **New &rarr; Target Configuration file** and give it a name.
+2. Select the **Advanced** tab and then click the **New** button.
+3. Select **Data Snapshot Viewer** and hit **Finish**.
+4. Click the **Add...** button and then select the **Cpus** tab.
+5. Click on the processor type that matches the target type the crash dump was saved from, and then click **Finish**.
+
+You can now save this configuration file and launch a CCS or DSS session with it as you would a regular configuration.
+
+# Analyzing in DSS 
+
+An example DSS script for analyzing crash dumps is available at:
+- CCSv4: <tt>\ccsv4\scripting\examples\DebugServerExamples\AnalyzeCrashDump.js</tt>
+- CCSv5 and CCSv6: <tt>\ccsv(x)\ccs_base\scripting\examples\DebugServerExamples\AnalyzeCrashDump.js</tt>
+- CCSv7 and greater: Download [ccs_crash-dump-analysis-files.zip](./ccs_crash-dump-analysis-files.zip) and extract in <tt>\ccsv(x)\ccs_base\scripting\examples\DebugServerExamples</tt>
+
+The script is fairly self explanatory. It launches DSS with a **Data Snapshot Viewer** configuration, loads a crash dump file by evaluating a GEL function, and loads the symbols associated with the application that was used to produce the crash dump. It then demonstrates that the target can be read via DSS commands as a normal target would be. Specifically, it prints out the call stack and then evaluates some local and global values.
+
+The output of the script is the following:
+
+![](./images/CrashDumpAnalysis_DSS.png)
+
+You can see from the output that the crash dump contains enough data to unwind the call stack to main, but not beyond main. The error printed out just before the call stack is printed indicates what data is missing in order to unwind the call stack further. Additionally, because it is located on the stack, the local variable amplitudeOfSymbol can be displayed. However, members of the global struct g_ModemData cannot be displayed because it's located in an area that was not saved in the crash dump.
+
+This script is meant only as an example and is intended to be modified to suite your needs. For instance, it could be changed to iterate through all crash dumps in a given directory, or to print out specific global data structures that exist in your application.
+
+# Advanced Stack Analysis in DSS 
+
+First available in CCS 5.1 is an advanced call stack analysis tool that operates in the presense of data corruption or incomplete data. It will read and analyze an entire memory region for data that appears to correspond to call frames according to the loaded symbols. All call stacks found will be printed to standard out. The current program counter and frame or stack pointer are not considered when analyzing the memory. Thus, it can also be used to analyze stacks from OS threads if their location is known.
+
+The call stack listings found by the tool represent all of the possible scenarios leading up to the current state that have an end-state consistent with the memory data: When functions return, their return value remains on the stack until overwritten by other operations, so earlier calls that returned prior to the current state will appear as partial call stacks. Or, due to stack corruption, the middle of the stack may be corrupted and thus a correct call stack at the beginning and end of the memory only would appear. If multiple call stacks are found, they are printed in order from deepest to shallowest based on the starting frame, but may still overlap.
+
+Because an accurate starting point is unknown, it is possible that the memory aligns with the functions and calling conventions of the loaded symbols but is not really a call frame. Knowledge of the loaded application is required to make sense of the returned data to decide what call stacks are meaningful and what are not.
+
+At this time, this function only works on C6000 and ARM targets. Only DWARF debug info is supported, not STABS. Accuracy is slightly better when TI compilers are used, but they are not required.
+
+In CCS 5.1, the example script mentioned in the previous section makes use of this feature after the first analysis is complete. Its output will look like the following:
+
+![](./images/CrashDumpAnalysis_DSS2.png)
+
+Note that two call stacks are printed. The second one is the actual stack at the time that the stack image was created. The first one represents earlier calls that were made by the application prior to the stack image being created, but which had not yet been over written with other data by the application. This happens because the sort algorithm makes significantly more calls and thus uses more stack memory than the random shuffle algorithm, which is called second.
+
+# Analyzing in CCS
+
+Analyzing the crash dump in CCS follows a very similar process to the DSS case described above. First, launch the **Data Snapshot Viewer** configuration defined in the Crash Analysis Configuration section above. Next, load the symbols associated with the application which generated the crash dump. Finally, load the crash dump itself. This can be done by opening the **Scripting Console** (**View &rarr; Scripting Console**) and typing:
+
+```c
+eval "GEL_SystemRestoreState(\"c:/path/to/your/crashdump.txt\")"
+```
+
+Note that the quotes and directory separators are escaped, and that there are no spaces between the parenthesizes and the file name (as javascript will interpret the spaces).
+
+The "Data Snapshot Viewer" target will now appear as if the actual target were being debugged at the time of the crash. The call stack will appear in the debug view, and the expressions, variables, register and memory views can be used to analyze the target state. If the call stack is incomplete, there should be a reason on the last frame, or a message in the console, explaining what data was missing that prevented the call stack from being unwound further.
+
+CCS does not have GUI support for the advanced stack analysis feature discussed in the previous section.
+
+# Troubleshooting
+
+If the call stack does not unwind correctly, one of the following issues is the most likely cause:
+
+- *Not enough data exists in the crash dump to build a call stack*. At a minimum, displaying the call stack requires the PC and SP (or FP) registers, and the data in memory around where SP points to. The advanced stack analysis feature does not require that however. Depending on optimization settings and decisions made by the compiler, other registers may also be required (for instance, the return address may be stored in a register instead of on the stack).
+- *The crash dump data is corrupt*. If the crash corrupted the contents of the registers or the data on the stack, the call stack will unwind only as far as the data will let it. If the crash is the result of an invalid branch, the symbolic data will not indicate how to unwind the call stack from the invalid location, and thus the call stack will not be displayed. The advanced stack analysis feature will do a best effort to work around any corruptions.
+- *Symbol information is missing or inadequate*. Although higher levels of optimization may make the results confusing, they should not prevent the call stack from displaying. However, no or limited symbols will prevent the call stack from being generated. The ideal setting is to use full symbolic debug (--symdebug:dwarf, -g). The recommended setting to keep optimization high while still generating symbols is to use --optimize_with_debug. Skeletal symbol information cannot be used to unwind the call stack, and STABS symbol information will not produce as accurate a result.
+
+# Availability
+
+The functionality discussed here is available in CCS v4.2.1 and greater. The advanced stack analysis feature is available in CCS v5.1 and greater.
+
+<!-- End of markdown source -->
+ 
+<div id="footer"></div>
+</xmp>
+</html>

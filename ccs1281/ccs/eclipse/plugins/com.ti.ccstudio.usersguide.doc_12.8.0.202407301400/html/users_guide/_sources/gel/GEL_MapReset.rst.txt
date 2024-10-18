@@ -1,0 +1,37 @@
+GEL_MapReset()
+--------------
+
+Resets the memory map.
+
+**Syntax**
+
+**GEL_MapReset()**
+
+**Parameters**
+
+None.
+
+**Description**
+
+This function resets the memory map by making all memory non-readable
+and non-writeable.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: Yes
+
+**Example**
+
+GEL_MapReset();
+
+**Related Topics**
+
+`GEL_MapAdd <GEL_MapAdd.html>`__
+
+`GEL_MapOff <GEL_MapOff.html>`__
+
+`GEL_MapOn <GEL_MapOn.html>`__
+
+`GEL_MapDelete <GEL_MapDelete.html>`__

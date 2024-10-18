@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module id="MTB" HW_revision="1.0">
+    <register id="MTB_MTB_POSITION" width="32" offset="0xE0043000" description="The MTB_POSITION register contains the trace write pointer and the wrap bit.">
+        <bitfield id="POINTER" description="" begin="31" end="3" width="29" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="WRAP" description="" begin="2" end="2" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="RES0" description="Reserved, RES0" begin="1" end="0" width="2" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="MTB_MTB_MASTER" width="32" offset="0xE0043004" description="The MTB_MASTER register contains the main trace enable bit and other trace control fields.">
+        <bitfield id="EN" description="" begin="31" end="31" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="NSEN" description="" begin="30" end="30" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="RES0" description="Reserved, RES0" begin="29" end="10" width="20" rwaccess="R">
+        </bitfield>
+        <bitfield id="HALTREQ" description="" begin="9" end="9" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="RAMPRIV" description="" begin="8" end="8" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="RES0_1" description="Reserved, RES0" begin="7" end="7" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="TSTOPEN" description="" begin="6" end="6" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="TSTARTEN" description="" begin="5" end="5" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="MASK" description="" begin="4" end="0" width="5" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="MTB_MTB_FLOW" width="32" offset="0xE0043008" description="The MTB_FLOW register contains the WATERMARK address and the AUTOSTOP and AUTOHALT control bits.">
+        <bitfield id="WATERMARK" description="" begin="31" end="3" width="29" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="RES0" description="Reserved, RES0" begin="2" end="2" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="AUTOHALT" description="" begin="1" end="1" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="AUTOSTOP" description="" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="MTB_MTB_BASE" width="32" offset="0xE004300C" description="The MTB_BASE register indicates where the SRAM is located in the processor memory map.">
+        <bitfield id="BASE" description="" begin="31" end="5" width="27" rwaccess="R">
+        </bitfield>
+        <bitfield id="RES0" description="Reserved, RES0" begin="4" end="0" width="5" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="MTB_MTB_TSTART" width="32" offset="0xE0043010" description="The MTB_TSTART register controls the trace start events using the DWT CMPMATCH feature.">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="4" width="28" rwaccess="R">
+        </bitfield>
+        <bitfield id="CMPMATCH3" description="Reserved, `ImpDefRES0" begin="3" end="3" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="CMPMATCH2" description="Reserved, `ImpDefRES0" begin="2" end="2" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="CMPMATCH1" description="" begin="1" end="1" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="CMPMATCH0" description="" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="MTB_MTB_TSTOP" width="32" offset="0xE0043014" description="The MTB_TSTOP register controls the trace stop events using the DWT CMPMATCH feature.">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="4" width="28" rwaccess="R">
+        </bitfield>
+        <bitfield id="CMPMATCH3" description="Reserved, `ImpDefRES0" begin="3" end="3" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="CMPMATCH2" description="Reserved, `ImpDefRES0" begin="2" end="2" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="CMPMATCH1" description="" begin="1" end="1" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="CMPMATCH0" description="" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="MTB_MTB_SECURE" width="32" offset="0xE0043020" description="The MTB_SECURE register allows the SRAM region to be partitioned into two regions, with one region being defined as Secure and the other as Non-secure.">
+        <bitfield id="THRESHOLD" description="" begin="31" end="5" width="27" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="RES0" description="Reserved, RES0" begin="4" end="2" width="3" rwaccess="R">
+        </bitfield>
+        <bitfield id="NS" description="" begin="1" end="1" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="THRSEN" description="" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="MTB_MTB_DEVARCH" width="32" offset="0xE0043FBC" description="MTB_DEVARCH">
+        <bitfield id="ARCHITECT" description="reads as 0x23B" begin="31" end="21" width="11" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRESENT" description="reads as 0b1" begin="20" end="20" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="REVISION" description="reads as 0x0" begin="19" end="16" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="ARCHID" description="reads as 0x0A31" begin="15" end="0" width="16" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="MTB_MTB_DEVID" width="32" offset="0xE0043FC8" description="MTB_DEVID">
+    </register>
+    <register id="MTB_MTB_DEVTYPE" width="32" offset="0xE0043FCC" description="MTB_DEVTYPE">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="SUB" description="reads as 0x3" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="MAJOR" description="reads as 0x1" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="MTB_MTB_PID4" width="32" offset="0xE0043FD0" description="MTB_PID4">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="SIZE" description="reads as 0x0" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="DES_2" description="reads as 0x4" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="MTB_MTB_PID5" width="32" offset="0xE0043FD4" description="MTB_PID5">
+    </register>
+    <register id="MTB_MTB_PID6" width="32" offset="0xE0043FD8" description="MTB_PID6">
+    </register>
+    <register id="MTB_MTB_PID7" width="32" offset="0xE0043FDC" description="MTB_PID7">
+    </register>
+    <register id="MTB_MTB_PID0" width="32" offset="0xE0043FE0" description="MTB_PID0">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="PART_0" description="reads as 0x8E" begin="7" end="0" width="8" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="MTB_MTB_PID1" width="32" offset="0xE0043FE4" description="MTB_PID1">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="DES_0" description="reads as 0xB" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="PART_1" description="reads as 0x9" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="MTB_MTB_PID2" width="32" offset="0xE0043FE8" description="MTB_PID2">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="REVISION" description="reads as 0x0" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="JEDEC" description="reads as 0b1" begin="3" end="3" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="DES_1" description="reads as 0b011" begin="2" end="0" width="3" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="MTB_MTB_PID3" width="32" offset="0xE0043FEC" description="MTB_PID3">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="REVAND" description="reads as 0x0" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="CMOD" description="reads as 0x0" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="MTB_MTB_CID0" width="32" offset="0xE0043FF0" description="MTB_CID0">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRMBL_0" description="reads as 0x0D" begin="7" end="0" width="8" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="MTB_MTB_CID1" width="32" offset="0xE0043FF4" description="MTB_CID1">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="CLASS" description="reads as 0x9" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRMBL_1" description="reads as 0x0" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="MTB_MTB_CID2" width="32" offset="0xE0043FF8" description="MTB_CID2">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRMBL_2" description="reads as 0x05" begin="7" end="0" width="8" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="MTB_MTB_CID3" width="32" offset="0xE0043FFC" description="MTB_CID3">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRMBL_3" description="reads as 0xB1" begin="7" end="0" width="8" rwaccess="R">
+        </bitfield>
+    </register>
+</module>

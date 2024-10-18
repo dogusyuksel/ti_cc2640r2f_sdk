@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="How to debug a multi-core device in Code Composer Studio"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="Code Composer Studio">
+<meta name="product-link" content="https://www.ti.com/tool/CCSTUDIO">
+
+<!-- Change the title text for your page -->
+<title>Debugging Multi-Core Devices with CCS</title>
+
+<!-- Load script for tempate -->
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+## Overview
+
+It is more and more common to see devices consisting of multiple debuggable cores. This article provides an overview on what features are available in Code Composer Studio (CCS) to assist debugging such devices.
+
+[[y NOTE
+The scope of this article is strictly from a tools standpoint of what CCS features are available for multi-core environments.
+]]
+
+## Launching a Debug Session
+
+There are several options for starting a debug session for a multi-core target:
+- [Project-less Debug Session](https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_debug-main.html#manual-launch): This will launch a debug session for the target without any project association. The user can then manually choose which core(s) to load a program for
+- [Project Debug](https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_debug-main.html#automatic-launch): Build the project in context and then launch a debug session for the project, connect, and load the application to desired CPUs. CCS will detect which CPUs match the project type and then prompt the user asking which CPUs to debug the project on (connect, load program):
+
+![](./images/CCSv5_multi-core_ccs_debug_launch.PNG)
+
+## Debug Properties
+
+It is possible to specify different [**Debug Properties**](https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_debug-main.html#debug-properties) on a per CPU basis. For **Project** debug sessions, right-click on the project in the **Project Explorer** view and select **Properties** to access the **Debug** properties:
+
+![](./images/CCSv5_multi-core_ccs_debug_properties.PNG)
+  
+Project-less debug session can use the **Debug Configurations** to access these options (see below)
+
+## Debug Configurations
+
+Modify the [**Debug Configuration**](https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_debug-main.html#debug-configurations) to:
+- Use the **Initialization Script** field to specify a single JavaScript for target initialization for all CPUs (**Main**)
+- GEL startup scripts can only be specified on a per CPU basis in the **Target Configuration** file
+- Specify CPUs to show in the **Debug** view (**Main**)
+- Specify if all CPUs share the same console for C I/O (**Main**)
+- C I/O will be interleaved in the same console (preceded with the CPU name)
+- Uncheck the option to create a separate C I/O console for each CPU (CCSv4 behavior)
+- Specify which CPU loads which programs (**Program**)
+- Specify different **Generic Debugger Options** per CPU (**Target**)
+- Specify different source debug lookup paths per CPU (**Source**)
+
+![](./images/CCSv5_multi-core_ccs_debug_configurations.PNG)
+
+## Debug Context
+
+The [**Debug** view](https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_debug-main.html#debug-view) displays the stack frames for each debug-able core on a multi-core target. Most of the various views in the **Debug** perspective (**Register**, **Variables**, **Disassembly**, **Memory Browser**, etc) will reflect the context of the highlighted stack frame for the specified core. To switch the context to another core, simply highlight the stack frame for that other core in the **Debug** view and the various views will be updated to reflect the context of that core.
+
+![](./images/CCSv5_multi-core_ccs_debug_view.PNG)
+
+Most debugging views, such as the [**Memory Browser** view](https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_debug-main.html#memory-browser-view), allow you to "pin" the view to the context of the currently selected core. This can be done using the **Pin to Debug Context** icon in the view, as long as this function is supported by the view. Doing this will allow you to change the debug context to another core but still have that view reflect the context of the core it was originally "pinned" to. An example use case would be to open up several instances of the **Memory Browser** view with each view tied (or "pinned") to a different core to allow side-by-side analysis of the current contents of memory for each core during debug.
+
+![](./images/CCSv5_multi-core_ccs_pin.PNG)
+
+Debugger commands (run, step, reset, etc) will apply only to the selected core in the **Debug** view.
+
+## Grouping Cores
+
+Commands can be sent to a specific set of cores at the same time. This can be done by "grouping" the cores of interest in the **Debug** view.
+
+### Temporary Group
+
+This can be done by multi-selecting the cores of interest in the **Debug** view (**CTRL** key + left mouse click) to create a **Temporary Group** of cores. This is useful when you want to send a debug command to only some (but not all) cores. When multiple cores are multi-selected, they will appear highlighted in the **Debug** view and debug commands will be sent to all the cores that are part of the group. Note that commands are SENT to the cores and it does not guarantee that execution of the commands are carried out simultaneously. It is important to remember this for target execution commands (run, halt, step, etc) where such precise synchronous execution of commands may be desirable. In such cases, a **Fixed Group** is preferred to ensure synchronous execution of the group (see **Fixed Groups** section above).
+
+![](./images/CCSv5_multi-core_temp_group.PNG)
+  
+When multiple cores are grouped, the debug context of the various views will always switch to the first core listed in the **Debug** view with the exception of views pinned to a particular debug context.
+
+[[y NOTE
+After sending a debug action to the custom group, the group will be 'unselected'. Hence the group must be reselected to send another debug action to the same group of cores. To avoid this behavior when constantly working with groups, it is recommended to use **Fixed Groups** instead (see below).  
+]]
+
+### Fixed Group
+
+Once a debug session is started, the user may create a more permanent group This **Fixed Group** has a specific node in the **Debug** view that has its own debug context. Selecting this group debug context will cause debug commands to be sent to all group members without the need to select them individually. Note, that while the commands will be sent simultaneously, how synchronously the commands are executed depends on if the HW target itself supports synchronous execution.
+
+In the screenshot below, a **Fixed Group** will be created for just the first and second CPUs in the **Debug** view by multi-selecting them and then using the **Group core(s)** option:
+
+![](./images/CCSv5_multi-core_fixed_group1.PNG)
+  
+This will cause a new group called **Group 1** to appear in the **Debug** view, with the first two CPUs as members:  
+
+![](./images/CCSv5_multi-core_fixed_group2.PNG)
+
+### Sync Group
+
+For more recent versions of CCS, there is another type of group that can be created - called a [**Sync Group**](https://software-dl.ti.com/ccs/esd/documents/ccs_smp-debug.html#sync-group). This group is similar to a **Fixed Group**, with the exception that the cores are more tightly grouped - the debugger will treat all member cores of the sync group as one single debug entity. This type of group is commonly required for effective debugging of an [Symmetric Multi-Processing (SMP)](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.den0024a/ch14s01s02.html) environment. For more details on SMP Debugging and sync groups, please refer to the article: [**SMP Debug with Code Composer Studio**](https://software-dl.ti.com/ccs/esd/documents/ccs_smp-debug.html).
+  
+### Hiding CPUs  
+
+It is possible to filter the list of CPUs visible in the **Debug** view that will not be used. This helps to avoid clutter in the view to avoid accidentally selecting a debug context of a CPU that is not to be used. To hide CPUs:
+- Multi-select the CPUs to hide, right-click and select **Hide core(s)** in the context menu
+- Selected CPUs will disappear from the view
+- Unhide all CPUs with **Show all cores** option
+
+Note that you can set this filter before starting a debug session by specifying which CPUs to display in the **Debug Configuration** options.
+
+## Using Multiple Workbench Windows
+
+Multiple main windows (called [**Workbench**](https://software-dl.ti.com/ccs/esd/documents/ccsv7_eclipse_concepts.html#workbench) windows) can be created to have each window dedicated to a specified core during the debug session. A new window can be created using the **Window &rarr; New Window** option. A **Workbench** window has its own debug context (**Workbench** window 1 can show data for core 1 while **Workbench** window 2 shows data for core 2, etc). Note that creating a new window does not mean creating a new debug session. Each window will be associated with the same debug session but can be specified, using the **Debug** view, to reflect the context of a different core. 
+
+![](./images/CCSv5_multi-core_multiple_workbench.PNG)
+
+The debug sessions for all cores are displayed in all **Workbench** windows by default, but the user can filter the cores shown in each workbench widow (**Workbench** window 1 can be set to shows only core 1, while **Workbench** window 2 shows cores 2 and 3.) For more information on filtering cores, see the [**Fixed Group**](#fixed-group) section above.
+
+## Breakpoints
+
+### Grouping Breakpoints
+
+The **Breakpoints** view can display all breakpoints set for all cores and group them by cores. This can be enabled by selecting **Group By &rarr; Debug Contexts** in the options for the **Breakpoints** view:
+
+![](./images/CCSv5_multi-core_bpg.PNG)
+
+This will group breakpoints under their respective cores to easily identify which core a breakpoint if set for:
+
+![](./images/CCSv5_multi-core_bpv.PNG)
+
+### Global Breakpoints
+
+Each debug context can be configured for **Global Breakpoints**. This feature will essentially make breakpoints global across all debug contexts that have it enabled. For example, if the debug contexts for CPU 1 & 3 have global breakpoints enabled, and CPU 1 hits a breakpoint, CPU 3 will also be halted (if it was running). And vice versa.
+
+The below screenshot shows an example of enabling global breakpoints for the whole group. This will enable global breakpoints for each CPU in the group:
+
+![](./images/CCSv5_multi-core_ccs_multibp1.png)
+
+The next screenshot shows an example of where the first CPU in the group hits a breakpoint (as shown with the **Suspended - SW Breakpoint** message) and triggers the second CPU in the group to be halted (**Suspended - "Cross-triggering**).
+
+![](./images/CCSv5_multi-core_ccs_multibp2.png)
+
+[[y Known Issue
+Global breakpoints are supported only for CPUs that are on the same JTAG scan path (not across multiple debug probes)
+]]
+
+## Scripting Multiple Cores
+
+Scripting console language may be used to automate repetitious tasks when working with multi-core device. e.g. A script may be written to start a debugger, open debug sessions only for desired cpus and then connect, load program and perform additional steps, such as setting a breakpoint and running to it. Script may also be constructed to create a menu in a GUI that will invoke this script, thus resulting in a single action bring up of a complex multi cpu device. Please see the [**Scripting Console** view topic](https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_scripting_console_view.html) for further information. This [link](https://software-dl.ti.com/ccs/esd/documents/users_guide/sdto_dss_handbook.html#multiple-debug-sessions-for-multi-core-debug) contains a script example of multi-core device bring up using a script.
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

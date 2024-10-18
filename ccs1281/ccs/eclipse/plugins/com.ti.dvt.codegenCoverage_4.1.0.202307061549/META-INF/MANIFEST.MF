@@ -1,0 +1,38 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.ti.dvt.codegenCoverage;singleton:=true
+Require-Bundle: com.ti.dvt.core,org.eclipse.ui,org.eclipse.core.runtim
+ e,com.ti.dvt.datamodel,com.ti.dvt.ui,com.ti.util.ui,com.ti.ccstudio.p
+ roject.core,com.ti.ccstudio.project.ui,com.ti.common.ui,org.eclipse.c
+ ore.resources,org.eclipse.ui.editors,com.ti.util,org.eclipse.ui.ide
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: Texas Instruments
+Eclipse-LazyStart: true
+Export-Package: com.ti.dvt.codegen
+Bundle-Name: Codegen_Code_Coverage Plug-in
+Bundle-Version: 4.1.0.202307061549
+Bundle-ClassPath: com.ti.dvt.codegenCoverage.jar
+Bundle-Activator: com.ti.dvt.codegen.Activator
+
+Name: plugin.xml
+SHA-256-Digest: DgvLYZDjdCV7SSIKo/92IodgSFEKjYewdLG2PTWXn2Y=
+
+Name: dvt.zip
+SHA-256-Digest: ul/v0PATZyXgFBAggiZXE7vW60pAkNJHX1UONNHSMa8=
+
+Name: META-INF/p2.inf
+SHA-256-Digest: 1kGSKMl+mv7CiBpfy0hGbPpQvK6R0ld8mypH2OK85y4=
+
+Name: uninstall.xml
+SHA-256-Digest: /atpnQiP2N14WV3aiPvub2gXQr4kG+2pAXhnzNMkoLs=
+
+Name: com.ti.dvt.codegenCoverage.jar
+SHA-256-Digest: R0xTnJsXlE+g6ylCEAgI6HqphzVvPh5/LGxUjARQ97Y=
+
+Name: install.xml
+SHA-256-Digest: KxPYHaID4pkHVIS5GeI2A2Om24zGraZ46vkRrapRaQ4=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: G2hFTVPngfh5NUf96Pyy87A7XIE083udjEBFy4pUc/M=
+

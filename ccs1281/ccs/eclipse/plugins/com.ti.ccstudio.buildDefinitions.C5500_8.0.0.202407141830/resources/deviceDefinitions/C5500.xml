@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<deviceDefinitions>
+
+	<isaFamily 
+		id="C5500" 
+		name="C5500" 
+		buildToolSuffix="55"
+		supportedEndiannessTypes="big"
+		supportedOutputFormats="coff:coffabi"/>
+	
+	<isa 
+		id="TMS320C55XX" 
+		name="C55XX" 
+		family="C5500"
+		ssId="TMS320C55XX"/>
+
+
+	<!-- Generic devices -->
+	
+	<customDevice
+		id="com.ti.ccstudio.deviceModel.C5500.CustomC5500Device"
+		name="Custom C5500 Device"
+		family="C5500">
+		<property name="CompilerBuildOptions" value="--memory_model=small --ptrdiff_size=16"
+			whenToolChain="TI"/>
+	</customDevice>
+
+	<!-- Real devices -->
+
+	<realDeviceFactory
+		deviceVariant="C55XX"
+		isa="TMS320C55XX"/>
+	
+		
+	<!-- Legacy devices -->
+	
+	<legacyDevice
+		id="com.ti.ccstudio.deviceModel.C5500.GenericC55xxDevice"
+		deviceVariant="C55XX"
+		isa="TMS320C55XX"/>
+		
+	<legacyDevice
+		id="com.ti.ccstudio.deviceModel.C5500.GenericC55xPlusDevice"
+		deviceVariant="C55X+"
+		isa="TMS320C55XX"/>
+		
+	<legacyDevice
+		id="TMS320C55XX"
+		deviceVariant="C55XX"
+		isa="TMS320C55XX"/>
+		
+		
+</deviceDefinitions>

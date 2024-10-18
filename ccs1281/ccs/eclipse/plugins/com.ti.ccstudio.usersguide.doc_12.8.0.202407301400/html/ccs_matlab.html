@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="MatLab and CCS"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Composer Studio Product Page">
+<meta name="product-link" content="https://www.ti.com/tool/CCStudio">
+
+<!-- Change the title text for your page -->
+<title>MatLab and CCS</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+[MathWorks](https://www.mathworks.com), creator of [MATLAB](https://www.mathworks.com/products/matlab.html), [Simulink](https://www.mathworks.com/products/simulink.html), and [Embedded Coder](https://www.mathworks.com/products/embedded-coder.html) offers support for CCS. There are two main workflows, defined by the Embedded Coder system target file used: **idelink_ert.tlc** and **ert.tlc**.
+
+**ert.tlc** is the primary workflow - you use Embedded Coder to generate C/C++ code from your model and then you import into an existing CCS project. This is supported for CCSv3.3 and onwards. This workflow is suitable for a wide variety of TI MCU's and DSP's including C2000, C6000, etc.
+
+**idelink_ert.tlc** includes a direct interface to the CCS IDE, but is based on older CCSv3.3 technology. This workflow is not recommended for new customers or projects. It is supported for CCSv3.3, with only partial support for CCSv4 and CCSv5. It is not supported at all for CCSv6 and onwards.
+
+[[y NOTE
+Support for **idelink_ert.tlc** workflows will be removed, starting in MathWorks Release R2017a.
+]]
+
+## CCS Support by MathWorks Release
+
+Check MathWorks [Embedded Coder Support Package for Texas Instruments C2000 Processors Release Notes](https://www.mathworks.com/help/supportpkg/texasinstrumentsc2000/release-notes.html) for details
+
+| **MATLAB Version**                                                                                   | **CCS Version Supported** | **Product or Package Required**                                                                                                                                                                       |
+|------------------------------------------------------------------------------------------------------|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| MATLAB 7.9 (R2009b)<br><br>MATLAB 7.10 (R2010a)                                                      | CCSv3                     | Target Support Package<br><br>Embedded IDE Link (product)                                                                                                                                             |
+| MATLAB 7.11 (R2010b)                                                                                 | CCSv3 & CCSv4             |                                                                                                                                                                                                       |
+| MATLAB 7.12 (R2011a)<br><br>MATLAB 7.13 (R2011b)<br><br>MATLAB 7.14 (R2012a)                         | CCSv3 & CCSv4             | Embedded Coder (product, includes Embedded IDE Link and Target Support Package)<br><br>Support from 64-bit MATLAB                                                                                     |
+| MATLAB 8.0 (R2012b)<br><br>MATLAB 8.1 (R2013a)                                                       | CCSv3 -> CCSv5            |                                                                                                                                                                                                       |
+| MATLAB 8.2 (R2013b)<br><br>MATLAB 8.3 (R2014a)<br><br>MATLAB 8.4 (R2014b)                            | CCSv3 -> CCSv5            | Embedded Coder<br><br>[Free downloadable Support Package for C2000](https://www.mathworks.com/matlabcentral/fileexchange/43096-embedded-coder-support-package-for-texas-instruments-c2000-processors) |
+| MATLAB 8.5 (R2015a)<br><br>MATLAB 8.6 (R2015b)<br><br>MATLAB 9.0 (R2016a)<br><br>MATLAB 9.1 (R2016b) | CCSv3 -> CCSv6            |                                                                                                                                                                                                       |
+| MATLAB 9.2 (R2017a)                                                                                  | CCSv3 -> CCSv6            | CCS project (CCSv5, CCSv6) generated when using TI C2000 Support Package<br><br>Support for TI C2000 with CCSv3 discontinued (**idelink_ert.tlc**)                                                    |
+| MATLAB 9.3 (R2017b)<br><br>MATLAB 9.4 (R2018a)                                                       | CCSv3 -> CCSv7            | Started support for C2000Ware (R2017b)                                                                                                                                                                |
+| MATLAB 9.5 (R2018b)<br><br>MATLAB 9.6 (R2019a)                                                       | CCSv3 -> CCSv8           |                                     |
+| MATLAB 9.7 (R2019b)                                                                                  | CCSv3 -> CCSv9           | |                                                                                                                                                                                                       |
+
+## Links and Resources
+
+* For more information on custom MathWorks Support for TI C2000 MCU's:
+  * TI E2E: [MathWorks Solutions for C2000 MCU's](https://e2e.ti.com/support/microcontrollers/c2000/f/171/t/484814)
+  * MathWorks: [Documentation](https://www.mathworks.com/help/supportpkg/texasinstrumentsc2000/index.html) and [Release Notes](https://www.mathworks.com/help/supportpkg/texasinstrumentsc2000/release-notes.html)
+  * [Programming TI C2000 Launchpad with Simulink (YouTube)](https://www.youtube.com/watch?v=wxYTLbYfBP0)
+  * Sticky: [MathWorks Solutions for C2000 MCU's (TI E2E)](https://e2e.ti.com/support/microcontrollers/c2000/f/171/t/484814)
+
+* [https://www.mathworks.com/help/toolbox/idelink/rn/bsl7jo1-1.html](https://www.mathworks.com/help/toolbox/idelink/rn/bsl7jo1-1.html)
+* [https://www.mathworks.com/matlabcentral/answers/25472-ccs-5-1-integration-when-and-how](https://www.mathworks.com/matlabcentral/answers/25472-ccs-5-1-integration-when-and-how)
+
+<div id="footer"></div>
+</xmp>
+</html>
+

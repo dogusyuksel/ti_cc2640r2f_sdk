@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module id="ITM" HW_revision="1.0">
+    <register id="ITM_ITM_STIM0" width="32" offset="0xE0000000" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM1" width="32" offset="0xE0000004" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM2" width="32" offset="0xE0000008" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM3" width="32" offset="0xE000000C" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM4" width="32" offset="0xE0000010" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM5" width="32" offset="0xE0000014" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM6" width="32" offset="0xE0000018" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM7" width="32" offset="0xE000001C" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM8" width="32" offset="0xE0000020" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM9" width="32" offset="0xE0000024" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM10" width="32" offset="0xE0000028" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM11" width="32" offset="0xE000002C" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM12" width="32" offset="0xE0000030" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM13" width="32" offset="0xE0000034" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM14" width="32" offset="0xE0000038" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM15" width="32" offset="0xE000003C" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM16" width="32" offset="0xE0000040" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM17" width="32" offset="0xE0000044" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM18" width="32" offset="0xE0000048" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM19" width="32" offset="0xE000004C" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM20" width="32" offset="0xE0000050" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM21" width="32" offset="0xE0000054" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM22" width="32" offset="0xE0000058" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM23" width="32" offset="0xE000005C" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM24" width="32" offset="0xE0000060" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM25" width="32" offset="0xE0000064" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM26" width="32" offset="0xE0000068" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM27" width="32" offset="0xE000006C" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM28" width="32" offset="0xE0000070" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM29" width="32" offset="0xE0000074" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM30" width="32" offset="0xE0000078" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_STIM31" width="32" offset="0xE000007C" description="Provides the interface for generating Instrumentation packets">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="DISABLED" description="Indicates whether the Stimulus Port is enabled or disabled" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FIFOREADY" description="Indicates whether the Stimulus Port can accept data" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_TER0" width="32" offset="0xE0000E00" description="Provide an individual enable bit for each ITM_STIM register">
+    </register>
+    <register id="ITM_ITM_TPR" width="32" offset="0xE0000E40" description="Controls which stimulus ports can be accessed by unprivileged code">
+    </register>
+    <register id="ITM_ITM_TCR" width="32" offset="0xE0000E80" description="Configures and controls transfers through the ITM interface">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="24" width="8" rwaccess="R">
+        </bitfield>
+        <bitfield id="BUSY" description="Indicates whether the ITM is currently processing events" begin="23" end="23" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="TraceBusID" description="Identifier for multi-source trace stream formatting. If multi-source trace is in use, the debugger must write a unique non-zero trace ID value to this field" begin="22" end="16" width="7" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="RES0_1" description="Reserved, RES0" begin="15" end="12" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="GTSFREQ" description="Defines how often the ITM generates a global timestamp, based on the global timestamp clock frequency, or disables generation of global timestamps" begin="11" end="10" width="2" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="TSPrescale" description="Local timestamp prescaler, used with the trace packet reference clock" begin="9" end="8" width="2" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="RES0_2" description="Reserved, RES0" begin="7" end="6" width="2" rwaccess="R">
+        </bitfield>
+        <bitfield id="STALLENA" description="Stall the PE to guarantee delivery of Data Trace packets." begin="5" end="5" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="SWOENA" description="Enables asynchronous clocking of the timestamp counter" begin="4" end="4" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="TXENA" description="Enables forwarding of hardware event packet from the DWT unit to the ITM for output to the TPIU" begin="3" end="3" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="SYNCENA" description="Enables Synchronization packet transmission for a synchronous TPIU" begin="2" end="2" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="TSENA" description="Enables Local timestamp generation" begin="1" end="1" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="ITMENA" description="Enables the ITM" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="ITM_INT_ATREADY" width="32" offset="0xE0000EF0" description="Integration Mode: Read ATB Ready">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="AFVALID" description="A read of this bit returns the value of AFVALID" begin="1" end="1" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="ATREADY" description="A read of this bit returns the value of ATREADY" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_INT_ATVALID" width="32" offset="0xE0000EF8" description="Integration Mode: Write ATB Valid">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="AFREADY" description="A write to this bit gives the value of AFREADY" begin="1" end="1" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="ATREADY" description="A write to this bit gives the value of ATVALID" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_ITCTRL" width="32" offset="0xE0000F00" description="Integration Mode Control Register">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="1" width="31" rwaccess="R">
+        </bitfield>
+        <bitfield id="IME" description="Integration mode enable bit - The possible values are:  0 - The trace unit is not in integration mode. 1 - The trace unit is in integration mode. This mode enables: A debug agent to perform topology detection. SoC test software to perform integration testing." begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_DEVARCH" width="32" offset="0xE0000FBC" description="Provides CoreSight discovery information for the ITM">
+        <bitfield id="ARCHITECT" description="Defines the architect of the component. Bits [31:28] are the JEP106 continuation code (JEP106 bank ID, minus 1) and bits [27:21] are the JEP106 ID code." begin="31" end="21" width="11" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRESENT" description="Defines that the DEVARCH register is present" begin="20" end="20" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="REVISION" description="Defines the architecture revision of the component" begin="19" end="16" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="ARCHVER" description="Defines the architecture version of the component" begin="15" end="12" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="ARCHPART" description="Defines the architecture of the component" begin="11" end="0" width="12" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_DEVTYPE" width="32" offset="0xE0000FCC" description="Provides CoreSight discovery information for the ITM">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="SUB" description="Component sub-type" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="MAJOR" description="Component major type" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_PIDR4" width="32" offset="0xE0000FD0" description="Provides CoreSight discovery information for the ITM">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="SIZE" description="See CoreSight Architecture Specification" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="DES_2" description="See CoreSight Architecture Specification" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_PIDR5" width="32" offset="0xE0000FD4" description="Provides CoreSight discovery information for the ITM">
+    </register>
+    <register id="ITM_ITM_PIDR6" width="32" offset="0xE0000FD8" description="Provides CoreSight discovery information for the ITM">
+    </register>
+    <register id="ITM_ITM_PIDR7" width="32" offset="0xE0000FDC" description="Provides CoreSight discovery information for the ITM">
+    </register>
+    <register id="ITM_ITM_PIDR0" width="32" offset="0xE0000FE0" description="Provides CoreSight discovery information for the ITM">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="PART_0" description="See CoreSight Architecture Specification" begin="7" end="0" width="8" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_PIDR1" width="32" offset="0xE0000FE4" description="Provides CoreSight discovery information for the ITM">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="DES_0" description="See CoreSight Architecture Specification" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="PART_1" description="See CoreSight Architecture Specification" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_PIDR2" width="32" offset="0xE0000FE8" description="Provides CoreSight discovery information for the ITM">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="REVISION" description="See CoreSight Architecture Specification" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="JEDEC" description="See CoreSight Architecture Specification" begin="3" end="3" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="DES_1" description="See CoreSight Architecture Specification" begin="2" end="0" width="3" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_PIDR3" width="32" offset="0xE0000FEC" description="Provides CoreSight discovery information for the ITM">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="REVAND" description="See CoreSight Architecture Specification" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="CMOD" description="See CoreSight Architecture Specification" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_CIDR0" width="32" offset="0xE0000FF0" description="Provides CoreSight discovery information for the ITM">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRMBL_0" description="See CoreSight Architecture Specification" begin="7" end="0" width="8" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_CIDR1" width="32" offset="0xE0000FF4" description="Provides CoreSight discovery information for the ITM">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="CLASS" description="See CoreSight Architecture Specification" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRMBL_1" description="See CoreSight Architecture Specification" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_CIDR2" width="32" offset="0xE0000FF8" description="Provides CoreSight discovery information for the ITM">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRMBL_2" description="See CoreSight Architecture Specification" begin="7" end="0" width="8" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="ITM_ITM_CIDR3" width="32" offset="0xE0000FFC" description="Provides CoreSight discovery information for the ITM">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRMBL_3" description="See CoreSight Architecture Specification" begin="7" end="0" width="8" rwaccess="R">
+        </bitfield>
+    </register>
+</module>

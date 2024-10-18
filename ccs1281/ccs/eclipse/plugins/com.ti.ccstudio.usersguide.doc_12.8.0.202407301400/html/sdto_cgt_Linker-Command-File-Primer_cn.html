@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="Introduction to TI Linker Command Files."> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Generation Tools">
+<meta name="product-link" content="https://www.ti.com/tool/TI-CGT">
+
+<!-- Change the title text for your page -->
+<title>TI 链接器命令文件入门</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+# 引言
+
+本文介绍了大多数 TI 链接器命令文件中通常会使用的代码，  但没有阐述全部，  也不适用于 GCC 链接器脚本。
+
+# 问题说明
+
+您已经有一个链接器命令文件，  它在您开始使用的开发系统（套件、LaunchPad、EVM 等）上运行良好。  但现在需要让所有项目都在最终生产系统上运行。  此外，您需要更改链接器命令文件，并对生产系统上的内存配置进行建模。  本文将通过介绍您现有的链接器命令文件来帮助您实现上述目标。
+
+# 文章概述
+
+“基本介绍”部分适用于所有人。  该部分中描述的代码适用于每个链接器命令文件。  “简单拓展”部分是选择性内容，  所说明的代码适用于部分而不是所有链接器命令文件。
+
+# 基本介绍
+
+链接器命令文件可以包含命令行中可能出现的所有项目：选项、目标文件名、库名。  您可以创建全局符号，  但本文不提供这方面的任何说明。  此部分重点介绍 MEMORY 指令，尤其是 SECTIONS 指令，  这些指令适用于每个链接器命令文件。
+
+## MEMORY 指令
+
+MEMORY 指令的目的是为内存范围指定名称。
+这些内存范围名称将在 SECTIONS 指令中使用。  下面是典型 MSP430 系统的部分 MEMORY 指令...
+
+```c
+MEMORY
+{
+    SFR                     : origin = 0x0000, length = 0x0010
+    PERIPHERALS_8BIT        : origin = 0x0010, length = 0x00F0
+    PERIPHERALS_16BIT       : origin = 0x0100, length = 0x0100
+    RAM                     : origin = 0x1C00, length = 0x0FFE
+    INFOA                   : origin = 0x1980, length = 0x0080
+    INFOB                   : origin = 0x1900, length = 0x0080
+    INFOC                   : origin = 0x1880, length = 0x0080
+    INFOD                   : origin = 0x1800, length = 0x0080
+    FLASH                   : origin = 0x8000, length = 0x7F80
+    INT00                   : origin = 0xFF80, length = 0x0002
+    /* ... 等等 */
+}
+```
+
+以 RAM 开头的行定义了一个名为 RAM 的内存范围。  此范围从地址 0x1C00 开始，长度为 0xFFE。
+
+## SECTIONS 指令
+
+SECTIONS 指令包含大部分有用的代码，  需要注意的一点是 SECTIONS 指令可以同时执行两项操作。
+
+* 它由输入节构成输出节
+* 它为这些输出节分配内存
+
+### 图
+
+下面以图形的形式展示了 SECTIONS 指令的工作方式。
+
+![替代文本](images/linker_primer_sections_directive.PNG)
+
+### 术语表
+
+描述 SECTIONS 指令需要了解以下术语。
+
+* 目标文件 - 就本文而言，目标文件是输入节的集合。  目标文件可以直接呈现给链接器（通过命令行或在命令文件中），也可以来自库。
+* 输入节 - 一个目标文件中的一节。  输入节可以是已初始化或未初始化状态，  它可以包含代码或数据。
+* 输出节 - 一个或多个输入节的集合。  输出节是根据 SECTIONS 指令形成的，只有极少数的例外情况除外（本文中不做阐述）。
+* 内存范围 - 在 MEMORY 指令中指定的系统内存范围。
+
+### 节命名约定
+
+从理论上讲，仅凭名称无法了解有关输入节内容的任何信息。  尽管如此，具有以下名称的输入节通常包含以下内容：
+
+名称                  |已初始化  |说明
+----------------------|-----------|------------------------
+.text                 |是        |可执行代码
+.bss                  |否         |全局变量
+.cinit                |是        |用于初始化全局变量的表
+.data (EABI)          |是和否|从汇编器出来时已初始化；由链接器更改为未初始化
+.data (COFF ABI)      |是        |已初始化的数据
+.stack                |否         |系统堆栈
+.heap 或 .sysmem      |否         |malloc 堆
+.const                |是        |已初始化的全局变量
+.switch               |是        |某些 switch 语句的跳转表
+.init_array 或 .pinit|是        |启动时调用的 C++ 构造函数的表
+.cio                  |否         |stdio 函数的缓冲区
+
+节名称通常以“.”开头，但并非必须如此。
+
+您可能会看到这些名称的变体，例如 .ebss 或 .fardata。  这样的节与该表中描述的节几乎相同。
+
+### 语法注意事项
+
+本文此部分中的所有示例都位于 SECTIONS 指令中。
+
+```c
+SECTIONS
+{
+   /* 所有示例均位于此处 */
+}
+```
+### 构成输出节
+
+SECTIONS 指令代码最令人困惑的一个方面是所有的语法快捷方式。  为了揭开其神秘面纱，下面提供了一个没有快捷方式的示例。
+
+```c
+    output_section_name         /* 为输出节命名        */
+    {
+       file1.obj(.text)         /* 列出输入节        */
+       file2.obj(.text)
+       file3.obj(.text)
+    } > FLASH                   /* 分配给 FLASH 内存范围 */
+```
+
+这段代码将创建一个名为 output_section_name 的输出节。  此输出节包含 3 个输入节：来自 file1.obj 的 .text、来自 file2.obj 的 .text 以及来自 file3.obj 的 .text。  此输出节将被分配给 FLASH 内存范围。
+
+显然，此语法无法很好地扩展到包含许多目标文件的系统。
+因此，下面是一种可能的快捷方式。
+
+```c
+    output_section_name         /* 为输出节命名           */
+    {
+        /* 所有名为 .text 的输入节的快捷语法        */
+        *(.text)
+    } > FLASH                   /* 分配给 FLASH 内存范围    */
+```
+
+此示例与上一个示例执行的操作相同，但有一处不同。  上一个示例恰好使用了 3 个输入节，并明确指定了每个输入节的目标文件名和输入节名。  此示例使用所有名为 .text 的输入节。  确切地说，它使用所有名为 .text 且不属于任何其他输出节的输入节。
+
+因为即使这样还不够短，所以此示例中的快捷方式建立在上一个示例的基础上。
+
+```c
+    .text > FLASH
+```
+
+此示例与上一个示例只有一个区别：输出节的名称已从 output_section_name 更改为 .text。  请注意输出节名称和输入节名称完全相同：.text。
+尽管有这样的相似之处，但不要忽略输入节和对应输出节之间的区别，这很重要。
+
+下面还有一个快捷方式示例：
+
+```c
+    .text : {} > FLASH
+```
+
+此示例和上一个示例没有什么不同。  之所以显示此示例，是因为该语法模式在许多链接器命令文件中都很常见。
+
+这些快捷方式可以混合在一起。  例如：
+
+```c
+    output_section_name
+    {
+        first.obj(.text)        /* 必须首先出现此代码 */
+        *(.text)
+    } > FLASH
+```
+
+这段代码将创建一个名为 output_section_name 的输出节。  第一个输入节是来自 first.obj 的 .text 节。  其余输入节全部是来自所有其他目标文件的 .text 节。  此输出节将被分配给 FLASH 内存范围。
+
+### 将输出节分配给内存
+
+以上示例中的此语法...
+
+```c
+    ...> FLASH
+```
+
+将输出节分配给内存。  此特定示例中使用的是 FLASH 内存范围。
+
+还可能看到...
+
+```c
+    ...> 0x20000000
+```
+
+分配给固定地址的行为始终在分配给指定内存范围之前完成。  链接器命令文件可能会利用这种顺序差异。
+
+需要注意的另一种方法...
+
+```c
+#define BASE 0x20000000
+
+/* 随后有大量代码行 */
+
+    ...> BASE
+```
+
+此代码看起来与分配给指定内存范围相同，但实际上是分配给固定地址。
+
+# 简单拓展
+
+从此处开始，本文不再那么具有通用性，而是更具选择性。  请查看附带每个节的的示例。  如果类似的代码用于您的链接器命令文件中，请查看该部分中的相应描述。
+否则，可以忽略该部分。
+
+除非另有示意或说明，否则所有示例都位于 SECTIONS 指令中。
+
+## 增补和变更
+
+如果您的链接器命令文件中包含本文未介绍的代码，请将此代码的相关信息发布到 [E2E 论坛](https://e2e.ti.com)。  论坛回复的结果通常是对本文的增补或变更。
+
+## 内存范围中的第一个输出节
+
+假设您看到的代码类似于...
+
+```c
+#define BASE 0x00200000
+
+MEMORY
+{
+    FLASH : origin = BASE, length = 0x0001FFD4
+    ...
+}
+
+SECTIONS
+{
+    .intvecs > BASE    /* 分配给 BASE 的唯一节*/
+    .text    > FLASH
+    .const   > FLASH
+    ...
+}
+```
+
+此代码的最终结果是 .intvecs 成为 FLASH 内存范围中的第一个输出节。  其余的输出节也会进入 FLASH，但可以按任何顺序分配。
+
+此 #define BASE 是使用链接器的类似于 C 的预处理器功能的示例。  它用于建立 FLASH 内存范围的开头。  它还用于将 .intvecs 分配给该特定地址。  分配给特定地址的行为始终在分配给指定内存范围之前完成。
+
+## 分配给多个内存范围
+
+考虑以下示例...
+
+```c
+    .text > FLASH0 | FLASH1
+```
+
+此示例表示 .text 输出节被分配给了内存范围 FLASH0 或 FLASH1。  首先尝试 FLASH0。  如果它无法容纳所有 .text，则尝试 FLASH1。  注意 .text **不能**拆分。  整个输出节需要放置在 FLASH0 或 FLASH1 中。
+
+## 在多个内存范围之间拆分输出节
+
+考虑以下示例...
+
+```c
+    .text : >> RAMM0 | RAML0 | RAML1
+```
+
+此示例表示在多个内存范围之间拆分 .text。  注意 `>>` 语法。
+如果 .text 不能全部容纳在 RAMM0 中，则会将其拆分，让其余的部分进入其他内存范围。  拆分发生在输入段的边界上。  输入段绝不会拆分。  这意味着任何函数、数组、结构等都不能在中间拆分。  内存范围按该顺序使用。
+
+## 内存页
+
+内存页仅在 C28xx 链接器命令文件中使用。
+
+如下所示，MEMORY 指令中指定了一个内存页...
+
+```c
+MEMORY
+{
+    PAGE 0 :
+        RAMM0   : origin = ...
+        RAML0L1 : origin = ...
+
+    PAGE 1 :
+        RAMM1   : origin = ...
+        RAML2   : origin = ...
+}
+```
+
+每个内存页都是完全独立的。  在内存页之间可以重复使用内存范围名称和内存地址。  以下示例是完全符合规则的，但确是一个非常糟糕的方法...
+
+```c
+/* 不要这样做!!! */
+MEMORY
+{
+    PAGE 0 :
+        MEM_RANGE : origin = 0x100, length = 0x100
+    PAGE 1 :
+        MEM_RANGE : origin = 0x100, length = 0x100
+}
+```
+
+C28xx 器件是从 20 世纪 80 年代开发的 C2xxx 器件系列衍生而来的。  那些早期的器件对于代码和数据具有单独分开的内存总线。  这些总线连接到物理上独立的内存块。因此，PAGE 0 上的特定地址可能与 PAGE 1 上的相同地址具有不同的内容。  从理论上讲，在 C28xx 器件上同样可以实现内存总线的这种独立连接，不过极少使用这一功能（基本上从不使用）。  如果有任何疑问，请查看具体器件的文档。
+
+即使几乎所有 C28xx 器件的所有内存总线都连接到所有内存，使用内存页的传统仍然存在。  如果链接器命令文件使用 PAGE 0 和 PAGE 1，最好继续按这种方式使用。只是需要注意最后一个示例中指出的陷阱。
+
+### 语法提示
+
+在任何可以写成 MEMORY_RANGE_NAME 的地方，也可以写成 MEMORY_RANGE_NAME PAGE 0。  表面上看，这是因为可以在多个内存页上使用相同的内存范围名称。  第一种写法是不好的编程习惯，所以写出页码实际上可以保持所有内容的清晰和易于维护。  如果将不存在的内存范围名称和内存页组合在一起，链接器将提示相关信息。
+
+## 使输出节无效
+
+如果看到如下所示的代码...
+
+```c
+   .reset : > RESET, PAGE = 0, TYPE = DSECT    /* 未使用 */
+```
+
+语法 `TYPE = DSECT` 使此输出节成为虚假的节。  虚假节不占用内存空间，也不存在于输出文件中。最终结果是，所有名为 .reset 的输入节都会被静默丢弃。  这在此特定示例中是可以的。  不过，**并非**所有情况下都是可以的。  假设另一节中的代码调用 .reset 中的函数，或者另一节使用 .reset 中的数据。  链接器会静默地吞没这些对 .reset 的引用。  您可能希望进行诊断。
+
+有关 DSECT 和类似的其他特殊节的更多信息，请参阅文章：
+[链接器特殊节类型](http://software-dl.ti.com/ccs/esd/documents/sdto_cgt_linker_special_section_types.html)。
+
+## 引用ROM 代码或数据
+
+此代码...
+
+```c
+FPUmathTables : > FPUTABLES, PAGE = 0, TYPE = NOLOAD
+```
+
+显示了如何引用系统中已经存在的节。  该节通常在 ROM 或闪存中提供。  语法 `TYPE = NOLOAD` 赋予特殊的空载 (noload) 属性。  空载节会占用内存空间，但不存在于输出文件中。  实际上，空载节内部不引用任何外部内容。  但是空载节外部的其他节可以引用空载节内部的代码和数据。  在此特定示例中，必须在 ROM 中提供一些浮点单位表，而其他代码将使用这些表。
+
+有关 NOLOAD 和类似的其他特殊节的更多信息，请参阅文章：
+[链接器特殊节类型](http://software-dl.ti.com/ccs/esd/documents/sdto_cgt_linker_special_section_types.html)。
+
+## 在一个地址加载，从另一个地址运行
+
+考虑以下示例：
+
+```c
+ .TI.ramfuncs : LOAD = FLASHD,
+                RUN = RAML0,
+                LOAD_START(_RamfuncsLoadStart),
+                LOAD_END(_RamfuncsLoadEnd),
+                RUN_START(_RamfuncsRunStart)
+```
+
+这段代码将创建一个名为 .TI.ramfuncs 的输出节。  此输出节包含所有也是名为 .TI.ramfuncs 的输入节。  这里有两个不同的分配。  一个是分配给用于加载的 FLASHD，另一个是分配给用于运行的 RAML0。  此输出节放置在输出文件中，这样，在加载程序时（可能是通过编程到闪存中来实现），它将位于 FLASHD 内存范围内。  在系统执行过程中的某个时间并在使用 .TI.ramfuncs 中的任何内容之前，应用程序会将它从 FLASHD 复制到 RAML0。  请注意，此复制不会自动完成。  必须在应用程序代码中执行显式步骤，但本文未讨论这些步骤。  任何使用 .TI.ramfuncs（调用其函数或引用其数据）的其他节在行为上类似于 .TI.ramfuncs 已位于 RAML0 中的状态。  LOAD_START 等语句可以创建用于实现该复制的符号。  符号 _RamfuncsLoadStart 的值是起始加载地址。  同样，_RamfuncsLoadEnd 具有结束加载地址，_RamfuncsRunStart 具有起始运行地址。
+
+## 从库分配单个输入节
+
+考虑以下示例：
+
+```c
+   IQmathTables3 : > IQTABLES3
+   {
+       IQmath.lib<IQNasinTable.obj> (IQmathTablesRam)
+   }
+```
+
+这段代码将构建一个名为 IQmathTables3 的输出节。  该输出节包含一个名为 IQmathTablesRam 的输入节。  该输入节来自目标文件 IQNasinTable.obj，这个文件是库 IQmath.lib 的成员。  该输出节被分配给了 IQTABLES3 内存范围。
+
+可使用一个变体来分配库中的所有节。
+
+```c
+    sinetext : > DDR2
+    {
+         --library=Sinewave_lib.lib(.text)
+    }
+```
+
+这段代码将构建一个名为 sinetext 的输出节。  此输出节包含链接器在 Sinewave_lib.lib 库中使用的文件的所有 .text 输入节。此输出节将被分配给 DDR2 内存范围。  请注意，链接器不会引入 Sinewave_lib.lib 中的所有文件。  它只会引入为了满足其他目标模块中的开放引用而需要的文件。  这些其他模块的示例包括来自主应用程序代码的文件，以及其他库中已经包含的目标文件。  `--library=` 语法告诉链接器此文件不在当前目录中，并在库搜索路径中收集的目录中查找该文件。  在上一个示例中，不需要使用 `--library=` 语法，因为使用尖括号 `<>` 与 `--library=` 具有相同的效果。
+
+## 将输出节分组在一起
+
+假设需要一些输出节彼此相邻。  您可以编写...
+
+```c
+    /* 这不起作用 */
+    output_section_1 > RAM
+    output_section_2 > RAM
+    output_section_3 > RAM
+```
+
+链接器会将所有这些输出节放置在 RAM 内存范围内。  但是可能会以任何顺序放置它们，而其他输出节也可以位于它们之间。  使用 GROUP 指令能够以特定顺序将输出节分配在一起。  下面是一个实际示例...
+
+```c
+    GROUP : > CTOMRAM
+    {
+        PUTBUFFER
+        PUTWRITEIDX
+        GETREADIDX
+    }
+```
+
+输出节是 PUTBUFFER、PUTWRITEIDX 和 GETREADIDX。  它们严格按照该顺序作为一个组被分配给 CMTORM。  注意各个输出节并**没有**指定任何内存分配。
+
+这些输出节的名称采用全大写字母。  这是链接器命令文件中的一个不成文约定，只有诸如 CTOMRAM 之类的内存范围名称才用全大写字母书写。  不过，需要注意的是该约定也有例外。
+
+## 内存属性
+
+MEMORY 指令可能包含如下类似的代码行...
+
+```c
+MEMORY
+{
+    ...
+    FLASH1 (RX) : origin = 0x00204000, length = 0x1C000
+    FLASH2 (RX) : origin = 0x00260000, length = 0x1FFD0
+    CSM_RSVD_Z2 : origin = 0x0027FFD0, length = 0x000C
+    CSM_ECSL_Z2 : origin = 0x0027FFDC, length = 0x0024
+    C0 (RWX)    : origin = 0x20000000, length = 0x2000
+    ...
+}
+```
+
+注意两行上的 `(RX)` 以及另一行上的 `(RWX)`。  该语法指定了这些内存范围的属性。  每个字母代表一个内存属性。
+
+* **R**：可读
+* **W**：可写
+* **X**：可包含可执行代码
+* **I**：可初始化
+
+默认情况下，内存范围具有所有这四个属性。
+
+根据文档，这些属性的用途是在 SECTIONS 指令中支持按内存属性分配节。  本文中没有这方面的示例，因为 TI 提供的链接器命令文件都不使用此功能。  在此示例中，该语法仅用于记录哪些节通常会进入这个内存范围。
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

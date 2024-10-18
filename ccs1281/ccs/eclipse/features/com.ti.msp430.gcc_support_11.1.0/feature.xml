@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.msp430.gcc_support"
+      label="GCC MSP430 tool-chain"
+      version="11.1.0"
+      provider-name="Texas Instruments"
+      arch="x86,x86_64"
+      os="">
+
+    <description>
+This feature includes the MSP Debug Stack, the Debug Probe Drivers and the Header and Support Files for the GCC compiler
+    </description>
+
+    <copyright url="http://www.ti.com">
+Copyright, Texas Instruments Inc.
+    </copyright>
+
+    <license url="">
+This patch is delivered to you under the license terms that you agreed to when activating Code Composer Studio.  You can view your specific license agreement by visiting www.ti.com/myregisteredsoftware and clicking on View EULA under your Code Composer Studio activation.
+
+    </license>
+
+    <url>
+    </url>
+
+    <requires>
+        <import feature="com.ti.msp.debug_probe" version="11.1.0" match="greaterOrEqual"/>
+        <import feature="com.ti.msp430.gcc_header_files" version="11.1.0" match="greaterOrEqual"/>
+        <import feature="com.ti.msp430.support_files" version="11.1.0" match="greaterOrEqual"/>
+        <import feature="com.ti.ccstudio" version="11.0.0" match="greaterOrEqual"/>
+    </requires>
+
+</feature>

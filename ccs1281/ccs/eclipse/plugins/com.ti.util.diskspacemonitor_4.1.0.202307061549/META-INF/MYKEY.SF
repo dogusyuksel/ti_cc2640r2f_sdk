@@ -1,0 +1,15 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: QEZ4HcR9fPSlqoCvQN/5vPzC3o6/u
+ I4REprSPDX/4So=
+SHA-256-Digest-Manifest: svcAcj/ar4+akc3ZE8N3uNV1v9UAwfQlL5/ivoi6lk4=
+Created-By: 1.8.0_102 (Oracle Corporation)
+
+Name: plugin.xml
+SHA-256-Digest: 0lj6zLZTqr+awsgflzhjKlDIshwiwBFVTHCsbl82p08=
+
+Name: com.ti.util.diskspacemonitor.jar
+SHA-256-Digest: tlvIHBy6zcK8O67nSl9D42ttwu+g5MxYDXpN8YlEhwg=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: ak2bzOGDjLurhLXRsFA/N7TRhvaP+YA1QdnivLjcXtk=
+

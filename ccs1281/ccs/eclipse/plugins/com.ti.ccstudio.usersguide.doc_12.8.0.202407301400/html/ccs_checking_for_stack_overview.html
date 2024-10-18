@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+ 
+<meta name="description" content="This article provides some tips on how to use CCS to check for a stack overflow."> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Composer Studio Product Page">
+<meta name="product-link" content="https://www.ti.com/tool/CCStudio">
+
+<!-- Change the title text for your page -->
+<title>Checking for Stack Overflow with CCS</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+#Introduction
+A common issue causing software instability is a stack overflow. There is hardware on some devices that can assist in catching these overflows as they happen. This can be particularly important in cases where the stack overflow causes the device to go "into the weeds" and causes the emulator to crash. The [Breakpoints view](https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_debug-main.html#breakpoints-view)
+integrated into **Code Composer Studio** makes it easy to utilize this hardware in order to trap stack overflows as they happen.
+
+
+#Details About the Stack
+![](./images/ccs_checking_for_stack_overview_detail_stack_overflow.jpg)
+
+### C6000 Stack Operation
+- On **C6000** devices, the register B15 is used as the **stack pointer**. The stack grows from high addresses to low addresses. The stack pointer (B15) always points to the next unused location. The stack pointer must always be double-word aligned (least significant 3 bits must be 0). The C compiler and BIOS automatically maintain the proper alignment. Only in the case of hand-written assembly does the programmer have to take special care that the stack pointer never be mis-aligned, even for one cycle (unless interrupts are disabled at that instant).
+- For more details on the **C6000 stack** please read the chapter "C/C++ System Stack" in the [C6000 Compiler User's Guide](http://software-dl.ti.com/docs/esd/SPRUI04C/).
+
+### C5500 Stack Operation
+- On **C5500** devices, there are actually two stack pointers. One is simply called **"stack pointer" (SP)** and the other is called **"system stack pointer" (SSP)**. Like C6000, the stacks grows from high addresses to low addresses. The stack pointers on **C5500**, however, always point to the last piece of data on the stack. Therefore when doing a "push", the stack pointer is first decremented and then data is written. The stack pointers are both 16-bit. They share a common register called SPH which contains the upper 7 bits of the address being used for stack. Therefore **SP** and **SSP** be allocated in the same 64KB page of memory.
+- For more details on the 55x stack please read the "Stack" chapter of the [55x CPU Reference Guide](https://www.ti.com/lit/ug/spru371f/spru371f.pdf).
+
+### F28x Stack Operation
+- On the **F28x** the **stack pointer (SP)** is a 16-bit pointer. Therefore it must point to the lower 64k words of memory. The stack on F28x grows from low addresses to high addresses. **SP** always points to the next free location, i.e. when doing a "push" the CPU first writes the data and then post-increments **SP**.
+- There is an excellent [app note](https://www.ti.com/lit/an/spra820/spra820.pdf) which also provides a means for configuring the watchpoints at run-time, i.e. without the need for an emulator. There is code provided in the index but you can also download it as a [zip file](https://www.ti.com/general/docs/lit/getliterature.tsp?literatureNumber=spra820&fileType=zip).
+
+### Stack Definition in the Code Generation Tools
+- When building a project the stack will be reserved at link time. In the project options (or in the configuration file for **DSP/BIOS** projects) one would specify the size of the stack(s). That corresponding size will be allocated for the stack by the linker. The linker will generate a symbol called **__stack** (two preceding underscores) that corresponds to the lowest address of the stack. 
+- <b> If you want to use a hardware watchpoint to monitor a location in memory then __stack is the symbolic name you should enter in the Unified Breakpoint Manager (similarly there is also a symbol called __sysstack for c5500)</b>. To specify the stack size for a project that does not use **DSP/BIOS** one would go to **Project -> Build Options -> Linker -> Stack Size** (and System Stack for 55x), or use the **-stack** (and **-sysstack**) for command line builds.
+
+### DSP/BIOS Details
+- If you utilize the **task thread type (TSK)** in **DSP/BIOS** then BIOS will create an additional stack for each task the user creates (plus one for the idle task). For 55x users, each task will have TWO stacks, one for **SP** and one for **SSP**. A symbol will be created for each of these stacks. If your task was called **TSK0** in the **BIOS config tool** then you would end up with a symbol called **TSK0$stack** (and **TSK0$sysstack** on 55x). The size of the task stacks are specified in the task properties inside the config tool.
+
+###TI-RTOS Details
+- For **TI-RTOS** applications, please see the training video: [Debugging Common Application Issues with TI-RTOS](https://training.ti.com/debugging-common-application-issues-ti-rtos).
+
+#Configuring the Watchpoint
+
+### Instructions
+
+1. If your SimpleLink LaunchPad is currently running, ensure you are in the **CCS Debug** perspective and **Suspend** it. Otherwise, click on **Run &rarr; Debug** to flash the program to the target and suspend it.
+2. In the **Breakpoints** view, click **New (down arrow) → Hardware Watchpoint**, set **Location** to the variable you are watching(for example <tt>led0_on_off_useconds</tt>) and **Memory** to **Write**, and click **OK**. This installs a watchpoint which will suspend program execution on the target whenever the value of <tt>led0_on_off_useconds</tt> is modified (whenever it is written to).
+![](./images/ccs_checking_for_stack_overview_bv.png)
+3. **Run &rarr; Resume** the program, and press the according buttons on the board to test the watchpoint. As expected, whenever either button is pressed, a callback function is called that writes to <tt>led0_on_off_useconds</tt>, and the watchpoint suspends program execution.
+![](./images/ccs_checking_for_stack_overview_bv_2.png)
+4. In the **Breakpoints view**, right-click on the existing hardware watchpoint and click **Breakpoint Properties...**. In the Breakpoint Properties window that opens, specific configurations can be made to the watchpoint. Expand the **Type** property, and then set **With Data** to **Yes**, set customized Data Value, and click **Apply** and **Close**. This configures the watchpoint to only trigger (suspend program execution) when the value you wrote is written to <tt>led0_on_off_useconds</tt>. Resume program execution and verify.
+5. After you are finished with this part of the lab, in the **Breakpoints** view, remove the hardware watchpoint.
+
+<!-- End of markdown source -->
+ 
+<div id="footer"></div>
+</xmp>
+</html>

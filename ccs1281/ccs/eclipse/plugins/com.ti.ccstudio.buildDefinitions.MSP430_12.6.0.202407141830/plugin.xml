@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+	<extension point="com.ti.ccstudio.project.core.buildDefinitionContributions">
+		<xmlRepository 
+			isaFamily="MSP430" 
+			location="resources/buildDefinitions"/>
+	</extension>
+	
+	<extension point="com.ti.ccstudio.project.core.deviceDefinitionContributions">
+		<xmlRepository 
+			isaFamily="MSP430" 
+			location="resources/deviceDefinitions"/>
+		<device class="com.ti.ccstudio.deviceModel.MSP430.CustomMSP430Device"/>
+		<realDeviceFactory class="com.ti.ccstudio.deviceModel.MSP430.MSP430DeviceFactory"/>
+	</extension>
+	
+	<extension point="com.ti.common.project.core.configurationInitializerDelegates">
+		<delegate 
+			class="com.ti.ccstudio.buildDefinitions.MSP430.MSP430ConfigurationInitializerDelegate">
+			<projectType projectTypeID="com.ti.ccstudio.buildDefinitions.MSP430.ProjectType"/>
+		</delegate>
+	</extension>
+	
+</plugin>

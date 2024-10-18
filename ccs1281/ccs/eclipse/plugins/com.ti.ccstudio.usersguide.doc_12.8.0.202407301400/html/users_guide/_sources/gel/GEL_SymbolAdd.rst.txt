@@ -1,0 +1,64 @@
+GEL_SymbolAdd()
+---------------
+
+Loads additional symbol information.
+
+**Syntax**
+
+**GEL_SymbolAdd("**\ fileName\ **"** [**, "**\ cpuName\ **"**] [**,
+"**\ boardName\ **"**]\ **);**
+
+**Parameters**
+
+fileNamenames the symbol file containing the symbol information. The
+fileName must be enclosed in quotation marks. The symbol file can be a
+standard COFF output file (\*.out) or a specific symbol file obtained
+during the build process.
+
+cpuName(optional) names the CPU on which to load the symbolic
+information (useful in a multiprocessor environment). The cpuName must
+be enclosed in quotation marks.
+
+boardName(optional) names the board on which to load the symbolic
+information. If not specified, uses the board name of the processor on
+which this GEL function is executed. The boardName must be enclosed in
+quotation marks.
+
+**Description**
+
+Symbol information can be appended to the existing symbol table. This
+function loads the symbol information from the specified symbol file.
+GEL_SymbolAdd differs from GEL_SymbolLoad in that it does not clear the
+contents of the existing symbol table before loading the new symbols.
+
+If the file is not in the current directory, provide a full path name
+within the string. A double backslash escape sequence is required to
+ensure that you get a backslash into the fileName Parameters.
+
+The cpuName and boardName Parameters must match the Processor Name and
+Board Name as configured in the multiprocessor setup. In a single
+processor system, you do not need to fill these fields.
+
+**Synchronous**
+
+Synchronous from GEL: No
+
+Completely synchronous: No
+
+**Example**
+
+GEL_SymbolAdd("c:\\mydir\\myfile.out", "cpu_a", "Emulator");
+
+**Related Topics**
+
+`GEL_Load() <GEL_Load.html>`__
+
+`GEL_SymbolAddRel() <GEL_SymbolAddRel.html>`__
+
+`GEL_SymbolLoad() <GEL_SymbolLoad.html>`__
+
+`GEL_SymbolAddRel() <GEL_SymbolAddRel.html>`__
+
+`GEL_SymbolRemove() <GEL_SymbolRemove.html>`__
+
+`GEL_UnloadAllSymbols() <GEL_UnloadAllSymbols.html>`__

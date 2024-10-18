@@ -1,0 +1,21 @@
+.. _moving-gel-initialization-to-production-code:
+
+Moving GEL Initialization to Production Code
+--------------------------------------------
+
+Relying on a GEL file to perform tasks such as EMIF initialization is very convenient during the debug phase of a project. However, when the application nears production, the Hardware initialization settings performed by the GEL script need to be moved to the bootload or other initialization code and any intrinsic macros or other debug-oriented constructs need to be removed.
+
+In general the HW initialization functions are called from inside the `OnTargetConnect() <OnTargetConnect.html>`__ callback function, but others may be also present at the `OnReset() <OnReset.html>`__ or `OnFileLoaded() <OnFileLoaded.html>`__. Carefully check for routines that enable internal peripherals or external devices (DDR, MAC PHY, PMIC, watchdog, etc.) - fortunately the GEL syntax matches standard C syntax, therefore the vast majority of typical ``init_emif()`` or ``watchdog_disable()`` routines can be moved to a .c file and linked with the application. 
+
+When it is required to access memory-mapped registers, it is a good idea to add "volatile" qualifiers to ensure that the compiler does not remove the memory references.
+
+.. code:: cpp
+
+  *(volatile int *)EMIFA_SDRAMTIM = 0x00000618; /* SDRAM timing (refresh) */
+
+Remove or comment out all references to :ref:`gel-macros` and :ref:`built-in-gel-functions` as they are not relevant for the target Hardware. 
+  
+- Consider creating a separate GEL file that only sets up the memory map via :ref:`GEL_MapAdd() <gel-mapadd>` API to enable CCS debugging but no longer performing Hardware initializtion routines.
+
+Section 5 of the application note `Creating Device Initialization GEL files (spraa74a) <https://www.ti.com/lit/an/spraa74a/spraa74a.pdf>`__ contains some additional information. 
+

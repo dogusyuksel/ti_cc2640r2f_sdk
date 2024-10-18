@@ -1,0 +1,11 @@
+Frequently Asked Questions
+****************************
+
+This chapter answers some of the frequently asked questions (FAQs) about CCS.
+
+.. toctree::
+   :maxdepth: 3
+
+   ccs_faqs
+
+

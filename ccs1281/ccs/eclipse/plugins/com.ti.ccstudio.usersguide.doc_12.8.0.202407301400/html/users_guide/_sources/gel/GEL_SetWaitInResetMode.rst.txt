@@ -1,0 +1,38 @@
+GEL_SetWaitInResetMode()
+------------------------
+
+Sets or clears the Halt on Reset option.
+
+**Syntax**
+
+**GEL_SetWaitInResetMode(**"integer"**);**
+
+**Parameters**
+
+integer:
+
+0 - Will not halt on a reset.
+
+1 - Halts at the beginning of the reset vector once a reset has been
+set.
+
+**Description**
+
+This GEL function sets or clears the Halt on Reset menu option, which is
+used for resets that occur externally to the debugger.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely Synchronous: Yes
+
+**Related Topics**
+
+`GEL_Reset <GEL_Reset.html>`__
+
+`GEL_Restart <GEL_Restart.html>`__
+
+`GEL_Run <GEL_Run.html>`__
+
+`GEL_Halt <GEL_Halt.html>`__

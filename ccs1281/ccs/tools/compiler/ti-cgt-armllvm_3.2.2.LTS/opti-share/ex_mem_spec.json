@@ -1,0 +1,103 @@
+{
+  "mem_spec" :
+  { 
+    "device_mem_regions": [
+      {
+        "name":   "vecs",
+        "kind":   "local",
+        "origin": "0x00000",
+        "length": "0x00040"
+      },
+      {
+        "name":   "tcma",
+        "kind":   "local",
+        "origin": "0x0040",
+        "length": "0x7fc0"
+      },
+      {
+        "name":   "tcmb",
+        "kind":   "local",
+        "origin": "0x80000",
+        "length": "0x08000"
+      },
+      {
+	"name":   "ocram",
+        "kind":   "system",
+	"origin": "0x70040000",
+	"length": "0x000C0000"
+      },
+      {
+	"name":   "flash",
+        "kind":   "system",
+	"origin": "0x60100000",
+	"length": "0x00200000"
+      },
+      {
+        "name":   "shm",
+	"kind":   "system",
+	"origin": "0x701d0000",
+	"length": "0x00008000"
+      },
+      {
+        "name":   "ipc_shm",
+	"kind":   "system",
+	"origin": "0x72000000",
+	"length": "0x3e80"
+      },
+      {
+        "name":   "mailbox_hsm",
+	"kind":   "system",
+	"origin": "0x44000000",
+	"length": "0x3ce"
+      },
+      {
+        "name":   "mailbox_r5f",
+	"kind":   "system",
+	"origin": "0x44000400",
+	"length": "0x3ce"
+      },
+      {
+        "name":   "shared",
+	"kind":   "system",
+	"origin": "0x70070000",
+	"length": "0x00010000"
+      }
+    ],
+    "shared_mem_regions": [
+      {
+        "name":   "SHARED_RX",
+        "origin": "0x70070000",
+        "length": "0x00006000"
+      },
+      {
+        "name":   "SHARED_RO",
+        "origin": "0x70076000",
+        "length": "0x00004000"
+      },
+      {
+        "name":   "SHARED_RW",
+        "origin": "0x7007A000",
+        "length": "0x00008000"
+      }
+    ],
+    "shared_os_placement_instrs": [
+      {
+        "name":      ".shared.text",
+        "placement": "> SHARED_RX"
+      },
+      {
+        "name":      ".shared.rodata",
+        "placement": "> SHARED_RO"
+      },
+      {
+        "name":      ".shared.bss",
+        "placement": "> SHARED_RW"
+      },
+      {
+        "name":      ".shared.data",
+        "placement": "> SHARED_RW"
+      }
+    ]
+  }
+}
+

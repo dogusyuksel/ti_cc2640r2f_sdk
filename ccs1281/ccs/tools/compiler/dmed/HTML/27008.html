@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;
+      charset=ISO-8859-1">
+    <title>Optimizer Assistant Advice: Detecting low optimization.</title>
+  </head>
+  <body>
+    <h1><span class="mw-headline"
+        id="Optimizer_Assistant_Advice:_Detecting_low_optimization.">Optimizer
+
+        Assistant Advice: Detecting low optimization. </span></h1>
+    <h2><span class="editsection"></span> <span class="mw-headline"
+        id="Typical_Advice">Typical Advice </span></h2>
+    <pre> #27008-D Detecting compilation with low optimization. Recommend setting --opt_level=3. NOTE: debug ability will decrease.
+</pre>
+    <h2><span class="editsection"></span> <span class="mw-headline"
+        id="Why_is_the_Compiler_giving_this_Advice_.3F">Why is the
+        Compiler giving this Advice&nbsp;? </span></h2>
+    <p>Your compilation uses low-level optimization options (-o2 and
+      below). This prevents the compiler from using its most powerful
+      optimization techniques, since the -o (--opt_level) options are
+      the foundations for most other optimizations. You could get
+      substantially better performance using -o3 (or above)
+      optimization. </p>
+    <p>NOTE: debug ability will decrease with increased optimization
+      levels. For details see: </p>
+    <ul>
+      <li><a
+href="http://processors.wiki.ti.com/index.php/Debug_versus_Optimization_Tradeoff"
+          class="external free" rel="nofollow" target="_blank">http://processors.wiki.ti.com/index.php/Debug_versus_Optimization_Tradeoff</a>
+      </li>
+    </ul>
+    <h2><span class="editsection"></span> <span class="mw-headline"
+        id="What_it_means:">What it means: </span></h2>
+    <p>The C/C++ compiler is able to perform various optimizations, but
+      you need to specify optimization options on the command line so
+      that these optimizations are performed. The easiest way to invoke
+      optimization is to specify the --opt_level=n option on the
+      compiler command line. You can use -On to alias the --opt_level
+      option. The n denotes the level of optimization (0, 1, 2, 3, and
+      4), which controls the type and degree of optimization. </p>
+    <p><i><b>--opt_level=off or -Ooff</b></i> </p>
+    <ul>
+      <li> Performs no optimization </li>
+    </ul>
+    <p><i><b>--opt_level=0 or -O0</b></i> </p>
+    <ul>
+      <li> Performs control-flow-graph simplification </li>
+      <li> Allocates variables to registers </li>
+      <li> Performs loop rotation </li>
+      <li> Eliminates unused code </li>
+      <li> Simplifies expressions and statements </li>
+      <li> Expands calls to functions declared inline </li>
+    </ul>
+    <p><i><b>--opt_level=1 or -O1&nbsp;: Performs all --opt_level=0
+          (-O0) optimizations, plus:</b></i> </p>
+    <ul>
+      <li> Performs local copy/constant propagation </li>
+      <li> Removes unused assignments </li>
+      <li> Eliminates local common expressions </li>
+    </ul>
+    <p><i><b> --opt_level=2 or -O2&nbsp;: Performs all --opt_level=1
+          (-O1) optimizations, plus:</b></i> </p>
+    <ul>
+      <li> Performs loop optimizations </li>
+      <li> Eliminates global common subexpressions </li>
+      <li> Eliminates global unused assignments </li>
+      <li> Performs loop unrolling </li>
+    </ul>
+    <p><i><b> --opt_level=3 or -O3&nbsp;: Performs all --opt_level=2 (or
+          -O2) optimizations, plus:</b></i>Italic text<i>* Removes all
+        functions that are never called</i> </p>
+    <ul>
+      <li> Removes all functions that are never called </li>
+      <li> Simplifies functions with return values that are never used </li>
+      <li> Inlines calls to small functions </li>
+      <li> Reorders function declarations; the called functions
+        attributes are known when the caller is optimized </li>
+      <li> Propagates arguments into function bodies when all calls pass
+        the same value in the same argument position </li>
+      <li> Identifies file-level variable characteristics </li>
+    </ul>
+    <p><i><b>--opt_level=4 or -O4</b></i> </p>
+    <ul>
+      <li> Performs link-time optimization. </li>
+    </ul>
+    <p>Note that -o defaults to -o2 (-o3 for ARM). In the absence of any
+      -o options, MSP430 is set to -o0, ARM is set to -o3, and C2000 is
+      set to -ooff. </p>
+    <p>For more information, see: </p>
+    <ul>
+      <li> <a
+href="http://processors.wiki.ti.com/index.php/C28x_Code_Generation_Tips_and_Tricks"
+          class="external text" rel="nofollow" target="_blank">C28x Code
+          Generation Tips and Tricks</a><br>
+      </li>
+      <li> <a
+href="http://processors.wiki.ti.com/index.php/ARM_compiler_optimizations"
+          class="external text" rel="nofollow" target="_blank">ARM
+          compiler optimizations</a><br>
+      </li>
+      <li> <a href="http://processors.wiki.ti.com/index.php/MSP430_FAQ"
+          class="external text" rel="nofollow" target="_blank">MSP430
+          FAQ</a><br>
+      </li>
+    </ul>
+    <h2><span class="editsection"></span> <span class="mw-headline"
+        id="Risks.2C_Severity">Risks, Severity </span></h2>
+    <p>Use -o3 or higher optimization to see performance improvements. </p>
+    <h2><span class="editsection"></span> <span class="mw-headline"
+        id="Suggested_Action">Suggested Action </span></h2>
+    <p>Compile with options -o3 or higher. </p>
+    <div class="hf-nsfooter">
+      <table style="text-align:center; background:white; width:100%;
+        text-align:left; height: 65px border-top: 1px solid;
+        border-bottom: 1px solid; border-left: 1px solid; border-right:
+        1px solid; border-width: 1px; border-style: solid;">
+        <tbody>
+          <tr>
+            <td width="305px"><a
+                href="http://processors.wiki.ti.com/index.php/File:E2e.jpg"
+                class="image"><img alt="E2e.jpg"
+                  src="http://processors.wiki.ti.com/images/8/82/E2e.jpg"
+                  height="63" width="305"></a> </td>
+            <td><i>For technical support please post your questions at <a
+                  href="http://e2e.ti.com/" class="external free"
+                  rel="nofollow" target="_blank">http://e2e.ti.com</a>.
+                Please post only comments about the article <b>Compiler/diagnostic
+
+                  messages/27008</b> here.</i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

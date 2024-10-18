@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.ti.dvt.symbolmanager;singleton:=true
+Require-Bundle: com.ti.dvt.ideadapter2,org.eclipse.core.runtime,com.ti
+ .dvt.symbolmanager.bin;visibility:=reexport
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: Texas Instruments
+Eclipse-LazyStart: true
+Export-Package: com.ti.dvt.symbolmanager
+Bundle-Name: SymbolManager GUI
+Bundle-Version: 4.1.0.202307061549
+Bundle-ClassPath: com.ti.dvt.symbolmanager.jar
+Bundle-Activator: com.ti.dvt.symbolmanager.Activator
+
+Name: schema/symbolManagers.exsd
+SHA-256-Digest: OwK03ib8ymDyUcb2iERnbfk5V4Sd7x1znGWbq8WXozg=
+
+Name: plugin.xml
+SHA-256-Digest: whshdgHLECWEx39OZZzGzm1L0bLIbSnr71pZH3H0SRY=
+
+Name: com.ti.dvt.symbolmanager.jar
+SHA-256-Digest: D/77M35OR29rgB7g0wYVAGaBmUpykdUjXQOobIIw6Ws=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: G2hFTVPngfh5NUf96Pyy87A7XIE083udjEBFy4pUc/M=
+

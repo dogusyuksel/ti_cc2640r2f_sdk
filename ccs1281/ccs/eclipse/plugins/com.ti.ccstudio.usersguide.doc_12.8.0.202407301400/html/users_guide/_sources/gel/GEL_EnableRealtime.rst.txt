@@ -1,0 +1,30 @@
+GEL_EnableRealtime()
+--------------------
+
+Enables real-time debugging.
+
+**Syntax**
+
+**GEL_EnableRealtime();**
+
+**Parameters**
+
+None.
+
+**Description**
+
+This function enables real-time debugging.
+
+**Synchronous**
+
+Synchronous from GEL: No
+
+Completely synchronous: No
+
+**Example**
+
+GEL_EnableRealtime();
+
+**Related Topics**
+
+`GEL_DisableRealtime <GEL_DisableRealtime.html>`__

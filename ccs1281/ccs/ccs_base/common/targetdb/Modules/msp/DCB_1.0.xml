@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module id="DCB" HW_revision="1.0">
+    <register id="DCB_DHCSR" width="32" offset="0xE000EDF0" description="Controls halting debug">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="27" width="5" rwaccess="R">
+        </bitfield>
+        <bitfield id="S_RESTART_ST" description="Indicates the PE has processed a request to clear DHCSR.C_HALT to 0. That is, either a write to DHCSR that clears DHCSR.C_HALT from 1 to 0, or an External Restart Request" begin="26" end="26" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="S_RESET_ST" description="Indicates whether the PE has been reset since the last read of the DHCSR" begin="25" end="25" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="S_RETIRE_ST" description="Set to 1 every time the PE retires one of more instructions" begin="24" end="24" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="RES0_1" description="Reserved, RES0" begin="23" end="21" width="3" rwaccess="R">
+        </bitfield>
+        <bitfield id="S_SDE" description="Indicates whether Secure invasive debug is allowed" begin="20" end="20" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="S_LOCKUP" description="Indicates whether the PE is in Lockup state" begin="19" end="19" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="S_SLEEP" description="Indicates whether the PE is sleeping" begin="18" end="18" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="S_HALT" description="Indicates whether the PE is in Debug state" begin="17" end="17" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="S_REGRDY" description="Handshake flag to transfers through the DCRDR" begin="16" end="16" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="DBGKEY" description="A debugger must write 0xA05F to this field to enable write access to the remaining bits, otherwise the PE ignores the write access" begin="31" end="16" width="16" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="RES0_2" description="Reserved, RES0" begin="15" end="6" width="10" rwaccess="R">
+        </bitfield>
+        <bitfield id="C_SNAPSTALL" description="Allow imprecise entry to Debug state" begin="5" end="5" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="RES0_3" description="Reserved, RES0" begin="4" end="4" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="C_MASKINTS" description="When debug is enabled, the debugger can write to this bit to mask PendSV, SysTick and external configurable interrupts" begin="3" end="3" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="C_STEP" description="Enable single instruction step" begin="2" end="2" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="C_HALT" description="PE enter Debug state halt request" begin="1" end="1" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="C_DEBUGEN" description="Enable Halting debug" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="DCB_DCRSR" width="32" offset="0xE000EDF4" description="With the DCRDR, provides debug access to the general-purpose registers, special-purpose registers, and the FP extension registers. A write to the DCRSR specifies the register to transfer, whether the transfer is a read or write, and starts the transfer">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="17" width="15" rwaccess="R">
+        </bitfield>
+        <bitfield id="REGWnR" description="Specifies the access type for the transfer" begin="16" end="16" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="RES0_1" description="Reserved, RES0" begin="15" end="7" width="9" rwaccess="R">
+        </bitfield>
+        <bitfield id="REGSEL" description="Specifies the general-purpose register, special-purpose register, or FP register to transfer" begin="6" end="0" width="7" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="DCB_DCRDR" width="32" offset="0xE000EDF8" description="With the DCRSR, provides debug access to the general-purpose registers, special-purpose registers, and the FP Extension registers. If the Main Extension is implemented, it can also be used for message passing between an external debugger and a debug agent running on the PE">
+    </register>
+    <register id="DCB_DEMCR" width="32" offset="0xE000EDFC" description="Manages vector catch behavior and DebugMonitor handling when debugging">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="25" width="7" rwaccess="R">
+        </bitfield>
+        <bitfield id="TRCENA" description="Global enable for all DWT and ITM features" begin="24" end="24" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="RES0_1" description="Reserved, RES0" begin="23" end="21" width="3" rwaccess="R">
+        </bitfield>
+        <bitfield id="SDME" description="Indicates whether the DebugMonitor targets the Secure or the Non-secure state and whether debug events are allowed in Secure state" begin="20" end="20" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="MON_REQ" description="DebugMonitor semaphore bit" begin="19" end="19" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="MON_STEP" description="Enable DebugMonitor stepping" begin="18" end="18" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="MON_PEND" description="Sets or clears the pending state of the DebugMonitor exception" begin="17" end="17" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="MON_EN" description="Enable the DebugMonitor exception" begin="16" end="16" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="RES0_2" description="Reserved, RES0" begin="15" end="12" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="VC_SFERR" description="SecureFault exception halting debug vector catch enable" begin="11" end="11" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="VC_HARDERR" description="HardFault exception halting debug vector catch enable" begin="10" end="10" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="VC_INTERR" description="Enable halting debug vector catch for faults during exception entry and return" begin="9" end="9" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="VC_BUSERR" description="BusFault exception halting debug vector catch enable" begin="8" end="8" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="VC_STATERR" description="Enable halting debug trap on a UsageFault exception caused by a state information error, for example an Undefined Instruction exception" begin="7" end="7" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="VC_CHKERR" description="Enable halting debug trap on a UsageFault exception caused by a checking error, for example an alignment check error" begin="6" end="6" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="VC_NOCPERR" description="Enable halting debug trap on a UsageFault caused by an access to a coprocessor" begin="5" end="5" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="VC_MMERR" description="Enable halting debug trap on a MemManage exception" begin="4" end="4" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="RES0_3" description="Reserved, RES0" begin="3" end="1" width="3" rwaccess="R">
+        </bitfield>
+        <bitfield id="VC_CORERESET" description="Enable Reset Vector Catch. This causes a warm reset to halt a running system" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="DCB_DSCSR" width="32" offset="0xE000EE08" description="Provides control and status information for Secure debug">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="18" width="14" rwaccess="R">
+        </bitfield>
+        <bitfield id="CDSKEY" description="Writes to the CDS bit are ignored unless CDSKEY is concurrently written to zero" begin="17" end="17" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="CDS" description="This field indicates the current Security state of the processor" begin="16" end="16" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="RES0_1" description="Reserved, RES0" begin="15" end="2" width="14" rwaccess="R">
+        </bitfield>
+        <bitfield id="SBRSEL" description="If SBRSELEN is 1 this bit selects whether the Non-secure or the Secure version of the memory-mapped Banked registers are accessible to the debugger" begin="1" end="1" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="SBRSELEN" description="Controls whether the SBRSEL field or the current Security state of the processor selects which version of the memory-mapped Banked registers are accessed to the debugger" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+</module>

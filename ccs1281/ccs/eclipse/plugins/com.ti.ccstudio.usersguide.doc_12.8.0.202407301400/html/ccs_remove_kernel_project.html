@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="Combine kernel and application projects into a single project for SimpleLink devices."> 
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="Code Composer Studio">
+<meta name="product-link" content="https://www.ti.com/tool/CCSTUDIO">
+
+<!-- Change the title text for your page -->
+<title>How to combine SimpleLink SDK application and kernel projects</title>
+
+<!-- Load script for tempate -->
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+When importing many of the examples from a SimpleLink SDK you end up with an application project and a kernel project in your workspace.  If desired it is possible to have a single project that contains everything.
+
+<iframe width="854" height="480" src="https://www.youtube.com/embed/jSoAnnbTtac" frameborder="0" allowfullscreen></iframe>
+
+### Examine kernel project settings ###
+Before combining the projects it is necessary to look at the products and versions that the kernel project is using.  Select the kernel project in **Project Explorer** and open the context menu.  Select **Properties**.
+
+Select **General** in the tree on the left and then make note of the XDCTools version, Products and Platform settings.  These will be needed later.
+![](./images/kernel_project_settings.png)
+
+Click **OK** to exit the properties dialog.
+
+### Remove dependency on kernel project ###
+Select the application project in **Project Explorer** and open its properties.  Select **Build** in the tree on the left.  Click on the **Dependencies** tab on the right.  Select the kernel project in the list of referenced projects and then click the **Remove** button.
+![](./images/remove_kernel_dependency.png)
+
+Click **OK** to exit the properties dialog.
+
+### Copy .cfg file ###
+Select the .cfg file that is part of the kernel project in **Project Explorer**.  
+![](./images/configuration_file_selected.png)
+
+Copy this file into your application project.  You can do this by using copy/paste shortcuts or by holding CTRL and dragging the file into the application project.  This will trigger a prompt to enable RTSC for the application project.  Say **yes** to this prompt.
+![](./images/enable_rtsc_prompt.png)
+
+The .cfg file should now be present in the application project.
+![](./images/configuration_file_in_application_project.png)
+
+### Apply settings ###
+Now open the properties for the application project and ensure that the same settings are present for the XDCTools, Products and Platform that were present in the kernel project. 
+![](./images/application_project_settings.png)
+
+If you are using a version of the SimpleLink SDK greater than 1.40 you will also need to add ${COMPILER_FLAGS} to the list of additional compiler options in the Advanced Options for the XDC Tools.
+![](./images/extra_xdctools_compileroptions.png)
+
+Click **OK** to exit the properties dialog.
+
+Now you have a single project that contains everything and no longer require the kernel project.
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

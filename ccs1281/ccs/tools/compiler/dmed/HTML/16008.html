@@ -1,0 +1,25 @@
+<html><body>
+<h2> Typical message </h2>
+
+<pre>
+ fatal error #16008: file "/db/lang/msp/exec/rts430x.lib<boot.obj>" specifies
+   ISA revision "MSPX", which is not compatible with ISA revision "MSP"
+   specified in a previous file or on the command line
+</pre>
+
+<h2> What it means </h2>
+
+<p>The linker has been supplied with object files or libraries that were compiled for different, incompatible ISA versions.</p>
+
+<h2> Why is it happening </h2>
+
+<p>An incompatible mix of object files were provided to the linker.  Since the object files for your project are compiled according to the build options this is usually an issue with using an incompatible pre-built library file.</p>
+
+<h2> Remedy </h2>
+
+<p>Make sure all of the pre-built object and library files are built for a version of the ISA that is compatible with the version that you are using for your project.  If you are explicitly specifying the RTS library to be used through the --library option you can remove it -- the linker will automatically include the correct RTS library.  If you are using additional libraries provided by TI or 3rd parties please make sure they are for the version of the ISA that you are using.</p>
+
+<h2> Risks, Severity </h2>
+
+<p>An executable cannot be created until this error is resolved.</p>
+</body></html>

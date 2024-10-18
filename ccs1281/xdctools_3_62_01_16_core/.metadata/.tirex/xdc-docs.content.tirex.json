@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Release Notes",
+        "resourceType": "file",
+        "location": "../../xdctools_3_62_01_16_release_notes.html",
+        "mainCategories": [
+            [
+                "Documents"
+            ]
+        ]
+    },
+    {
+        "name": "ROV User's Guide",
+        "resourceType": "file",
+        "tags": ["Runtime Object View", "Realtime Object View", "RTOS Object View"],
+        "location": "../../eclipse/plugins/com.ti.rov_1.0.0.202108240702/webcontents/docs/html/src/index.html",
+        "mainCategories": [
+            [
+                "Documents"
+            ]
+        ]
+    }
+]

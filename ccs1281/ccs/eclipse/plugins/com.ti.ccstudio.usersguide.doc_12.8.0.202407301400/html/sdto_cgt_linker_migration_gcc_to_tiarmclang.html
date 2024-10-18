@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="How to migrate from the Arm GCC linker to the tiarmclang linker"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Generation Tools">
+<meta name="product-link" content="https://www.ti.com/tool/TI-CGT">
+
+<!-- Change the title text for your page -->
+<title>Linking: Migrate from Arm GCC to tiarmclang</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+# Introduction
+
+You presently build for an Arm CPU in your system with a GCC compiler.  You plan to change to the tiarmclang compiler.  This article discusses the changes needed with regard to linking.
+
+# Linker is from TI
+
+The linker in the tiarmclang toolchain is not based on GCC or LLVM.  It is based on the linker in the TI proprietary Arm toolchain.  As a result, the options and the linker script are not the same.  
+
+# Terminology
+
+GCC and TI linker documents use the following terms to represent the same concept.
+
+GCC               | TI                  
+------------------|--------------------
+linker script     | linker command file
+MEMORY command    | MEMORY directive
+SECTIONS command  | SECTIONS directive
+memory region     | memory range
+
+These terms have the same meaning for both GCC and TI.
+
+- object file
+- input section
+- output section
+
+Please learn all of these terms by reading the first part of the article [TI Linker Command File Primer](http://software-dl.ti.com/ccs/esd/documents/sdto_cgt_Linker-Command-File-Primer.html).  The rest of this article favors TI terminology.
+
+# Rely on Example Linker Command Files
+
+It is typical to start with a linker script from TI, often from a software development kit (SDK).  Sometimes it is used with no changes.  Sometimes changes are made.  If this is the case for your linker script, then you need to follow steps similar to these.
+
+1. Identify the linker script you started with
+2. Note any changes made to it
+3. Identify the corresponding linker command file for use with tiarmclang, perhaps from a later version of the same SDK
+4. Start over with this linker command file
+5. Conceptually speaking, make the same changes to it you made to the previous linker script.  Use this article as a guide to exactly how those changes should be made.
+
+Suppose you use the SimpleLink CC13x2_26x2 SDK, and you started with GCC linker script `C:\ti\simplelink_cc13x2_26x2_sdk_N_NN_NN_NN\examples\rtos\CC26X2R1_LAUNCHXL\thread\cli_mtd\tirtos\gcc\CC26X2R1_LAUNCHXL_TIRTOS.lds`.  (Change the N's to the version number of your SDK.)  In that case, replace this linker script with the linker command file `C:\ti\simplelink_cc13x2_26x2_sdk_N_NN_NN_NN\examples\rtos\CC26X2R1_LAUNCHXL\thread\cli_mtd\tirtos\ticlang\CC26X2R1_LAUNCHXL_TIRTOS.cmd`.
+
+# Specifying Options to the Linker
+
+There are a few different ways to specify options to the linker.  When invoking the compiler shell tiarmclang, it is typical to precede a linker option with `-Wl`.  For example: `-Wl,--warn_sections`.  When specifying the same option inside a linker command file, the -Wl is not used.  Then it is written `--warn_sections`.  Throughout this article, linker options are presented without any preceding option like `-Wl`.  Add a preceding option when required.
+
+For more details, please see the [Using the tiarmclang Compiler and Linker](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/getting_started_guide/using_the_tools.html#using-the-tiarmclang-compiler-and-linker) chapter of the [TI Arm Clang Compiler Tools User's Guide](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/).
+
+# Feature Differences
+
+This part discusses, at a higher level, significant differences among the features of each linker.
+
+## Compression of Initialization Constants Saves Memory
+
+Consider this example C source code ...
+
+```
+int global_table[] = { 25, -56, 47, /* and so on */ };
+```
+
+Where are the constants stored?  How do they get copied into the `global_table`?  The solution is implemented by a combination of the compiler, linker, and startup code in the RTS library.  The method used by tiarmclang is quite different from how it is done by GCC.  Morever, because the constants are compressed, it requires less memory.  For further details, please see the [Automatic Initialization of Variables](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/compiler_manual/runtime_environment/system-initialization-stdz0543503.html#automatic-initialization-of-variables) sub-chapter of the [TI Arm Clang Compiler Tools User's Guide](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/).
+
+## Automatic Removal of Functions or Data
+
+Most GCC toolchains do not default to automatic removal of functions which are not called or data which are not used.  When building for an embedded system, it is common to reverse this default behavior by compiling with the options `-ffunction-sections -fdata-sections` and linking with the option `--gc-sections`. (The *gc* stands for *garbage collection*.  This term is used throughout GCC documentation to refer to automatic removal of functions or data.)
+
+The tiarmclang compiler has the opposite defaults: functions which are not called or data which are not used are automatically removed.  In typical practice, there is no reason to change this default behavior.   If you use the GCC compiler options `-ffunction-sections -fdata-sections`, they can be left in or removed, because they match the compiler defaults.  If you use the GCC linker option `--gc-sections`, it must be removed, because the tiarmclang linker does not recognize it.  If you do not use those GCC options, then expect functions and data to be in separate input sections, and to be removed if not used by the program.
+
+To avoid removal of a specific function or data variable, use the linker option `--retain=name_of_function_or_variable`.  The retain option can also be used to keep a related set of symbols, input sections from all or certain object files, and input sections from object files in libraries.
+
+In the unlikely event you want to disable automatic removal of functions or data, compile with the options `-fno-function-sections -fno-data-sections` and link with `--unused_section_elimination=off`.
+
+Further details are in these sub-chapters of the [TI Arm Clang Compiler Tools User's Guide](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/).
+- [Runtime Model Options](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/compiler_manual/using_compiler/compiler_options/runtime_model_options.html#runtime-model-options) documents `-ffunction-sections` and `-fdata-sections`.
+- [Retain Discarded Sections](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/compiler_manual/linker_description/04_linker_options/symbol-management-options.html#retain-discarded-sections-retain-option) documents `--retain`.
+- [Do Not Remove Unused Sections](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/compiler_manual/linker_description/04_linker_options/link-time-optimization-options.html#do-not-remove-unused-sections-unused-section-elimination-option) documents `--unused_section_elimination`.
+
+## C Preprocessor Statements
+
+The TI linker command file supports C preprocessor statements such as `#define` and `#include`.  They work in a manner very similar to C.  For further details, please see the [Command File Preprocessing Options](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/compiler_manual/linker_description/04_linker_options/command-file-preprocessing-options.html#command-file-preprocessing-options) sub-chapter of the [TI Arm Clang Compiler Tools User's Guide](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/).
+
+The GCC linker script supports no similar feature.
+
+## REGION_ALIAS is Not Supported
+
+GCC linker scripts support a feature for giving a memory region another name.  For example ...
+
+```
+REGION_ALIAS("NEW_REGION_NAME", EXISTING_REGION_NAME);
+```
+
+TI linker command files do not support REGION_ALIAS.  However, you can do something similar with `#define` ...
+
+```
+#define NEW_REGION_NAME EXISTING_REGION_NAME
+```
+
+## SECTIONS Directive has no PC
+
+Inside the SECTIONS command of a GCC linker script, a Program Counter (PC) is maintained.  It can be used, or changed, inside or outside the specification of an output section.  A TI linker command file has no corresponding feature. 
+
+Though the TI linker command file does support a feature which is somewhat similar. It is called a Section Program Counter (SPC).  Here is one way to create an uninitialized section entirely within the linker command file.
+
+```
+SECTIONS
+{
+    /* ... */
+    uninitialized_section_name
+    {
+        . += 0x100;  /* Add to the SPC */
+    } > RAM
+}
+```
+
+This creates an output section named `uninitialized_section_name`.  It reserves 0x100 bytes of memory, which are not initialized.  It is allocated to the `RAM` memory range.
+
+Operations with `.`, the SPC, are allowed only inside the specification of an output section.  While they are similar to operations with `.`, the PC, in GCC linker scripts, please understand they are not the same.
+
+For further details, please see the [Creating and Filling Holes](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/compiler_manual/linker_description/05_linker_command_files/creating-and-filling-holes-stdz0752589.html#creating-and-filling-holes) sub-chapter of the [TI Arm Clang Compiler Tools User's Guide](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/).
+
+## Using the Command File
+
+The linker script, or the linker command file, appears in the invocation of the linker like any other file.  For the GCC linker, it is preceded by the option `-T`.  For example: `-T name_of_linker_script.lds`.  For the tiarmclang linker, no option is required.
+
+## Section Splitting
+
+The TI linker supports splitting an output section across multiple memory ranges.  Consider this example ...
+
+```
+SECTIONS
+{
+    /* ... */
+    .text >> RAMM0 | RAML0 | RAML1
+}
+```
+
+That means `.text` is split across those memory ranges.  Note the `>>` syntax. If all of `.text` does not fit in `RAMM0`, then it is split, and the rest goes into the remaining memory ranges.  The split occurs on input section boundaries.  An input section is never split.  This means no function, array, structure, etc. can ever be split in the middle.  The memory ranges are used in that order.
+
+The GCC linker has no similar feature.
+
+# Examples
+
+This part of the article is example based. The first few examples appear in nearly every linker script.  Most of them, however, are quite specific.  If code like that appears in your script, then that part describes it.  Otherwise, ignore it.
+
+### Additions and Changes
+
+If you see code in your linker script which is not described in this article, please post to the [E2E forum](https://e2e.ti.com) about it. The forum reply will usually result in an addition or change to this article.
+
+### Syntax Note
+
+Unless otherwise shown or stated, all of the examples in this part appear inside a `SECTIONS` directive.
+
+```
+SECTIONS
+{
+    /* all the examples are here */
+}
+```
+
+## Colon
+
+Try to ignore the colon character in this example.
+
+```
+    output_section_name /* >>>>> */ : /* <<<<< */
+    {
+       /* input    */
+       /* sections */
+       /* here     */
+    } > RAM
+```
+
+In a GCC linker script, that colon is required.  In a TI linker command file, it is optional.
+
+## Input Sections Shortcut
+
+Both linkers support a number of shortcuts in the specification of the input sections that go into an output section.  This example works the same in both linkers.
+
+```
+    .data :
+    {
+        *(.data)
+        *(.data.*)
+    } > RAM
+```
+
+This creates an output section named `.data`.  It is made up of:
+
+- Input sections named `.data`
+- Input sections which are sub-sections of `.data`.  The names of these input sections always begin `.data.`.  One example is `.data.global_table`.
+
+It is allocated to the RAM memory range.
+
+The TI linker supports a further shortcut.
+
+```
+    .data > RAM
+```
+
+This example works the same as the previous one.
+
+## Different Load and Run Addresses
+
+Both linkers support allocating an output section one address for load and a different address for run.  However, the syntax is different.
+
+Here is an example of how it might be done in a GCC linker script.
+
+```
+    .data :
+    {
+        __data_load__ = LOADADDR(.data);
+        __data_start__ = .;
+        *(.data)
+        *(.data.*)
+        __data_end__ = .;
+    } > RAM AT> FLASH
+```
+
+Similar to the previous example, this creates an output section named `.data`, and it is made up of all the input sections named `.data`, and input sections which are sub-sections of `.data`.  It is allocated to FLASH for loading (note the `AT>` syntax), and RAM for running.  Copying `.data` from FLASH to RAM does not happen automatically.  Application code uses the symbols `__data_load__`, `__data_start__`, and `__data_end__` to explicitly perform the copy.  This copy must occur early in system execution, before any code reads or writes anything in `.data`.
+
+Here is how that same example is written in a TI linker command file.
+
+```
+    .data
+        load = FLASH,
+        run = RAM,
+        LOAD_START(__data_load__),
+        RUN_START(__data_start__),
+        RUN_END(__data_end__)
+```
+
+Further details are in these sub-chapters of the [TI Arm Clang Compiler Tools User's Guide](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/).
+- [Placing a Section at Different Load and Run Addresses](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/compiler_manual/linker_description/05_linker_command_files/placing-a-section-at-different-load-and-run-addresses-stdz0756565.html#placing-a-section-at-different-load-and-run-addresses)
+- [Address and Dimension Operators](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/compiler_manual/linker_description/05_linker_command_files/assigning-symbols-at-link-time-stdz0758478.html#address-and-dimension-operators)
+
+### Use Copy Tables to Copy from Load to Run
+
+If there are many sections to copy from load to run, managing all those symbol names can become inconvenient.  The TI linker supports an alternative called copy tables.  For instance ...
+
+```
+    .data
+        load = FLASH,
+        run = RAM,
+        table(BINIT)
+```
+
+This creates the same `.data` output section as the previous example, with the same load and run allocations.  The `table` operator creates a copy table.  This copy table contains an entry that has the start address, load address, and length of the `.data` output section.  The startup code supplied in the compiler RTS library automatically detects the presence of this table, and uses it to perform the copy from the load to run.  This copy occurs during system startup, before main starts.
+
+The automatically generated copy table goes in an input section named `.binit`.  It too must be allocated ...
+
+```
+    .binit > FLASH
+```
+
+Copy tables support several more use cases, including ...
+
+- Choosing a name for the copy table
+- The copy can be performed at any time
+- The data or code at the load address can be compressed to save FLASH or ROM memory, then decompressed during the copy to the run address
+- Used to implement overlays in memory
+- The load and/or run allocation can be split across multiple memory ranges
+- Other variations
+
+Further details are in the [Using Linker-Generated Copy Tables](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/compiler_manual/linker_description/08_using_linker_generated_copy_tables/using-linker-generated-copy-tables-stdz0754560.html#using-linker-generated-copy-tables) sub-chapter of the [TI Arm Clang Compiler Tools User's Guide](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/).
+
+## Differences in Section Names
+
+These are some section names which are the same between the two compilers.
+
+- `.text`
+- `.data`
+- `.rodata`
+- `.bss`
+- `.init_array`
+- `.stack`
+
+There is one section which has the same purpose, but uses different names.  The GCC Arm compiler uses the section name `.heap` for the memory managed by the dynamic memory allocation functions such as `malloc` and `free`.   tiarmclang uses the section name `.sysmem` for this same purpose.
+
+There are many other sections which are unique to each compiler.  Some sections unique to tiarmclang include `.binit` and `.cinit`.  
+
+Consider this method of handling the differences in section names.
+
+1. View the [full list of section names](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/compiler_manual/runtime_environment/memory-model.html#sections) documented in the [TI Arm Clang Compiler Tools User's Guide](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/)
+2. Add output section specifications for those not present in the linker command file
+3. Add the linker option [--warn_sections](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/compiler_manual/linker_description/04_linker_options/diagnostic-options.html#display-a-message-when-an-undefined-output-section-is-created-warn-sections) to avoid allocating sections to memory without an explicit specification
+4. Build and test
+5. View the map file.  Find the sections which are empty (have zero length).  Remove the specifications for these sections.  With regard to correct program behavior, this step is optional.  But it often makes it easier to maintain the linker command file.
+
+
+## GCC Keyword KEEP
+
+Consider linking with GCC, and using `--gc-sections` to remove sections that are not referenced.  To avoid removing a specific section, use the keyword `KEEP`.  This example is from a GCC linker script ...
+
+```
+.text : {
+    *(.text)
+    *(.text.*)
+    KEEP (*(.ctors))
+    KEEP (*(.dtors))
+} > RAM
+```
+
+This creates an output section named `.text`.  Similar to the `.data` section above, it collects all the input sections named `.text`, and all the sub-sections that start with the name `.text`.  It also collects all the input sections named `.ctors` and `.dtors`.  These sections contain functions related to constructing and destructing instances of C++ objects.  The `KEEP` keyword means that, even if `--gc-sections` is used, these input sections are not removed.  
+
+The TI linker has no exact equivalent.  The option `--retain` is similar.  These options have the same effect.
+
+```
+--retain='*(.ctors)'
+--retain='*(.dtors)'
+```
+
+They can be specified on the command line, or in a command file.  They are not specified inside a SECTIONS directive.
+
+While this a valid example of `KEEP` and `--retain`, please note the section names `.ctors` and `.dtors` are specific to the GCC compiler.  tiarmclang does not, by default, generate sections with those names.
+
+## GCC Keyword PROVIDE
+
+Consider this example from a GCC linker script ...
+
+```
+.text : {
+/* ... */
+} > RAM
+
+PROVIDE(__etext = .);
+PROVIDE(_etext = .);
+PROVIDE(etext = .);
+```
+
+This creates an output section named `.text`.  The 3 statements after the `.text` output specification assign the value of the Program Counter to three different spellings of a symbol for the end of the `.text` section.  They are all surrounded by the keyword `PROVIDE`.  A `PROVIDE` symbol has two special properties.
+
+1. If the program defines the same symbol, it overrides the `PROVIDE` one
+2. If the program never references the `PROVIDE` symbol, it is not created
+
+Different variants of the symbol name `etext` have appeared over the years.  This code provides all of them.  If the program doesn't use them, they disappear.
+
+The TI linker has no exact equivalent.  But two features can be combined to form a close alternative.
+
+The linker [automatically defines some symbols](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/compiler_manual/linker_description/05_linker_command_files/assigning-symbols-at-link-time-stdz0758478.html#symbols-automatically-defined-by-the-linker), including one named `etext` for the end of `.text`.  Using [weak symbol definitions](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/compiler_manual/linker_description/06_linker_symbols/declaring-weak-symbols-sprui023504.html#declaring-weak-symbols), these statements can be written ...
+
+```
+weak(__etext) = etext;
+weak(_etext)  = etext;
+```
+
+These statements must appear outside of the `SECTIONS` directive.  The symbol `etext` is always defined.  But the other two are defined only if the program uses them.
+
+## GCC Keywords ORIGIN and LENGTH
+
+In a GCC linker script, you can refer to the origin or length of a memory region ...
+
+```
+_estack = ORIGIN(SRAM) + LENGTH(SRAM);
+```
+
+In a TI linker command file, a similar effect is achieved by using `#define` symbols ..
+
+```
+#define SRAM_BASE 0x20000000
+#define SRAM_SIZE 0x14000
+
+MEMORY
+{
+   /* ... */
+   SRAM : origin = SRAM_BASE, length = SRAM_SIZE
+}
+
+_estack = SRAM_BASE + SRAM_SIZE;
+```
+
+## GCC Keyword ENTRY
+
+In a GCC linker script, one way to set the entry point of the program is ...
+
+```
+ENTRY(ResetISR);
+```
+
+In the TI linker, this is done with an option.
+
+```
+--entry_point ResetISR
+```
+
+Recall that an option can be specified on the command line, or inside a command file.
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

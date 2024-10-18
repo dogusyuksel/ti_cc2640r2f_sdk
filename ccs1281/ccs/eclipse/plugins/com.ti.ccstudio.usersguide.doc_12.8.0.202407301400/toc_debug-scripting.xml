@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Scripting">
+    	<topic label="Environment Setup and Running a JavaScript" href="html/users_guide/sdto_dss_handbook.html#environment-setup-and-running-a-javascript"/>
+    	<topic label="Debugging Your JavaScript" href="html/users_guide/sdto_dss_handbook.html.html#debugging-your-javascript"/>
+		<topic label="Examples" href="html/users_guide/sdto_dss_handbook.html.html#examples"/>
+		<topic label="DSS API" href="html/users_guide/sdto_dss_handbook.html.html#dss-api"/>	
+		<topic label="Scripting Console" href="html/users_guide/sdto_dss_handbook.html.html#scripting-console"/>
+		<topic label="Target Configuration" href="html/users_guide/sdto_dss_handbook.html.html#target-configuration"/>
+		<topic label="Exception Handling" href="html/users_guide/sdto_dss_handbook.html.html#exception-handling"/>
+		<topic label="Using GEL" href="html/users_guide/sdto_dss_handbook.html.html#using-gel"/>
+		<topic label="Multiple Debug Sessions for Multi-core Debug" href="html/users_guide/sdto_dss_handbook.html.html#multiple-debug-sessions-for -multi-core-debug"/>
+		<topic label="Logging" href="html/users_guide/sdto_dss_handbook.html.html#logging"/>
+		<topic label="Profiling" href="html/users_guide/sdto_dss_handbook.html.html#profiling"/>
+		<topic label="Project Management" href="html/users_guide/sdto_dss_handbook.html.html#project-management"/>
+		<topic label="Breakpoints" href="html/users_guide/sdto_dss_handbook.html.html#breakpoints"/>
+		<topic label="Passing Arguments to a Script" href="html/users_guide/sdto_dss_handbook.html.html#passing-arguments-to-a-script"/>
+		<topic label="Debugger Properties" href="html/users_guide/sdto_dss_handbook.html.html#debugger-properties"/>
+		<topic label="Other Supported Languages" href="html/users_guide/sdto_dss_handbook.html.html#other-supported-languages"/>
+		<topic label="Download" href="html/users_guide/sdto_dss_handbook.html.html#download"/>
+		<topic label="Training" href="html/users_guide/sdto_dss_handbook.html.html#training"/>
+</toc>

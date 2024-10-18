@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Require-Bundle: com.ti.common.project.core
+Bundle-Vendor: Texas Instruments
+Bundle-ActivationPolicy: lazy
+Eclipse-BundleShape: dir
+Bundle-Version: 2.00.04.11
+Bundle-Localization: plugin
+Bundle-Name: CC2538 Project Templates
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.ti.cc2538;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

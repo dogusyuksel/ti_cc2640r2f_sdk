@@ -1,0 +1,1474 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?metadataRepository version='1.2.0'?>
+<repository name='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core' type='org.eclipse.equinox.internal.p2.metadata.repository.LocalMetadataRepository' version='1.0.0'>
+  <properties size='1'>
+    <property name='p2.timestamp' value='1729245419810'/>
+  </properties>
+  <references size='2'>
+    <repository uri='http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/TargetContent/Updates/full/site.xml' url='http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/TargetContent/Updates/full/site.xml' type='0' options='0'/>
+    <repository uri='http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/TargetContent/Updates/full/site.xml' url='http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/TargetContent/Updates/full/site.xml' type='1' options='0'/>
+  </references>
+  <units size='31'>
+    <unit id='com.ti.rov' version='1.0.0.202108240702'>
+      <update id='com.ti.rov' range='[0.0.0,1.0.0.202108240702)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='Runtime Object View Support'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='file.lastModified' value='1729245374345'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/com.ti.rov_1.0.0.202108240702'/>
+      </properties>
+      <provides size='4'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='com.ti.rov' version='1.0.0.202108240702'/>
+        <provided namespace='osgi.bundle' name='com.ti.rov' version='1.0.0.202108240702'/>
+        <provided namespace='osgi.identity' name='com.ti.rov' version='1.0.0.202108240702'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='6'>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.jface.text' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.editors' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='com.ti.browser' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='com.ti.ccstudio.webcontent' range='0.0.0'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='com.ti.rov' version='1.0.0.202108240702'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='2'>
+          <instruction key='zipped'>
+            true
+          </instruction>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: com.ti.rov;singleton:=true&#xA;Bundle-Version: 1.0.0.202108240702&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.model' version='3.62.1.16' generation='2'>
+      <update id='org.eclipse.rtsc.xdctools.model' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='5'>
+        <property name='org.eclipse.equinox.p2.name' value='Model Plug-in'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+        <property name='file.lastModified' value='1629819118000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/org.eclipse.rtsc.xdctools.model_3.62.1.16.jar'/>
+      </properties>
+      <provides size='24'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.model' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.model' version='3.62.1.16'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.cfgdata' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.db' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.elements' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.elements.types' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.ops' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.parser' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.ui' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.ui.actions' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.ui.dialogs' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.ui.editors' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.ui.editors.annotations' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.ui.editors.operations' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.ui.jobs' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.ui.perspectives' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.ui.prefs' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.ui.views' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.ui.views.filters' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.viewer' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.viewer.tabset' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='org.eclipse.rtsc.xdctools.model' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='28'>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.views' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.workbench.texteditor' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.console' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.editors' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.server' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.core' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.forms' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.navigator' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.ide' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='xdc.tools.xgconf.modeldata' range='3.16.0'/>
+        <required namespace='osgi.bundle' name='com.ti.ccstudio.grace.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='com.ti.ccstudio.grace' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.jface.text' range='3.2.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='3.2.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='3.2.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.help' range='3.2.0'/>
+        <required namespace='osgi.bundle' name='com.ti.backplane' range='1.0.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='com.ti.browser' range='1.0.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='com.ti.gui.composer.webserver.adapter' range='6.0.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.buildDefinitions.XDC.minimal' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.sg' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.ui.editors' range='0.0.0'/>
+        <required namespace='java.package' name='org.eclipse.rtsc.xdctools.adapter.wrapper' range='0.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.5))'>
+          <description>
+            org.eclipse.rtsc.xdctools.model
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.eclipse.rtsc.xdctools.model' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.eclipse.rtsc.xdctools.model;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='com.ti.rta.support' version='3.62.1.16' generation='2'>
+      <update id='com.ti.rta.support' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='Shared ROV interface implementations'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='file.lastModified' value='1629819111000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/com.ti.rta.support_3.62.1.16.jar'/>
+      </properties>
+      <provides size='8'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='com.ti.rta.support' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='com.ti.rta.support' version='3.62.1.16'/>
+        <provided namespace='java.package' name='com.ti.rta.support.dss' version='0.0.0'/>
+        <provided namespace='java.package' name='com.ti.rta.support.file' version='0.0.0'/>
+        <provided namespace='java.package' name='com.ti.rta.support.ideadapter' version='0.0.0'/>
+        <provided namespace='java.package' name='com.ti.rta.util' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='com.ti.rta.support' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='9'>
+        <required namespace='osgi.bundle' name='com.ti.dvt.ideadapter' range='0.0.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='com.ti.dvt.symbolmanager' range='0.0.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.rta' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='com.ti.dvt.rta.interfaces' range='0.0.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.eclipse.debug.core' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.cdt.debug.core' range='0.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.5))'>
+          <description>
+            com.ti.rta.support
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='com.ti.rta.support' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: com.ti.rta.support;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.adapter.satplugin' version='1.0.0.202003291417' generation='2'>
+      <update id='org.eclipse.rtsc.xdctools.adapter.satplugin' range='[0.0.0,1.0.0.202003291417)' severity='0'/>
+      <properties size='3'>
+        <property name='org.eclipse.equinox.p2.name' value='Satplugin'/>
+        <property name='file.lastModified' value='1629819114000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/org.eclipse.rtsc.xdctools.adapter.satplugin_1.0.0.202003291417.jar'/>
+      </properties>
+      <provides size='5'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.adapter.satplugin' version='1.0.0.202003291417'/>
+        <provided namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.adapter.satplugin' version='1.0.0.202003291417'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.adapter.satplugin' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='org.eclipse.rtsc.xdctools.adapter.satplugin' version='1.0.0.202003291417'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='17'>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.model' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.buildDefinitions.XDC.minimal' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.ide' range='3.9.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.equinox.p2.core' range='2.3.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.equinox.p2.engine' range='2.3.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.equinox.p2.operations' range='2.3.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.equinox.p2.metadata' range='2.2.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.equinox.p2.repository' range='2.3.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.core' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.equinox.p2.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.filesystem' range='0.0.0'/>
+        <required namespace='java.package' name='org.eclipse.core.resources' range='0.0.0'/>
+        <required namespace='java.package' name='org.eclipse.rtsc.xdctools.adapter.api' range='0.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.6))'>
+          <description>
+            org.eclipse.rtsc.xdctools.adapter.satplugin
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.eclipse.rtsc.xdctools.adapter.satplugin' version='1.0.0.202003291417'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.eclipse.rtsc.xdctools.adapter.satplugin;singleton:=true&#xA;Bundle-Version: 1.0.0.202003291417&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='com.ti.rta' version='3.62.1.16' generation='2'>
+      <update id='com.ti.rta' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='XDC RTA Plug-in'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='file.lastModified' value='1629819110000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/com.ti.rta_3.62.1.16.jar'/>
+      </properties>
+      <provides size='4'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='com.ti.rta' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='com.ti.rta' version='3.62.1.16'/>
+        <provided namespace='osgi.identity' name='com.ti.rta' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='7'>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='com.ti.dvt.rta.interfaces' range='0.0.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='com.ti.rta.support' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.rta' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.core' range='0.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.5))'>
+          <description>
+            com.ti.rta
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='com.ti.rta' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: com.ti.rta;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.parsers' version='3.62.1.16' generation='2'>
+      <update id='org.eclipse.rtsc.xdctools.parsers' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='Parsers Plug-in'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='file.lastModified' value='1629819158000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/org.eclipse.rtsc.xdctools.parsers_3.62.1.16.jar'/>
+      </properties>
+      <provides size='4'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.parsers' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.parsers' version='3.62.1.16'/>
+        <provided namespace='osgi.identity' name='org.eclipse.rtsc.xdctools.parsers' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='19'>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.cdt' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.cdt.core' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.filesystem' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.core' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.jface' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.jface.text' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.editors' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.buildDefinitions.XDC' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.model' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.ui.editors' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.ide' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.ui.contentassist' range='0.0.0'/>
+        <required namespace='java.package' name='org.eclipse.cdt.managedbuilder.core' range='0.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.5))'>
+          <description>
+            org.eclipse.rtsc.xdctools.parsers
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.eclipse.rtsc.xdctools.parsers' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.eclipse.rtsc.xdctools.parsers;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='com.ti.ccstudio.grace' version='1.0.0.202003291417' singleton='false' generation='2'>
+      <update id='com.ti.ccstudio.grace' range='[0.0.0,1.0.0.202003291417)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='Grace'/>
+        <property name='org.eclipse.equinox.p2.provider' value='TI'/>
+        <property name='file.lastModified' value='1629819059000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/com.ti.ccstudio.grace_1.0.0.202003291417.jar'/>
+      </properties>
+      <provides size='7'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='com.ti.ccstudio.grace' version='1.0.0.202003291417'/>
+        <provided namespace='osgi.bundle' name='com.ti.ccstudio.grace' version='1.0.0.202003291417'/>
+        <provided namespace='java.package' name='com.ti.ccstudio.grace.adapters' version='0.0.0'/>
+        <provided namespace='java.package' name='com.ti.ccstudio.grace.data' version='0.0.0'/>
+        <provided namespace='java.package' name='com.ti.ccstudio.grace.databinding' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='com.ti.ccstudio.grace' version='1.0.0.202003291417'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='2'>
+        <required namespace='osgi.bundle' name='org.eclipse.core.commands' range='3.2.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.5))'>
+          <description>
+            com.ti.ccstudio.grace
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='com.ti.ccstudio.grace' version='1.0.0.202003291417'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: com.ti.ccstudio.grace&#xA;Bundle-Version: 1.0.0.202003291417&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.product_3.62.1.16' version='3.62.1.16'>
+      <update id='org.eclipse.rtsc.xdctools.product_3.62.1.16' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='5'>
+        <property name='org.eclipse.equinox.p2.name' value='XDCtools Embedded Runtime Content'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+        <property name='file.lastModified' value='1729245374395'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/org.eclipse.rtsc.xdctools.product_3.62.1.16'/>
+      </properties>
+      <provides size='4'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.product_3.62.1.16' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.product_3.62.1.16' version='3.62.1.16'/>
+        <provided namespace='osgi.identity' name='org.eclipse.rtsc.xdctools.product_3.62.1.16' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='4'>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.help' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.ui' range='0.0.0' optional='true' greedy='false'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.eclipse.rtsc.xdctools.product_3.62.1.16' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='2'>
+          <instruction key='zipped'>
+            true
+          </instruction>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.eclipse.rtsc.xdctools.product_3.62.1.16;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.product.ui' version='3.62.1.16'>
+      <update id='org.eclipse.rtsc.xdctools.product.ui' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='5'>
+        <property name='org.eclipse.equinox.p2.name' value='XDCtools IDE Tooling'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+        <property name='file.lastModified' value='1729245374395'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/org.eclipse.rtsc.xdctools.product.ui_3.62.1.16'/>
+      </properties>
+      <provides size='4'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.product.ui' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.product.ui' version='3.62.1.16'/>
+        <provided namespace='osgi.identity' name='org.eclipse.rtsc.xdctools.product.ui' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='4'>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.help' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.ui' range='0.0.0' optional='true' greedy='false'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.eclipse.rtsc.xdctools.product.ui' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='2'>
+          <instruction key='zipped'>
+            true
+          </instruction>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.eclipse.rtsc.xdctools.product.ui;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='com.ti.targets.omf' version='3.62.1.16'>
+      <update id='com.ti.targets.omf' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='Object file readers'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='file.lastModified' value='1729245374395'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/com.ti.targets.omf_3.62.1.16'/>
+      </properties>
+      <provides size='6'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='com.ti.targets.omf' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='com.ti.targets.omf' version='3.62.1.16'/>
+        <provided namespace='java.package' name='ti.targets.omf.cof' version='0.0.0'/>
+        <provided namespace='java.package' name='ti.targets.omf.elf' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='com.ti.targets.omf' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='1'>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.rta' range='0.0.0'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='com.ti.targets.omf' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='2'>
+          <instruction key='zipped'>
+            true
+          </instruction>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: com.ti.targets.omf;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.rta' version='3.62.1.16'>
+      <update id='org.eclipse.rtsc.xdctools.rta' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='XDCtools RTA'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='file.lastModified' value='1729245374345'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/org.eclipse.rtsc.xdctools.rta_3.62.1.16'/>
+      </properties>
+      <provides size='7'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.rta' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.rta' version='3.62.1.16'/>
+        <provided namespace='java.package' name='xdc.runtime' version='0.0.0'/>
+        <provided namespace='java.package' name='xdc.rov' version='0.0.0'/>
+        <provided namespace='java.package' name='xdc.rta' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='org.eclipse.rtsc.xdctools.rta' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.eclipse.rtsc.xdctools.rta' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='2'>
+          <instruction key='zipped'>
+            true
+          </instruction>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.eclipse.rtsc.xdctools.rta;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.project.templates' version='3.62.1.16' generation='2'>
+      <update id='org.eclipse.rtsc.project.templates' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='5'>
+        <property name='org.eclipse.equinox.p2.name' value='RTSC Built-in Project Templates'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+        <property name='file.lastModified' value='1629819112000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/org.eclipse.rtsc.project.templates_3.62.1.16.jar'/>
+      </properties>
+      <provides size='4'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.project.templates' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='org.eclipse.rtsc.project.templates' version='3.62.1.16'/>
+        <provided namespace='osgi.identity' name='org.eclipse.rtsc.project.templates' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='3'>
+        <required namespace='osgi.bundle' name='com.ti.common.core' range='4.2.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='com.ti.common.project.core' range='0.0.0' optional='true' greedy='false'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.5))'>
+          <description>
+            org.eclipse.rtsc.project.templates
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.eclipse.rtsc.project.templates' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.eclipse.rtsc.project.templates;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.ui.cdt' version='3.62.1.16' generation='2'>
+      <update id='org.eclipse.rtsc.xdctools.ui.cdt' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='5'>
+        <property name='org.eclipse.equinox.p2.name' value='Eclipse Plug-in'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+        <property name='file.lastModified' value='1629819428000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/org.eclipse.rtsc.xdctools.ui.cdt_3.62.1.16.jar'/>
+      </properties>
+      <provides size='6'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.ui.cdt' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.ui.cdt' version='3.62.1.16'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.ui.cdt' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.ui.cdt.macros' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='org.eclipse.rtsc.xdctools.ui.cdt' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='25'>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.forms' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.views' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.ide' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.help' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.core' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.variables' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.editors' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.jface' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.jface.text' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.cdt' range='8.2.1'/>
+        <required namespace='osgi.bundle' name='org.eclipse.cdt.managedbuilder.core' range='8.2.1'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.managedbuild.core' range='3.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.buildDefinitions.DSPBIOS' range='3.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.managedbuild.ui' range='3.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.buildDefinitions.XDC' range='3.0.0'/>
+        <required namespace='java.package' name='org.eclipse.core.filesystem' range='0.0.0'/>
+        <required namespace='java.package' name='org.eclipse.rtsc.xdctools.adapter.wrapper' range='0.0.0'/>
+        <required namespace='java.package' name='org.eclipse.rtsc.xdctools.model.ui.editors' range='0.0.0'/>
+        <required namespace='java.package' name='org.eclipse.ui.editors.text' range='0.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.5))'>
+          <description>
+            org.eclipse.rtsc.xdctools.ui.cdt
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.eclipse.rtsc.xdctools.ui.cdt' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.eclipse.rtsc.xdctools.ui.cdt;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.product.ui.feature.jar' version='3.62.1.16'>
+      <properties size='7'>
+        <property name='org.eclipse.equinox.p2.name' value='RTSC/XDCtools (IDE Client)'/>
+        <property name='org.eclipse.equinox.p2.description' value='XDCtools eclipse-based IDE Client.&#xA;&#xA;      &lt;br/&gt;&lt;br/&gt;This version of XDCtools IDE Client&#xA;      is shared by all projects, independent of the version of the XDCtools&#xA;      Target Runtime Support feature selected via project settings. &#xA;      This XDCtools IDE Client is compatible with the correspondingly &#xA;      versioned XDCtools Target Runtime Support feature as well as all&#xA;      earlier versions of XDCtools Target Runtime Support.'/>
+        <property name='org.eclipse.equinox.p2.description.url' value='https://www.eclipse.org/rtsc'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='org.eclipse.update.feature.plugin' value='org.eclipse.rtsc.xdctools.product.ui'/>
+        <property name='file.lastModified' value='1729245374395'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/features/org.eclipse.rtsc.xdctools.product.ui_3.62.1.16'/>
+      </properties>
+      <provides size='3'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.product.ui.feature.jar' version='3.62.1.16'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='feature' version='1.0.0'/>
+        <provided namespace='org.eclipse.update.feature' name='org.eclipse.rtsc.xdctools.product.ui' version='3.62.1.16'/>
+      </provides>
+      <filter>
+        (org.eclipse.update.install.features=true)
+      </filter>
+      <artifacts size='1'>
+        <artifact classifier='org.eclipse.update.feature' id='org.eclipse.rtsc.xdctools.product.ui' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='zipped'>
+            true
+          </instruction>
+        </instructions>
+      </touchpointData>
+      <licenses size='1'>
+        <license uri='http://www.eclipse.org/org/documents/epl-v10.php' url='http://www.eclipse.org/org/documents/epl-v10.php'>
+          Released under the Eclipse Public License v1.0
+        </license>
+      </licenses>
+      <copyright>
+        Copyright Texas Instruments 2008-2011
+      </copyright>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.server' version='3.62.1.16'>
+      <update id='org.eclipse.rtsc.xdctools.server' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='XDCscript command server'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='file.lastModified' value='1729245374345'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/org.eclipse.rtsc.xdctools.server_3.62.1.16'/>
+      </properties>
+      <provides size='5'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.server' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.server' version='3.62.1.16'/>
+        <provided namespace='java.package' name='xdc.tools' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='org.eclipse.rtsc.xdctools.server' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.eclipse.rtsc.xdctools.server' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='2'>
+          <instruction key='zipped'>
+            true
+          </instruction>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.eclipse.rtsc.xdctools.server;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.core' version='3.62.1.16'>
+      <update id='org.eclipse.rtsc.xdctools.core' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='XDCtools core'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='file.lastModified' value='1729245374345'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/org.eclipse.rtsc.xdctools.core_3.62.1.16'/>
+      </properties>
+      <provides size='14'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.core' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.core' version='3.62.1.16'/>
+        <provided namespace='java.package' name='xdc.services.global' version='0.0.0'/>
+        <provided namespace='java.package' name='xdc.services.spec' version='0.0.0'/>
+        <provided namespace='java.package' name='xdc.services.spec.views' version='0.0.0'/>
+        <provided namespace='java.package' name='xdc.services.mapping' version='0.0.0'/>
+        <provided namespace='java.package' name='xdc.services.intern.gen' version='0.0.0'/>
+        <provided namespace='java.package' name='config' version='0.0.0'/>
+        <provided namespace='java.package' name='org.mozilla.javascript' version='0.0.0'/>
+        <provided namespace='java.package' name='org.mozilla.javascript.ast' version='0.0.0'/>
+        <provided namespace='java.package' name='org.mozilla.javascript.tools' version='0.0.0'/>
+        <provided namespace='java.package' name='org.mozilla.javascript.json' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='org.eclipse.rtsc.xdctools.core' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='5'>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.server' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.rta' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='com.ti.targets.omf' range='0.0.0' optional='true' greedy='false'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.eclipse.rtsc.xdctools.core' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='2'>
+          <instruction key='zipped'>
+            true
+          </instruction>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.eclipse.rtsc.xdctools.core;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.sg.def' version='3.62.1.16' generation='2'>
+      <update id='org.eclipse.rtsc.xdctools.sg.def' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='XDCtools SG Def Plug-in'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='file.lastModified' value='1629819357000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/org.eclipse.rtsc.xdctools.sg.def_3.62.1.16.jar'/>
+      </properties>
+      <provides size='4'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.sg.def' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.sg.def' version='3.62.1.16'/>
+        <provided namespace='osgi.identity' name='org.eclipse.rtsc.xdctools.sg.def' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='3'>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.5))'>
+          <description>
+            org.eclipse.rtsc.xdctools.sg.def
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.eclipse.rtsc.xdctools.sg.def' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.eclipse.rtsc.xdctools.sg.def;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='com.ti.ccstudio.grace.ui' version='1.0.0.202003291417' generation='2'>
+      <update id='com.ti.ccstudio.grace.ui' range='[0.0.0,1.0.0.202003291417)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='Graphical Properties UI'/>
+        <property name='org.eclipse.equinox.p2.provider' value='TI'/>
+        <property name='file.lastModified' value='1629819060000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/com.ti.ccstudio.grace.ui_1.0.0.202003291417.jar'/>
+      </properties>
+      <provides size='12'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='com.ti.ccstudio.grace.ui' version='1.0.0.202003291417'/>
+        <provided namespace='osgi.bundle' name='com.ti.ccstudio.grace.ui' version='1.0.0.202003291417'/>
+        <provided namespace='java.package' name='com.ti.ccstudio.grace.databinding' version='0.0.0'/>
+        <provided namespace='java.package' name='com.ti.ccstudio.grace.ui' version='0.0.0'/>
+        <provided namespace='java.package' name='com.ti.ccstudio.grace.ui.data' version='0.0.0'/>
+        <provided namespace='java.package' name='com.ti.ccstudio.grace.ui.internal.adapters' version='0.0.0'/>
+        <provided namespace='java.package' name='com.ti.ccstudio.grace.ui.parts' version='0.0.0'/>
+        <provided namespace='java.package' name='com.ti.ccstudio.grace.ui.prefs' version='0.0.0'/>
+        <provided namespace='java.package' name='com.ti.ccstudio.grace.ui.widgets' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.jface.fieldassist' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='com.ti.ccstudio.grace.ui' version='1.0.0.202003291417'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='27'>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='3.2.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='3.2.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='3.2.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.help' range='3.2.0'/>
+        <required namespace='osgi.bundle' name='com.ti.ccstudio.grace' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.forms' range='3.2.0'/>
+        <required namespace='osgi.bundle' name='org.apache.batik.transcoder' range='1.6.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.apache.batik.bridge' range='1.6.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.apache.batik.dom' range='1.6.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.apache.batik.dom.svg' range='1.6.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.apache.batik.ext.awt' range='1.6.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.apache.batik.svggen' range='1.6.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.apache.batik.util' range='1.6.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.apache.batik.xml' range='1.6.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.apache.batik.css' range='1.6.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.apache.batik.parser' range='1.6.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.apache.batik.util.gui' range='1.6.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.w3c.css.sac' range='1.3.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.w3c.dom.smil' range='1.0.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.w3c.dom.svg' range='1.1.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.apache.xerces' range='2.9.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.apache.xml.serializer' range='2.7.1' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.filesystem' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.editors' range='3.2.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.ide' range='3.2.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.workbench.texteditor' range='3.7.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.5))'>
+          <description>
+            com.ti.ccstudio.grace.ui
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='com.ti.ccstudio.grace.ui' version='1.0.0.202003291417'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: com.ti.ccstudio.grace.ui;singleton:=true&#xA;Bundle-Version: 1.0.0.202003291417&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.adapter' version='3.62.1.16' generation='2'>
+      <update id='org.eclipse.rtsc.xdctools.adapter' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='Adapter'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='file.lastModified' value='1629819113000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/org.eclipse.rtsc.xdctools.adapter_3.62.1.16.jar'/>
+      </properties>
+      <provides size='7'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.adapter' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.adapter' version='3.62.1.16'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.adapter' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.adapter.api' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.adapter.wrapper' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='org.eclipse.rtsc.xdctools.adapter' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='11'>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.core' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.jface' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.buildDefinitions.XDC.minimal' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.jface.text' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.editors' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.osgi' range='0.0.0'/>
+        <required namespace='java.package' name='org.eclipse.core.variables' range='0.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.6))'>
+          <description>
+            org.eclipse.rtsc.xdctools.adapter
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.eclipse.rtsc.xdctools.adapter' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.eclipse.rtsc.xdctools.adapter;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.product.ui.feature.group' version='3.62.1.16' singleton='false'>
+      <update id='org.eclipse.rtsc.xdctools.product.ui.feature.group' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='7'>
+        <property name='org.eclipse.equinox.p2.name' value='RTSC/XDCtools (IDE Client)'/>
+        <property name='org.eclipse.equinox.p2.description' value='XDCtools eclipse-based IDE Client.&#xA;&#xA;      &lt;br/&gt;&lt;br/&gt;This version of XDCtools IDE Client&#xA;      is shared by all projects, independent of the version of the XDCtools&#xA;      Target Runtime Support feature selected via project settings. &#xA;      This XDCtools IDE Client is compatible with the correspondingly &#xA;      versioned XDCtools Target Runtime Support feature as well as all&#xA;      earlier versions of XDCtools Target Runtime Support.'/>
+        <property name='org.eclipse.equinox.p2.description.url' value='https://www.eclipse.org/rtsc'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='org.eclipse.equinox.p2.type.group' value='true'/>
+        <property name='file.lastModified' value='1729245374395'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/features/org.eclipse.rtsc.xdctools.product.ui_3.62.1.16'/>
+      </properties>
+      <provides size='1'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.product.ui.feature.group' version='3.62.1.16'/>
+      </provides>
+      <requires size='26'>
+        <required namespace='org.eclipse.equinox.p2.iu' name='com.ti.ccstudio.grace' range='[1.0.0.202003291417,1.0.0.202003291417]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='com.ti.ccstudio.grace.ui' range='[1.0.0.202003291417,1.0.0.202003291417]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='com.ti.dvt.server' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='com.ti.rov' range='[1.0.0.202108240702,1.0.0.202108240702]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='com.ti.rta' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='com.ti.rta.support' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='com.ti.targets.omf' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.project.templates' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.adapter' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.adapter.ccsplugin' range='[1.0.0.202003291417,1.0.0.202003291417]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.contenttype' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.core' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.model' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.model.scripting' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.parsers' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.product.ui' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.rta' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.server' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.sg' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.sg.def' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.ui' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.ui.cdt' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.ui.contentassist' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.ui.editors' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='xdc.tools.xgconf.modeldata' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.product.ui.feature.jar' range='[3.62.1.16,3.62.1.16]'>
+          <filter>
+            (org.eclipse.update.install.features=true)
+          </filter>
+        </required>
+      </requires>
+      <touchpoint id='null' version='0.0.0'/>
+      <licenses size='1'>
+        <license uri='http://www.eclipse.org/org/documents/epl-v10.php' url='http://www.eclipse.org/org/documents/epl-v10.php'>
+          Released under the Eclipse Public License v1.0
+        </license>
+      </licenses>
+      <copyright>
+        Copyright Texas Instruments 2008-2011
+      </copyright>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.adapter.ccsplugin' version='1.0.0.202003291417' generation='2'>
+      <update id='org.eclipse.rtsc.xdctools.adapter.ccsplugin' range='[0.0.0,1.0.0.202003291417)' severity='0'/>
+      <properties size='3'>
+        <property name='org.eclipse.equinox.p2.name' value='Ccsplugin'/>
+        <property name='file.lastModified' value='1629819114000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/org.eclipse.rtsc.xdctools.adapter.ccsplugin_1.0.0.202003291417.jar'/>
+      </properties>
+      <provides size='4'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.adapter.ccsplugin' version='1.0.0.202003291417'/>
+        <provided namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.adapter.ccsplugin' version='1.0.0.202003291417'/>
+        <provided namespace='osgi.identity' name='org.eclipse.rtsc.xdctools.adapter.ccsplugin' version='1.0.0.202003291417'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='16'>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.buildDefinitions.XDC' range='3.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.buildDefinitions' range='2.5.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.managedbuild.core' range='3.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.managedbuild.ui' range='3.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.project.templates' range='3.25.3'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='3.8.101'/>
+        <required namespace='osgi.bundle' name='org.eclipse.jface' range='3.9.1'/>
+        <required namespace='osgi.bundle' name='org.eclipse.equinox.p2.core' range='2.3.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.equinox.p2.engine' range='2.3.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.adapter' range='1.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.server' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.core' range='0.0.0'/>
+        <required namespace='java.package' name='xdc.services.global' range='0.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.6))'>
+          <description>
+            org.eclipse.rtsc.xdctools.adapter.ccsplugin
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.eclipse.rtsc.xdctools.adapter.ccsplugin' version='1.0.0.202003291417'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.eclipse.rtsc.xdctools.adapter.ccsplugin;singleton:=true&#xA;Bundle-Version: 1.0.0.202003291417&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.contenttype' version='3.62.1.16' generation='2'>
+      <update id='org.eclipse.rtsc.xdctools.contenttype' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='RTSC file content describers'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='file.lastModified' value='1629819115000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/org.eclipse.rtsc.xdctools.contenttype_3.62.1.16.jar'/>
+      </properties>
+      <provides size='5'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.contenttype' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.contenttype' version='3.62.1.16'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.contenttype' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='org.eclipse.rtsc.xdctools.contenttype' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='2'>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.5))'>
+          <description>
+            org.eclipse.rtsc.xdctools.contenttype
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.eclipse.rtsc.xdctools.contenttype' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.eclipse.rtsc.xdctools.contenttype;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.ui.editors' version='3.62.1.16' generation='2'>
+      <update id='org.eclipse.rtsc.xdctools.ui.editors' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='Editors Plug-in'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='file.lastModified' value='1629819495000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/org.eclipse.rtsc.xdctools.ui.editors_3.62.1.16.jar'/>
+      </properties>
+      <provides size='6'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.ui.editors' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.ui.editors' version='3.62.1.16'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.ui' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.ui.editors' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='org.eclipse.rtsc.xdctools.ui.editors' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='11'>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.jface.text' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.editors' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.ide' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.core' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.jface' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.adapter' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.ui' range='0.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.5))'>
+          <description>
+            org.eclipse.rtsc.xdctools.ui.editors
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.eclipse.rtsc.xdctools.ui.editors' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.eclipse.rtsc.xdctools.ui.editors; singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='com.ti.dvt.server' version='3.62.1.16' generation='2'>
+      <update id='com.ti.dvt.server' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='5'>
+        <property name='org.eclipse.equinox.p2.name' value='ROV Controller'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+        <property name='file.lastModified' value='1629819061000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/com.ti.dvt.server_3.62.1.16.jar'/>
+      </properties>
+      <provides size='5'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='com.ti.dvt.server' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='com.ti.dvt.server' version='3.62.1.16'/>
+        <provided namespace='java.package' name='com.ti.dvt.server4' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='com.ti.dvt.server' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='10'>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='com.ti.dvt.gridview' range='0.0.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='com.ti.dvt.ui' range='0.0.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='com.ti.dvt.ideadapter' range='0.0.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='com.ti.dvt.symbolmanager' range='0.0.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.server' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='com.ti.rta.support' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.rta' range='0.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.5))'>
+          <description>
+            com.ti.dvt.server
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='com.ti.dvt.server' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: com.ti.dvt.server; singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.product_3.62.1.16.feature.jar' version='3.62.1.16'>
+      <properties size='6'>
+        <property name='org.eclipse.equinox.p2.name' value='RTSC/XDCtools (Target Runtime Support)'/>
+        <property name='org.eclipse.equinox.p2.description' value='XDCtools Target Runtime Support for a Eclipse-based IDEs.&#xA;&#xA;      &lt;br/&gt;&lt;br/&gt;This version of XDCtools Target Runtime&#xA;      Support can be chosen separately for each C/C++ project via&#xA;      its project settings. The correspondingly versioned XDCtools IDE&#xA;      Client, on the other hand, is compatible with this and all &#xA;      earlier releases of the XDCtools Target Runtime Support feature.'/>
+        <property name='org.eclipse.equinox.p2.description.url' value='https://www.eclipse.org/rtsc'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='file.lastModified' value='1729245374395'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/features/org.eclipse.rtsc.xdctools.product_3.62.1.16'/>
+      </properties>
+      <provides size='3'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.product_3.62.1.16.feature.jar' version='3.62.1.16'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='feature' version='1.0.0'/>
+        <provided namespace='org.eclipse.update.feature' name='org.eclipse.rtsc.xdctools.product_3.62.1.16' version='3.62.1.16'/>
+      </provides>
+      <filter>
+        (org.eclipse.update.install.features=true)
+      </filter>
+      <artifacts size='1'>
+        <artifact classifier='org.eclipse.update.feature' id='org.eclipse.rtsc.xdctools.product_3.62.1.16' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='zipped'>
+            true
+          </instruction>
+        </instructions>
+      </touchpointData>
+      <licenses size='1'>
+        <license uri='http://www.eclipse.org/org/documents/epl-v10.php' url='http://www.eclipse.org/org/documents/epl-v10.php'>
+          Released under the Eclipse Public License v1.0
+        </license>
+      </licenses>
+      <copyright>
+        Copyright Texas Instruments 2008-2011
+      </copyright>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.model.scripting' version='3.62.1.16' generation='2'>
+      <update id='org.eclipse.rtsc.xdctools.model.scripting' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='Scripting'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='file.lastModified' value='1629819126000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/org.eclipse.rtsc.xdctools.model.scripting_3.62.1.16.jar'/>
+      </properties>
+      <provides size='4'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.model.scripting' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.model.scripting' version='3.62.1.16'/>
+        <provided namespace='osgi.identity' name='org.eclipse.rtsc.xdctools.model.scripting' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='13'>
+        <required namespace='osgi.bundle' name='org.eclipse.jface' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='com.ti.ccstudio.rhino' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.model' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.core' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.ide' range='0.0.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.forms' range='0.0.0' optional='true' greedy='false'/>
+        <required namespace='osgi.bundle' name='com.ti.common.core' range='5.1.0'/>
+        <required namespace='osgi.bundle' name='com.ti.common.ui' range='5.1.0'/>
+        <required namespace='osgi.bundle' name='com.ti.ccstudio.grace.ui' range='1.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.5))'>
+          <description>
+            org.eclipse.rtsc.xdctools.model.scripting
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.eclipse.rtsc.xdctools.model.scripting' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.eclipse.rtsc.xdctools.model.scripting;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.product_3.62.1.16.feature.group' version='3.62.1.16' singleton='false'>
+      <update id='org.eclipse.rtsc.xdctools.product_3.62.1.16.feature.group' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='7'>
+        <property name='org.eclipse.equinox.p2.name' value='RTSC/XDCtools (Target Runtime Support)'/>
+        <property name='org.eclipse.equinox.p2.description' value='XDCtools Target Runtime Support for a Eclipse-based IDEs.&#xA;&#xA;      &lt;br/&gt;&lt;br/&gt;This version of XDCtools Target Runtime&#xA;      Support can be chosen separately for each C/C++ project via&#xA;      its project settings. The correspondingly versioned XDCtools IDE&#xA;      Client, on the other hand, is compatible with this and all &#xA;      earlier releases of the XDCtools Target Runtime Support feature.'/>
+        <property name='org.eclipse.equinox.p2.description.url' value='https://www.eclipse.org/rtsc'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='org.eclipse.equinox.p2.type.group' value='true'/>
+        <property name='file.lastModified' value='1729245374395'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/features/org.eclipse.rtsc.xdctools.product_3.62.1.16'/>
+      </properties>
+      <provides size='1'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.product_3.62.1.16.feature.group' version='3.62.1.16'/>
+      </provides>
+      <requires size='2'>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.product_3.62.1.16' range='[3.62.1.16,3.62.1.16]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.product_3.62.1.16.feature.jar' range='[3.62.1.16,3.62.1.16]'>
+          <filter>
+            (org.eclipse.update.install.features=true)
+          </filter>
+        </required>
+      </requires>
+      <touchpoint id='null' version='0.0.0'/>
+      <licenses size='1'>
+        <license uri='http://www.eclipse.org/org/documents/epl-v10.php' url='http://www.eclipse.org/org/documents/epl-v10.php'>
+          Released under the Eclipse Public License v1.0
+        </license>
+      </licenses>
+      <copyright>
+        Copyright Texas Instruments 2008-2011
+      </copyright>
+    </unit>
+    <unit id='xdc.tools.xgconf.modeldata' version='3.62.1.16' generation='2'>
+      <update id='xdc.tools.xgconf.modeldata' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='Modeldata Plug-in'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='file.lastModified' value='1629819524000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/xdc.tools.xgconf.modeldata_3.62.1.16.jar'/>
+      </properties>
+      <provides size='6'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='xdc.tools.xgconf.modeldata' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='xdc.tools.xgconf.modeldata' version='3.62.1.16'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.model.cfgdata' version='0.0.0'/>
+        <provided namespace='java.package' name='xdc.tools.xgconf.modeldata' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='xdc.tools.xgconf.modeldata' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='2'>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.5))'>
+          <description>
+            xdc.tools.xgconf.modeldata
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='xdc.tools.xgconf.modeldata' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: xdc.tools.xgconf.modeldata;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.sg' version='3.62.1.16' generation='2'>
+      <update id='org.eclipse.rtsc.xdctools.sg' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='XDCtools SG  Plug-in'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='file.lastModified' value='1629819328000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/org.eclipse.rtsc.xdctools.sg_3.62.1.16.jar'/>
+      </properties>
+      <provides size='5'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.sg' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.sg' version='3.62.1.16'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.sg' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='org.eclipse.rtsc.xdctools.sg' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='7'>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.server' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.jface' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.adapter' range='1.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.5))'>
+          <description>
+            org.eclipse.rtsc.xdctools.sg
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.eclipse.rtsc.xdctools.sg' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.eclipse.rtsc.xdctools.sg;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.ui' version='3.62.1.16' generation='2'>
+      <update id='org.eclipse.rtsc.xdctools.ui' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='5'>
+        <property name='org.eclipse.equinox.p2.name' value='Eclipse Plug-in'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+        <property name='file.lastModified' value='1629819397000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/org.eclipse.rtsc.xdctools.ui_3.62.1.16.jar'/>
+      </properties>
+      <provides size='13'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.ui' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.ui' version='3.62.1.16'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.ui' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.ui.help' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.ui.help.model' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.ui.logger' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.ui.macros' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.ui.properties' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.ui.reflect' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.ui.registry' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.ui.utils' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='org.eclipse.rtsc.xdctools.ui' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='16'>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.jface' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.equinox.p2.core' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.equinox.p2.engine' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.adapter' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.server' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.core' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.buildDefinitions.XDC.minimal' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.variables' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.jface.text' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.editors' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.help' range='0.0.0'/>
+        <required namespace='java.package' name='com.ti.common.core' range='0.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.5))'>
+          <description>
+            org.eclipse.rtsc.xdctools.ui
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.eclipse.rtsc.xdctools.ui' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.eclipse.rtsc.xdctools.ui;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.eclipse.rtsc.xdctools.ui.contentassist' version='3.62.1.16' generation='2'>
+      <update id='org.eclipse.rtsc.xdctools.ui.contentassist' range='[0.0.0,3.62.1.16)' severity='0'/>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='RTSC C/C++ Content Assist'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Texas Instruments'/>
+        <property name='file.lastModified' value='1629819457000'/>
+        <property name='file.name' value='/home/spire/ti/ccs1281/xdctools_3_62_01_16_core/eclipse/plugins/org.eclipse.rtsc.xdctools.ui.contentassist_3.62.1.16.jar'/>
+      </properties>
+      <provides size='5'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.rtsc.xdctools.ui.contentassist' version='3.62.1.16'/>
+        <provided namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.ui.contentassist' version='3.62.1.16'/>
+        <provided namespace='java.package' name='org.eclipse.rtsc.xdctools.ui.contentassist' version='0.0.0'/>
+        <provided namespace='osgi.identity' name='org.eclipse.rtsc.xdctools.ui.contentassist' version='3.62.1.16'>
+          <properties size='1'>
+            <property name='type' value='osgi.bundle'/>
+          </properties>
+        </provided>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='10'>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.cdt.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.help' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.cdt.core' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.rtsc.xdctools.core' range='0.0.0'/>
+        <required namespace='java.package' name='org.eclipse.rtsc.xdctools.managedbuild.ui.preferences' range='0.0.0'/>
+        <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.5))'>
+          <description>
+            org.eclipse.rtsc.xdctools.ui.contentassist
+          </description>
+        </requiredProperties>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.eclipse.rtsc.xdctools.ui.contentassist' version='3.62.1.16'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-SymbolicName: org.eclipse.rtsc.xdctools.ui.contentassist;singleton:=true&#xA;Bundle-Version: 3.62.1.16&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+  </units>
+</repository>

@@ -1,0 +1,29 @@
+GEL_RefreshWindows
+------------------
+
+Forces a refresh of all IDE windows
+
+**Format**
+
+**GEL_RefreshWindows();**
+
+**Parameters**
+
+None
+
+**Description**
+
+This function causes the Disassembly window, Mixed Mode window, Register
+window, Memory window and the Watch window to refresh their contents
+with what is on the target. This can be useful if target memory is
+changing while the target is halted, such as due to a DMA transfer.
+
+**Synchronous**
+
+Synchronous from GEL: No
+
+Completely synchronous: No
+
+**Example**
+
+`GEL_RefreshWindows <#gel_refreshwindows>`__

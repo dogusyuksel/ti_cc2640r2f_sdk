@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.ccstudio.c2000"
+      label="Code Composer Studio IDE C2000 Components"
+      version="12.8.0.202407141830"
+      provider-name="Texas Instruments">
+
+   <description>
+      Code Composer Studio IDE C2000 Components
+   </description>
+
+   <copyright>
+      Copyright Texas Instruments 2010-2014
+   </copyright>
+
+   <license>
+      See Code Composer Studio license for specific terms and conditions.
+   </license>
+
+   <includes
+         id="com.ti.controlsuite"
+         version="6.0.1.202407141830"
+         os="win32"
+         ws="win32"/>
+
+   <plugin
+         id="com.ti.ccstudio.buildDefinitions.C2000"
+         download-size="0"
+         install-size="0"
+         version="12.6.0.202407141830"/>
+
+   <plugin
+         id="com.ti.ccstudio.buildDefinitions.C2000_legacy"
+         download-size="0"
+         install-size="0"
+         version="5.1.0.202407141830"
+         unpack="false"/>
+
+</feature>

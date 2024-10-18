@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="Using TI C Compilers and Code Composer Studio to gather Code Coverage information.">
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI C/C++ Compilers">
+<meta name="product-link" content="https://www.ti.com/tool/TI-CGT">
+
+<!-- Change the title text for your page -->
+
+<title>Code Coverage with TI Compilers</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+# Overview
+Many TI Compilers have the ability to gather code coverage information via instrumentation.  At build time you indicate that you wish to gather this information. The code will be instrumented.  This information is highly compressed and is stored in RAM on the device.  At program termination the data is transfered from the device to the host workstation for analysis.
+
+There are different implementations of Code Coverage depending on the compiler being used.  For more information you can review the [compiler manual](https://www.ti.com/tool/TI-CGT#technicaldocuments) for the compiler you are using and search for the sub-chapter that includes the word **Coverage**.
+
+If you are using a compiler that leverages clang or LLVM such as the tiarmclang toolset then please refer to.
+[Coverage using clang](https://software-dl.ti.com/ccs/esd/documents/application_notes/appnote-code_coverage_clang.html) as the instructions for this toolset are different.
+
+# Supported Compilers
+### MSP430
+* 15.12 to 20.12
+
+### Arm
+* armcl 15.12 to 20.12
+
+### C2000
+* 15.12 to 20.12
+
+### C6000
+* 6.1 and later
+
+# Procedure
+
+###CIO Operation
+C Input/Output features of the C runtime library are required in order to transfer the coverage data from the device to the host workstation.  Thus it is advised to ensure that you are able to successfully use printf() in your application as a way to test that CIO is working.  This may involve needing to increase your stack and heap sizes.  For help with enabling printf please refer to: [Tips for Using Printf](../sdto_cgt_tips_for_using_printf.html)
+
+###Section specification
+It is required to have a .ppdata section in your linker command file (.cmd).  This section needs to be present in writable memory.  It is recommended to add this to the same memory range as .bss or .ebss.
+
+Example directive for MSP432F5529:
+```
+.ppdata		: {} > RAM
+```
+
+Example directive for CC1312R:
+```
+.ppdata		: {} > SRAM
+```
+
+###New Project Configurations
+This step is optional but recommended to make it easier to use.
+Code Composer Studio projects typically have multiple build configurations such as debug and release.  Make a copy of the build configuration that you wish to add Code Coverage to.
+* Right-click on the project and select **Build Configurations -> Manage...**
+![Project context menu](images/ManageConfigurationsMenu.png)
+* Click the **New...** button to create a new build configuration.  Give this configuration a name such as **Collect**.
+[[y Warning:
+Do not include a space in the name of the configuration.
+]]
+Select the existing build configuraiton that you want to copy the settings from.
+![Creating a new build configuration](images/NewConfigurationDialog.png)
+* Repeat the previous step and create an **Analyze** configuration.
+
+###Enabling collection
+Now we are going to setup the **Collect** configuration to capture code coverage information.
+* Right click on your project and select **Properties**
+* Ensure that the **Collect** configuration is select in the drop down box at the top of the dialog box.
+![Selecting a build configuration](images/SelectConfiguration.png)
+* In the tree on the left go to **Build -> Compiler -> Advanced Options -> Feedback and Analysis Options**.
+
+[[b Note:
+Instead of **Compiler** it will be **Arm Compiler**, **MSP430 Compiler**... depending on the compiler being used.
+]]
+
+* Check the box to **Generate profile feedback data (--gen_profile_info)**
+![Enabling instrumentation](images/GenerateProfileFeedbackOption.png)
+
+Now when this build configuration is compiled it will be instrumented to collect the information necessary for code Coverage.
+
+###Setting up data transfer
+By default the collected data will be transfered via CIO to the host workstation when the program terminates.
+
+If your application does not terminate naturally then it will be necessary to add a call a function call to complete the transfer of coverage data.
+* Add a call to _TI_stop_pprof_collection at the point in which you wish to transfer the coverage data.
+```
+_TI_stop_pprof_collection();
+```
+* At the top of the same source file it will be necessary to add
+```
+extern void _TI_stop_pprof_collection(void);
+```
+
+###Collecting data
+* Build the **Collect** build configuration by selecting the down arrow beside the build button on the toolbar and selecting **Collect**.
+![Build for coverage](images/BuildButtonDropdown.png)
+* Once the build has finished click on the **Debug** button to launch the debugger and load the application.
+[<img src="images/DebugButton.png" width=32/>](images/DebugButton.png)
+* Next you will need to run the application to collect the data and transfer it to the host workstation.  If your application terminates naturally you can just click the **Resume** button.
+[<img src="images/RunButton.png" width=32/>](images/RunButton.png)
+[[b Note:
+If you added a call to **_TI_stop_pprof_collection()** to your application then it is suggested to set a breakpoint on the line immediately after it.  Then run.  Once the breakpoint has been hit the data should have been captured and transferred.
+]]
+* Terminate your debug session by clicking on the **Terminate** button.
+[<img src="images/TerminateButton.png" width=32/>](images/TerminateButton.png)
+* A file called **pprofout.pdat** should be present in the build configuration folder of your project.  In this case it would be in the **\Collect** folder.
+![Collected data](images/Generatedpdat.png)
+
+###Analyzing the data
+Now there are a couple of utilities that need to be run to prepare the code coverage data.  We are going to leverage the Analyze configuration that we created earlier to do this.
+Go to your project properties.
+Ensure that the **Analyze** configuration is selected in the drop down at the top.
+![Ensure Analyze configuration is selected](images/SelectAnalyzeConfiguration.png)
+We need to now execute the **pdd** utility this will process the raw data file (pprofout.pdat) into a .prf file that can be interpreted by the compiler.
+We are going to add a pre-build step to do this.
+Select **Build** in the tree on the left.
+Next select the **Steps** tab in the middle of the dialog.
+We are now going to invoke the pdd utility.  We pass it the program file, name of the file to output and the raw data file.  We are going to make use of build variables to make this more robust.  If you named your **Collect** configuration something else you will have to adjust the commands below.
+
+[[y Warning:
+The pdd utility is named differently for different compilers.  It is recommended to copy and paste the appropriate command below into the pre-build step to ensure that it is added correctly.
+]]
+
+###MSP430:###
+```
+"${CG_TOOL_ROOT}/bin/pdd430" -e "${CCS_PROJECT_DIR}/Collect/${BuildArtifactFileName}" -o pprofout.prf "${CCS_PROJECT_DIR}/Collect/pprofout.pdat"
+```
+
+###Arm:###
+```
+"${CG_TOOL_ROOT}/bin/armpdd" -e "${CCS_PROJECT_DIR}/Collect/${BuildArtifactFileName}" -o pprofout.prf "${CCS_PROJECT_DIR}/Collect/pprofout.pdat"
+```
+
+###C2000:###
+```
+"${CG_TOOL_ROOT}/bin/pdd2000" -e "${CCS_PROJECT_DIR}/Collect/${BuildArtifactFileName}" -o pprofout.prf "${CCS_PROJECT_DIR}/Collect/pprofout.pdat"
+```
+
+###C6000:###
+```
+"${CG_TOOL_ROOT}/bin/pdd6x" -e "${CCS_PROJECT_DIR}/Collect/${BuildArtifactFileName}" -o pprofout.prf "${CCS_PROJECT_DIR}/Collect/pprofout.pdat"
+```
+
+![Pre-build step to process data](images/MspPreBuildStep.png)
+
+We also need to set the compiler options to analyze the prf file.
+In the tree on the left Select **Build -> Compiler -> Advanced Options -> Feedback and Analysis Options**"
+Set the **Generate analysis info from profile data (--analyze)** to **codecov**.
+Set the option to **Only generate analysis (--analyze_only)** as there is no need to complete the build process.
+Go to the box for **Use profile feedback file(s) (--use_profile_info)** and click the +.
+Add **pprofout.prf** as the file.
+
+![Options necessary to create csv from prf file](images/GenerateCSVOptions.png)
+
+[[b Note:
+If your prebuild step generates the prf file in a different location or with a different name then this will be need to be modified here as well.
+]]
+
+Now build the Analyze configuration by going to the down arrow beside the build button and selecting **Analyze**.
+![Build the Analyze configuration](images/BuildButtonAnalyzeConfig.png)
+In the Analyze folder there will now be .csv files for each source file that has coverage information.  You can open these in a spreadsheet program.
+![CSV files are generated](images/CSVFiles.png)
+
+[[y Warning:
+One thing that can lead to the .csv files not being generated is if there are spaces in the paths to source files. The tool that analyzes the prf file and generates the csv files is not able to handle spaces in paths or file names.
+]]
+
+[[b Note:
+There will be linker errors during the build of the **Analyze** configuration.  This is expected as we are not doing a full build.
+]]
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

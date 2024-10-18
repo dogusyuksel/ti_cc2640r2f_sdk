@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.ti.dvt.profileanalysis;singleton:=true
+Export-Package: com.ti.dvt.profileanalysis
+Bundle-Name: DVT Profile Analysis Providers
+Bundle-Version: 4.1.0.202307061549
+Bundle-ClassPath: com.ti.dvt.profileanalysis.jar
+Require-Bundle: com.ti.dvt.profileanalysismanager,com.ti.dvt.datamodel
+ ,com.ti.dvt.profiledata,com.ti.dvt.profileanalysismanagerplugin,com.t
+ i.dvt.ui,com.ti.util,com.ti.dvt.ideadapter2
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: Texas Instruments
+
+Name: plugin.xml
+SHA-256-Digest: ONDfYOP+r6QFlLqQoUVbvXpl5CLuKz+9nA04SbgDvec=
+
+Name: dvt.zip
+SHA-256-Digest: p77OxSGeMp5PHf7jTYQLX+wKIzpSlPDRa+CwNTZ/o8Q=
+
+Name: META-INF/p2.inf
+SHA-256-Digest: mzGE4TwW7LbvI6+mGpo1lqXoAqw3VU9zepKdx3oDRIM=
+
+Name: uninstall.xml
+SHA-256-Digest: /atpnQiP2N14WV3aiPvub2gXQr4kG+2pAXhnzNMkoLs=
+
+Name: install.xml
+SHA-256-Digest: KxPYHaID4pkHVIS5GeI2A2Om24zGraZ46vkRrapRaQ4=
+
+Name: com.ti.dvt.profileanalysis.jar
+SHA-256-Digest: dOg1MrBTiFZmx+1n6rHeAlrZtmnw2sa/mzekQH3VeG0=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: G2hFTVPngfh5NUf96Pyy87A7XIE083udjEBFy4pUc/M=
+

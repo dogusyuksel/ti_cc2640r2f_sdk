@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="This document describes target requirements that, when followed, allow for compatible operation between most XDS products. Even when a specific XDS supports a different native header, adapters are available that allow for swapping between XDS products."> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="XDS110">
+<meta name="product-link" content="https://www.ti.com/tool/TMDSEMU110-U">
+
+<!-- Change the title text for your page -->
+
+<title>XDS Target Connection Guide</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown souce -->
+
+# Introduction
+Texas Instruments supports a variety of eXtended Development System (XDS) JTAG controllers with various debug capabilities beyond only JTAG support. This article describes the requirements necessary to incorporate an XDS header on a board that includes devices that support a variety of debug features. 
+ 
+If your device supports the export of core trace or system trace over the EMU pins and you want your target to be compatible with XDS products capable of acquiring either trace types; for guidelines, see [Emulation and Trace Headers TRM](https://www.ti.com/lit/ug/spru655i/spru655i.pdf).
+ 
+For all other debug functions, regardless of the XDS product type, this document describes target requirements that, when followed, allow for compatible operation between most XDS products. Even when a specific XDS supports a different native header, adapters are available that allow for swapping between XDS products.
+
+# References 
+
+- [Emulation and Trace Headers Technical Referece Manual](https://www.ti.com/lit/ug/spru655i/spru655i.pdf)
+- [JTAG Connectors and Pinout](emu_jtag_connectors.html)
+- [JTAG Adapters](emu_jtag_adapters.html)
+- The document [Designing for JTAG Emulation Reference Guide](https://www.ti.com/lit/ug/spru641/spru641.pdf) describes the 14-pin JTAG connector and target board electrical requirements for XDS510 JTAG support (despite it's title it is not specific to the TMS320C6000 DSP). Also see your debug probe manufacturer's documentation for debug probe specific information.
+- The [XDS560 Emulator Technical Reference](https://www.ti.com/lit/ug/spru589a/spru589a.pdf)
+- For Trace, you may also want to consider reading [Common Trace Transmission Problems and Solutions](https://www.ti.com/lit/an/spraak6/spraak6.pdf)
+- [Emulation Fundamentals for TI's DSP Solutions](https://www.ti.com/lit/an/spra439e/spra439e.pdf)
+
+# XDS Features 
+
+XDS products consist of the following families:
+
+- XDS100v1<sup>1</sup> (DSPs only)
+- XDS100v2
+- XDS100v3
+- XDS110<sup>2</sup>
+- XDS200
+- XDS510<sup>1</sup><sup>3</sup>
+- XDS560<sup>1</sup>
+- XDS560T<sup>4</sup>
+- XDS560v2 System Trace
+- XDS560v2 Pro Trace
+
+	<sup>1</sup> XDS100v1, XDS510 and XDS560 are phased out and not supported
+	
+	<sup>2</sup> XDS110 is also available on several Simplelink MCU Launchpads: MSP432P401, CC1310, CC2640R2, CC2650, Hercules RM46, etc. as well as on both CC1310 and CC2650 SensorTags.
+	
+	<sup>3</sup> Certain XDS510 models do not support 1.8V JTAG voltage levels. Adapters are available that also support voltage translation, if required. For specific operating voltage ranges and operating frequencies, see your manufacturer's documentation
+	
+	<sup>4</sup> XDS560T is obsolete
+
+The table below shows the relationship of XDS types and headers to specific features.
+ 
+<font size="1">
+<table id="stl01">
+<tr>
+<th colspan="2"> <font color="#0000f0"><b>XDS family</b></font></th>
+<th rowspan="2"> <font color="#0000f0"><b>XDS100v1</b></font></th>
+<th rowspan="2"> <font color="#0000f0"><b>XDS100v2</b></font></th>
+<th rowspan="2"> <font color="#0000f0"><b>XDS100v3</b></font></th>
+<th rowspan="2"> <font color="#0000f0"><b>XDS110</b></font></th>
+<th rowspan="2"> <font color="#0000f0"><b>XDS200</b></font></th>
+<th rowspan="2"> <font color="#0000f0"><b>XDS510</b></font></th>
+<th rowspan="2"> <font color="#0000f0"><b>XDS560</b></font></th>
+<th rowspan="2"> <font color="#0000f0"><b>XDS560 Rev D cable</b></font></th>
+<th rowspan="2"> <font color="#0000f0"><b>XDS560T</b></font></th>
+<th rowspan="2"> <font color="#0000f0"><b>XDS560v2 System Trace</b></font></th>
+<th rowspan="2"> <font color="#0000f0"><b>XDS560v2 Pro Trace</b></font></th>
+</tr>
+<tr>
+<th colspan="2"> <font color="#f00000"><b>Feature</b></font><sup>1</sup></th>
+</tr>
+<tr>
+<th colspan="2"> <font color="#f00000"><b>Header Type / Pins</b></font></th>
+<td> <b>14-pin TI<br>20-pin TI</b></td>
+<td> <b>14-pin TI<br>20-pin TI<br>20-pin ARM</b></td>
+<td> <b>14-pin TI<br>20-pin TI<br>20-pin ARM</b></td>
+<td> <b>20-pin TI</b></td>
+<td> <b>20-pin TI</b></td>
+<td> <b>14-pin TI<br>20-pin TI</b></td>
+<td> <b>14-pin TI<br>20-pin TI</b></td>
+<td> <b>20-pin TI</b></td>
+<td> <b>60-pin TI</b></td>
+<td> <b>60-pin MIPI HPST</b></td>
+<td> <b>60-pin MIPI HPST</b></td>
+</tr>
+<tr>
+<th colspan="2"> <font color="#f00000"><b>Adaptive JTAG Clocking</b></font><sup>2</sup></th>
+<td> N/A</td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> N/A</td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font><sup>5</sup></td>
+<td> <font color="#00bf00"><b>Y</b></font><sup>5</sup></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+</tr>
+<tr>
+<th colspan="2"> <font color="#f00000"><b>Core Pin Trace</b></font><sup>3</sup></th>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> <font color="#00bf00"><b>Y</b></font> (DSP Only)</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+</tr>
+<tr>
+<th colspan="2"> <font color="#f00000"><b>System Pin Trace</b></font><sup>3</sup></th>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+</tr>
+<tr>
+<th colspan="2"> <font color="#f00000"><b>SWD debug with SWO Trace</b></font></th>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+</tr>
+<tr>
+<th colspan="2"> <font color="#f00000"><b>IEEE1149.7 (cJTAG)</b></font></th>
+<td> N/A</td>
+<td> N/A</td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+</tr>
+<tr>
+<th colspan="2"> <font color="#f00000"><b>Target Voltage Reference (TVRef)</b></font></th>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+</tr>
+<tr>
+<th colspan="2"> <font color="#f00000"><b>System Reset (nReset)</b></font></th>
+<td> <font color="#00bf00"><b>Y</b></font><sup>4</sup>
+<td> <font color="#00bf00"><b>Y</b></font><sup>4</sup>
+<td> N/A
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font><sup>4</sup></td>
+<td> <font color="#00bf00"><b>Y</b></font><sup>4</sup></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> N/A</td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+</tr>
+<tr>
+<th colspan="2"> <font color="#f00000"><b>Emulation Boot Modes</b></font></th>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+</tr>
+<tr>
+<th colspan="2"> <font color="#f00000"><b>HS-RTDX</b></font></th>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> <font color="#00bf00"><b>Y</b></font></td>
+<td> N/A</td>
+<td> N/A</td>
+<td> N/A</td>
+</tr>
+</table>
+</font>
+
+<b>Notes:</b> 
+
+	<sup>1</sup>For exact specifications on features and compatible voltage levels, see the manufacturer's documentation for your product.
+
+	<sup>2</sup>Only used for devices with ARM9 and ARM11 cores.
+
+	<sup>3</sup>If your device supports the export of core trace or system trace over the EMU pins and you want your target to be compatible with XDS products capable of acquiring either trace types, see the guidelines in [Emulation and Trace Headers TRM](https://www.ti.com/lit/ug/spru655i/spru655i.pdf).
+
+	<sup>4</sup>These debug probes can be manufactured with multiple connectors in some models. If your debug probe supports the 20-pin TI and/or ARM connectors it may also support the System Reset feature. For details, see your debug probe manufacturer's documentation.
+
+	<sup>5</sup>These debug probes can be manufactured with multiple connectors in some models. If your debug probe supports the 20-pin TI and ARM connectors it may also support the Adaptive clocking feature. For details, see your debug probe manufacturer's documentation.
+ 
+##Adaptive clocking 
+TI devices which feature an ARM core that requires [Adaptive Clocking](emu_adaptive_clocking.html) provide a RTCK pin. RTCK is used by the XDS (if it supports Adaptive Clocking) to gate TCK until the XDS detects the RTCK edge in response to the previous TCK edge. The RTCK delay allows the ARM core to synchronize the JTAG input signals to the core's functional clock rate, thus automatically scaling TCK to the ARM's functional clock rate.
+  
+Use of Adaptive Clocking with devices that support an RTCK pin will result in:
+
+- Higher performance (faster downloads and step speeds) than without Adaptive Clocking.
+- Greater debugger stability.
+ 
+The XDS must be enabled for adaptive clocking mode through the debugger.
+ 
+If your TI device has an RTCK pin, then this pin must be connected to the XDS header's RTCK signal, regardless of the target header type used. If your XDS Debug Probe supports adaptive clocking, it must be enabled through the IDE (CCS). If your XDS does not support adaptive clocking an adapter may be required to achieve the device's full JTAG operating rate. Running the XDS with a TCK rate that is less than <sup>1</sup>/<sub>8</sub> the ARM's functional clock rate is also an option if adaptive clocking is not supported by your XDS.
+ 
+For additional requirements for target cards that support multiple TI devices that support RTCK, see the [Multi-device Adaptive Clocking](#multi-device_adaptive_clocking) section.
+<!-- {{CornerCase|explanation=Please read [[Adaptive Clocking]] for additonal information.}} -->
+
+##Core pin trace and System pin trace 
+See details on the subsection <i>Core and System Trace</i> of the [EMU](#emu) pins section below.
+
+##IEEE1149.7(cJTAG)
+Please refer to the IEEE1149.7 section of the [JTAG](emu_jtag.html) page for details.
+
+##TVRef 
+TVRef is supported on all headers and is used by the XDS to detect the absence of target power and set the input level on EMU and JTAG voltage translation devices within the XDS, if used. For the voltage range supported by your specific product, check with your XDS manufacturer. Adapters are generally available for XDS systems that don't meet the voltage level requirements of a specific device.
+
+Please see the [TVRef Considerations](#tvref-considerations) section below for hardware design aspects.
+ 
+##nRESET 
+nRESET (sometimes called SRST) is the System Reset signal and is supported by all modern XDS Debug Probes. It provides a mechanism for remotely resetting your entire system if the nReset signal from the emulation header is integrated into your applications power-up-reset hardware.
+
+- It requires the use of a 20-pin or 60-pin [JTAG connector](emu_jtag_connectors.html).
+- For some devices, when debugging boot code the [Wait in Reset](emu_wait_in_reset.html) may use this signal.
+- XDS products that don't support this feature are generally only capable of resetting the TI devices on the scan chain, either via the nTRST signal or via the [ICEPICK](emu_icepick.html).
+
+Please see the [nRESET Considerations](#nreset-considerations) section below for hardware design aspects.
+
+##TDIS
+TDIS (<b>T</b>arget <b>Dis</b>connect) is the target disconnect signal and is supported on TI headers only. It is used to detect when the target is disconnected from the debug probe by sensing the removal of GND from the target board.
+
+Please see the [TDIS Considerations](#tdis-considerations) section below for hardware design aspects.
+ 
+##EMU 
+EMU pins are bi-directional multifunctional pins that provide support for the following features:
+
+- Boot Modes
+- Cross Triggers
+- Core Trace
+- System Trace
+- HS-RTDX (high speed RTDX, deprecated functionality)
+ 
+In the case of Boot Modes, the EMU0/1 pin state is driven by the XDS. HS-RTDX provides bi-directional data transport. Both Core and System Trace transport event history and timing data from the target to the XDS. Cross triggers are bi-directional triggers that allow an event in one device to cause a debug action in other devices. To determine which EMU pins are used for each function, see the device's data sheet.
+
+Please see the [EMU Considerations](#emu-considerations) section below for additional details.
+ 
+###Boot Modes 
+Boot modes are values on the EMU pins that are driven by the XDS to the target and sampled by the target on the rising edge of nTRST or at device power-up. Boot modes can also be used to force some devices into the <i>Wait-in-Reset</i> state. The EMU pins that are used for boot modes can also be used for other functions once the boot is complete or reset is released, such as trace or HS-RTDX.
+ 
+###Cross Triggers 
+When an EMU pin is used for a cross trigger, since the EMU pins are bi-directional, there is no need to dedicate an EMU pin as output or input trigger. Events that trigger out an EMU pin can be set up in multiple devices. At the same time all those devices can also be set to react to a trigger-input on the same EMU pin.
+ 
+###HS-RTDX - Deprecated functionality
+HS-RTDX transports bi-directional data over an EMU pin, typically over either EMU0 or EMU1, at the JTAG TCK frequency at a maximum frequency of 35MHz. If your design uses multiple TI devices that support HS-RTDX, and your XDS supports multiple HS-RTDX channels (the XDS560 supports HS-RTDX over EMU0 and EMU1), you may run HS-RTDX simultaneously with two devices. HS-RTDX requires integration with a target library. An XDS, such as the XDS560, that supports HS-RTDX is also required.
+
+###Core and System Trace 
+Core trace typically provides, at a minimum, processor PC trace and, depending on the silicon implementation, may also provide processor data trace and event trace. System trace is a message-based technology that, in enabled silicon, can export application instrumentation and hardware generated messages from system-level monitors. Many devices support on-chip Embedded Trace Buffers (ETBs) either exclusively or in combination with support for exporting trace data through the device's EMU pins. In cases where a device exclusively utilizes an ETB, a trace capable header (either the TI or MIPI 60-pin headers) is not required to replace the traditional 14-pin or 20-pin headers on the board, but ETBs only allow visibility to shallow snapshots of data (typically in the 4KB to 32KB range). To determine if your device supports exporting core or system trace through the EMU pins and/or supports one or multiple ETBs, see the device data sheet. The advantage of exporting Core and System Trace data through the EMU pins to an XDS with trace capture support, such as the XDS560T or XDS560v2 System Trace product, is that the capture depth is much greater, providing a much larger region of visibility and enabling precise profiling and code coverage tooling.
+ 
+In the case of core trace export or if core trace and system trace export are both supported by a TI device, this requires utilizing a 60-pin header in place of the traditional 14-pin or 20-pin emulation header. In the case where a device only supports export of system trace data, a TI 20-pin CTI header may be used. Regardless of which header you choose, when designing a system for core trace or system trace there are additional design considerations and constraints that are beyond the scope of this document. When designing a system for either core trace or system trace we recommend that you follow the guidelines in [Emulation and Trace Headers TRM](https://www.ti.com/lit/ug/spru655i/spru655i.pdf).
+ 
+Not all XDS, target cables, and target device combinations support all emulation features. For your specific XDS and the data sheet for your device to confirm that the desired functionality is supported, see the user's guide.
+
+#Adapters
+Pin converting adapters allow most XDS products to be used with any target that utilizes one of the standard supported headers. Use of any adapter can have a negative impact on performance.
+ 
+Additional target adapters are supported to adapt 3.3V XDS products down to lower voltage target IOs and to support Adaptive Clocking required for devices with ARM cores.
+
+Please check the [JTAG Adapters](emu_jtag_adapters.html) page for details and models available.
+ 
+#Emulation Header Signal Definitions
+Every XDS and corresponding target header supports the following IEEE 1149.1 standard signals.
+ 
+##JTAG 1149.1 Port Description
+<font size="1">
+<table id="stl01">
+<tr>
+<th> <font color="#0000f0">PIN</font></th>
+<th> <font color="#0000f0">XDS Signal Type<sup>(1)</sup></font></th>
+<th> <font color="#0000f0">Target Signal Type</font></th>
+<th> <font color="#0000f0">Name</font></th>
+<th> <font color="#0000f0">Description</font></th>
+</tr>
+<tr>
+<td> nTRST </td>
+<td align="center"> O </td>
+<td align="center"> I </td>
+<td> Test Logic Reset </td>
+<td> When asserted (low active) causes all test and debug logic in the device to be reset along with the IEEE 1149.1 TAP. </td>
+</tr>
+<tr>
+<td> TCK </td>
+<td align="center"> O </td>
+<td align="center"> I </td>
+<td> Test Clock </td>
+<td> This is the test clock used to drive an IEEE 1149.1 TAP state machine and logic. Depending on the XDS attached, this is either a free running clock or a gated clock that requires RTCK monitoring.<sup>(2)</sup> </td>
+</tr>
+<tr>
+<td> TMS </td>
+<td align="center"> O </td>
+<td align="center"> I </td>
+<td> Test Mode Select </td>
+<td> Directs the next state of the IEEE 1149.1 TAP state machine </td>
+</tr>
+<tr>
+<td> TDI </td>
+<td align="center"> O </td>
+<td align="center"> I </td>
+<td> Test Data Input </td>
+<td> IEEE 1149.1 Scan data input to the device </td>
+</tr>
+<tr>
+<td> TDO </td>
+<td align="center"> I </td>
+<td align="center"> O </td>
+<td> Test Data Output </td>
+<td> IEEE 1149.1 Scan data output of the device </td>
+</tr>
+<tr>
+<td> RTCK<sup>(5)</sup> </td>
+<td align="center"> I </td>
+<td align="center"> O<sup>(4)</sup> </td>
+<td> TCK Return </td>
+<td> Depending on the XDS attached the JTAG signals are clocked out with RTCK<sup>(3)</sup>. An XDS that supports adaptive clocking monitors RTCK to determine when to gate TCK. </td>
+</tr>
+</table>
+</font>
+
+<b>Notes:</b>
+
+	<sup>1</sup>I = Input, O = output, relative to the XDS.
+	
+	<sup>2</sup>If a device with an ARM core is connected, adaptive clocking may be required (TCK is gated requiring RTCK monitoring by the XDS) to operate TCK above 4 MHz.
+	
+	<sup>3</sup>The XDS100v1 does not support RTCK but TI recommends connecting it per section N to remain compatible with other XDS products.
+	
+	<sup>4</sup>If your device supports an RTCK pin, connect it to this emulation header pin. See [Adaptive Clocking](#adaptive-clocking).
+
+	<sup>5</sup>Other TI documents refer to RTCK as TCK_RET or TCLKRTN.
+
+ 
+The following signals may also be present on your XDS Target Cable and are common to many XDS products. 
+ 
+##Additional common emulation header signal descriptions
+<font size="1">
+<table id="stl01">
+<tr>
+<th> <font color="#0000f0">PIN</font> </th>
+<th> <font color="#0000f0">XDS Signal Type</font> </th>
+<th> <font color="#0000f0">Target Signal Type</font> </th>
+<th> <font color="#0000f0">NAME</font> </th>
+<th> <font color="#0000f0">DESCRIPTION</font> </th>
+</tr>
+<tr>
+<td> TVRef<sup>(2)</sup> </td>
+<td align="center"> I </td>
+<td align="center"> O </td>
+<td> Target Voltage Reference </td>
+<td> Should be tied to the I/O voltage of the target device. Used to detect if power is active and to set JTAG signal voltage level translators if supported by the XDS(1). </td>
+</tr>
+<tr>
+<td> TDIS </td>
+<td align="center"> I </td>
+<td align="center"> O </td>
+<td> Target Disconnect </td>
+<td> XDS that support this signal can detect the difference between a powered-down target and when the target cable is not physically connected. </td>
+</tr>
+<tr>
+<td EMU[0:n] </td>
+<td align="center"> | I/O<sup>(1)</sup> </td>
+<td align="center"> | I/O </td>
+<td> Emulation Port </td>
+<td> Depending on your device and XDS, EMU pins support boot modes, cross triggers, HS-RTDX, Core Trace and System Trace. See your XDS user's guide and device data sheet for supported features. </td>
+</tr>
+<tr>
+<td> nRESET<sup>(3)</sup> </td>
+<td align="center"> O </td>
+<td align="center"> I </td>
+<td> Target Reset </td>
+<td> This is an optional signal that if integrated into your applications power-up-reset circuit may be used to remotely reset the target board from a debugger. </td>
+<tr>
+</table>
+</font>
+
+<b>Notes:</b>
+
+	<sup>1</sup>To confirm compatibility with your XDS for signal types voltage levels, check your specific device's data sheet.
+	
+	<sup>2</sup>Other TI documents refer to TVRef as TVD, VREF_DEBUG, and VTRef (ARM's naming convention).
+	
+	<sup>3</sup>Other TI documents refer to nRESET as nSYSRST or nTGTRST.
+ 
+ 
+# JTAG header and connector information 
+  
+Please refer to the [JTAG Connectors and Pinout](emu_jtag_connectors.html) page. This page will help choose the best header or connector for each device family and to get information about part numbers.
+ 
+# JTAG pinouts
+
+Please refer to the [JTAG Connectorsand Pinout](emu_jtag_connectors.html) page.
+
+# Target Connection Design 
+
+It is extremely important to provide high-quality signals between the XDS header on your target and the target device. In some cases you may be connecting multiple devices to a single emulation header or you may need to physically locate the emulation header farther away from the device than what's recommended for non-buffered operation. Depending upon the situation, you must supply the correct signal buffering and multiple processor interconnections to ensure proper XDS and target system operation.
+
+Current XDS products operate JTAG's clock in the 10MHz to 50MHz range, but future XDS products will operate at higher clock rates; thus, to provide some design margin for duty cycle distortion and compatibility with future XDS products, TI recommends designing JTAG signals for 100MHz operation.
+
+Also, the target connection requirements are dependent on the features supported by both the device and XDS. For devices and XDS that support core or system trace the board-level design requirements are more stringent because of the higher clock rates of these functions. For design guidelines if your device supports export of core or system trace by the EMU pins, see [Emulation and Trace Headers TRM](https://www.ti.com/lit/ug/spru655i/spru655i.pdf).
+
+In cases where your XDS does not support a feature, such as Core Trace or System Trace, but your target device does support the feature we recommend that you carefully evaluate the trade-offs of designing a target that is compatible with both your current XDS and higher performance XDS that may be required to resolve difficult issues.
+
+##Single Device Non-buffered Configuration 
+
+If the EMU pins do not support core or system trace and If the routing length of all JTAG and EMU signals between the device and the emulation header are less than six inches then buffering of the JTAG signals is not necessary. For termination and routing guidelines if your device's EMU pins support core or system trace export, see [Emulation and Trace Headers TRM](https://www.ti.com/lit/ug/spru655i/spru655i.pdf).
+
+The following diagram shows the standard non-buffered signal connections. Each of the following sections discuss cases specific to a signal or header.
+
+Note: The following diagram deviates from previous TI documentation in that TI now suggests utilization of series termination resistors on the JTAG clock signals and TDO. The reason for this change is the latest XDS controllers utilize signal drivers with faster rise and fall times than previous generations, thus increasing the chances of reflections on these critical signals.
+
+	<b>Figure 1.</b> Single Emulation Header With Single Target Device and Unbuffered JTAG and EMU Signals <sup>(Note 1)</sup>
+
+![](images/fig1_single_unbuff.jpg)
+
+Trace Design Process for single emulation header with a single target device and un-buffered JTAG and EMU signals.
+
+<b>Notes:</b>
+1. All routing distances from the device pins to the Debug Probe must be less than 6 inches. If the Debug Probe is a XDS560v2 or XDS ProTrace, they feature buffers built into their cables and the distance can be made longer. 
+2. If your device does not have a RTCK pin then use Configuration 1. For JTAG signal termination requirements for this configuration, see [Non-buffered JTAG Signal Termination](#non-buffered-jtag-signal-termination).
+3. If your target device has a RTCK pin then use Configuration 2. For JTAG signal termination requirements for this configuration, see [Non-buffered JTAG Signal Termination](#non-buffered-jtag-signal-termination).
+4. DVDD is the JTAG/EMU pin IO voltage reference.
+5. For JTAG signal series termination requirements, see [Non-buffered JTAG Signal Termination](#non-buffered-jtag-signal-termination).
+6. See [EMU Considerations](#emu-considerations) for more details on EMU pin requirements.
+7. A pull-down on TRST is required. See [JTAG and nTRST Special Considerations](#jtag-and-ntrst-special-considerations-includes-tms-and-tdi-) for additional details.
+8. If your device contains more than two EMU pins then it's likely that it supports the export of core trace or system trace (or both). These are high speed features that impose additional target board requirements (for details, see [Emulation and Trace Headers TRM](https://www.ti.com/lit/ug/spru655i/spru655i.pdf)).
+
+ 
+
+###Non-buffered JTAG Signal Termination 
+
+[Figure 1](#single-device-non-buffered-configuration) shows the minimum termination requirements for the JTAG clock signals.
+
+* If your target device does not have an RTCK signal:
+
+	Connect TCK and RTCK as shown for <b>JTAG Clock Configuration 1</b> of [Figure 1](#single-device-non-buffered-configuration). Loopback TCK supplied by the emulation header to the emulation header's RTCK. In this configuration, 22&Omega; series termination resistors are required for both TCK and RTCK both of which should be placed in close proximity to the emulation header.
+
+* If your target device has an RTCK signal:
+
+	Connect TCK and RTCK as shown for <b>JTAG CLOCK Configuration 2</b> of [Figure 1](#single-device-non-buffered-configuration). Connect the device's RTCK to the emulation header's RTCK. In this configuration a 22&Omega; series termination resistor placed in close proximity to the emulation header on TCK. A series termination resistor is also required for RTCK placed as close to the device as possible. The size of the RTCK series termination resistor will typically be in the 22 to 42&Omega; range. It should be sized to match the impedance of the manufacturer's target cable (normally 50&Omega;) minus the impedance of the device's RTCK buffer. The output impedance of a device buffer can normally be determined from the device's IBIS model. TI document [Emulation and Trace Headers TRM](https://www.ti.com/lit/ug/spru655i/spru655i.pdf) contains an appendix that provides instructions for extracting the RTCK buffer's output impedance from the device's IBIS model.
+
+* For JTAG signals that are not clocks:
+
+	On JTAG input signals that are not clocks, series termination resistors are generally not required. On the device's JTAG output signal (TDO) a termination resistor is required placed as close to the device as possible. To determine the size of the TDO series termination resistor, follow the same instructions for sizing the RTCK series termination resistor.
+
+###JTAG and nTRST Special Considerations  (includes TMS and TDI)
+
+If your device does not have internal pull-up resistors on TMS and TDI or an internal pull-down resistor on TCK, it is required that these be provided externally on your board. Most devices nowadays have these resistors.
+
+Since TDO and RTCK are outputs, external pull-up or pull-down resistors are not required.
+
+Most TI devices require nTRST and the device reset to both be asserted at power-up to properly initialize the device. nTRST may be left asserted when the device reset is released for normal device operation. For any variations from these requirements, see your device data sheet. Since internal pull-ups and pull-downs are typically weak (in the 20K&Omega; to ~30K&Omega; range), to increase noise immunity when an XDS cable is not connected, it is recommended an external pull-down be provided per [Figure 1](#single-device-non-buffered-configuration).
+
+If you utilize a non XDS product for boundary scan testing, since TRST is an optional function in the IEEE 1149.1 specification, check the manufacturer's documentation for nTRST support. If not supported, you will need the capability to pull the device's nTRST pin up (inactive) on your target card for Boundary Scan to function. Most TI devices use an internal pull down on nTRST to hold the emulation logic in reset at power up of the device to ensure the device will operate in its normal functional mode. To determine if nTRST has an internal pull-down, check the TI device-specific data sheet.
+
+Note: Low power applications may require stronger external pull-ups or pull-downs to improve noise margins on the JTAG input signals (TMS, TDI, TCK and nTRST) when an emulation cable is not connected.
+
+###EMU Considerations 
+
+* In cases where the device has more EMU pins than the XDS supports, the general rule is to connect as many EMU signals as possible to the XDS header. Even in cases where your specific XDS only supports a subset of the EMU pin functionality provided by a specific device, TI recommends connecting as many EMU pins as possible between the device and the XDS header to be compatible with other XDS products that may provide additional functionality.
+
+* The internal pull-ups on EMU0 and EMU1 are typically weak (in the 20K&Omega; to ~30K&Omega; range) and therefore we recommend external pull-ups on EMU0 and EMU1. If your device contains more EMU pins it's NOT required to pull these up.
+
+* If your device supports boot modes on the EMU0 and EMU1 pins, these pins are latched during POR to set the boot mode. The default normal operating mode is selected with both EMU0 and EMU1 pulled up. Other modes typically include Boundary Scan and Wait-In-Reset. See your device data sheet for supported boot modes and the EMU pin state required at POR to select a boot mode.
+
+* All EMU pins on the device should be pulled up externally if the device does not have internal EMU pin pull-ups.
+
+* If the XDS has more EMU pins than the device, it is ok to leave them unconnected.
+
+For additional information, check the sections [EMU](#emu) above or [EMU considerations in multi-device configurations](#emu-considerations-in-multi-device-configurations) below.
+
+###nRESET Considerations 
+
+When using an XDS that supports the nRESET signal, it provides a mechanism for remotely resetting your entire system if integrated into your applications power-up-reset hardware. An XDS that does not support this feature is only capable of resetting the TI devices on the scan chain.
+
+nRESET is an open drain output from the XDS so this signal must be pulled up with a 4.7K&Omega; on the target card to the level required by your board's POR circuit.
+
+This signal is active driven by the XDS for a minimum of 500&mu;s.
+
+Also see the [nRESET section](#nreset) above
+ 
+###TDIS Considerations
+
+When using a XDS Debug probe with a TI header, the TDIS is used to detect if the target cable is physically connected. It is usually a pull-up in the debug probe and tied to GND on the target board, thus allowing the debug probe to sense the removal of GND.
+
+<b>Note:</b> A pull-down or current limiting resistor on TDIS will not work with all XDS models. With TDIS connected directly to GND, some XDS models will sink a small amount of current (by design) through a pull-up in the XDS. A pull-down or a current limiting resistor connected to TDIS on the target may cause the XDS to not detect the target and result in a <b>cable break far-from itself</b> error.
+
+
+###TVRef Considerations
+
+TVRef is recommended to be connected to the device's JTAG and EMU pin IO power supply voltage source through a 100 O current limiting resistor. See your device data sheet for the JTAG and EMU pin IO voltage level.
+
+The current limit resistor provides a current source for adapters that may be necessary and when a target is powered down with an emulator connected it will protect the target from powering itself from the emulator through TVD.
+
+If your scan chain contains devices that require multiple IO voltages, since TVRef can only be set to a single voltage level, you must use translation buffers to drive the JTAG signals to/from devices that require IO voltages different from TVRef. All signals that drive into the XDS header must do so at the TVRef level.
+
+###XDS100/XDS510/XDS560 14-pin Header Considerations 
+
+If your device has more than two EMU pins, you can still use a 14-pin header, but you will not be able to export core trace and, in most cases system trace, if either are supported by your device. In both cases, a larger capacity connector is required; 60-pin for core trace and 20-pin for system trace. If your device has only a single EMU pin then connect it to EMU0 on the 14-pin header. All EMU pins on the device should be pulled up externally unless the device has sufficient internal EMU pin pull-ups.
+
+The 14-pin header is no longer recommended for new designs. TI suggests using the TI 20-pin CTI connector which has a significantly smaller footprint than the 14-pin header.
+
+###XDS560 20-pin Header Considerations
+
+If your device supports system trace, for board requirements when using the TI 20-pin CTI header for system trace, see [Emulation and Trace Headers TRM](https://www.ti.com/lit/ug/spru655i/spru655i.pdf).
+
+If your device has more than five EMU pins, you can still use a 20-pin header but you will not be able to export core trace (assuming your device supports core trace). In the core trace case, a larger capacity connector is required (60-pin for core trace). If your device has less than five EMU pins, connect the pins that are available on the device to the same numbered pin on the header (EMU0 on the device to EMU0 on the header).
+
+###ARM 20-pin Header Considerations
+
+In cases where you are using a TI device with the ARM 20-pin header, you will need to use an adapter to utilize an XDS.
+
+When connecting an ARM 20-pin header to a TI device there are two header pins that are left as no connects, DBGRQ and DBGACK. These signals are not supported by TI devices. If you are using an adapter from an ARM 20-pin header to an XDS target cable, the Vsupply header signal may be used by some adapters as an alternate voltage reference, but the XDS does not use this as a current source.
+
+The ARM 20-pin header does not support EMU pins, so any functionality provided by an XDS over the EMU pins (such as boot modes) will not be available. In this case, if the device does not contain internal pull-ups on the EMU pins, the EMU pins of the device should be pulled-up externally. If your target card consists of multiple devices with ARM cores connected on a single serial JTAG scan chain and your devices support EMU pins, then you can still connect the EMU pins between devices to support debug cross triggers (if supported by your devices). Boot modes (if supported by your device) may also be modified from the default value on your board through pull-up/pull-down resistors, but you will not be able to change the boot mode value from the XDS. You will need to make sure when you go to production the default boot mode is set (both EMU0 and EMU1 pulled up) for all devices that support boot modes.
+
+Adaptive clocking is generally required by devices that contain ARM cores. If your device has an RTCK pin, then this pin must be connected to the target cable's RTCK signal, regardless of the target header used. For additional information, see [Adaptive Clocking](#adaptive-clocking).
+
+For additional requirements and potential limitations, if connecting multiple devices that all have ARM cores, see [Multiple Device Adaptive Clocking](#multiple-device-adaptive-clocking).
+
+###XDS560T/XDS560v2 System Trace/XDS ProTrace 60-pin Header Considerations 
+
+For core and system trace emulation header design requirements [Emulation and Trace Headers TRM](https://www.ti.com/lit/ug/spru655i/spru655i.pdf).
+
+##Buffered Case 
+
+If the distance between the Debug Probe and the device is greater than 6 inches, it is recommended that JTAG signals be buffered per Figure 2. For information on non-JTAG signals, see [Single Device Non-buffered Configuration](#single-device-non-buffered-configuration).
+
+   - If the Debug Probe is a XDS560v2 or XDS ProTrace, they feature buffers built into their cables and the distance can be made longer. 
+
+Note: The Figure 2 deviates from previous TI documentation in that TI now suggests utilization of AC termination resistors on the input to the TCK buffer and series termination on other critical signals. The reason for this change is the latest XDS controllers utilize drivers with faster rise and fall times than previous generations, thus increasing the chances of reflections on these critical signals.
+
+<b>Figure 2. Single Emulation Header with Single Target Device and Buffered JTAG Signals</b>
+
+![](images/fig2_single_buffered.jpg) 
+
+<b>Notes:</b>
+1. If your device does not have a RTCK pin then use Configuration 1.
+2. If your target device has a RTCK pin then use Configuration 2.
+3. DV<sub>DD</sub> is the JTAG/EMU pin IO voltage reference.
+4. The 33&Omega; series termination resistor values in this diagram were selected based on using a 74LVC1G32 (or gate) as a non-inverting buffer. Size the value of the termination resistors based on the output impedance of your buffer.
+5. Pull-ups on EMU0 and EMU1 are required. See [EMU Considerations](#emu-considerations) for additional details.
+6. A pull-down on TRST is required. See [JTAG and nTRST Special Considerations](#jtag-and-ntrst-special-considerations-includes-tms-and-tdi-) for additional details.
+7. If your device contains more than two EMU pins then it's likely that it supports the export of core trace or system trace (or both). These are high speed features that impose additional target board requirements (for details, see [Emulation and Trace Headers TRM](https://www.ti.com/lit/ug/spru655i/spru655i.pdf)).
+8. Pull-up resistors are recommended on all buffer inputs to eliminate the possibility of the buffer output oscillating when an XDS cable is not connected.
+
+For buffered configurations (for JTAG timing details, see [JTAG Timing](#jtag-timing), TDO must propagate back from the device to the emulator within &frac12; a TCK cycle, so if you buffer RTCK at the same place on your target card that you buffer TCK, the max delay does not include the TCK delay, only the TDO delay. If you wrap TCK back to RTCK at the JTAG header and don't buffer it, then you have to take into account the TCK delay plus the TDO delay in determining the max delay.
+
+##Multiple Devices 
+
+If your target board contains multiple IEEE 1149.1 [JTAG](emu_jtag.html) compliant devices, you can utilize a single emulation header with the devices connected in a serial scan chain and the EMU pins connected in parallel between devices per Figure 3. Using this configuration enables the following features that are specifically provided to aid debug in multi-device systems:
+
+* Synchronous execution control
+* Global breakpoints
+* Cross triggers on the EMU pins
+
+<b>Figure 3. Single Emulation Header with Multiple Target Devices and Buffered JTAG Signals</b>
+
+![](images/fig3_multi_connection_jtagbuffered.jpg)
+
+<b>Notes:</b>
+1. If your devices have an RTCK pin, see [Multi-device Adaptive Clocking](#multi-device-adaptive-clocking).
+2. If the final device on the scan chain is within 6 inches of the emulation header, then the TDO buffer may not be required.
+3. DV<sub>DD</sub> is the JTAG/EMU pin IO voltage reference.
+4. This configuration assumes that the devices are within 6 inches of each other. Additional buffering may be required on TDO and TDI between devices if the routing distance is greater than 6 inches.
+5. The 33&Omega; series termination resistors in this diagram were selected based on using a [SN74VC1G32](https://www.ti.com/product/sn74lvc1g32) (or gate) as a buffer. You should size the series termination resistor based on the output impedance of your buffer.
+6. Pull-ups on EMU0 and EMU1 are required. See [EMU Considerations](#emu-considerations) for additional details.
+7. A pull-down on TRST is required. See [JTAG and nTRST Special Considerations](#jtag-and-ntrst-special-considerations) for additional details.
+8. If your device contains more than two EMU pins, then it's likely that it supports the export of core trace or system trace (or both). These are high-speed features that impose additional target board requirements (for details, see [Emulation and Trace Headers TRM](https://www.ti.com/lit/ug/spru655i/spru655i.pdf)).
+9. Pull-up resistors are recommended on all buffer inputs to eliminate the possibility of the buffer output oscillating when an XDS cable is not connected.
+
+Generally TCK, TMS, TDI and TDO should be buffered to provide adequate signal drive between the processor array and the XDS. It is recommended that TCK, TMS and TDI be buffered through the same physical package for better control of signal skew effects. If the last device on the scan chain is less than 6 inches from the XDS header then the TDO buffer is not necessary.
+
+Input buffers on TMS, TDI, and TCK should have pull-up resistors connected to DV<sub>DD</sub> I/O voltage reference to hold these signals at a proper value when the XDS target cable is not connected. A resistor value of 4.7k&Omega; or greater is suggested.
+
+In cases where your design has just a few devices (not more than 3) on a serial scan chain and the JTAG signal (TCK, TMS, TDO and TDI) routing is less than 6 inches, buffering the JTAG signals may not be necessary. If you decide your design does not require buffers, the series termination resistors recommended in [Single Device Non-buffered Configuration](#single-device-non-buffered-configuration) may still be necessary.
+
+If your design utilizes more than three devices, it is recommended you simulate, at a minimum, the TCK and TMS paths. TI does not recommend placing more than 30 devices on a single JTAG scan chain.
+
+
+###EMU considerations in multi-device configurations 
+
+Buffering EMU0 and EMU1 is not generally recommended because these signals are typically bi-directional.
+
+If your device does not support HS-RTDX, then the only requirement is to ensure that the EMU pins transition between logic levels is fast enough to support cross triggers requirements.
+
+* Fall time &#8212; less than 100ns
+
+* Rise time &#8212; less than 1&mu;s.
+
+To calculate fall time you need to use the drive current of a single device's EMU pin, the delta voltage swing (V<sub>MAX</sub> to V<sub>OL</sub> ) of the EMU pin driving the array, and the capacitive loading of all other devices in the array with the following equation.
+
+T<sub>fall</sub> = (V<sub>delta</sub> &times; C<sub>i</sub> &times; N<sub>devices-1</sub>)/ I<sub>o</sub>
+
+Where V<sub>delta</sub> is V<sub>OH(MAX)</sub> &#8211; V<sub>OL</sub>.
+
+The I<sub>o</sub>, V<sub>OH(MAX)</sub>, V<sub>OL</sub>, and C<sub>i</sub> values are available in the device data sheet.
+
+To calculate the rise time, use the equation:
+
+t<sub>r</sub> = 1.5 &times; (R<sub>pullup</sub> &times; N<sub>devices</sub> &times; C<sub>i_per_device</sub>)
+
+<b>Note:</b> This is the basic RC time constant of the circuit where the 1.5T point is at ~80% of the rise time. For accuracy, if your device contains pull-ups on the EMU pins (see the device datasheet), they will typically be weak (~30K&Omega;). This should be accounted for when calculating R<sub>pullup</sub>.
+
+For devices that support HS-RTDX, the requirements are more strict because the logic level transitions on the EMU pins, in both directions, must occur within a TCK clock period. If you cannot meet this requirement, you are required to reduce the XDS TCK frequency to a level that will satisfy the requirement. It is recommended that you set TCK 10% below the maximum frequency to provide some guard band for environmental changes.
+
+##JTAG Timing 
+
+Figure 4 shows the basic JTAG timing. Specifically, the XDS exports TMS and TDI on the rising edge of RTCK. TDO is clocked out of the device on the falling edge of TCK and thus only has &frac12; a TCK cycle to propagate to the XDS where it's latched on the next rising edge of RTCK. Many XDS models support optional TDO latching on the falling edge of RTCK providing more setup time but potentially less hold time. For detailed timing parameters, see your XDS manufacturer's documentation.
+
+<b>Figure 4. JTAG Timing</b>
+
+![](images/jtag_timing.jpg)
+
+##Multi-device Adaptive Clocking 
+
+If your design has multiple devices with RTCK signals that require Adaptive Clocking, you must choose between either a series or parallel topography. The parallel topography will provide more performance than the series topography, but it is more complex to implement.
+
+For more information, see [Adaptive Clocking](#adaptive-clocking).
+
+###Series Topography 
+
+As shown in Figure 5, the series topography cascades RTCK between device's in the serial scan chain. This causes the next device to synchronize it's TCK to the RTCK of the previous device in the scan chain. This has two effects on the system:
+
+* RTCK presented to the XDS will be slower than the slowest device in the serial scan chain.
+* Even if all devices are running at the same functional clock rates, delays through the synchronization logic will slow the final RTCK.
+
+Using the serial topography, you can still utilize an XDS that does not support Adaptive Clocking, provided you set TCK to a rate slower than <sup>1</sup>/<sub>8</sub> the slowest core's functional clock rate.
+
+
+<b>Figure 5. Device With RTCK Series Topography</b>
+
+![](images/fig4_rtck_devices.jpg)
+
+<b>Note:</b> This figure only shows connections without regard to buffering or termination that may also be required. For additional details on connecting multiple devices, see [Multiple Devices](#multiple-devices).
+
+###Parallel Topography 
+
+The Parallel Topography, as shown in Figure 6, can be utilized to avoid the RTCK clock degradation caused by the cascading of RTCK between devices in the serial scan chain (see [Series Topography](#series-topography)). Parallel Topography requires the use of an external CPLD to implement the clock voting logic. The clock voting logic presents TCK to all devices in parallel, but then waits to generate the next RTCK edge to the XDS until all devices have responded with the expected RTCK edge. As with the Serial Topography, RTCK to the XDS is throttled down to the slowest device, but the added RTCK delay caused by cascading is avoided.
+
+Using the parallel topography, you can still utilize an XDS that does not support Adaptive Clocking, provided you set TCK to a rate slower than <sup>1</sup>/<sub>8</sub> the slowest core's functional clock rate.
+
+
+<b>Figure 6. Devices with RTCK Parallel Topography</b>
+
+![](images/fig5_rtck_dev.jpg)
+
+<b>Note:</b> This figure only shows connections without regard to buffering or termination that may also be required. For additional details on connecting multiple devices, see [Multiple Devices](#multiple-devices).
+
+An example of the board level clock voting logic implementation can be found at [Adaptive Clocking](#adaptive-clocking).
+
+###Mixed Devices 
+
+If your design contains both devices with RTCK pins and those without an RTCK pin, regardless of the topography, the TCK signal of those devices without an RTCK pin must be driven with the RTCK from those devices with RTCK since these devices must govern the XDS RTCK rate.
+
+Figure 7 shows mixing devices with RTCK in a series topography and those without RTCK. Those devices without an RTCK are grouped together at the end of the scan chain, and their TCK signals are driven with the RTCK from the last device in the scan chain with a RTCK.
+
+
+<b>Figure 7. Multiprocessor Mixed Device Types (with and without RTCK) Series Topography</b>
+
+![](images/fig6_multi_mixed_rtck.jpg)
+
+<b>Note:</b> This figure only shows connections without regard to buffering or termination that may also be required. For additional details on connecting multiple devices, see [Multiple Devices](#multiple-devices). 
+
+Figure 8 shows mixing devices with RTCK in a parallel topography and those without RTCK. Those devices without an RTCK are grouped together at the end of the scan chain, and their TCK signals are driven with the RTCK from the voting logic.
+
+
+<b>Figure 8. Multiprocessor Mixed Device Types (with and without RTCK) Parallel Topography</b>
+
+![](images/fig7_multi_mixed_rtck.jpg)
+
+<b>Note:</b> This figure only shows connections without regard to buffering or termination that may also be required. For additional details on connecting multiple devices, see [Multiple Devices](#multiple-devices).
+
+##Special Considerations for HSRTDX 
+
+HS-RTDX bi-directional data transfers utilize a combination of EMU pins for data transport and TCK to clock the data. Use of HS-RTDX with an EMU pin is mutually exclusive of other EMU pin features except boot modes. The XDS560 supports two channels of HS-RTDX data transport where each channel uses a single EMU pin (typically EMU0 or EMU1). You can select which EMU pin is used for HS-RTDX data transport with a device or processor through the debugger. Since transport speeds are high (with TCK running at 35MHz data rates of 2MB/s are typical), special attention must be given to EMU signal routing on your board.
+
+If your design contains multiple devices that support HS-RTDX, see [EMU considerations in multi-device configurations](#emu-considerations-in-multi-device-configurations).
+
+# Troubleshooting
+
+See the material on troubleshooting JTAG Connectivity Problems at: [Debugging JTAG Connectivity Problems](../ccsv7_debugging_jtag_connectivity_issues.html).
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

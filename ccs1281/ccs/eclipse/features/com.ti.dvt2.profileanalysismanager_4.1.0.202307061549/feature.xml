@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.dvt2.profileanalysismanager"
+      label="DVT - Profiler Analysis Manager"
+      version="4.1.0.202307061549"
+      provider-name="Texas Instruments"
+      >
+
+   <description>
+      Profiler Analysis Manager
+   </description>
+
+   <license>
+      Provided under the terms of the original DVT or Code Composer Studio License Agreement.
+   </license>
+
+   <includes
+         id="com.ti.dvt2.control"
+         version="4.1.0.202307061549"
+         optional="true"/>
+
+   <includes
+         id="com.ti.dvt2.scripting.ui"
+         version="4.1.0.202307061549"
+         optional="true"/>
+
+   <includes
+         id="com.ti.dvt.energytrace"
+         version="4.1.0.202307061549"
+         optional="true"/>
+
+   <requires>
+      <import feature="com.ti.dvt2.control" version="4.1.0.202307061549" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="com.ti.dvt.profileanalysismanager"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.dvt.profileanalysismanagerplugin"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.dvt.coverageplugin"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.dvt.profileanalysis"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"/>
+
+   <plugin
+         id="com.ti.dvt.profiledata"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.dvt.profileanalysis.doc"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.dvt.codegenCoverage"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"/>
+
+   <plugin
+         id="com.ti.dvt.profile.setup.ui"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.dvt.scripting.ui.profileanalysis"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.dvt.scripting.engine"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"/>
+
+</feature>

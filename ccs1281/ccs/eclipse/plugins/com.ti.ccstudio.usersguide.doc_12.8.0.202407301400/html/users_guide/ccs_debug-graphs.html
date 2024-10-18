@@ -1,0 +1,940 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.7. Graph Tools &mdash; Code Composer Studio 12.8.0 Documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Code Composer Studio 12.8.0 Documentation" href="index.html"/>
+        <link rel="up" title="7. Debug" href="index_debug.html"/>
+        <link rel="next" title="7.8. Image Analyzer" href="ccs_debug-image.html"/>
+        <link rel="prev" title="7.6. Scripting" href="sdto_dss_handbook.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="https://www.ti.com">
+            <img src="_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Code Composer Studio
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                12.8.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ccs_glossary.html">1. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_overview.html">2. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_installation.html">3. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_updates.html">4. Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_getting-started.html">5. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_project-management.html">6. Projects and Build</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index_debug.html">7. Debug</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ccs_debug-main.html">7.1. Debug Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_debug-main.html#configuring-the-debugger">7.2. Configuring the Debugger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_debug-main.html#launching-a-debug-session">7.3. Launching a debug session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_debug-main.html#debugging-the-application">7.4. Debugging the application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_debug-main.html#advanced-debugging-topics">7.5. Advanced Debugging Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdto_dss_handbook.html">7.6. Scripting</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7.7. Graph Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-it-works">7.7.1. How it works</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#time-domain">7.7.1.1. Time domain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#frequency-domain">7.7.1.2. Frequency domain</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#graph-properties">7.7.2. Graph properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#properties-available-for-all-graphs">7.7.2.1. Properties available for all graphs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#properties-only-available-for-time-domain-graphs">7.7.2.2. Properties only available for time domain graphs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#properties-only-available-for-frequency-domain-graphs">7.7.2.3. Properties only available for frequency domain graphs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#properties-only-available-for-fft-waterfall">7.7.2.4. Properties only available for FFT Waterfall</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#detailed-descriptions">7.7.2.5. Detailed descriptions:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#troubleshooting">7.7.3. Troubleshooting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#data-type-considerations">7.7.3.1. Data type considerations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_debug-image.html">7.8. Image Analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_debug-gel.html">7.9. The General Extension Language (GEL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_debug-epilog.html">7.10. References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index_faqs.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_troubleshooting.html">9. Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ccs_legal.html">10. License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Code Composer Studio</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index_debug.html">7. Debug</a> &raquo;</li>
+      
+    <li>7.7. Graph Tools</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="https://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="graph-tools">
+<span id="id1"></span><h1>7.7. Graph Tools<a class="headerlink" href="#graph-tools" title="Permalink to this headline">¶</a></h1>
+<p>An advanced graph and image visualization tool is available in
+CCS. It can display arrays of data in various graphical types (amplitude
+X time, FFT, etc.). The arrays of data are stored in a device’s memory
+in various formats (datapath size, precision, sign, Q values).</p>
+<p>The following types of graphs are available:</p>
+<ul class="simple">
+<li>Single Time. Single line graph that plots the array values in the “Y”
+axis and the array index (sample count) in the “X” axis.</li>
+<li>Dual Time. Dual line graph that plots two single time graphs in the
+same view.</li>
+<li>FFT Magnitude. Single line graph that calculates the frequency domain
+magnitude by performing a Fast Fourier Transform on the data array.
+It can display both real and complex data.</li>
+<li>FFT Magnitude &amp; Phase. Dual line graph that calculates the frequency
+domain magnitude and phase by performing a Fast Fourier Transform on
+the data array. It can display both real and complex data.</li>
+<li>FFT Complex. Dual line graph that calculates the frequency domain
+magnitude and phase by performing a Fast Fourier Transform on two
+data arrays. It can display non-interleaved complex data.</li>
+<li>FFT Waterfall. Multiple line graph that calculates the frequency
+domain magnitude by performing a Fast Fourier Transform on an
+arbitrary number of data arrays. It can display both real and complex
+data.</li>
+</ul>
+<p>The supported data formats:</p>
+<ul class="simple">
+<li>Datapath size: 8, 16, 32 and 64 bits.</li>
+<li>Single and double-precision floating point.</li>
+<li>Signed and unsigned integers.</li>
+</ul>
+<p>The data can be updated in several ways:</p>
+<ul>
+<li><p class="first">Refresh. Update the data when this button is pressed. Depending on the device and mode of operation, the data will be updated only when the device is halted.</p>
+</li>
+<li><p class="first">Continuous Refresh. Update the data continuously at a rate defined by CCS Properties (no faster than 100ms).</p>
+</li>
+<li><p class="first">Refresh on halt. Update the data when the device is halted.</p>
+</li>
+<li><p class="first">Breakpoints can be set to automatically update the data when reached.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Update View</li>
+<li>Refresh All Windows</li>
+<li>Target Halt and Refresh</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In order for graphs to be used, they need a target device to be connected - they cannot be used offline.</p>
+</div>
+<p>From the main menu click on <strong>Tools → Graph</strong>, then select a specific graph
+type from the graph submenu.</p>
+<div class="section" id="how-it-works">
+<h2>7.7.1. How it works<a class="headerlink" href="#how-it-works" title="Permalink to this headline">¶</a></h2>
+<p>The graph utility is basically a Memory Viewer that, instead of
+displaying the data in raw format, shows it in a X-Y plot format.</p>
+<p>The data formatting and plotting is entirely done by the host but using
+the data present on the target device’s memory. In other words, the
+graph tool does not modify the data on the target memory but only
+fetches it via the Debug Probe connection to update its view.</p>
+<p>In order to update its view, the graph tool requires a trigger set by a
+debug halt event such as a <a class="reference external" href="./ccs_debug-main.html#debug-view">Manual
+halt</a>, a
+<a class="reference external" href="./ccs_debug-main.html#breakpoints">Breakpoint</a> or enabling the option <strong>Continuous
+update</strong> in the <strong>Graph Toolbar</strong>.</p>
+<p>In sequence, the trigger causes the graph tool to perform several tasks:</p>
+<ul class="simple">
+<li>Fetch the data samples from the target at a pre-determined address <a class="reference external" href="#start-address">Start Address</a>.</li>
+<li>Perform calculations and transformations that format the data samples according to pre-determined options set by the <a class="reference external" href="#graph-properties">Graph Properties</a>.</li>
+<li>Plot each individual sample data matching its numerical value on the vertical axis (Y axis) and increment its position on the horizontal axis (X axis).</li>
+</ul>
+<p>When the option is selected from the menu <strong>Tools → Graph → type of graph</strong>,
+the <a class="reference external" href="#graph-properties">Graph Properties</a> view is opened.</p>
+<p><img alt="image0" src="_images/ccs_debug-graph_properties_default.png" /></p>
+<div class="section" id="time-domain">
+<h3>7.7.1.1. Time domain<a class="headerlink" href="#time-domain" title="Permalink to this headline">¶</a></h3>
+<p>When a time domain graph view is opened, it contains several regions of
+interest:</p>
+<p><img alt="image1" src="_images/ccs_debug-graph_time.png" /></p>
+<ul class="simple">
+<li><strong>Axes X and Y:</strong> these are the main numerical reference points for the displayed data. These axes change according to various parameters set in the <a class="reference external" href="#graph-properties">Graph Properties</a> and feature auto-scaling, DC offset, labels, Zoom In and Out and others.</li>
+<li><strong>Magnitude:</strong> the numeric representation of the value of each data sample.</li>
+<li><strong>Sample count (or time):</strong> the number of samples shown at a given time or their equivalent time set by the <a class="reference external" href="#sampling-rate-hz">Sampling Rate</a> option.</li>
+<li><strong>Main graph area:</strong> where the plot is shown.</li>
+<li><strong>Top toolbar:</strong> all controls are accessed from the various icons present here.</li>
+</ul>
+<div class="section" id="normal-time-plot">
+<h4>7.7.1.1.1. Normal time plot<a class="headerlink" href="#normal-time-plot" title="Permalink to this headline">¶</a></h4>
+<p>During normal operation, the graph shows each
+sampled data in horizontal sequence following the X axis from left to
+right and its corresponding value vertically correlated to the magnitude
+on the Y axis.</p>
+<p>To illustrate, the image below shows a data buffer of 64 samples that
+depicts two periods of a sinewave. The maximum number of samples plotted
+at each update is defined by the value of the <a class="reference external" href="#acquisition-buffer-size">Acquisition Buffer
+Size</a>, which is equal to 64 in this
+example.</p>
+<p><img alt="image2" src="_images/ccs_debug-graph_time_plot_1.png" /></p>
+<p>At the second update, the contents of the display are replaced with the
+new incoming data (which now shows three periods of 64 samples). This
+second screenshot now shows the origin of the X axis starting at <strong>64</strong>,
+which is set by the <a class="reference external" href="#display-data-size">Display Data Size</a> value,
+which is also equal to 64 in this case.</p>
+<p><img alt="image3" src="_images/ccs_debug-graph_time_plot_2.png" /></p>
+<p>The process is repeated for as many updates as required by the debug
+process.</p>
+</div>
+<div class="section" id="keeping-history">
+<h4>7.7.1.1.2. Keeping history<a class="headerlink" href="#keeping-history" title="Permalink to this headline">¶</a></h4>
+<p>If it is desired to maintain a history of the sample
+data, making the <a class="reference external" href="#display-data-size">Display Data Size</a> greater than
+the <a class="reference external" href="#acquisition-buffer-size">Acquisition Buffer Size</a> allows to
+sequentially display the past behaviour of the sampled data.</p>
+<p>To illustrate this, take the screenshot below which shows two sample
+buffer updates: the first 64 samples, set by the <a class="reference external" href="#acquisition-buffer-size">Acquisition Buffer
+Size</a> option, show the buffer starting with
+a value of 0 and the next 64 samples show the updated values. The <a class="reference external" href="#display-data-size">Display Data Size</a> option is set to 256, but there are not yet enough samples to reach this limit.</p>
+<p><img alt="image4" src="_images/ccs_debug-graph_time_plot_3.png" /></p>
+<p>Updating once more shows the additional 64 samples loaded from the
+target but still did not yet reach the limit of the <a class="reference external" href="#display-data-size">Display Data Size</a> option.</p>
+<p><img alt="image5" src="_images/ccs_debug-graph_time_plot_4.png" /></p>
+<p>The fourth update shows the entire history of the samples, reaching the
+limit of the <a class="reference external" href="#display-data-size">Display Data Size</a> option.</p>
+<p><img alt="image6" src="_images/ccs_debug-graph_time_plot_5.png" /></p>
+<p>The fifth update discarded the initial buffer size and reflects this by
+setting the origin of the X axis as a multiple of the <a class="reference external" href="#acquisition-buffer-size">Acquisition
+Buffer Size</a> value of 64. Subsequent
+updates will keep increasing the origin of the X axis.</p>
+<p><img alt="image7" src="_images/ccs_debug-graph_time_plot_6.png" /></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Despite the resemblance, the graph utility cannot be equivalent to a high speed real-time oscilloscope, given the update rate through the Debug Probe and the latencies involved with the breakpoints can only reach as low as 0.1s under extremely ideal conditions. Also, the <a class="reference external" href="#sampling-rate-hz">Sampling Rate</a> is entirely arbitrary and does not reflect any peripherals configured on the target device.</p>
+<p class="last">In summary, consider the graph tool as a post-processing utility for signal analysis.</p>
+</div>
+</div>
+</div>
+<div class="section" id="frequency-domain">
+<h3>7.7.1.2. Frequency domain<a class="headerlink" href="#frequency-domain" title="Permalink to this headline">¶</a></h3>
+<p>When a frequency domain graph view is opened, it contains the same
+regions of interest shown in the <a class="reference external" href="#time-domain">Time domain</a> graph,
+with the only difference being located in the X axis:</p>
+<ul class="simple">
+<li>The maximum limit of the X axis is always fixed and relative to the <a class="reference external" href="#sampling-rate-hz">Sampling Rate (Hz)</a> value:</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[X_{MAX} = \frac{Sampling\ Rate}{2}\]</div>
+<ul class="simple">
+<li>The X axis values are the ratio between the <a class="reference external" href="#acquisition-buffer-size">Acquisition Buffer Size</a> and the <a class="reference external" href="#sampling-rate-hz">Sampling Rate (Hz)</a>:</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[X_{increment} = {Acquisition\ Buffer\ Size} \times \frac{1}{Sampling\ Rate}\]</div>
+<p>Given there is no <a class="reference external" href="#display-data-size">Display Data Size</a> parameter
+for a frequency domain graph (FFT Magnitude, Complex FFT, FFT Magnitude
+and Phase), the sample history is not available and requires changing
+the graph to a Waterfall.</p>
+<p>To illustrate, the image below shows a basic FFT Magnitude graph of the
+same signal shown in the <a class="reference external" href="#time-domain">Time domain</a> section above.</p>
+<p><img alt="image8" src="_images/ccs_debug-graph_fftmag_plot_1.png" /></p>
+<p>This graph is plotted using the same <a class="reference external" href="#acquisition-buffer-size">Acquisition Buffer
+Size</a>, a Hamming <a class="reference external" href="#fft-windowing-function">FFT Window
+Function</a> and a <a class="reference external" href="#fft-order">FFT Order</a> of 5
+or 32 bins (<a class="reference external" href="#fft-frame-size">FFT Frame Size</a>). Also, the <a class="reference external" href="#sampling-rate-hz">Sampling
+Rate</a> is set to <strong>1HZ</strong> to facilitate calculations.</p>
+<p>Increasing the <a class="reference external" href="#fft-order">FFT Order</a> to 6 improves the accuracy of
+the FFT. This allows finding the value of the frequency component using
+the mouse cursor. Simply click on the waveform with the left click mouse
+to find the amplitude and frequency at that specific point.</p>
+<p><img alt="image9" src="_images/ccs_debug-graph_fftmag_plot_2.png" /></p>
+<p>Calculating the center frequency: The first waverform has two periods
+over 64 samples, yielding a sampling frequency 32 times higher than the
+fundamental component. This is reflected in the X axis as:</p>
+<div class="math notranslate nohighlight">
+\[X_{center} = 2 \times \frac{1}{Acquisition\ Buffer\ Size} ⇒ X_{center} = 0.03125\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A <a class="reference external" href="#fft-order">FFT Order</a> too high can cause severe aliasing and magnitude distortion.</p>
+</div>
+<p>The second update shows the waverform with three periods over 64
+samples, which yields a frequency center of X1 = 0.046875. In this
+screen the Measurement Marks were used to perform a more accurate
+measurement of the frequency. Simply right-click with the mouse in the
+middle of the main graph area and select the option <strong>Insert Measurement
+Mark</strong>.</p>
+<p><img alt="image10" src="_images/ccs_debug-graph_fftmag_plot_3.png" /></p>
+<p>The third and fourth updates show the correlated frequencies of the
+newer updates X2 = 0.0625 and X3 = 0.078125, and the measurement markers
+also show the differences between the various measurements.</p>
+<p><img alt="image11" src="_images/ccs_debug-graph_fftmag_plot_4.png" /></p>
+<p><img alt="image12" src="_images/ccs_debug-graph_fftmag_plot_5.png" /></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Despite the resemblance, the graph utility cannot be made equal to a high speed spectrum analyzer, given the update rate through the Debug Probe and the latencies involved with the breakpoints can only reach as low as 0.1s under extremely ideal conditions. Also, the <a class="reference external" href="#sampling-rate-hz">Sampling Rate</a> is entirely arbitrary and does not reflect any peripherals configured on the target device.</p>
+<p class="last">In summary, consider this tool as a post-processing utility for signal analysis.</p>
+</div>
+</div>
+</div>
+<div class="section" id="graph-properties">
+<h2>7.7.2. Graph properties<a class="headerlink" href="#graph-properties" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="properties-available-for-all-graphs">
+<h3>7.7.2.1. Properties available for all graphs<a class="headerlink" href="#properties-available-for-all-graphs" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Acquisition Buffer Size</li>
+<li>DSP Data Type</li>
+<li>Index Increment</li>
+<li>Interleaved Data Sources</li>
+<li>Q Value</li>
+<li>Sampling Rate HZ</li>
+<li>Signal Type</li>
+<li>Start Address <a class="footnote-reference" href="#id4" id="id2">[1]</a></li>
+<li>Grid Style</li>
+<li>Data Plot Style <a class="footnote-reference" href="#id5" id="id3">[2]</a></li>
+</ul>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td><p class="first">Can be shown in one of the forms below depending on the graph and the signal types (i.e.&nbsp;Real/Complex) and data interleaving</p>
+<ul class="last simple">
+<li>Start Address</li>
+<li>Start Address A and Start Address B</li>
+<li>Start Address Real Data</li>
+</ul>
+</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>Not available to FFT Waterfall</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="properties-only-available-for-time-domain-graphs">
+<h3>7.7.2.2. Properties only available for time domain graphs<a class="headerlink" href="#properties-only-available-for-time-domain-graphs" title="Permalink to this headline">¶</a></h3>
+<p>Single and Dual time graphs</p>
+<ul class="simple">
+<li>Display Data Size</li>
+<li>Time Display Unit</li>
+<li>Use DC value for Graph</li>
+<li>DC value for Graph</li>
+</ul>
+</div>
+<div class="section" id="properties-only-available-for-frequency-domain-graphs">
+<h3>7.7.2.3. Properties only available for frequency domain graphs<a class="headerlink" href="#properties-only-available-for-frequency-domain-graphs" title="Permalink to this headline">¶</a></h3>
+<p>FFT Magnitude, FFT Magnitude &amp; Phase, FFT Complex, FFT Waterfall</p>
+<ul class="simple">
+<li>Frequency Display Unit</li>
+<li>FFT Frame Size - Read-only property that is presented to the user;
+calculated based on the value of FFT order.</li>
+<li>FFT Order</li>
+<li>FFT Window Function</li>
+</ul>
+</div>
+<div class="section" id="properties-only-available-for-fft-waterfall">
+<h3>7.7.2.4. Properties only available for FFT Waterfall<a class="headerlink" href="#properties-only-available-for-fft-waterfall" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>MaxY</li>
+<li>Waterfall Height</li>
+<li>Waterfall Frames</li>
+</ul>
+</div>
+<div class="section" id="detailed-descriptions">
+<h3>7.7.2.5. Detailed descriptions:<a class="headerlink" href="#detailed-descriptions" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="acquisition-buffer-size">
+<h4>7.7.2.5.1. Acquisition Buffer Size<a class="headerlink" href="#acquisition-buffer-size" title="Permalink to this headline">¶</a></h4>
+<p>This option sets the number of samples that the graph tool will read
+from the target at every data refresh.</p>
+<p>In other words, this is the size of the acquisition buffer located at
+the target and starting at the memory address specified by the option
+<a class="reference external" href="#start-address">Start Address</a>. When a graph is updated, the
+acquisition buffer is read from the target and updates the display
+buffer on the host.</p>
+<p>If the target application performs processing of samples one at a time,
+this option must be set to 1. Otherwise, set it to the size of the array
+present on the target.</p>
+<p>Usually a constant value is used for this option (the array size), but
+any valid C expressions can be specified as well. The expression is
+recalculated every time samples are read from the target.</p>
+</div>
+<div class="section" id="dsp-data-type">
+<h4>7.7.2.5.2. DSP Data Type<a class="headerlink" href="#dsp-data-type" title="Permalink to this headline">¶</a></h4>
+<p>This option allows selecting the following data types:</p>
+<ul class="simple">
+<li>64 bit signed integer</li>
+<li>64 bit floating point</li>
+<li>32 bit signed integer</li>
+<li>32 bit unsigned integer</li>
+<li>32 bit floating point</li>
+<li>16 bit signed integer</li>
+<li>16 bit unsigned integer</li>
+<li>8 bit signed integer</li>
+<li>8 bit unsigned integer</li>
+</ul>
+<p>The data type is specified by the application running on the target and
+is a common source of errors in the graphed data. Special attention is
+always required to properly set this option.</p>
+</div>
+<div class="section" id="index-increment">
+<h4>7.7.2.5.3. Index Increment<a class="headerlink" href="#index-increment" title="Permalink to this headline">¶</a></h4>
+<p>This option allows specifying the sample index increment to be plotted.
+In other words, the value on this option tells the graph tool to skip
+the positions on the array in order to fetch the subsequent samples.</p>
+<p>This offset permits parsing the data array extracting signal data from
+multiple sources using a single graphical display. Therefore, multiple
+data sources can be specified for display by entering a corresponding
+offset value in this option.</p>
+<p>This option only makes sense to be used when the <a class="reference external" href="#acquisition-buffer-size">Acquisition Buffer
+Size</a> is greater than 1.</p>
+<p>For example, the array below (my_array) has three interleaved signals (S1, S2 and S3).</p>
+<ul class="simple">
+<li>To fetch the S1 samples, set the <a class="reference external" href="#start-address">Start Address</a> to my_array and the Index Increment to 3.</li>
+<li>To fetch the S2 samples, the Index increment stays the same but the <a class="reference external" href="#start-address">Start Address</a> is set to my_array + 1.</li>
+<li>Similar logic for the S3 samples: keep the Index Increment but set <a class="reference external" href="#start-address">Start Address</a> to my_array + 2.</li>
+</ul>
+<div class="code cpp highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">uint16_t</span> <span class="n">my_array</span><span class="p">[</span><span class="mi">12</span><span class="p">];</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>S1[0]</td>
+<td>S2[0]</td>
+<td>S3[0]</td>
+<td>S1[1]</td>
+<td>S2[1]</td>
+<td>S3[1]</td>
+<td>S1[2]</td>
+<td>S2[2]</td>
+<td>S3[2]</td>
+<td>S1[3]</td>
+<td>S2[3]</td>
+<td>S3[3]</td>
+</tr>
+</tbody>
+</table>
+<p>This option provides a general specification for interleaved sources. If
+the <a class="reference external" href="#interleaved-data-sources">Interleaved Data Sources</a> option is
+enabled, the index increment option is disabled.</p>
+</div>
+<div class="section" id="interleaved-data-sources">
+<h4>7.7.2.5.4. Interleaved Data Sources<a class="headerlink" href="#interleaved-data-sources" title="Permalink to this headline">¶</a></h4>
+<p>Setting this option to <strong>Yes</strong> implies a 2-source input buffer, where the
+odd samples represent the first source and even samples represent the
+second as shown in the illustration below.</p>
+<div class="code cpp highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">uint16_t</span> <span class="n">my_array</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>S1[0]</td>
+<td>S2[0]</td>
+<td>S1[1]</td>
+<td>S2[1]</td>
+<td>S1[2]</td>
+<td>S2[2]</td>
+<td>S1[3]</td>
+<td>S2[3]</td>
+</tr>
+</tbody>
+</table>
+<p>This is a special case of the <a class="reference external" href="#index-increment">Index Increment</a>
+option.</p>
+<p>This option is only shown in certain types of graphs that require
+multiple data sources such as Dual Time, FFT Magnitude with <a class="reference external" href="#signal-type">Signal
+Type</a> set to <strong>Complex</strong> and all other frequency domain
+graphs.</p>
+<p>Setting Interleaved Data Sources to <strong>No</strong> adds two options: <strong>Start Address A</strong>
+and <strong>Start Address B</strong>.</p>
+<p>Setting this option to <strong>Yes</strong> removes the option <a class="reference external" href="#index-increment">Index Increment</a> and the <strong>Start Address B</strong>.</p>
+</div>
+<div class="section" id="q-value">
+<h4>7.7.2.5.5. Q-Value<a class="headerlink" href="#q-value" title="Permalink to this headline">¶</a></h4>
+<p>This option contains a nonzero Q-Value, which are fractional normalized
+representations of integer values (2’s complement). The data is
+interpreted using the Q-Value. They are formed by inserting a decimal
+space in the binary representation of an integer, resulting in greater
+precision.</p>
+<p>The Q-Value indicates amount of the displacement of the decimal point
+starting from the LSB, according to the equation:</p>
+<div class="math notranslate nohighlight">
+\[{New\ Integer\ Value} = \frac{Old\ Integer\ Value}{2Q - Value}\]</div>
+<p>For example, a 16-bit signed integer number with a Q-Value of 11 (for a
+12-bit ADC) and sign extended is represented as follows:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>S</td>
+<td>S</td>
+<td>S</td>
+<td>S</td>
+<td>n</td>
+<td>n</td>
+<td>n</td>
+<td>n</td>
+<td>n</td>
+<td>n</td>
+<td>n</td>
+<td>n</td>
+<td>n</td>
+<td>n</td>
+<td>n</td>
+<td>n</td>
+</tr>
+</tbody>
+</table>
+<p>Additional details can be found at the Wikipedia page
+<a class="reference external" href="https://en.wikipedia.org/wiki/Q_%28number_format%29">Q (number_format)</a></p>
+</div>
+<div class="section" id="sampling-rate-hz">
+<h4>7.7.2.5.6. Sampling Rate (Hz)<a class="headerlink" href="#sampling-rate-hz" title="Permalink to this headline">¶</a></h4>
+<p>This option contains an arbitrary value for the sampling frequency,
+which is used to calculate the time and frequency values displayed on
+the graph.</p>
+<p>Note that this sampling frequency is only arbitrarily
+related to the data acquisition system running on the target, given the
+graph tool does not have any awareness about the hardware.</p>
+<p>For a time domain graph, this option modifies the values for the X axis when the option <a class="reference external" href="#time-display-units">Time Display Units</a> is set to either “s”, “ms” or “us”. The X axis range is:</p>
+<div class="math notranslate nohighlight">
+\[0 \le X \le {Acquisition\ Buffer\ Size} \times \frac{1}{Sampling\ Rate}\]</div>
+<p>For a frequency domain graph (FFT Magnitude, Complex FFT, FFT Magnitude and Phase), this option sets the range of the X axis to:</p>
+<div class="math notranslate nohighlight">
+\[0 \le X \le \frac{Sampling\ Rate}{2}\]</div>
+</div>
+<div class="section" id="start-address">
+<h4>7.7.2.5.7. Start Address<a class="headerlink" href="#start-address" title="Permalink to this headline">¶</a></h4>
+<p>Start Address is the memory address on the target device that contains
+the variable or the start of the buffer to be graphed. When the graph is
+updated, the acquisition buffer, starting at this location, is fetched
+from the target board. This acquisition buffer then updates the display
+buffer, which is plotted according to the configured formatting options.</p>
+<p>Depending on the type of graph and options used, the Start Address can
+be expanded to two entries called <strong>Start Address A</strong> and <strong>Start Address B</strong>.</p>
+<p>Any valid C variables and expressions in the Start Address option can be
+entered, being the most common both C pointers and arrays. This
+expression is recalculated every time samples are read from the target
+device.</p>
+</div>
+<div class="section" id="auto-scale">
+<h4>7.7.2.5.8. Auto Scale<a class="headerlink" href="#auto-scale" title="Permalink to this headline">¶</a></h4>
+<p>This option enables the automatic scale of the Y axis based on the
+displayed data values.</p>
+<p>Disabling Auto Scale opens two more options: <a class="reference external" href="#max-y-value">Max Y
+Value</a> and <a class="reference external" href="#min-y-value">Min Y Value</a>.</p>
+</div>
+<div class="section" id="axis-display">
+<h4>7.7.2.5.9. Axis Display<a class="headerlink" href="#axis-display" title="Permalink to this headline">¶</a></h4>
+<p>This option enables or disables the axis:</p>
+<ul class="simple">
+<li><strong>True:</strong> draws a line for each the X and Y axis intersection at the bottom left of the graph. The X values at the intersection point starts at 0 and increments by multiples of the <a class="reference external" href="#display-data-size">Display Data Size</a>.</li>
+</ul>
+</div>
+<div class="section" id="data-plot-style">
+<h4>7.7.2.5.10. Data Plot Style<a class="headerlink" href="#data-plot-style" title="Permalink to this headline">¶</a></h4>
+<p>This option sets how the data is visually represented in the graph. You
+can choose between the following options:</p>
+<ul class="simple">
+<li><strong>Line:</strong> connects data values with a line</li>
+<li><strong>Bar:</strong> uses vertical lines to display values</li>
+</ul>
+</div>
+<div class="section" id="display-data-size">
+<h4>7.7.2.5.11. Display Data Size<a class="headerlink" href="#display-data-size" title="Permalink to this headline">¶</a></h4>
+<p>This option sets the number of samples (X axis) that are displayed in
+the graph at a given time. This option changes the maximum value of the
+X axis, although the actual value shown will be dependent on the <a class="reference external" href="#time-display-units">Time
+Display Units</a> (either samples or time) and the
+size of the <a class="reference external" href="#acquisition-buffer-size">Acquisition Buffer Size</a>.</p>
+<p>Any valid C expression can be used to specify the Display Data Size
+option. This expression is recalculated every time samples are read from
+the target. This allows to dynamically adjust the size of the display as
+the buffer on the target is increased.</p>
+<p>Signed integer in combination with the <a class="reference external" href="#q-value">Q-Value</a> option can
+be used to normalize fixed-point values.</p>
+</div>
+<div class="section" id="grid-style">
+<h4>7.7.2.5.12. Grid Style<a class="headerlink" href="#grid-style" title="Permalink to this headline">¶</a></h4>
+<p>This option enables a <strong>Minor</strong> (dense) or <strong>Major</strong> (sparse) grid array on the
+plot. The actual intersection points are heavily dependent on the size
+of the view, but the minor grid is always an exact subset of the major
+grid.</p>
+</div>
+<div class="section" id="magnitude-display">
+<h4>7.7.2.5.13. Magnitude Display<a class="headerlink" href="#magnitude-display" title="Permalink to this headline">¶</a></h4>
+<p>This option adjusts the Y axis for <strong>Linear</strong> or <strong>Logarithmic</strong> display. The
+linear display is more commonly used for time domain and phase frequency
+domain graphs (FFT), while the logarithmic is commonly used for
+magnitude frequency domain graphs (FFT).</p>
+</div>
+<div class="section" id="time-display-units">
+<h4>7.7.2.5.14. Time Display Units<a class="headerlink" href="#time-display-units" title="Permalink to this headline">¶</a></h4>
+<p>This option adjusts the units to be displayed in the X axis in one of
+the following formats:</p>
+<ul class="simple">
+<li><strong>sample</strong>: displays the sample count.</li>
+<li><strong>s</strong>, <strong>ms</strong> or <strong>us</strong>: displays the time relative to the sampling period defined by the option <a class="reference external" href="#sampling-rate-hz">Sampling Rate</a>.</li>
+</ul>
+</div>
+<div class="section" id="use-dc-value-for-graph">
+<h4>7.7.2.5.15. Use DC Value for Graph<a class="headerlink" href="#use-dc-value-for-graph" title="Permalink to this headline">¶</a></h4>
+<p>This option sets a fixed DC offset value to the center of the Y axis.
+Enabling this option opens a new option <a class="reference external" href="#dc-value-for-graph">DC Value For
+Graph</a>.</p>
+<p>The effect is that this will plot the graph centered around the value
+specified on the <a class="reference external" href="#dc-value-for-graph">DC Value For Graph</a> option.
+For graphs with 2 plots there will be 2 entries (one for each plot).</p>
+<p>If the DC value is not enabled, the center of the Y axis will be set as
+the average of the minimum and maximum values of the data.</p>
+</div>
+<div class="section" id="dc-value-for-graph">
+<h4>7.7.2.5.16. DC Value For Graph<a class="headerlink" href="#dc-value-for-graph" title="Permalink to this headline">¶</a></h4>
+<p>This option sets the DC offset value for the Y axis. It is only enabled
+when the option <a class="reference external" href="#use-dc-value-for-graph">Use DC Value For Graph</a> is
+enabled.</p>
+</div>
+<div class="section" id="max-y-value">
+<h4>7.7.2.5.17. Max Y Value<a class="headerlink" href="#max-y-value" title="Permalink to this headline">¶</a></h4>
+<p>This option allows specifying the maximum value for the Y axis when
+<a class="reference external" href="#auto-scale">Auto Scale</a> is disabled.</p>
+</div>
+<div class="section" id="min-y-value">
+<h4>7.7.2.5.18. Min Y Value<a class="headerlink" href="#min-y-value" title="Permalink to this headline">¶</a></h4>
+<p>This option allows specifying the minimum value for the Y axis when
+<a class="reference external" href="#auto-scale">Auto Scale</a> is disabled.</p>
+</div>
+<div class="section" id="signal-type">
+<h4>7.7.2.5.19. Signal Type<a class="headerlink" href="#signal-type" title="Permalink to this headline">¶</a></h4>
+<p>This option specifies the type of data that will be used to plot the
+graph:</p>
+<ul class="simple">
+<li><strong>Real:</strong> the array contains the magnitude data of the signal.</li>
+<li><strong>Complex:</strong> the magnitude and phase information are calculated from the real and imaginary parts of the number. When Complex is selected, the Graph Property Dialog box displays the Interleaved Data Source option.</li>
+</ul>
+</div>
+<div class="section" id="fft-frame-size">
+<h4>7.7.2.5.20. FFT Frame Size<a class="headerlink" href="#fft-frame-size" title="Permalink to this headline">¶</a></h4>
+<p>This is a read-only field that shows the number of bins applied to the
+sample data and used to calculate the FFT. It is a direct correlation of
+the <a class="reference external" href="#fft-order">FFT Order</a> option.</p>
+<div class="math notranslate nohighlight">
+\[FFT_{size} = 2 \times FFT_{order}\]</div>
+<p>This helps evaluate the maximum limit of the <a class="reference external" href="#fft-order">FFT Order</a>
+that can be applied to the sampled data. This maximum limit is the
+<a class="reference external" href="#acquisition-buffer-size">Acquisition Buffer Size</a> value.</p>
+</div>
+<div class="section" id="fft-order">
+<h4>7.7.2.5.21. FFT Order<a class="headerlink" href="#fft-order" title="Permalink to this headline">¶</a></h4>
+<p>This option sets the order of the FFT applied to the calculations, which
+is directly reflected by the <a class="reference external" href="#fft-frame-size">FFT Frame Size</a>.</p>
+</div>
+<div class="section" id="fft-windowing-function">
+<h4>7.7.2.5.22. FFT Windowing Function<a class="headerlink" href="#fft-windowing-function" title="Permalink to this headline">¶</a></h4>
+<p>FFT Windowing Function allows you to choose among the following types of
+window functions:</p>
+<ul class="simple">
+<li>Rectangular</li>
+<li>Bartlett</li>
+<li>Blackman</li>
+<li>Hanning</li>
+<li>Hamming</li>
+</ul>
+<p>These functions are applied to the data before the FFT calculation is
+performed.</p>
+<p>Additional details about Window functions can be seen at this <a class="reference external" href="https://training.ti.com/ti-precision-labs-adcs-fast-fourier-transforms-ffts-and-windowing?cu=1128375">TI
+Precision Labs training
+module</a></p>
+</div>
+<div class="section" id="waterfall-height">
+<h4>7.7.2.5.23. Waterfall Height<a class="headerlink" href="#waterfall-height" title="Permalink to this headline">¶</a></h4>
+<p>Waterfall Height (%) specifies the percentage of vertical window height
+used to display a window frame.</p>
+</div>
+<div class="section" id="number-of-waterfall-frames">
+<h4>7.7.2.5.24. Number of Waterfall Frames<a class="headerlink" href="#number-of-waterfall-frames" title="Permalink to this headline">¶</a></h4>
+<p>Number of Waterfall Frames specifies the number of waterfall frames to
+be displayed.</p>
+</div>
+</div>
+</div>
+<div class="section" id="troubleshooting">
+<h2>7.7.3. Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="data-type-considerations">
+<h3>7.7.3.1. Data type considerations<a class="headerlink" href="#data-type-considerations" title="Permalink to this headline">¶</a></h3>
+<p>Given the graph tool is able to work with several different data types, it is mandatory to keep close track of how the data samples are represented in the device memory for a proper data plot.</p>
+<p>A very common scenario is to have signed integers on the target and use
+an unsigned integer as a parameter to the <a class="reference external" href="#dsp-data-type">DSP Data
+Type</a>. That causes very distorted waveforms that
+still resemble the expected signal.</p>
+<p>Another very common mistake is to use a different
+<a class="reference external" href="#q-value">Q-Value</a>, which shows the waveform correctly but with
+incorrect values on the Y axis.</p>
+<p>A bit less common is to use a completely different <a class="reference external" href="#dsp-data-type">DSP Data
+Type</a> (float instead of integer or vice-versa), which
+tends to produce either a graph with very high limits or completely
+random data.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ccs_debug-image.html" class="btn btn-neutral float-right" title="7.8. Image Analyzer" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sdto_dss_handbook.html" class="btn btn-neutral" title="7.6. Scripting" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyight 1995-2019</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'12.8.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="https://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="This is an example which demonstrates how to use a GEL timer to periodically read the value of a variable and output it to the C I/O Console View in CCS"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Composer Studio Product Page">
+<meta name="product-link" content="https://www.ti.com/tool/CCStudio">
+
+<!-- Change the title text for your page -->
+<title>Gel Example: Periodic Recording of a Variable</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+Overview
+---
+This is an example which demonstrates how to use a GEL timer to periodically read the value of a variable and output it to the C I/O Console View in CCS.
+
+
+Example
+---
+In the example below, the `GEL_SetTimer()` call is used to create a periodic timer that calls another GEL function, `recordVariables()`, when the timer goes off. The `recordVariables()` function will output a string and the value of a variable to the console window. The example prints the value of a variable called `CputTimer0.InterruptCount` which appears in a cpu timer example program, but any global variable in the program being debugged will work.
+
+```C
+menuitem "Record Variables";
+
+hotmenu startTimer()
+{
+    // GEL_SetTimer(milliseconds, timer_id, "callback");
+    // Parameters
+    //   milliseconds: specifies the amount of time in milliseconds that should elapse between callbacks.
+    //   timer_id:     specifies a number to uniquely identify this timer.
+    //   callback:     is a string representing the GEL expression to evaluate every time the timer fires.
+
+    GEL_SetTimer(5000, 1, "recordVariables()");
+}
+
+hotmenu stopTimer()
+{
+    // GEL_CancelTimer(timer_id);
+    // Parameter:
+    //   timer_id: the id of the timer to cancel
+
+    GEL_CancelTimer(1);
+}
+
+recordVariables()
+{
+    GEL_TextOut("CpuTimer0.InterruptCount: %d \n",,,,,CpuTimer0.InterruptCount);
+}
+```
+
+The timer can be enabled and disabled using `startTimer()` and `stopTimer()` functions respectively. When the GEL script is loaded in CCS, these functions will appear in a **Record Variables** hotmenu, under **Scripts** in the menu bar.
+
+![Under **Scripts** in the menu bar, there is a **Record Variables** submenu containing two items **startTimer** and **stopTimer**.](images/ccs_gel_periodic_var_hotmenu.png)
+
+[[r Note:
+GEL memory accesses are normally intrusive. This means that they will momentarily halt the target to read memory. If the debugger is configured to not automatically allow target halts for debugger memory read requests, then the read will fail.
+
+If your device has real-time memory access support and it is enabled, GEL will be able to read memory non-intrusively. You can learn more about real-time memory access [here](http://processors.wiki.ti.com/index.php/CCS_Modules_Library#Real-time_Debug).]]
+
+
+Enabling Output to a File
+---
+You can have CCS stream all C I/O output to a file so that the output of the GEL functions above gets recorded in a file.
+
+1.  Click on **Run &rarr; Debug Configurations** to open the **Debug Configurations** window.
+
+2.  Select the debug configuration you wish to modify in the left pane. If you don't already have a debug configuration for your project, debugging it once will cause CCS to create one.
+
+3.  Select the **Common** tab in the right pane.
+
+4.  Under **Standard Input and Output**, enable the **Output File** option and enter a file location.
+
+![The Debug Configurations Window with an output file selected under the Common tab.](images/ccs_gel_periodic_var_output_file.png)
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

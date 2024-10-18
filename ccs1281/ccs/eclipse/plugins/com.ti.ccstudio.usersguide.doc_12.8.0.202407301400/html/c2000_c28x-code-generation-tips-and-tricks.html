@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="C28x Code Generation Tips and Tricks"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Generation Tools">
+<meta name="product-link" content="https://www.ti.com/tool/TI-CGT">
+
+<!-- Change the title text for your page -->
+<title>C28x Code Generation Tips and Tricks</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+<!-- Add your markdown source here! -->
+#Introduction
+
+A listing of tips and tricks related to the Code Generation Tools for C28x based devices.
+
+#Other Resources
+
+* [TMS320C28x Optimizing C/C++ Compiler User's Guide (spru514)](https://www.ti.com/lit/pdf/spru514)
+* [TMS320C28x Assembly Language Tools User's Guide (spru513)](https://www.ti.com/lit/pdf/spru513)
+
+The following is great general Code Generation Tools Information. Much of it applies to 28x:
+
+* [Compiler Wiki Area](http://processors.wiki.ti.com/index.php/Compiler)
+* [Code Gen Tools Tips and Tricks for Beginners Wiki Article](http://processors.wiki.ti.com/index.php/CGT_Tips_%26_Tricks_for_Beginners)
+* [Code Generation Tools FAQ Wiki Article](http://processors.wiki.ti.com/index.php/Code_Generation_Tools_FAQ)
+
+#Compiler Support Options
+
+* Please visit the [Before asking for CGT support Wiki Article](http://processors.wiki.ti.com/index.php/Before_asking_for_CGT_support). 
+This page also describes how to submit a testcase to TI support.
+* Check the [SDOWP](https://cqweb.ext.ti.com/cqweb/main?command=GenerateMainFrame&service=CQ&schema=SDo-Web&contextid=SDOWP&username=readonly&password=readonly) online bug database
+
+
+#Frequently Asked Questions
+
+##A Minimal Project
+
+**Q: What is the minimum that I need in my project to get started?**
+
+The easiest way is to start with a project supplied from TI. Examples are provided 
+with your kit, or can be downloaded as part of [C2000Ware](https://www.ti.com/tool/C2000WARE). 
+C2000Ware is a cohesive set of software and documentation created to minimize 
+development time. It includes device-specific drivers, libraries, and peripheral examples.
+
+The following examples are simplified lists of what these projects include:
+
+***Any minimal C based project for a fixed-point 28x will have:***
+
+* [Compiler options](#compiler-and-linker-options): --unified_memory --symdebug:dwarf --issue_remarks --warn_sections
+* a .c file with main()
+* [run-time support library](#run-time-support-library) rts2800_ml.lib
+* Appropriate [linker command file](#linker-questions). The best way is to start with one provided with TI examples mentioned above.
+* Header files to facilitate programming C28x system control and peripherals.
+
+***Any minimal C based project for a 28x with Floating-Point will have:***
+
+* [Compiler options](#compiler-and-linker-options): --float_support=fpu32 --unified_memory --symdebug:dwarf --issue_remarks --warn_sections
+* a .c file with main()
+* [run-time support library](#run-time-support-library) rts2800_fpu32.lib
+* Appropriate [linker command file](#linker-questions). The best way is to start with one provided with TI examples mentioned above.
+* Header files to facilitate programming C28x system control and peripherals.
+
+If your project also includes CLA code, then you will need to add the switch to 
+enable the support (--cla_support, and specify the CLA type.). Likewise, if your project includes VCU 
+assembly code, then you will need to add the switch to enable the support
+(--vcu_support, and specify the VCU type).
+
+##Compiler and Linker Options
+
+**Q: What are recommended compiler options for the main CPU?**
+
+These are the basic recommended options to get started. As you develop your code 
+you may change the optimizer settings (see the optimizer section).
+
+**Commonly Used Compiler Options for the C28x CPU**
+
+
+Options to Specify Processor Type                                | Option                            | Alias    |  Notes
+-----------------------------------------------------------------|-----------------------------------|----------|----------------
+Specify C28x with Single Precision Floating-Point                | --float_support=fpu32             |          | Enables generation of single-precision (32-bit) floating-point assembly instructions. 
+Enable support for the Viterbi, Complex Math and CRC Unit (VCU)  | --vcu_support=vcu0, vcu2, vcrc    |          | Enables the assembler to accept VCU assembly instructions.           
+
+Required Memory Model Options                                    | Option                            | Alias    |  Notes
+-----------------------------------------------------------------|-----------------------------------|----------|----------------
+Generates code for the unified memory model                      | --unified_memory                  | -mt      | Indicates memory is available in both program and data space. This allows the compiler to use instructions such as PREAD/PWRITE and MAC that require unified memory.
+          
+Debug / Optimizer                                                | Option                            | Alias    |  Notes
+-----------------------------------------------------------------|-----------------------------------|----------|----------------
+Generate symbolic debug information (default)                    | --symdebug:dwarf                  | -g       | When first writing code turn on full symbolic debug and get the code working. Once code is debugged and stable the user can try --symdebug:none which disables symbolic debugging. Doing so can, however, severely limit debug capability so you may only want to apply it to time critical code.
+Optimization Options                                             | --opt_level=off, 0-4              | -On      | This controls the optimizer for different levels.
+
+Highly Recommended for Troubleshooting                           | Option                            | Alias    |  Notes
+-----------------------------------------------------------------|-----------------------------------|----------|----------------
+Issues remarks (non-serious warnings)                            | --issue_remarks                   | -pdr     | These remarks often point out real issues in the code that should be addressed to avoid bugs. **TI recommends ALWAYS building with -pdr.**  
+Link step: warn sections                                         | 	--warn_sections                  | -w       | Displays a message when an undefined output section is created. 
+Issue diagnostics in verbose form                                | --verbose diagnostics             |          | Provides verbose diagnostics that display the original source with line-wrap and indicate the position of the error in the source line. This can be very useful if an error message is not clear.           
+
+**Q: What are recommended compiler options for the CLA CPU?**
+
+These are the basic recommended options to get started.
+
+**Commonly Used Compiler Options for the CLA**
+
+Options to Specify Processor Type                                | Option                            | Alias    |  Notes
+-----------------------------------------------------------------|-----------------------------------|----------|----------------
+Enable support for the Control Law Accelerator                   | --cla_support=cla0, cla1, cla2    |          | Enables the assembler to accept CLA assembly instructions.
+
+**Q: What is "Unified Memory Model"?**
+
+Unified memory model means that any memory block can be used as either program 
+memory or data memory.
+
+All memory blocks including SARAM, flash, ROM, OTP and XINTF memory is unified 
+on the 28x devices. Peripheral registers are typically only mapped to data space.
+
+Specifying unified memory model in the build options is important because it 
+allows the compiler to generate efficient instructions like PREAD/PWRITE/MAC. 
+The compiler will not access anything that is volatile using the program space 
+bus (i.e. peripheral registers).
+
+##Run-Time Support Library
+
+**Q: What is the runtime library for?**
+
+There is a lot of information on this in the 
+[TMS320C28x Optimizing C/C++ Compiler User's Guide (spru514)](https://www.ti.com/lit/pdf/spru514). 
+At a high level, the run-time-support library contains the following:
+
+* ANSI/ISO C/C++ standard library
+* C I/O library
+* Low-level support functions that provide I/O to the host operating system
+* System startup routine, _c_int00
+
+**Q: Where are the RTS functions documented?**
+
+* TI does not provide documentation about the standard C libraries. Several references in the form of internet pages and books have already been published about this subject.
+* Similarly, if you are using the C++ STL library and have questions about the API, TI does not provide documentation for that. The file <readme.1st> contains the following references:
+> 1. The Standard C++ Library: A Tutorial and Reference, Nicolai M. Josuttis, Addison-Wesley, [ISBN 0-201-37926-0](http://processors.wiki.ti.com/index.php/Special:BookSources/0201379260)
+> 2. The C++ Programming Language (Third or Special Editions), Bjarne Stroustrup, Addison-Wesley, [ISBN 0-201-88954-4](http://processors.wiki.ti.com/index.php/Special:BookSources/0201889544) or 0-201-70073-5.
+> 3. Dinkumware's online reference at http://dinkumware.com/manuals/
+> 4. C++ online reference at http://www.cplusplus.com/
+* A useful utility for checking C syntax and issues is Lint: http://www.splint.org/
+
+**Q: Which runtime support library should I use?**
+
+In the past, there have been a number of RTS library builds provided by default 
+with the Codgen tools. To allow for quicker compiler release downloads, current 
+compiler releases pre-build only a small number of very commonly-used libraries. 
+The missing libraries, or libraries with custom build options, can be built by 
+the user as desired.
+
+To learn how to modify and rebuild the library, please refer to the [Mklib Wiki Article](http://processors.wiki.ti.com/index.php/Mklib).
+
+**C28x Run-Time Support Libraries**
+
+Most Commonly Used                   | Description                            | Option Requirements    
+-------------------------------------|----------------------------------------------------------
+rts2800_ml.lib                       | C/C++ default run-time object library. This is the library to use for the fixed-point CPU         | default settings
+rts2800_fpu32.lib                    | C/C++ run-time object library for FPU targets. Can be combined with the FPU FastRTS library. | --float_support=fpu32     
+
+For C++ Exception Handling           | Description                            | Option Requirements
+-------------------------------------|------------------------------
+rts2800_ml_eh.lib                    | C/C++ default run-time object library with exception handling support. Note: exception handling is costly in cycles and size, even if an exception is never thrown. Only use this library if you require exception handling. | --exceptions
+rts2800_fpu32_eh.lib	             | C/C++ run-time object library for FPU targets with exception handling support. Note: exception handling is costly in cycles and size, even if an exception is never thrown. Only use this library if you require exception handling.    | --float_support=fpu32 --exceptions
+
+**Q: Where is the runtime support library located?**
+
+It will be in the /lib directory of your codegen install directory.
+* For a newer install of Code Composer Studio (CCS), look in the tools directory of your CCS install. For example: C:\ti\ccsv5\tools\compiler
+* Previously compilers were being installed in Program Files. For example: C:\Program Files\Texas Instruments\C2000 Code Generation Tools 5.2.4
+
+**Q: How do I add the RTS library to my project?**
+
+**Command Line:**
+
+Use the -l < library name > option to include the library.
+
+***In CCS 5 and higher:***
+
+1. In Code perspective, right click on the project name and select "properties".
+2. Expand the C2000 linker -> File search path options.
+3. Under "Include Library File" specify the RTS library
+4. The search path should already be specified for the codegen install / lib directory
+
+![](./images/rts-ccs5.jpg)
+
+***In CCS 4:***
+
+1. In Code perspective, right click on the project name and select "properties".
+2. Under C/C++ Build->Tool Setting Tab, expand the "C2000 Linker" options.
+3. Under "File Search Path" specify the RTS library in the Include Library File box
+
+![](./images/rts-ccs4.jpg)
+
+***In CCS 3.3:***
+
+There are two options:
+1. Project->Add Files To Project, Select obj/lib, Browse to the library and add it
+2. Project->Build Options->Linker->Libraries and add the RTS library. This will use the RTS library from the /lib directory of the compiler you are using.
+
+![](./images/rts-ccs3-3.jpg)
+
+**Q: I want to modify and rebuild the library or I want to build it with different compiler options. How can I rebuild it?**
+
+Newer versions of the compiler (6.0.2 and later) provide a utility for rebuilding 
+the RTS library. Please see the [Mklib Wiki Article](http://processors.wiki.ti.com/index.php/Mklib) for more information.
+
+For older toolsets, in the codegen tools lib directory, unzip the rtssrc.zip file. 
+There should be a rtssrc_zip_README.txt file that describes the steps to rebuild the libraries.
+
+**Q: I need to be able to build the rts library for audit purposes. How can I do this?**
+
+Newer versions of the compiler (6.0.2 and later) provide a utility for rebuilding 
+the RTS library. Please see the [Mklib Wiki Article](http://processors.wiki.ti.com/index.php/Mklib) for more information.
+
+For older versions of the compiler: in the codegen tools lib directory, unzip the 
+rtssrc.zip file. There should be a rtssrc_zip_README.txt file that describes the steps to rebuild the libraries.
+
+##Optimization
+
+**Q: Can you give me some tips on using the optimizer?**
+
+There are a lot of options when it comes to using optimization. Refer to the 
+[TMS320C28x Optimizing C/C++ Compiler User's Guide (spru514)](https://www.ti.com/lit/pdf/spru514) 
+for a detailed explanation. A simple plan would be:
+
+* Partition code into separate files to allow for selective optimization levels.
+* Start with Symbolic Debug Enabled
+> * Write, compile, and debug code without using the optimizer: Get the code functioning!
+> * Use full symbolic debug (--symdebug:dwarf or -g) at this time to have full symbolic debug.
+* Turn on the optimizer and verify code functionality. Debug if necessary.
+> * The optimizer has different levels (0, 1, 2, and 3), which controls the type and degree of optimization.
+>> * You must specify an optimization level option, otherwise the optimizer is not used.
+>> * Level 0 (--opt_level=0 or -o0) is the lowest level
+>> * Level 3 (--opt_level=3 or -o3) is the highest level
+>> * Start with the lowest level and work your way up.
+> * Level 4: As of Codegen 6.0.1, a 4th level has been added (--opt_level=4 or -o4).
+>> * This level will perform a post-link optimization of the code. The downside is it will increase build time but has the potential to improve performance by having a view of the entire application after the link step.
+* To debug optimized code, use the --opt_level option in conjunction with symbolic debug (-g)
+> * This yields the maximum optimization that is still compatible with debug.
+> * See also [Debug versus Optimization Tradeoff](http://processors.wiki.ti.com/index.php/Debug_versus_Optimization_Tradeoff).
+> * Optimization Level 2 (-o2) is often a good compromise.
+* Remove symbolic debug (-g) and use --symdebug:none:
+> * As a final step, you may wish to compile critical code using --symdebug:none instead of full symbolic debug. This will allow the scheduler to move instructions that it could not move with symbolic debug enabled. For example, with the FPU32 instruction set the compiler may be able to make use of more parallel instructions or reduce the number of NOPs in the code. This "moving around" may change the ability to debug the code, however, so you may want to consider only applying this option to particular files with time critical code.
+* Do not use -ss
+> * Using C source interlisting (-ss) will hinder optimization. Note: -s does not hinder optimization.
+
+**Q: What else can I do to improve performance?**
+* If you are running code from flash, make sure to enable the prefetch buffer and configure the waitstates appropriately. Examples of how to do this are provided in the device support package for each particular device.
+* Copy time critical code from its load address in flash to RAM for execution. This application note explains how: [Running an Application from Flash (spra958)](https://www.ti.com/lit/pdf/spra958).
+* Evaluate the partitioning of the code and data and modify the linker file if needed:
+> * If code accesses data within the same physical memory, then performance will degrade due to resource conflicts. It is better to place code and the data it accesses in separate blocks.
+> * Wait states will degrade performance. Most SARAM is zero-wait on 28x devices. There are some blocks, however, that are not on 2833x devices. Always check the data manual to find the wait states for each physical block and whether it applies to program or data accesses.
+> * If code makes extensive use of two data buffers, putting each buffer in a different RAM block may improve performance. The goal is to reduce the pipeline stalls due to write and read occurring in the same cycle to different buffers.
+> * For Frequently Asked Linker questions - Please see the [C28x_Compiler - Understanding Linking Wiki Article](http://processors.wiki.ti.com/index.php/C28x_Compiler_-_Understanding_Linking)
+* Use the --unified_memory compiler switch. This will allow the compiler to use instructions like MAC and PREAD/PWRITE that require unified memory.
+* Constant arrays: If access to a constant array is time critical, then consider copying it from its load address in flash to a RAM address for execution time. This application note explains how: [Running an Application from Flash (spra958)](https://www.ti.com/lit/pdf/spra958).
+* For code which will run in flash or external memory, apply the -me compiler option. This will change "prefetch branch" instructions (SBF/BF) to normal branch instructions (SB/B). Prefetch branch instructions are efficient from RAM but slower from waitstated memory. Apply this option to files that contain code that will be run from flash. (In CCS you can right click on a file to apply a per-file option).
+* Avoid some calls and return operations by allowing the compiler to inline some of your functions.
+* Other tips can be found here: [C2000 Performance Tips and Tricks](http://processors.wiki.ti.com/index.php/C2000_Performance_Tips_and_Tricks)
+
+**Q: My code worked well until I turned on optimization. What could be the issue?**
+
+Enabling optimizations may uncover bugs such as:
+
+* Uninitialized variables
+* Loose adherence to ANSI standard
+* Failure to use volatile
+* Assembly function not correctly saving/restoring registers
+
+**Q: How can volatile help?**
+Volatile tells the compiler that a variable may change in another context. If it is not used then the compiler will often decide the variable can not change and therefore there is no reason to read it more than once, or even at all. Examples of volatile:
+
+* Variables that can change in an interrupt or another task
+* Peripheral registers that change via hardware
+* Variables that other processors can change.
+
+##Variable Types
+
+**Q: I defined an array of char, but each value is taking up 16 bits!**
+
+On 28x bytes and words are equivalent - that is, both int and char are 16-bits. This yields sizeof(int) == sizeof(char) == 1.
+
+**Q: Doesn't sizeof(int) == sizeof(char) == 1 go against the ANSI standard?**
+
+By ANSI/ISO C definition, the sizeof operator yields the number of bytes required to store an object. ANSI/ISO further stipulates that when sizeof is applied to char, the result is 1. Since the TMS320C28x char is 16 bits (to make it separately addressable), a byte is also 16 bits.
+
+**Q: If char is 16 bits, how can I access 8-bit values efficiently?**
+
+To access data in increments of 8 bits, use the __byte() intrinsic described in 
+[TMS320C28x Optimizing C/C++ Compiler User's Guide (spru514)](https://www.ti.com/lit/pdf/spru514). 
+Also please refer to this wiki article: [Byte Accesses with the C28x_CPU](http://processors.wiki.ti.com/index.php/Byte_Accesses_with_the_C28x_CPU).
+
+##Accessing Assembly from C Questions
+
+**Q: Is there a way to access specific assembly instructions from C code?**
+
+The C28x compiler includes some intrinsics to do this. They are documented in the 
+[TMS320C28x Optimizing C/C++ Compiler User's Guide (spru514)](https://www.ti.com/lit/pdf/spru514).
+
+**Q: I have a function in assembly and I want to call it from C - How can I access the arguments inside the function?**
+
+You are looking for the C calling conventions. These are documented in the 
+[TMS320C28x Optimizing C/C++ Compiler User's Guide (spru514)](https://www.ti.com/lit/pdf/spru514).
+
+The calling conventions describe:
+
+* How the C environment passes arguments to a function
+* Where the called function should store the return value
+* Which registers will be saved and restored by the caller
+* Which registers will be saved and restored by the called function
+
+##Undefined Symbols
+
+**Q: When I build I get a bunch of undefined symbols with $ in them like FS$$MPY, FS$$TOL - what are these?**
+
+It appears that you need to include the [Run-Time Support (RTS) Library](#run-time-support-library) in your project. The RTS library should be in your code generation tools ./lib directory.
+
+**Q: When I build I get a linker error that _c_int00 is not defined?**
+
+_c_int00 is a sample bootstrap routine is provided in the [Run-Time Support (RTS) Library](#run-time-support-library). The RTS library should be in your code generation tools ./lib directory.
+
+
+##Linker Questions
+
+**Q: Where is the linker command file format documented?**
+
+Please refer to [TMS320C28x Assembly Language Tools User's Guide (spru513)](https://www.ti.com/lit/pdf/spru513)
+
+**Q: Where can I learn more about linking?**
+
+For Frequently Asked Linker questions - Please see the [C28x_Compiler - Understanding Linking Wiki Article](http://processors.wiki.ti.com/index.php/C28x_Compiler_-_Understanding_Linking).
+
+##C I/O (printf(), sprintf(), puts())
+
+**Q: I'm trying to add printf() to my project and it doesn't work. Help!**
+
+Please see [Tips for using printf Wiki Article](http://processors.wiki.ti.com/index.php/Tips_for_using_printf).
+
+**Q: printf()/sprintf() in 5.2.x seems to be using a lot more stack than older tools?**
+
+The printf routines were reworked to support multiple levels of support for printf 
+format specifiers and general clean up to reduce code size and overall memory size 
+(including bss). The function _printf (which is indirectly called from sprintf) 
+uses a local array with a size of 400 elements. This has always been there and 
+needs to be that big to be compliant, and we want to avoid using malloc. The 
+difference is that in earlier versions of the tools, this array was previously 
+static and went into bss instead of on the stack. The thinking behind this was 
+that if the user is using C I/O they would probably be using a decent stack size 
+anyway and still want to minimize bss.
+
+**Q: I don't need all the features of printf()/sprintf(). Can I do something to minimize size?**
+
+Knowing that the C I/O support may not suit every user as provided, we support 
+the different levels of format specifier (via the compiler option 
+--printf_support=full, minimal, nofloat) and also provide source so customers 
+can change it to suit their needs. For instance, the source file _printfi.c can 
+be changed to make the array static and _printfi.c can be recompiled.
+
+Enable support for smaller, limited versions of the printf and sprintf run-time-support functions:
+
+--printf_support={full|nofloat|minimal}
+
+The valid values are:
+* full: Supports all format specifiers. This is the default.
+* nofloat: Excludes support for printing floating point values. Supports all format specifiers except %f, %g, %G, %e, and %E.
+* minimal: Supports the printing of integer, char, or string values without width or precision flags. Specifically, only the %%, %d, %o, %c, %s, and %x format specifiers are supported
+
+There is no run-time error checking to detect if a format specifier is used for 
+which support is not included. The --printf_support option precedes the --run_linker option, 
+and must be used when performing the final link.
+
+##Industry Standards
+
+**Q: Does the 28x compiler conform to any industry standard?**
+
+Please see [TI Compilers and Industry Standards Wiki Article](http://processors.wiki.ti.com/index.php/TI_Compilers_and_Industry_Standards).
+
+##Extensions
+
+**Q: Does the 28x compiler support GCC extensions?**
+
+Please see the [GCC Extensions in TI Compilers Wiki Article](http://processors.wiki.ti.com/index.php/GCC_Extensions_in_TI_Compilers).
+
+**Q: Does the 28x compiler support C99 extensions?**
+
+Please see the [C99 Extensions Supported in C89 Mode in TI Compilers Wiki Article](http://processors.wiki.ti.com/index.php/C99_Extensions_Supported_in_C89_Mode_in_TI_Compilers).
+
+##Error Messages
+
+Please refer to the [C28x Common Compiler Errors and Warinings Wiki Article](http://processors.wiki.ti.com/index.php/C28x_Common_Compiler_Errors_and_Warnings).
+
+##Updates and Issues
+
+Q: How can I keep abreast of the known issues with the codegen tools?
+
+The known issues are stored in a [ClearQuest](http://processors.wiki.ti.com/index.php/Category:ClearQuest) database. 
+There are two ways to access that database:
+
+1. Access incident reports can be achieved via that link: https://cqweb.ext.ti.com/cqweb/main?command=GenerateMainFrame&service=CQ&schema=SDo-Web&contextid=SDOWP&username=readonly&password=readonly. Individual incident reports can be accessed (‘SDSCM000XXXXX’) in the ‘Find Record ID’ box.
+2. Extended account creation and other resources can be performed via that page: https://cqweb.ext.ti.com/pages/SDO-Web.html
+
+There are a number of ways a customer can keep up-to-date on C2000 compiler issues through the ClearQuest web interface. There are "Public Query" folders that follow the forum structure.
+
+To access compiler bugs open the "Public Queries" folder, then the "Development Tools" folder, then the "TI C-C++ Compiler" folder.
+
+There are several C28x specific queries available from that point. For example, there is a "5.1.X Compiler" defect query that will list all issues against 5.1.X releases.
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

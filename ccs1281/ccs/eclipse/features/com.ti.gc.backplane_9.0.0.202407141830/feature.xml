@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.gc.backplane"
+      label="GUI Composer Backplane Feature"
+      version="9.0.0.202407141830"
+      provider-name="Texas Instruments">
+
+   <description>
+      GUI Composer Backplane Feature
+   </description>
+
+   <copyright>
+      Copyright Texas Instruments 2013-2014
+   </copyright>
+
+   <license>
+      See Code Composer Studio license for special terms and conditions.
+   </license>
+
+   <requires>
+      <import feature="com.ti.tools.common" version="6.0.0.qualifier"/>
+   </requires>
+
+   <plugin
+         id="com.ti.backplane"
+         download-size="0"
+         install-size="0"
+         version="8.0.0.202407141830"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.binding.stream"
+         download-size="0"
+         install-size="0"
+         version="8.0.0.202407141830"/>
+
+   <plugin
+         id="com.ti.gui.composer.webserver.adapter"
+         download-size="0"
+         install-size="0"
+         version="8.0.0.202407141830"
+         unpack="false"/>
+
+</feature>

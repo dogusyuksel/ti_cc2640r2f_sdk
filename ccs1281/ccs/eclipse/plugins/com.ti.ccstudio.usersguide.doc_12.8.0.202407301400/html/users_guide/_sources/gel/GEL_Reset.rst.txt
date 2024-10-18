@@ -1,0 +1,37 @@
+GEL_Reset()
+-----------
+
+Resets target system.
+
+**Syntax**
+
+**GEL_Reset();**
+
+**Parameters**
+
+None.
+
+**Description**
+
+The Reset() function resets the target system and reloads the monitor.
+Note that this is a software reset. The GEL_Reset() function performs a
+device reset via emulation. Peripherals, by design, may or may not be
+affected by this function.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: Yes
+
+**Example**
+
+GEL_Reset();
+
+**Related Topics**
+
+`GEL_Restart <GEL_Restart.html>`__
+
+`GEL_Run <GEL_Run.html>`__
+
+`GEL_Halt <GEL_Halt.html>`__

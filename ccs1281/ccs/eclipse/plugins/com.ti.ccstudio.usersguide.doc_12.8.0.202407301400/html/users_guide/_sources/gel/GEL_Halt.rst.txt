@@ -1,0 +1,36 @@
+GEL_Halt()
+----------
+
+Stops execution.
+
+**Syntax**
+
+**GEL_Halt();**
+
+**Parameters**
+
+None.
+
+**Description**
+
+This function halts the target program if it is executing.
+
+**Synchronous**
+
+Synchronous from GEL: No
+
+Completely synchronous: No
+
+**Example**
+
+GEL_Halt();
+
+**Related Topics**
+
+`GEL_Go <GEL_Go.html>`__
+
+`GEL_IsHalted <GEL_IsHalted.html>`__
+
+`GEL_Run <GEL_Run.html>`__
+
+`GEL_RunF <GEL_RunF.html>`__

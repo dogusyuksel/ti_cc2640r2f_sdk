@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;
+      charset=ISO-8859-1">
+    <title>Optimizer Assistant Advice: Not all available code size is
+      being used.</title>
+  </head>
+  <body>
+    <h1><span class="mw-headline"
+id="Optimizer_Assistant_Advice:_Not_all_available_code_size_is_being_used.">Optimizer
+
+        Assistant Advice: Not all available code size is being used. </span></h1>
+    <h2><span class="editsection"></span> <span class="mw-headline"
+        id="Typical_Advice">Typical Advice </span></h2>
+    <pre> #27010-D Not all available code size is being used. Recommend running Optimization Assistant to find best speed vs size setting (--opt_for_speed). Double-click to start.
+</pre>
+    <h2><span class="editsection"></span> <span class="mw-headline"
+        id="Why_is_the_Compiler_giving_this_Advice_.3F">Why is the
+        Compiler giving this Advice&nbsp;? </span></h2>
+    <p>A successful link using a low setting for --opt_for_speed
+      indicates that there may be sufficient memory available to allow
+      increasing the --opt_for_speed setting for additional performance
+      improvements. </p>
+    <h2><span class="editsection"></span> <span class="mw-headline"
+        id="What_it_means:">What it means: </span></h2>
+    <p>The option --opt_for_speed controls the tradeoff between size and
+      speed (0-5 range). Setting --opt_for_speed=0 enables optimizations
+      geared towards improving code size with a high risk of worsening
+      or impacting performance. At the other extreme, setting
+      --opt_for_speed=5 eanbles optimizations geared towards improving
+      the code performance/speed with a high risk of worsening or
+      impacting code size. Settings between 0 and 5 vary the emphasis on
+      performance versus code size. </p>
+    <p>Use the Optimizer Assistant feature to build your project for all
+      settings of --opt_for_speed. You can either double click on the
+      Advice View entry, or select menu View-&gt;Other-&gt;Code Composer
+      Studio-&gt;Optimizer Assistant. </p>
+    <dl>
+      <dd>
+        <dl>
+          <dd><a
+              href="http://processors.wiki.ti.com/index.php/File:Advice_view.png"
+              class="image"><img alt="Advice view.png"
+src="http://processors.wiki.ti.com/images/thumb/3/38/Advice_view.png/600px-Advice_view.png"
+                height="76" width="600"></a> </dd>
+        </dl>
+      </dd>
+    </dl>
+    <p><br>
+      You will see below (or click on green play button to start). </p>
+    <dl>
+      <dd>
+        <dl>
+          <dd><a
+              href="http://processors.wiki.ti.com/index.php/File:Start_opt_assist.png"
+              class="image"><img alt="Start opt assist.png"
+src="http://processors.wiki.ti.com/images/thumb/3/30/Start_opt_assist.png/600px-Start_opt_assist.png"
+                height="282" width="600"></a> </dd>
+        </dl>
+      </dd>
+    </dl>
+    <p>Select "speed vs. size trade-offs" (or you can select to vary by
+      optimization level), and CCS will build your project with all
+      settings for selected option to vary. </p>
+    <p>The results window will update during the build run. </p>
+    <dl>
+      <dd>
+        <dl>
+          <dd><a
+href="http://processors.wiki.ti.com/index.php/File:Status_while_running3.png"
+              class="image"><img alt="Status while running3.png"
+src="http://processors.wiki.ti.com/images/thumb/6/6a/Status_while_running3.png/300px-Status_while_running3.png"
+                height="258" width="300"></a> </dd>
+        </dl>
+      </dd>
+    </dl>
+    <p>Final results will show a bar chart of code size for each
+      --opt_for_speed setting. Any builds that failed link will show in
+      red. In below results window, the green check mark represents
+      current setting for --opt_for_speed, and the green bar is
+      recommended setting. </p>
+    <dl>
+      <dd>
+        <dl>
+          <dd><a
+href="http://processors.wiki.ti.com/index.php/File:Status_while_running4.png"
+              class="image"><img alt="Status while running4.png"
+src="http://processors.wiki.ti.com/images/thumb/8/87/Status_while_running4.png/300px-Status_while_running4.png"
+                height="253" width="300"></a> </dd>
+        </dl>
+      </dd>
+    </dl>
+    <p>Hovering the cursor over a bar will present options to update
+      project settings or to debug the program. </p>
+    <dl>
+      <dd>
+        <dl>
+          <dd><a
+              href="http://processors.wiki.ti.com/index.php/File:Results.png"
+              class="image"><img alt="Results.png"
+src="http://processors.wiki.ti.com/images/thumb/1/17/Results.png/300px-Results.png"
+                height="169" width="300"></a> </dd>
+        </dl>
+      </dd>
+    </dl>
+    <h2><span class="editsection"></span> <span class="mw-headline"
+        id="Risks.2C_Severity">Risks, Severity </span></h2>
+    <p>Additional performance improvements may be possible when using
+      higher settings for --opt_for_speed. </p>
+    <h2><span class="editsection"></span> <span class="mw-headline"
+        id="Suggested_Action">Suggested Action </span></h2>
+    <p>Run the Optimizer Assistant to generate data for code size versus
+      --opt_for_speed setting.<br>
+      <br>
+    </p>
+    <div class="hf-nsfooter">
+      <table style="text-align:center; background:white; width:100%;
+        text-align:left; height: 65px border-top: 1px solid;
+        border-bottom: 1px solid; border-left: 1px solid; border-right:
+        1px solid; border-width: 1px; border-style: solid;">
+        <tbody>
+          <tr>
+            <td width="305px"><a
+                href="http://processors.wiki.ti.com/index.php/File:E2e.jpg"
+                class="image"><img alt="E2e.jpg"
+                  src="http://processors.wiki.ti.com/images/8/82/E2e.jpg"
+                  height="63" width="305"></a> </td>
+            <td><i>For technical support please post your questions at <a
+                  href="http://e2e.ti.com/" class="external free"
+                  rel="nofollow" target="_blank">http://e2e.ti.com</a>.
+                Please post only comments about the article <b>Compiler/diagnostic
+
+                  messages/27010</b> here.</i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

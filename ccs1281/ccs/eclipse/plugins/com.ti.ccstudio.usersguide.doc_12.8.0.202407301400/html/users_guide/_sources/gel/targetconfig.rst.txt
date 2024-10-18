@@ -1,0 +1,32 @@
+.. _adding-gel-files-to-a-target-configuration:
+
+Adding GEL Files to a Target Configuration
+------------------------------------------
+
+Most of the target boards and devices have all the features pre-configured in CCS. However, in some cases a new board or a custom system may require modifying or adding a configuration script (GEL file) to perform proper initialization of the device.
+
+This page shows how to use the :ref:`manual-method` and add the proper GEL files.
+
+1. With the target configuration editor open, select the tab *Advanced* at the bottom.
+
+.. image:: ./images/gel_targetconfig_advancedtab.png
+
+2. Expand the configuration and select the connection that corresponds to the core that will be configured. Typically the cores are **ARM9_0**, **C674X_0**, **Cortex_A8_0**, etc.
+
+.. note:: The connections marked as **ETB**, **CS_DAP**, **cs_child** and others are rarely used by CCS. Also, if the device is an SoC with multiple cores, not necessarily all cores need to be assigned a GEL.
+ 
+3. On the box *initialization script* provide the location of the GEL file obtained from the board manufacturer.
+
+.. image:: ./images/gel_targetconfig_gel.png
+
+4. Click *Save*.
+
+Once the debugger is launched, the GEL files loaded can be seen by using the GEL file viewer. To open it, simply right-click on the device and select *Open GEL Files View*.
+
+.. note:: If the device is an SoC with multiple cores, each core will show the corresponding GEL files on the GEL file viewer window.
+
+Once the debugger is launched and the target is connected, some functions can also be available in the menu Script.
+
+.. note:: The availability of these functions is highly dependent on the scripts configured in the GEL file.
+
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Steps">
+    	<topic label="License Agreement" href="html/users_guide/ccs_installation.html#license-agreement"/>
+    	<topic label="System Check" href="html/users_guide/ccs_installation.html#system-check"/>
+		<topic label="Installation Location" href="html/users_guide/ccs_installation.html#installation-location"/>
+		<topic label="Setup Types" href="html/users_guide/ccs_installation.html#setup-types"/>	
+		<topic label="Device Support" href="html/users_guide/ccs_installation.html#device-supportup-types"/>
+		<topic label="Debug Probe Support" href="html/users_guide/ccs_installation.html#debug-probe-support"/>
+		<topic label="Proxy Server" href="html/users_guide/ccs_installation.html#proxy-server"/>
+		<topic label="Progress" href="html/users_guide/ccs_installation.html#progress"/>
+		<topic label="Driver Installation" href="html/users_guide/ccs_installation.html#driver-installation"/>
+		<topic label="Completion" href="html/users_guide/ccs_installation.html#completion"/>
+</toc>

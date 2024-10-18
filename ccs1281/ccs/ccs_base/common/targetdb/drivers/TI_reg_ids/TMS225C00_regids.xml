@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<register_ids id="SEC_AP" XML_version="2.0">
+
+	<register_id id="TRANSMIT_DATA" value="0" address="0" page="0" />
+	<register_id id="TRANSMIT_CONTROL" value="1" address="0" page="0" />
+	<register_id id="RECEIVE_DATA" value="2" address="0" page="0" />
+	<register_id id="RECEIVE_CONTROL" value="3" address="0" page="0" />
+
+	<register_id id="PASSWORD_ID" value="0x1000" address="0" page="0" />
+	<register_id id="PASSWORD1" value="0x1001" address="0" page="0" />
+	<register_id id="PASSWORD2" value="0x1002" address="0" page="0" />
+	<register_id id="PASSWORD3" value="0x1003" address="0" page="0" />
+	<register_id id="PASSWORD4" value="0x1004" address="0" page="0" />
+	<register_id id="DEBUG_ENABLE_STATUS" value="0x1005" address="0" page="0" />
+
+	<register_id id="TEST_PASSWORD1" value="0x1020" address="0" page="0" />
+	<register_id id="TEST_PASSWORD2" value="0x1021" address="0" page="0" />
+	<register_id id="TEST_PASSWORD3" value="0x1022" address="0" page="0" />
+	<register_id id="TEST_PASSWORD4" value="0x1023" address="0" page="0" />
+
+	<register_id id="DBG2CPU1_CHR" value="0x1040" address="0" page="0" />
+	<register_id id="CPU12DBG_CHR" value="0x1041" address="0" page="0" />
+	<register_id id="DBG2CPU1_HS" value="0x1042" address="0" page="0" />
+	<register_id id="CPU12DBG_HS" value="0x1043" address="0" page="0" />
+	<register_id id="DBG2CPU1_INT_FLG" value="0x1044" address="0" page="0" />
+	<register_id id="DBG2CPU1_INT_FLG_SET" value="0x1045" address="0" page="0" />
+	<register_id id="DBG2CPU1_INT_FLG_CLR" value="0x1046" address="0" page="0" />
+
+	<register_id id="SSU_DBG_STATUS" value="0x1081" address="0" page="0" />
+	<register_id id="HSM_DBG_STATUS" value="0x1082" address="0" page="0" />
+	<register_id id="CTL_DBG_STATUS" value="0x1083" address="0" page="0" />
+	<register_id id="GEN_DBG_STATUS0" value="0x1084" address="0" page="0" />
+	<register_id id="GEN_DBG_STATUS1" value="0x1085" address="0" page="0" />
+	<register_id id="GEN_DBG_STATUS2" value="0x1086" address="0" page="0" />
+	<register_id id="GEN_DBG_STATUS3" value="0x1087" address="0" page="0" />
+	<register_id id="GEN_DBG_STICKY_STATUS0" value="0x1088" address="0" page="0" />
+	<register_id id="GEN_DBG_STICKY_STATUS1" value="0x1089" address="0" page="0" />
+	<register_id id="GEN_DBG_STICKY_STATUS2" value="0x108a" address="0" page="0" />
+	<register_id id="GEN_DBG_STICKY_STATUS3" value="0x108b" address="0" page="0" />
+	<register_id id="GEN_DBG_STICKY_CLR0" value="0x108c" address="0" page="0" />
+	<register_id id="GEN_DBG_STICKY_CLR1" value="0x108d" address="0" page="0" />
+	<register_id id="GEN_DBG_STICKY_CLR2" value="0x108e" address="0" page="0" />
+	<register_id id="GEN_DBG_STICKY_CLR3" value="0x108f" address="0" page="0" />
+	<register_id id="C29_DBG_RX_ADDR" value="0x1090" address="0" page="0" />
+	<register_id id="JTAG_GEN" value="0x1091" address="0" page="0" />
+
+</register_ids>

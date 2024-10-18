@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?compositeMetadataRepository version='1.0.0'?>
+<repository name='"Code Composer Studio Updates"'
+    type='org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepository'
+    version='1.0.0'>
+  <properties size='1'>
+    <property name='p2.timestamp' value='16965352770002'/>
+  </properties>
+  <children size='24'>
+    <child location='https://software-dl.ti.com/ccs/esd/device_support_ccsv9/auto'/>
+    <child location='https://software-dl.ti.com/ccs/esd/device_support_ccsv9/c2000'/>
+    <child location='https://software-dl.ti.com/ccs/esd/device_support_ccsv9/digital_power'/>
+    <child location='https://software-dl.ti.com/ccs/esd/device_support_ccsv9/keystone2'/>
+    <child location='https://software-dl.ti.com/ccs/esd/device_support_ccsv9/lpcs'/>
+    <child location='https://software-dl.ti.com/ccs/esd/device_support_ccsv9/mspm0'/>
+    <child location='https://software-dl.ti.com/ccs/esd/device_support_ccsv9/radar'/>
+    <child location='https://software-dl.ti.com/ccs/esd/device_support_ccsv9/sitara'/>
+    <child location='https://software-dl.ti.com/ccs/esd/device_support_ccsv9/sitara_mcu'/>
+    <child location='https://software-dl.ti.com/ccs/esd/device_support_ccsv9/unified'/>
+    <child location='https://software-dl.ti.com/codegen/esd/mspgcc'/>
+    <child location='https://software-dl.ti.com/msp430/esd/v10/updates-430/ti'/>
+    <child location='https://software-dl.ti.com/msp430/esd/v10/updates-430/gcc'/>
+    <child location='https://software-dl.ti.com/msp430/esd/v10/updates-432/'/>
+    <child location='https://download.segger.com/J-Link/JLink_TI_CCS_plugin_unified'/>
+    <child location='https://software-dl.ti.com/ccs/esd/CCSv12/Updates/CCS12.1.0.00007_update'/>
+    <child location='https://software-dl.ti.com/ccs/esd/CCSv12/Updates/CCS12.2.0.00009_update'/>
+    <child location='https://software-dl.ti.com/ccs/esd/CCSv12/Updates/CCS12.3.0.00005_update'/>
+    <child location='https://software-dl.ti.com/ccs/esd/CCSv12/Updates/CCS12.4.0.00007_update'/>
+    <child location='https://software-dl.ti.com/ccs/esd/CCSv12/Updates/CCS12.6.0.00008_update'/>
+    <child location='https://software-dl.ti.com/ccs/esd/CCSv12/Updates/CCS12.7.0.00007_update'/>
+    <child location='https://software-dl.ti.com/ccs/esd/CCSv12/Updates/CCS12.7.1.00001_update'/>
+    <child location='https://software-dl.ti.com/ccs/esd/CCSv12/Updates/CCS12.8.0.00012_update'/>
+    <child location='https://software-dl.ti.com/ccs/esd/CCSv12/Updates/CCS12.8.1.00005_update'/>
+  </children>
+</repository>

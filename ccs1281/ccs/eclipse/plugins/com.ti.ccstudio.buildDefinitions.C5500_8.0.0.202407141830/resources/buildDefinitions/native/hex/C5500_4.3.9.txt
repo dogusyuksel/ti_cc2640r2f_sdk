@@ -1,0 +1,49 @@
+TMS320C55x Hex Converter                v4.3.9
+Tools Copyright (c) 1996-2011 Texas Instruments Incorporated
+
+Usage: E:\Work\tools\TI\C5500\c5500_4.3.9\bin\hex55 [-options] filename
+
+Use 'E:\Work\tools\TI\C5500\c5500_4.3.9\bin\hex55 -h <option>' for more information on a particular option.  Use
+'E:\Work\tools\TI\C5500\c5500_4.3.9\bin\hex55 -h <text>' to search options for information regarding <text>.
+
+Option arguments surrounded by [] declare they are optional.  Option arguments
+separated by commas specify that the option's argument must be chosen from
+those arguments listed.
+
+General Options:
+  -a                   Output ASCII hex format
+  -b                   Binary output format (for DSKs)
+  -boot                Select boot mode
+  -bootorg=addr        Specify origin address or symbol of boot table ROM
+  -bootpage=page       Page of boot table in target ROM
+  -delay=value         Insert a delay
+  -e=addr              Specify entrypoint address or symbol name
+  -emif16,-parallel16  Specify a 16-bit parallel interface boot table
+  -emif32,-parallel32  Specify a 32-bit parallel interface boot table
+  -exclude=section     Exclude section from hex conversion
+  -fill=val            Specify fill value
+  -i                   Output Intel hex format
+  -image               Select image mode
+  -linkerfill          Include linker fill sections in images
+  -m[=1,2,3]           Output Motorola S hex format
+  -map=file            Specify map file name
+  -mcbsp16,-serial16   Specify a 16-bit serial interface boot table
+  -mcbsp8,-serial8,-parallel8
+                       Specify an 8-bit serial interface boot table
+  -memwidth=width      Specify memory width
+  -o=file              Specify output file names
+  -olength=num         Number of data items per line of hex output
+  -options,-h          Display help
+  -order=LS,MS         Specify data ordering (endianness)
+  -quiet,-q            Quiet Operation
+  -reg_config=addr,data,data,...
+                       Load data into register at address
+  -romwidth=width      Specify rom width
+  -t                   Output TI-Tagged hex format
+  --ti_txt             Output TI-TXT hex format
+  -v3010_startdsp=value
+                       Insert a Janus core value
+  -v=device            Specify silicon boot table version
+  -x                   Output Extended Tektronix hex format
+  -zero,-z             Zero based addressing
+

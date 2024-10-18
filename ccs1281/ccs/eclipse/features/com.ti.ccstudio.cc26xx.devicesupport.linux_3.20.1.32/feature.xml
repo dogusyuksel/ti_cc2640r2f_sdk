@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.ccstudio.cc26xx.devicesupport.linux"
+      label="CC26xx Device Support"
+      version="3.20.01.32"
+      provider-name="Texas Instruments"
+      os="linux">
+
+   <copyright>
+      Copyright Texas Instruments 2021
+   </copyright>
+
+   <license>
+      See Code Composer Studio license for specific terms and conditions.
+   </license>
+
+   <description>
+CC13xx/CC26xx Device Support
+Version: 3.20.00
+Date: 2024-05-03
+
+This readme lists all relevant changes to the CC13xx/CC26xx Device support package.
+- Changes marked [CC26x0] apply to all CC13x0 and CC26x0 devices.
+- Changes marked [CC26x2] apply to all CC13x2 and CC26x2 devices.
+- Changes marked [CC26x4] apply to all CC13x4 and CC26x4 devices.
+- Other changes apply to all supported devices.
+
+-------------------------
+Release Notes:
+-------------------------
+Version 3.20.1.32 (2024-07-09):
+- [CC27xx] Added permission check of both CCFG and SCFG. This is to protect from locking the device by accident (LPRFTOOLS-1562)
+
+
+-------------------------
+Troubleshooting:
+-------------------------
+- Mass erase device with CPU inaccessible:
+  The default target configuration files for CC13xx/CC26xx devices enable
+  "custom configuration" for all subpaths to enable debugging in low power
+  modes. If the CPU DAP is inaccessible (e.g. locked in CCFG), CCS will not be
+  able to connect to Icepick to issue Mass Erase. To get around this, open the
+  target configuration file (.ccxml) and disable "custom configuration" on
+  *all* subpaths.
+  Steps to issue mass erase:
+  1. Launch target configuration file.
+  2. In Debug view, select Scripts &gt; CC26xx &gt; MassErase().
+
+-------------------------
+Release History:
+Version 3.20.10.25 (2024-06-07):
+- [CC27xx] Added support to get HSM System Information and HSM FW Update status (PG 2.0 or newer only)(LPRFTOOLS-1531)
+- [CC27xx] Added erase options to enable use of the SACI command to do "erase main only" (PG 2.0 or newer only) (LPRFTOOLS-1522)
+Version 3.20.00.16 (2024-05-03):
+- [CC27xx] Added support for PG 2.0  (LPRFTOOLS-1545)
+- [CC27xx] Added support for programming of HSM FW image (PG 2.0 or newer only) (LPRFTOOLS-1545)
+- [CC27xx] Added support to clear address bit 28. This indicate non-secure address space (PG 1.x only) (LPRFTOOLS-1534)
+Version 3.19.00.12 (2024-03-08):
+- [CC23xx/CC27xx] Added support to program CCFG user record with binary file as input (LPRFTOOLS-1439)
+- [CC23xx/CC27xx] Improved method to enter SACI mode when the reset pin is not connected (LPRFTOOLS-1525)
+Version 3.19.00.9 (2024-02-16):
+- [CC23xx] Added device support for CC2340R22 and CC2340R53 (LPRFTOOLS-1493, LPRFTOOLS-1494)
+- [CC27xx] New property added in device file to support "Fake Standby" (LPRFTOOLS-1498)
+- [CC23xx/CC27xx] Support J-Link. New GEL script to modify the reset methods (LPRFTOOLS-1451)
+- [CC13x4/CC26x4] Updated revision translation to support PG 3.0 (LPRFTOOLS-1490)
+Version 3.18.00.8 (2024-01-05):
+- [CC23xx/CC27xx] - Added device support support: CC2340R2, CC2744R7, CC2745R7, CC2745R10, CC2745P10, CC2755R10, CC2755P10 (LPRFTOOLS-1466)
+Version 3.17.10.26 (2023-06-27):
+- [CC23xx] - Flashloader updated to support stand alone image verification in UniFlash (GUI/CLI) (LPRFTOOLS-1420)
+           - Flashloader updated to support seamless programming of "locked" device (LPRFTOOLS-1420)
+Version 3.17.10.24 (2023-03-28):
+- [CC23xx] Updated register descriptions (DOC release 2.8.17)
+- [CC13x4/CC26x4] Updated register descriptions (DOC release 20230119_SRC47).
+Version 3.17.09.20 (2023-03-28):
+- [CC23xx] Updated register descriptions (DOC release 2.8.7)
+- [CC13x4/CC26x4] Updated register descriptions (DOC release 20230119_SRC47).
+Version 3.17.08.15 (2022-12-07):
+- [CC23xx] Added device support: CC2340R5.
+- [CC13x4/CC26x4] Updated register descriptions (DOC release) (LPRFTOOLS-1362).
+- [CC13x4/CC26x4] Power profiling definitions updated (LPRFTOOLS-1371).
+-------------------------
+Version 3.16.11.152 (2022-09-02):
+- [CC13x4/CC26x4] The Symbol file for debugging of the ROM code has been updated for revision B (LPRFTOOLS-1344, LPRFTOOLS-1334)
+- [CC13x4/CC26x4] Updated flash properties to recognize device revision B  (LPRFTOOLS-1343)
+- [CC13x4/CC26x4] The module and register documentation updated (LPRFTOOLS-1343)
+- [CC13x2/CC26x2] Fixed issue with "Unknown" revision shown in the log window when debugging revision F device (LPRFTOOLS-1342)
+Version 3.16.10.134 (2022-05-24):
+- Added device support: CC1312PSIP. (LPRFTOOLS-1301)
+- [CC13x2/CC26x2, CC1311/CC2651, CC23xx] Updated register descriptions. (LPRFTOOLS-1320)
+- [CC13x4/CC26x4] The Symbol file for debugging of the ROM code has been updated to solve issue when trying to start CCS ROV (RTOS Object Viewer) (LPRFTOOLS-1247)
+Version 3.16.09.113 (2022-02-21):
+- Added device support: CC2651R3SIPA, CC2652PSIP, CC2652RSIP and CC2662R1F. (LPRFTOOLS-1230, LPRFTOOLS-1229, LPRFTOOLS-1228 and LPRFTOOLS-1227)
+- [CC26x4] Fixed flash programming error for "All Unprotected Sectors" erase option. (LPRFTOOLS-957, LPRFTOOLS-1223)
+- [CC26x2] Updated register descriptions. (LPRFTOOLS-1176, LPRFTOOLS-1175, LPRFTOOLS-1158)
+- Added default hex build options for GNU and TI Clang toolchain for all devices. (LPRFTOOLS-1154)
+- Fixed flash loader issue for CC2653P10. (LPRFTOOLS-1153)
+- [CC26x4] Updated register descriptions. (LPRFTOOLS-1136)
+- Fixed minor issues in flash loader (LPRFTOOLS-1101)
+Version 3.16.08.48 (2021-09-21):
+- Created separate target flash loaders for CC13x1 and CC26x1 devices and for CC13x2x7 and CC26x2x7 devices (LPRFTOOLS-1126)
+Version 3.16.07.46 (2021-08-27):
+- Added device support: CC2674R10, CC2674P10, CC1354R10, CC1354P10, CC1314R10 and CC2653P10
+- Previous speed improvements for flash programming has been reverted to ensure better robustness (LPRFTOOLS-970)
+- The error message given when flash programming fails has been improved to give a better description (LPRFTOOLS-992)
+Version 3.15.03.123 (2021-03-10):
+- Fixed issue with flashloader for CC13x1 and CC26x1 devices (LPRFTOOLS-964)
+Version 3.15.02.121 (2021-02-03):
+- Added device support: CC2672R, CC2672P (LPRFTOOLS-882)
+Version 3.15.00.117 (2020-12-08):
+- Fixed issue with reference to peripheral module that has been removed for the CC1311x/CC2651x devices (LPRFTOOLS-895)
+- Updated register description of peripheral modules for CC26x2x7/CC13x2x7 devices (LPRFTOOLS-879)
+Version 3.15.00.111 (2020-11-05):
+- Added device support: CC1311R3, CC1311P3, CC2651R3, CC2651P3
+Version 3.14.02.110 (2020-11-04):
+- Fixed issue with file name of the flashloader to be used for CC26x2R7/CC13x2R7 devices
+Version 3.14.01.105 (2020-10-19):
+- New devices renamed: CC2652R7, CC2652P7, CC1312R7, CC1352P7 (LPRFTOOLS-875).
+Version 3.14.00.93 (2020-04-08):
+- Added device support: CC2652R1F6, CC2652P1F6, CC1312R1F6, CC1352P1F6 (LPRFTOOLS-850,851,856,857).
+Version 3.13.00.92 (2020-04-07):
+- Added device support: CC2640R2L (LPRFTOOLS-849).
+Version 3.12.01.84 (2020-01-30):
+- Improve flash programming performance by reducing wait time (LPRFTOOLS-829).
+Version 3.12.00.79 (2019-07-01):
+- Added driverlib ROM symbols to list of symbols automatically loaded when programming a device (LPRFTOOLS-703).
+  Driverlib and TI-RTOS ROM symbols can also be loaded at any time from CCS Scripts menu.
+- Added device support: CC2652P1F (LPRFTOOLS-774).
+Version 3.11.01.77 (2019-03-21):
+- Added address information for CCFG and FCFG1 areas to the device flash property XML files.
+  This enables Uniflash GUI users to easily select, and read, these memory ranges from a
+  dropdown in the Memory View (LPRFTOOLS-778, UNIFLASH-890).
+- Fixed issue where version string was not correctly displayed by Linux and OSX flashloader
+  binaries (LPRFTOOLS-701). You can see the flashloader version by running for example:
+  - Linux: strings libFlashCC26x2.so | grep VERSION
+  - OSX  : strings libFlashCC26x2.dylib | grep VERSION
+- Added target connection files (.ccxml) for all CC13xx/CC26xx devices for use with the
+  Uniflash command line tool. The files are located in the ccs_base/arm/ folder (LPRFTOOLS-788).
+
+Version 3.11.00.68 (2018-10-29):
+- Added device support: CC2652RB1F (LPRFTOOLS-684).
+- Added support for CRC verification during program load (LPRFTOOLS-690).
+  This option speeds up verification during program load and verifies that all data was
+  programmed to flash successfully. This option is enabled by default.
+  Steps to enable/disable CRC verification in CCS/Uniflash:
+  - GUI: Check/uncheck "Use CRC Verification during Program Load" checkbox
+  - CLI: Use "--setting CrcVerify=X" X=0 to disable, X=1 to enable (default)
+- Added blank check support in flashloader library (LPRFTOOLS-694).
+  - GUI: Click "Perform Blank Check" button, result will be displayed in the console.
+  - CLI: Use opcode "BlankCheck", e.g. "dslite -c device.ccxml --before BlankCheck"
+- CLI now supports mass erase using "-O MassErase" (LPRFTOOLS-660).
+  This implementation only works for devices with locked debug interface if the CCXML file used
+  has "custom configuration" disabled for all subpaths. See Troubleshooting section for details.
+- Flashloader now displays device revision letter in addition to major.minor version (UNIFLASH-1134, LPRFTOOLS-523).
+  Example: "Rev E (2.1)" for CC2652R1F.
+- [CC26x2] Flashloader now reports revision E (2.1) for devices with DEVICE_ID.PG_REV = 0x3 (LPRFTOOLS-657).
+- [CC26x2] Register definition files and linker files updated for revision E (2.1) (LPRFTOOLS-662).
+- [CC26x2] Added TI-RTOS ROM symbols for device revision E (2.1) (LPRFTOOLS-656).
+- File size of all TI-RTOS ROM symbol files has been reduced by stripping away unnecessary information (LPRFTOOLS-678).
+- [CC26x2] Device XML files now enable XDS emulators to perform workaround for device hardware issue (LPRFTOOLS-617).
+  This change allows XDS emulators to connect to device while it is in low-power mode without using halt-in-boot.
+- Added version information to flashloader library (LPRFTOOLS-514).
+- This is the first release supporting win64 platforms (LPRFTOOLS-329).
+
+Version 3.10.10.02 (2018-06-07):
+- [CC26x2] Renamed field MCU_PD in digital states to MCU_CTL as CC13x2/CC26x2 devices do not have
+  an MCU power domain. The bit represents the active/non-active of the MCU controller state.
+- Added feature to enable 'debug lock', 'write-protect flash sectors' or 'disable Bootloader' options
+  in CCFG memory (UNIFLASH-1006, UNIFLASH-1007, UNIFLASH-1036).
+- Added feature to skip programming of pages filled with given value (UNIFLASH-312).
+- Added feature to erase specific flash sectors as standalone operation or during program load (UNIFLASH-310, UNIFLASH-311).
+- CC2640R2F silicon revision is now correctly reported as 2.5. Was previously reported as revision 1.0 (LPRFTOOLS-628).
+
+Version 3.10.02.00 (2018-04-23):
+- [CC26x2] Minor change to the device XML files that allows XDS emulators to connect
+  to a device while it is in low power mode (LPRFTOOLS-617, DBGTRC-3614).
+
+Version 3.10.01.00 (2018-04-03):
+- Corrected syntactic issues with some device register files (LPRFTOOLS-614).
+
+Version 3.10.00.02 (2018-03-12):
+- Removed spaces from EnergyTrace++ names, e.g. "PC Error" changed to "PC_Error".
+- Added feature to retain secondary BLE and IEEE address during program load (UNIFLASH-693, UNIFLASH-694).
+- Added feature to override secondary BLE and IEEE address during program load (UNIFLASH-692, UNIFLASH-691).
+- Added feature to skip specific pages during program load (UNIFLASH-313, UNIFLASH-315).
+- [CC26x2] Peripheral description files updated, dated February 1 2018 (LPRFTOOLS-604).
+- [CC26x0] Peripheral description files updated, dated January 24 2018 (LPRFTOOLS-604).
+- Fixed some potential issues in the host flashloader library found during static code analysis (LPRFTOOLS-602).
+
+Version 3.02.04.00 (2018-01-29):
+- [CC26x2] EnergyTrace++: Updated / corrected digital state info bitfields (LPRFTOOLS-370).
+- [CC26x0] EnergyTrace++: Added digital state info field indicating program counter value error.
+
+Version 3.02.03.00 (2018-01-09):
+- Added GEL functions for use Uniflash 4.2.2 command line tool (dslite).
+  Added function for listing available commands and performing pin reset (LPRFTOOLS-531).
+
+Version 3.02.02.00 (2017-12-01):
+- Fixed issue where some CCS 7.4.0 users observed data verification errors.
+  The target flashloader now stores FLASH cache configuration and disables
+  caching before executing a command. The initial cache configuration is restored
+  when command is complete (LPRFTOOLS-525).
+- Fixed minor issue with host library printing scrambled error code if
+  target flashloader timed out while executing command (LPRFTOOLS-526).
+
+Version 3.02.01.00 (2017-11-15):
+- Radio core RAM sections added to memory map. Debuggers are now allowed to
+  read/write these memory sections (LPRFTOOLS-505).
+- Fixed bug in flashloader library causing flash loading to fail when using
+  erase setting "All unprotected sectors" (LPRFTOOLS-515).
+- Target binaries rebuilt using CCS 7.3.0.00019.
+
+Version 3.02.00.00 (2017-11-02):
+- Reset "Board Reset (free run)" now enabled from CCS reset menu. This reset
+  pulls the target's RESET_N pin, making the target free run (LPRFTOOLS-461).
+- Reset "Board Reset (automatic)" renamed to "Board Reset (automatic connect/disconnect)"
+  to make it clearer what it does.
+  NOTE: This name change may break backward compatibility with scripts using this reset (LPRFTOOLS-461).
+- Peripheral description files updated, dated November 1, 2017 (LPRFTOOLS-442).
+- [CC26x2] Fixed issue with GEL file inhibiting debugger from reading all of
+  CCFG area which is memory mapped to 0x50003000 (LPRFTOOLS-455).
+
+Version 3.01.01.01 (2017-10-06):
+- Linux binaries rebuilt fixing dependency issue observed on Ubuntu 14.04 (LPRFTOOLS-450).
+
+Version 3.01.01.00 (2017-09-18):
+- Fixed problem where flashloader didn't output the read value for the following
+  operations in dslite (CLI): ReadPriBle, ReadPriIeee, ReadSecBle, ReadSecIeee (LPRFTOOLS-414).
+
+Version 3.01.00.00 (2017-08-15):
+- Device name CC1354R1F3 changed to CC1352P1F3 (LPRFTOOLS-405).
+  This will break CCS projects created with device CC1354R1F3. The
+  workaround is to update CCS project to device CC1352P1F3.
+
+Version 3.00.02.00 (2017-06-16):
+- Minor updates to flash property XML for all properties to show in
+  CCS Uniflash (LPRFTOOLS-362).
+
+Version 3.00.01.00 (2017-05-19):
+- Fixed issue where CCS did not run to main if the CPU interrupt vector table was
+  at a non-zero address (LPRFTOOLS-340).
+- Fixed issue where program load in some cases led to an "Unable to access the DAP" error.
+  This was only possible to work around by using Mass Erase from the CCS Script menu (LPRFTOOLS-325).
+
+Version 3.00.00.00 (2017-05-12):
+- Added support for CC26x2 device family, this has led to some restructuring of
+  the package, and renaming of files (LPRFTOOLS-327).
+- [CC26x2] New devices: CC1312R1F3, CC1352R1F3, CC1354R1F3, CC2642R1F, CC2652R1F.
+- Improved the error message given if the writing to target data buffers fails (LPRFTOOLS-328).
+
+Version 2.20.02.00 (2017-06-07):
+- This is a hotfix release:
+- Fixed bug in flashloader, causing verification issues in some cases.
+
+Version 2.20.01.00 (2017-04-28):
+- TI-RTOS ROM symbols are now automatically loaded when programming device (LPRFTOOLS-274).
+  ROM symbols can also be loaded at any time from CCS Scripts menu.
+- Improved flashloader feedback if erase or program fails.
+- Flashloader verbosity can now be controlled using "Enable Verbose Mode" (LPRFTOOLS-315).
+  In CCS: Tools &gt; On-Chip Flash and enable "Enable Verbose Mode" at the bottom.
+  In Uniflash: Click "Verbose" button in the console output.
+
+Version 2.20.00.02 (2017-03-28):
+- Flashloader (host and target side) reworked to significantly increase performance (LPRFTOOLS-204).
+  The best speed is achieved when using 4-pin cJTAG with erase option "All unprotected sectors".
+- Added missing section to TI linker files (.cmd) to remove a warning seen by users using
+  #pragma NOINIT(variableName) (LPRFTOOLS-303).
+- Peripheral files updated (dated 2017-03-17).
+
+Version 2.10.03.00 (2017-02-14):
+- CC13x0/CC26x0 GEL files now block access to AON_RTC module while
+  target is running. Fixes an issue where access to devices is lost
+  when using ROV2 (LPRFTOOLS-292).
+
+Version 2.10.02.01 (2017-01-31):
+- Added support for XDS110 EnergyTrace++ for CC2650, CC1350, and
+  CC2640R2F devices (LPRFTOOLS-279).
+
+Version 2.10.01.00 (2016-12-16):
+- Added missing device XML file for CC1310F32.
+
+Version 2.10.00.00 (2016-12-02):
+- Added erase setting "Necessary Sectors Only (Retain untouched content within sector)".
+  This option is now default (LPRFTOOLS-82).
+- Fixed issue where flashloader misinterpreted device SRAM size.
+- Peripheral files updated (dated 2016-11-23).
+
+Version 2.00.02.01 (2016-11-02):
+- Flashloader library for Microsoft Windows rebuilt using VS2015 toolchain (LPRFTOOLS-245).
+
+Version 2.00.02.00 (2016-09-29): (for CCS with J-Link support)
+- Added device support: CC2640R2F (LPRFTOOLS-154).
+- Fixed issue where sector erase sometimes failed on unaligned data sections.
+
+Version 2.00.01.01 (2016-09-25): (for CCS with J-Link support)
+- Rebuild of 2.00.01.00 on new version control system.
+
+Version 2.00.01.00 (2016-09-09): (for CCS with J-Link support)
+- Fixed issue where flashloader sometimes corrupted data (CCDSK-2235).
+
+Version 2.00.00.00 (2016-06-30): (for CCS with J-Link support)
+- Flashloader now uses iFlashDevice2 API to support Uniflash v4 (LPRFTOOLS-114).
+- Added support for Uniflash 4 device information (UNIFLASH-308).
+  This change requires CCS 6.2.0 or Uniflash 4.
+- Added support for reading primary/secondary MAC addresses, and for
+  writing secondary MAC addresses (UNIFLASH-317).
+- Removed XDS560 properties from device XML files. XDS560 emulator is not
+  supported (LPRFTOOLS-126).
+- Fixed issue in linker files, now uses correct define
+  __TI_COMPILER_VERSION__  (LPRFTOOLS-131).
+
+Version 1.20.00.03 (2016-04-06): (for CCS with J-Link support)
+- CC13xx/CC26xx device support package has been split into OS specific packages
+  for win32, linux and OSX (LPRFTOOLS-100).
+- Some filenames changed (e.g. cc26xx.gel renamed to cc26x0.gel)
+- Linux: Flash loader rebuilt for 64bit.
+
+Version 1.20.00.02 (2016-02-18): (for CCS with J-Link support)
+- Changed default device connection from XDS100v3 to XDS110 (LPRFTOOLS-77).
+- Removed preprocessor define "DEBUG", which was added to project settings
+  when creating new project, but also when changing target connection file
+  (LPRFTOOLS-55).
+- Removed workaround for CCS issue requiring GEL files to disable memory map
+  during download (SDSCM00052717), seen when using Segger J-Link. Issue has
+  been fixed in CCS.
+- Removed unsupported resets from CCS reset menu (J-Link GEL scripts).
+- Fixed problem where HEX utility did not work out of the box (LPRFTOOLS-56).
+- Updated register definition files for all CC13xx and CC26xx variants.
+
+Version 1.20.00.01 (2015-12-07): (for CCS with J-Link support)
+- Respin of 1.20.00 (CCS 6.1.3) including changes introduced in 1.16.00.00
+  (CCS 6.1). Requires TI emulation drivers v6.0.83.0 or higher.
+- See 1.20.00.00 release notes.
+
+Version 1.16.00.00 (2015-12-07):
+- This release is for CCS 6.1.x and requires XDS emupack 6.0.83.0 or higher.
+- Default target configuration for XDS110 emulators changed to 2-pin cJTAG
+  (LPRFTOOLS-46).
+- Fixed problem where XDS200 target configuration didn't choose OSCAN5 by
+  default.
+- Corrected issue with GNU linker command files.
+
+Version 1.20.00.00 (2015-12-04):
+- This release requires CCS DebugServer 6.2.0.1426 or higher.
+- GEL files updated to support J-Link debuggers from Segger.
+
+Version 1.15.04.00 (2015-10-30):
+- Flashloader now combines nearby sections into a single write to improve speed.
+  This option can be disabled in CC26_FlashProperties.xml, or
+  CC13_FlashProperties.xml, (located in ccs_base/DebugServer/propertyDB/) by
+  removing all references to FlashAlignmentSize and FlashAlignCombineToggle.
+
+Version 1.15.03.00 (2015-10-21):
+- Updated register definition files for all CC13xx and CC26xx variants.
+- Added GNU tool options for all CC13xx and CC26xx variants.
+
+Version 1.15.02.00 (2015-09-04):
+- Updated linker files with support for "ramfunc" attribute introduced in
+  TI compiler version 15.9.0.STS.
+  See http://processors.wiki.ti.com/index.php/Placing_functions_in_RAM
+
+Version 1.15.01.01 (2015-08-28):
+- Corrected issue with register width attribute in CPU_* peripherals
+
+Version 1.15.01.00 (2015-08-20):
+- Added GPRAM section to default linker files (LPRFTOOLS-2)
+- Cleaned up GEL files (LPRFTOOLS-10)
+- Fixed issue with flash loader library for 64bit OS (CCS on Mac) (LPRFTOOLS-5)
+
+Version 1.15.00.00 (2015-06-04):
+- Updated register definition files for all CC13xx and CC26xx variants.
+- Added flash loader library for CCS on Mac (beta)
+
+Version 1.14.00.01 (2015-05-27):
+- Removed redundant file FlashDLLDB.xml.
+  Added dependency to com.ti.dsflash.* v6.1.0.1247 and higher
+
+Version 1.14.00.00 (2015-04-30):
+- New devices: CC13xx rev 2.0 variants (5764)
+  CC1350F128, CC1310F128, CC1310F64, CC1310F32
+- Support for CC1310F128_REV1 is removed (no longer updated)
+- Removed device preprocessor defines added during "New project" wizard
+- Updated register definitions for all CC13xx and CC26xx variants.
+
+Version 1.13.00.01 (2015-01-15):
+- Removed redundant file FlashPropertiesTranslator.xml
+
+Version 1.13.00.00 (2015-01-06):
+- Version included in CCS 6.1
+- Updated register definitions for all CC13xx and CC26xx variants.
+
+Version 1.12.02.00 (2014-12-18):
+- Fixes flash loader issue on devices where with system reset is configured
+  to behaves as pin reset, also a board reset is issued before loading a program
+  into device flash (5618).
+- Updated device preprocessor defines added during "New project" wizard, e.g.
+  define CC2650F128RGZ (5483).
+
+Version 1.12.01.01 (2014-11-26):
+- Fixes dependency problem in CCS Update Manager
+
+Version 1.12.01.00 (2014-11-26):
+- Flash properties: Default erase option changed to "Necessary Sectors Only" (5473)
+- GEL script: Fixed issue seen when CM3 DAP is inaccessible (see Troubleshooting) (5481)
+
+Version 1.12.00.00 (2014-11-07):
+- New devices: CC2620F128
+- Board reset is issued when initializing debug session (5437)
+- Added device register description files
+- Added flash properties: Erase type during program load
+- Added flash properties: Keep Customer Configuration Area during program load
+
+Version 1.11.00.00 (2014-09-10):
+- New devices: CC2640F128, CC2630F128, CC1310F128_REV1
+- Several bug fixes in CC26xx flash loader (5314, 5333, 5345)
+- Updates to debugger memory map, added GPRAM, FCFG2, CCFG.
+- Updates to CC26xx debugger memory map, removed read/write perimssions on clock gated
+  EFUSE registers in FLASH module, range 0x4003.1000 - 0x4003.1FFF (5346)
+- CC26xx board reset (CC26xx halt-in-boot) and mass erase available through GEL scripts.
+- CC26xx flash erase button available through flash properties (5365)
+
+Version 1.0.0.0 (2014-02-24):
+- Initial version with CC2650F128 support
+- Moved system reset from onFileLoaded() callback in cc26*.gel to flash loader library.
+- Updated linker command files to support extended CCFG area, and to better support cross linking.
+- Added default connection property to the device XML.
+- Added family filtering property to the device XML (for CCS GUI).
+- Tested with CCS v6 beta 3 (6.0.0.116)
+
+</description>
+</feature>

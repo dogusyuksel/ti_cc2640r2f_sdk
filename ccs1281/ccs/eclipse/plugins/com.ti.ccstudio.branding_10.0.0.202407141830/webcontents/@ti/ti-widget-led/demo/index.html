@@ -1,0 +1,126 @@
+<!--
+    Copyright (c) 2019, Texas Instruments Incorporated
+    All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions
+    are met:
+
+    *   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+    *   Neither the name of Texas Instruments Incorporated nor the names of
+    its contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+    THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+    PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+    CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+    EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+    PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+    OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+    OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+    EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>ti-widget-led Demo</title>
+	<script nomodule="" src="../../build/gc-components.js"></script>
+	<script type="module" src="../../build/gc-components.esm.js"></script>
+
+	<!-- basic color picker for both led colors -->
+	<script>
+		const defaultOnColor = '#ff0000';
+		const defaultOffColor = '#696969';
+
+        window.addEventListener('load', colorPicker, false);
+        window.addEventListener('load', ledToggle, false);
+        window.addEventListener('load', glowToggle, false);
+
+		function ledToggle() {
+			toggle = document.querySelector('#toggleButton');
+			toggle.addEventListener(
+				'click',
+				() => {
+					let led = document.querySelector('#demo-element');
+					led.on = !(led.on);
+				},
+				false
+			);
+		}
+
+        function glowToggle() {
+            toggle = document.querySelector('#glowToggleButton');
+            toggle.addEventListener(
+                'click',
+                () => {
+                    let led = document.querySelector('#demo-element');
+                    led.glow = !(led.glow);
+                },
+                false
+            );
+        }
+
+        function colorPicker() {
+            colorOn = document.querySelector('#onColor');
+            colorOn.value = defaultOnColor;
+            colorOn.addEventListener(
+                'change',
+                () => {
+                    let led = document.querySelector('#demo-element');
+                    led.setCSSProperty('--ti-widget-led-on-color', event.target.value);
+                },
+                false
+            );
+
+            colorOff = document.querySelector('#offColor');
+            colorOff.value = defaultOffColor;
+            colorOff.addEventListener(
+                'change',
+                () => {
+                    let led = document.querySelector('#demo-element');
+                    led.setCSSProperty('--ti-widget-led-off-color', event.target.value);
+                },
+                false
+            );
+        }
+    </script>
+    <!-- Custom CSS style testing -->
+    <!-- <style>
+        #demo-element {
+            --ti-widget-led-on-color:green;
+            --ti-widget-led-off-color: #00ffff;
+        }
+    </style> -->
+</head>
+
+<body style="margin:20px;font-family: sans-serif;">
+	<h2>ti-widget-led Demo</h2>
+	<!-- set id="demo-element" and any default properties, for demo element -->
+	<!-- and if `#demo-element` is nested, set id="demo-container" on its top-level parent -->
+
+    <ti-widget-led id="demo-element" style="width:34px;height:34px;";></ti-widget-led>
+    <p>
+        <ti-widget-button id="toggleButton" label="toggle LED" button-type="primary" raised outlined></ti-widget-button>
+        <ti-widget-button id="glowToggleButton" label="toggle glow" button-type="primary" raised outlined></ti-widget-button>
+    </p>
+
+	<!-- color pickers -->
+	<p>
+		<ti-widget-label label="on color:"></ti-widget-label>
+		<input type="color" id="onColor" />
+	</p>
+	<p>
+		<ti-widget-label label="off color:"></ti-widget-label>
+		<input type="color" id="offColor" />
+	</p>
+</body>
+
+</html>

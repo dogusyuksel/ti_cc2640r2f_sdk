@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Chromium for Linux
+Bundle-SymbolicName: com.ti.chromium.browser.gtk.linux.x86_64;singleton:
+ =true
+Bundle-Version: 2.0.0.202407141830
+Bundle-Vendor: Texas Instruments
+Fragment-Host: com.ti.chromium.browser;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Eclipse-PlatformFilter: (& (osgi.ws=gtk) (osgi.os=linux) (osgi.arch=x86_
+ 64))
+Bundle-ClassPath: lib/jxbrowser-linux64-7.29.jar,.
+Eclipse-BundleShape: dir
+
+

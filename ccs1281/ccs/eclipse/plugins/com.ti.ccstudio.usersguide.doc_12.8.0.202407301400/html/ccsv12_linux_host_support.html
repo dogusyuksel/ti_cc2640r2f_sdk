@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="This page contains details about running Code Compoer Studio version 12 on Linux, including installation details, device support and debug probe support"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Composer Studio Product Page">
+<meta name="product-link" content="https://www.ti.com/tool/CCStudio">
+
+<!-- Change the title text for your page -->
+<title>Linux Host Support CCSv12</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+<img src="./images/tux.jpg" alt="Tux" width="100" length="100" align="right">
+# Overview #
+This page contains information regarding Code Composer Studio v12 running on Linux. It includes installation instructions, device support and debug probe support.
+
+Due to the wide variety of Linux distributions and versions available, it is impossible to support all of them. CCS is tested in a small subset ordered by popularity, but over the years the developers helped populate this list by providing information on how to install in various additional distributions. This information is added to this page, therefore always check back for updates. 
+
+Please note that Code Composer Studio is a 64-bit application and will not run on 32-bit distributions.
+
+# Distribution Validation #
+
+CCS is validated on a defined set of Linux distributions.  Typically these are active Ubuntu LTS versions.
+
+CCS 12.x is validated on:
+- Ubuntu 22.04 LTS 
+- Ubuntu 20.04 LTS 
+- Ubuntu 18.04 LTS 
+
+# Installation Instructions  #
+
+CCS requires a 64-bit distribution of Linux. 32-bit distributions are not supported with current versions of CCS.
+
+CCS has dependencies on several libraries being installed on the system. The CCS installer will run a dependency check for these and inform the user of any missing dependencies.
+
+Example:
+
+![](./images/ccs_linux_host_support_00.png)
+
+Please resolve **all** unresolved dependencies reported by the installer before continuing with the installation.
+
+<font color="#FF0000"><b>IMPORTANT!</b></font> TI performs testing on actively supported Ubuntu LTS distributions <b>only</b>. For other versions of Linux distributions, consider these releases as <b>unsupported</b> and <b>untested</b> with CCS.
+<br>
+
+<font color="#FF0000"><b>NOTE</b></font>: Certain older SDKs and Compiler installers could hang when installing on a system with glibc2.26 and greater. While the component is installed correctly, the installer doesn't exit. In order to complete your installation of the component, kill off the hanging installer and remove the downloads folder from the <installdir>/eclipse directory, if it exists.
+
+<font color="#FF0000"><b>NOTE</b></font>: it is possible to install CCS as a superuser using sudo (gksu is not recommended), which automatically adds all the required driver udev rules at the end of the process. However this requires extra steps for regular operation of CCS as a regular user. Check the application note [Configuring CCS for multiuser](./application_notes/appnote-configuring_ccs_for_multiuser.html) for details.
+   - When installed as superuser using sudo, CCS must be run at the same privilege level to install updates.
+   - When installed and run as superuser using sudo, there may be some IBus warning messages that appear in the terminal. These messages can be ignored, as they will not impact the execution of CCS. This can be avoided by specifying <tt>sudo -H</tt> when running the CCS installer.
+
+### After Installation ### 
+
+If CCS was installed as user, then it is necessary to run the driver install script after the installation is complete:
+   - go to &lt;CCS_INSTALL_DIR&gt;/ccs/install_scripts
+   - <tt>sudo ./install_drivers.sh</tt>
+
+## Ubuntu (Supported Versions) ##
+- update system: <tt>sudo apt update</tt>
+- install dependent libraries: <tt>sudo apt install libc6-i386 libusb-0.1-4 libgconf-2-4 libncurses5 libpython2.7 libtinfo5</tt>
+- install CCS
+- if CCS was installed as user then run the driver install script
+   - go to &lt;CCS_INSTALL_DIR&gt;/ccs/install_scripts
+   - <tt>sudo ./install_drivers.sh</tt>
+
+## Ubuntu 24.04 LTS ##
+   - will work with 24.04 LTS.
+      - Please note that CCS is not officially tested/supported on this version.     
+   - following dependent libraries need to installed first:
+      - libc6-i386
+      - libusb-0.1-4
+      - libtinfo5 (please note that Ubuntu 24.04 comes with libtinfo6. CCS requires libtinfo5, which is obsolete with Ubuntu 24.04. The package for 22.04 can be obtained from https://packages.ubuntu.com/jammy-updates/libtinfo5 and the *.deb file can be installed manually ).
+   - install CCS    
+   - run the driver install script mentioned earlier as needed
+
+# Proxy server considerations #
+
+Certain functions of Code Composer Studio require access to the Internet. In general, this works well for connections that do not require a proxy server, but in certain cases its use is mandatory by the corporate IT department.  
+
+Linux poses a challenge to configure proxy servers due to the nature of its various components and where they inherit its settings. For example, it is not uncommon to have a web browser fully connected to the internet while the aptitude or yum utilities (used to install system features or dependencies) is unable to do so. 
+
+In this case, it is important to observe a few aspects during CCS setup and runtime. 
+- The proxy server configuration can be set during the installation options. This is critical for a successful install if using the On-demand installer (web installer), as each component must be downloaded individually. 
+- The system update utility (apt, yum, etc.) has its own configuration files to set up a proxy, typically text files under the subdirectory /etc. To properly configure these utilities, please refer to your distro instructions. 
+- The system wide proxy setting is usually accessible via the GUI of choice (Gnome, KDE, etc.) and is normally present under the Network settings. This setting is inherited by the Eclipse features of Code Composer Studio, namely the ability to access its update sites to update the various components of an install (compilers, emupack, etc.)
+- The shell environment variable <tt>http_proxy</tt> (and its counterparts <tt>https_proxy</tt> and <tt>ftp_proxy</tt> not used by CCS) are inherited by the browser built into Code Composer Studio to access its online content and download the various SDK packages. In general this environment variable is set at the system wide shell init script (<tt>/etc/bash.bashrc</tt>, for example) but this can also be set by each user on its local shell <tt>~/.bashrc</tt>. 
+   - The scope where this configuration will reach is highly dependent on the install and definitely some experimentation is necessary. 
+   - In this case, experimentation can be done by setting the environment variable exclusively during the invocation of Code Composer Studio from a command line. For example, from a bash shell the proxy environment variable can be set prior to running CCS as:
+
+   **user@host:~/ti/ccs1200/ccs/eclipse$** <tt>http_proxy=myproxy.mycompany.com:80 ./ccstudio &</tt>
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

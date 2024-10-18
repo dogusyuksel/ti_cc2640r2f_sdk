@@ -1,0 +1,42 @@
+GEL_SyncRun
+-----------
+
+Performs a run operation on every target that is in the same group as
+the current target.
+
+**Format**
+
+**GEL_SyncRun( );**
+
+**Parameters**
+
+None.
+
+**Description**
+
+Performs a run operation on every target that is in the same group as
+the current target. The operation performed is the same as the run
+command that may be invoked from the PDM debug menu.
+
+As with the other synchronous operations, the operation is performed on
+all targets simultaneously.
+
+**Synchronous**
+
+Synchronous from GEL: No
+
+Completely synchronous: No
+
+**Example**
+
+GEL_SyncRun( );
+
+**Related Topics**
+
+`GEL_SyncHalt <GEL_SyncHalt.html>`__
+
+`GEL_SyncStepInto <GEL_SyncStepInto.html>`__
+
+`GEL_SyncStepOut <GEL_SyncStepOut.html>`__
+
+`GEL_SyncStepOver <GEL_SyncStepOver.html>`__

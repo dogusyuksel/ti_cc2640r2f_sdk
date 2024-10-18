@@ -1,0 +1,208 @@
+'use strict';
+
+require('rootpath')();
+
+// third party
+const fs = require('fs-extra');
+const jsonlint = require('jsonlint');
+const jsonValidator = require('jsonschema').Validator;
+const path = require('path');
+
+// our module
+const schema = require('scripts/tirex-package-validator/metadataSchema');
+const pathHelper = require('lib/path-helpers');
+
+/**
+ * Usage: new singleFileValidation(filePath).validate();
+ * */
+class SingleJsonFileValidator {
+    constructor(filePath) {
+        this.filename = pathHelper.normalizeFile(filePath);
+        const fragment = path.basename(this.filename).split('.');
+        this.fileType = fragment[fragment.length - 3];
+    }
+
+    /**
+     * Validates the file
+     */
+    validate(callback=()=>{}) {
+        fs.readFile(this.filename, 'utf8', (err, data) => {
+            if (err) {
+                if (callback) {
+                    callback(err);
+                } else {
+                    throw err;
+                }
+            }
+            const json = this.parseJson(data);
+            if (json) {
+                this.validateJson(json);
+            }
+        });
+    }
+
+    /**
+     * Parse the data to json using jsonlint, returns the json object
+     * https://www.npmjs.com/package/jsonlint
+     * @param data - data read from the file
+     * @returns {Object}
+     */
+    parseJson(data) {
+        try {
+            return jsonlint.parse(data);
+        } catch (e) {
+            console.log('file: ', this.filename);
+            console.log(e.message);
+        }
+    }
+
+    /**
+     * Validates json schema given the type of metadata it is
+     * @param {Object} json - the json to be validated
+     */
+    validateJson(json) {
+        this.json = json;
+        switch (this.fileType) {
+            case 'content':
+                this._validateContentJson();
+                break;
+            case 'package':
+                this.validatePackageJson();
+                break;
+            case 'devices':
+                this._validateDeviceJson();
+                break;
+            case 'devtools':
+                this._validateDevToolsJson();
+                break;
+            case 'dependency':
+                break;
+            case 'macros':
+                break;
+            case 'devtools-aux':
+                break;
+            default:
+                console.log('Invalid file name. Please rename the file according to its type.');
+                break;
+        }
+    }
+
+    /**
+     * Validates json schema and output the errors
+     * @param {object} schema - the schema to be validated against
+     * @param {object} validator - the validator
+     */
+    _validateSchema(schema, validator) {
+        const errors = validator.validate(this.json, schema).errors;
+        console.log('file: ', this.filename);
+        if (errors.length > 0) {
+            for (let i = 0; i < errors.length; i++) {
+                const property = errors[i].property.split('.');
+                const instance = property[0];
+                const errorInfo = this._getErrorInfo(this.json[instance[instance.length - 2]]);
+                let errorString = JSON.stringify(errorInfo);
+                if (property.length > 1) {
+                    errorString += "." + property[1];
+                }
+                errorString += " " + this._getErrorMessage(errors[i].message);
+                console.log(errorString);
+            }
+        } else {
+            console.log('Valid!');
+        }
+    }
+
+    /**
+     * Validates package.tirex.json
+     */
+    validatePackageJson() {
+        let validator = new jsonValidator();
+        validator.addSchema(schema.packageVersion, '/PackageVersion');
+        validator.addSchema(schema.packageInfo, '/PackageInfo');
+        validator.addSchema(schema.packageSchema, '/PackageSchema');
+        this._validateSchema(schema.packageArray, validator);
+    }
+
+    /**
+     * Validates content.tirex.json
+     */
+    _validateContentJson() {
+        let validator = new jsonValidator();
+        validator.addSchema(schema.advanceField, '/Advance');
+        validator.addSchema(schema.resourceContentSchema, '/Content');
+        validator.addSchema(schema.locationForDownload, '/LocationForDownload');
+        this._validateSchema(schema.contentArray, validator);
+    }
+
+    /**
+     * Validates devices.tirex.json
+     */
+    _validateDeviceJson() {
+        let validator = new jsonValidator();
+        validator.addSchema(schema.coreType, '/CoreType');
+        validator.addSchema(schema.deviceSchema, '/Devices');
+        this._validateSchema(schema.deviceArray, validator);
+    }
+
+    /**
+     * Validates devtools.tirex.json
+     */
+    _validateDevToolsJson() {
+        let validator = new jsonValidator();
+        validator.addSchema(schema.devtoolsSchema, '/Devtools');
+        this._validateSchema(schema.devToolsArray, validator);
+    }
+
+    /**
+     * Gets the error message based on the error message generated by jsonschema
+     * @param {string} message - error message generated by jsonschema
+     */
+    _getErrorMessage(message) {
+        let errorMessage = errorCases[message];
+        if (errorMessage) {
+            return errorMessage;
+        } else {
+            return message;
+        }
+    }
+
+    /**
+     * Gathers information about the instance that is invalid
+     * @param {object} errorInstance - the instance in the json that is invalid
+     */
+    _getErrorInfo(errorInstance) {
+        let errorInfo = {};
+        if (this.fileType === 'content') {
+            errorInfo.name = errorInstance.name;
+            errorInfo.categories = errorInstance.categories;
+        } else {
+            errorInfo.id = errorInstance.id;
+            errorInfo.name = errorInstance.name;
+        }
+        return errorInfo;
+    }
+
+}
+module.exports = SingleJsonFileValidator;
+
+/**
+ * Maps the generated error messages to a message more comprehensive
+ */
+const errorCases = {
+    'does not match pattern "^[^/][^:](.)*(.[^/]+)$"': 'is not a relative path',
+    'does not match pattern "^(ccs|iar|keil)$"': 'is not one of "css", "iar", "keil"',
+    'does not match pattern "^(macros|linux|win)$': 'is not one of "macros", "linux", "win"',
+    'does not match pattern "^(tirtos|freertos)$"': 'is not one of "tirtos", "freertos"',
+    'does not match pattern "^(english|chinese)$"': 'is not one of "english", "chinese"',
+    'does not match pattern "^(ccs|gcc|iar)$"': 'is not one of "ccs", "gcc", "iar"',
+    'does not match pattern "^(board|ide|probe|programmer|utility)$"': 'is not one of "board", "ide", "probe","programmer","utility"',
+    'does not match pattern "^(project.ccs|project.energia|project.iar|project.keil|file|file.importable|file.executable|folder|folder.importable|web.page|web.app|categoryInfo|other)$"': 'is not one of the accepted resourceType',
+    'does not match pattern "^((.+)[/]([^/]+)|(http(s)?:\\/\\/.)?(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*))$"': 'is not a path or url',
+    'does not match pattern "^(http(s)?:\\/\\/.)?(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)$"': 'is not a path or url',
+    'does not match pattern "^(device|family|subfamily)$"': 'is not one of "device", "family", "subfamily"',
+    'does not match pattern "^([0-9][.][0-9]{1,2}[.][0-9]{1,2})$"': 'is not in the form of "x.xx.xx"',
+    'does not match pattern "^([0-9][.][0-9]{1,2}[.][0-9]{1,2}[.][0-9]{1,4})$"': 'is not in the form of "x.xx.xx.xxxx"',
+    'does not match pattern "^[.][^.]+$': 'is not a file extension',
+    'does not match pattern "^(devices|devtools|software)$"': 'is not one of "devices", "devtools", "software"',
+    'does not match pattern "^(desktopOnly|desktopImportOnly)$"': 'is not one of "desktopOnly", "desktopImportOnly"'
+};

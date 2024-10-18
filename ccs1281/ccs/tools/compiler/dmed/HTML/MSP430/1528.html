@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+    <title>ULP Advisor Rule 3.1 Use ISRs instead of flag polling</title>
+  </head>
+  <body>
+    <h1> <span class="mw-headline"
+        id="ULP_Advisor_.3E_Rule_3.1_Use_ISRs_instead_of_flag_polling">
+        <a href="http://processors.wiki.ti.com/index.php/ULP_Advisor"
+          title="ULP Advisor"> ULP Advisor</a> &gt; Rule 3.1 Use ISRs
+        instead of flag polling </span></h1>
+    <table style="float: right; background: #F9F9F9;" border="5"
+      cellpadding="10" cellspacing="0">
+      <tbody>
+        <tr>
+          <td>
+            <div class="center">
+              <div class="floatnone"><a
+                  href="http://processors.wiki.ti.com/index.php/ULP_Advisor"
+                  title="ULP Advisor"><img alt="ULPAdvisorBanner.PNG"
+src="http://processors.wiki.ti.com/images/thumb/b/b9/ULPAdvisorBanner.PNG/320px-ULPAdvisorBanner.PNG"
+                    height="107" width="320"></a></div>
+            </div>
+            <h2> <span class="mw-headline"
+                id="ULP_Advisor_-_Rule_Table"> <a
+                  href="http://processors.wiki.ti.com/index.php/ULP_Advisor"
+                  title="ULP Advisor"><span style="color:#1F2BB8;"> ULP
+                    Advisor</span></a> - Rule Table </span></h2>
+            <p><a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/10371"
+                title="Compiler/diagnostic messages/MSP430/10371"><span
+                  style="color:#1F2BB8;"> ULP 1.1 Ensure LPM usage</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1527"
+                title="Compiler/diagnostic messages/MSP430/1527"><span
+                  style="color:#1F2BB8;"> ULP 2.1 Leverage timer module
+                  for delay loops</span></a><br>
+              <strong class="selflink"><span style="color:#1F2BB8;"> ULP
+                  3.1 Use ISRs instead of flag polling</span></strong><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/10372"
+                title="Compiler/diagnostic messages/MSP430/10372"><span
+                  style="color:#1F2BB8;"> ULP 4.1 Terminate unused GPIOs</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1530"
+                title="Compiler/diagnostic messages/MSP430/1530"><span
+                  style="color:#1F2BB8;"> ULP 5.1 Avoid
+                  processing-intensive operations: modulo, divide.</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1531"
+                title="Compiler/diagnostic messages/MSP430/1531"><span
+                  style="color:#1F2BB8;"> ULP 5.2 Avoid
+                  processing-intensive operations: floating point</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1532"
+                title="Compiler/diagnostic messages/MSP430/1532"><span
+                  style="color:#1F2BB8;"> ULP 5.3 Avoid
+                  processing-intensive operations: (s)printf()</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1533"
+                title="Compiler/diagnostic messages/MSP430/1533"><span
+                  style="color:#1F2BB8;"> ULP 6.1 Avoid multiplication
+                  on devices without hardware multiplier </span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/10422"
+                title="Compiler/diagnostic messages/MSP430/10422"><span
+                   style="color:#1F2BB8;"> ULP 6.2 Use MATHLIB for complex
+                   math operations </span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/10436"
+                title="Compiler/diagnostic messages/MSP430/10436"><span
+                   style="color:#1F2BB8;"> ULP 6.3 Use Low Energy Accelerator (LEA) software
+      library </span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1534"
+                title="Compiler/diagnostic messages/MSP430/1534"><span
+                  style="color:#1F2BB8;"> ULP 7.1 Use local instead of
+                  global variables where possible</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1535"
+                title="Compiler/diagnostic messages/MSP430/1535"><span
+                  style="color:#1F2BB8;"> ULP 8.1 Use 'static' &amp;
+                  'const' modifiers for local variables</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1537"
+                title="Compiler/diagnostic messages/MSP430/1537"><span
+                  style="color:#1F2BB8;"> ULP 9.1 Use pass by reference
+                  for large variables</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1538"
+                title="Compiler/diagnostic messages/MSP430/1538"><span
+                  style="color:#1F2BB8;"> ULP 10.1 Minimize function
+                  calls from within ISRs</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1539"
+                title="Compiler/diagnostic messages/MSP430/1539"><span
+                  style="color:#1F2BB8;"> ULP 11.1 Use lower bits for
+                  loop program control flow</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1540"
+                title="Compiler/diagnostic messages/MSP430/1540"><span
+                  style="color:#1F2BB8;"> ULP 11.2 Use lower bits for
+                  port bit-banging</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1541"
+                title="Compiler/diagnostic messages/MSP430/1541"><span
+                  style="color:#1F2BB8;"> ULP 12.1 Use DMA for large
+                  memcpy() calls</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1542"
+                title="Compiler/diagnostic messages/MSP430/1542"><span
+                  style="color:#1F2BB8;"> ULP 12.1b Use DMA for
+                  potentially large memcpy() calls</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1543"
+                title="Compiler/diagnostic messages/MSP430/1543"><span
+                  style="color:#1F2BB8;">ULP 12.2 Use DMA for repetitive
+                  transfer</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1544"
+                title="Compiler/diagnostic messages/MSP430/1544"><span
+                  style="color:#1F2BB8;"> ULP 13.1 Count down in loops</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1545"
+                title="Compiler/diagnostic messages/MSP430/1545"><span
+                  style="color:#1F2BB8;"> ULP 14.1 Use unsigned
+                  variables for indexing</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1546"
+                title="Compiler/diagnostic messages/MSP430/1546"><span
+                  style="color:#1F2BB8;"> ULP 15.1 Use bit-masks instead
+                  of bit-fields</span></a> <br>
+            </p>
+            <p><b>Let us know what you think!</b> Feedback, suggestions
+              &amp; comments <br>
+              are welcome @ ULPAdvisorFeedback@list.ti.com </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2> <span class="mw-headline" id="What_it_means"> What it means </span></h2>
+    <p>The MSP430 microcontroller achieves low power consumption by
+      minimizing the time spent in active mode and maximizing the time
+      in low power modes. Peripherals can be configured to operate
+      without CPU intervention and the CPU only needs to wake up to
+      process critical task and quickly return to low power mode. Rather
+      than waiting and periodically polling a flag, MSP430
+      microcontrollers can enable the CPU to enter a low power mode and
+      leverage one of the integrated peripherals to wake up the CPU. By
+      using low power modes and MSP430 microcontroller's intelligent
+      peripherals, applications can turn off the CPU when it is not
+      needed, only waking up when more intensive tasks are required.
+    </p>
+    <h2> <span class="mw-headline" id="Risks.2C_Severity"> Risks,
+        Severity </span></h2>
+    <p>Constantly polling a status flag will keep the application in
+      active mode, which will greatly increase power consumption and
+      reduce battery lifetime. </p>
+    <h2> <span class="mw-headline" id="Why_it_is_happening"> Why it is
+        happening </span></h2>
+    <p>This remark is issued when ULP Advisor detects empty loops that
+      do flag polling:
+    </p>
+    <pre> while (!(TA1CTL &amp; TAIFG));
+ // or 
+ while (!(ADC12IFG &amp; ADC12IFG0));
+ // or
+ while (ADC12CTL1 &amp; ADC12BUSY);
+</pre>
+    <h2> <span class="mw-headline" id="Remedy"> Remedy </span></h2>
+    <ul>
+      <li>Use low power modes in your application when the application
+        is waiting for a flag to be set.<br>
+      </li>
+      <li>Enable interrupts and configure the MSP430 microcontroller's
+        peripherals to wake up the CPU when the peripheral's status flag
+        is set. </li>
+    </ul>
+    <h2> <span class="mw-headline" id="Code_Example"> Code Example </span></h2>
+    <pre> //******************************************************************************
+ //  MSP430G2x33/G2x53 Demo - ADC10, Sample A1, AVcc Ref, Set P1.0 if &gt; 0.5*AVcc
+ //
+ //  Description: A single sample is made on A1 with reference to AVcc.
+ //  Software sets ADC10SC to start sample and conversion - ADC10SC
+ //  automatically cleared at EOC. ADC10 internal oscillator times sample (16x)
+ //  and conversion. In Mainloop MSP430 waits in LPM0 to save power until ADC10
+ //  conversion complete, ADC10_ISR will force exit from LPM0 in Mainloop on
+ //  reti. If A1 &gt; 0.5*AVcc, P1.0 set, else reset.
+ //
+ //                MSP430G2x33/G2x53
+ //             -----------------
+ //         /|\|              XIN|-
+ //          | |                 |
+ //          --|RST          XOUT|-
+ //            |                 |
+ //        &gt;---|P1.1/A1      P1.0|--&gt;LED
+ //
+ //  D. Dang
+ //  Texas Instruments Inc.
+ //  December 2010
+ //   Built with CCS Version 4.2.0 and IAR Embedded Workbench Version: 5.10
+ //******************************************************************************
+ #include "msp430g2553.h"
+ 
+ void main(void)
+ {
+   WDTCTL = WDTPW + WDTHOLD;                 // Stop WDT
+   ADC10CTL0 = ADC10SHT_2 + ADC10ON + ADC10IE; // ADC10ON, interrupt enabled
+   ADC10CTL1 = INCH_1;                       // input A1
+   ADC10AE0 |= 0x02;                         // PA.1 ADC option select
+   P1DIR |= 0x01;                            // Set P1.0 to output direction
+ 
+   for (;;)
+   {
+     ADC10CTL0 |= ENC + ADC10SC;             // Sampling and conversion start
+     __bis_SR_register(CPUOFF + GIE);        // LPM0, ADC10_ISR will force exit
+     if (ADC10MEM &lt; 0x1FF)
+       P1OUT &amp;= ~0x01;                       // Clear P1.0 LED off
+     else
+       P1OUT |= 0x01;                        // Set P1.0 LED on
+   }
+ }
+ 
+ // ADC10 interrupt service routine  
+ #pragma vector=ADC10_VECTOR
+ __interrupt void ADC10_ISR(void)
+ {
+   __bic_SR_register_on_exit(CPUOFF);        // Clear CPUOFF bit from 0(SR)
+ }
+</pre>
+    <p><a
+        href="http://focus.ti.com/mcu/docs/mcusplash.tsp?contentId=128826#CE"
+        class="external text" rel="nofollow" target="_blank">See the
+        rest of the code examples for all MSP430 devices here!</a> </p>
+    <h2> <span class="mw-headline" id="More_Resources"> More Resources
+      </span></h2>
+    <p>Want to squeeze a few more nanoAmps out of your application?
+      Leverage the e2e (Engineer-to-Engineer) online community to get
+      all of your ULP questions answered! Or, if you are an Ultra-Low
+      Power pro, give back to the community with your expertise. </p>
+    <p><a
+href="http://e2e.ti.com/support/microcontrollers/msp43016-bit_ultra-low_power_mcus/f/166.aspx"
+        class="external text" rel="nofollow" target="_blank">Go to
+        MSP430's e2e online forum!</a>&nbsp; </p>
+    <p>If you are posting on the forums in relation to this rule, try
+      using the tag "ULP_3.1"
+    </p>
+    <table style="text-align:center; background:white; width:100%;
+      text-align:left; height: 65px border-top: 1px solid;
+      border-bottom: 1px solid; border-left: 1px solid; border-right:
+      1px solid; border-width: 1px; border-style: solid;">
+      <tbody>
+        <tr>
+          <td width="305px"><a
+              href="http://processors.wiki.ti.com/index.php/File:E2e.jpg"
+              class="image"><img alt="E2e.jpg"
+                src="http://processors.wiki.ti.com/images/8/82/E2e.jpg"
+                height="63" width="305"></a>
+          </td>
+          <td><i>For technical support please post your questions at <a
+                href="http://e2e.ti.com" class="external free"
+                rel="nofollow" target="_blank">http://e2e.ti.com</a>.
+              Please post only comments about the article <b>Compiler/diagnostic
+                messages/MSP430/1528</b> here.</i></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

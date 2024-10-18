@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="How to get support for the Code Composer Studio suite of tools."> 
+
+<!-- Change the title text for your page -->
+<title>Development Tools Support</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+The following sections describe how to get support for the Code Composer Studio suite of tools (including UniFlash, GUI Composer, PinMux, Resource Explorer and TI Cloud based tools) and the TI Compiler (including Assembler, Linker, Hex Conversion Utility, Object File Display, etc). 
+
+Jump to [CCS Support](#code-composer-studio)
+
+Jump to [Compiler Support](#compiler)
+
+##Code Composer Studio
+
+For all issues specifically related to the CCS GUI, Debugger (including target connectivity issues), GUI Composer, UniFlash, PinMux, Resource Explorer and TI Cloud based tools, please use the TI E2E Community Forum:
+
+[[g E2E Support Forum
+**<a href="https://e2e.ti.com/" target="_blank">https://e2e.ti.com/</a>**
+]] 
+
+For Compiler related issues, please see the [Compiler section](#compiler).
+
+[[y Posting Guidelines
+Before making a post on the forum, please first read the subsection below on "How to ask for support"
+]]
+
+[[r Older CCS versions
+Versions of Code Composer Studio older than the latest major version have been deprecated in support. You may still ask questions for older versions, but any bugs or enhancement requests will not be addressed with those older versions. Releases for the latest major version have priority and it is recommended that existing users upgrade to the latest versions if possible
+]]
+
+###How to ask for support
+
+When reporting a CCS issue in the CCS forum, please follow these steps first:
+
+1. Update to the latest CCS version. If upgrading is not an option, please explain why.
+2. SEARCH the following resouces:
+  - [Resource Explorer](https://dev.ti.com/tirex/#/?link=Development%20Tools%2FIntegrated%20Development%20Environments%2FCode%20Composer%20Studio)
+  - [CCS User's Guide](https://software-dl.ti.com/ccs/esd/documents/users_guide/index.html)
+  - [CCS Troubleshooting Guide](https://software-dl.ti.com/ccs/esd/documents/users_guide/index_troubleshooting.html)
+  - [FAQs](https://software-dl.ti.com/ccs/esd/documents/users_guide/index_faqs.html)
+  - <a href="https://e2e.ti.com/support/site-support/f/1024/t/691651" target="_blank">Search the forum</a>
+
+If none of the resources provide the answer you need, post a question with the following information:
+
+1. Version of the host OS (ex: Windows 10 64-bit, Build 17763)
+2. List any anti-virus or other security software running on the host
+3. Provide the exact version number of CCS / UniFlash / GUI Composer
+	- Select *Help -> About Code Composer Studio* to get the version number (ex. 9.3.0.00012)
+4. If applicable, exact device/board (include the board revision number) and debug probe used (ex. LAUNCHXL-CC1312 with on-board XDS110 debug probe).
+5. If applicable, versions of build tools and SDK used to build the project
+  - (For CCS Eclipse) Use the below command to output dependency information on all projects in a workspace (this information can be captured to a text file and provided to TI support):
+    - <tt>[CCS INSTALL DIR]/ccs/eclipse/eclipsec -nosplash -data [WORKSPACE] -application com.ti.ccstudio.apps.inspect -ccs.projects:externalResources</tt>
+6. A detailed and reproducible test case. Be as descriptive as possible. Providing an executable + project/source (if applicable and possible) is also very useful. If it is not feasible to attach the test case on the forum because of IP issues, state that a test case is available upon request if someone from TI wishes to contact you for it
+7. [Diagnostic Logs](#diagnostic-logs) (if available):
+
+*The more information you can provide, the better the chance we will be able to assist you in a timely fashion.*
+
+It is very important to provide as much details about the issue to expedite analysis and resolution of the issue. **A reproducible test case is, by far, the best information that can be given for this**.
+
+First time users of the forums are also encouraged to read the FAQs at the bottom of the <a href="https://e2e.ti.com/support/tools/ccs/f/81/t/3131" target="_blank">CCS Forum README</a>
+
+###Diagnostic Logs
+
+
+When contacting TI for support, in addition to the usual information, providing additional diagnostics logs can help support personnel in their investigations. 
+  - CCS Eclipse: Please see the [Diagnostic Logs](https://software-dl.ti.com/ccs/esd/documents/ccs_diagnostic-logs.html) article for more information
+  - CCS Theia: Please see provide a CCS Server Log. See the [CCS Theia - Getting Support](https://software-dl.ti.com/ccs/esd/documents/users_guide_ccs_theia/ccs_troubleshooting.html#getting-support) section for more information
+
+---
+
+##Compiler
+
+For all issues specific to TI C and C++ compilers, including the Assembler, Linker, Hex Conversion Utility, Object File Display Utility, etc, please use the TI E2E Community Forum:
+
+[[g E2E Forum
+**<a href="https://e2e.ti.com/" target="_blank">https://e2e.ti.com/</a>**
+]]
+
+[[y Posting Guidelines
+Before making a post on the forum, please first read the subsection below on "How to ask for support"
+]]
+
+[[r Compilers not released by TI
+The above forum is not for issues about C and C++ compilers not released by TI. This includes compilers from IAR and ARM Ltd
+]]
+
+###How to ask for support
+
+Please follow the steps documented in [this article](http://software-dl.ti.com/ccs/esd/documents/sdto_cgt_Compiler-Problems-Checklist.html).                                
+   
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

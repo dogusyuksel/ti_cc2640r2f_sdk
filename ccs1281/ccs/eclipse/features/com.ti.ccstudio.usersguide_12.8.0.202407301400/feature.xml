@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.ccstudio.usersguide"
+      label="Code Composer Studio User&apos;s Guide"
+      version="12.8.0.202407301400"
+      provider-name="Texas Instruments">
+
+   <description url="http://dev.ti.com/tirex/explore">
+      The Code Composer User&apos;s Guide explains how to use the CCS IDE.
+   </description>
+
+   <copyright url="http://www.ti.com/legal/copyright.html">
+      Copyright (c) 2020 Texas Instruments Incorporated.
+   </copyright>
+
+   <license url="">
+      This feature is delivered to you under the license terms that you agreed to when activating Code Composer Studio.  You can view your specific license agreement by visiting www.ti.com/myregisteredsoftware and clicking on &quot;View EULA&quot; under your Code Composer Studio activation.
+   </license>
+
+   <plugin
+         id="com.ti.ccstudio.usersguide.doc"
+         download-size="134000"
+         install-size="134000"
+         version="12.8.0.202407301400"/>
+
+</feature>

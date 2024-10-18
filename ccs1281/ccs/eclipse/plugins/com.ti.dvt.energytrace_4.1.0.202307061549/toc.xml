@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<toc label="EnergyTrace Help" >
+    <topic label="MSP430 EnergyTrace User's Guide" href="html/EnergyTrace User's Guide.html">
+    </topic>
+    <topic label="MSP432 EnergyTrace User's Guide" href="html/MSP432 EnergyTrace User's Guide.html">
+    </topic>
+</toc>

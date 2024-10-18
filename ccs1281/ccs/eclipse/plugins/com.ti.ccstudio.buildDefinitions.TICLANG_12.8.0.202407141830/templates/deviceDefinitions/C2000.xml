@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<deviceDefinitions>
+
+	<isaFamily 
+		id="C2000" 
+		name="C2000"/>
+	
+</deviceDefinitions>

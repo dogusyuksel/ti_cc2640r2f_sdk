@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="This page contains details about running CCSv10 on macOS, including installation details, device support and debug probe support"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Composer Studio Product Page">
+<meta name="product-link" content="https://www.ti.com/tool/CCStudio">
+
+<!-- Change the title text for your page -->
+<title>macOS Host Support CCSv10</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+<!-- Add your markdown source here! -->
+# Overview
+
+This page contains information regarding Code Composer Studio v10 running on macOS. It includes installation instructions, device support and debug probe support. 
+
+CCS is typically tested with the most current version and previous version of macOS available at the time of CCS release. <br>
+For the list of macOS versions supported in a specific release of CCS, please check the [CCS User's Guide](./users_guide_10.3.0/ccs_overview.html#macos).
+
+
+# Download and Install 
+
+Proceed with instructions for download and install shown in section 3 of the [CCS User's Guide](./users_guide/index.html).
+
+In case super user permissions are not available AND the complete (offline) installer is being executed, make sure to remove it from quarantine status by issuing the following command:
+
+  - <tt>xattr -r -d com.apple.quarantine ccs_setup_10.0.0.00010.app</tt>
+
+Failing to do so will cause macOS to copy the executable to another folder and run it from there, thus fooling the installer into believing it is an on-demand (web) installer and causing it to re-download all components.  
+
+[[r Catalina important notes
+
+   - The XDS200-class of Debug Probes fail to properly be acknowledged when used with the latest updates of macOS Catalina (10.15.4 and 10.15.5). This is reported on the bug number [EXT_EP-9758](https://sir.ext.ti.com/jira/browse/EXT_EP-9758) and is caused by changes on how the CDC USB devices are enumerated. Check the bug report for additional details and a procedure to workaround the bug.
+
+   - TI compiler releases up to 18.1.x are 32 bits and therefore incompatible with this version of the OS. You need to use a release 18.12.x and newer.
+
+]]
+
+# Uninstall
+
+Run <tt>&lt;CCS_INSTALL_DIR&gt;/ccs/uninstall_ccs.app.</tt> 
+
+If the uninstaller fails for some reason, it is safe to delete everything under the <tt>&lt;CCS_INSTALL_DIR&gt;/ccs</tt> directory to complete the uninstall.
+
+# Devices
+
+## Supported
+- <b>Microcontrollers</b>: MSP430, MSP432, C2000, TM4, Hercules
+- <b>Wireless Connectivity</b>: CC13xx, CC2538, CC26xx, CC32xx
+- <b>Programmable Gain Amplifiers (PGA)</b>: PGA900, PGA970
+
+## Not Supported
+- <b>Microcontrollers</b>: C/F24x
+- <b>DSP</b>: C66x, C674x, C64x+, C641x, C62x, C670x/C671x/C672x, C55x, C54x, C3x/C4x/C5x/C8x
+- <b>Processors</b>: Sitara (AMxxxx), Keystone / Keystone II, OMAPL
+- <b>Digital Power</b>: UDC31xx
+
+# Debug Probes
+
+## Supported
+- MSP430: MSP-FET, MSP-FET430UIF, Launchpads with built-in MSP-FET and eZ-FET technology such as the [MSP-EXP430G2ET](https://www.ti.com/tool/MSP-EXP430G2ET)
+   - For a complete list, check the document [SLAU647](https://www.ti.com/lit/slau647)
+- XDS110: Standalone XDS110, LaunchPads with built-in XDS110 technology
+   - The XDS110 EnergyTrace HDR Add-on is also supported
+- XDS100: v2 and v3
+- XDS200: USB, LAN
+- TM4C/Tiva/Stellaris ICDI as well as CC3200 LaunchPad
+- SEGGER J-Link
+   - Not all TI devices are supported. Check [Segger's device list](https://www.segger.com/products/debug-probes/j-link/technology/cpus-and-devices/overview-of-supported-cpus-and-devices/)
+
+## Not Supported
+- MSP430: MSP-FET430PIF (Parallel port), Launchpads and Experimenters kits that use eZ430 technology such as Chronos, [MSP-EXP430G2](https://www.ti.com/tool/MSP-EXP430G2) and [MSP-EXP430FR4133](https://www.ti.com/tool/MSP-EXP430FR4133) LaunchPads. 
+   - **Note:** the [MSP-EXP430G2ET](https://www.ti.com/tool/MSP-EXP430G2ET) is supported.
+   - For a complete list, check the document [SLAU647](https://www.ti.com/lit/slau647)
+- Stellaris ICDI based on FTDI
+- XDS100v1
+- Blackhawk: XDS560v2 (LAN/USB), USB560, USB560m, USB560bp, USB2.0, XDS560 PCI, XDS560T, XDS510
+- Spectrum Digital: XDS560v2, XDSPROTRACE, XDS510, XDS560R, Parallel Port emulators
+- Texas Instruments: XDS560 PCI, XDS510 ISA
+- In general vendors are not supporting PCI, ISA or parallel port emulators on Linux
+
+[[b Note:
+
+   For information on a specific debug probe, please contact the manufacturer.
+   
+]]
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

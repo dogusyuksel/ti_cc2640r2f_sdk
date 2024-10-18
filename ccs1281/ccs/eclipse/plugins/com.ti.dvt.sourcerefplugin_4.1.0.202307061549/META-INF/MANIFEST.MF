@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.ti.dvt.sourcerefplugin;singleton:=true
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,com.ti.dvt.sou
+ rceref
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: Texas Instruments
+Import-Package: com.ti.dvt.ui.dialogs
+Eclipse-LazyStart: true
+Export-Package: com.ti.dvt.sourceref,com.ti.dvt.sourceref.preferences
+Bundle-Name: Source Reference Preference Plug-in
+Bundle-Version: 4.1.0.202307061549
+Bundle-ClassPath: sourcerefplugin.jar
+Bundle-Activator: com.ti.dvt.sourceref.SourcerefPluginPreference
+
+Name: sourcerefplugin.jar
+SHA-256-Digest: eSKSQC7jFp346zFlBH59OPTBW7al6nhPvAZ5PpYYagI=
+
+Name: plugin.xml
+SHA-256-Digest: a0p5Nw+6OvMddMCr3OQgrtWw+qwWdRZBUx6POpuLhV4=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: G2hFTVPngfh5NUf96Pyy87A7XIE083udjEBFy4pUc/M=
+

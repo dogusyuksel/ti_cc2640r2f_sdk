@@ -1,0 +1,86 @@
+<project name="Update DVT" default="uninstallDVT">
+	<target name="init" depends="record">
+		<property name="eclipse_dir" value="${plugin_dir}/../.." />
+		<condition property="eclipse_dir_set" value="true">
+			<not>
+				<equals arg1="${eclipse_dir}" arg2=""/>
+			</not>
+		</condition>
+		
+		<echo message="user home = ${user.home}"/>
+		<echo message="JRE version = ${java.version}"/>
+		<echo message="ant dir = ${plugin_dir}"/>	
+		<echo message="plugin_dir = ${plugin_dir}"/>
+		<echo message="eclipse_dir = ${eclipse_dir}"/>
+		
+		<property file="dvt.installed"/>
+	</target>
+	
+	<target name="createLogDir">
+		<mkdir dir="${log_dir}"/>
+	</target>
+	
+	<target name="logDir">
+		<!-- need to get the correct version number -->
+		<dirname property="plugin_dir" file="${ant.file}"/>
+		<basename property="plugin_name" file="${plugin_dir}"/>
+		<basename property="type" file="${ant.file}" suffix="xml"/>
+		<property name="logfile" value="${user.home}/.TI/com.ti.dvt/${plugin_name}_${type}.log"/>
+		<dirname property="log_dir" file="${logfile}"/>
+		<subant antfile="${ant.file}" target="createLogDir" inheritall="true" failonerror="false" buildpath="."/>
+		<available property="log_dir_found" file="${log_dir}" type="dir"/>
+	</target>
+	
+	<target name="record" depends="logDir" if="log_dir_found">
+		<record name="${logfile}"/>
+	</target>
+	
+	<target name="getCCStudioDir" if="eclipse_dir_set">
+		<loadproperties srcFile="${eclipse_dir}/ccs.properties"/>
+		<property name="ccs.debugServerDir" value="${path}"/>
+
+		<echo message="ccs.debugServerDir = ${ccs.debugServerDir}"/>
+	</target>
+
+	<target name="uninstallDVT" depends="init,getCCStudioDir">	
+		<delete file="dvt.installed" failonerror="false"/>
+		
+		<condition property="dest_dir" value="${ccs.debugServerDir}/../dvt">
+			<isset property="ccs.debugServerDir"/>
+		</condition>
+		<condition property="dest_dir" value="${eclipse_dir}/../dvt">
+			<not>
+				<isset property="ccs.debugServerDir"/>
+			</not>
+		</condition>
+
+		<echo message="dest_dir = ${dest_dir}_4.1.0.202307061549"/>
+
+		<mkdir dir="${dest_dir}_4.1.0.202307061549"/> <!-- Delete will fail if non-existent! -->
+		<zipfileset src="${plugin_dir}/dvt.zip" id="dvt.zip" defaultexcludes="false"/>
+		<pathconvert property="dvt.zip" refid="dvt.zip" pathsep=","/>
+		<echo message="${dvt.zip}" file="dvt.zip.list"/>
+		<replace file="dvt.zip.list" token="${plugin_dir}${file.separator}dvt.zip:" summary="true"/>
+		<loadfile property="dvt.zip.list" srcFile="dvt.zip.list"/>
+		<delete includeemptydirs="true" verbose="true" deleteonexit="true">
+			<fileset dir="${dest_dir}_4.1.0.202307061549" includes="${dvt.zip.list}" defaultexcludes="false"/>
+		</delete>
+		<delete includeemptydirs="true" verbose="true">
+		  <fileset dir="${dest_dir}_4.1.0.202307061549">
+		    <and>
+		      <size value="0"/>
+		      <type type="dir"/>
+		     </and>
+		  </fileset>
+		</delete>
+		<mkdir dir="${dest_dir}_4.1.0.202307061549/../common"/> <!-- Delete will fail if non-existent! -->
+		<zipfileset src="${plugin_dir}/analysis.zip" id="analysis.zip" defaultexcludes="false"/>
+		<pathconvert property="analysis.zip" refid="analysis.zip" pathsep=","/>
+		<echo message="${analysis.zip}" file="analysis.zip.list"/>
+		<replace file="analysis.zip.list" token="${plugin_dir}${file.separator}analysis.zip:" summary="true"/>
+		<loadfile property="analysis.zip.list" srcFile="analysis.zip.list"/>
+		<delete includeemptydirs="true" verbose="true" deleteonexit="true">
+			<fileset dir="${dest_dir}_4.1.0.202307061549/../common" includes="${analysis.zip.list}" defaultexcludes="false"/>
+		</delete>
+	</target>
+</project>

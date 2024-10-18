@@ -1,0 +1,16 @@
+GEL Expression Evaluation
+-------------------------
+
+GEL expressions may be used to express values in many dialog boxes, the Watch window, and the GEL toolbar, as well as within GEL functions themselves. It is in fact GEL expressions that are being evaluated wherever an expression is evaluated within Code Composer Studio IDE.
+
+The following topics describe the enhancements that have been made to support the C++ language, and also detail the features of C++ that are not fully supported.
+
+`GEL Namespace <namespace.html>`__
+
+`C++ Support <cpp_support.html>`__
+
+`C++ Limitations <cpp_limit.html>`__
+
+`GEL Functions: Alphabetical List <functions_list.html>`__
+
+`Using Symbols as Expressions <sym_expr.html>`__

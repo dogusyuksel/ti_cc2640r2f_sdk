@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="Instructions for flashing multiple boards using UniFlash.  This document assumes that each board is connected to the host computer with a separate debug probe.">
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="UniFlash Product Page">
+<meta name="product-link" content="https://www.ti.com/tool/UNIFLASH">
+
+<!-- Change the title text for your page -->
+
+<title>Flashing multiple boards with UniFlash</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+# Overview
+[UniFlash](https://www.ti.com/tool/UNIFLASH) is a tool for programming TI microcontrollers.  It is typically used for flash programming but can also be used to program RAM.  This document describes how to use UniFlash to program more than one board when they are connected to the same host computer via separate debug probes.  For instructions on how to program multiple devices connected via the same debug probe, i.e. on the same scan chain, then refer to [UniFlash with multiple devices](https://software-dl.ti.com/ccs/esd/documents/application_notes/appnote-uniflash_multiple_devices.html).
+
+# Procedure
+Programming more than one board with UniFlash relies on creating separate target configuration files for each board.  These target configuration files are used to identify the device to program.  Typically the target configuration files are created in Code Composer Studio (CCS) as its target configuration editor is more advanced.  However it is also possible to do this in UniFlash itself.  A target configuration file (.ccxml) specifies the device/board and debug probe that are being used.  In Code Composer Studio it is possible to have a target configuration file that has more than one debug probe and board included but this is not supported by UniFlash.
+
+An installation of Code Composer Studio is required as it contains utilities that are used in the instructions below.  Code Composer Studio is only needed to get the environment setup and for the actual programming of devices.
+
+Once the necessary target configuration files are created UniFlash is called from the command-line to program each device, one at a time.  A script or batch file can be created to program all devices in a single invocation.
+
+## Uniquely identify each board
+Each board has its own debug probe that is connected to the host computer. It is necessary for UniFlash to be able to uniquely identify each debug probe so that the correct program image is loaded onto the correct device.  If using different types of debug probes for each board, such as board one is connected with an XDS100 and board two an XDS200 then this step can be skipped as UniFlash is able to distinguish between different types of debug probes.  However if using 2 debug probes of the same type it is necessary to use the serial number present on the debug probe to distinguish them.
+
+The steps below show how to identify and if necessary set the serial number for different types of debug probes.
+
+### XDS110
+[[b Note:
+XDS110 serial numbers are split into 2 portions.  The first portion is used to identify which LaunchPad or standalone probe is connected.  The second portion (suffix) can be used to uniquely identify a specific XDS110.  More details on how to set XDS110 serial numbers are available [here](https://software-dl.ti.com/ccs/esd/documents/xdsdebugprobes/emu_xds110.html#finding-and-updating-the-serial-number)
+]]
+* Connect the first debug probe (or board) to the computer.
+* Ensure that the other debug probes (or boards) are not connected.
+* In the Code Composer Studio installation navigate to **/ccs/ccs_base/common/uscif/xds110**
+* Run **xdsdfu -m** to put the XDS110 in dfu mode
+  ![dfu mode](images/xds110_dfumode.png)
+* Run **xdsdfu -n 4567 -r** replace 4567 with 4 digits of your choice. Using the -n option preserves the first part of the serial number and replaces the suffix with specified value
+  ![setting serial number](images/xds110_serialset.png)
+* Record this serial number and make note of which debug probe (or board) it is for
+* Repeat the same process for the other XDS110s.
+
+### XDS100
+[[b Note:
+Setting the serial number for an XDS100 is more complicated.  Thus the first step is to see if the serial numbers are already unique.
+]]
+* Connect all XDS100s that will be used
+* In the CCS installation navigate to **/ccs/ccs_base/common/uscif**
+* Run **xds100serial** to display the serial numbers for all connected XDS100s
+  ![XDS100 serial numbers](images/xds100_serial.png)
+* If the serial numbers are unique then disconnect all but one and run **xds100serial** again to determine the serial number for that XDS100.  Record the serial number and board.  Repeat for the other XDS100s.
+* If the serial numbers are not unique there is a process for setting the serial number that involves using a utility from **FTDI** called **FT_Prog**.  The (XDS100 page)[https://software-dl.ti.com/ccs/esd/documents/xdsdebugprobes/emu_xds100.html] has a link to an archived wiki page with this information.  This process is a little involved and thus using XDS110 debug probes is recommended.
+
+### XDS200
+[[b Note:
+In general XDS200 class debug probes have a unique serial number that is set at production.  However it is necessary to update a property so that it can be accessed by UniFlash.
+]]
+* In the Code Composer Studio installation navigate to **ccs/ccs_base/common/uscif/xds2xx**
+* First it is necessary to enable access to the serial number over USB.  Run **xds2xx_conf set xds2xxu 0 EnableUSBSerial=true**
+* Run **xds2xx_conf get xds2xxu 0** to display the serial number.  Record the number and board.
+  ![XDS200 serial number](images/xds200_serial.png)
+* Repeat the process for the next debug probe.
+
+## Creating target configuration files
+It is necessary to create a separate target configuration for each debug probe / board.  This can be done in either Code Composer Studio or UniFlash.  The instructions below are for using Code Composer Studio.  If using UniFlash it is necessary to select the device and connection, then click the **Edit** button to access the properties mentioned below.  The advantage of using Code Composer Studio for this step is the availability of the **Test Connection** feature to verify that the settings are correct.
+
+* Open **Code Composer Studio**.
+* Open the **Target Configurations** View from the **View** menu.
+* Click the button to create a new **target configuration** file
+* Specify a unique name for the file.
+  ![name the ccxml file](images/f280049cLP_ccxmlname.png)
+* Make note of where the file is going to be saved.
+* Click **Finish**.  The .ccxml file will now open up in the editor.
+* Select the appropriate **Connection** and **Device**.
+  ![name the ccxml file](images/f280049cLP_ccxmlbasic.png)
+* Click on the **Advanced** tab at the bottom to switch to the advanced settings.
+* Select the debug probe in the tree on the left.
+* On the right change the **Debug Probe Selection** setting to be **Select by serial number**.
+* Set the serial number value that matches what was configured earlier.
+  ![name the ccxml file](images/f280049cLP_ccxmladvanced.png)
+* Click the **Save** button to save the file.
+* Use the *Test Connection** button to verify that the target configuration file matches the connected board.
+* Repeat this process to create .ccxml files for the other debug probes / boards.
+
+There is now a target configuration (.ccxml) file for each debug probe / board.
+
+## UniFlash settings
+
+It is recommended to start by using the UniFlash GUI to determine the settings that will be used for flashing.  Once these settings are determined they can be saved to a file and then passed to the command line interface.  Either the Cloud or desktop version of UniFlash can be used for this section.
+
+* Open UniFlash
+* Scroll down to **Create Session From Existing Target Configuration File**.
+* Click the **Select** button.
+  ![select the ccxml file](images/uniflash_ccxmlselect.png)
+* Select the first .ccxml file that was created earlier.
+* Click the **Start** button to continue.
+  ![start session](images/uniflash_ccxmlstart.png)
+* Click the **Browse** button and specify the image to program.
+  ![specify image](images/uniflash_imagebrowse.png)
+  ![image size displayed](images/uniflash_image.png)
+* Click the **Load Image** button to confirm that the image can be programmed on the board.
+  ![load](images/uniflash_loadimage.png)
+* Set any additional settings that are desired.  The settings available vary by device but often their are options for how much memory to erase prior to loading, if to perform a reset when connecting to the device, clock settings...
+* Once done with the settings click on **Standalone Command Line** on the left.
+  ![load](images/uniflash_menustandalone.png)
+* Saving settings
+  ** Option 1: save just the settings file
+     ** Click the **Download** link beside **Settings** to save the file that contains all of the options that were configured in UniFlash.  If using the Cloud version of UniFlash this will download the file.  If using the Desktop version it will prompt for a location to save the file.  Give the file a name that matches the board.
+  ** Option 2: generate a command line UniFlash package that includes the uniflash components necessary for flashing the specified device, bundled with the program image, ccxml file and settings file.
+* Repeat for the other boards.
+
+## Invoking UniFlash
+
+It is recommended to use the command line interface when multiple target configuration files.  This interface is described in the [UniFlash Quick Start Guide](https://software-dl.ti.com/ccs/esd/uniflash/docs/v6_2/uniflash_quick_start_guide.html#command-line-interface).
+
+The basic structure of calling UniFlash from the command line consists of calling the **dslite** utility with an action to perform, the target configuration file, options file and program image.
+```
+dslite flash --config=ccxml-file [options] [image]
+```
+
+An example is:
+```
+dslite --mode flash --config=F280049C_LaunchPad_One.ccxml --load-settings=F280049C_LaunchPad_One.ufsettings led_ex1_blinky.out
+```
+
+When 2 boards are connected 2 commands would be run.
+```
+dslite --mode flash --config=F280049C_LaunchPad_One.ccxml --load-settings=F280049C_LaunchPad_One.ufsettings led_ex1_blinky.out
+dslite --mode flash --config=F280049C_LaunchPad_Two.ccxml --load-settings=F280049C_LaunchPad_Two.ufsettings other_program.out
+```
+
+A shell script or batch file can be created to run both commands at once.  If the option to generate a command line package was seleted it will include an example.
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

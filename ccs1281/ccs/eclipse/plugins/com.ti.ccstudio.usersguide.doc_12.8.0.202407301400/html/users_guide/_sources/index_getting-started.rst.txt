@@ -1,0 +1,11 @@
+Getting Started
+***************
+
+This chapter covers the recommended next steps, after installation of Code Composer Studio (CCS), to help get started with using CCS for development with your device. 
+
+.. toctree::
+   :maxdepth: 3
+
+   ccs_getting-started
+
+

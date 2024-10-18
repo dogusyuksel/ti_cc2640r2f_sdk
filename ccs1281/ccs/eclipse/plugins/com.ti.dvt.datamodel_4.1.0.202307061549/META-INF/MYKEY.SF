@@ -1,0 +1,72 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: ROQDlFeuQykD9XZKdWcgjZeLeOl8N
+ I548zQFaEL3YPI=
+SHA-256-Digest-Manifest: 6tIZ1mDLsLIBGW0AgpwvWNpFO32e+VCkaDBOVCjKWb0=
+Created-By: 1.8.0_102 (Oracle Corporation)
+
+Name: plugin.xml
+SHA-256-Digest: RIRVCL+sMatkWQ3XvgUX0IWCnHfyx3q8eWl5anuX05A=
+
+Name: extensions/com/ti/dvt/ltt/LTTDataSource.class
+SHA-256-Digest: ymwRVU9AzDurxYWY+s2rQZ2JQ5h0qb9tjq5K7zYMVtY=
+
+Name: extensions/uia_host.jar
+SHA-256-Digest: 7FcQnJiOwYwgpiC/hPqyAbK6dpynSTFXR54ZH+2xEF0=
+
+Name: extensions/xdc_rta.jar
+SHA-256-Digest: iGDyrYqFMMnZM1key8IXHuhlCFbnErADQ0IcrUbhnMc=
+
+Name: extensions/uia_dvt.jar
+SHA-256-Digest: GE/efX/wVIxEcKQ9P1By6kBW3PEeTZbY+7DICVsSKRE=
+
+Name: icons/export.gif
+SHA-256-Digest: DCu+xMRSwRPByDJHjpEyQA6IVPjq+VOCNG8PiuRkjLs=
+
+Name: icons/socrates.gif
+SHA-256-Digest: CxKRUrFWsiX30541STQhTV280ghL2h9WxNrAqYxAHPE=
+
+Name: extensions/uia_host_extensions.jar
+SHA-256-Digest: 6j6x743w6ysi2XAvR63Iyo6EsSNFECWuIG1BARhfLAo=
+
+Name: icons/data_load.gif
+SHA-256-Digest: ZBTRkz7l2sPGyZw+wNw25kdfJIg468ViXmCr29llHsE=
+
+Name: icons/stream_from_file.gif
+SHA-256-Digest: bH6C4ezQk7Q/hY+I7Jsga30O1aD/LhbbREpZZSUiGvY=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: ak2bzOGDjLurhLXRsFA/N7TRhvaP+YA1QdnivLjcXtk=
+
+Name: extensions/com/ti/dvt/ltt/JLTTTraceReader.class
+SHA-256-Digest: WVjURugdeImWU7JYwgHJEn3/Og65wbcNILBUa2dAe8E=
+
+Name: icons/stream_to_file.gif
+SHA-256-Digest: maRCdQw8fmZL85/8SWLMKaUZ417bg0X9hDkxmDRY6Bw=
+
+Name: icons/socrates32.gif
+SHA-256-Digest: rJ/g/k3cNG9iZeCp/RQw9CEEOfwcs0tFn+L9b9VZBoQ=
+
+Name: icons/suspend.gif
+SHA-256-Digest: A6DqgMCY/ILCCfD1uT1sd1A7P4+EMIZE5zPZ/Qc6JrE=
+
+Name: extensions/com/ti/dvt/ltt/LTTDataSource$LinuxSourceThread.class
+SHA-256-Digest: jRRsVaDE93nLSXRdaKUQAxSjqHdT4myBOw11xMAy0T4=
+
+Name: icons/data_save.gif
+SHA-256-Digest: BojfLk5RFuhnflCvQ7Ju9yR+qcbnF/s/C1Asuywebdw=
+
+Name: extensions/com/ti/dvt/ltt/JLTTTraceReader$LinuxTraceData.class
+SHA-256-Digest: 2JT2p8/nk6/BeuOqhg+SfqEJ/OHf+9YJh4vkjF9mV34=
+
+Name: socratesui.jar
+SHA-256-Digest: 2LmbpNe6Oxmyvt2xwc5kv9uVvN003ZtyHv1a9iKybAw=
+
+Name: extensions/xds560trace.jar
+SHA-256-Digest: PLBS0OD1xgTNJ8zIYUJRpMocH2hva+38GXr7Btalvu0=
+
+Name: js.jar
+SHA-256-Digest: 0dhx5SPwsYuVPClt3SfYdo8SFWC2G8p0007sYkk7Re8=
+
+Name: extensions/httpcgiconnectionSDK.jar
+SHA-256-Digest: NTwqcasO4pDhTYzV5/ORV2bbfN05inqMHS6SCvcE+hA=
+

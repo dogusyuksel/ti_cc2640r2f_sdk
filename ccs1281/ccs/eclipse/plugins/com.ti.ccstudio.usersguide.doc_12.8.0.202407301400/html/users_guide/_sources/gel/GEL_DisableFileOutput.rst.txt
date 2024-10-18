@@ -1,0 +1,34 @@
+GEL_DisableFileOutput()
+-----------------------
+
+Disables writing GEL Text output to a file
+
+**Syntax**
+
+**GEL_DisableFileOutput();**
+
+**Parameters**
+
+none
+
+**Description**
+
+Disables writting GEL Text output to file
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: Yes
+
+**Example**
+
+GEL_DisableFileOutput();
+
+**Related Topics**
+
+`GEL_EnableFileOutput <GEL_EnableFileOutput.html>`__
+
+`GEL_TextOut <GEL_TextOut.html>`__
+
+`GEL_Trace <GEL_Trace.html>`__

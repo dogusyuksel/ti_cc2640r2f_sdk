@@ -1,0 +1,108 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: PtqXtHpJb/BoUQWjv1zs16qPpQxHe
+ zHVBppyn20X6Wo=
+SHA-256-Digest-Manifest: LfjZc3T6HOn+PepTCPtbl9g7xBjdHQVGf/F8a8+ArUY=
+Created-By: 1.8.0_102 (Oracle Corporation)
+
+Name: os/win32/x86_64/dvt_logger.dll
+SHA-256-Digest: Nc35OZZnZ0ZpPtQTfplB2Zg0dknBjCbknLg9cU61BBg=
+
+Name: plugin.xml
+SHA-256-Digest: /BYAB5HBF5lFVG0hYZQVq/Q5YZByHi6Vkq3/TC6nFiM=
+
+Name: os/win32/x86/dvt_tiofr11.dll
+SHA-256-Digest: GTwy58EejhfEhbPwFS70j36oWxC+x3no4A4nZjDFOKc=
+
+Name: os/linux/x86_64/libdvt_logger.so
+SHA-256-Digest: CPppJubU7frZ0AEsJnvurPeumkXGvtjLl2Jh38yA4p4=
+
+Name: os/macosx/x86_64/libdvt_tiofr_tial.dylib
+SHA-256-Digest: 6NU6vXFV0pxdM5dYGnUQul0rVuIKLglbruGyqKb1wcU=
+
+Name: os/win32/x86/dvt_logger.dll
+SHA-256-Digest: xu72quqELdSdxxt38fN6CSSCqanfWPCVMIHpX0udgV4=
+
+Name: os/macosx/x86_64/libdvt_logger.dylib
+SHA-256-Digest: VCgUwsbrb5Xeb/mHTrGd3c23DB09Ffb9bq2X6RTO1G4=
+
+Name: os/win32/x86/JOFS.dll
+SHA-256-Digest: qiZixKuE5XdSKzklXTD0ywybBn3bLa8GSePCwwzVCSc=
+
+Name: os/win32/x86_64/dvt_MiniDump.dll
+SHA-256-Digest: fcVQ7IFO0/UnyQShv597CjJD8QOknFnJVH8lH9K2k+Q=
+
+Name: os/win32/x86_64/dvt_tiofr11.dll
+SHA-256-Digest: Iuoa+3TxovcVxyaBe/iW9EHAoPGX9c+9bDX3mJd0eSw=
+
+Name: os/linux/x86_64/libdvt_tiofr_tial.so
+SHA-256-Digest: OKNdymEWwV9Frf+6JnunHhGFJUSWXsu0ISPFaW2PRLE=
+
+Name: os/linux/x86_64/libdvt_tiofr11.so
+SHA-256-Digest: qK0B366qaBGFd7RSwIr/Qm0H2rgKs7C98YQgKsdCp6I=
+
+Name: os/macosx/x86_64/libJOFS.dylib
+SHA-256-Digest: hnF55l1EQvIEdlrvQXI+4aCpdmTm01Eb9Ottp8cPcu0=
+
+Name: os/linux/x86/libdvt_tiofr_tial.so
+SHA-256-Digest: fE38QH3Wmlr4XVDRKGRoq0JBjNxmw04XflZGkdHAm8Y=
+
+Name: os/win32/x86_64/dvt_tiofr_gnu.dll
+SHA-256-Digest: 18+FBt/47YMgezCMtJ4K64So9XESYThU+Sflh1CpvnY=
+
+Name: os/linux/x86/libdvt_tiofr11.so
+SHA-256-Digest: 3yfDFVcD+jH3yjGNB1hnPZJPINNMcTEVMPyOLxW7Vb4=
+
+Name: os/linux/x86/libdvt_logger.so
+SHA-256-Digest: DECdzYNVh++jkBufIV39hcVApVRYnvcUFCYfD1pizvA=
+
+Name: os/win32/x86/dvt_fsutil.dll
+SHA-256-Digest: ZebSYs3qAHZlILcUzPzkHTJMasqM0RMamTDMZa/eTSc=
+
+Name: os/win32/x86/dvt_tiofr_gnu.dll
+SHA-256-Digest: kZMAXQg9XVpFBDWeI6RWLjL9kIQ9o+AXfHjFtZTsoA4=
+
+Name: os/win32/x86_64/dvt_tiofr_tial.dll
+SHA-256-Digest: keOMfocZvD/afGZBSVQbkvvevg6/zqiaMd0f+oA8gbU=
+
+Name: os/linux/x86/libdvt_tiofr_gnu.so
+SHA-256-Digest: 1epI1estHASFQ/Cq1r0d3iImKB6txtZuIpLwhqwodC8=
+
+Name: os/win32/x86/dvt_MiniDump.dll
+SHA-256-Digest: SsbMlTboykWARSnXdtXG5wery0MSK5F4d+wAy28b9gY=
+
+Name: os/win32/x86_64/dvt_tiofr11.lib
+SHA-256-Digest: k/XNh3Jf0YTLNL63O4WBYMxA7t3piQiq7deZkMR86LQ=
+
+Name: os/win32/x86_64/JOFS.dll
+SHA-256-Digest: qCw2XaGHT/omwt7+bgk8WhuAwIBkelEvivR6u+7t7uo=
+
+Name: os/linux/x86/libJOFS.so
+SHA-256-Digest: G2EnYegLh251X00pFjEb0CX/hTxsyywiHHdMrPlMLIU=
+
+Name: os/win32/x86/dvt_tiofr11.lib
+SHA-256-Digest: 3dZSmoVsspeEDZy03vrGirHhD6Y90PcyAUoCPya/Sdc=
+
+Name: os/win32/x86_64/dvt_fsutil.dll
+SHA-256-Digest: 31ET1wamPMWk9ckm73C0kirYh5FWTFjflwUmtjiMDeM=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: ak2bzOGDjLurhLXRsFA/N7TRhvaP+YA1QdnivLjcXtk=
+
+Name: os/linux/x86_64/libJOFS.so
+SHA-256-Digest: 6Slb7bpiNkjv5zFHpsFfA0bWaYTeTGh/bpu54Qhz/p8=
+
+Name: os/macosx/x86_64/libdvt_tiofr_gnu.dylib
+SHA-256-Digest: 2EqAb8rYGYgacqF+BgzgbmP+v9gED9Glmk4m2gxpCfA=
+
+Name: os/linux/x86_64/libdvt_tiofr_gnu.so
+SHA-256-Digest: /fIjTak8U7kSTq0WhurkxsC+SHlrS8QoH40dbLUTVgg=
+
+Name: com.ti.dvt.ofssymbolmanager.jar
+SHA-256-Digest: 6WFLDWCIu0UzYmujZi+DTskrnBYEPdU/MA58nB5Dcec=
+
+Name: os/win32/x86/dvt_tiofr_tial.dll
+SHA-256-Digest: hDmcCpap+BBdOU4hkNuEN/d3y96KaBPrptfQkTLosj0=
+
+Name: os/macosx/x86_64/libdvt_tiofr11.dylib
+SHA-256-Digest: B/KUPvUktIMSQy75u6oxoYCUiCifdlebrArwX7sTcx0=
+

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+	<extension point="com.ti.common.ui.startupParticipants">
+		<participant
+			class="com.ti.ccstudio.app.center.internal.InstallerPendingFeaturesMonitor"
+			group="appCenter"/>
+	</extension>
+	
+ <extension
+       point="org.eclipse.ui.commands">
+    <command
+          defaultHandler="com.ti.ccstudio.app.center.internal.AppCenterHandler"
+          id="com.ti.ccstudio.app.center.openAppCenter"
+          name="%AppCenterLabel">
+    </command>
+ </extension>
+ <extension
+       point="org.eclipse.ui.menus">
+      <menuContribution
+          allPopups="false"
+            locationURI="menu:help?after=group.updates">
+		       <command
+		             commandId="com.ti.ccstudio.app.center.openAppCenter"
+		             icon="icons/view16/app_center.png"
+		             style="push">
+		       </command>
+      </menuContribution>
+      <menuContribution
+          allPopups="false"
+            locationURI="menu:com.ti.ccstudio.debug.ui.viewsMenu?after=com.ti.ccstudio.debug.ui.viewsMenu.group.intro">
+		       <command
+		             commandId="com.ti.ccstudio.app.center.openAppCenter"
+		             icon="icons/view16/app_center.png"
+		             style="push">
+		         <visibleWhen checkEnabled="false">
+                 		<reference definitionId="com.ti.ccstudio.debug.ui.anyCCSPerspective"/>
+                 </visibleWhen>
+		       </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="menu:com.ti.ccstudio.debug.ui.viewsMenu.simple?after=com.ti.ccstudio.debug.ui.viewsMenu.simple.group.intro">
+		       <command
+		             commandId="com.ti.ccstudio.app.center.openAppCenter"
+		             icon="icons/view16/app_center.png"
+		             style="push">
+	            <visibleWhen
+	                  checkEnabled="false">
+	               <with
+	                     variable="activeWorkbenchWindow.activePerspective">
+	                  <or>
+	                     <equals
+	                           value="com.ti.ccstudio.TISimplePerspective">
+	                     </equals>
+	                  </or>
+	               </with>
+	            </visibleWhen>
+		       </command>
+    </menuContribution>
+ </extension>
+ <extension
+       point="org.eclipse.ui.editors">
+    <editor
+          class="com.ti.ccstudio.app.center.internal.browser.AppCenterBrowser"
+          default="false"
+          extensions="ccsac"
+          icon="icons/view16/app_center.png"
+          id="com.ti.ccstudio.app.center.browser"
+          name="%AppCenterLabel">
+    </editor>
+ </extension>
+ <extension
+       point="org.eclipse.ui.elementFactories">
+    <factory
+          class="com.ti.ccstudio.app.center.internal.browser.AppCenterInputFactory"
+          id="com.ti.ccstudio.app.center.browser.inputFactory">
+    </factory>
+    <factory
+          class="com.ti.ccstudio.app.center.internal.browser.AppCenterInputFactory"
+          id="com.ti.ccstudio.app.center.browser.elementFactory">
+    </factory>
+ </extension>
+
+</plugin>

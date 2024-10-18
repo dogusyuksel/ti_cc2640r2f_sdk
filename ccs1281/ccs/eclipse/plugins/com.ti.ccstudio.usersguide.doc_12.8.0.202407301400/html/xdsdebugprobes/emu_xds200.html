@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="This page provides details on the XDS200 debug probe."> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="XDS200">
+<meta name="product-link" content="https://www.ti.com/tool/TMDSEMU200-U">
+
+<!-- Change the title text for your page -->
+
+<title>XDS200 Debug Probe</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+#Product page
+<font size="5">
+[TMDSEMU200-U](https://www.ti.com/tool/tmdsemu200-u)
+</font>
+
+<br>
+Contains ordering information, availability, compliance data.
+<br>
+See additional products at the section below [Which XDS200 is right for me?](#which-xds200-is-right-for-me-)
+
+#Introduction
+The XDS200 is the midrange family of JTAG debug probes (emulators) for TI processors. Designed to deliver good performance and the most common features that place it between the low cost [XDS110](./emu_xds110.html) and the high performance [XDS560v2](./emu_xds560v2.html), the XDS200 is the balanced solution to debug TI Simplelink microcontrollers and embedded processors.
+
+The XDS200 is designed to replace the aging XDS510 family of JTAG debuggers with higher JTAG data throughput, added support for ARM Serial Wire debug modes, IEEE1149.7 (cJTAG) and reduced cost.
+
+Following the trend for space reduction on modern TI development boards, all XDS200 variants feature a standard TI 20-pin connector as the primary JTAG connectivity to the target. In addition to that, all variants also feature modular target configuration adapters for TI and ARM standard JTAG headers (the offer of adapters varies per model).
+
+The XDS200 family is fully compatible with TI's Code Composer Studio IDE. This combination gives a complete hardware development environment which includes an Integrated Debug Environment, Compiler, and full hardware debugging and Trace capability on selected TI microcontrollers, processors and wireless connectivity microcontrollers.
+XDS200 is the midrange class of JTAG debuggers for Texas Instruments' microcontrollers and embedded processors. 
+
+XDS200 is compatible with Code Composer Studio (CCS) version 5.2.0 and newer.
+
+#General Features
+
+- Protocols: IEEE1149.1 (JTAG), IEEE1149.7 (cJTAG) as well as ARM's Serial Wire Debug (SWD) and Serial Wire Output (SWO).
+- Target voltage: from +1.5V to 4.1V.
+- Debug features: 
+   - Emulation Connect/Disconnect, Read/Write memory, Read registers, Load program, Run, Halt, Step
+   - Software and Hardware Breakpoint support
+   - Real-Time Mode in selected microcontrollers and DSPs. 
+- Trace features: 
+   - Serial Wire Output (SWO) are available for selected microcontrollers and wireless connectivity microcontrollers
+   - Core and System trace are available via the ETB in selected ARM and DSP processors
+   - For more information on the trace capabilities of a particular device please refer to its technical reference manual (TRM)
+- Host interface: all models support a USB2.0 High Speed (480Mbps) connection to the host, with some models also supporting Ethernet 10/100Mbps. 
+- Other features supported:
+   - JTAG [Reset](emu_resets.html) and [Wait-in-reset](emu_wait_in_reset.html) boot modes using the two EMU pins sampled by the nTRST pin. 
+   - <b>Power-on reset</b> boot-modes using the two EMU pins sampled by the TVRef pin. 
+   - Configuration of the EMU pin features through the Advanced tab of the Target Configuration Editor in CCS.
+   - <b>Target power-loss detection</b> via the TVRef pin. 
+   - Some models support power consumption monitoring on the target board.
+
+#Devices supported
+- SimpleLink MCUs (CC13xx, CC26xx, CC3x, MSP432)
+- C2000, TM4C12x and Hercules microcontrollers
+- Sitara (AM1xxx, AM24xx, AM26xx, AM27xx, AM335x, AM43xx, AM57xx, AM62xx, AM64xx, AM65xx, AMIC1xx)
+- Automotive SoCs (TDAx ADAS, DRAx infotainment)
+- OMAPL processors (OMAPL137, OMAPL138)
+- mmWave sensors (IWR/AWR14xx, IWR/AWR16xx, IWR/AWR18xx, IWR68xx)
+- C674x and C66x (Keystone I) Floating point DSPs
+- C642x and C645x
+- 66AK2 and TCI66x Multicore DSP + ARM&reg; SoCs (Keystone II)
+- DaVinci processors (DM3xx, DM64xx)
+- C55x Low-power DSPs
+- UCD3x Digital Power devices
+- PGA970 SoC
+- Other TI SoCs with PRU, C674x, C66xx, Cortex M, Cortex R and Cortex A cores
+
+##Devices not supported
+- MSP430 Microcontrollers
+- AWR12xx mmWave sensors
+- C54x
+- C62x, C670x, C671x, C672x, C640x and C641x
+
+##Devices not supported
+It does not support MSP430 and older DSP families such as C62xx, C670x, C672x and C641x.
+
+#Which XDS200 is right for me?
+The XDS200 is available as a standalone debug probe or can be embedded on a development card (DSK, EVM, etc.) either onboard or as a daughtercard (also called Mezzanine). 
+
+The standalone models are supplied by both Spectrum Digital and Blackhawk.
+
+##Blackhawk
+- [Blackhawk XDS200 USB Product Page](https://www.blackhawk-dsp.com/products/USB200.aspx)
+- [Blackhawk tutorial](https://www.blackhawk-dsp.com/support/tutorial/USB200_Tutorial.aspx) - Debugging with multiple  USB200 emulators.
+- The XDS200 from Blackhawk can be galvanically isolated with the usage of Blackhawk's [isolation adapter](https://www.blackhawk-dsp.com/products/Isolation.aspx)
+
+#Installation Instructions
+- Make sure the XDS200 is not plugged in! 
+- Install Code Composer Studio. 
+   - If installing CCS in Linux, make sure to follow the installation instructions at the [Linux Host support page](../ccsv8_linux_host_support.html).
+- Plug in the XDS200. It should be properly recognized by the system.
+
+#The unboxing and first run video
+Watch the video, hosted on the Code Composer channel on Youtube: 
+
+<iframe width="854" height="480" src="https://www.youtube.com/embed/v-SUDdjpps4" frameborder="0" allowfullscreen longdesc="Youtube video ID v-SUDdjpps4"></iframe>
+
+#Updating the firmware
+When installing a newer release of CCS or updating the <I>TI Emulators</I> component of CCS (details on the [XDS Emulation Software Package page](emu_xds_software_package_download.html) or [Updating CCS](../ccsv7_updates.html), keep in mind you may need to update the firmware of your JTAG debugger. 
+
+[[r IMPORTANT!
+Very old firmware releases such as the ones present in Keystone II EVMs (1.0.0.2) are known to have problems updating. In general they work well in Windows, therefore proceed with the update at your own risk as the JTAG debugger may be bricked and only recoverable by returning the board for repair.
+
+If you accidentally bricked your onboard XDS200 Debug Probe, please check the section [Re-flash the firmware of onboard XDS200 units](#re-flash-the-firmware-of-onboard-xds200-units-) below.
+]]
+
+To update a XDS200-class JTAG debugger connected via USB, <u>using a Windows host is highly recommended</u>. Close any instances of CCS that are running in your system. Open a Windows Command Prompt and issue the following commands:
+
+##If you have a single XDS200 connected via USB:
+
+[[+y Expand if you are using your XDS200 with CCSv8 or earlier:
+
+<font color="f000f0"><b>1.</b></font> Go to the directory where the utility is installed:
+
+   C:\><b>cd C:\ti\ccsv8\ccs_base\common\uscif\xds2xx</b>
+
+   C:\><b>cd C:\ti\ccsv8\ccs_base\emulation\specdig\xds2xx</b> - this only exists if Spectrum Digital support is installed.
+
+<font color="f000f0"><b>2.</b></font> Run the configuration just to make sure a XDS200-class debugger is connected and what is the firmware revision installed on it:
+
+   C:\ti\ccsv8\ccs_base\common\uscif\xds2xx><b>xds2xx_conf get xds2xxu 0</b>
+
+<font color="f000f0"><b>3.</b></font> Run the commands in the <b>exact order</b> shown below (the batch file <i>update_xds2xx</i> does this in reverse order, increasing the chances of failure):
+
+   C:\ti\ccsv8\ccs_base\common\uscif\xds2xx><b>xds2xx_conf update  xds2xxu 0 xds200_firmware_v1008.bin</b>
+
+   C:\ti\ccsv8\ccs_base\common\uscif\xds2xx><b>xds2xx_conf program xds2xxu 0 xds2xx_cpld_v1008.xsvf</b>
+
+   C:\ti\ccsv8\ccs_base\common\uscif\xds2xx><b>xds2xx_conf boot xds2xxu 0</b>
+
+<font color="f000f0"><b>4.</b></font> After that, run the command in step 2 again to check if the correct firmware was loaded. 
+   C:\ti\ccsv8\ccs_base\common\uscif\xds2xx><b>xds2xx_conf get xds2xxu 0</b>
+
+[[b Note:
+Depending on the version of the [XDS Emulation Software Package](emu_xds_software_package_download.html) installed, the firmware and the CPLD filenames may change.
+]]
+
++]]
+
+<font color="f000f0"><b>1.</b></font> Go to the directory where the utility is installed:
+
+   C:\><b>cd C:\ti\ccs1000\ccs\ccs_base\common\uscif\xds2xx</b>
+
+<font color="f000f0"><b>2.</b></font> Run the configuration just to make sure a XDS200-class debugger is connected and what is the firmware revision installed on it:
+
+   C:\ti\ccs1000\ccs\ccs_base\common\uscif\xds2xx><b>xds2xx_conf get xds2xxu 0</b>
+
+<font color="f000f0"><b>3.</b></font> Run the commands in the <b>exact order</b> shown below:
+
+   C:\ti\ccs1000\ccs\ccs_base\common\uscif\xds2xx><b>xds2xx_conf update xds2xxu 0 xds200_firmware_v1009.bin</b>
+
+   C:\ti\ccs1000\ccs\ccs_base\common\uscif\xds2xx><b>xds2xx_conf program xds2xxu 0 xds2xx_cpld_v1009.xsvf</b>
+
+   C:\ti\ccs1000\ccs\ccs_base\common\uscif\xds2xx><b>xds2xx_conf boot xds2xxu 0</b>
+
+<font color="f000f0"><b>4.</b></font> After that, run the command in step 2 again to check if the correct firmware was loaded. 
+   C:\ti\ccs1000\ccs\ccs_base\common\uscif\xds2xx><b>xds2xx_conf get xds2xxu 0</b>
+
+[[b Note:
+Depending on the version of the [XDS Emulation Software Package](emu_xds_software_package_download.html) installed, the firmware and the CPLD filenames may change.
+]]
+
+##If you have a single XDS220 or XDS220ISO connected via USB:
+
+[[+y Expand if you are using your XDS220 or XDS220ISO with CCSv8 or earlier:
+
+<font color="f000f0"><b>1.</b></font> Go to the directory where the Spectrum Digital utility is installed. This requires that Spectrum Digital support is selected when CCS is installed:
+
+   C:\><b>cd C:\ti\ccsv8\ccs_base\emulation\specdig\xds2xx</b>
+
+<font color="f000f0"><b>2.</b></font> Run the configuration just to make sure a XDS200-class debugger is connected and what is the firmware revision installed on it:
+
+   C:\ti\ccsv8\ccs_base\emulation\specdig\xds2xx><b>xds2xx_conf get xds2xxu 0</b>
+
+<font color="f000f0"><b>3.</b></font> Run the commands in the <b>exact order</b> shown below (the batch file <i>update_xds2xx</i> does this in reverse order, increasing the chances of failure):
+
+   C:\ti\ccsv8\ccs_base\emulation\specdig\xds2xx><b>xds2xx_conf update  xds2xxu 0 sd_xds220_firmware_v1008.bin</b> (use sd_xds220_iso_firmware_v1008.bin for XDS220ISO)
+
+   C:\ti\ccsv8\ccs_base\emulation\specdig\xds2xx><b>xds2xx_conf program xds2xxu 0 xds2xx_xc64_swd.xsvf</b> (use xds2xx_xc64_iso.xsvf for XDS220ISO)
+
+   C:\ti\ccsv8\ccs_base\emulation\specdig\xds2xx><b>xds2xx_conf boot xds2xxu 0</b>
+
+<font color="f000f0"><b>4.</b></font> After that, run the command in step 2 again to check if the correct firmware was loaded. 
+
+   C:\ti\ccsv8\ccs_base\emulation\specdig\xds2xx><b>xds2xx_conf get xds2xxu 0</b>
+
+[[b Note:
+Depending on the version of the Spectrum Digital support package installed, the firmware and the CPLD filenames may change.
+]]
+
++]]
+
+<font color="f000f0"><b>1.</b></font> Go to the directory where the utility is installed:
+
+   C:\><b>cd C:\ti\ccs1000\ccs\ccs_base\common\uscif\xds2xx</b>
+
+<font color="f000f0"><b>2.</b></font> Run the configuration just to make sure a XDS200-class debugger is connected and what is the firmware revision installed on it:
+
+   C:\ti\ccs1000\ccs\ccs_base\common\uscif\xds2xx><b>xds2xx_conf get xds2xxu 0</b>
+
+<font color="f000f0"><b>3.</b></font> Run the commands in the <b>exact order</b> shown below:
+
+   C:\ti\ccs1000\ccs\ccs_base\common\uscif\xds2xx><b>xds2xx_conf update xds2xxu 0 xds220_firmware_v1009.bin</b> (use xds220_firmware_iso_v1009.bin for XDS220ISO)
+
+   C:\ti\ccs1000\ccs\ccs_base\common\uscif\xds2xx><b>xds2xx_conf program xds2xxu 0 xds2xx_cpld_v1009.xsvf</b> (use xds220_cpld_iso_v1009.xsvf for XDS220ISO)
+
+   C:\ti\ccs1000\ccs\ccs_base\common\uscif\xds2xx><b>xds2xx_conf boot xds2xxu 0</b>
+
+<font color="f000f0"><b>4.</b></font> After that, run the command in step 2 again to check if the correct firmware was loaded. 
+
+   C:\ti\ccs1000\ccs\ccs_base\common\uscif\xds2xx><b>xds2xx_conf get xds2xxu 0</b>
+
+[[b Note:
+Depending on the version of the [XDS Emulation Software Package](emu_xds_software_package_download.html) installed, the firmware and the CPLD filenames may change.
+]]
+
+##If you have a XDS200-class JTAG debugger connected via Ethernet: 
+
+[[+y Expand if you are using your XDS220 Ethernet with CCSv8 or earlier:
+
+<font color="f000f0"><b>1.</b></font> Go to the directory where the Spectrum Digital utility is installed. This requires that Spectrum Digital support is selected when CCS is installed:
+
+   C:\><b>cd C:\ti\ccsv8\ccs_base\emulation\specdig\xds2xx</b>
+
+<font color="f000f0"><b>2.</b></font> Run the configuration just to make sure the XDS200-class debugger is reachable on the network and what is the firmware revision installed on it (replace xxx.xxx.xxx.xxx with the XDS220's Ethernet address):
+
+   C:\ti\ccsv8\ccs_base\emulation\specdig\xds2xx><b>xds2xx_conf get xds2xxe xxx.xxx.xxx.xxx</b>
+
+<font color="f000f0"><b>3.</b></font> Update the CPLD by providing the debug probe model (xds2xxe), the IP address (xxx.xxx.xxx.xxx in the example below) and the .xsvf filename. Do not use this with the XDS220ISO model!
+
+   C:\ti\ccsv8\ccs_base\emulation\specdig\xds2xx><b>xds2xx_conf update xds2xxe xxx.xxx.xxx.xxx xds2xx_xc64_swd.xsvf</b> (use xds2xx_xc64_iso.xsvf for XDS220ISO)
+
+<font color="f000f0"><b>4.</b></font> Update the firmware by providing the debug probe model (xds2xxe), the IP address (xxx.xxx.xxx.xxx in the example below) and the firmware filename.
+
+   C:\ti\ccsv8\ccs_base\emulation\specdig\xds2xx><b>xds2xx_conf update xds2xxe xxx.xxx.xxx.xxx sd_xds200_firmware_v1008.bin</b> (use sd_xds220_iso_firmware_v1008.bin for XDS220ISO)
+
+[[b Note:
+Depending on the version of the Spectrum Digital support package installed, the firmware filename &lt;sd_xds200_firmware_v1008.bin&gt; may change.
+]]
+
+For Spectrum Digital JTAG debuggers, open the file &lt;readme.txt&gt; under the directory <b>&lt;CCS_INSTALL_DIR&gt;\ccsv8\ccs_base\emulation\specdig\xds2xx</b> for details of your model and version.
+
+For other brands of JTAG debug probes, follow the instructions of its manufacturer. 
+
++]]
+
+<font color="f000f0"><b>1.</b></font> Go to the directory where the utility is installed:
+
+   C:\><b>cd C:\ti\ccs1000\ccs\ccs_base\common\uscif\xds2xx</b>
+
+<font color="f000f0"><b>2.</b></font> Run the configuration just to make sure the XDS200-class debugger is reachable on the network and what is the firmware revision installed on it (replace xxx.xxx.xxx.xxx with the XDS220's Ethernet address):
+
+   C:\ti\ccs1000\ccs\ccs_base\common\uscif\xds2xx><b>xds2xx_conf get xds2xxe xxx.xxx.xxx.xxx</b>
+
+<font color="f000f0"><b>3.</b></font> Update the CPLD by providing the debug probe model (xds2xxe), the IP address (xxx.xxx.xxx.xxx in the example below) and the .xsvf filename.
+
+   C:\ti\ccs1000\ccs\ccs_base\common\uscif\xds2xx><b>xds2xx_conf update xds2xxe xxx.xxx.xxx.xxx xds2xx_cpld_v1009.xsvf</b> (use xds220_cpld_iso_v1009.xsvf for XDS220ISO)
+
+<font color="f000f0"><b>4.</b></font> Update the firmware by providing the debug probe model (xds2xxe), the IP address (xxx.xxx.xxx.xxx in the example below) and the firmware filename.
+
+   C:\ti\ccs1000\ccs\ccs_base\common\uscif\xds2xx><b>xds2xx_conf update xds2xxe xxx.xxx.xxx.xxx xds220_firmware_v1009.bin</b> (use xds220_firmware_iso_v1009.bin for XDS220ISO)
+
+[[b Note:
+Depending on the version of the [XDS Emulation Software Package](emu_xds_software_package_download.html) installed, the firmware and the CPLD filenames may change.
+]]
+
+#Finding and updating the serial number
+When using multiple debug probes in the same host, it is necessary to set different serial numbers and enable its usage on the Debug Probe firmware.  
+
+To find out what is the serial number of all connected debug probes, follow steps 1 and 2 above, then locate the option <b>serialNum</b>
+
+If you want to set the serial number to a specific value:
+- Unplug all other debug probes from the host
+- Follow steps 1 and 2 above
+- Enable the option <b>EnableUSBSerial</b> by issuing the following:
+
+   C:\ti\ccs1000\ccs\ccs_base\common\uscif\xds2xx><b>xds2xx_conf set xds2xxu 0 EnableUSBSerial=true</b>
+
+- Then set the serial number:
+
+   C:\ti\ccs1000\ccs\ccs_base\common\uscif\xds2xx><b>xds2xx_conf set xds2xxu 0 serialNum=00:11:22:33:44:55</b>
+
+At this point you may unplug this probe and repeat the operation for the subsequent probes. 
+
+For details on how to configure Code Composer Studio to use the multiple Debug Probes, please check the document [Debugging with Multiple Debug Probes](../sdto_ccs_multi-probe-debug.html)
+
+#Debug and Trace Usage Modes
+The XDS200 allows using multiple modes of operation through the option <i>JTAG / SWD / cJTAG Mode</i> of the Target Configuration Editor:
+![Advanced JTAG modes option](./images/XDS200_Advanced_tag_JTAG_Mode_option.PNG)
+
+##JTAG
+JTAG is the standard IEEE1149.1 4-wire debug protocol that is used by the majority of TI devices. When in doubt, this is usually a safe option. 
+- 4 pin debug (TDI, TDO, TMS, TCLK)
+- Supports TVRef
+
+##SWD/SWO
+Serial Wire Debug (SWD) is a debug mode that also uses two pins and transfers data at a higher clock rate when compared to JTAG. Serial Wire Output (SWO) adds one more pin that allows performing simple Trace operations on selected Cortex M4 microcontrollers.
+
+SWD: Serial Wire Debug
+
+- 2 pin debug: SWDIO/TMS and SWCLK/TCLK 
+
+SWO: Serial Wire Output
+- 1 pin trace (SWO/TDO) 
+- Supported only by DAP based devices like MSP432 which have DAP as the toplevel router in the scan chain. 
+- SWO trace can be obtained in UART or Manchester format. XDS200 only supports UART format. The TDO/SWO pin is routed to a UART on the debug processor (Snowflake) during SWO capture.
+   - <b>SWO (ITM) Usesecases:</b>
+      - Function profiling (DWT - Data Watchpoint and Trace) 
+      - Data variable trace (DWT - Data Watchpoint and Trace) 
+      - Interrupt profiling (DWT - Data Watchpoint and Trace) 
+      - Software messages (ITM - Instrumentation Trace Macrocell)
+
+For additional details about Trace via SWO, check the following resources:
+- [ITM for Cortex M video](https://www.youtube.com/watch?v=HG_i_uln6Es)
+- ITM training: [CCSv6](../../training/modules/itm/CCSv6-InstrumentationTraceModule.pptx) or [CCSv5](../../training/modules/itm/CCSv5-InstrumentationTraceModule.pptx)
+
+##cJTAG
+IEEE1149.7 or Compact JTAG (cJTAG) is a major improvement over the traditional JTAG, as it supports all its features while using only two pins, and is available in selected TI wireless connectivity microcontrollers.
+
+- 2 and 4 pin modes
+- 6 OSCAN modes
+- Supported by selected Wireless Connectivity devices such as CC13xx, CC25xx, CC26xx and CC32xx families.
+
+
+#Troubleshooting
+- Check whether the installation process was followed.
+
+- If the CCS debug fails, search for the error message number on the [Debugging JTAG](../ccs_debugging_jtag_connectivity_issues.html) page.
+
+- Check if the device drivers were properly instantiated. Check the screenshot below to see how they show up on Windows. 
+
+![XDS200 on Windows Control Panel](./images/XDS200onWin10_sysdevices.png) 
+
+##To reinstall the Windows device drivers:
+- Open the Windows Control Panel
+- Expand the node <b>Ports (COM & LPT)</b>
+- Right-click on node <b>XDS2xx Emulator CDC Serial Port</b>
+- Select <b>Update Driver Software</b> &rarr; <b>Browse my computer for driver software</b>
+- Select <b>Let me pick from a list of device drivers on my computer</b>. If the drivers are already installed, the <b>XDS2xx Emulator CDC Serial Port Version: M.m.m.m [mm/dd/yyyy]</b> will be shown. Select this one. Otherwise, repeat but skip this step. 
+- Click on Browse and select the directory C:\ti\ccs1000\ccs\ccs_base\emulation\windows\xds2xx_drivers
+- Repeat for <b>XDS2xx User CDC Serial Port</b>
+
+That should get you the same driver as installed by CCS.
+
+If Windows refuses to update the driver, they need to be fully removed. 
+
+- Right-click on node <b>XDS2xx Emulator CDC Serial Port</b>
+- Select <b>Uninstall...</b>
+- Check the box <b>Delete the driver software for this device</b> and click <b>OK</b>
+- Repeat for <b>XDS2xx User CDC Serial Port</b>
+- Do the procedure above to reinstall the drivers
+
+##What are the known issues?
+- Ubuntu 18.04.2 and newer
+   - When updating an existing Ubuntu host that uses version 18.04.2 and newer, a change in the default policy setting of the ModemManager component causes the XDS200 to be inoperative. To workaround this issue, please check [this e2e thread](https://e2e.ti.com/support/tools/ccs/f/81/p/808746/3021888#3021888).
+- USB3.0 and Linux and Mac OSX
+   - When connected to USB3.0 ports and hubs in Linux OSes, XDS200 JTAG debuggers are not able to properly be initialized by the low-level device drivers.  If you update to the latest "TI emulators" package and update the firmware on the xds200 pod then you can connected it to a USB3 port with Linux.  Note that if you only have USB3 ports on your computer then you will need to use Windows to update the firmware as the software has to be able to detect the pod to update it.
+- There are reported issues when connecting a XDS200 to a bus powered USB2.0 hub. To repair that, either get a self powered hub or connect it directly to a port in the computer.
+- When connected to USB3.0 Renesas adapter on Windows, XDS200 fails to properly initialize - check [this e2e post](https://e2e.ti.com/support/development_tools/code_composer_studio/f/81/p/433059/1555899#1555899) for details.
+- There is a tendency of Windows device drivers to ignore the connected XDS200 JTAG debugger if it is connected to the same USB port repeatedly. Reconnecting the XDS200 to a different USB port makes the device drivers to be properly instantiated. 
+- Issues were found when connecting a XDS200 with a firmware older than 1.0.0.6 on MacOS X and certain Linux distros - the error thrown is typically a [Host connection error](../ccs_debugging_jtag_connectivity_issues.html#host-connection-error). At the moment the only way to workaround this is to update the firmware version on a Windows PC. 
+- Not an issue, but a common usability trait. Certain boards have onboard XDS200 JTAG debuggers, but the configuration is easy to miss. For these boards, always select <b>Texas Instruments XDS2xx USB Onboard Debug Probe</b>. Check the page [Common Target Configurations](../application_notes/appnote-common_target_configurations.html) for details on which boards uses this model. 
+- Not a issue, but a compatibility break. One of the released TI emulation components (5.1.600.0) breaks compatibility with XDS200 JTAG debuggers and previous releases of CCS. Details are shown at the [XDS Emulation Software Package page](emu_xds_software_package_download.html). Release (6.1.636.0) and newer solves this issue.
+
+##Re-flash the firmware of onboard XDS200 units:
+In case the XDS200 unit got its firmware corrupt, it can be re-flashed using an external XDS Debug Probe that is compatible with the AM1802 device present on the XDS200 design.  
+
+Onboard XDS200 units come in two variants: 
+
+- The built-in XDS200 is present on the EVMK2EX, XEVMK2LX and EVMK2G/EVMK2GX/EVMK2GXS. 
+
+   - It usually has a cTI 20-pin connector that allows connecting a compatible XDS Debug Probe
+   - After connecting, please follow the flashing procedure described at [this e2e post](https://e2e.ti.com/support/tools/ccs/f/81/p/580450/2133315#2133315)
+
+   
+- The Mezzanine XDS200 is present on the EVMK2H and TMDSEVM6657LE.
+
+   - It has an edge JTAG connector which usually requires either using an appropriate socket or directly soldering wires to its pads.
+   - The pinout and connections are described at [this e2e post](https://e2e.ti.com/support/tools/ccs/f/81/p/592713/2181766#2181766)
+   - After connecting, please follow the flashing procedure described at [this e2e post](https://e2e.ti.com/support/tools/ccs/f/81/p/580450/2133315#2133315)
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

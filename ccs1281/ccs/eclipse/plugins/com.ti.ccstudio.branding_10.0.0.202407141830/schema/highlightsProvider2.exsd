@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="com.ti.ccstudio.branding" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="com.ti.ccstudio.branding" id="highlightsProvider2" name="highlightsProvider2"/>
+      </appInfo>
+      <documentation>
+         This extension point is for contributing highlights to CCS Welcome page.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="hightlightsProvider2"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="hightlightsProvider2">
+      <complexType>
+         <attribute name="label" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The label of the provider, will be used to display in the CCS Welcome page.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  The description of the provider, will be used for hover tooltip in the CCS Welcome page.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="bundle" type="string">
+            <annotation>
+               <documentation>
+                  The bundle id where href should be relative to, if empty, then href is relative to the contribution plugin.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="href" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Can be a remote url or local path. Remote url is required to have http:// prefix.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         CCS5.1
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         &lt;extension
+      point=&quot;com.ti.ccstudio.branding.highlightsProvider2&quot;&gt;
+   &lt;hightlightsProvider2
+         href=&quot;html/helloworld.html&quot;
+         label=&quot;Hello World&quot;&gt;
+   &lt;/hightlightsProvider2&gt;
+&lt;/extension&gt;
+&lt;extension
+      point=&quot;com.ti.ccstudio.branding.highlightsProvider2&quot;&gt;
+   &lt;hightlightsProvider2
+         description=&quot;Goto Gooooooooooooooooooogle&quot;
+         href=&quot;http://www.google.ca&quot;
+         label=&quot;Gooooogle&quot;&gt;
+   &lt;/hightlightsProvider2&gt;
+&lt;/extension&gt;
+      </documentation>
+   </annotation>
+
+
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2011, Texas Instruments.&lt;br&gt;
+All rights reserved. This program and the accompanying materials are made 
+available under the terms of the Eclipse Public License v1.0 which 
+accompanies this distribution, and is available at 
+&lt;a href=&quot;http://www.eclipse.org/legal/epl-v10.html&quot;&gt;http://www.eclipse.org/legal/epl-v10.html&lt;/a&gt;
+      </documentation>
+   </annotation>
+
+</schema>

@@ -1,0 +1,27 @@
+<html><body>
+<h2> Typical message </h2>
+
+<pre> 
+ undefined first referenced
+  symbol       in file     
+ --------- ----------------
+ myfunc    example.obj     
+
+ error #10234-D: unresolved symbols remain</pre>
+
+<h2> What it means </h2>
+
+<p>The linker has encountered a symbol (function or variable) for which it cannot find the definition.  </p>
+
+<h2> Why is it happening </h2>
+
+<p>The <a href="http://en.wikipedia.org/wiki/Linker_(computing)">linker</a> takes the object files produced by the compiler and combines them into a single executable program.  A key part of this process is mapping symbol references to their definitions.  For example, a function myfunc() could be defined in file A and used in file B.  The linker connects the reference to the definition.  This error indicates that the linker was unable to find the definition; an object file or library containing the definition for the symbol was not provided to the linker.</p>
+
+<h2> Remedy </h2>
+
+<p>The first step is to determine why the symbol is undefined.  If the function or variable is something you expected to create as part of your project, ensure that you provide an actual definition for the symbol and that the file containing the definition is part of the project.  Otherwise, the most likely scenario is that you are referencing a symbol that is provided by a library and the library is not being referenced.  Make sure that required libraries are specified using the --library option in the File Search Path options.</p>
+
+<h2> Risks, Severity </h2>
+
+<p>An executable will not be created until this error is resolved.</p>
+</body></html>

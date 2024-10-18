@@ -1,0 +1,826 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.6. Scripting &mdash; Code Composer Studio 12.8.0 Documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Code Composer Studio 12.8.0 Documentation" href="index.html"/>
+        <link rel="up" title="7. Debug" href="index_debug.html"/>
+        <link rel="next" title="7.7. Graph Tools" href="ccs_debug-graphs.html"/>
+        <link rel="prev" title="7.1. Debug Overview" href="ccs_debug-main.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="https://www.ti.com">
+            <img src="_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Code Composer Studio
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                12.8.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ccs_glossary.html">1. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_overview.html">2. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_installation.html">3. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_updates.html">4. Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_getting-started.html">5. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_project-management.html">6. Projects and Build</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index_debug.html">7. Debug</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ccs_debug-main.html">7.1. Debug Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_debug-main.html#configuring-the-debugger">7.2. Configuring the Debugger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_debug-main.html#launching-a-debug-session">7.3. Launching a debug session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_debug-main.html#debugging-the-application">7.4. Debugging the application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_debug-main.html#advanced-debugging-topics">7.5. Advanced Debugging Topics</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7.6. Scripting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#environment-setup-and-running-a-javascript">7.6.1. Environment Setup and Running a JavaScript</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debugging-your-javascript">7.6.2. Debugging Your JavaScript</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#launching-the-the-rhino-debugger">7.6.2.1. Launching the the Rhino Debugger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ccs-gui-visibility">7.6.2.2. CCS GUI Visibility</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">7.6.3. Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dss-api">7.6.4. DSS API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scripting-console">7.6.5. Scripting Console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#target-configuration">7.6.6. Target Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exception-handling">7.6.7. Exception Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-gel">7.6.8. Using GEL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multiple-debug-sessions-for-multi-core-debug">7.6.9. Multiple Debug Sessions for Multi-core Debug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logging">7.6.10. Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#profiling">7.6.11. Profiling</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#profile-setup">7.6.11.1. Profile Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exporting-profiling-data">7.6.11.2. Exporting Profiling Data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#project-management">7.6.12. Project Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#breakpoints">7.6.13. Breakpoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#passing-arguments-to-a-script">7.6.14. Passing Arguments to a Script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debugger-properties">7.6.15. Debugger Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other-supported-languages">7.6.16. Other Supported Languages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#download">7.6.17. Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#training">7.6.18. Training</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_debug-graphs.html">7.7. Graph Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_debug-image.html">7.8. Image Analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_debug-gel.html">7.9. The General Extension Language (GEL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_debug-epilog.html">7.10. References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index_faqs.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_troubleshooting.html">9. Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ccs_legal.html">10. License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Code Composer Studio</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index_debug.html">7. Debug</a> &raquo;</li>
+      
+    <li>7.6. Scripting</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="https://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="scripting">
+<span id="id1"></span><h1>7.6. Scripting<a class="headerlink" href="#scripting" title="Permalink to this headline">¶</a></h1>
+<p>Debug Server Scripting (DSS) is a set of cross platform Java APIs to the Debug Server which allow scripting through Java or 3rd Party tools such as <a class="reference external" href="https://www.mozilla.org/rhino">JavaScript (via Rhino)</a>, Java, <a class="reference external" href="https://www.jython.org">Python (via Jython)</a>, <a class="reference external" href="https://wiki.tcl-lang.org/page/Jacl">TCL (via Jacl/Tclblend)</a> etc. JavaScript is the default (and preferred) scripting language supported by DSS.</p>
+<p>The Debug Server is the base debug engine of Code Composer Studio (CCS). It can be accessed by both DSS and the CCS IDE.</p>
+<p>The training video below contains a very thorough coverage of the fundamentals and operation of DSS.</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+            <iframe src="https://www.youtube.com/embed/9mZr5WcqPz8" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+</div><p><br /></p>
+<div class="section" id="environment-setup-and-running-a-javascript">
+<h2>7.6.1. Environment Setup and Running a JavaScript<a class="headerlink" href="#environment-setup-and-running-a-javascript" title="Permalink to this headline">¶</a></h2>
+<p>The host environment must be properly configured before DSS can be run. This involves setting the system PATH, classpaths, other environment variables, etc.. When launching the Rhino JavaScript engine, various parameters must be passed. To simplify all these actions, DSS provides a batch/shell script which sets up the necessary environment and invokes the Rhino Javascript engine with the necessary parameters with the specified JavaScript to run. This file is stored in <code class="docutils literal notranslate"><span class="pre">[INSTALL</span> <span class="pre">DIR]\ccs\ccs_base\scripting\bin</span></code>. This file is <strong>dss.bat</strong> on Windows and <strong>dss.sh</strong> on Linux/Mac, with the first parameter being the JavaScript to run, and subsequent optional parameters to be passed to the JavaScript.</p>
+<p>Example:</p>
+<p><code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">dss</span> <span class="pre">myscript.js</span> <span class="pre">scriptParam1</span> <span class="pre">scriptParam2</span></code></p>
+<p>The above example has the path to batch/shell script in the system PATH so the dss script can be called from anywhere.</p>
+</div>
+<div class="section" id="debugging-your-javascript">
+<h2>7.6.2. Debugging Your JavaScript<a class="headerlink" href="#debugging-your-javascript" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://www.mozilla.org/rhino/debugger.html">Rhino Debugger</a> is a GUI that allows debugging of interpreted JavaScript scripts run in Rhino. It comes bundled with the installation of Rhino which comes with DSS. You can step through your JavaScript , view contents of variables, set breakpoints, etc.</p>
+<p><img alt="image0" src="_images/dss_rhino_debugger.png" /></p>
+<div class="section" id="launching-the-the-rhino-debugger">
+<h3>7.6.2.1. Launching the the Rhino Debugger<a class="headerlink" href="#launching-the-the-rhino-debugger" title="Permalink to this headline">¶</a></h3>
+<p>To use the Rhino Debugger with your DSS scripts, pass in the <code class="docutils literal notranslate"><span class="pre">-dss.debug</span></code> parameter when calling the dss script via dss.bat/sh</p>
+<p><code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">dss.bat</span> <span class="pre">-dss.debug</span> <span class="pre">myScript.js</span></code></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">in legacy releases (prior to 5.3), it was required to make changes to the actual <strong>dss.bat / dss.sh</strong> script to call the Rhino debugger. This is not necessary anymore.</p>
+</div>
+</div>
+<div class="section" id="ccs-gui-visibility">
+<h3>7.6.2.2. CCS GUI Visibility<a class="headerlink" href="#ccs-gui-visibility" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes it is not enough to simply use the Rhino Debugger to debug automation errors, but target debug visibility is also needed to properly diagnose the cause of the errors. In such cases, it is possible to <a class="reference external" href="../dss_launching_ccs_from_dss.html">attach CCS to a running debug session created by DSS</a>.</p>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>7.6.3. Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>DSS ships with several examples. These examples are located in:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">[INSTALL</span> <span class="pre">DIR\]\ccs\ccs_base\scripting\examples</span></code></li>
+</ul>
+<p>The examples are meant to demonstrate and highlight some of the capabilities of DSS. Some of the examples available are:</p>
+<ul class="simple">
+<li>DSS basic examples (DebugServerExamples) - These sample scripts which perform basic memory and breakpoint operations.</li>
+<li>DVT basic examples (DVTExamples) - Sample script for collecting and exporting function profiling data.</li>
+<li><a class="reference external" href="../sdto_dss_loadti.html">Loadti (loadti)</a> - a generic command-line loader which can load/run an executable .out file on TI targets.</li>
+<li><a class="reference external" href="../dss_test-server.html">Test Server (TestServer)</a> - demonstrates how to use DSS to set-up a debug test server and have remote clients send debug commands via TCP/IP socket connection.</li>
+</ul>
+<p>Availability of examples vary per CCS version</p>
+<p>It is strongly encouraged for new users to <em>open up the DSS basic examples and slowly walk through them</em> to get an understanding of how DSS works. The examples are well commented and should give you an understanding of the basic steps needed to create the scripting environment and start a debug session for a specified target, in addition to highlighting some of the DSS APIs available. It is also useful to use the example scripts as a baseline for creating your own scripts (by referencing it or simply copying and then &quot;gutting&quot; it to use as a template).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The examples depend on specific targets. If device support for those targets were not installed (ex. MSP430), then the script will not be able to run &quot;as-is&quot;. However, it is still very useful to look through the script, as mentioned above. The script can also be modified to support your target of choice.</p>
+</div>
+</div>
+<div class="section" id="dss-api">
+<h2>7.6.4. DSS API<a class="headerlink" href="#dss-api" title="Permalink to this headline">¶</a></h2>
+<p>References to the full DSS API documentation can be found in: <code class="docutils literal notranslate"><span class="pre">[INSTALL</span> <span class="pre">DIR]\ccs\ccs_base\scripting\docs\GettingStarted.htm</span></code></p>
+</div>
+<div class="section" id="scripting-console">
+<span id="id2"></span><h2>7.6.5. Scripting Console<a class="headerlink" href="#scripting-console" title="Permalink to this headline">¶</a></h2>
+<p>Interactive scripting support is available though the CCS <a class="reference external" href="../ccs_scripting_console_view.html">Scripting Console View</a>, and usage examples are available in the <a class="reference external" href="../ccs_scripting_console.html">Scripting Console</a>. DSS APIs can be called from the console. Full standalone DSS JavaScript files can be run from the Scripting Console.</p>
+</div>
+<div class="section" id="target-configuration">
+<h2>7.6.6. Target Configuration<a class="headerlink" href="#target-configuration" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="ccs_debug-main.html#target-configuration-files"><span class="std std-ref">Target Configuration File</span></a> needs to be specified to DSS before attempting to start a debug session. This is done by passing in a target configuration (.ccxml) file to the <code class="docutils literal notranslate"><span class="pre">setConfig()</span></code> API. The CCS Target Setup tool can be used to create a new target configuration file.</p>
+</div>
+<div class="section" id="exception-handling">
+<h2>7.6.7. Exception Handling<a class="headerlink" href="#exception-handling" title="Permalink to this headline">¶</a></h2>
+<p>All DSS APIs throw a Java exception when encountering errors. These exceptions can be caught and handled within the script (ex. <a class="reference external" href="https://www.w3schools.com/js/js_errors.asp">JavaScript try-catch-throw-finally</a>).</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">try</span> <span class="p">{</span>
+        <span class="nx">debugSession</span><span class="p">.</span><span class="nx">memory</span><span class="p">.</span><span class="nx">loadProgram</span><span class="p">(</span><span class="nx">testProgFile</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">ex</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">dssScriptEnv</span><span class="p">.</span><span class="nx">traceWrite</span><span class="p">(</span><span class="nx">testProgFile</span> <span class="o">+</span> <span class="s2">&quot; does not exist! Aborting script&quot;</span><span class="p">);</span>
+        <span class="nx">quit</span><span class="p">();</span>         <span class="c1">// call custom quit routine to do some cleanup to gracefully exit the script</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-gel">
+<h2>7.6.8. Using GEL<a class="headerlink" href="#using-gel" title="Permalink to this headline">¶</a></h2>
+<p>You can call GEL functions from DSS. The <code class="docutils literal notranslate"><span class="pre">expression.evaluate()</span></code> API can be used to call any GEL function/expression.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Call GEL function</span>
+<span class="n">debugSession</span><span class="p">.</span><span class="n">expression</span><span class="p">.</span><span class="n">evaluate</span><span class="p">(</span><span class="s">&quot;myGEL_call()&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="multiple-debug-sessions-for-multi-core-debug">
+<h2>7.6.9. Multiple Debug Sessions for Multi-core Debug<a class="headerlink" href="#multiple-debug-sessions-for-multi-core-debug" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to open and control a debug session for each CPU on a multi-core target. Simply use the <code class="docutils literal notranslate"><span class="pre">openSession()</span></code> API and specify the board name and CPU name to open a session to a specific CPU.</p>
+<p>Lets take a look at an example of opening debug sessions to a TCI6488 EVM with 6 C64x+ DSPs. First, it is important to know the exact board name and CPU names used by the target configuration ccxml file. the names can be found by looking inside the ccxml file used or opening the ccxml file in the new Target Configuration GUI tool. For our example, the names are:</p>
+<ul class="simple">
+<li>Board Name: TCI6488EVM_XDS510USB</li>
+<li>CPU Name(s): C64PLUS_F1A, C64PLUS_F1B, C64PLUS_F1C, C64PLUS_F2A, C64PLUS_F2B, C64PLUS_F2C</li>
+</ul>
+<p>Once you know the names, the <code class="docutils literal notranslate"><span class="pre">openSession()</span></code> API can be called in a variety of ways:</p>
+<ul class="simple">
+<li>Passing in a unique name. In the system configuration, each debuggable object (CPU) has a unique name that is constructed as: boardname/CPUName</li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">openSession</span><span class="p">(</span><span class="s2">&quot;TCI6488EVM_XDS510USB/C64PLUS_F1A&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Passing in the board name and a CPU name to open a debug session for single configured CPU:</li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">openSession</span><span class="p">(</span><span class="s2">&quot;TCI6488EVM_XDS510USB&quot;</span><span class="p">,</span> <span class="s2">&quot;C64PLUS_F1A&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>This method also allows the passing of wildcards (&quot;*&quot;) to <strong>sBoardName</strong> and <strong>sCPUName</strong>. A wildcard will match the first found target. In this case, the a wildcard to open a connection to the first CPU of the board named &quot;TCI6488EVM_XDS510USB&quot;</li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">openSession</span><span class="p">(</span><span class="s2">&quot;TCI6488EVM_XDS510USB&quot;</span><span class="p">,</span> <span class="s2">&quot;*&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Lets take a look at what a real JavaScript code would look like using the first option (passing in a unique name):</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
+
+<span class="c1">// Get the Debug Server and start a Debug Session</span>
+<span class="nx">debugServer</span> <span class="o">=</span> <span class="nx">script</span><span class="p">.</span><span class="nx">getServer</span><span class="p">(</span><span class="s2">&quot;DebugServer.1&quot;</span><span class="p">);</span>
+
+<span class="c1">// Configure target for a TCI6488 EVM with SD XDS510 USB emulator</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">traceWrite</span><span class="p">(</span><span class="s2">&quot;Configuring debug server for TCI6488 EVM...&quot;</span><span class="p">);</span>
+<span class="nx">debugServer</span><span class="p">.</span><span class="nx">setConfig</span><span class="p">(</span><span class="s2">&quot;TCI6488EVM_SD510USB.ccxml&quot;</span><span class="p">);</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">traceWrite</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">);</span>
+
+<span class="c1">// Open a debug session for each TCI6488 CPU</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">traceWrite</span><span class="p">(</span><span class="s2">&quot;Opening a debug session for all TCI6488 cores...&quot;</span><span class="p">);</span>
+<span class="nx">debugSessionF1A</span> <span class="o">=</span> <span class="nx">debugServer</span><span class="p">.</span><span class="nx">openSession</span><span class="p">(</span><span class="s2">&quot;TCI6488EVM_XDS510USB/C64PLUS_F1A&quot;</span><span class="p">);</span>
+<span class="nx">debugSessionF1B</span> <span class="o">=</span> <span class="nx">debugServer</span><span class="p">.</span><span class="nx">openSession</span><span class="p">(</span><span class="s2">&quot;TCI6488EVM_XDS510USB/C64PLUS_F1B&quot;</span><span class="p">);</span>
+<span class="nx">debugSessionF1C</span> <span class="o">=</span> <span class="nx">debugServer</span><span class="p">.</span><span class="nx">openSession</span><span class="p">(</span><span class="s2">&quot;TCI6488EVM_XDS510USB/C64PLUS_F1C&quot;</span><span class="p">);</span>
+<span class="nx">debugSessionF2A</span> <span class="o">=</span> <span class="nx">debugServer</span><span class="p">.</span><span class="nx">openSession</span><span class="p">(</span><span class="s2">&quot;TCI6488EVM_XDS510USB/C64PLUS_F2A&quot;</span><span class="p">);</span>
+<span class="nx">debugSessionF2B</span> <span class="o">=</span> <span class="nx">debugServer</span><span class="p">.</span><span class="nx">openSession</span><span class="p">(</span><span class="s2">&quot;TCI6488EVM_XDS510USB/C64PLUS_F2B&quot;</span><span class="p">);</span>
+<span class="nx">debugSessionF2C</span> <span class="o">=</span> <span class="nx">debugServer</span><span class="p">.</span><span class="nx">openSession</span><span class="p">(</span><span class="s2">&quot;TCI6488EVM_XDS510USB/C64PLUS_F2C&quot;</span><span class="p">);</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">traceWrite</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">);</span>
+
+<span class="c1">// Connect to each TCI6488 CPU</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">traceWrite</span><span class="p">(</span><span class="s2">&quot;Connecting to all TCI6488 CPUs...&quot;</span><span class="p">);</span>
+<span class="nx">debugSessionF1A</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">connect</span><span class="p">();</span>
+<span class="nx">debugSessionF1B</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">connect</span><span class="p">();</span>
+<span class="nx">debugSessionF1C</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">connect</span><span class="p">();</span>
+<span class="nx">debugSessionF2A</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">connect</span><span class="p">();</span>
+<span class="nx">debugSessionF2B</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">connect</span><span class="p">();</span>
+<span class="nx">debugSessionF2C</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">connect</span><span class="p">();</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">traceWrite</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">);</span>
+
+<span class="c1">// Load a program for just the first TCI6488 CPU</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">traceWrite</span><span class="p">(</span><span class="s2">&quot;Loading program to first TCI6488 CPU...&quot;</span><span class="p">);</span>
+<span class="nx">debugSessionF1A</span><span class="p">.</span><span class="nx">memory</span><span class="p">.</span><span class="nx">loadProgram</span><span class="p">(</span><span class="s2">&quot;HelloTCI6488.out&quot;</span><span class="p">);</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">traceWrite</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">);</span>
+
+<span class="c1">// Load a program for just the second TCI6488 CPU</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">traceWrite</span><span class="p">(</span><span class="s2">&quot;Loading program to second TCI6488 CPU...&quot;</span><span class="p">);</span>
+<span class="nx">debugSessionF1B</span><span class="p">.</span><span class="nx">memory</span><span class="p">.</span><span class="nx">loadProgram</span><span class="p">(</span><span class="s2">&quot;HelloTCI6488.out&quot;</span><span class="p">);</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">traceWrite</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">);</span>
+
+<span class="c1">// Run the program for just the first TCI6488 CPU</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">traceWrite</span><span class="p">(</span><span class="s2">&quot;Executing program on first TCI6488 CPU...&quot;</span><span class="p">);</span>
+<span class="nx">debugSessionF1A</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">run</span><span class="p">();</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">traceWrite</span><span class="p">(</span><span class="s2">&quot;Execution complete!&quot;</span><span class="p">);</span>
+
+<span class="c1">// Reload program for just the first TCI6488 CPU</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">traceWrite</span><span class="p">(</span><span class="s2">&quot;Loading program to first TCI6488 CPU...&quot;</span><span class="p">);</span>
+<span class="nx">debugSessionF1A</span><span class="p">.</span><span class="nx">memory</span><span class="p">.</span><span class="nx">loadProgram</span><span class="p">(</span><span class="s2">&quot;HelloTCI6488.out&quot;</span><span class="p">);</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">traceWrite</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">);</span>
+
+<span class="c1">// Run the program for the first and second TCI6488 CPU simultaneously</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">traceWrite</span><span class="p">(</span><span class="s2">&quot;Executing program on first and second TCI6488 CPU...&quot;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">dsArray</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+<span class="nx">dsArray</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nx">debugSessionF1A</span><span class="p">;</span>
+<span class="nx">dsArray</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">debugSessionF1B</span><span class="p">;</span>
+
+<span class="nx">debugServer</span><span class="p">.</span><span class="nx">simultaneous</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">dsArray</span><span class="p">);</span> <span class="c1">// Run CPUs 1 and 2</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">traceWrite</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">);</span>
+
+<span class="p">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="logging">
+<h2>7.6.10. Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h2>
+<p>DSS logging can be enabled using the <code class="docutils literal notranslate"><span class="pre">traceBegin()</span></code> API. The logs can contain various information such as timestamps, sequence ID, time deltas and status for each log entry. The amount of logging (entries) can be set to the desired verbosity level with the <code class="docutils literal notranslate"><span class="pre">traceSetFileLevel()</span></code> API. At the higher verbosity levels, many internal diagnostic and status messages will be logged, which can be very useful in trying to determine what/where exactly was the cause of a script failure. However this can lead to very large log files for long automation sessions so it is recommended to use the higher verbosity settings only when needed.</p>
+<p>The generated log files are XML format. Everyone will have slightly different logging needs and by producing standardized XML log files it is easy to transform XML using XSLT (XML StyLesheet Transforms) into any custom format (comma-delimited text, HTML, etc.). The <code class="docutils literal notranslate"><span class="pre">traceBegin()</span></code> API can take a second parameter (the first being the log file name) to specify an XSLT file to be referenced when opening the XML file in your web browser. An example XSLT file (<strong>DefaultStylesheet.xsl</strong>) is provided in the scripting examples folder with DSS.</p>
+<p>An example of raw XML output of a DSS log in a text editor:</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;windows-1252&quot; standalone=&quot;no&quot;?&gt;</span>
+<span class="cp">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;DefaultStylesheet.xsl&quot;?&gt;</span>
+<span class="nt">&lt;log&gt;</span>
+<span class="nt">&lt;record&gt;</span>
+ <span class="nt">&lt;date&gt;</span>2008-10-30T17:16:53<span class="nt">&lt;/date&gt;</span>
+ <span class="nt">&lt;millis&gt;</span>1225401413228<span class="nt">&lt;/millis&gt;</span>
+ <span class="nt">&lt;sequence&gt;</span>6<span class="nt">&lt;/sequence&gt;</span>
+ <span class="nt">&lt;logger&gt;</span>com.ti<span class="nt">&lt;/logger&gt;</span>
+ <span class="nt">&lt;level&gt;</span>FINER<span class="nt">&lt;/level&gt;</span>
+ <span class="nt">&lt;class&gt;</span>com.ti.ccstudio.scripting.environment.ScriptingEnvironment<span class="nt">&lt;/class&gt;</span>
+ <span class="nt">&lt;method&gt;</span>traceSetFileLevel<span class="nt">&lt;/method&gt;</span>
+ <span class="nt">&lt;thread&gt;</span>10<span class="nt">&lt;/thread&gt;</span>
+ <span class="nt">&lt;message&gt;</span>RETURN<span class="nt">&lt;/message&gt;</span>
+<span class="nt">&lt;/record&gt;</span>
+<span class="nt">&lt;record&gt;</span>
+ <span class="nt">&lt;date&gt;</span>2008-10-30T17:16:53<span class="nt">&lt;/date&gt;</span>
+ <span class="nt">&lt;millis&gt;</span>1225401413238<span class="nt">&lt;/millis&gt;</span>
+ <span class="nt">&lt;sequence&gt;</span>7<span class="nt">&lt;/sequence&gt;</span>
+ <span class="nt">&lt;logger&gt;</span>com.ti<span class="nt">&lt;/logger&gt;</span>
+ <span class="nt">&lt;level&gt;</span>FINER<span class="nt">&lt;/level&gt;</span>
+ <span class="nt">&lt;class&gt;</span>com.ti.ccstudio.scripting.environment.ScriptingEnvironment<span class="nt">&lt;/class&gt;</span>
+ <span class="nt">&lt;method&gt;</span>getServer<span class="nt">&lt;/method&gt;</span>
+ <span class="nt">&lt;thread&gt;</span>10<span class="nt">&lt;/thread&gt;</span>
+ <span class="nt">&lt;message&gt;</span>ENTRY sServerName: DebugServer.1<span class="nt">&lt;/message&gt;</span>
+<span class="nt">&lt;/record&gt;</span>
+
+...
+</pre></div>
+</div>
+<p>Note the second line which references <strong>DefaultStylesheet.xsl</strong>:</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;DefaultStylesheet.xsl&quot;?&gt;</span>
+</pre></div>
+</div>
+<p>Opening the same log file in a web browser will look something along the lines of:</p>
+<p><img alt="image1" src="_images/dss_xml_log.png" /></p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Most browsers block XML files from accessing local XSLT files in the same directory and will prevent you from viewing the XML file in the browser. Simple work arounds include opening the file in Excel or if you have Python installed, you can host a simple web server and open the file via http on your local host server.</p>
+</div>
+<p>More information on XSLT (including information on how to create your own) can be found on this <a class="reference external" href="https://www.w3schools.com/xsl/xsl_intro.asp">XSLT Tutorial</a> site.</p>
+</div>
+<div class="section" id="profiling">
+<h2>7.6.11. Profiling<a class="headerlink" href="#profiling" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The below DSS profiling functionality has been greatly deprecated in support. It is recommend to use alternate solutions for profiling.</p>
+</div>
+<div class="section" id="profile-setup">
+<span id="id3"></span><h3>7.6.11.1. Profile Setup<a class="headerlink" href="#profile-setup" title="Permalink to this headline">¶</a></h3>
+<p>To setup profiling, a profile activity object for each desired activity
+needs to be created using the profileSetup.getActivity() API. A default
+activity to profile must be passed into the API. There are currently
+three default activities supported:</p>
+<ul class="simple">
+<li>Collect Code Coverage and Exclusive Profile Data - this will
+configure the profiler to collect code coverage data</li>
+<li>Profile all Functions for CPU Cycles - this will configure the
+profiler to collect CPU cycles (cycle.CPU) for all functions</li>
+<li>Profile all Functions for Total Cycles - this will configure the
+profiler to collect total cycles (cycle.total) for all functions</li>
+</ul>
+<p>Note that the activities available can vary depending on the target. The
+list of supported activities for a particular target can be generated
+with the profileSetup.printActivityList() API.</p>
+<p>To create and enable a profile activity object for profiling all
+functions for Total cycles:</p>
+<div class="code javascript highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// retrieve an activity from the activity list based on the name</span>
+<span class="n">myProfileActivity</span> <span class="o">=</span> <span class="n">debugSession</span><span class="p">.</span><span class="n">profileSetup</span><span class="p">.</span><span class="n">getActivity</span><span class="p">(</span><span class="s">&quot;Profile all Functions for Total Cycles&quot;</span><span class="p">);</span>
+
+<span class="c1">// enable profiling for specified activity</span>
+<span class="n">myProfileActivity</span><span class="p">.</span><span class="n">setStatus</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Once an activity object is created, it can be further configured to
+collect data for more events than just the default event. This can be
+done by getting a property object for the event to be profiled from the
+activity interface, and then enabling it. The following example will add
+the collection of L1P cache misses to the events being profiled:</p>
+<div class="code javascript highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// get the propery object for L1P miss summary</span>
+<span class="n">eventL1PMissSummary</span> <span class="o">=</span> <span class="n">myProfileActivity</span><span class="p">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s">&quot;Events.L1P.miss.summary&quot;</span><span class="p">);</span>
+<span class="c1">// enable collection L1P miss summary data</span>
+<span class="n">eventL1PMissSummary</span><span class="p">.</span><span class="n">setBoolean</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>If you wish to profile many events, you can create an array of the
+desired events and then use a 'for' loop for a cleaner implementation:</p>
+<div class="code javascript highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// array of events to be profiled</span>
+<span class="n">var</span> <span class="n">evtNames</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Array</span><span class="p">(</span><span class="s">&quot;Events.L1D.hit.summary&quot;</span><span class="p">,</span>
+                         <span class="s">&quot;Events.L1D.miss.summary&quot;</span><span class="p">,</span>
+                         <span class="s">&quot;Events.L1D.miss.conflict&quot;</span><span class="p">,</span>
+                         <span class="s">&quot;Events.L1D.miss.non_conflict&quot;</span><span class="p">,</span>
+                         <span class="s">&quot;Events.L1P.miss.summary&quot;</span><span class="p">,</span>
+                         <span class="s">&quot;Events.CPU.stall.mem.L1D&quot;</span><span class="p">,</span>
+                         <span class="s">&quot;Events.CPU.stall.mem.L1P&quot;</span><span class="p">,</span>
+                         <span class="s">&quot;Events.L1P.hit&quot;</span>
+                         <span class="p">);</span>
+
+<span class="c1">// retrieve an activity from the activity list based on the name</span>
+<span class="n">myProfileActivity</span><span class="o">=</span> <span class="n">debugSession</span><span class="p">.</span><span class="n">profileSetup</span><span class="p">.</span><span class="n">getActivity</span><span class="p">(</span><span class="s">&quot;Profile all Functions for Total Cycles&quot;</span><span class="p">);</span>
+
+<span class="c1">// enable profiling of all events in the array</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">evtCount</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">evtCount</span><span class="o">&lt;</span><span class="n">evtNames</span><span class="p">.</span><span class="n">length</span><span class="p">;</span><span class="n">evtCount</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">event</span> <span class="o">=</span> <span class="n">myProfileActivity</span><span class="p">.</span><span class="n">getProperty</span><span class="p">(</span><span class="n">evtNames</span><span class="p">[</span><span class="n">evtCount</span><span class="p">]);</span>
+    <span class="n">event</span><span class="p">.</span><span class="n">setBoolean</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// enable profiling for specified activity</span>
+<span class="n">myProfileActivity</span><span class="p">.</span><span class="n">setStatus</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Note that the available events to profile will vary depending on the
+device. The profile
+activity listProperties() API will generate the full list of all events
+supported for the current device.</p>
+</div>
+<div class="section" id="exporting-profiling-data">
+<span id="id4"></span><h3>7.6.11.2. Exporting Profiling Data<a class="headerlink" href="#exporting-profiling-data" title="Permalink to this headline">¶</a></h3>
+<p>The exporting of the collected profiling data is done with DVT. The API
+doc for the DVT and examples can be found from:
+<code class="docutils literal notranslate"><span class="pre">[INSTALL</span> <span class="pre">DIR]\ccs\ccs_base\scripting\docs\GettingStarted.htm</span></code></p>
+<div class="code javascript highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">dvtServer</span> <span class="o">=</span> <span class="n">dssScriptEnv</span><span class="p">.</span><span class="n">getServer</span><span class="p">(</span><span class="s">&quot;DVTServer.1&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Then a profile analysis session must be opened to export the data. Pass
+in the debug session and the analysis provider. For the analysis
+provider, the options are:</p>
+<ul class="simple">
+<li>FunctionProfile - Export function profile data</li>
+<li>CoverageProfile - Export code coverage data</li>
+</ul>
+<div class="code javascript highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// create a profile analysis session for function level profiling data collected</span>
+<span class="n">var</span> <span class="n">profileAnalysisSession</span> <span class="o">=</span> <span class="n">dvtServer</span><span class="p">.</span><span class="n">openProfileAnalysisSession</span><span class="p">(</span><span class="n">debugSession</span><span class="p">,</span> <span class="s">&quot;FunctionProfile&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Before exporting any data, we need to make sure that all processing of
+profiling data is completed:</p>
+<div class="code javascript highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">profileAnalysisSession</span><span class="p">.</span><span class="n">waitUntilProfilingComplete</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Next create a ProfileAnalysisExport object for all tables of collected
+profiling data</p>
+<div class="code javascript highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">exports</span> <span class="o">=</span> <span class="n">profileAnalysisSession</span><span class="p">.</span><span class="n">exportData</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>We can then export the data. We can choose to export some or all of the
+data. The example below will use the API to export all the data for the
+first table into a *.csv file.</p>
+<div class="code javascript highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">exports</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">save</span><span class="p">(</span><span class="s">&quot;myProfilingData.csv&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>When exporting multiple tables (a table exists for each event enabled),
+a 'for' loop can be used:</p>
+<div class="code javascript highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">e</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">e</span> <span class="o">&lt;</span> <span class="n">exports</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="n">e</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">exports</span><span class="p">[</span><span class="n">e</span><span class="p">].</span><span class="n">save</span><span class="p">(</span><span class="n">profileResultsFolder</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\\</span><span class="s">&quot;</span> <span class="o">+</span> <span class="n">exports</span><span class="p">[</span><span class="n">e</span><span class="p">].</span><span class="n">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot;.csv&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Once done, don't forget to terminate the profile session and terminate
+the DVT Server:</p>
+<div class="code javascript highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// close profile session</span>
+<span class="n">profileAnalysisSession</span><span class="p">.</span><span class="n">terminate</span><span class="p">();</span>
+<span class="n">dvtServer</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="project-management">
+<h2>7.6.12. Project Management<a class="headerlink" href="#project-management" title="Permalink to this headline">¶</a></h2>
+<p>DSS does not have any APIs for project management (project create, project build, etc) since DSS is for scripting the debugger (and not the project manager). However there are command-line utilities that come with CCS to create, build and import a CCS project that can be called from a script, effectively automating such actions. More information on these commands are available in the <a class="reference external" href="../ccs_projects-command-line.html">Create and Build Projects Using Command Line</a> article.</p>
+</div>
+<div class="section" id="breakpoints">
+<h2>7.6.13. Breakpoints<a class="headerlink" href="#breakpoints" title="Permalink to this headline">¶</a></h2>
+<p>DSS allows setting <a class="reference internal" href="ccs_debug-main.html#breakpoints"><span class="std std-ref">Breakpoints</span></a> and having their properties modified.</p>
+<ul class="simple">
+<li>Setting intrusive breakpoint - halts the target</li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">bp1</span> <span class="o">=</span> <span class="n">debugSession</span><span class="p">.</span><span class="n">breakpoint</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;0x100&quot;</span><span class="p">)</span>    <span class="c1">// breakpoint with address</span>
+<span class="n">var</span> <span class="n">main</span> <span class="o">=</span> <span class="n">debugSession</span><span class="p">.</span><span class="n">symbol</span><span class="p">.</span><span class="n">getAddress</span><span class="p">(</span><span class="s">&quot;main&quot;</span><span class="p">)</span>   <span class="c1">// Query for address of label &quot;main&quot;</span>
+<span class="n">var</span> <span class="n">bp1</span> <span class="o">=</span> <span class="n">debugSession</span><span class="p">.</span><span class="n">breakpoint</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>     <span class="c1">// set breakpoint based on the address &quot;main&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Setting non-intrusive breakpoint - perform an action on breakpoint hit</li>
+</ul>
+<p>Breakpoint can be set by creating a breakpoint property object. Breakpoint properties are set via <strong>&quot;setString()&quot;</strong> DSS api. To get the property name and possible value, on CCS IDE right click on a given <a class="reference internal" href="ccs_debug-main.html#breakpoints"><span class="std std-ref">Breakpoint</span></a> and select its properties.</p>
+<img alt="_images/ccs_debug-bkpt_properties.png" src="_images/ccs_debug-bkpt_properties.png" />
+<p>Property names are directly dervied from the properties displayed along with their hirearchy.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Ex</span><span class="p">.</span>
+<span class="s">&quot;Hardware Configuration.Location&quot;</span>
+<span class="s">&quot;Debugger Response.Action.Expression&quot;</span>
+<span class="s">&quot;Debugger Response.Skip Count&quot;</span>
+
+<span class="nl">Note</span><span class="p">:</span> <span class="n">Some</span> <span class="n">of</span> <span class="n">the</span> <span class="n">properties</span> <span class="n">are</span> <span class="n">read</span><span class="o">-</span><span class="n">only</span><span class="p">,</span> <span class="n">cannont</span> <span class="n">be</span> <span class="n">modified</span><span class="p">.</span> <span class="nl">Ex</span><span class="p">:</span> <span class="s">&quot;Hardware Configuration.Location.symbolic&quot;</span> <span class="o">&amp;</span> <span class="s">&quot;Debugger Response.Skip Count.Current Count&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Example script to set breakpoint, which execute GEL command as debugger action</li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// for setting breakpoint to perform gel command</span>
+<span class="n">var</span> <span class="n">bpProps2</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="n">breakpoint</span><span class="p">.</span><span class="n">createProperties</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="n">bpProps2</span><span class="p">.</span><span class="n">setString</span><span class="p">(</span><span class="s">&quot;Miscellaneous.Name&quot;</span><span class="p">,</span> <span class="s">&quot;Breakpoint&quot;</span><span class="p">);</span>    <span class="c1">// Mandatory to select the breakpoint</span>
+<span class="n">bpProps2</span><span class="p">.</span><span class="n">setString</span><span class="p">(</span><span class="s">&quot;Hardware Configuration.Location&quot;</span><span class="p">,</span><span class="mh">0x500</span><span class="p">);</span>    <span class="c1">// Breakpoing at PC address</span>
+
+<span class="n">bpProps2</span><span class="p">.</span><span class="n">setString</span><span class="p">(</span><span class="s">&quot;Debugger Response.Action&quot;</span><span class="p">,</span><span class="s">&quot;Execute Expression(GEL)&quot;</span><span class="p">);</span>
+<span class="n">bpProps2</span><span class="p">.</span><span class="n">setString</span><span class="p">(</span><span class="s">&quot;Debugger Response.Action.Expression&quot;</span><span class="p">,</span> <span class="s">&quot;GEL_DriverString(</span><span class="se">\&quot;</span><span class="s">SIM_EXCEPTION,ON</span><span class="se">\&quot;</span><span class="s">)&quot;</span><span class="p">);</span>   <span class="c1">// Set the gel command to be executed</span>
+
+
+<span class="n">var</span> <span class="n">bp2</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="n">breakpoint</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">bpProps2</span><span class="p">);</span>   <span class="c1">// add breakpoint</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Example script to set breakpoint, which control profiling for pause &amp; resume profiling collection for profiler</li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// for setting breakpoint to perform profile control point</span>
+<span class="n">var</span> <span class="n">bpProps2</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="n">breakpoint</span><span class="p">.</span><span class="n">createProperties</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="n">bpProps2</span><span class="p">.</span><span class="n">setString</span><span class="p">(</span><span class="s">&quot;Miscellaneous.Name&quot;</span><span class="p">,</span> <span class="s">&quot;Breakpoint&quot;</span><span class="p">);</span>
+<span class="n">bpProps2</span><span class="p">.</span><span class="n">setString</span><span class="p">(</span><span class="s">&quot;Hardware Configuration.Location&quot;</span><span class="p">,</span><span class="mh">0x500</span><span class="p">);</span>    <span class="c1">// Breakpoing at PC address</span>
+
+<span class="n">bpProps2</span><span class="p">.</span><span class="n">setString</span><span class="p">(</span><span class="s">&quot;Debugger Response.Action&quot;</span><span class="p">,</span><span class="s">&quot;Control Profiling&quot;</span><span class="p">);</span>
+<span class="n">bpProps2</span><span class="p">.</span><span class="n">setString</span><span class="p">(</span><span class="s">&quot;Debugger Response.Action.Type&quot;</span><span class="p">,</span> <span class="s">&quot;Pause Profiling&quot;</span><span class="p">);</span> <span class="c1">//Option for action type - &quot;Pause Profiling&quot;,&quot;Resume Profiling&quot; &amp; &quot;Terminate Profiling&quot;</span>
+
+<span class="n">var</span> <span class="n">bp2</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="n">breakpoint</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">bpProps2</span><span class="p">);</span> <span class="c1">// add breakpoint</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Example script to set breakpoint at the exit of the program. Convenient to add the the loadti tool (in main.js)</li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">bpExit</span> <span class="o">=</span> <span class="n">debugSession</span><span class="p">.</span><span class="n">breakpoint</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;C$$EXIT&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="passing-arguments-to-a-script">
+<h2>7.6.14. Passing Arguments to a Script<a class="headerlink" href="#passing-arguments-to-a-script" title="Permalink to this headline">¶</a></h2>
+<p>The method for passing arguments to a script will vary depending on the scripting language used, so it is best to check the documentation for that language.</p>
+<p>If using JavaScript, the top-level script object has access to a number of predefined properties. One of these is called &quot;arguments&quot;. An example of printing out the arguments passed to a DSS script is:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nx">print</span><span class="p">(</span><span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="debugger-properties">
+<h2>7.6.15. Debugger Properties<a class="headerlink" href="#debugger-properties" title="Permalink to this headline">¶</a></h2>
+<p>There are DSS APIs to get and set various debugger options (<strong>Tools → Debugger Options</strong>).</p>
+<p>Some options that are supported are:</p>
+<ul class="simple">
+<li>auto-run to <strong>main</strong> on program load/restart/reset</li>
+<li>enable real-time mode</li>
+<li>...</li>
+</ul>
+<p>Use the following API to print the full list of supported options in DSS:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">options</span><span class="p">.</span><span class="nx">printOptions</span><span class="p">(</span><span class="s2">&quot;.*&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will generate a list of supported options. A single entry will look like:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Boolean</span> <span class="nl">Option</span><span class="p">:</span>
+        <span class="nl">id</span><span class="p">:</span> <span class="n">AllowInterruptsWhenHalted</span>
+        <span class="nl">name</span><span class="p">:</span> <span class="n">Generic</span><span class="p">.</span><span class="n">Realtime</span> <span class="n">options</span><span class="p">.</span><span class="n">Enable</span> <span class="n">silicon</span> <span class="n">real</span><span class="o">-</span><span class="n">time</span> <span class="n">mode</span> <span class="p">(</span><span class="n">service</span> <span class="n">critical</span> <span class="n">interrupts</span> <span class="n">when</span> <span class="n">halted</span><span class="p">,</span> <span class="n">allow</span> <span class="n">debugger</span> <span class="n">accesses</span> <span class="k">while</span> <span class="n">running</span><span class="p">)</span>
+        <span class="nl">value</span><span class="p">:</span> <span class="nb">false</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>The first line indicates that this option is a <strong>boolean</strong> option. Option types will be either <strong>numeric</strong>, <strong>String</strong>, or <strong>boolean</strong>.</dt>
+<dd><ul class="first last">
+<li>Note that drop-downs (as well as radio buttons) are considered to be a <strong>String</strong> type</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>The second line is the <strong>id</strong> of the option</li>
+<li>The third line is a description of the option</li>
+</ul>
+<p>The APIs to get the value of a specific option are:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">long</span> <span class="nf">getNumeric</span><span class="p">(</span><span class="n">String</span> <span class="n">id</span><span class="p">)</span>
+<span class="n">String</span> <span class="nf">getString</span><span class="p">(</span><span class="n">String</span> <span class="n">id</span><span class="p">)</span>
+<span class="kt">boolean</span> <span class="nf">getBoolean</span><span class="p">(</span><span class="n">String</span> <span class="n">id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Pass in the option <strong>id</strong> as described above. Depending on the option type, use the applicable API (ex: use <code class="docutils literal notranslate"><span class="pre">getBoolean()</span></code> for <strong>boolean</strong> options)</p>
+<p>The APIs to set the value of specific options are:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">setBoolean</span><span class="p">(</span><span class="n">String</span> <span class="n">id</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">value</span><span class="p">)</span>
+<span class="kt">void</span> <span class="nf">setNumeric</span><span class="p">(</span><span class="n">String</span> <span class="n">id</span><span class="p">,</span> <span class="kt">long</span> <span class="n">value</span><span class="p">)</span>
+<span class="kt">void</span> <span class="nf">setString</span><span class="p">(</span><span class="n">String</span> <span class="n">id</span><span class="p">,</span> <span class="n">String</span> <span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Example of setting a debugger property to enable real-time mode:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
+
+<span class="c1">// Get Debug Server</span>
+<span class="nx">debugServer</span> <span class="o">=</span> <span class="nx">script</span><span class="p">.</span><span class="nx">getServer</span><span class="p">(</span><span class="s2">&quot;DebugServer.1&quot;</span><span class="p">);</span>
+
+<span class="c1">// Configure for F2812 target</span>
+<span class="nx">debugServer</span><span class="p">.</span><span class="nx">setConfig</span><span class="p">(</span><span class="s2">&quot;F2812.ccxml&quot;</span><span class="p">);</span>
+
+<span class="c1">// Open a debug session</span>
+<span class="nx">debugSession</span> <span class="o">=</span> <span class="nx">debugServer</span><span class="p">.</span><span class="nx">openSession</span><span class="p">(</span><span class="s2">&quot;.*&quot;</span><span class="p">);</span>
+
+<span class="c1">// connect to the target</span>
+<span class="nx">debugSession</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">connect</span><span class="p">();</span>
+
+<span class="c1">// Load a program</span>
+<span class="nx">debugSession</span><span class="p">.</span><span class="nx">memory</span><span class="p">.</span><span class="nx">loadProgram</span><span class="p">(</span><span class="s2">&quot;modem.out&quot;</span><span class="p">);</span>
+
+<span class="c1">// enable real-time mode</span>
+<span class="nx">debugSession</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">setBoolean</span><span class="p">(</span><span class="s2">&quot;AllowInterruptsWhenHalted&quot;</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="p">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-supported-languages">
+<h2>7.6.16. Other Supported Languages<a class="headerlink" href="#other-supported-languages" title="Permalink to this headline">¶</a></h2>
+<p>The underlying Debug Server Scripting package is implemented as a set of Java APIs. Using readily available packages (many of them open source) it is possible to access these APIs using other scripting languages. JavaScript (via Rhino) is the preferred language and will be officially supported by DSS. However there are many third-party solutions available to interface Java with TCL (tclblend), Python (Jython) and Perl (Inline::Java).</p>
+<ul class="simple">
+<li><a class="reference external" href="../dss_java_dss_scripting.html">Using Java</a></li>
+<li><a class="reference external" href="../dss_perl_dss_scripting.html">Using Perl</a></li>
+<li><a class="reference external" href="../dss_python_dss_scripting.html">Using Python</a></li>
+</ul>
+</div>
+<div class="section" id="download">
+<h2>7.6.17. Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<p>DSS comes bundled with CCS. It is not possible to get a standalone &quot;DSS only&quot; installer.</p>
+</div>
+<div class="section" id="training">
+<h2>7.6.18. Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>DSS Fundamentals Workshop</strong>: <a class="reference external" href="https://software-dl.ti.com/ccs/esd/training/workshop/ccsv9/dss_fundamentals_workshop.html">English</a> | <a class="reference external" href="https://software-dl.ti.com/ccs/esd/training/workshop/ccsv9/dss_fundamentals-workshop-chinese.html">Chinese (中文)</a>.</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ccs_debug-graphs.html" class="btn btn-neutral float-right" title="7.7. Graph Tools" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ccs_debug-main.html" class="btn btn-neutral" title="7.1. Debug Overview" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyight 1995-2019</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'12.8.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="https://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.ti.dvt.via.doc;singleton:=true
+Bundle-Name: Image Analyzer
+Bundle-Version: 4.1.0.202307061549
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: Texas Instruments
+Eclipse-LazyStart: true
+
+Name: html/green.gif
+SHA-256-Digest: BNWMp0BsTqvqeMPG31iRxZDsWGuFLm6rzUN5I1iE+R4=
+
+Name: plugin.xml
+SHA-256-Digest: oMknF8eDWbJ2CYLRDdKKJ3WZYOJ0vwt/xPdEVKChnVg=
+
+Name: html/findin3.jpg
+SHA-256-Digest: MiFZrXss/RZHmeCqMhJ2WtEO1TUghHYTW+4STlIfNe8=
+
+Name: html/findin6.gif
+SHA-256-Digest: fq9P2H3qpn3DUAZJZkIydfJRGyZcmfPrumVEd5Co2cM=
+
+Name: html/refreshOnHalt.gif
+SHA-256-Digest: 6w2xlV0v51iDkCpDTwIcQPmpUviNUJj6BaeukwZy3wI=
+
+Name: html/tasks.htm
+SHA-256-Digest: tZeLOjGs7jJRG1r34AAjS5ke+Pfglo5NFnJtBBQ/Cek=
+
+Name: html/findin5.gif
+SHA-256-Digest: be6QsfpZAEJB90gmqdnAPTg6qtgxiJLhuMJPn1plIOk=
+
+Name: toc_IA_CCS.xml
+SHA-256-Digest: B0rnq8x93QabaXWqMf3nR8kpx1rFktryCwNlWT9J9qM=
+
+Name: html/findin1.gif
+SHA-256-Digest: NbQ1xWQ6PCKc6VTVWsChoxPHvQEsy7GtwarmZFt8rUQ=
+
+Name: html/overview.htm
+SHA-256-Digest: WZmzD1Eg8IGgb9BAnPrefzPb6sxkjA2d++SEs1sbN+Q=
+
+Name: IA_CCS_index.xml
+SHA-256-Digest: Z3s8MvXQG2jxYarESGz9G6fcH/5NadScizzcmfMdL9E=
+
+Name: html/findin2.gif
+SHA-256-Digest: KLvpL3q6c1UbQHB54xpfbX9EawN1x8qD+hQuRqhBs8U=
+
+Name: context_Image_Views.xml
+SHA-256-Digest: 9t10Wq/3CHTtCcSpX62bWP3ergTMFDBMou1Eaps8ooA=
+
+Name: html/blue.gif
+SHA-256-Digest: P1mw0IDATALSEkqrZ8N1J5C+A538ZLlLcSeuTNUBEhQ=
+
+Name: html/styles/styles.css
+SHA-256-Digest: m+4kvg4Cf+N8mJmuKZEpgpaKOmBa7AVjvj9KT7eyKV4=
+
+Name: html/prop_export.gif
+SHA-256-Digest: tanMwWaSAg+ae+nU7Cf7flv8mPwrTa56gjF9FOVk3tM=
+
+Name: html/outline.htm
+SHA-256-Digest: bE5emkEtRW7dUXy8bICs/leYJHNzpzRd8tSzMPJN4tE=
+
+Name: html/findin4.jpg
+SHA-256-Digest: gYPOPLzY5bpp+vHkMOnovY7jIuyJGAZQhPzAFbrlqj4=
+
+Name: html/findin7.gif
+SHA-256-Digest: Ydw9nWCAbD5n+U8DuUakTC4HWZvUSlndMt/npsO6e90=
+
+Name: html/styles/CCE-CCS_styles.css
+SHA-256-Digest: 8kHuQGfCg2kzGBLuVauQAJ1iqhVOYn/r3t34bq0XyNw=
+
+Name: html/image_analyzer_view.htm
+SHA-256-Digest: 4YncLMmVsIPZNQjTDqBNlF0oZtcuwuYWL/AWV1P26Po=
+
+Name: html/all.htm
+SHA-256-Digest: KLbRjsPh5YzemDWN1roLxK8dLEDytLOh/D7DnMPvOkU=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: G2hFTVPngfh5NUf96Pyy87A7XIE083udjEBFy4pUc/M=
+
+Name: html/properties.gif
+SHA-256-Digest: wdgQadzy59yNmOXsdfUd8wGgVWpV/Uq1UQDInKiEx28=
+
+Name: html/rgb.gif
+SHA-256-Digest: Hlgx0/Zj16CJkEfXhDsP5EeS0himGZntk5jaAtSyJo4=
+
+Name: html/getting_started.htm
+SHA-256-Digest: 9P9OPbNZP+9yw6KXNT4wxHJbD+tvH5mobO/lWPjYXMI=
+
+Name: html/image_properties.htm
+SHA-256-Digest: bEdc0Z7OLSap72jvaNP5bPMUYYir4HTfJHpfQyD/VWw=
+
+Name: html/prop_import.gif
+SHA-256-Digest: WyzM5SFMtiqsIJYto5e2JCLyXOsCZUvpvGCZzQilmFc=
+
+Name: build.xml
+SHA-256-Digest: aMrcOhrwFjlpFECzo8B0kn+noeKFbZFIJx7MNEpTHFc=
+
+Name: html/red.gif
+SHA-256-Digest: TUw5mPIWWmmnAyeI8tnY6XptKQ7jnOfQb8+AjMuipn4=
+

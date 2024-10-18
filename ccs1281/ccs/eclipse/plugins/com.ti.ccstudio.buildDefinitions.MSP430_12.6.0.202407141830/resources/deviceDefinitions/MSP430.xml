@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<deviceDefinitions>
+
+	<isaFamily 
+		id="MSP430" 
+		name="MSP430" 
+		buildToolSuffix="430"
+		supportedEndiannessTypes="little"
+		supportedOutputFormats="coff:coffabi, elf:eabi"
+		compatibleFamily="MSP432"/>
+	
+	<isa 
+		id="MSP430" 
+		name="MSP430" 
+		family="MSP430"/>
+		 
+</deviceDefinitions>

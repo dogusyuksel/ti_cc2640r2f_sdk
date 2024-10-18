@@ -1,0 +1,18 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: ryGtDEbR8jvRybdZNumYDEaNqxPs1
+ /Uw4Hw8Yy0gzIo=
+SHA-256-Digest-Manifest: i1i9e4ZSym5O05nxVu2TDnvnHniG5tT65JU6Stx5Zr8=
+Created-By: 1.8.0_102 (Oracle Corporation)
+
+Name: com.ti.dvt.ideadapter.jar
+SHA-256-Digest: 3JAOuQzi/UsH+Nqav0rZh6EhKFMgmw7OgfGn4+xvLno=
+
+Name: plugin.xml
+SHA-256-Digest: sbLq1Nre8CtyRrf/LkppL7iQpZFf7O20O6DHBmy5Fbo=
+
+Name: schema/ideAdapters.exsd
+SHA-256-Digest: LEbnCG4+nQuzGwJh0jSxpzYp2WK3So6eBcZuJBkqldQ=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: ak2bzOGDjLurhLXRsFA/N7TRhvaP+YA1QdnivLjcXtk=
+

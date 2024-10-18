@@ -1,0 +1,367 @@
+/*
+* ==========================================================================
+* _polaris.colors.scss
+* This file imports the Polaris color palette.
+* ==========================================================================
+*/
+/*
+* --------------------------------------------------------------------------
+* color palette
+* --------------------------------------------------------------------------
+*/
+/*
+* ==========================================================================
+* _polaris.mixins.scss
+* This file contains Polaris mixins
+* prefix with mix-
+* ==========================================================================
+*/
+/*
+* ==========================================================================
+* _polaris-variables.scss
+* This file contains global-css variables and is using component based naming.
+*
+* Naming structure: [application(namespacing)]-[type]-[function]-[property]
+* ==========================================================================
+*/
+/*
+* --------------------------------------------------------------------------
+* Color variables
+* --------------------------------------------------------------------------
+*/
+/*
+* Polaris Component color definitions
+*/
+/*
+* Polaris Card Background color definitions
+* Ref: (http://polaris/01-ui-style-foundations.html#02-style-principles.03-background-color)
+*/
+/*
+* --------------------------------------------------------------------------
+* shape variables
+* --------------------------------------------------------------------------
+*/
+/*
+* Polaris border radius definitions
+* Ref: (http://polaris/01-ui-style-foundations.html#02-style-principles.05-border-radius)
+*/
+/*
+* Polaris box shadow definitions
+* Ref: (http://polaris/01-ui-style-foundations.html#02-style-principles.06-box-shadow)
+*/
+/*
+* --------------------------------------------------------------------------
+* font variables
+* Ref: (http://polaris/01-ui-style-foundations.html#07-typography-fundamentals)
+* --------------------------------------------------------------------------
+*/
+/*
+* Font stack definitions
+*/
+/*
+* Font families
+*/
+/*
+* Root HTML and BODY tag values
+*/
+/*
+* Font size cadence values
+*/
+/*
+* Standard Paragraph font sizes
+*/
+/*
+* Header tag font sizes
+*/
+/*
+* Line height cadence values
+*/
+/*
+* Font weight values
+*/
+/*
+* --------------------------------------------------------------------------
+* spacing values variables
+* --------------------------------------------------------------------------
+*/
+/*
+* Base spacing cadence values
+* (base grid size x multiplier) / root font size = rem value
+*/
+/*
+* Component/element specific spacing
+*/
+/*
+* --------------------------------------------------------------------------
+* page layout variables
+* --------------------------------------------------------------------------
+*/
+/*
+* --------------------------------------------------------------------------
+* animation variables
+* ref: (http://polaris/01-ui-style-foundations.html#04-motion)
+* --------------------------------------------------------------------------
+*/
+/*
+* Animation easing types
+*/
+/*
+* Animation timings
+*/
+/*
+* --------------------------------------------------------------------------
+* icon size variables
+* --------------------------------------------------------------------------
+*/
+/*
+* --------------------------------------------------------------------------
+* legacy variable names
+* - May still be used in other component repos
+* --------------------------------------------------------------------------
+*/
+/* Font variables */
+/* Space size variables */
+/*
+* ==========================================================================
+* _ti-core.scss
+*
+*  This files contains mixins uses within TI Webcomponents
+* ==========================================================================
+*/
+/*
+ * Base style for trigger element
+ */
+/*
+* Tooltip trigger main mixin.
+* Use to add style to trigger tooltip display.
+* For example:
+*
+* .tooltip-trigger:hover {
+*     @include ti-tooltip-trigger();
+* }
+*
+* Typically not used directly, but via the other mixins below.
+*/
+/*
+* Mixin for adding style to trigger tooltip display to
+* an element selector on hover, focus and checked.
+* For example:
+*
+* .tooltip-trigger {
+     @include ti-tooltip-trigger-element();
+* }
+*/
+/*
+* Mixin for adding style to trigger tooltip display to
+* a web component shadow host on hover, focus and checked.
+* Use in the web component style sheet outside of :host{}.
+* For example:
+*
+* @include ti-tooltip-trigger-host();
+* :host {
+*     ...
+* }
+*
+* The optional $selector parameter allows a CSS selector
+* which will be added to the :host selector to allow control
+* over the host trigger via a style class or another selector.
+* For example:
+*
+* @include ti-tooltip-trigger-host('.ti-tooltip-trigger');
+*
+* creates code like
+*
+* :host(.ti-tooltip-trigger:hover) {
+*     ...
+* }
+*
+* instead of
+*
+* :host(:hover) {
+*     ...
+* }
+*/
+/* chrome: scroll width */
+::-webkit-scrollbar {
+  width: 7.5px;
+}
+
+/* chrome: scroll Track */
+::-webkit-scrollbar-track {
+  background: var(--ti-scroll-track-color, inherit);
+}
+
+/* chrome: scroll Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--ti-scroll-thumb-color, inherit);
+}
+
+/* chrome: scroll Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ti-scroll-thumb-color-hover, inherit);
+}
+
+*:focus {
+  outline: none;
+}
+
+:host {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  font-family: "Roboto", "Open Sans", "Segoe UI", Tahoma, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--theme-font-color, #231f20);
+  margin: 5px;
+  display: inline-block;
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+:host([readonly]:not([disabled])) {
+  pointer-events: none;
+}
+:host([readonly]:not([disabled])) #elementWrapper {
+  pointer-events: none;
+}
+
+:host([disabled]) {
+  cursor: not-allowed;
+}
+:host([disabled]) #elementWrapper {
+  cursor: not-allowed;
+}
+
+:host([caption]:not([caption=""])) {
+  margin-top: 27px;
+}
+
+:host([caption]:not([caption=""])),
+:host([info-text]:not([info-text=""])) {
+  overflow: visible;
+  position: relative;
+}
+
+:host([caption=""][info-text]:not([info-text=""])),
+:host([info-text]:not([info-text=""]):not([caption])) {
+  margin-right: 27px;
+}
+
+#elementWrapper {
+  height: inherit;
+  width: inherit;
+  display: flex;
+  align-items: center;
+}
+
+.root-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.root-container .header-container.top {
+  top: -22px;
+  flex-direction: row;
+}
+.root-container .header-container.side {
+  right: -22px;
+  flex-direction: column;
+  height: inherit;
+}
+.root-container .header-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+.root-container .header-container .icon,
+.root-container .header-container ti-widget-icon {
+  margin: auto;
+  height: 18px;
+  width: 18px;
+  display: block;
+}
+.root-container .header-container .caption {
+  flex: 1;
+  white-space: nowrap;
+  margin-right: 2px;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--theme-header-font-color, #63666a);
+}
+
+[disabled] {
+  background-color: #f1e3e3;
+}
+
+svg {
+  overflow: visible;
+}
+
+/* only used for colour change event handling */
+.css-bind {
+  --ti-widget-led-on-color: #ff0000;
+  --ti-widget-led-off-color: #696969;
+}
+
+#top {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#led-wrapper {
+  transform-origin: 50% 50%;
+}
+
+#led-shadow-grey {
+  display: inline;
+}
+
+#led_shadow_path {
+  display: inline;
+  fill: #333333;
+  fill-opacity: 1;
+  stroke: #d0d0d0;
+  stroke-width: 10;
+  stroke-linecap: square;
+  stroke-miterlimit: 4;
+  stroke-dasharray: none;
+  stroke-opacity: 1;
+}
+
+#led-residual-shine {
+  display: inline;
+}
+
+#led_res_path {
+  display: inline;
+  opacity: 0.55;
+  fill-opacity: 0.55;
+  stroke-width: 2;
+  stroke-miterlimit: 4;
+  stroke-dasharray: none;
+  stroke-opacity: 0.5;
+}
+
+#led-lit-color {
+  display: inline;
+}
+
+#led_path {
+  display: inline;
+  fill-opacity: 1;
+}
+
+#glow_path {
+  display: inline;
+  fill-opacity: 0.18;
+}

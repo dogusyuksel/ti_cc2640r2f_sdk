@@ -1,0 +1,32 @@
+GEL_BreakPtReset()
+------------------
+
+Clears all breakpoints.
+
+**Syntax**
+
+**GEL_BreakPtReset();**
+
+**Parameters**
+
+None.
+
+**Description**
+
+This function clears all software breakpoints.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: No
+
+**Example**
+
+GEL_BreakPtReset();
+
+**Related Topics**
+
+`GEL_BreakPtAdd <GEL_BreakPtAdd.html>`__
+
+`GEL_BreakPtDel <GEL_BreakPtDel.html>`__

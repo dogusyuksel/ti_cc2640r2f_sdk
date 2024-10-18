@@ -1,0 +1,38 @@
+GEL_Restart()
+-------------
+
+Resets the PC to the program entry point.
+
+**Syntax**
+
+**GEL_Restart();**
+
+**Parameters**
+
+None.
+
+**Description**
+
+ The GEL_Restart() function resets the program to its entry point. This
+assumes that a program (with symbol information) has been loaded into
+the target and the target program is able to be restarted. If the target
+program relies on the loader to initialize various RAM locations, the
+program may not function correctly after being restarted.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: Yes
+
+**Example**
+
+GEL_Reset();
+
+**Related Topics**
+
+`GEL_Reset <GEL_Reset.html>`__
+
+`GEL_Run <GEL_Run.html>`__
+
+`GEL_Halt <GEL_Halt.html>`__

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module id="FPB" HW_revision="1.0">
+    <register id="FPB_FP_CTRL" width="32" offset="0xE0002000" description="Provides FPB implementation information, and the global enable for the FPB unit">
+        <bitfield id="REV" description="Flash Patch and Breakpoint Unit architecture revision" begin="31" end="28" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="RES0" description="Reserved, RES0" begin="27" end="15" width="13" rwaccess="R">
+        </bitfield>
+        <bitfield id="NUM_CODE_14_12_" description="Indicates the number of implemented instruction address comparators. Zero indicates no Instruction Address comparators are implemented. The Instruction Address comparators are numbered from 0 to NUM_CODE - 1" begin="14" end="12" width="3" rwaccess="R">
+        </bitfield>
+        <bitfield id="NUM_LIT" description="Indicates the number of implemented literal address comparators. The Literal Address comparators are numbered from NUM_CODE to NUM_CODE + NUM_LIT - 1" begin="11" end="8" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="NUM_CODE_7_4_" description="Indicates the number of implemented instruction address comparators. Zero indicates no Instruction Address comparators are implemented. The Instruction Address comparators are numbered from 0 to NUM_CODE - 1" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="RES0_1" description="Reserved, RES0" begin="3" end="2" width="2" rwaccess="R">
+        </bitfield>
+        <bitfield id="ENABLE" description="Enables the FPB" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_REMAP" width="32" offset="0xE0002004" description="Indicates whether the implementation supports Flash Patch remap and, if it does, holds the target address for remap">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="30" width="2" rwaccess="R">
+        </bitfield>
+        <bitfield id="RMPSPT" description="Indicates whether the FPB unit supports the Flash Patch remap function" begin="29" end="29" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="REMAP" description="Holds the bits[28:5] of the Flash Patch remap address" begin="28" end="5" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="RES0_1" description="Reserved, RES0" begin="4" end="0" width="5" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_COMP0" width="32" offset="0xE0002008" description="Holds an address for comparison. The effect of the match depends on the configuration of the FPB and whether the comparator is an instruction address comparator or a literal address comparator">
+        <bitfield id="BE" description="Selects between flashpatch and breakpoint functionality" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_COMP1" width="32" offset="0xE000200C" description="Holds an address for comparison. The effect of the match depends on the configuration of the FPB and whether the comparator is an instruction address comparator or a literal address comparator">
+        <bitfield id="BE" description="Selects between flashpatch and breakpoint functionality" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_COMP2" width="32" offset="0xE0002010" description="Holds an address for comparison. The effect of the match depends on the configuration of the FPB and whether the comparator is an instruction address comparator or a literal address comparator">
+        <bitfield id="BE" description="Selects between flashpatch and breakpoint functionality" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_COMP3" width="32" offset="0xE0002014" description="Holds an address for comparison. The effect of the match depends on the configuration of the FPB and whether the comparator is an instruction address comparator or a literal address comparator">
+        <bitfield id="BE" description="Selects between flashpatch and breakpoint functionality" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_COMP4" width="32" offset="0xE0002018" description="Holds an address for comparison. The effect of the match depends on the configuration of the FPB and whether the comparator is an instruction address comparator or a literal address comparator">
+        <bitfield id="BE" description="Selects between flashpatch and breakpoint functionality" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_COMP5" width="32" offset="0xE000201C" description="Holds an address for comparison. The effect of the match depends on the configuration of the FPB and whether the comparator is an instruction address comparator or a literal address comparator">
+        <bitfield id="BE" description="Selects between flashpatch and breakpoint functionality" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_COMP6" width="32" offset="0xE0002020" description="Holds an address for comparison. The effect of the match depends on the configuration of the FPB and whether the comparator is an instruction address comparator or a literal address comparator">
+        <bitfield id="BE" description="Selects between flashpatch and breakpoint functionality" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_COMP7" width="32" offset="0xE0002024" description="Holds an address for comparison. The effect of the match depends on the configuration of the FPB and whether the comparator is an instruction address comparator or a literal address comparator">
+        <bitfield id="BE" description="Selects between flashpatch and breakpoint functionality" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_DEVARCH" width="32" offset="0xE0002FBC" description="Provides CoreSight discovery information for the FPB">
+        <bitfield id="ARCHITECT" description="Defines the architect of the component. Bits [31:28] are the JEP106 continuation code (JEP106 bank ID, minus 1) and bits [27:21] are the JEP106 ID code." begin="31" end="21" width="11" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRESENT" description="Defines that the DEVARCH register is present" begin="20" end="20" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="REVISION" description="Defines the architecture revision of the component" begin="19" end="16" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="ARCHVER" description="Defines the architecture version of the component" begin="15" end="12" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="ARCHPART" description="Defines the architecture of the component" begin="11" end="0" width="12" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_DEVTYPE" width="32" offset="0xE0002FCC" description="Provides CoreSight discovery information for the FPB">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="SUB" description="Component sub-type" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="MAJOR" description="Component major type" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_PIDR4" width="32" offset="0xE0002FD0" description="Provides CoreSight discovery information for the FP">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="SIZE" description="See CoreSight Architecture Specification" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="DES_2" description="See CoreSight Architecture Specification" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_PIDR5" width="32" offset="0xE0002FD4" description="Provides CoreSight discovery information for the FP">
+    </register>
+    <register id="FPB_FP_PIDR6" width="32" offset="0xE0002FD8" description="Provides CoreSight discovery information for the FP">
+    </register>
+    <register id="FPB_FP_PIDR7" width="32" offset="0xE0002FDC" description="Provides CoreSight discovery information for the FP">
+    </register>
+    <register id="FPB_FP_PIDR0" width="32" offset="0xE0002FE0" description="Provides CoreSight discovery information for the FP">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="PART_0" description="See CoreSight Architecture Specification" begin="7" end="0" width="8" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_PIDR1" width="32" offset="0xE0002FE4" description="Provides CoreSight discovery information for the FP">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="DES_0" description="See CoreSight Architecture Specification" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="PART_1" description="See CoreSight Architecture Specification" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_PIDR2" width="32" offset="0xE0002FE8" description="Provides CoreSight discovery information for the FP">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="REVISION" description="See CoreSight Architecture Specification" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="JEDEC" description="See CoreSight Architecture Specification" begin="3" end="3" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="DES_1" description="See CoreSight Architecture Specification" begin="2" end="0" width="3" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_PIDR3" width="32" offset="0xE0002FEC" description="Provides CoreSight discovery information for the FP">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="REVAND" description="See CoreSight Architecture Specification" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="CMOD" description="See CoreSight Architecture Specification" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_CIDR0" width="32" offset="0xE0002FF0" description="Provides CoreSight discovery information for the FP">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRMBL_0" description="See CoreSight Architecture Specification" begin="7" end="0" width="8" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_CIDR1" width="32" offset="0xE0002FF4" description="Provides CoreSight discovery information for the FP">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="CLASS" description="See CoreSight Architecture Specification" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRMBL_1" description="See CoreSight Architecture Specification" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_CIDR2" width="32" offset="0xE0002FF8" description="Provides CoreSight discovery information for the FP">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRMBL_2" description="See CoreSight Architecture Specification" begin="7" end="0" width="8" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="FPB_FP_CIDR3" width="32" offset="0xE0002FFC" description="Provides CoreSight discovery information for the FP">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRMBL_3" description="See CoreSight Architecture Specification" begin="7" end="0" width="8" rwaccess="R">
+        </bitfield>
+    </register>
+</module>

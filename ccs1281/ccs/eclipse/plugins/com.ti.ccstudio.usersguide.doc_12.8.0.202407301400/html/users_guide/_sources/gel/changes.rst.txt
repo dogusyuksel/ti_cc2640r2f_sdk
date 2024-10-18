@@ -1,0 +1,38 @@
+Legacy unsupported functions
+----------------------------
+
+**The following GEL Built-In functions are not supported.
+The GEL will recognize these functions, however, no operation will be
+performed when they are called.**
+
++-----------------------+-----------------------+-----------------------+
+| GEL_CloseWindow       | GEL_ProjectCreateDefa | GEL_ProjectSetSubProj |
+|                       | ultConfig             | ConfigSel             |
+| GEL_Exit              |                       |                       |
+|                       | GEL_ProjectLoad       | GEL_SrcDirAdd         |
+| GEL_OpenMemoryWindow  |                       |                       |
+|                       | GEL_ProjectRebuildAll | GEL_SrcDirRemoveAll   |
+| GEL_OpenWindow        |                       |                       |
+|                       | GEL_ProjectRebuildAll | GEL_StopTransferToFil |
+| GEL_ProjectAddSubProj | Config                | e                     |
+|                       |                       |                       |
+| GEL_ProjectBuild      | GEL_ProjectRemoveConf | GEL_TransferToFile    |
+|                       | ig                    |                       |
+| GEL_ProjectBuildConfi |                       | GEL_TransferToFileCon |
+| g                     | GEL_ProjectRemoveSubP | fg                    |
+|                       | roj                   |                       |
+| GEL_ProjectClose      |                       | GEL_WatchAdd          |
+|                       | GEL_ProjectSave       |                       |
+| GEL_ProjectCreateCopy |                       | GEL_WatchDel          |
+| Config                | GEL_ProjectSetActive  |                       |
+|                       |                       | GEL_WatchReset        |
+|                       | GEL_ProjectSetActiveC |                       |
+|                       | onfig                 |                       |
++-----------------------+-----------------------+-----------------------+
+
+**The following GEL Built-In functions are only supported in the Windows
+platform.**
+
++-----------------------------------------------------------------------+
+| `GEL_System <GEL_System.html>`__                                      |
++-----------------------------------------------------------------------+

@@ -1,0 +1,40 @@
+GEL_PinConnect()
+----------------
+
+For simulator only, connects a data file to an external interrupt pin.
+
+**Syntax**
+
+**GEL_PinConnect( "**\ pinName\ **", "**\ fileName\ **" );**
+
+**Parameters**
+
+pinName names the external interrupt pin. The pinName must be enclosed
+in quotation marks.
+
+fileNamenames the data file that specifies interrupt intervals. The
+fileName must be enclosed in quotation marks.
+
+**Description**
+
+The simulator allows you to simulate external interrupt signals. This
+function connects a data file that specifies interrupt intervals to the
+specified external interrupt pin.
+
+If the file is not in the current directory, provide a full path name
+within the string. A double backslash escape sequence is required to
+ensure that you get a backslash into the fileName Parameters.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: Yes
+
+**Example**
+
+GEL_PinConnect("INT0", "c:\\mydir\\myfile.dat");
+
+**Related Topics**
+
+`GEL_PinDisconnect() <GEL_PinDisconnect.html>`__

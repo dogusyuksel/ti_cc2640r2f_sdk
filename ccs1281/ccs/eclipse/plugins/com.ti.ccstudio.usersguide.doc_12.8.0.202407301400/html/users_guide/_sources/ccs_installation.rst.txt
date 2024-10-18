@@ -1,0 +1,260 @@
+.. Installation
+   *************
+
+  This chapter describes the Code Composer Studio installation process.
+
+
+Important Installation Information
+==================================
+
+Installation Types
+------------------
+
+Web Installer
+~~~~~~~~~~~~~
+
+The web installer was a lightweight installation program. The initial
+download is very small and enables the selection of features and device
+support to install. Once the selections are made the installer will then
+download the appropriate packages to complete the desired selection.
+
+**Internet connectivity is required to use the web installer**
+
+Offline Installer
+~~~~~~~~~~~~~~~~~
+
+The offline installer, or full installer, is a larger installation
+program. The download contains all of the available installation
+options. This installer does not require internet connectivity to run.
+
+System Requirements
+-------------------
+
+Each version of Code Composer Studio describes its list of System
+Requirements. If your system does not meet these requirements you may
+experience poor performance, or the inability to run the application.
+
+The `System Requirements <ccs_overview.html#System-Requirements>`__
+section in the Overview chapter has more information on the requirements
+for this release.
+
+Security Software
+-----------------
+
+During the installation of Code Composer Studio there may be packages
+downloaded from the internet and installed. Some anti-virus and security
+software detects this and will block the installation. As a result it is
+recommended that such software be disabled during installation of Code
+Composer Studio. This is not a requirement but if the installation fails
+it is recommended to try again with the security software disabled. The
+full/offline installation is less susceptible to these issues.
+
+Permissions
+-----------
+
+Depending on what debug probes are selected during installation there
+will be device drivers that need to be installed on the system. In order
+to complete this step the appropriate permissions on the system will be
+required. On Linux this involves running an installation script as sudo
+at the end of the installation.
+
+Installation Process
+====================
+
+Overall the installation process is the same across Windows, Linux and
+macOS. Where there are differences this will be noted in the
+installation steps.
+
+Download
+--------
+
+The installation images for Code Composer Studio can be obtained fron
+the `CCS Download
+Site <https://www.ti.com/tool/download/CCSTUDIO>`__.
+
+Select the image that matches the host operating system of the computer
+that it will be installed on.
+
+Running the Installer
+---------------------
+
+Note that most of the installers are provided inside archive files such
+as a zip file. It is necessary to extract the archive file before
+proceeding with installation.
+
+For Linux users it is recommended to install as a normal user and not
+sudo/root.
+
+Dependencies
+~~~~~~~~~~~~
+
+The Code Composer Studio installation is dependent on other software
+packages. For Windows and macOS users these packages will be installed
+automatically as part of the installation. For Linux users the installer
+will attempt to identify which packages are missing and display this
+list. On Linux the dependencies should be installed prior to continuing
+with installation. More information on dependencies is provided in the
+`Linux Host
+Support <../ccs_linux_host_support.html>`__ article.
+
+Steps
+-----
+
+
+License Agreement
+~~~~~~~~~~~~~~~~~
+
+The end user license agreement is displayed. The agreement can be
+printed if desired. The license agreement must be accepted to continue.
+
+.. figure:: images/install_license_v92.png
+   :alt: End User License Agreement
+
+
+System Check
+~~~~~~~~~~~~
+
+The installer will check the system to see if it meets the requirements 
+for installation. Any issues that need to be addressed will be displayed. 
+Disabling security software is recommended but optional.
+
+.. figure:: images/install_systemcheck_v92.png
+   :alt: System Check
+
+
+Installation Location
+~~~~~~~~~~~~~~~~~~~~~
+
+Choose a location to install Code Composer Studio. This location must
+not already contain a Code Composer Studio installation. If multiple
+versions of Code Composer Studio will be installed then it is
+recommended to install them in versioned folders.
+
+.. figure:: images/install_location_v92.png
+   :alt: Location for installation
+
+
+Setup Types
+~~~~~~~~~~~
+
+There are two installation types:
+
+* Custom Installation: Allows you to choose the device families and debug probes to be supported. Recommended to reduce the installation time, requred disk space, and overall Code Composer Studio performance.
+* Full Installation: This will install support for *all* available device families and debug probes.  
+
+.. figure:: images/install_type_v92.png
+   :alt: Setup Type
+
+
+Device Support
+~~~~~~~~~~~~~~
+
+If a **Custom Installation** was selected, this dialog is used to 
+configure which device families to install support for. When a family 
+is selected on the left hand side, a short description will be displayed 
+on the right. This is useful to help determine which selections to make. 
+
+.. figure:: images/install_devicesupport_v92.png
+   :alt: Devices Selection
+
+
+
+Note that it is possible to add support for families after installation
+by running the installer again and pointing it at the existing
+installation.
+
+
+Debug Probe Support
+~~~~~~~~~~~~~~~~~~~
+
+This dialog allows users to enable support for some common third party Debug Probes.
+Available options will depend on the device families selected in the previous dialog.
+
+.. figure:: images/install_debugprobes_v92.png
+   :alt: Debug Probe Selection
+
+Note that the **Spectrum Digital Debug Probes and Boards** option includes the support
+for standard XDS560v2 debug probes.
+
+
+Proxy Server
+~~~~~~~~~~~~
+
+If the **web installer** is being used, an additional dialog will appear -
+allowing your network proxy server information (if applicable).
+
+.. figure:: images/install_proxy_v92.png
+   :alt: Proxy Server
+
+
+Progress
+~~~~~~~~
+
+As the installation proceeds the progress screen will show what the
+installer is doing. Depending on how many device families were selected
+the installation may take a significant amount of time. The web
+installer will take additional time as it needs to download the required
+components from the internet.
+
+.. figure:: images/install_progress_v92.png
+   :alt: Installation Progress
+
+
+
+**Windows only.** If you have Windows Defender enabled, at the beginning of
+this process the alert below may be displayed. Click on “Allow Access”
+to properly install CCS.
+
+.. figure:: images/install_windows_sec_alert.png
+   :alt: Windows security alert
+
+
+
+**Windows only.** If Blackhawk or Spectrum Digital driver install option was
+chosen, close to the end of the install process the warnings below may
+be shown.
+
+.. figure:: images/install_BH_driver_warning.png
+   :alt: Blackhawk driver install warning
+
+
+
+.. figure:: images/install_SD_driver_warning.png
+   :alt: Spectrum Digital driver install warning
+
+
+
+Driver Installation
+~~~~~~~~~~~~~~~~~~~
+
+If installing on Linux as a normal user a screen will be shown that
+provides the location of the driver installation script. It is necessary
+to run the indicated script as sudo/root. This will ensure that the
+drivers for the debug probes are installed correctly.
+
+
+Completion
+~~~~~~~~~~
+
+The last screen shown during installation is the successful completion
+screen. This screen provides options to launch Code Composer Studio and
+to create a desktop shortcut.
+
+.. figure:: images/install_complete_v92.png
+   :alt: Installation Complete
+
+
+Command Line Installation
+=========================
+
+To install CCS from a command line interface, please refer to `this <../ccs_installer-cli.html>`__ article.
+
+
+Uninstalling CCS
+================
+
+To uninstall CCS: exit CCS, navigate to <CCSInstallRoot>/ccsv[x]
+directory and run the uninstall_ccs executable.
+
+To uninstall the entire installation (including other components like xdctools): delete the
+entire installation directory.

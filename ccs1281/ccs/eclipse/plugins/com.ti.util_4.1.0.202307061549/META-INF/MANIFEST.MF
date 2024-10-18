@@ -1,0 +1,37 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.ti.util;singleton:=true
+Export-Package: com.ti.dvt.util.install,com.ti.dvt.util.logging,com.ti
+ .dvt.util.logging.logging,com.ti.util.File,com.ti.util.bean,com.ti.ut
+ il.debug,com.ti.util.helper,com.ti.util.math
+Bundle-Name: Util Plug-in
+Bundle-Version: 4.1.0.202307061549
+Bundle-ClassPath: com.ti.util.jar,external:$dvt.dir$_4.1.0.20230706154
+ 9/bin/../bin/com.ti.util_4.1.0.202307061549.jar,external:$ccs.debugSe
+ rverDir$/../dvt_4.1.0.202307061549/bin/../bin/com.ti.util_4.1.0.20230
+ 7061549.jar
+Require-Bundle: com.ti.util.diskspacemonitor
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: Texas Instruments
+
+Name: dvt.zip
+SHA-256-Digest: kaQfs2LZv10StFbVBbxTiPU/RzFPmmZW5OnWp+P0vSU=
+
+Name: META-INF/p2.inf
+SHA-256-Digest: oMy4mORMqpYqTI1EajGBKjLOHzNlCPNsqy0Twgm5vDQ=
+
+Name: uninstall.xml
+SHA-256-Digest: TSGgQKhOiaaQhUD9LvevHjsKJFQ5WRDs7OF/qDDtw3U=
+
+Name: install.xml
+SHA-256-Digest: BM92UumhqK605QgIVnXWW5Hsw1dVwIDNl4SEQl7J3gY=
+
+Name: com.ti.util.jar
+SHA-256-Digest: iThtxWKN5Dh77Jijl6J9/UJxXJZCGaLetY+uPhlPFdU=
+
+Name: dvtLogOptions.xml
+SHA-256-Digest: nFcig1yaxP8RxheZjLjwzTxVi88dZKnjpNem0xLY3LQ=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: G2hFTVPngfh5NUf96Pyy87A7XIE083udjEBFy4pUc/M=
+

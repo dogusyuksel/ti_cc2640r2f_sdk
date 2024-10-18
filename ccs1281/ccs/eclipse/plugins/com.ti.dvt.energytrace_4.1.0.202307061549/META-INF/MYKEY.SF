@@ -1,0 +1,499 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: dR5Gda9yfNRyaYj4HcOyJ9V1b1Cvu
+ /DwMBYNglesdBI=
+SHA-256-Digest-Manifest: fe0neqYrt4ZUAHF2KNuSgdQxX+m+2Oc547Nw2+HeRx4=
+Created-By: 1.8.0_102 (Oracle Corporation)
+
+Name: html/EnergyTrace User's Guide_files/comparing_profiles_energytra
+ ce_slau157_default.png
+SHA-256-Digest: Up2SB6GV8dc3i5pRiw8Ps+9qCYzATMq5P1qTE58H97o=
+
+Name: html/Images/parametric_comparison_slau575.png
+SHA-256-Digest: Fqnk0rlAex04EvxZF67AW7i5OEb2Z6cotj4jMcrPf7Q=
+
+Name: html/Images/energytrace_preferences_slau575.png
+SHA-256-Digest: HcIZVF0FcswXWtXvz7OWzE6VfoIH109l+Yy7IKcTrSs=
+
+Name: plugin.xml
+SHA-256-Digest: q5DZM8iVmGWFTglw63Du3cL8meBLmsfTgEWROMheXMM=
+
+Name: html/Images/MSP432_CCSUG_Global_Device_Security.png
+SHA-256-Digest: uXN7SaDCTdjLkAmQvvovxFmZCUsxJi/jKDzyLGMpfL4=
+
+Name: html/Images/MSP432_CCSUG_Debug_Window_1.png
+SHA-256-Digest: pHy7QeP+JPoxeQUA6p8EebNJAdqTR4C7DtBR5ZYttRw=
+
+Name: html/Images/zoom_into_energy_window_slau575.png
+SHA-256-Digest: RQasLVp1YKjRYhZkzbi8e7ivKf/gsdGO2/U2ahtdyU0=
+
+Name: icons/SaveProfile.png
+SHA-256-Digest: 6Ch2plSwwJE87ggxbZUNXQJsdFtRz9EekxFKodNkQl8=
+
+Name: html/Images/icon_capture_period_slau575.png
+SHA-256-Digest: cYKhkLe/8sy1a4LILgQZFwJM+l+IHzOkN4S0S/1jPA8=
+
+Name: html/Images/icon_enable_disable_slau575_default.png
+SHA-256-Digest: vriTGQCCDKlCj25Sn2bWI03jtQoq4JV6oxU1Bw4efkk=
+
+Name: html/Images/states_window_slau575.png
+SHA-256-Digest: 0H/aLZUajjWmD+VOyOnz28w1SFt8wr/zVZ8UCs5rx/4=
+
+Name: uia/energytrace.rta.xml
+SHA-256-Digest: Eil2XA8mrXGaiYM/Om5pk6TiRIUFRJIzXfdgzHuMUos=
+
+Name: icons/OpenProfile.png
+SHA-256-Digest: 2qk6mtgE0Bfa0FdS2Gkt4i7UYySNb51jVnWOXU1SapQ=
+
+Name: html/Images/energy_window_slau575_default.png
+SHA-256-Digest: Z8ZSSAnPn0O395TPeWBed0Et5HKk59CI5LDdc7WdCOc=
+
+Name: html/Images/MSP432_CCSUG_LowPowerRun_Running_NoPower_default.png
+SHA-256-Digest: 2ISEpsI5bmYK3vht6JLRLmxvdfz9Gc/cwZjxjMTNTOQ=
+
+Name: icons/SetCapture.png
+SHA-256-Digest: MJM2DQnGjYmFDqaGyBxna9SV+m3N73naFdPM4+yzcvQ=
+
+Name: html/Images/energy_profile_comparison_slau575.png
+SHA-256-Digest: TWB9a5PxOOifMnwDHoMx7VTEMNsffK32JeIUs0JHJ3E=
+
+Name: html/Images/MSP432_CCSUG_Global_Device_Security_Console_Output.p
+ ng
+SHA-256-Digest: GZAMiDviume25dJSduhqTRWlMdT8v56LcGmlgmjMN4s=
+
+Name: html/Images/zoom_into_power_window_slau575_default.png
+SHA-256-Digest: zPjlxNaoptGbxlfYbU4ergGYvRJOL+nOc6ECCfjsXV0=
+
+Name: html/Images/MSP432_CCSUG_Regional_Security_Memory_Browser_End.pn
+ g
+SHA-256-Digest: ja49OMdhdHwNTDLc1+JupcrFrJ4RWpmyMR9GpA/PBQc=
+
+Name: html/Images/pulse_density_and_current_flow_slau575.png
+SHA-256-Digest: eXpIpTG8egK2ZgwTXggdo2IRVSo78US6DsdHVppcE/A=
+
+Name: html/EnergyTrace User's Guide_files/icon_enable_disable_slau157_
+ default.png
+SHA-256-Digest: R+dm05RuvgmajWV7fuyQDE8cXA7kDD/gpJrbwEjEvC0=
+
+Name: html/Images/energytrace_profile_slau575.png
+SHA-256-Digest: iPCgMZDKYimaQ/LrjkNVNoYjhVuQ1SmdbXle0JWlf1Q=
+
+Name: html/EnergyTrace CCS Welcome Page_files/image001.jpg
+SHA-256-Digest: McxkCNzCx/9eIqoUIKgmV9x3g6NzzwCP7MdiN0oly/A=
+
+Name: html/Images/MSP432_CCSUG_Forced_Mass_Erase_Console_Output.png
+SHA-256-Digest: fLnAQNxoyJr17whXimJzWH0tnWKk645e5OxNrTW7cnY=
+
+Name: html/EnergyTrace User's Guide_files/zoom_into_power_window_slau1
+ 57_default.png
+SHA-256-Digest: oI4mCbSr8K1o2IP3AoRbYRsYjU6x3DdYFw6ynpWAVVk=
+
+Name: icons/SwitchModes.png
+SHA-256-Digest: YwVS5JxpujpxTG9qOSjn8Ii1yHXPih7gw3yZqQuVZmA=
+
+Name: html/Images/MSP432_CCSUG_Debug_Window_3.png
+SHA-256-Digest: Q7QXv+Mgqow0bmJogmWRRJbmu81J3y8qocoikNWt4NM=
+
+Name: html/Images/MSP432_CCSUG_Create_new_project_2.png
+SHA-256-Digest: bOkOc0zlT8n8xhQ2Yd18WxAv7hzDQi5rUYu401un4WQ=
+
+Name: html/EnergyTrace User's Guide_files/energy_window_slau157_defaul
+ t.png
+SHA-256-Digest: TUFRjWTZq6087V+0eQUPnhIBwCX3SHxrtF1SOx4YiuY=
+
+Name: icons/suspend.gif
+SHA-256-Digest: A6DqgMCY/ILCCfD1uT1sd1A7P4+EMIZE5zPZ/Qc6JrE=
+
+Name: html/Images/MSP432_CCSUG_Mass_Erase_Console_Output.png
+SHA-256-Digest: fKZf5kgH/U6c7FPmFi+RGraV1LrvDTv+iqKmqo/2mqI=
+
+Name: html/Images/MSP432_CCSUG_Debug_Window_5.png
+SHA-256-Digest: 1x+UoeOpbhZxgf/4ISkrkhO6lWEOMHFrfdlAu+WPqA8=
+
+Name: html/Images/debug_session_energytrace_slau575_default.png
+SHA-256-Digest: 6Xb5IZ0fQlCsyZ82Z/UV52TLjMHUyKgFCZUxHMCSfX8=
+
+Name: html/Images/icon_save_profile_slau575_default.png
+SHA-256-Digest: rLmPHDShh2V3VHwmguB3VKiJvdI073/BSJ3xHBrZytM=
+
+Name: toc.xml
+SHA-256-Digest: IjrBccRVzgKaaYQ4646vXQkbHeBMzY0Jk57yH0BWHoA=
+
+Name: html/Images/comparing_profiles_energy_only_slau575.png
+SHA-256-Digest: N0C4rBzfpb94lLvxASRT0PmHeb3ZDr4Z48/R5n7uGY8=
+
+Name: contexts.xml
+SHA-256-Digest: 461mLD3KtbXi7RO53QG2e5IZAOmkQywx0bNGIHSh824=
+
+Name: html/Images/energytrace_profile_window_slau575.png
+SHA-256-Digest: pfVIAan/HPtsmZ1C1TcqYc3PvTYAtQs/q06xfJ//fN8=
+
+Name: html/EnergyTrace User's Guide_files/energy_profile_resume_free_r
+ un_slau157_default.png
+SHA-256-Digest: DxN1lW9Mhd1y/PmetnlliJhzyot7xHnxrZ4M/XJfZwA=
+
+Name: html/Images/MSP432_CCSUG_Enabling_Device_Security.png
+SHA-256-Digest: 7XKnzwaWXdX0aXrKizRQObOyyXqdaAABRn2DdsItZhs=
+
+Name: html/Images/energytrace_profile_energy_only_slau575.png
+SHA-256-Digest: XsduBdG5KeCznsBb3T/SiJK+6o350IjiIKWaHj0S+W8=
+
+Name: html/Images/energytrace_preferences_slau575_default.png
+SHA-256-Digest: Mi8khtgngVADptpCykYlxIckQMs9WRb1w1X5kDl0uzY=
+
+Name: html/EnergyTrace User's Guide.html
+SHA-256-Digest: n5QfwOtyqnNvSFWJF3RDkLp57l7r52MF0AhGieLzc9E=
+
+Name: html/Images/energy_profile_resume_free_run_slau575_default.png
+SHA-256-Digest: /bi4/CYoJBygbPp3Q9SQZYUw8COjDFk4J3W8FI/0t9w=
+
+Name: dvt/MSP430cap.dat
+SHA-256-Digest: MCIQpoX564DjWAo9ADbIpGc810hX4H6nZyMxMGb+FA4=
+
+Name: html/Images/energy_profile_resume_free_run_slau575.png
+SHA-256-Digest: RwZxcud7T4vD6bMtliJ0mBSk8JSqFXuYLGNh74S3uEk=
+
+Name: html/Images/icon_load_profile_slau575_default.png
+SHA-256-Digest: Ujs48Nla33t5kig61y892LUotK+G6hp9TksGfIDTTKo=
+
+Name: html/Images/MSP432_CCSUG_Create_new_project_1_default.png
+SHA-256-Digest: jTRFkzA3EcSJEX63gvQAfe8uVaCXjVXP7Dt2mAdlzSU=
+
+Name: html/Images/debug_session_energy_only_slau575.png
+SHA-256-Digest: yj3FxjdEfiaWsw/eOIP/KUvnEpXSzhjIWn2xiSpo62Y=
+
+Name: html/Images/parametrical_comparison_slau575.png
+SHA-256-Digest: lQ1qw/YPLqyjrbQUkSWp48txUFI+KzXmJVVOkh6tn8w=
+
+Name: html/Images/MSP432_CCSUG_Create_new_project_3_default.png
+SHA-256-Digest: bE0yIfjO7kLL5STgNf6s2vDOZA0lGBS911zfyB6ZhK4=
+
+Name: html/Images/power_window_slau575_default.png
+SHA-256-Digest: JWTPP1hQp4P7XvnjJ/5FNL1m7jrTwFEd4EgKFnKLIe4=
+
+Name: icons/DisableET.png
+SHA-256-Digest: aUkLedFhXTDw6BAhb7aR0Qr8MfVKO8EzIcEfFen1Tho=
+
+Name: html/Images/MSP432_CCSUG_LowPowerRun.png
+SHA-256-Digest: 1YncH1YPWEtbJ1kJXI85+DAtbuYMlJ5L8n7n2cruRpQ=
+
+Name: html/Images/MSP432_CCSUG_Create_new_project_2_default.png
+SHA-256-Digest: V4KVdgxH9WKawyT4yWC0yjvw5Jml7OXGdccx/20XBIc=
+
+Name: html/Images/energytrace_control_bar_slau575_default.png
+SHA-256-Digest: Xtac+tl0NA4aIN1b2jbyeZb+pCK1FbDMdySpgRyKSXY=
+
+Name: html/Images/MSP432_CCSUG_Check_for_Updates.png
+SHA-256-Digest: 4Y2YeCHF+6doBa+I/SjIaC0xKW2GsKQZqu3W/x3dJHg=
+
+Name: html/Images/energytrace_control_bar_slau575.png
+SHA-256-Digest: E00lndr+EGrEUtXgjTSZopG3761N0vUpgo5zKmIPaT0=
+
+Name: html/EnergyTrace User's Guide_files/energytrace_control_bar_slau
+ 157_default.png
+SHA-256-Digest: IsROQiM4OFxhn3k8TwohRbFy63edU9mFG9c+9j91B6U=
+
+Name: icons/run.gif
+SHA-256-Digest: WbRe5RtCpnEpvWa42b2usMd0A62EdEs5n1WBVgYSJTs=
+
+Name: html/Images/MSP432_CCSUG_LowPowerRun_Running_NoPower.png
+SHA-256-Digest: CpLp50VJa5BHn0DGAs2y/hOazLsFcvFSAOhrb83g8AU=
+
+Name: html/Images/energytracepp_profile_window_slau575.png
+SHA-256-Digest: kFQxc5Kjzah8ULi5ZeA4pftl3HxFdPIboYeb2lD3loY=
+
+Name: html/Images/MSP432_CCSUG_Properties_default.png
+SHA-256-Digest: 4jjyMbeuU9JmPc40g/wAXGnQxfg8sw6gVl1wUmn3oQk=
+
+Name: html/Images/debug_session_energy_states_slau575.png
+SHA-256-Digest: 31TQxX7QcaK4DmTnhEdbNGsI3g10QX+tqkDyYdjTkVM=
+
+Name: html/Images/icon_switch_energy_states_slau575_default.png
+SHA-256-Digest: LVPYpOKqr8NIpNs9MEkrextQ86fQYBkg9+PgRIp1+5c=
+
+Name: html/Images/energytrace_profile_slau575_default.png
+SHA-256-Digest: sqrq/Hf5DbhCSn/l/t+1ih2DWC5ovpnCjS9m3CK2z+I=
+
+Name: html/Images/MSP432_CCSUG_Target_Configuration.png
+SHA-256-Digest: 5RpJNjsdShzONefDTIzx1W5Mc4SvcUdsyU4Sm4xz4os=
+
+Name: html/EnergyTrace User's Guide_files/energytrace++_profile_window
+ _slau157_default.png
+SHA-256-Digest: jBd9ElXNzNsvJ7Z/aNNjT77nrEATaljH0OkjK5D2zKw=
+
+Name: html/Images/energymonitor_profile_slau575.png
+SHA-256-Digest: OxF9+aIqcd4E62gUpE6sMLsvDpnhtAzlpPWvl0tVG5k=
+
+Name: icons/delete.png
+SHA-256-Digest: M6koodRmouxnNUsNZp08dDcAFTb2CrVLRa/anzO0J8E=
+
+Name: html/Images/states_window_slau575_default.png
+SHA-256-Digest: v5zFX5B5pRfQ+Hkfd7rlQtGMXb22egkgcDSR6v/2sHk=
+
+Name: html/Images/comparing_profiles_energymonitor_slau575.png
+SHA-256-Digest: lr8WFz6nQxtoiekFeufnI+klPYr1sVGairD9kbOs904=
+
+Name: html/EnergyTrace CCS Welcome Page_files/image002.jpg
+SHA-256-Digest: iT40+FMIFL0QBxEEDyWf4cJQO3aaA87gTD3E/CQnVJ4=
+
+Name: icons/icon_info_red.png
+SHA-256-Digest: lTRYW8Fank+IFyRpTMKhMJ7Hl6WYtxkMjO4w+uz/k2U=
+
+Name: html/EnergyTrace User's Guide_files/icon_switch_energy_states_sl
+ au157_default.png
+SHA-256-Digest: DCdrvcSfwtbZpWolehEW3ah/q+9TIazI4wYvlHFzQsQ=
+
+Name: html/EnergyTrace User's Guide_files/power_window_slau157_default
+ .png
+SHA-256-Digest: EzmVseIy56/hc9p7mbMcKM2OaqaTmg4ocs5ulnjFY0I=
+
+Name: html/Images/icon_switch_energy_states_slau575.png
+SHA-256-Digest: wWKpg2Edw/zOa8EuG15Y5OEgot+1L4mLb7oiSF/V5ck=
+
+Name: html/EnergyTrace User's Guide_files/energytrace_preferences_slau
+ 157_default.png
+SHA-256-Digest: ltr1kXOQXVfKJXY7ys/VrV628XcOzFZCnbXBT+i0mlA=
+
+Name: html/Images/energy_window_slau575.png
+SHA-256-Digest: N8Zb3qTYdkyBTCL32Yg4VCHfnB+k2+Invnnw9AcpD90=
+
+Name: html/Images/debug_session_energytracepp_slau575.png
+SHA-256-Digest: Sh9/tg+vEunoznx6SvYvMaFix3PAWEd47du1dnY8uIw=
+
+Name: html/Images/MSP432_CCSUG_Device_Security.png
+SHA-256-Digest: uAIlzlOg9kiPOv47bEt8pTMYJe3XtnOSX962EbLQ25A=
+
+Name: html/Images/MSP432_CCSUG_Flash_Properties.png
+SHA-256-Digest: bagWt0dwH9zFY+uaIuKpplBxXJ5Ya6h+Mise1tYH1PU=
+
+Name: html/Images/power_window_slau575.png
+SHA-256-Digest: vJ8B7j1Uwt+zZVT8ZjH9kLnOPKikdIWJlXZ/dFzt8OI=
+
+Name: html/Images/comparing_profiles_energytrace_slau575.png
+SHA-256-Digest: Rcl0nNb5yNH5kooyEUETYkH1x0Ow7YFGElL1K+KvgrA=
+
+Name: icons/filter.png
+SHA-256-Digest: F8K1+XV32+uxV+W6tpQKOdcYoTgz/DTdm5G+LbgRV6Y=
+
+Name: html/Images/debug_session_energytracepp_slau575_default.png
+SHA-256-Digest: 2+06LdzhGkxb4uHMDmCc9kV2aWxs4efncho3t6Z06GY=
+
+Name: html/Images/MSP432_CCSUG_Select_Target_Configuration.png
+SHA-256-Digest: tI226ATM2W+298PzH8ddl6K5LUnxPOCqq5O95Rvyj9Y=
+
+Name: html/Images/MSP432_CCSUG_Execute_Mass_Erase_Script.png
+SHA-256-Digest: Z7h4fENVQ5jsAFkODgTTxX0I+OlMltl5ZaMUfm7b2ks=
+
+Name: icons/stop.gif
+SHA-256-Digest: DtaPKL9Mfp0drbeY3MFa5TCynaIiyFhlZ9bPv0pTOFw=
+
+Name: html/EnergyTrace User's Guide_files/icon_load_profile_slau157_de
+ fault.png
+SHA-256-Digest: Ywpgnp5KPHcEkD4WQngAGPaTdKjHIkgQXfgddvHQt3Y=
+
+Name: html/EnergyTrace User's Guide_files/debug_session_energytrace_sl
+ au157_default.png
+SHA-256-Digest: dnShpKxUn4PM6PBJx/fLly+xJ9IrOWsemPMKlsKq2aY=
+
+Name: html/Images/icon_load_profile_slau575.png
+SHA-256-Digest: 8hnDYgBDBiIefVOSp46A6ixQtlpkIat4guY8PUpmhbw=
+
+Name: icons/EnableET.png
+SHA-256-Digest: rz+Sgymrxc+FHmWetTgvIKDppkN49pGIe/ZYEZBbckI=
+
+Name: html/Images/MSP432_CCSUG_Debug_Window_2.png
+SHA-256-Digest: 5IqHZwljuWFB8b2cC4UWS8VGg/FSxf6Nqq2yCqf1jZE=
+
+Name: html/Images/debug_session_energytrace_slau575.png
+SHA-256-Digest: fPgWLQD7wV/71p1iP+b2Sxzbuo0VDq/6ss7sg1UTklk=
+
+Name: html/EnergyTrace User's Guide_files/icon_save_profile_slau157_de
+ fault.png
+SHA-256-Digest: WaDY4NfQfIS7/EmLG+E2WiVNYRGJ9BQnlCo1bq1z5FM=
+
+Name: icons/ETLogo.png
+SHA-256-Digest: 6YNkp7DwfoffmBLNFf03DkoowDIYm2lo++Ut0UOi5m4=
+
+Name: html/Images/icon_capture_period_slau575_default.png
+SHA-256-Digest: s/GRrpua0pTVd64n2d5oHI7wXeqUBCRxDFNCkOJ3gLU=
+
+Name: html/EnergyTrace User's Guide_files/debug_session_energytracepp_
+ slau157_default.png
+SHA-256-Digest: JQ//HXt9FUHHitgCc9q+4Ozoqkxs4mkx3IiMprv8N7o=
+
+Name: html/EnergyTrace User's Guide_files/energytrace_profile_slau157_
+ default.png
+SHA-256-Digest: Rx+RgZFoCK5GuqfeVSLA51shyYcWz86E/LXpY4sUJMI=
+
+Name: html/Images/MSP432_CCSUG_Check_for_Updates_2.png
+SHA-256-Digest: 2AJU98oV6lfIkHe3u/KpQiYZGdDRA+zpkmzChH584lM=
+
+Name: html/Images/energytrace_logo_slau575.png
+SHA-256-Digest: ykaLulVOJMAElO98TQkeCUiyJbYo/O09wxoysuIudEs=
+
+Name: html/Images/MSP432_CCSUG_Create_new_project_1.png
+SHA-256-Digest: TAqp0e9FZJbhS/UQmayBE06U7IC6s7WEV+G/davlPkY=
+
+Name: icons/optimizer.png
+SHA-256-Digest: kUfhWLGzCtFuwRFMX3XXfgSvz7VdP1v/Iw870Su4IzQ=
+
+Name: html/Images/MSP432_CCSUG_LowPowerRun_default.png
+SHA-256-Digest: /kRiATcF4srU1Ra5zI0IRkQ55pWAK0QwPve4MlAOqo4=
+
+Name: html/EnergyTrace User's Guide_files/icon_restore_graphs_slau157_
+ default.png
+SHA-256-Digest: FPJG+64zC6tHvtnaTo12tNGapRhGXZYfO5U65vzlyRY=
+
+Name: icons/new_bp.gif
+SHA-256-Digest: YWfa4RNXXKZhN9tu3+CdlSL8yC5Gaw1YhRS93nbgyy0=
+
+Name: html/EnergyTrace User's Guide_files/icon_capture_period_slau157_
+ default.png
+SHA-256-Digest: pmr+lZYp+KSJtBrJ0jq2Fe1/YXRUV5c/OWKGjHFLdTw=
+
+Name: html/EnergyTrace User's Guide_files/project_properties_slau157_d
+ efault.png
+SHA-256-Digest: NYxfZ/tT1Y4UnLhfOlQn40ult6KCDC8kY6YVE6xRGDo=
+
+Name: html/Images/icon_save_profile_slau575.png
+SHA-256-Digest: 6JbsxKtIv/yWiq6I33VKikmeXszIIFoOXiR2/Xe9H1o=
+
+Name: html/Images/pulse_density_and_current_flow_slau575_default.png
+SHA-256-Digest: dgAnZ5FOL7tJy43eb1Hj6qOoRDzuR9koQRQ+8Lqucwo=
+
+Name: html/Images/zoom_into_energy_window_slau575_default.png
+SHA-256-Digest: M5rZSa054JgictvN7JbGuIv0tX3eLi6edp8JoeGen2c=
+
+Name: html/Images/zoom_into_power_window_slau575.png
+SHA-256-Digest: mGuyDBlhrVPvA3eBXi7H1+1eGxJ9Z+6q94FY399Onhw=
+
+Name: html/Images/MSP432_CCSUG_Properties.png
+SHA-256-Digest: XzCVG2/5hYQfBsHX/+5f6qw9walg6JVmMj00/F66ZHU=
+
+Name: html/Images/MSP432_CCSUG_Debug_Window_4.png
+SHA-256-Digest: uGIiA2nsFWGLen/WTqtU4ucVbDD6DIw3PIkCChoZaE8=
+
+Name: html/Images/MSP432_CCSUG_Remove_Secure_Region.png
+SHA-256-Digest: f/R0Dp668rUQzIKYn6TgexeCB/5X+KPD+mJ1DqnMTiE=
+
+Name: html/Images/energytracepp_profile_window_slau575_default.png
+SHA-256-Digest: EgrebdNaheGn0SiRfRm4SoHcgCm5IQv/PGAPgGFSoAo=
+
+Name: html/Images/MSP432_CCSUG_Regional_Security_Failed.png
+SHA-256-Digest: gv5x7m2axakATUYx1t/uYtFDRiOYT85hPRiN4hS1owc=
+
+Name: html/EnergyTrace User's Guide_files/pulse_density_and_current_fl
+ ow_slau157_default.png
+SHA-256-Digest: yrDaghH10sxe/Jy0hjHOmeOgb5AtETUARSV3+GW9RKI=
+
+Name: html/Images/MSP432_CCSUG_Create_new_project_3.png
+SHA-256-Digest: fToc5TBNX3eiMR7MGbgQ7A+aZoK6a5wtMU/rg5ORVCo=
+
+Name: com.ti.dvt.energytrace.jar
+SHA-256-Digest: vwXYXfAdaXcnWeoI7viMkAg3+toTWx3oDfsSIdz46tI=
+
+Name: html/EnergyTrace User's Guide_files/energytracepp_profile_window
+ _slau157_default.png
+SHA-256-Digest: hawp8o6diWUMfsEBwqQlGAQQsAZb6nKcXGtphFIN1vg=
+
+Name: html/EnergyTrace User's Guide_files/comparing_profiles_energytra
+ ce++_slau157_default.png
+SHA-256-Digest: oyekFN7s9QyezZyLNc5keUsMftC9PlS262b/Bnj/BS8=
+
+Name: html/Images/MSP432_CCSUG_Launch_Target_Configuration.png
+SHA-256-Digest: LulezvVqyrz654TDTYJew1LsfDvwkeUFqegsrMp74UY=
+
+Name: html/Images/icon_restore_graphs_slau575_default.png
+SHA-256-Digest: v8yFA1KKu9iA24yPzq+CPWnbAf/DKZkOjHDer1NZzVM=
+
+Name: icons/RestoreGraphs.png
+SHA-256-Digest: bfWrClmrYYDT0laoYGFqAVOHc0xukiblIAXFQ1OPCkE=
+
+Name: html/EnergyTrace User's Guide_files/zoom_into_energy_window_slau
+ 157_default.png
+SHA-256-Digest: ltV6mVhJYzMu3VtgSztARqCaZIETjLB5SOpxvXpRlMo=
+
+Name: html/Images/MSP432_CCSUG_Check_for_Updates_2_default.png
+SHA-256-Digest: kVJftiwP/FFrKvGtI9zTRBYvHnTmZfULwg10sarTTcw=
+
+Name: icons/add.png
+SHA-256-Digest: dXycY7/hmqn1Rfk6ni79E1z3zGm39zWiqPSIDNuieME=
+
+Name: html/MSP432 EnergyTrace User's Guide.html
+SHA-256-Digest: LfCKeR5WAP3LbCiL77KR402NC8R/+H6VcEZwVVBz3T0=
+
+Name: html/EnergyTrace CCS Welcome Page.html
+SHA-256-Digest: WR/aJWVDpedgaH9kgnP0tlS6XE7V2x63YClU8GogBuE=
+
+Name: html/Images/MSP432_CCSUG_LowPowerRun_wfi_default.png
+SHA-256-Digest: h/nzDCYCk9Hs2lKr221ysqpzZQgCfrD37vuV2m/lVUk=
+
+Name: html/Images/icon_enable_disable_slau575.png
+SHA-256-Digest: g8c21M+rLH7ISVcylnQ9WiUrSCcrHCI9kt9xGcYPLIg=
+
+Name: html/EnergyTrace User's Guide_files/energytrace_logo_slau157_def
+ ault.png
+SHA-256-Digest: akbVndfWRaUMlj55bKoJB7XEuM2chv92F3m72ctf0NA=
+
+Name: html/Images/MSP432_CCSUG_Regional_Security_Memory_Browser_Begin.
+ png
+SHA-256-Digest: 5uvQHKXQwK+Xuf5/RTDFl07a9Re+E6wJBWZoZDuxpfs=
+
+Name: html/Images/profile_window_slau575.png
+SHA-256-Digest: 83Y/sDbqo2rLUODk9RkROnNZv0oZoV5v5oJqeb7q6+c=
+
+Name: html/Images/MSP432_CCSUG_LowPowerRun_wfi.png
+SHA-256-Digest: 75EUwIlpwMnB2h0ECp4YQMhmTr+9DG0JRgbgzWKIm+U=
+
+Name: html/EnergyTrace User's Guide_files/debug_session_energytrace++_
+ slau157_default.png
+SHA-256-Digest: 2Fbw9Tivmr0SNUuf3LgrbEXcubuRRuOK3YJH8pVLZow=
+
+Name: html/EnergyTrace User's Guide_files/debug_properties_slau157_def
+ ault.png
+SHA-256-Digest: X9Oqbzw+EjwwaDF+pzVUxTi4IhR59g3APntkDKHPL4w=
+
+Name: dvt/et.ini
+SHA-256-Digest: pNVq8tctC6weP4bLkaSbzapnUmbU2ERTvlBbhm1F8FU=
+
+Name: html/EnergyTrace User's Guide_files/states_window_slau157_defaul
+ t.png
+SHA-256-Digest: 2ODgQpdSlyNLIT9SnnUf/7BEL/3bIkMqFUQ9fz9hzco=
+
+Name: html/EnergyTrace User's Guide_files/comparing_profiles_energytra
+ cepp_slau157_default.png
+SHA-256-Digest: 4oz3v+dKM4jqm7x3RRreTuzKYsB1FkBKxJlTbGUYTxs=
+
+Name: html/Images/comparing_profiles_energy_states_slau575.png
+SHA-256-Digest: Ec6QEMdqM7FwH1e8vDPzug2xuJfWpFrliuMIDfh/rK4=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: ak2bzOGDjLurhLXRsFA/N7TRhvaP+YA1QdnivLjcXtk=
+
+Name: html/Images/MSP432_CCSUG_Enabling_Regional_Security_Console_Outp
+ ut.png
+SHA-256-Digest: 8c7SPYLp898DskdHB+pUelgU2u6ap3dEdJLEugdGl+4=
+
+Name: html/Images/icon_restore_graphs_slau575.png
+SHA-256-Digest: WpmcEpJx1s6lmwJmWb8z688Z7nksngzOBt/wC4icivo=
+
+Name: html/Images/comparing_profiles_energytracepp_slau575_default.png
+SHA-256-Digest: fuHbEfesl/zw41pvIR4rSnTLLk+alfo5pI/j6v4QS0s=
+
+Name: html/Images/debug_session_energymonitor_slau575.png
+SHA-256-Digest: EYZ1teb6Ql5FjSQTNPw92zrjdgPLwCNuwubzrkvEWhw=
+
+Name: html/Images/MSP432_CCSUG_Check_for_Updates_default.png
+SHA-256-Digest: fNOiu2Sz93iiP4p2agYI+0yvbsXUTP6GXEAXPzAJOo4=
+
+Name: html/Images/comparing_profiles_energytracepp_slau575.png
+SHA-256-Digest: qtiZ90Oj3jKxAheFZD7Glg5+wc6mc3gFakHG/neo+Ts=
+
+Name: uia/energytrace.uia.xml
+SHA-256-Digest: Dz/r+Rs+XfDGS8poeV3LjuP/Lup9cLgfGilmANeFDmI=
+
+Name: html/Images/comparing_profiles_energytrace_slau575_default.png
+SHA-256-Digest: RT6AlJphGCnVklytlBBJOQcvZeXOKzFqgN4zv6eYr7c=
+
+Name: html/Images/MSP432_CCSUG_Enabling_Secure_Region.png
+SHA-256-Digest: V5m4T3ITjw9L7SvnBBbPhDaiYyhcK2JKNx4mYLwzKVk=
+

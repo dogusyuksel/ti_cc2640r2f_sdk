@@ -1,0 +1,63 @@
+GEL_MemorySaveHex()
+--------------------
+
+Saves a block of memory to file in various hex formats
+
+**Syntax**
+
+**GEL_MemorySaveHex(**\ "fileName"\ **,**\ "formatType"\ **,** page\ **,**\ startAddress1\ **,**\ length1\ **,**\ startAddress2\ **,**\ length2\ **,**\ ...\ **)**
+
+**Parameters**
+
+fileName names the file to store the target data. The fileName must be
+enclosed in quotation marks.
+
+formatType is a string that represents the hex format in which memory words
+will be written to the specified output file. The formatType must be enclosed
+in quotation marks. Choose from INTELHEX, TI-TXT.
+
+page identifies the type of memory to fill: 0 (Program memory), 1 (Data
+memory) or 2 (I/O space)
+
+For processors that do not have more than one type of memory, use 0 for
+this parameter. 
+
+startAddress1 is the first address in the block.
+
+length1 defines the number of items to save.
+
+startAddress2 is the first address for another block.
+
+length2 defines the number of items to save. 
+
+... is for subsequent startAddress and length pairs.
+
+Only one startAddress and length pair is required. Subsequent pairs are optional. 
+
+**Description**
+
+This function can be used to save a block of target memory to a specified file
+in varying hex formats. The block(s) of data are specified by the startAddress 
+and length pairs. 
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: Yes
+
+**Examples**
+
+GEL_MemorySaveHex("C:/mydir/myfile", "INTELHEX", 0, 0x8000, 20);
+
+This example reads memory starting at 0x8000 and formats 20 values in
+intel hex format and saves it to the specified file.
+
+**Related Topics**
+
+
+`GEL_MemoryLoadData <GEL_MemoryLoadData.html>`__
+
+`GEL_MemoryLoad <GEL_MemoryLoad.html>`__
+
+`GEL_MemorySave <GEL_MemoryLoad.html>`__

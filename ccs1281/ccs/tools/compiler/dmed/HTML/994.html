@@ -1,0 +1,32 @@
+<html><body>
+<h2> Typical message </h2>
+
+<pre>
+ "hello.c", line 18: remark #994-D: missing return statement at end of non-void function "main"
+</pre>
+
+<h2> What it means </h2>
+
+<p>The compiler believes that the function should return a value, but it does not.  If the function really is meant to return a value, attempting to use the return value of this function will result in undefined behavior, in which case the program is not a legal C program.</p>
+
+<h2> Why it is happening </h2>
+
+<p>This usually happens for one of two reasons:
+
+<ul>
+<li> The user forgot to add a return statement at the end of a function which returns a non-void type. </li>
+<li> The user did not provide an explicit return type for the function, which means the function is implicitly given the return type "int".  In this case, the situation is harmless. </li>
+</ul>
+</p>
+
+<h2> Remedy </h2>
+
+<ul>
+<li> Add a return statement returning a value, or </li>
+<li> Give the function an explicit return type (possibly "void"). </li>
+</ul>
+
+<h2> Risks, Severity </h2>
+
+<p>If the return value of the function is never used (or if the function never returns), it is harmless.  If the return value is ever used, there is positively a bug in the user's function.</p>
+</body></html>

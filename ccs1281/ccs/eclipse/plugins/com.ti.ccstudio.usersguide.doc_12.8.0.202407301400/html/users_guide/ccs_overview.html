@@ -1,0 +1,607 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.1. System Requirements &mdash; Code Composer Studio 12.8.0 Documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Code Composer Studio 12.8.0 Documentation" href="index.html"/>
+        <link rel="up" title="2. Overview" href="index_overview.html"/>
+        <link rel="next" title="3. Installation" href="index_installation.html"/>
+        <link rel="prev" title="2. Overview" href="index_overview.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="https://www.ti.com">
+            <img src="_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Code Composer Studio
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                12.8.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ccs_glossary.html">1. Glossary</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index_overview.html">2. Overview</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.1. System Requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hardware">2.1.1. Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#operating-system">2.1.2. Operating System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#windows">2.1.2.1. Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linux">2.1.2.2. Linux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#macos">2.1.2.3. macOS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#eclipse">2.2. Eclipse</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#workbench">2.2.1. Workbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#workspace">2.2.2. Workspace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#perspective">2.2.3. Perspective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#view">2.2.4. View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#resource">2.2.5. Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#project">2.2.6. Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#file">2.2.7. File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#licensing">2.3. Licensing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contents">2.4. Contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ide">2.4.1. IDE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compiler">2.4.2. Compiler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#resource-explorer">2.4.3. Resource Explorer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app-center">2.4.4. App Center</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#debug-probes">2.5. Debug Probes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#support">2.6. Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index_installation.html">3. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_updates.html">4. Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_getting-started.html">5. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_project-management.html">6. Projects and Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_debug.html">7. Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_faqs.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_troubleshooting.html">9. Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ccs_legal.html">10. License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Code Composer Studio</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index_overview.html">2. Overview</a> &raquo;</li>
+      
+    <li>2.1. System Requirements</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="https://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>Code Composer Studio is an
+integrated development environment (IDE) that supports TI’s
+Microcontroller and Embedded Processors portfolio. Code Composer Studio
+comprises a suite of tools used to develop and debug embedded
+applications. It includes an optimizing C/C++ compiler, source code
+editor, project build environment, debugger, profiler, and many other
+features. The intuitive IDE provides a single user interface taking you
+through each step of the application development flow. Familiar tools
+and interfaces allow users to get started faster than ever before. Code
+Composer Studio combines the advantages of the Eclipse software
+framework with advanced embedded debug capabilities from TI resulting in
+a compelling feature-rich development environment for embedded
+developers.</p>
+<div class="section" id="system-requirements">
+<h1>2.1. System Requirements<a class="headerlink" href="#system-requirements" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="hardware">
+<h2>2.1.1. Hardware<a class="headerlink" href="#hardware" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="11%" />
+<col width="18%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"></th>
+<th class="head">Memory</th>
+<th class="head">Disk space</th>
+<th class="head">Processor</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Minimum</td>
+<td>4GB</td>
+<td>2.5GB</td>
+<td>2.0GHz x86-64 single core CPU</td>
+</tr>
+<tr class="row-odd"><td>Recommended</td>
+<td>8GB+</td>
+<td>5.0GB+</td>
+<td>x86-64 multi-core CPU</td>
+</tr>
+</tbody>
+</table>
+<p>While CCS is an x86-64 application, it is possible to run CCS on a macOS system running on an Apple Mx processor via <a class="reference external" href="https://developer.apple.com/documentation/apple-silicon/about-the-rosetta-translation-environment">Rosetta</a>.`</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is strongly advised to have a system that exceeds the <em>recommended</em> requirements. While Code Composer Studio will run on a system that meets the <em>mininum</em> requirements, the performance will likely be poor.</p>
+</div>
+</div>
+<div class="section" id="operating-system">
+<h2>2.1.2. Operating System<a class="headerlink" href="#operating-system" title="Permalink to this headline">¶</a></h2>
+<p>Please note that Code Composer Studio is a 64bit application and thus will not run on 32bit operating systems.</p>
+<div class="section" id="windows">
+<h3>2.1.2.1. Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Windows 11 64bit</li>
+<li>Windows 10 64bit</li>
+<li>Windows 7 64bit</li>
+</ul>
+</div>
+<div class="section" id="linux">
+<h3>2.1.2.2. Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<p>Supported distributions include:</p>
+<ul class="simple">
+<li>Ubuntu 22.04 64bit</li>
+<li>Ubuntu 20.04 64bit</li>
+<li>Ubuntu 18.04 64bit</li>
+</ul>
+<p>Code Composer Studio will run on other distributions but these are the
+officially supported and tested distributions.</p>
+<p>More information on installation instructions as well as debug probe and device support
+is available in the <a class="reference external" href="../ccs_linux_host_support.html">Linux Host Support</a> page.</p>
+</div>
+<div class="section" id="macos">
+<h3>2.1.2.3. macOS<a class="headerlink" href="#macos" title="Permalink to this headline">¶</a></h3>
+<p>Code Composer Studio device support on macOS is limited to
+microcontrollers (MSP, C2000, SimpleLink, Tiva and Hercules) and does
+not include processors (Sitara, DSP, KeyStone, mmWave).</p>
+<p><strong>Versions Supported</strong></p>
+<p>Each Code Composer Studio release is validated against a set of macOS releases. This release was validated with:</p>
+<ul class="simple">
+<li>macOS 13    (Ventura)</li>
+<li>macOS 12        (Monterey)</li>
+<li>macOS 11    (Big Sur)</li>
+<li>macOS 10.15 (Catalina)</li>
+</ul>
+<p>More information on installation instructions as well as debug probe and device support
+is available in the <a class="reference external" href="../ccs_macos_host_support.html">macOS Host Support</a> page.</p>
+</div>
+</div>
+</div>
+<div class="section" id="eclipse">
+<h1>2.2. Eclipse<a class="headerlink" href="#eclipse" title="Permalink to this headline">¶</a></h1>
+<p>Code Composer Studio is based on the Eclipse open source software framework. Hence understanding some of the basic
+concepts of Eclipse will lead to a better understanding of Code Composer Studio. Some of the more commonly referenced concepts are described
+below.</p>
+<div class="section" id="workbench">
+<h2>2.2.1. Workbench<a class="headerlink" href="#workbench" title="Permalink to this headline">¶</a></h2>
+<p>The Workbench refers to the main user interface. The Workbench contains
+all the various views and resources used for development. When the
+Workbench is launched, the first dialog prompts for location of
+<a class="reference external" href="#workspace">workspace</a>. After the workspace location is chosen, a
+single Workbench window is displayed. A Workbench window offers one or
+more <a class="reference external" href="#perspective">perspectives</a>.</p>
+<p>Multiple Workbench windows can be opened using the <strong>Window → New
+Window</strong> menu. While each Workbench window can differ visually
+(arrangement of views, toolbars and such), all windows refer to the same
+workspace and the same running instance of Code Composer Studio. If a
+project is opened from one Workbench, that same project will be present
+in all the Workbench windows.</p>
+</div>
+<div class="section" id="workspace">
+<h2>2.2.2. Workspace<a class="headerlink" href="#workspace" title="Permalink to this headline">¶</a></h2>
+<p>The workspace is the main working folder for Code Composer Studio. The
+workspace stores references to all projects even if the projects
+themselves do not physically reside inside the workspace folder. The
+default location of new projects will be within the workspace folder.
+Once a project has been added to the workspace, it will be visible in
+the <strong>Project Explorer</strong> view.</p>
+<p>Code Composer Studio will prompt for the workspace folder location when
+you launch the application. It is possible to specify to use the
+selected folder as the default folder to avoid being prompted in the
+future</p>
+<p>The workspace folder is also used to store user information such as user
+interface preferences and settings.</p>
+<p>Workspaces are user specific and are not typically shared between users.
+You would not check your workspace into source control to share with
+other team members. You would check your projects into source control
+and each user would have their own workspace that references the
+projects.</p>
+<p>It possible to have multiple. Only one workspace is active at a time in
+Code Composer Studio but you can switch workspaces using the <strong>File →
+Switch Workspace…</strong> menu.</p>
+</div>
+<div class="section" id="perspective">
+<h2>2.2.3. Perspective<a class="headerlink" href="#perspective" title="Permalink to this headline">¶</a></h2>
+<p>A perspective defines the layout of views, menus and toolbars in the
+Workbench window. Each perspective provides a set of functionality aimed
+at accomplishing a specific type of task. For example, the <strong>CCS Edit</strong>
+perspective contains views most commonly used during code development,
+such as the Project Explorer, Editor and Problems view. When a debug
+session is started, Code Composer Studio will automatically switch to
+the <strong>CCS Debug</strong> perspective. This perspective by default contains
+views associated with debugging.</p>
+<p>It is possible to manually switch between perspectives using the
+perspective buttons at the top right of the Workbench or by using the
+<strong>Window → Perspective</strong> menu. Any changes made to a perspective will be
+preserved the next time the perspective is opened. A perspective can be
+reset to the default arrangement via the <strong>Window -&gt; Perspective → Reset
+Perspective</strong> menu. New perspectives can be created simply by saving the
+current perspective as a new name <strong>Window → Perspective → Save
+Perspective As…</strong> menu.</p>
+<p>There is a <strong>CCS Simple</strong> perspective available that can be accessed
+from the <strong>Getting Started view</strong>. This perspective is used for both
+editing and debugging and has been designed to expose just the most
+basic functionality to make it easier for users who are familiar with
+more simple environments.</p>
+</div>
+<div class="section" id="view">
+<h2>2.2.4. View<a class="headerlink" href="#view" title="Permalink to this headline">¶</a></h2>
+<p>Views are windows within the main Workbench window that provide visual
+representation of information or data. The Workbench window mainly
+consists of the editor and a collection of views. Examples of some views
+are <strong>Debug</strong>, <strong>Problems</strong>, <strong>Memory Browser</strong>, <strong>Disassembly</strong>.</p>
+</div>
+<div class="section" id="resource">
+<h2>2.2.5. Resource<a class="headerlink" href="#resource" title="Permalink to this headline">¶</a></h2>
+<p>Resources is a collective term for a project, folder or file that exists
+in the Workspace.</p>
+</div>
+<div class="section" id="project">
+<h2>2.2.6. Project<a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h2>
+<p>Projects typically contain folders and files. Like the workspace, a
+project maps to a physical folder in the file system. The default
+location, when creating a new project, is in a subfolder (of the project
+name) within the workspace folder. However a folder outside the
+workspace can also be chosen. Once the project is created, a reference
+to it will be made in the workspace and the project is now available for
+use within the Workbench and visible from the <strong>Project Explorer</strong>.</p>
+<p>Projects are either open or closed. When a project is closed, it is
+still part of the workspace, but it cannot be modified by the Workbench.
+The resources of a closed project will not appear in the Workbench, but
+the resources still reside on the local file system. Closed projects
+require less memory and are not scanned during routine activity. Hence
+closing unnecessary projects can improve performance of Code Composer
+Studio. Note that closed projects will still be visible in Project Explorer
+so that they can easily be opened when needed.</p>
+<p>A project becomes part of a workspace by being created in the workspace
+or by being imported into the workspace.</p>
+<p>The <strong>Project Explorer</strong> shows all projects that are part of the active
+workspace. Note that the view is mostly a representation of the
+filesystem of the project folder. Hence when creating a subfolder and
+moving files to that subfolder from within the Project Explorer, the
+actual file system is being altered. Similarly changes made to the file
+system will be reflected in the Project Explorer. Note that not all
+files that appear in the view will exist in the file system and vice
+versa. Linked files will appear in the view but because they are
+references and not actual copies, the references do not appear in the
+actual file system. The <strong>Includes</strong> folder that appears in the Project
+Explorer displays all of the include paths setup for the project and is
+not a physical folder.</p>
+</div>
+<div class="section" id="file">
+<h2>2.2.7. File<a class="headerlink" href="#file" title="Permalink to this headline">¶</a></h2>
+<p>Files can either be added or linked to a project. When a file is added
+to a project, the file is copied to the root location of the project
+folder. There is also the option to ‘link’ a file to a project. This
+will simply have the project create a reference to the file instead of
+copying the file into the project folder.</p>
+</div>
+</div>
+<div class="section" id="licensing">
+<h1>2.3. Licensing<a class="headerlink" href="#licensing" title="Permalink to this headline">¶</a></h1>
+<p>There is no license fee associated with Code Composer Studio. Users are
+free to download and install Code Composer Studio without having to
+purchase a license. The license terms for Code Composer Studio are shown
+at installation and available afterwards in the /doc folder.</p>
+</div>
+<div class="section" id="contents">
+<h1>2.4. Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
+<p>Code Composer Studio is a suite of development tools including an
+editor, project management system, compiler, debugger, profiling and
+visualization tools.</p>
+<div class="section" id="ide">
+<h2>2.4.1. IDE<a class="headerlink" href="#ide" title="Permalink to this headline">¶</a></h2>
+<p>IDE stands for Integrated Development Environment. It refers to an
+environment that brings together the tools needed to develop software.
+Typically this means an editor, build system and debugger. This enables
+the development of software without having to continually switch between
+tools.</p>
+<p>The editor in Code Composer Studio includes a wide breadth of features
+to make development easier. Standard features such as customizable
+syntax highlighting and code completion are present, as well as more
+unique features such as local history. The local history keeps track of
+source code changes and enables the comparison or replacement of the
+current source with those in the history.</p>
+<p>The project management system allows for the building of projects with
+either the TI compiler or GCC. It also integrates with standard source
+control software such as Git.</p>
+<p>The integrated debugger allows for the debugging of applications running
+on TI embedded devices and is discussed in more detail in the debugging
+chapter.</p>
+</div>
+<div class="section" id="compiler">
+<h2>2.4.2. Compiler<a class="headerlink" href="#compiler" title="Permalink to this headline">¶</a></h2>
+<p>C/C++ Compilers are provided for each instruction set. In most cases
+this is a TI proprietary compiler. For Cortex A devices GCC is provided
+but in general it is recommended to use the compiler that is bundled
+with the SDK for the device. For MSP430 and Cortex M based MCUs a TI
+proprietary compiler and GCC are provided. GCC is the open source GNU
+compiler. Additional compilers are available from the App Center.</p>
+</div>
+<div class="section" id="resource-explorer">
+<h2>2.4.3. Resource Explorer<a class="headerlink" href="#resource-explorer" title="Permalink to this headline">¶</a></h2>
+<p>Resource Explorer helps you find all the latest examples, libraries,
+demo applications, datasheets, and more for your chosen platform.</p>
+<p>Filtering by device, or by TI LaunchPad™ Kit, the interface enables you
+to filter the content to only what is relevant to your chosen platform.
+Resource Explorer will show you not only the resources that you have
+installed on your local computer but also those that are located online
+and available for download. When you select an example from a software
+package that you have not yet installed Resource Explorer will allow you
+to install that package, and any necessary dependencies, and then allow
+you to import the example into your workspace.</p>
+<p>Resource Explorer can be accessed from menu <strong>View → Resource Explorer</strong>.</p>
+<p>More information on Resource Explorer is available
+<a class="reference external" href="../ccs_resource_explorer_new.html">here.</a></p>
+</div>
+<div class="section" id="app-center">
+<h2>2.4.4. App Center<a class="headerlink" href="#app-center" title="Permalink to this headline">¶</a></h2>
+<p>Similar in concept to Resource Explorer, App Center is used to obtain
+additional items required for development. While Resource Explorer is
+used to obtain software and documentation, App Center is primarily used
+to obtain extensions or add-ons to the Code Composer Studio environment
+such as compilers.</p>
+<p>Resource Explorer can be accessed from menu <strong>View → CCS App Center</strong>.</p>
+<p>More information on App Center is available
+<a class="reference external" href="../ccs_app_center.html">here.</a></p>
+</div>
+</div>
+<div class="section" id="debug-probes">
+<h1>2.5. Debug Probes<a class="headerlink" href="#debug-probes" title="Permalink to this headline">¶</a></h1>
+<p>TI offers a wide selection of debug probes that enable software
+development on TI embedded processors. TI’s debug probes are designed to
+meet different needs in terms of functionality and budget. Each probe is
+compatible with Code Composer Studio.</p>
+<p>Developing software typically requires downloading the resulting program
+to the embedded processor it was written for. A debug probe provides a
+debug communication pathway between a host computer and the embedded
+processor. This allows for downloading of the program as well as
+controlling the processor to enable debugging.</p>
+<p>More information on the debug probes available for TI embedded
+processors is available
+<a class="reference external" href="https://www.ti.com/design-resources/embedded-development/ccs-development-tools.html#debug">here.</a></p>
+<p>Note that it is possible to add support for additional debug probes to
+an existing Code Composer Studio installation by running the installer
+again and pointing it at the current installation.</p>
+</div>
+<div class="section" id="support">
+<h1>2.6. Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="https://e2e.ti.com">E2E support</a> community is the primary method for obtaining support
+for developing on TI processors. This
+<a class="reference external" href="../ccs_support.html">article</a>
+provides more information on support resources.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="index_installation.html" class="btn btn-neutral float-right" title="3. Installation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index_overview.html" class="btn btn-neutral" title="2. Overview" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyight 1995-2019</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'12.8.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="https://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

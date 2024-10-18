@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.dvt.energytrace"
+      label="DVT - EnergyTrace"
+      version="4.1.0.202307061549"
+      provider-name="Texas Instruments">
+
+   <description>
+      DVT - EnergyTrace
+   </description>
+
+   <license>
+      Provided under the terms of the original DVT or Code Composer Studio License Agreement.
+   </license>
+
+   <includes
+         id="com.ti.dvt2.uia"
+         version="4.1.0.202307061549"
+         optional="true"/>
+
+   <plugin
+         id="com.ti.dvt.energytrace"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"/>
+
+</feature>

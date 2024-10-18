@@ -1,0 +1,67 @@
+GEL_System()
+------------
+
+Executes a DOS command.
+
+**Syntax**
+
+**GEL_System("**\ dosCommand\ **"** [**,** param1\ **,** param2\ **,**
+.. param4] **);**
+
+**Parameters**
+
+dosCommand: specifies the DOS command (which may contain optional
+`format specifiers <format.html>`__) that is to be executed.
+
+param1..param4(optional) name additional parameters that are substituted
+in the dosCommand when a format specifier is encountered. These
+parameters allow you to pass values to the DOS command.
+
+**Description**
+
+The GEL_System function allows you to execute DOS commands from within
+the IDE. The output of the DOS command is sent to an output window
+within the IDE. The DOS command can only be one that produces a text
+output and does not require additional user input once it starts
+executing.
+
+The DOS command that is executed is actually the formatted string given
+by dosCommand and the additional parameters (parm1..parm4). This allows
+you to pass additional parameters (including values that are defined on
+the target) to the DOS command.
+
+Format specifications always begin with a percent sign (%) and are read
+left to right. When the first format specification (if any) is
+encountered, the value of the first argument after format is converted
+and printed in dosCommand. The second format specification causes the
+second argument to be converted and printed, and so on. If there are
+more arguments than there are format specifications, the extra arguments
+are ignored.
+
+The GEL_System() GEL function is implemented using proprietary
+technology and can be used to extend the capabilities of the IDE. You
+can use it to perform tasks (such as compiling) in the background and
+pipe the results to the output window within the IDE.
+
+**Synchronous**
+
+Synchronous from GEL: No
+
+Completely synchronous: No
+
+**Example**
+
+| GEL_System("dir");
+| GEL_System("dir \*.dat")
+
+**Which is equivalent to:**
+
+GEL_System("dir %s", "\*.dat");
+
+**But not** GEL_System("dir", "\*.dat");
+
+GEL_System("myfunc %f %d %s", targVar, 3, "-ol");
+
+If we assume that targVar is a variable defined on the target and that
+its value is 3.14, then the final DOS command that is executed is:
+>>myfunc 3.14 3 -ol

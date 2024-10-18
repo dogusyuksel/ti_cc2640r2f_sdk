@@ -1,0 +1,14 @@
+Projects and Build
+*******************
+
+This chapter describes the Code Composer Studio (CCS) project development and build environment. It describes how to create, manage and build projects, and also the features available for customizing the build environment to suit your requirements.
+
+.. toctree::
+   :maxdepth: 3
+   
+   ccs_project-management
+   ccs_project-analysis
+   ccs_project-references
+
+
+

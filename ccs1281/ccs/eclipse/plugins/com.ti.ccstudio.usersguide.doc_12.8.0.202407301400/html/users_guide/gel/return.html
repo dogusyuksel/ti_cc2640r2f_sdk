@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.9.1.6. GEL return Statement &mdash; Code Composer Studio 12.8.0 Documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Code Composer Studio 12.8.0 Documentation" href="../index.html"/>
+        <link rel="up" title="7.9.1. GEL Grammar" href="grammar.html"/>
+        <link rel="next" title="7.9.1.7. GEL if and if-else Statements" href="if.html"/>
+        <link rel="prev" title="7.9.1.5. Function Recursion" href="recursion.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="https://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Code Composer Studio
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                12.8.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ccs_glossary.html">1. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index_overview.html">2. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index_installation.html">3. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index_updates.html">4. Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index_getting-started.html">5. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index_project-management.html">6. Projects and Build</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_debug.html">7. Debug</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../ccs_debug-main.html">7.1. Debug Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ccs_debug-main.html#configuring-the-debugger">7.2. Configuring the Debugger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ccs_debug-main.html#launching-a-debug-session">7.3. Launching a debug session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ccs_debug-main.html#debugging-the-application">7.4. Debugging the application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ccs_debug-main.html#advanced-debugging-topics">7.5. Advanced Debugging Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sdto_dss_handbook.html">7.6. Scripting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ccs_debug-graphs.html">7.7. Graph Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ccs_debug-image.html">7.8. Image Analyzer</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../ccs_debug-gel.html">7.9. The General Extension Language (GEL)</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="grammar.html">7.9.1. GEL Grammar</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="function.html">7.9.1.1. GEL Function Definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="param.html">7.9.1.2. GEL Function Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="calling.html">7.9.1.3. Calling GEL Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="local.html">7.9.1.4. Local Variables for Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="recursion.html">7.9.1.5. Function Recursion</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">7.9.1.6. GEL return Statement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="if.html">7.9.1.7. GEL if and if-else Statements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="for.html">7.9.1.8. GEL for Statement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="while.html">7.9.1.9. GEL while and do-while Statements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="break.html">7.9.1.10. GEL break Statement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io.html">7.9.1.11. File I/O Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hw_brkpt.html">7.9.1.12. Hardware Breakpoints</a></li>
+<li class="toctree-l4"><a class="reference internal" href="comments.html">7.9.1.13. GEL Comments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preprocessing.html">7.9.1.14. GEL Preprocessing Statements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cond_brkpt.html">7.9.1.15. Conditional Breakpoints</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpp_limit.html">7.9.1.16. C++ Limitations within GEL Expressions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpp_support.html">7.9.1.17. C++ Support within GEL Expressions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="expression.html">7.9.1.18. GEL Expression Evaluation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="format.html">7.9.1.19. Format Specifiers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="global.html">7.9.1.20. Global Variables for GEL Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace.html">7.9.1.21. GEL Namespace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shared_mem.html">7.9.1.22. Defining Shared Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sym_expr.html">7.9.1.23. Using Symbols as Expressions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="registers.html">7.9.1.24. Register access</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debug.html">7.9.1.25. GEL Debugging</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="built-in.html">7.9.2. Built-in GEL Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="macros.html">7.9.3. GEL Macros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="files.html">7.9.4. Loading and Unloading GEL Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="targetconfig.html">7.9.5. Adding GEL Files to a Target Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="production.html">7.9.6. Moving GEL Initialization to Production Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="menu_bar.html">7.9.7. Adding GEL Functions to the GEL Menu Using Keywords</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions_list.html">7.9.8. GEL Functions: Alphabetical List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ccs_debug-epilog.html">7.10. References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index_faqs.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index_troubleshooting.html">9. Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ccs_legal.html">10. License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Code Composer Studio</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index_debug.html">7. Debug</a> &raquo;</li>
+      
+          <li><a href="../ccs_debug-gel.html">7.9. The General Extension Language (GEL)</a> &raquo;</li>
+      
+          <li><a href="grammar.html">7.9.1. GEL Grammar</a> &raquo;</li>
+      
+    <li>7.9.1.6. GEL return Statement</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="https://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gel-return-statement">
+<h1>7.9.1.6. GEL return Statement<a class="headerlink" href="#gel-return-statement" title="Permalink to this headline">¶</a></h1>
+<p>GEL supports the standard C return statement within a function. The general form is:</p>
+<p><code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">[expression];</span></code></p>
+<p>A function does not need to return a value; a return statement with no expression causes control, but no useful value, to be returned to the caller. The same thing happens when the end of a function is reached without encountering a return statement. The calling function can ignore a value returned by a function.</p>
+<p>Unlike C, GEL function definitions do not specify their return type. The return type is determined during run-time.</p>
+<p>___</p>
+<p><strong>See also:</strong></p>
+<p><a class="reference external" href="functions_list.html">GEL Functions: Alphabetical List</a></p>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="if.html" class="btn btn-neutral float-right" title="7.9.1.7. GEL if and if-else Statements" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="recursion.html" class="btn btn-neutral" title="7.9.1.5. Function Recursion" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyight 1995-2019</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'12.8.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="https://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.ti.dvt.ccstudioideadapter.bin;singleton:=true
+Export-Package: com.ti.ccstudio.debug.memoryserver,com.ti.ccstudio.deb
+ ug.memoryserver.configoptions,com.ti.ccstudio.debug.memoryserver.enum
+ s,com.ti.ccstudio.debug.memoryserver.events.internal,com.ti.ccstudio.
+ debug.memoryserver.interfaces,com.ti.ccstudio.debug.memoryserver.publ
+ ic_events,com.ti.ccstudio.debug.memoryserver.requestdescriptors,com.t
+ i.ccstudio.debug.memoryserver.target,com.ti.ccstudio.debug.memoryserv
+ er.util,com.ti.ccstudio.debug.memoryserver.xml,com.ti.ccstudio.script
+ ing,com.ti.ccstudio.scripting.environment,com.ti.debug.engine,com.ti.
+ debug.engine.cce,com.ti.debug.engine.datastream,com.ti.debug.engine.d
+ atastream.exception,com.ti.debug.engine.events,com.ti.debug.engine.ev
+ ents.data,com.ti.debug.engine.events.types,com.ti.debug.engine.framew
+ ork,com.ti.debug.engine.profileactivities,com.ti.debug.engine.scripti
+ ng,com.ti.debug.genericproperties,com.ti.debug.properties,com.ti.debu
+ g.properties.events,com.ti.dvt.ccstudioideadapter,com.ti.dvt.debug.se
+ rver.extensions.events,com.ti.utility.filesystem
+Bundle-Name: CCStudio v6 IDE Adapter Binary
+Bundle-Version: 4.1.0.202307061549
+Bundle-ClassPath: com.ti.dvt.ccstudioideadapter.jar,external:$dvt.dir$
+ _4.1.0.202307061549/bin/../bin/com.ti.dvt.ccstudioideadapter_4.1.0.20
+ 2307061549.jar,external:$ccs.debugServerDir$/../dvt_4.1.0.20230706154
+ 9/bin/../bin/com.ti.dvt.ccstudioideadapter_4.1.0.202307061549.jar,ext
+ ernal:$ccs.debugServerDir$/packages/ti/dss/java/com.ti.debug.engine_1
+ .0.0.jar,external:$ccs.debugServerDir$/packages/ti/dss/java/com.ti.cc
+ studio.scripting.environment_3.2.0.jar,external:$ccs.debugServerDir$/
+ packages/ti/dss/java/com.ti.ccstudio.debug.memoryserver_1.0.0.jar
+Require-Bundle: com.ti.ccstudio.debug.server;visibility:=reexport,com.
+ ti.dvt.ideadapter2,com.ti.util
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: Texas Instruments
+
+Name: dvt.zip
+SHA-256-Digest: C/HHIqO9ISOPCydodDFwLdNkCpFxQ/X9xkQskSipMJE=
+
+Name: META-INF/p2.inf
+SHA-256-Digest: SvRlSMmCkAxzFUwlnMIqN8nbCaEeCtXGih2I3v/A/gA=
+
+Name: uninstall.xml
+SHA-256-Digest: Ft3Qfw3zO810myOTcVbfAl/6q4AHXFiCPP6mT6SIfYE=
+
+Name: install.xml
+SHA-256-Digest: xRubzHJhOd5ISSEToCwCLBbhPR3hIMOsybxpojMN3fY=
+
+Name: com.ti.dvt.ccstudioideadapter.jar
+SHA-256-Digest: dEE+VIjQYSIbDETVOVN/3Nr1HSK9RMu2u6/CnxfwyWI=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: G2hFTVPngfh5NUf96Pyy87A7XIE083udjEBFy4pUc/M=
+

@@ -1,0 +1,77 @@
+<!--
+    Copyright (c) 2019-2020, Texas Instruments Incorporated
+    All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions
+    are met:
+
+    *   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+    notice, this list of conditions and the following disclaimer in the
+
+    documentation and/or other materials provided with the distribution.
+    *   Neither the name of Texas Instruments Incorporated nor the names of
+    its contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+    THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+    PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+    CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+    EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+    PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+    OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+    OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+    EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>ti-widget-button Demo</title>
+	<script nomodule="" src="../../build/gc-components.js"></script>
+	<script type="module" src="../../build/gc-components.esm.js"></script>
+</head>
+
+<body style="margin:20px;font-family: sans-serif;">
+	<h2>ti-widget-button Demo</h2>
+	<!-- <ti-widget-demo> -->
+	<!-- set id="demo-element" and any default properties, for demo element -->
+	<!-- and if `#demo-element` is nested, set id="demo-container" on its top-level parent -->
+	<ti-widget-button id="demo-element" label="Button with icon" raised icon="image:edit" outlined></ti-widget-button>
+
+
+	<!-- any additional examples go here; must have slot="example-<index#>" -->
+	<ti-widget-button id="raisedbtn" slot="example-0" label="Raised Button" raised></ti-widget-button>
+	<ti-widget-button id="flatbtn" slot="example-1" label="Flat Button (click to toggle raised)" button-type="primary">
+	</ti-widget-button>
+	<ti-widget-button id="iconbtn" slot="example-2" label="" icon="print" raised button-type="link" tooltip="printer">
+	</ti-widget-button>
+	<ti-widget-button id="primarybtn" slot="example-3" label="Primary Button" raised button-type="primary">
+	</ti-widget-button>
+	<ti-widget-button id="disabledbtn" slot="example-4" label="Disabled Button" disabled></ti-widget-button>
+	<a slot="example-4" href="https://www.example.com/" target="_blank">
+		<ti-widget-button id="linkbtn" label="Link Button" button-type="link" raised></ti-widget-button>
+	</a>
+
+
+</body>
+<script>
+	let flatBtn = document.querySelector('#flatbtn');
+	let disabledBtn = document.querySelector('#disabledbtn');
+	flatBtn.addEventListener("click", () => {
+		// debugger;
+		flatBtn.raised = !flatBtn.raised;
+		if (disabledBtn) {
+			console.log('about to toggle disabled');
+			disabledBtn.disabled = !disabledBtn.disabled;
+		}
+		console.log('in event handler');
+	});
+</script>
+
+</html>

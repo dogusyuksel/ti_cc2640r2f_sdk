@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="Recommended develpoment environment for C671x devices.  Includes Code Composer Studio, compiler, debug probe..."> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="Code Composer Studio">
+<meta name="product-link" content="https://www.ti.com/tool/CCSTUDIO">
+
+<!-- Change the title text for your page -->
+<title>C671x Software Development Environment</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+# Overview
+This document describes the software development environment for the TMS320C671x family of of digital signal processors.  It will cover the integrated development environment, compiler and software packages that are recommended.
+
+# Recommended Environment
+
+## Summary
+A couple of options are presented for the development environment.  The first, legacy environment, matches closely with the original development environment that was used for C671x development.  The second option lists a newer environment that still has the necessary support for C671x.
+
+### Legacy Environment
+* Code Composer Studio v3.3
+* C6000 6.1.10 compiler
+* DSP/BIOS 5.33
+* Chip Support Library
+* Board Support Library
+
+### Newer Environment
+* Code Composer Studio v8.3.1
+* C6000 Compiler 8.2.5
+* DSP/BIOS 5.42
+* Chip Support Library
+* Board Support Library
+
+More information on each item is provided below.
+
+## Development Tools
+
+### Code Composer Studio
+Code Composer Studio is the integrated development environment for TI embedded processors.  While it is possible to use recent versions of Code Composer Studio wtih C671x devices it is more practical to use an older version.
+
+One of the key considerations is that the typical debug probe used for C671x development is an XDS510.  Many of the C671x development boards even have an XDS510 class debug probe integrated.  The last version of Code Composer Studio to support XDS510 debug probes was 8.3.1.
+
+Most development for C671x devices would have been done using Code Composer Studio v3.3.  This version is very old.  However if you are using an existing software based that was developed using this environment then the easiest path may be to use this old version.
+
+[[b Note:
+If you choose to use Code Composer Studio v3.x it is suggested that you consider running it in a Windows 7 virtual machine (VM).  [Application note on running CCS in a virtual environment](https://software-dl.ti.com/ccs/esd/documents/ccs_vmware.html)
+]]
+
+* [Code Composer Studio v3.3](https://software-dl.ti.com/ccs/esd/documents/ccs_downloads.html)
+* [Code Composer Studio v8.3.1](https://software-dl.ti.com/ccs/esd/documents/ccs_downloads.html)
+
+### Compiler
+The most recent versions of the C6000 compiler support C671x devices.  However you will want to consider the version of the compiler that was used for any software that you will be leveraging.  For example if you are going to be using a software base that was developed using the 6.10 compiler you would likely want to continue using it.
+
+[[b Note:
+It is possible to install and use older compilers with newer Code Composer Studio releases.
+[Video on selecting a compiler](https://www.youtube.com/watch?v=CQ7-mThxVdI&t=4s)
+]]
+
+* [C6000 Compiler download site](https://software-dl.ti.com/codegen/non-esd/downloads/download_archive.htm#C6000)
+
+### Debug Probe
+Newer debug probes such as XDS110 and XDS200 do not support C671x devices. XDS100 probes also do not support C671x.  That leaves XDS510 and XDS560v2 class probes as the available options.  Most software development for C671x will have been done with XDS510 class debug probes and that is what is on the majority of developent boards.  While most XDS510 class probes have been discontinued you can still find many used ones available.
+
+[[b Note:
+XDS510 class debug probes are only supported on Windows.
+]]
+
+* XDS510 USB debug probe
+
+## Embedded Software
+
+### Real-time Operating System
+DSP/BIOS was the real-time kernel or operating system provided for C671x devices.  There were newer products such as SYS/BIOS and TI-RTOS but DSP/BIOS is recommended for this family.
+
+[[b Note:
+These older verions of DSP/BIOS use a tool called tconf for building.  You will want to use the ROV Classic tool for viewing the state of OS objects during debug.
+]]
+
+* DSP/BIOS v5.33 if using CCSv3.3.
+* [DSP/BIOS v5.42](https://software-dl.ti.com/dsps/dsps_public_sw/sdo_sb/targetcontent/bios/dspbios/5_42_02_10/index_FDS.html) if using CCSv8.3.1
+
+### Chip support library
+The Chip Support Library (CSL) provides an application programming interface (API) used for configuring and controlling the on-chip peripherals for ease of use, compatibility between various C6000 devices and hardware abstraction.
+
+* [C6000 Chip Support Library](https://www.ti.com/tool/SPRC090)
+
+### DSP library
+An optimized general-purpose DSP function library for C Programmers typically used in computationally intensive real-time applications.
+* [C67x DSPLIB](https://www.ti.com/lit/zip/sprc121)
+
+### Board support library
+The C6713 DSP Starter Kit (DSK) was the most popular development board for C671x devices.  The board support library (BSL) contains a set of drivers for onboard peripherals as well as example projects.
+
+[[b Note:
+The example projects in the BSL package are very old and developed for use with Code Composer Studio v3.x.  Thus if using a newer CCS it is recommended to use the source as reference.  If you want to use CCSv3.x projects in a newer CCS then the [Importing CCSv3.3 Project to CCS Eclipse](https://software-dl.ti.com/ccs/esd/documents/ccs_legacy-project-import.html) application note may help.
+]]
+
+Upload to software-dl
+
+link to software-dl
+
+
+### other
+
+CHIP_6713
+Importing project
+ROV
+BIOS build
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

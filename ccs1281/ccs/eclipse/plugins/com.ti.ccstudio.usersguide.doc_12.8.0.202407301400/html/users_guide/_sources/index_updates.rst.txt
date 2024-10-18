@@ -1,0 +1,11 @@
+Updates
+********
+
+This chapter describes the Code Composer Studio update process.
+
+.. toctree::
+   :maxdepth: 3
+
+   ccs_updates
+
+

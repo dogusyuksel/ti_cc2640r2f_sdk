@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="An Introduction to Binary Files"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Generation Tools">
+<meta name="product-link" content="https://www.ti.com/tool/TI-CGT">
+
+<!-- Change the title text for your page -->
+<title>An Introduction to Binary Files</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+# Introduction
+
+In some development environments, a full featured ELF or COFF executable file
+cannot be accepted as an input by tools such as a flash programmer or boot
+loader.  These tools require a simpler form of the executable that is called a
+binary file.  This article explains these binary files.
+
+The term *binary file* is misleading.  Please do not confuse it with the
+general term for any file that contains more than plain text.  As used in
+this article, the term *binary file* refers to a particular variant of binary
+files that are not plain text files.
+
+# Binary Files Defined
+
+One of the older ways to create a binary file is with the Unix utility
+objcopy.  Here is the description of the format from the objcopy man page ...
+
+> When objcopy generates a raw binary file, it will essentially produce a memory dump of the  contents of  the input object file.  All symbols and relocation information will be discarded.  The memory dump will start at the load address of the lowest section copied into the output file.
+
+The rest of this article elaborates on this description, and discusses related
+issues.
+
+# Diagram
+
+This diagram illustrates what happens when an executable file is used to
+create a binary file.
+
+![](./images/binary_files_diagram.png)
+
+# Diagram Explanation
+
+The left side represents a full featured ELF or COFF file named file.out.  The
+right side represents the corresponding binary file named file.bin.
+
+Regarding file.out ...  This contrived file has three sections.  The first
+two are initialized sections named secA and secB.  The last one is an
+uninitialized section named .stack.  For each section, a few key properties
+are shown.  This includes the name, address, and length.  For the initialized
+sections, the full contents of the raw data are shown.  An uninitalized
+section like .stack reserves space in system memory, but has no contents.  
+
+Regarding file.bin ... This diagram shows the full contents of file.bin.  It
+only contains the raw data from file.out.  This raw data appears in address
+order.  Thus secB, which is at the lowest address 0x100, appears first.  There
+is a gap between the end of secB and the start of secA.  In the simple format
+of a binary file, the only way to represent such a hole is to fill it.  
+Unintialized sections, which have no raw data, are ignored.
+
+# Addresses in a Binary File
+
+Compare the address with the file offset in the binary file.  They are related,
+but they do not match.  Here is one way to represent the relationship.
+
+    target address = lowest initialized address + file offset
+
+The term *lowest initalized address* is the starting address of the
+initialized section with the lowest address.  In this diagram, that is secB at
+address 0x100.
+
+A binary file does not record the starting address.  That detail is maintained
+in some other manner.
+
+If an initialized section has different load and run addresses, the load
+address is used, and the run address is ignored.
+
+# Holes in a Binary File
+
+The format of a binary file is very simple.  There is no compact way to
+represent a hole.  The only possible way to represent a hole is to fill it.
+
+The value zero is usually used to fill holes.  If the binary file is created
+with a variant of an objcopy utility, see if that utilty supports an option
+named --gap-fill.  If so, it can be used to fill a hole with a value other
+than zero.
+
+## Avoiding Holes
+
+The best way to avoid holes is to carefully control the placement of the
+initialized sections in the executable.  Put them as close together as
+possible.  In an ideal configuration, they are all adjacent to each other.
+
+Sometimes holes cannot be avoided.  If that is the case, see if one of these
+two alternatives is practical.
+
+One alternative is to create separate bin files.  If there are two clusters of 
+initialized sections, then create one bin file for each cluster.  This approach
+is not always practical.  The utility that creates the bin file may not
+support it.  Or, the utility that reads the bin file as input may accept only 
+one file.
+
+The second alternative relies on two presumptions.  One, all of the initialized
+sections are close together accept one.  Two, there is room in memory near the
+main cluster of initialized sections.  In that case, arrange for that remaining
+initialized section to have different load and run addresses.  It loads at an
+address near the main cluster of initialized sections.  As part of system
+startup, it is copied to a different run address.
+
+# Example
+
+This example matches the diagram.  Therefore, it is not a realistic program.
+Instead, it is much smaller and easier to understand.  It introduces several
+utilities.  A good way to learn about such utilities is with small examples.
+Make changes in the input files, or how the utilities are used, and observe
+how the results change.
+
+The [TI ARM Clang compiler tools](https://www.ti.com/tool/ARM-CGT) are used
+to build and inspect these files.
+
+Here is the assembly source code file.s ...
+
+```c
+@ file.s
+
+        .section        secA,"a",%progbits
+        .skip           8,0xAA
+
+        .section        secB,"a",%progbits
+        .skip           16,0xBB
+
+        .section        .stack,"aw",%nobits
+        .zero           0x800
+```
+
+Here is the linker command file file.cmd ...
+
+```c
+/* file.cmd */
+
+/* Do NOT use this setting in a production build.  It is used in this       */
+/* contrived example to prevent the linker from removing sections which are */
+/* not used by the program.                                                 */
+--unused_section_elimination=off
+
+SECTIONS
+{
+   secB   > 0x100
+   secA   > 0x120
+   .stack > 0x200
+}
+```
+
+These commands:
+
+1. Build file.s to create the object file file.o
+2. Link file.o to create the final executable file.out.  The linker map file file.map is also created.
+
+```
+% tiarmclang -c file.s
+% tiarmclang file.o -o file.out -Wl,file.cmd -Wl,-m=file.map
+warning: no suitable entry-point found; setting to 0
+```
+
+Ignore the warning.  This example is not a real program, so there isn't an
+entry point.
+
+There are few different ways to see the sections that have been created.
+
+These are the keys lines from the linker map file file.map ...
+
+```
+secB       0    00000100    00000010
+                  00000100    00000010     file.o (secB)
+
+secA       0    00000120    00000008
+                  00000120    00000008     file.o (secA)
+
+.stack     0    00000200    00000800     UNINITIALIZED
+                  00000200    00000800     file.o (.stack)
+```
+
+The object file display utility could be used.  Here is the command and a
+few key lines from the output ...
+
+```
+% tiarmofd file.out
+...
+ Section Information
+
+    id name                      load addr  run addr    size align alloc
+    -- ----                      ---------  --------    ---- ----- -----
+     0 (no name)                 0x00000000 0x00000000   0x0     0   N
+     1 secB                      0x00000100 0x00000100  0x10     1   Y
+     2 secA                      0x00000120 0x00000120   0x8     1   Y
+     3 .stack                    0x00000200 0x00000200 0x800     8   Y
+...
+```
+
+Another way to see this information is with the readelf utility ...
+
+```
+% tiarmreadelf -S file.out
+...
+Section Headers:
+  [Nr] Name              Type            Address  Off    Size   ES Flg Lk Inf Al
+  [ 0]                   NULL            00000000 000000 000000 00      0   0  0
+  [ 1] secB              PROGBITS        00000100 000034 000010 00   A  0   0  1
+  [ 2] secA              PROGBITS        00000120 000044 000008 00   A  0   0  1
+  [ 3] .stack            NOBITS          00000200 000050 000800 00  WA  0   0  8
+...
+```
+
+Use the the objcopy command to create the binary file file.bin.
+
+```
+% tiarmobjcopy -O binary file.out file.bin
+```
+
+One way to inspect a binary file is with a binary file editor.  Another way
+is to use a utility to dump it out.  Here is an example that uses a utility
+from Unix named od ...
+
+```
+% od -Ax -t x1 -w4 -v file.bin
+000000 bb bb bb bb
+000004 bb bb bb bb
+000008 bb bb bb bb
+00000c bb bb bb bb
+000010 00 00 00 00
+000014 00 00 00 00
+000018 00 00 00 00
+00001c 00 00 00 00
+000020 aa aa aa aa
+000024 aa aa aa aa
+000028
+```
+
+The command line arguments to od are not standardized.  Here is what they mean
+in this particular case.
+
+* -Ax : Use hexadecimal for the file offset
+* -t x1 : Format each byte as a separate 8-bit hex value
+* -w4 : Show 4 bytes per line
+* -v : Output all the lines, even if they are duplicates
+
+<!-- Add your markdown source here! -->
+   
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

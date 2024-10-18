@@ -1,0 +1,32 @@
+Local Variables for Functions
+-----------------------------
+
+Similarly to C, local variables can be declared within GEL functions and cease to exist after the function returns. 
+
+Given that GEL allows accessing variables defined in the program loaded to the target device, the local variables can have a global influence on the overall script.  
+
+When a target variable is evaluated, Code Composer Studio debugger gathers the necessary information from the code loaded to the target device. The code (with debug information) that defines the symbol must be loaded into the Code Composer Studio debugger before the function is executed. Otherwise, runtime errors will happen.
+
+___
+
+**Example:**
+
+In the example below, the variable **count** is declared within the GEL function and the variable **data** must exist in the code loaded to the target device.
+
+.. code:: cpp
+
+   MyFunc(maxValue)
+   {
+      int count;
+      string title = "MyFunc";
+      for (count = 0; count < maxValue; count++)
+         data[count] = 0;
+    }
+
+It is possible to use globals within GEL functions (See `Global Variables for GEL Functions <global.html>`__ ).
+
+___
+
+**See also:**
+
+`GEL Functions: Alphabetical List <functions_list.html>`__

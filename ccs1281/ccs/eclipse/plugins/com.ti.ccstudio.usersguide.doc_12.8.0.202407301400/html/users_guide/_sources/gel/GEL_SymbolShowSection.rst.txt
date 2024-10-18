@@ -1,0 +1,75 @@
+GEL_SymbolShowSection()
+-----------------------
+
+Shows a section of symbols.
+
+**Syntax**
+
+**GEL_SymbolShowSection( "**\ fileName\ **", "**\ sectionName\ **",**
+codeStart\ **,** dataStart [**, "**\ cpuName\ **"**\ [**,
+"**\ boardName\ **"**]] **);**
+
+**Parameters**
+
+fileNamenames the symbol file containing the symbol information. The
+fileName must be enclosed in quotation marks. The symbol file can be a
+standard COFF output file (\*.out) or a specific symbol file obtained
+during the build process.
+
+sectionNamenames the section to remove. The sectionName must be enclosed
+in quotation marks.
+
+code_startspecifies the starting address where the code sections are to
+be loaded in memory.
+
+data_startspecifies the starting address where the data sections are to
+be loaded in memory.
+
+cpuName(optional) names the CPU on which to load the symbolic
+information (useful in a multiprocessor environment). The cpuName must
+be enclosed in quotation marks.
+
+boardName(optional) names the board on which to load the symbolic
+information. If not specified, uses the board name of the processor on
+which this GEL function is executed. The boardName must be enclosed in
+quotation marks.
+
+**Description**
+
+This function shows a section of symbols. It may be useful to show
+symbol information from specific sections only. If sectionName is a code
+section, the section will be relocated to address codeStart. If
+sectionName is a data section, the section will be relocated to address
+dataStart. If a section is moved, symbols in the section will be
+relocated accordingly.
+
+**Synchronous**
+
+Synchronous from GEL: No
+
+Completely synchronous: No
+
+**Example**
+
+GEL_SymbolShowSection( "C:\\mydir\\myfile.out", ".text", 0x0, 0x0,
+"CPU", "C55x Simulator (Texas Instruments)" );
+
+**Related Topics**
+
+`GEL_Load() <GEL_Load.html>`__
+
+`GEL_SymbolAdd() <GEL_SymbolAdd.html>`__
+
+`GEL_SymbolAddRel() <GEL_SymbolAddRel.html>`__
+
+`GEL_SymbolHideSection() <GEL_SymbolHideSection.html>`__
+
+`GEL_SymbolLoad() <GEL_SymbolLoad.html>`__
+
+`GEL_SymbolLoadRel() <GEL_SymbolLoadRel.html>`__
+
+`GEL_SymbolAddRel() <GEL_SymbolAddRel.html>`__
+
+`GEL_SymbolRemove() <GEL_SymbolRemove.html>`__
+
+`GEL_UnloadAllSymbols() <GEL_UnloadAllSymbols.html>`__

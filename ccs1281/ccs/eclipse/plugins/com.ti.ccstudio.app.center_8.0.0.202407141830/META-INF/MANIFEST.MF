@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Code Composer Studio App Center
+Bundle-SymbolicName: com.ti.ccstudio.app.center;singleton:=true
+Bundle-Version: 8.0.0.202407141830
+Bundle-Activator: com.ti.ccstudio.app.center.internal.CCSAppCenter
+Bundle-Vendor: Texas Instruments
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,com.ti.common.ui
+ ,com.ti.browser,com.ti.ccstudio.app.center.p2,org.eclipse.equinox.p2.ui
+ ,com.ti.ccstudio.resource.explorer,org.json
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Eclipse-BundleShape: dir
+Export-Package: com.ti.ccstudio.app.center.internal;x-friends:="com.ti.c
+ cstudio.errorparser.ui",com.ti.ccstudio.app.center.internal.browser;x-i
+ nternal:=true,com.ti.ccstudio.app.center.internal.license;x-internal:=t
+ rue
+
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+     <extension
+         point="com.ti.dvt.symbolmanager.symbolManagers">
+      <symbolManager
+            class="com.ti.dvt.ofssymbolmanager.OFSSymbolManager"
+            name="OFS Symbol Manager"
+            id="com.ti.dvt.ofssymbolmanager.OFSSymbolManager"/>
+   </extension>
+
+</plugin>

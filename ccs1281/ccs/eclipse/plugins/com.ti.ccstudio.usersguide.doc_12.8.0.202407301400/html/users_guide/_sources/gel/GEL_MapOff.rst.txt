@@ -1,0 +1,39 @@
+GEL_MapOff()
+------------
+
+Disables a memory map.
+
+**Syntax**
+
+**GEL_MapOff();**
+
+**Parameters**
+
+None.
+
+**Description**
+
+This function disables memory mapping. Note that disabling memory
+mapping can cause bus fault problems in the target because the Code
+Composer Studio debugger may attempt to access nonexistent memory. On
+power up, the memory map is turned off by default.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: Yes
+
+**Example**
+
+GEL_MapOff();
+
+**Related Topics**
+
+`GEL_MapAdd <GEL_MapAdd.html>`__
+
+`GEL_MapOn <GEL_MapOn.html>`__
+
+`GEL_MapDelete <GEL_MapDelete.html>`__
+
+`GEL_MapReset <GEL_MapReset.html>`__

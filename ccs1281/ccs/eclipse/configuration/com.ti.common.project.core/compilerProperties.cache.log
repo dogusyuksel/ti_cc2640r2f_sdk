@@ -1,0 +1,6 @@
+Total tool discovery time: 22 ms
+
+Discovered a total of 3 tools:
+	/home/spire/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS : 20.2.7.LTS
+	/home/spire/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS : 21.6.1.LTS
+	/home/spire/ti/ccs1281/ccs/tools/compiler/ti-cgt-armllvm_3.2.2.LTS : 3.2.2.LTS

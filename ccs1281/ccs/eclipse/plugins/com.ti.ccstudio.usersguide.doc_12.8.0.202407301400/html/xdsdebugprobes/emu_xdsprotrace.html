@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="XDS560v2 PROTRACE trace receiver for TI embedded devices">
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="XDS560v2 PROTRACE">
+<meta name="product-link" content="https://www.ti.com/tool/TMDSEMUPROTRACE">
+
+<!-- Change the title text for your page -->
+<title>XDS560v2 ProTrace Trace Receiver</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+
+
+<!-- Start of markdown source -->
+#Product pages
+<font size="5">
+[XDS560v2 System Trace USB](https://www.ti.com/tool/tmdsemu560v2stm-u)
+<br>
+[XDS560v2 System Trace USB &amp; Ethernet](https://www.ti.com/tool/tmdsemu560v2stm-ue)
+<br>
+[XDS ProTrace](https://www.ti.com/tool/tmdsemuprotrace)
+</font>
+
+<br>
+The product pages contain ordering information, availability and compliance data.
+<br>
+
+# Overview
+The <b>XDS560v2 ProTrace</b> is the next generation of Trace Receiver products that replaced the [XDS560T](./files/XDS560_Trace_legacy.pdf). Although it is also capable of performing regular Debug activities, its main differential is to capture high-speed Core Trace data exported from the pins of TI devices to enable advanced analysis.
+
+The XDS560 Trace technology is the emulation technology that performs real-time gathering of all instructions being executed in a processor - also called <i>Core Trace</i> or <i>Instruction Trace</i>. This process is done through specialized hardware embedded into the device and requires additional JTAG pins to support the high data throughput.
+
+[[b Note:
+
+   This is different than <i>System Trace</i>, which is the emulation technology that monitors synchronization and timing between cores and on-chip peripherals. For these types of traces please check the [XDS560v2](emu_xds560v2.html) page. 
+   
+]]
+
+The data is gathered in real-time and the Trace pod performs the tasks of data compression and buffering (its size is configurable). Once the data gathering is finished, it is decompressed and sent to the host PC running Code Composer Studio and therefore available for post processing and analysis by the developer.
+
+#Features
+
+##Debug
+- Code Composer Studio
+- Native 60 pin MIPI HSPT target cable, with an adapter to 60-pin TI Trace connector 
+- Target debugging with JTAG IEEE 1149.1 and cJTAG IEEE 1149.7
+- Up to 6.25MHz TCLK 
+- Control for power-up/boot-mode on EMU0/1 pins 
+- Auto sensing target voltage range from 1.2 volts to 4.1 volts 
+- Approx 50% faster code download than XDS560 (v1) 
+- <b>JTAG debug isolation mode</b> - ability to disconnect the Debug Probe connection and have this result in the debug subsystem power down. This blocks driving any JTAG signals by the Debug Probe/cable when CCS is not connected. 
+   - When the last CCS core/node disconnects, all the Debug Probe/cable output signals will be tri-stated (Hi-Z). This blocks driving any JTAG signals by the Debug Probe/cable.
+
+- <b>JTAG TCLK loop-back option</b> - ability to select TCLK loop-back with user-specified limit 
+   - This enables CCS to connect to targets with no return clock (RTCK) pin.
+   
+- <b>Map boot-mode pins (EMU0 &amp; EMU1)</b> - ability to map boot-mode pins to any of the following pins 
+   - EMU1 = Pin TRD0.2 and EMU0 = Pin TRD0.1 
+   - EMU1 = Pin TRD0.1 and EMU0 = Pin TRD0.0 
+   - EMU1 = Pin EXTF and EMU0 = Pin EXTE
+
+##Trace
+- Supports up to 2 data streams/channels
+- Up to 32 pins for trace data channel (selected ARM cores)
+- Up to two clock pins
+- Any pin can be clock or data pin 
+- System Trace (STM) uses 1 to 4 pins.
+- DSP Instruction Trace uses 1 to 20 pins. Currently supported: Keystone I (C66x), Keystone II (66AK2) and the DSP cores of AM57xx and J721E devices.
+- ARM (TPIU) Instruction Trace uses 1 to 32 pins. Currently supported: selected Hercules TMS570/RM57 devices, Keystone II (66AK2), AM437x, AM57xx, AM65xx, J721E devices.
+- 250 MHz DDR Trace Capture support 
+- Auto compensating calibration for edge jitters, skews, and duty cycle for robust trace data capture 
+- 2GB of trace storage
+
+##PC Interfaces
+The interfaces are both USB2.0 high speed and Ethernet.
+
+#Hardware
+##Target Board Connector Requirements
+
+- The XDS560v2 System Trace Debug Probe utilizes the 60-pin MIPI HSPT connector. The connector and target board electrical requirements and recommandation for Trace and JTAG support can be found in [XDS Target Connection Guide](./emu_xds_target_connection_guide.html). 
+- Also see your Debug Probe manufacturer's documentation for Debug Probe specific information. Users may also want to read the "Common Trace Transmission Problems and Solutions" at [SPRAAK6](https://www.ti.com/lit/pdf/SPRAAK6).
+- MIPI Connector recommendation can be found at [MIPI.org](https://mipi.org/docs/MIPI_TD_connectors_recommendation_v01-00-00.pdf).
+
+#Updating the Firmware
+
+[[r Warning:
+
+   It is not advisable to update the firmware through an Ethernet connection.
+   Unplug the ethernet cable, connect a direct USB cable, and power cycle the XDS560v2 before updating the firmware.
+   
+]]
+
+Close any instances of CCS that are running in your system. Open a Command Prompt and issue the following commands:
+
+[[b Note:
+
+The steps below are for an installation of CCSv10.4 in the default directory. Please update the path as needed, depending on your CCS installation.
+      
+]]
+
+**1.** Download and extract the following zip: [emu_xdsprotrace_firmware.zip](./files/emu_xdsprotrace_firmware.zip)
+
+**2.** Go to the directory where the [DTC Conf utility](./emu_dtc_conf.html) is installed:
+   
+      C:\\&gt;<strong>cd C:\\ti\\ccs1040\\ccs\base\\common\\uscif</strong>
+   
+**3.** Run the configuration just to make sure a ProTrace receiver is connected and what is the firmware revision installed on it: 
+   
+      C:\\ti\\ccs1040\\ccs\\base\\common\\uscif&gt;<strong>dtc_conf get sd560v2u 0</strong>
+   
+**4.** Update the firmware:
+
+      C:\\ti\\ccs1040\\ccs\\base\\common\\uscif&gt;<strong>dtc_conf update sd560v2u 0 [EXTRACTED ZIP DIRECTORY]\xds560v2pro_firmware</strong>
+
+      A prompt will appear, asking for confirmation to update the firmware. press **y** to proceed. The update process may take a few minutes to finish.
+   
+**5.** Confirm the image name:
+
+      C:\\ti\\ccs1040\\ccs\\base\\common\\uscif&gt;<strong>dtc_conf get sd560v2u 0 _fpgaImageName</strong>
+
+      It should return: 
+
+      <tt>_fpgaImageName=xds560v2pro.xsvf</tt>
+
+      <br>
+
+
+**6.** Restore the default DTC settings:
+
+      C:\\ti\\ccs1040\\ccs\\base\\common\\uscif&gt;<strong>dtc_conf restore sd560v2u 0</strong>
+
+      A prompt will appear, asking for confirmation to restore the default settings. press **y** to proceed. the update process may take a few minutes to finish. 
+
+**7.** Check the configuration again to confirm the new firmware revision:
+
+      C:\\ti\\ccs1040\\ccs\\base\\common\\uscif&gt;<strong>dtc_conf get sd560v2u 0</strong>
+
+      ![](./images/xdsprotrace_fw_update.png)
+
+#Frequently Asked Questions (FAQs)
+
+##Q: Where can I see the documents for the XDS560v2 System Trace Emulators?
+
+[Spectrum Digital documentation site](http://support.spectrumdigital.com/ccs40/xds560v2_stm/)
+
+[Blackhawk documentation site](https://www.blackhawk-dsp.com/support/docs)
+
+##Q: There are multiple XDS560v2 Debug Probe offerings. What are the differences between them?  
+
+[Spectrum Digital XDS560v2 Comparison Guide](http://emulators.spectrumdigital.com/files/XDS560v2_Emulator_Comparison.pdf)
+
+[Blackhawk XDS560v2 Models](https://www.blackhawk-dsp.com/products/jtag-emulators#xds560v2)
+
+##Q: I have a 20 pin compact TI header / 14 pin TI header on my board but the XDS560v2 System Trace cable has 60 pin MIPI HSPT header. How do I use the XDS560V2 Debug Probe with my target?  
+
+Your Debug Probe should have come with adapters. If not, please contact your manufacturer.
+
+##Q: If user1 has a XDS560v2 Ethernet debug session started and user2 tries to connect also, what will happen?  
+
+With more recent versions of XDS560v2 firmware user1 is unaffected and user2 will receive the "Error initializing emulator" message.
+
+##Q: Does the XDS560v2 support High Speed RTDX?  
+
+No.
+
+##Q: What do the LEDs mean on the XDS560v2 System Trace Debug Probe enclosure?
+
+Check the documentation of your Debug Probe for the most accurate details, but in general they obey the following convention:
+
+<table id="stl01">
+<tr>
+<th> <font color="#0000f0"> <b>LED Name</b> </font> </th>
+<th> <font color="#0000f0"> <b>Color</b> </font> </th>
+<th> <font color="#0000f0"> <b>Operation</b> </font> </th>
+</tr>
+<tr> <th>POWER</th> <th><span style="color: rgb(51, 153, 102);">Green </span></th> <th>ON- Power ON<br>OFF - Power Off</th> </tr>
+<tr> <th>STATE-1</th> <th><span style="color: rgb(51, 153, 102);">Green </span></th> <th>ON - CCS debugger connected<br>OFF- CCS debugger disconnected </th> </tr>
+<tr> <th>STATE-2</th> <th><span style="color: rgb(255, 204, 0);">Yellow </span></th> <th>ON - XDS560v2 System Trace Emulator FPGA programmed<br>OFF- XDS560v2 System Trace Emulator FPGA not programmed </th> </tr>
+<tr> <th>STATE-3</th> <th><span style="color: rgb(255, 0, 0);">Red </span></th> <th>ON - XDS560v2 System Trace Emulator ready (see note 1)<br>OFF - XDS560v2 System Trace Emulator not ready<br>FLASH (momentary) - Ethernet connection refused (see note 2)</th> </tr>
+<tr> <th>ACTIVITY-1</th> <th><span style="color: rgb(51, 153, 102);">Green </span></th> <th>ON - XDS560v2 System Trace Emulator is booting<br>FLASH (momentary) - XDS560v2 System Trace Emulator configuration activity</th> </tr>
+<tr> <th>ACTIVITY-2</th> <th><span style="color: rgb(255, 204, 0);">Yellow </span></th> <th>ON - XDS560v2 System Trace Emulator to Host activity (trace upload)<br>OFF - No transfer </th> </tr>
+<tr> <th>ACTIVITY-3</th> <th><span style="color: rgb(255, 0, 0);">Red </span></th> <th>ON - Data capture by STM receiver<br>OFF - No capture </th> </tr>
+<tr> <th>ACTIVITY-3<br>ACTIVITY-2<br>STATE-1 </th> <th>Flashing</th> <th>SAFE MODE.  When all three are simultaneously flashing this indicates safe mode.  The likely causes are a failed firmware upgrade, or multiple failed boot attempts. See the FAQ section below.</th> </tr>
+<tr>
+</table>
+
+[[b Notes:
+1. While booting into SAFE MODE the <span style="color: rgb(51, 153, 102);">green </span>ACTIVITY-1 LED and the <span style="color: rgb(255, 0, 0);">red </span>STATE-3 LED will both be ON.<br> 
+
+2. Only one ethernet client may use the XDS560v2 System Trace Debug Probe at a time.  The ethernet connection will be refused if another client is already connected in CCS.  In this case the error message will be "Error initializing Debug Probe".
+]]
+
+##Q: What version of Code composer Studio is supported?
+
+The XDS560v2 ProTrace is supported by Code Composer Studio v5.2.1 and newer. 
+
+##Q: Is Code Composer Studio v3.3 supported?
+
+No. 
+
+##Q: What utility can I use to configure my XDS560v2 Pro Trace?
+Spectrum Digital provides the utility SD560v2Config.exe, which is installed with CCS and can be found at the directory below:
+
+   &lt;CCS_INSTALL_DIR&gt;/ccs/ccs_base/common/uscif 
+
+The manual is available from the menu **Help** &rarr; **Documentation** from within the utility.
+
+##Q: How do I make sure that the XDS560v2 ProTrace is ready to use and functional?  
+
+- Once the POWER, STATE-2 and the STATE-3 LEDs are ON (all of them), XDS560v2 Pro Trace Debug Probe is ready to use. 
+- The **dtc_conf** configuration utility can also be used. Check the [DTC CONF](emu_dtc_conf.html) document for details.
+
+##Q: The LEDs are flashing and I can't connect to the XDS560v2 Pro Trace, what does this mean?  
+
+This means the XDS560v2 System Trace Debug Probe is unable to boot properly. It may be either in safe mode or some hardware failure took place.
+
+Scenarios where this may happen are a failed firmware update or a failure to properly boot multiple times. 
+
+The **dtc_conf** configuration utility can be used to put the Debug Probe out of the safe mode. Check the [DTC CONF](emu_dtc_conf.html) document for details.
+
+##Q: When I launch CCS and try to connect, I see "Emulator not initialized" error message. What could be wrong? <br> 
+
+Check the section **Host connection error** of the [Debugging JTAG](../ccs_debugging_jtag_connectivity_issues.html) page.
+
+##Q: How can I check if the USB driver is setup correctly?  
+
+You should be able to look in Windows Devices to see if it is setup properly. It should look like below when USB is setup correctly.
+
+![XDS560v2 Windows Control Panel](./images/Sdusbsetupok.jpg)
+
+##Q: Ethernet isn't working but USB is what could be wrong with ethernet?
+
+The Ethernet connection may not have been initialized. Connect the Ethernet cable before powering up the Debug Probe. This is due to an issue where the automatic Ethernet cable detection fails to work after the system finished booting. 
+
+The network and the Debug Probe may have mismatched configurations. Check the [DTC CONF](emu_dtc_conf.html) document for details on how to configure the proper address lease mechanism: DHCP or static IP.
+
+Also, versions prior to and including epkRev 5.0.329.0 have a bug that can cause certain values of the dtcName variable to prevent ethernet from starting. Issue the command below to obtain the epk version and, if older, issue the second command to change the dtcName to an alphanumeric name:
+
+C:\ti\ccs1010\ccs\ccs\_base\common\uscif&gt; **dtc_conf get sd560v2u 0 epkRev**
+C:\ti\ccs1010\ccs\ccs\_base\common\uscif&gt; **dtc_conf set sd560v2u 0 "dtcName=Probe1"**
+
+Check the [DTC CONF](emu_dtc_conf.html) document for details.
+
+##Q: Why the XDS560v2 Pro Trace seems to be slower than my XDS560v2 System Trace?
+
+Due to design constraints, the XDS560v2 Pro Trace uses a slower TCLK frequency up to 6.25MHz when compared to the faster 50MHz of the XDS560v2 System Trace pod. 
+
+##Q: When I try to start the Trace Control I get the "Target is disconnected" error message, what could be wrong?  
+
+This usually means that a device that was previously connected has been disconnected. Ensure that all the devices are connected by selecting the device in the tree list and pressing the Connect button.
+
+##Q: I get the "failed to calibrate channel : no signal on clock : check external pin manager settings and clock circuit connection" error message from the Trace Control, what could be wrong?  
+
+The message indicates that no target transmitter clock was detected during the receiver calibration. This usually means that the external pin manager has not been enabled, requiring to assign and run the appropriate GEL script commands for your device. Some devices such as 66AK2H12 or 66AK2E05 require this to be done manually, but others feature a platform target configuration such as K2GEVM or IDK_AM572X, where these scripts are pre-configured.
+
+##Q: I do not see the STM node in the CCS debug view even if I have this setup in the CCS setup configuration.  
+
+This is probably caused by not turning on option to view non-debuggable devices. This option can be turned on from CCS debug view options. Once the option is checked, you need to re-launch the debugger.
+
+##Q: What if someone is already using the Debug Probe via ethernet? / What does "SC_ERR_OCS_ALREADY_OPEN" mean?  
+
+If someone is already using the Debug Probe on ethernet, you may get an error message like SC_ERR_OCS_ALREADY_OPEN. This means someone already has a connection to the Debug Probe.
+
+##Q: How can I confirm the IP or the USB address of the XDS560v2 unit I am trying to access? 
+
+When using DTC_CONF, the ACTIVITY-1 LED should blink briefly. 
+
+##Q: When trying to use SD560v2Config.exe I get the message "Application Error: The application has failed to initialize properly (0xc0000135). Click on OK to terminate the application."  
+
+The problem is that .NET is not installed on your computer. Download and install [Microsoft .NET 3.5 Runtime](https://www.microsoft.com/downloads/en/details.aspx?FamilyID=333325FD-AE52-4E35-B531-508D977D32A6&displaylang=en) to fix the problem.
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>
+

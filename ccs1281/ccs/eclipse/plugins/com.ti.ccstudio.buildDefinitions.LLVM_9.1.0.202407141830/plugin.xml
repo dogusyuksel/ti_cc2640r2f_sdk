@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+	<extension point="com.ti.common.project.core.projectStateListeners">
+		<listener class="com.ti.ccstudio.buildDefinitions.LLVM.ImplicitLegacyLLVMProjectMigrator"/>
+	</extension>
+
+</plugin>

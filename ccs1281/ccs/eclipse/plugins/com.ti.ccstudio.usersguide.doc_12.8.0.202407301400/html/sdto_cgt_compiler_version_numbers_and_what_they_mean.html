@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="This article describes how to interpret TI compiler version numbers"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Generation Tools">
+<meta name="product-link" content="https://www.ti.com/tool/TI-CGT">
+
+<!-- Change the title text for your page -->
+<title>Compiler Version Numbers and What They Mean</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+<!-- Add your markdown source here! -->
+# Introduction
+
+When you see a compiler version number like 6.1.11 or 15.12.0.LTS, what does
+that mean?
+
+# Two Versioning Schemes
+
+Two version versioning schemes are in use.  Only within this article, one
+scheme is called Semantic Versioning, or SV for short.  The other scheme is
+called Date Versioning, or DV for short.  Both SV and DV have a series of three
+numbers.  After the numbers, the letters LTS or STS often, though not always,
+appear.
+
+## Semantic Versioning - SV
+
+In this versioning scheme, version numbers are of the form X.Y.P, where a change
+in each position indicates the type and/or degree of changes that that compiler
+version has from any preceding version. You can use the differences to
+determine what sort of changes in features and bugs you will experience when
+you upgrade from one version to another.
+
+* X: major number
+* Y: minor number
+* P: patch
+
+These version numbers are based on the
+[Semantic Versioning Specification](https://semver.org)
+
+## Date Versioning - DV
+
+These version numbers are based on the year and month of the release. They
+are of the form YY.MM.P.
+
+* YY: last two digits of the year
+* MM: month
+* P: patch
+
+The first two numbers are the year and approximate month of the first release.
+Examples are 15.3 and 15.6, representing March 2015 and June 2015. When
+releases vary in YY.MM, the later release contains additional features or
+capability. The farther apart in time the releases, the more different the
+releases.
+
+Note that you might see a release version number like 15.12.7.LTS appear
+in 2017.  Even though the current year is 2017, the first release occurred in
+December of 2015.
+
+## P is the Patch Number
+
+For both SV and DV, the P digit is a patch number. P begins with 0, and
+increases by 1 for each subsequent release. If the only difference between two
+version numbers is P, then the only difference between the releases is bug
+fixes.  When choosing between two releases that only differ in the P value, you generally should choose the release with the higher P value.
+
+## STS or LTS
+
+STS is an acronym for Short Term Support. LTS is an acronym for Long Term
+Support. See also the
+[wikipedia entry on LTS](https://en.wikipedia.org/wiki/Long-term_support).
+
+The quality of STS releases is the same as LTS releases. STS releases go
+through the same validation process as LTS releases and all exposed features
+are fully supported unless otherwise noted.
+
+Both SV and DV for recent compilers are followed by STS or LTS.  Older
+compilers, which only use SV, are not followed by STS or LTS.  In that case,
+view them as LTS releases.
+
+STS releases are supported until the next release, usually about 3 months.
+Thus STS releases usually have a P of 0. Examples include 15.3.0.STS and
+15.6.0.STS. If you experience a problem while using an STS release, your
+choices are to work around it, revert to an earlier release, or wait and see if
+the next release fixes the problem.  The next release may fix the problem, but
+also introduces new features or improvements.  An STS release has two purposes.
+One purpose is to get new features and capability out to the field quickly. The
+other purpose is to build up, through a series of related STS releases, the
+full feature set of an eventual LTS release. These advantages are countered by
+an increase in risk that new features or capability may cause problems.
+
+LTS releases are supported for at least two years. Of course the first LTS
+release has P of 0. But subsequent releases with P higher than 0 are common.
+The purpose of LTS releases is to establish a stream of releases that changes
+only in bug fixes over time, and thus becomes ever more stable.
+
+# Active vs Inactive 
+
+This section only applies to LTS releases.
+
+A group of related releases, that differ only in the P digit, is called a
+release stream.  Each stream has a status of active or inactive.
+
+Active Streams
+
+* Future releases are planned
+* When a bug is reported, it is tested against all the releases in the stream.  The bug record is updated to show the first affected release in the stream.
+* Bug fixes are applied as described in the support model 
+
+Inactive Streams
+
+* No future releases are planned
+* When a bug is reported, a workaround may be developed. No further work occurs.
+* Bug fixes are not applied
+
+For these compilers, the last two streams are active:
+
+* TI Arm Clang
+* C2000
+* C7000
+
+For these compilers, the last stream is active:
+
+* TI Arm
+* C6000
+* MSP430
+* PRU
+
+All other streams are inactive.
+
+# Support Model
+
+LTS releases adhere to the following support model:
+
+* Actively maintained for at least two years
+* Bug fixes are proactively applied to each active release stream
+* This table shows, by priority classification, when bugs are fixed
+
+Priority | When
+---------|-----------
+Urgent   | 2 weeks
+High     | In the next release on an active stream, which is within 6-12 months from the prior release
+Medium   | Unspecified
+Low      | Not fixed
+
+STS releases adhere to the following support model:
+
+* STS releases are only supported until the next release is available, which
+is usually 3 months
+* No planned patch releases
+* Bug fixes are not proactively applied to an STS release
+
+# Compatibility Between Different Compiler Versions
+
+Code generated using older compiler versions is almost always compatible with
+newer compiler versions. The compiler team tries not to invalidate ABIs or
+APIs without good reason. That said, sometimes features are indeed removed or
+changed.
+
+The most important rule is that when compiling a program, you must use a
+version of the linker that is at least as recent as the most recent compiler
+version used to compile any object file or library in the application, and you
+must use the version of the RTS that exactly matches the version of the
+linker. All other combinations are not supported.
+
+The compiler version numbers give you a relative idea of how likely they are
+to be compatible with each other. The closer the numbers, the closer to exact
+compatibility.   
+
+Consider DV of the form YY.MM.P. The P digit is a patch number. If the only
+difference between two version numbers is P, then the only difference between
+the releases is bug fixes. Thus, it is guaranteed that when only P differs,
+the compiler versions are exactly compatible (unless some severe bug requires
+a change in an ABI/API, which is very unlikely. If this happens, it will be
+documented.)
+
+Consider SV of the form X.Y.P. The X digit, the "major" number, represents a
+substantial change of some sort. Compatibility across versions with different
+X numbers is not assured. (But it's not a guarantee of incompatibility
+either.) Build options may be provided to preserve compatibility, but not
+always. The Y digit, the "minor" number, means there is still ABI-level (or
+object level) compatibility. In addition to bug fixes, new features are
+typically added. Code which uses the new features is probably not compatible
+with previous versions that lack those features. The P digit, the "patch"
+digit, is exactly like the P digit in the DV above.
+
+When comparing an X.Y.P number to a YY.MM.P number, you can treat the pair X.Y
+much like the pair YY.MM
+
+Two releases with the same X.Y or YY.MM numbers are fully compatible and there
+should be no trouble linking the object files together or using the same
+options on both versions.
+
+# Version Numbers are Not Linear
+
+Major compiler versions are numbered in numerically ascending order, but patch releases are numbered as patches of major versions, which creates a tree of versions. For example, for the TI ARM compiler, the major releases are 
+
+|        |            |        |             |        |            |        |          |   
+-------|--------|------------|--------|-------------|--------|------------|--------|-----------
+5.2.0  | &rarr; | 15.9.0.STS | &rarr; | 15.12.0.LTS | &rarr; | 16.3.0.STS | &rarr; | 16.6.0.STS
+
+However, each of those is also the head of a release stream where only bug
+fixes are applied, and the version number only differs in the P digit:
+
+       |        |            |        |             |        |            |        |          |   
+-------|--------|------------|--------|-------------|--------|------------|--------|-----------
+5.2.0  | &rarr; | 15.9.0.STS | &rarr; | 15.12.0.LTS | &rarr; | 16.3.0.STS | &rarr; | 16.6.0.STS
+&darr; |        |            |        | &darr;      |
+5.2.1  |        |            |        | 15.12.1.LTS |
+&darr; |        |            |        | &darr;      |
+5.2.2  |        |            |        | 15.12.2.LTS |
+       |        |            |        | &darr;      |
+       |        |            |        | 15.12.3.LTS |
+
+Consider version 15.12.3.LTS; it was actually released in June 2016, which is
+after 16.3.0.STS was released, but because it was merely a patch release of
+15.12.P.LTS, it gets a version number matching its major version.
+
+# Choosing a Compiler Version
+
+TI usually maintains multiple active release streams for a given ISA, ranging
+from older to newer streams. Bug fixes are added to every active stream
+simultaneously. New features are added only to the most recent stream; by
+avoiding non-bug-fix changes to older streams, those streams remain stable and
+we have more and more confidence that they are stable. Newer streams have more
+features, but are not yet proven in use as the older active streams. The
+customer must decide whether proven stability or more features is a better fit
+for their application.
+
+Here are some basic rules of thumb:
+
+* Feel free to begin a project with an STS version, but only if you plan to
+  change to the related LTS version later on
+* If you are selecting a compiler version for a project that must stay with
+  one compiler version for a very long time, do not select an STS version
+* If you have an application that seems to be working fine and you're getting
+  the performance you need, consider staying with that compiler version.
+* If you suffer from a compiler bug, first get the most recent patch fix
+  version for the same major version. If that doesn't help, get the most
+  recent major version to see if the bug has been fixed. If it isn't, post to
+  the [E2E forum](https://e2e.ti.com/).
+* Whatever major version you select, use the most recent patch fix version
+  available
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

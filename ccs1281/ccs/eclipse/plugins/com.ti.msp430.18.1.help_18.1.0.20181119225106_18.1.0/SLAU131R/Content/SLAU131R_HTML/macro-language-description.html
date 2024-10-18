@@ -1,0 +1,1427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset="utf-8" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>6 Macro Language Description</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../Resources/Stylesheets/headerfooter.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="content">
+            <div id="contentBody">
+                <div class="row collapse">
+                    <div class="sideContent">
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                    <div id="loadContentArea">
+                        <div class="c12 docHeader">
+                            <div class="c4 docTitle">
+                                <p>
+                                    <strong>MSP430 Assembly
+							Language Tools
+			v18.1.0.LTS User's Guide</strong>
+                                    <br />
+                                    <span id="litnumber">SLAU131R</span> - REVISED JANUARY 2018</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="odsHeader">
+                        <p class="pdf">
+                            <a class="downloadPDF" href="http://www.ti.com/litv/SLAU131R" target="_new">Download PDF</a>
+                        </p>
+                    </div>
+                    <div id="loadContentArea1">
+                        <div class="subsection">
+                            <h2 id="STDZ0730691">
+                                <a MadCap:generatedBookmark="TOC" name="6_Macro_Language_Description">
+                                </a>
+                                <span class="section-label">6 </span>Macro Language Description</h2>
+                            <div class="subsection">
+                                <p> The <span>MSP430</span> assembler supports a macro language that enables you to create your own instructions. This is especially useful when a program executes a particular task several times. The macro language lets you:</p>
+                                <ul>
+                                    <li value="1">Define your own macros and redefine existing macros</li>
+                                    <li value="2">Simplify long or complicated assembly code</li>
+                                    <li value="3">Access macro libraries created with the archiver</li>
+                                    <li value="4">Define conditional and repeatable blocks within a macro</li>
+                                    <li value="5">Manipulate strings within a macro</li>
+                                    <li value="6">Control expansion listing </li>
+                                </ul>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0732002">
+                                    <a MadCap:generatedBookmark="TOC" name="6.1_Using_Macros">
+                                    </a>
+                                    <span class="section-label">6.1 </span>Using Macros</h3>
+                                <p> Programs often contain routines that are executed several times. Instead of repeating the source statements for a routine, you can define the routine as a macro, then call the macro in the places where you would normally repeat the routine. This simplifies and shortens your source program.</p>
+                                <p>If you want to call a macro several times but with different data each time, you can assign parameters within a macro. This enables you to pass different information to the macro each time you call it. The macro language supports a special symbol called a <i>substitution symbol</i>, which is used for macro parameters. See <span class="crossreference"><a href="#STDZ0737892">Section 6.3</a></span> for more information.</p>
+                                <p>Using a macro is a 3-step process.</p>
+                                <ol>
+                                    <li value="1">
+                                        <b>Define the macro. </b>You must define macros before you can use them in your program. There are two methods for defining macros:<ol style="list-style-type: lower-alpha;"><li value="1">Macros can be defined at the beginning of a <i>source file</i> or in a copy/include file. See <span class="crossreference"><a href="#STDZ0738146">Section 6.2</a></span>, <i>Defining Macros</i>, for more information.</li><li value="2">Macros can also be defined in a <i>macro library</i>. A macro library is a collection of files in archive format created by the archiver. Each member of the archive file (macro library) may contain one macro definition corresponding to the member name. You can access a macro library by using the .mlib directive. For more information, see <span class="crossreference"><a href="#STDZ0732144">Section 6.4</a></span>.</li></ol></li>
+                                    <li value="2">
+                                        <b>Call the macro. </b>After you have defined a macro, call it by using the macro name as a mnemonic in the source program. This is referred to as a <i>macro call</i>.</li>
+                                    <li value="3">
+                                        <b>Expand the macro. </b>The assembler expands your macros when the source program calls them. During expansion, the assembler passes arguments by variable to the macro parameters, replaces the macro call statement with the macro definition, then assembles the source code. By default, the macro expansions are printed in the listing file. You can turn off expansion listing by using the .mnolist directive. For more information, see <span class="crossreference"><a href="#STDZ0737274">Section 6.8</a></span>.</li>
+                                </ol>
+                                <p>When the assembler encounters a macro definition, it places the macro name in the opcode table. This redefines any previously defined macro, library entry, directive, or instruction mnemonic that has the same name as the macro. This allows you to expand the functions of directives and instructions, as well as to add new instructions.</p>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0738146">
+                                    <a MadCap:generatedBookmark="TOC" name="6.2_Defining_Macros">
+                                    </a>
+                                    <span class="section-label">6.2 </span>Defining Macros</h3>
+                                <p> You can define a macro anywhere in your program, but you must define the macro before you can use it. Macros can be defined at the beginning of a source file or in a .copy/.include file (see <span class="crossreference"><a href="assembler-directives.html#IDcopyincludedesc">Copy Source File</a></span>); they can also be defined in a macro library. For more information about macro libraries, see <span class="crossreference"><a href="#STDZ0732144">Section 6.4</a></span>.</p>
+                                <p>Macro definitions can be nested, and they can call other macros, but all elements of the macro must be defined in the same file. Nested macros are discussed in <span class="crossreference"><a href="#STDZ0739814">Section 6.9</a></span>.</p>
+                                <p>A macro definition is a series of source statements in the following format:</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                            <col />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>macname</i> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.macro</b> [<i>parameter<sub>1</sub> <![CDATA[ ]]></i>] [<b>,</b> ... <b>,</b><i>parameter<sub>n</sub> <![CDATA[ ]]></i>]</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>model statements or macro directives</i> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">[<b>.mexit</b>]</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.endm</b> <![CDATA[ ]]></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                            <col align="left" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>macname</i> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">names the macro. You must place the name in the source statement's label field. Only the first 128 characters of a macro name are significant. The assembler places the macro name in the internal opcode table, replacing any instruction or previous macro definition with the same name.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.macro</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">is the directive that identifies the source statement as the first line of a macro definition. You must place .macro in the opcode field.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>parameter</i><sub>1</sub>,<br /><i>parameter</i><sub>n</sub> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">are optional substitution symbols that appear as operands for the .macro directive. Parameters are discussed in <span class="crossreference"><a href="#STDZ0737892">Section 6.3</a></span>.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>model statements </i></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">are instructions or assembler directives that are executed each time the macro is called.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>macro directives </i> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">are used to control macro expansion.</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="noBorderRight noBorderBottom" valign="top"> <b>.mexit</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">is a directive that functions as a <i>goto .endm</i>. The .mexit directive is useful when error testing confirms that macro expansion fails and completing the rest of the macro is unnecessary.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.endm</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">is the directive that terminates the macro definition.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>If you want to include comments with your macro definition but <i>do not</i> want those comments to appear in the macro expansion, use an exclamation point to precede your comments. If you <i>do</i> want your comments to appear in the macro expansion, use an asterisk or semicolon. See <span class="crossreference"><a href="#STDZ073603">Section 6.7</a></span> for more information about macro comments.</p>
+                                <p>
+                                    <span> <span class="crossreference"><a href="#STDZ0734177">Example 6-1</a></span> shows</span> the definition, call, and expansion of a macro.</p>
+                                <div class="example">
+                                    <h4 id="STDZ0734177">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_6-1_Macro_Definition,_Call,_and_Expansion">
+                                        </a>
+                                        <span class="example-label">Example 6-1 </span>Macro Definition, Call, and Expansion</h4>
+                                    <p>Macro definition: The following code defines a macro, add3, with four parameters:</p>
+                                    <code>       1 add3 .macro P1,P2,P3,SUM
+ 2 MOV #0,SUM
+ 3 ADD P1,SUM
+ 4 ADD P2,SUM
+ 5 ADD P3,SUM
+ 6 .endm</code>
+                                    <p>Macro call: The following code calls the add3 macro with four arguments:</p>
+                                    <code>       7 
+ 8 0000 add3 R11,R12,R13,R14
+</code>
+                                    <p>Macro expansion: The following code shows the substitution of the macro definition for the macro call. The assembler substitutes R11, R12, R13, and R14 for the P1, P2, P3, and SUM parameters of add3.</p>
+                                    <code>1 0000 430E MOV #0,R14
+1 0002 5B0E ADD R11,R14
+1 0004 5C0E ADD R12,R14
+1 0006 5D0E ADD R13,R14</code>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0737892">
+                                    <a MadCap:generatedBookmark="TOC" name="6.3_Macro_Parameters_Substitution_Symbols">
+                                    </a>
+                                    <span class="section-label">6.3 </span>Macro Parameters/Substitution Symbols</h3>
+                                <p>If you want to call a macro several times with different data each time, you can assign parameters within the macro. The macro language supports a special symbol, called a <i>substitution symbol</i>, which is used for macro parameters.</p>
+                                <p>Macro parameters are substitution symbols that represent a character string. These symbols can also be used outside of macros to equate a character string to a symbol name (see <span class="crossreference"><a href="assembler-description.html#STDZ0719781">Section 4.8.8</a></span>).</p>
+                                <p>Valid substitution symbols can be up to 128 characters long and <i>must begin with a letter</i>. The remainder of the symbol can be a combination of alphanumeric characters, underscores, and dollar signs.</p>
+                                <p> Substitution symbols used as macro parameters are local to the macro they are defined in. You can define up to 32 local substitution symbols (including substitution symbols defined with the .var directive) per macro. For more information about the .var directive, see <span class="crossreference"><a href="#STDZ0734523">Section 6.3.6</a></span>.</p>
+                                <p>During macro expansion, the assembler passes arguments by variable to the macro parameters. The character-string equivalent of each argument is assigned to the corresponding parameter. Parameters without corresponding arguments are set to the null string. If the number of arguments exceeds the number of parameters, the last parameter is assigned the character-string equivalent of all remaining arguments.</p>
+                                <p>If you pass a list of arguments to one parameter or if you pass a comma or semicolon to a parameter, you must surround these terms with quotation marks.</p>
+                                <p>At assembly time, the assembler replaces the macro parameter/substitution symbol with its corresponding character string, then translates the source code into object code.</p>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="#STDZ0733738">Example 6-2</a>
+                                    </span> shows the expansion of a macro with varying numbers of arguments.</p>
+                                <div class="example">
+                                    <h4 id="STDZ0733738">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_6-2_Calling_a_Macro_With_Varying_Numbers_of_Arguments">
+                                        </a>
+                                        <span class="example-label">Example 6-2 </span>Calling a Macro With Varying Numbers of Arguments</h4>
+                                    <p>Macro definition:</p>
+                                    <code>Parms	.macro a,b,c
+; a = :a:
+; b = :b:
+; c = :c:
+ .endm</code>
+                                    <p>Calling the macro:</p>
+                                    <code>      Parms 100,label Parms 100,label,x,y
+; a = 100 ; a = 100
+; b = label ; b = label
+; c = "" ; c = x,y
+
+ Parms 100, , x Parms "100,200,300",x,y
+; a = 100 ; a = 100,200,300
+; b = "" ; b = x
+; c = x ; c = y
+
+ Parms """string""",x,y
+; a = "string"; b = x
+; c = y</code>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0731673">
+                                        <a MadCap:generatedBookmark="TOC" name="6.3.1_Directives_That_Define_Substitution_Symbols">
+                                        </a>
+                                        <span class="section-label">6.3.1 </span>Directives That Define Substitution Symbols</h4>
+                                    <p>You can manipulate substitution symbols with the <b>.asg</b> and<b> .eval</b> directives. </p>
+                                    <ul>
+                                        <li id="IDmacroasg" value="1"> The <b>.asg</b> directive assigns a character string to a substitution symbol.</li>
+                                        <p>For the .asg directive, the quotation marks are optional. If there are no quotation marks, the assembler reads characters up to the first comma and removes leading and trailing blanks. In either case, a character string is read and assigned to the <i>substitution symbol</i>. The syntax of the .asg directive is: </p>
+                                        <div class="subsection">
+                                            <table class="tabbedtext">
+                                                <colgroup>
+                                                    <col align="left" />
+                                                    <col align="left" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr valign="top">
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.asg</b>[<b>"</b>]<i>character string</i>[<b>"</b>],<i> substitution symbol</i> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </ul>
+                                    <p>
+                                        <span class="crossreference">
+                                            <a href="#STDZ0734292">Example 6-3</a>
+                                        </span> shows character strings being assigned to substitution symbols.</p>
+                                    <div class="example">
+                                        <h4 id="STDZ0734292">
+                                            <a MadCap:generatedBookmark="TOC" name="Example_6-3_The_.asg_Directive">
+                                            </a>
+                                            <span class="example-label">Example 6-3 </span>The .asg Directive</h4>
+                                        <code>     .asg R13, stack_ptr ; stack pointer</code>
+                                    </div>
+                                    <ul>
+                                        <li id="IDmacroeval" value="1"> The <b>.eval</b> directive performs arithmetic on numeric substitution symbols.</li>
+                                        <p>The .eval directive evaluates the <i>expression</i> and assigns the string value of the result to the <i>substitution symbol</i>. If the expression is not well defined, the assembler generates an error and assigns the null string to the symbol. The syntax of the .eval directive is:</p>
+                                        <div class="subsection">
+                                            <table class="tabbedtext">
+                                                <colgroup>
+                                                    <col align="left" />
+                                                    <col align="left" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.eval</b><i>well-defined expression</i><b>, </b><i> substitution symbol</i> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </ul>
+                                    <p>
+                                        <span class="crossreference">
+                                            <a href="#STDZ0734001">Example 6-4</a>
+                                        </span> shows arithmetic being performed on substitution symbols.</p>
+                                    <div class="example">
+                                        <h4 id="STDZ0734001">
+                                            <a MadCap:generatedBookmark="TOC" name="Example_6-4_The_.eval_Directive">
+                                            </a>
+                                            <span class="example-label">Example 6-4 </span>The .eval Directive</h4>
+                                        <code>     .asg 1,counter
+ .loop 100
+ .word counter
+ .eval counter + 1,counter
+ .endloop</code>
+                                    </div>
+                                    <p>In <span class="crossreference"><a href="#STDZ0734001">Example 6-4</a></span>, the .asg directive could be replaced with the .eval directive (.eval 1, counter) without changing the output. In simple cases like this, you can use .eval and .asg interchangeably. However, you must use .eval if you want to calculate a <i>value</i> from an expression. While .asg only assigns a character string to a substitution symbol, .eval evaluates an expression and then assigns the character string equivalent to a substitution symbol.</p>
+                                    <p>See <span class="crossreference"><a href="assembler-directives.html#IDasgevaldesc">Assign a Substitution Symbol</a></span> for more information about the .asg and .eval assembler directives.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0735215">
+                                        <a MadCap:generatedBookmark="TOC" name="6.3.2_Built-In_Substitution_Symbol_Functions">
+                                        </a>
+                                        <span class="section-label">6.3.2 </span>Built-In Substitution Symbol Functions</h4>
+                                    <p>The following built-in substitution symbol functions enable you to make decisions on the basis of the string value of substitution symbols. These functions always return a value, and they can be used in expressions. Built-in substitution symbol functions are especially useful in conditional assembly expressions. Parameters of these functions are substitution symbols or character-string constants. </p>
+                                    <p>In the function definitions shown in <span class="crossreference"><a href="#STDZ0733238">Table 6-1</a></span>,<i> a</i> and<i> b</i> are parameters that represent substitution symbols or character-string constants. The term <i>string</i> refers to the string value of the parameter. The symbol <i>ch</i> represents a character constant.</p>
+                                    <div class="subsection">
+                                        <p class="table" id="STDZ0733238">
+                                            <span class="table-label">Table 6-1 </span>Substitution Symbol Functions and Return Values </p>
+                                        <table class="gentable">
+                                            <colgroup>
+                                                <col />
+                                                <col align="left" />
+                                            </colgroup>
+                                            <thead class="tbl_hdr_gray">
+                                                <tr>
+                                                    <th align="left" class="noBorderRight" valign="bottom">Function</th>
+                                                    <th align="left" class="noBorderRight" valign="bottom">Return Value</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" valign="top"> <b>$symlen</b><i>(a)</i> <![CDATA[ ]]></td>
+                                                    <td align="left" valign="bottom">Length of string<i> a</i> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="top"> <b>$symcmp</b><i>(a,b)</i> <![CDATA[ ]]></td>
+                                                    <td align="left" valign="bottom">&lt; 0 if <i>a</i> &lt; <i> b;</i> 0 if <i>a </i>= <i>b;</i> &gt; 0 if <i>a</i> &gt; <i>b</i> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="top"> <b>$firstch</b><i>(a,ch)</i> <![CDATA[ ]]></td>
+                                                    <td align="left" valign="bottom">Index of the first occurrence of character constant <i>ch</i> in string <i>a</i> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="top"> <b>$lastch</b><i>(a,ch)</i> <![CDATA[ ]]></td>
+                                                    <td align="left" valign="bottom">Index of the last occurrence of character constant <i>ch</i> in string <i>a</i> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" rowspan="2" valign="top"> <b>$isdefed</b><i>(a)</i> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderBottom" valign="bottom">1 if string<i> a</i> is defined in the symbol table</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="bottom">0 if string<i> a</i> is not defined in the symbol table</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" rowspan="2" valign="top"> <b>$ismember</b><i>(a,b)</i> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderBottom" valign="bottom">Top member of list <i>b</i> is assigned to string <i>a</i> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="bottom">0 if <i>b</i> is a null string</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" rowspan="5" valign="top"> <b>$iscons</b><i>(a)</i> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderBottom" valign="bottom">1 if string<i> a</i> is a binary constant</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderBottom" valign="bottom">2 if string<i> a</i> is an octal constant</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderBottom" valign="bottom">3 if string<i> a</i> is a hexadecimal constant</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderBottom" valign="bottom">4 if string<i> a</i> is a character constant</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="bottom">5 if string<i> a</i> is a decimal constant</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" rowspan="2" valign="top"> <b>$isname</b><i>(a</i>)</td>
+                                                    <td align="left" class="noBorderBottom" valign="bottom">1 if string<i> a</i> is a valid symbol name</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="bottom">0 if string<i> a</i> is not a valid symbol name </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" rowspan="2" valign="top"> <b>$isreg</b><i>(a)</i><sup><a class="crossreference" href="#STDZ0732825">(1)</a></sup> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderBottom" valign="bottom">1 if string<i> a</i> is a valid predefined register name</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="bottom">0 if string<i> a</i> is not a valid predefined register name</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="tablenote" id="STDZ0732825">
+                                            <span class="section-label">(1) </span>For more information about predefined register names, see <span class="crossreference"><a href="assembler-description.html#STDZ0717163">Section 4.8.6</a></span>. </div>
+                                    </div>
+                                    <p>
+                                        <span class="crossreference">
+                                            <a href="#STDZ0734287">Example 6-5</a>
+                                        </span> shows built-in substitution symbol functions.</p>
+                                </div>
+                                <div class="example">
+                                    <h4 id="STDZ0734287">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_6-5_Using_Built-In_Substitution_Symbol_Functions">
+                                        </a>
+                                        <span class="example-label">Example 6-5 </span>Using Built-In Substitution Symbol Functions</h4>
+                                    <code>   .asg label, ADDR ; ADDR = label
+ .if ($symcmp(ADDR, "label") = 0) ; evaluates to true
+ MOV #ADDR, R4
+ .endif
+ .asg "x,y,z" , list ; list = x,y,z
+ .if ($ismember(ADDR,list)) ; ADDR = x, list = y,z
+ SUB #4, R4 ; sub x
+ .endif</code>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0731555">
+                                        <a MadCap:generatedBookmark="TOC" name="6.3.3_Recursive_Substitution_Symbols">
+                                        </a>
+                                        <span class="section-label">6.3.3 </span>Recursive Substitution Symbols</h4>
+                                    <p>When the assembler encounters a substitution symbol, it attempts to substitute the corresponding character string. If that string is also a substitution symbol, the assembler performs substitution again. The assembler continues doing this until it encounters a token that is not a substitution symbol or until it encounters a substitution symbol that it has already encountered during this evaluation. </p>
+                                    <p>In <span class="crossreference"><a href="#STDZ07390">Example 6-6</a></span>, the x is substituted for z; z is substituted for y; and y is substituted for x. The assembler recognizes this as infinite recursion and ceases substitution.</p>
+                                </div>
+                                <div class="example">
+                                    <h4 id="STDZ07390">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_6-6_Recursive_Substitution">
+                                        </a>
+                                        <span class="example-label">Example 6-6 </span>Recursive Substitution</h4>
+                                    <code>   .asg "x",z ; declare z and assign z = "x" .asg "z",y ; declare y and assign y = "z" .asg "y",x ; declare x and assign x = "y" MOV #x, R11</code>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0737282">
+                                        <a MadCap:generatedBookmark="TOC" name="6.3.4_Forced_Substitution">
+                                        </a>
+                                        <span class="section-label">6.3.4 </span>Forced Substitution</h4>
+                                    <p>In some cases, substitution symbols are not recognizable to the assembler. The forced substitution operator, which is a set of colons surrounding the symbol, enables you to force the substitution of a symbol's character string. Simply enclose a symbol with colons to force the substitution. Do not include any spaces between the colons and the symbol. The syntax for the forced substitution operator is:</p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>:symbol:</i> <![CDATA[ ]]></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>The assembler expands substitution symbols surrounded by colons before expanding other substitution symbols.</p>
+                                    <p>You can use the forced substitution operator only inside macros, and you cannot nest a forced substitution operator within another forced substitution operator.</p>
+                                    <p>
+                                        <span class="crossreference">
+                                            <a href="#STDZ0739743">Example 6-7</a>
+                                        </span> shows how the forced substitution operator is used.</p>
+                                    <div class="example">
+                                        <h4 id="STDZ0739743">
+                                            <a MadCap:generatedBookmark="TOC" name="Example_6-7_Using_the_Forced_Substitution_Operator">
+                                            </a>
+                                            <span class="example-label">Example 6-7 </span>Using the Forced Substitution Operator</h4>
+                                        <code>       1 force .macro
+ 2 .asg 0,x
+ 3 .loop 8
+ 4 AUX:x: .set x
+ 5 .eval x+1,x
+ 6 .endloop
+ 7 .endm
+ 8 
+ 9 00000000 force
+1 .asg 0,x
+1 .loop 8
+1 AUX:x: .set x
+1 .eval x+1,x
+1 .endloop
+2 00000000 AUX0 .set 0
+2 .eval 0+1,x
+2 00000001 AUX1 .set 1
+2 .eval 1+1,x
+2 00000002 AUX2 .set 2
+2 .eval 2+1,x
+2 00000003 AUX3 .set 3
+2 .eval 3+1,x
+2 00000004 AUX4 .set 4
+2 .eval 4+1,x
+2 00000005 AUX5 .set 5
+2 .eval 5+1,x
+2 00000006 AUX6 .set 6
+2 .eval 6+1,x
+2 00000007 AUX7 .set 7
+2 .eval 7+1,x</code>
+                                    </div>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0731884">
+                                        <a MadCap:generatedBookmark="TOC" name="6.3.5_Accessing_Individual_Characters_of_Subscripted_Substitution_Symbols">
+                                        </a>
+                                        <span class="section-label">6.3.5 </span>Accessing Individual Characters of Subscripted Substitution Symbols</h4>
+                                    <p>In a macro, you can access the individual characters (substrings) of a substitution symbol with subscripted substitution symbols. You must use the forced substitution operator for clarity.</p>
+                                    <p>You can access substrings in two ways:</p>
+                                    <ul>
+                                        <li value="1">:symbol (<i>well-defined expression</i>):</li>
+                                        <p>This method of subscripting evaluates to a character string with one character.</p>
+                                        <li value="2">:symbol (<i>well-defined expression</i><sub>1</sub>, <i>well-defined expression</i><sub>2</sub>):</li>
+                                        <p>In this method, expression<sub>1</sub> represents the substring's starting position, and expression<sub>2 </sub>represents the substring's length. You can specify exactly where to begin subscripting and the exact length of the resulting character string. <i>The index of substring characters begins with 1, not 0.</i></p>
+                                    </ul>
+                                    <p>
+                                        <span class="crossreference">
+                                            <a href="#STDZ0732584">Example 6-8</a>
+                                        </span> and <span class="crossreference"><a href="#STDZ0738810">Example 6-9</a></span> show built-in substitution symbol functions used with subscripted substitution symbols. In <span class="crossreference"><a href="#STDZ0732584">Example 6-8</a></span>, subscripted substitution symbols redefine <span>the ADD instruction so that it handles short immediate values</span>. In <span class="crossreference"><a href="#STDZ0738810">Example 6-9</a></span>, the subscripted substitution symbol is used to find a substring strg1 beginning at position start in the string strg2. The position of the substring strg1 is assigned to the substitution symbol pos.</p>
+                                </div>
+                                <div class="example">
+                                    <h4 id="STDZ0732584">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_6-8_Using_Subscripted_Substitution_Symbols_to_Redefine_an_Instruction">
+                                        </a>
+                                        <span class="example-label">Example 6-8 </span>Using Subscripted Substitution Symbols to Redefine an Instruction</h4>
+                                    <code>ADDX .macro dst, imm
+ .var TMP
+ .asg :imm(1):, TMP
+ .if $symcmp(TMP,"#") = 0
+ ADD imm, dst
+ .else
+ .emsg "Bad Macro Parameter" .endif
+ .endm
+
+ ADDX R9, #100 ; macro call
+ ADDX R9, R8 ; macro call</code>
+                                </div>
+                                <div class="example">
+                                    <h4 id="STDZ0738810">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_6-9_Using_Subscripted_Substitution_Symbols_to_Find_Substrings">
+                                        </a>
+                                        <span class="example-label">Example 6-9 </span>Using Subscripted Substitution Symbols to Find Substrings</h4>
+                                    <code>substr .macro start,strg1,strg2,pos
+ .var LEN1,LEN2,I,TMP
+ .if $symlen(start) = 0
+ .eval 1,start
+ .endif
+ .eval 0,pos
+ .eval 1,i
+ .eval $symlen(strg1),LEN1
+ .eval $symlen(strg2),LEN2
+ .loop
+ .break i = (LEN2 - LEN1 + 1)
+ .asg ":strg2(I,LEN1):",TMP
+ .eval i,pos
+ .break
+ .else
+ .eval i + 1,i
+ .endif
+ .endloop
+ .endm
+
+ .asg 0,pos
+ .asg "ar1 ar2 ar3 ar4",regs
+ substr 1,"ar2",regs,pos
+ .word pos</code>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0734523">
+                                        <a MadCap:generatedBookmark="TOC" name="6.3.6_Substitution_Symbols_as_Local_Variables_in_Macros">
+                                        </a>
+                                        <span class="section-label">6.3.6 </span>Substitution Symbols as Local Variables in Macros</h4>
+                                    <p>If you want to use substitution symbols as local variables within a macro, you can use the <b>.var</b> directive to define up to 32 local macro substitution symbols (including parameters) per macro. The .var directive creates temporary substitution symbols with the initial value of the null string. These symbols are not passed in as parameters, and they are lost after expansion.</p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col />
+                                                <col />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.var </b><i>sym<sub>1</sub> <![CDATA[ ]]></i> [,<i>sym<sub>2</sub> ,</i> ... ,<i>sym<sub>n</sub> <![CDATA[ ]]></i>]</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>The .var directive is used in <span class="crossreference"><a href="#STDZ0732584">Example 6-8</a></span> and <span class="crossreference"><a href="#STDZ0738810">Example 6-9</a></span>.</p>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0732144">
+                                    <a MadCap:generatedBookmark="TOC" name="6.4_Macro_Libraries">
+                                    </a>
+                                    <span class="section-label">6.4 </span>Macro Libraries</h3>
+                                <p>One way to define macros is by creating a macro library. A macro library is a collection of files that contain macro definitions. You must use the archiver to collect these files, or members, into a single file (called an archive). Each member of a macro library contains one macro definition. The files in a macro library must be unassembled source files. The macro name and the member name must be the same, and the macro filename's extension must be .asm. For example:</p>
+                                <div class="subsection">
+                                    <table class="gentable">
+                                        <colgroup>
+                                            <col />
+                                            <col />
+                                        </colgroup>
+                                        <thead class="tbl_hdr_gray">
+                                            <tr>
+                                                <th align="left" class="noBorderRight" valign="bottom">Macro Name</th>
+                                                <th align="left" class="noBorderRight" valign="bottom">Filename in Macro Library</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">simple</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">simple.asm</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">add3</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">add3.asm</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>You can access the macro library by using the .mlib assembler directive (described in <span class="crossreference"><a href="assembler-directives.html#IDmlibdesc">Define Macro Library</a></span>). The syntax is:</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                            <col />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.mlib</b><i>filename</i> <![CDATA[ ]]></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>When the assembler encounters the .mlib directive, it opens the library named by filename and creates a table of the library's contents. The assembler enters the names of the individual members within the library into the opcode tables as library entries; this redefines any existing opcodes or macros that have the same name. If one of these macros is called, the assembler extracts the entry from the library and loads it into the macro table.</p>
+                                <p>The assembler expands the library entry the same way it expands other macros. See <span class="crossreference"><a href="#STDZ0732002">Section 6.1</a></span> for how the assembler expands macros. You can control the listing of library entry expansions with the .mlist directive. For information about the .mlist directive, see <span class="crossreference"><a href="#STDZ0737274">Section 6.8</a></span> and <span class="crossreference"><a href="assembler-directives.html#IDmlistdesc">Start/Stop Macro Expansion Listing</a></span>. Only macros that are actually called from the library are extracted, and they are extracted only once.</p>
+                                <p>You can use the archiver to create a macro library by including the desired files in an archive. A macro library is no different from any other archive, except that the assembler expects the macro library to contain macro definitions. The assembler expects<i> only </i>macro definitions in a macro library; putting object code or miscellaneous source files into the library may produce undesirable results. For information about creating a macro library archive, see <span class="crossreference"><a href="archiver-description.html#STDZ0740696">Section 7.1</a></span>.</p>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0738150">
+                                    <a MadCap:generatedBookmark="TOC" name="6.5_Using_Conditional_Assembly_in_Macros">
+                                    </a>
+                                    <span class="section-label">6.5 </span>Using Conditional Assembly in Macros</h3>
+                                <p>The conditional assembly directives are <b>.if/.elseif/.else/.endif </b>and <b>.loop/ .break/.endloop</b>. They can be nested within each other up to 32 levels deep. The format of a conditional block is:</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                            <col align="left" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.if</b><i>well-defined expression</i> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">[<b>.elseif</b><i>well-defined expression</i>]</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">[<b>.else</b>]</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.endif</b> <![CDATA[ ]]></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>The <b>.elseif</b> and <b>.else</b> directives are optional in conditional assembly. The .elseif directive can be used more than once within a conditional assembly code block. When .elseif and .else are omitted and when the .if expression is false (0), the assembler continues to the code following the .endif directive. See <span class="crossreference"><a href="assembler-directives.html#IDifelsedesc">Assemble Conditional Blocks</a></span> for more information on the .if/ .elseif/.else/.endif directives.</p>
+                                <p>The <b>.loop/.break/.endloop </b>directives enable you to assemble a code block repeatedly. The format of a repeatable block is:</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                            <col align="left" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.loop</b> [<i>well-defined expression</i>]</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">[<b>.break</b> [<i>well-defined expression</i>]]</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.endloop</b> <![CDATA[ ]]></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>The <b>.loop</b> directive's optional <i>well-defined expression</i> evaluates to the loop count (the number of loops to be performed). If the expression is omitted, the loop count defaults to 1024 unless the assembler encounters a .break directive with an expression that is true (nonzero). See <span class="crossreference"><a href="assembler-directives.html#IDloopdesc">Assemble Conditional Blocks Repeatedly</a></span> for more information on the .loop/.break/.endloop directives.</p>
+                                <p>The <b>.break</b> directive and its expression are optional in repetitive assembly. If the expression evaluates to false, the loop continues. The assembler breaks the loop when the .break expression evaluates to true or when the .break expression is omitted. When the loop is broken, the assembler continues with the code after the .endloop directive. For more information, see <span class="crossreference"><a href="assembler-directives.html#STDZ0721223">Section 5.7</a></span>.</p>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="#STDZ073621">Example 6-10</a>
+                                    </span>, <span class="crossreference"><a href="#STDZ0737524">Example 6-11</a></span>, and <span class="crossreference"><a href="#STDZ0732928">Example 6-12</a></span> show the .loop/.break/ .endloop directives, properly nested conditional assembly directives, and built-in substitution symbol functions used in a conditional assembly code block.</p>
+                                <div class="example">
+                                    <h4 id="STDZ073621">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_6-10_The_.loop_.break_.endloop_Directives">
+                                        </a>
+                                        <span class="example-label">Example 6-10 </span>The .loop/.break/.endloop Directives</h4>
+                                    <code>      .asg 1,x
+ .loop
+
+ .break (x == 10) ; if x == 10, quit loop/break with expression
+
+ .eval x+1,x
+ .endloop</code>
+                                </div>
+                                <div class="example">
+                                    <h4 id="STDZ0737524">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_6-11_Nested_Conditional_Assembly_Directives">
+                                        </a>
+                                        <span class="example-label">Example 6-11 </span>Nested Conditional Assembly Directives</h4>
+                                    <code>      .asg 1,x
+ .loop	
+
+ .if (x == 10) ; if x == 10, quit loop
+ .break (x == 10) ; force break
+ .endif 
+
+ .eval x+1,x
+ .endloop</code>
+                                </div>
+                                <div class="example">
+                                    <h4 id="STDZ0732928">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_6-12_Built-In_Substitution_Symbol_Functions_in_a_Conditional_Assembly...">
+                                        </a>
+                                        <span class="example-label">Example 6-12 </span>Built-In Substitution Symbol Functions in a Conditional Assembly Code Block</h4>
+                                    <code>        .fcnolist
+
+* Increment or decrement
+
+INCDEC .macro OP,dst
+ .if $symcmp(OP,"+")
+ ADD #1,dst
+ .elseif $symcmp(OP,"-")
+ SUB #1,dst
+ .else
+ .emsg "Incorrect Operator Parameter" .endif
+ .endm
+
+* Macro Call
+
+ INCDEC +,R11</code>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0736022">
+                                    <a MadCap:generatedBookmark="TOC" name="6.6_Using_Labels_in_Macros">
+                                    </a>
+                                    <span class="section-label">6.6 </span>Using Labels in Macros</h3>
+                                <p>All labels in an assembly language program must be unique. This includes labels in macros. If a macro is expanded more than once, its labels are defined more than once. <i>Defining a label more than once is illegal</i>. The macro language provides a method of defining labels in macros so that the labels are unique. Simply follow each label with a question mark, and the assembler replaces the question mark with a period followed by a unique number. When the macro is expanded, <i>you do not see the unique number in the listing file</i>. Your label appears with the question mark as it did in the macro definition. You cannot declare this label as global. See <span class="crossreference"><a href="assembler-description.html#STDZ0715557">Section 4.8.3</a></span> for more about labels.</p>
+                                <p>The syntax for a unique label is:</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>label</i><b>?</b> <![CDATA[ ]]></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>
+                                    <span> <span class="crossreference"><a href="#STDZ0733136">Example 6-13</a></span> shows</span> unique label generation in a macro. The maximum label length is shortened to allow for the unique suffix. For example, if the macro is expanded fewer than 10 times, the maximum label length is 126 characters. If the macro is expanded from 10 to 99 times, the maximum label length is 125. The label with its unique suffix is shown in the cross-listing file. To obtain a cross-listing file, invoke the assembler with the --cross_reference option (see <span class="crossreference"><a href="assembler-description.html#STDZ0719026">Section 4.3</a></span>).</p>
+                                <div class="example">
+                                    <h4 id="STDZ0733136">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_6-13_Unique_Labels_in_a_Macro">
+                                        </a>
+                                        <span class="example-label">Example 6-13 </span>Unique Labels in a Macro</h4>
+                                    <code>       1 * Define macro to find minimum
+ 2 
+ 3 MIN .macro src1,src2,dst
+ 4 CMP src1,src2
+ 5 JL m1?
+ 6 MOV src1,dst
+ 7 JMP m2?
+ 8 m1? MOV src2,dst
+ 9 m2?
+ 10 .endm 
+ 11 
+ 12 0000 MIN R11,R12,R13
+1 0000 9B0C CMP R11,R12
+1 0002 3802 JL m1?
+1 0004 4B0D MOV R11,R13
+1 0006 3C01 JMP m2?
+1 0008 4C0D m1? MOV R12,R13
+1 m2?</code>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ073603">
+                                    <a MadCap:generatedBookmark="TOC" name="6.7_Producing_Messages_in_Macros">
+                                    </a>
+                                    <span class="section-label">6.7 </span>Producing Messages in Macros</h3>
+                                <p>The macro language supports three directives that enable you to define your own assembly-time error and warning messages. These directives are especially useful when you want to create messages specific to your needs. The last line of the listing file shows the error and warning counts. These counts alert you to problems in your code and are especially useful during debugging.</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col align="left" />
+                                            <col align="left" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.emsg</b></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">sends error messages to the listing file. The .emsg directive generates errors in the same manner as the assembler, incrementing the error count and preventing the assembler from producing an object file.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.mmsg</b></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">sends assembly-time messages to the listing file. The .mmsg directive functions in the same manner as the .emsg directive but does not set the error count or prevent the creation of an object file.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.wmsg</b></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">sends warning messages to the listing file. The .wmsg directive functions in the same manner as the .emsg directive, but it increments the warning count and does not prevent the generation of an object file.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>
+                                    <b>Macro comments</b> are comments that appear in the definition of the macro <i>but do not show up in the expansion of the macro</i>. An exclamation point in column 1 identifies a macro comment. If you want your comments to appear in the macro expansion, precede your comment with an asterisk or semicolon.</p>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="#STDZ0732697">Example 6-14</a>
+                                    </span> shows user messages in macros and macro comments that do not appear in the macro expansion.</p>
+                                <p>For more information about the .emsg, .mmsg, and .wmsg assembler directives, see <span class="crossreference"><a href="assembler-directives.html#IDmsgsdesc">Define Messages</a></span>.</p>
+                                <div class="example">
+                                    <h4 id="STDZ0732697">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_6-14_Producing_Messages_in_a_Macro">
+                                        </a>
+                                        <span class="example-label">Example 6-14 </span>Producing Messages in a Macro</h4>
+                                    <code>       1 MUL_I .macro x,y
+ 2 .if ($symlen(x) == 0)
+ 3 .emsg "ERROR -- Missing Parameter" 4 .mexit
+ 5 .elseif ($symlen(y) == 0)
+ 6 .emsg "ERROR -- Missing Parameter" 7 .mexit
+ 8 .else
+ 9 MOV x, R11
+ 10 MOV y, R12
+ 11 .endif
+ 12 .endm
+ 13 
+ 14 0000 MUL_I #50, #51
+1 .if ($symlen(x) == 0)
+1 .emsg "ERROR -- Missing Parameter"1 .mexit
+1 .elseif ($symlen(y) == 0)
+1 .emsg "ERROR -- Missing Parameter"1 .mexit
+1 .else
+1 0000 403B MOV #50, R11
+ 0002 0032 
+1 0004 403C MOV #51, R12
+ 0006 0033 
+1 .endif
+ 15 
+ 16 0008 MUL_I
+1 .if ($symlen(x) == 0)
+1 .emsg "ERROR -- Missing Parameter" "macromsg.asm", ERROR! at line 16: [ ***** USER ERROR ***** - ] ERROR -- Missing Parameter
+1 .mexit
+ 17 
+ 18 
+1 Assembly Error, No Assembly Warnings</code>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0737274">
+                                    <a MadCap:generatedBookmark="TOC" name="6.8_Using_Directives_to_Format_the_Output_Listing">
+                                    </a>
+                                    <span class="section-label">6.8 </span>Using Directives to Format the Output Listing</h3>
+                                <p>Macros, substitution symbols, and conditional assembly directives may hide information. You may need to see this hidden information, so the macro language supports an expanded listing capability. </p>
+                                <p>By default, the assembler shows macro expansions and false conditional blocks in the list output file. You may want to turn this listing off or on within your listing file. Four sets of directives enable you to control the listing of this information:</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col align="left" />
+                                            <col align="left" />
+                                            <col align="left" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="3" valign="top">
+                                                    <p />
+                                                    <ul>
+                                                        <li value="1">
+                                                            <b>Macro and loop expansion listing</b>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.mlist</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">expands macros and .loop/.endloop blocks. The .mlist directive prints all code encountered in those blocks.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <p>
+                                                        <b>.mnolist</b>
+                                                    </p>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">suppresses the listing of macro expansions and .loop/ .endloop blocks.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">For macro and loop expansion listing, .mlist is the default.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="3" valign="top">
+                                                    <p />
+                                                    <ul>
+                                                        <li value="1">
+                                                            <b>False conditional block listing</b>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.fclist</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">causes the assembler to include in the listing file all conditional blocks that do not generate code (false conditional blocks). Conditional blocks appear in the listing exactly as they appear in the source code.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.fcnolist</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">suppresses the listing of false conditional blocks. Only the code in conditional blocks that actually assemble appears in the listing. The .if, .elseif, .else, and .endif directives do not appear in the listing.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">For false conditional block listing, .fclist is the default.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="3" valign="top">
+                                                    <p />
+                                                    <ul>
+                                                        <li value="1">
+                                                            <b>Substitution symbol expansion listing</b>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.sslist</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">expands substitution symbols in the listing. This is useful for debugging the expansion of substitution symbols. The expanded line appears below the actual source line.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.ssnolist</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">turns off substitution symbol expansion in the listing.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">For substitution symbol expansion listing, .ssnolist is the default.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="3" valign="top">
+                                                    <p />
+                                                    <ul>
+                                                        <li value="1">
+                                                            <b>Directive listing</b>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.drlist</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">causes the assembler to print to the listing file all directive lines.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.drnolist</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">suppresses the printing of certain directives in the listing file. These directives are .asg, .eval, .var, .sslist, .mlist, .fclist, .ssnolist, .mnolist, .fcnolist, .emsg, .wmsg, .mmsg, .length, .width, and .break.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">For directive listing, .drlist is the default.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0739814">
+                                    <a MadCap:generatedBookmark="TOC" name="6.9_Using_Recursive_and_Nested_Macros">
+                                    </a>
+                                    <span class="section-label">6.9 </span>Using Recursive and Nested Macros</h3>
+                                <p>The macro language supports recursive and nested macro calls. This means that you can call other macros in a macro definition. You can nest macros up to 32 levels deep. When you use recursive macros, you call a macro from its own definition (the macro calls itself).</p>
+                                <p>When you create recursive or nested macros, you should pay close attention to the arguments that you pass to macro parameters because the assembler uses dynamic scoping for parameters. This means that the called macro uses the environment of the macro from which it was called.</p>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="#STDZ0737342">Example 6-15</a>
+                                    </span> shows nested macros. The y in the in_block macro hides the y in the out_block macro. The x and z from the out_block macro, however, are accessible to the in_block macro.</p>
+                                <div class="example">
+                                    <h4 id="STDZ0737342">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_6-15_Using_Nested_Macros">
+                                        </a>
+                                        <span class="example-label">Example 6-15 </span>Using Nested Macros</h4>
+                                    <code>in_block .macro y,a
+ . ; visible parameters are y,a and x,z from the calling macro 
+ .endm
+
+out_block .macro	x,y,z
+ . ; visible parameters are x,y,z
+ .
+ in_block x,y ; macro call with x and y as arguments
+ .
+ .
+ .endm
+ out_block ; macro call</code>
+                                </div>
+                                <p>
+                                    <span> <span class="crossreference"><a href="#STDZ0736581">Example 6-16</a></span> shows</span> recursive and fact macros. The fact macro produces assembly code necessary to calculate the factorial of n, where n is an immediate value. The result is placed in <span>data memory address loc</span>. The fact macro accomplishes this by calling fact1, which calls itself recursively.</p>
+                                <div class="example">
+                                    <h4 id="STDZ0736581">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_6-16_Using_Recursive_Macros">
+                                        </a>
+                                        <span class="example-label">Example 6-16 </span>Using Recursive Macros</h4>
+                                    <code>fact .macro N,loc
+ .if N &lt; 2
+ MOV #1,&amp;loc
+ .else
+ MOV #N,&amp;loc
+ .eval N-1,N
+ fact1
+ .endif
+ .endm
+
+fact1 .macro
+ .if N &gt; 1
+ MOV #N,R12 ; Assume MPY requires args to be in R12,R13
+ MOV &amp;loc,R13
+ CALL MPY
+ MOV R12,&amp;loc ; Assume MPY returns product in R12
+ .eval N - 1,N
+ fact1
+ .endif
+
+ .endm
+
+ .global fact_result
+ .global MPY
+
+ fact 5,fact_result</code>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0734223">
+                                    <a MadCap:generatedBookmark="TOC" name="6.10_Macro_Directives_Summary">
+                                    </a>
+                                    <span class="section-label">6.10 </span>Macro Directives Summary</h3>
+                                <p> The directives listed in <span class="crossreference"><a href="#STDZ0737431">Table 6-2</a></span> through <span class="crossreference"><a href="#STDZ0730695">Table 6-6</a></span> can be used with macros. The .macro, .mexit, .endm and .var directives are valid only with macros; the remaining directives are general assembly language directives. </p>
+                                <div class="subsection">
+                                    <p class="table" id="STDZ0737431">
+                                        <span class="table-label">Table 6-2 </span>Creating Macros </p>
+                                    <table class="gentable">
+                                        <colgroup>
+                                            <col />
+                                            <col align="left" />
+                                            <col align="left" />
+                                            <col align="left" />
+                                        </colgroup>
+                                        <thead class="tbl_hdr_gray">
+                                            <tr class="noBorderBottom">
+                                                <th valign="bottom" />
+                                                <th valign="bottom" />
+                                                <th align="center" colspan="2" valign="bottom">See</th>
+                                            </tr>
+                                            <tr>
+                                                <th valign="bottom">Mnemonic and Syntax</th>
+                                                <th valign="bottom">Description</th>
+                                                <th valign="bottom">Macro Use</th>
+                                                <th valign="bottom">Directive</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="noBorderBottom">
+                                                <td valign="middle"> <b>.endm</b> <![CDATA[ ]]></td>
+                                                <td valign="middle">End macro definition</td>
+                                                <td valign="middle">
+                                                    <span class="crossreference">
+                                                        <a href="#STDZ0738146">Section 6.2</a>
+                                                    </span> <![CDATA[ ]]></td>
+                                                <td valign="middle">
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDmacrodesc">.endm</a>
+                                                    </span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr class="noBorderBottom">
+                                                <td valign="middle"> <i>macname </i><b>.macro</b> [<i>parameter<sub>1</sub> <![CDATA[ ]]></i>][<b>,</b>... <b>,</b><i> parameter<sub>n</sub> <![CDATA[ ]]></i>]</td>
+                                                <td valign="middle">Define macro by <i>macname</i> <![CDATA[ ]]></td>
+                                                <td valign="middle">
+                                                    <span class="crossreference">
+                                                        <a href="#STDZ0738146">Section 6.2</a>
+                                                    </span> <![CDATA[ ]]></td>
+                                                <td valign="middle">
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDmacrodesc">.macro</a>
+                                                    </span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr class="noBorderBottom">
+                                                <td valign="middle"> <b>.mexit</b> <![CDATA[ ]]></td>
+                                                <td valign="middle">Go to .endm</td>
+                                                <td valign="middle">
+                                                    <span class="crossreference">
+                                                        <a href="#STDZ0738146">Section 6.2</a>
+                                                    </span>
+                                                </td>
+                                                <td valign="middle">
+                                                    <span class="crossreference">
+                                                        <a href="#STDZ0738146">Section 6.2</a>
+                                                    </span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" valign="middle"> <b>.mlib </b><i>filename</i> <![CDATA[ ]]></td>
+                                                <td valign="top">Identify library containing macro definitions</td>
+                                                <td valign="top"> <span class="crossreference"><a href="#STDZ0732144">Section 6.4</a></span> <![CDATA[ ]]></td>
+                                                <td valign="top">
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDmlibdesc">.mlib</a>
+                                                    </span> <![CDATA[ ]]></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="subsection">
+                                    <h3 id="litSPRU186-0692">
+                                        <a MadCap:generatedBookmark="TOC" name="Table_6-3_Manipulating_Substitution_Symbols">
+                                        </a>
+                                        <span class="table-label">Table 6-3 </span>Manipulating Substitution Symbols</h3>
+                                    <table class="gentable">
+                                        <colgroup>
+                                            <col align="left" />
+                                            <col align="left" />
+                                            <col align="left" />
+                                            <col />
+                                        </colgroup>
+                                        <thead class="tbl_hdr_gray">
+                                            <tr>
+                                                <th align="left" class="noBorderRight noBorderBottom" valign="bottom" />
+                                                <th align="left" class="noBorderRight noBorderBottom" valign="bottom" />
+                                                <th align="center" class="noBorderRight" colspan="2" valign="bottom">See</th>
+                                            </tr>
+                                            <tr>
+                                                <th align="left" class="noBorderRight" valign="bottom">Mnemonic and Syntax</th>
+                                                <th align="left" class="noBorderRight" valign="bottom">Description</th>
+                                                <th align="left" class="noBorderRight" valign="bottom">Macro Use</th>
+                                                <th align="left" class="noBorderRight" valign="bottom">Directive</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle"> <b>.asg</b> [<b>"</b>]<i>character string</i>[<b>"</b>]<i>, substitution symbol</i> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">Assign character string to substitution symbol</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">
+                                                    <span class="crossreference">
+                                                        <a href="#STDZ0731673">Section 6.3.1</a>
+                                                    </span> <![CDATA[ ]]></td>
+                                                <td class="noBorderRight noBorderBottom" valign="middle"> <span class="crossreference"><a href="assembler-directives.html#IDasgevaldesc">.asg</a></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.eval </b><i>well-defined expression, substitution symbol</i> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">Perform arithmetic on numeric substitution symbols</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle"> <span class="crossreference"><a href="#STDZ0731673">Section 6.3.1</a></span></td>
+                                                <td class="noBorderRight noBorderBottom" valign="middle"> <span class="crossreference"><a href="assembler-directives.html#IDasgevaldesc">.eval</a></span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle"> <b>.var </b><i>sym<sub>1</sub> <![CDATA[ ]]></i> [<b>,</b><i>sym<sub>2</sub> ,</i> ...<b>,</b><i>sym<sub>n</sub> <![CDATA[ ]]></i>]</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">Define local macro symbols</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle"> <span class="crossreference"><a href="#STDZ0734523">Section 6.3.6</a></span> <![CDATA[ ]]></td>
+                                                <td class="noBorderRight noBorderBottom" valign="middle">
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDvardesc">.var</a>
+                                                    </span> <![CDATA[ ]]></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="subsection">
+                                    <p class="table" id="STDZ0730693">
+                                        <span class="table-label">Table 6-4 </span>Conditional Assembly </p>
+                                    <table class="gentable">
+                                        <colgroup>
+                                            <col align="left" />
+                                            <col align="left" />
+                                            <col align="left" />
+                                            <col align="left" />
+                                        </colgroup>
+                                        <thead class="tbl_hdr_gray">
+                                            <tr>
+                                                <th align="left" class="noBorderRight noBorderBottom" valign="bottom" />
+                                                <th align="left" class="noBorderRight noBorderBottom" valign="bottom" />
+                                                <th align="center" class="noBorderRight" colspan="2" valign="bottom">See</th>
+                                            </tr>
+                                            <tr>
+                                                <th align="left" class="noBorderRight" valign="bottom">Mnemonic and Syntax</th>
+                                                <th align="left" class="noBorderRight" valign="bottom">Description</th>
+                                                <th align="left" class="noBorderRight" valign="bottom">Macro Use</th>
+                                                <th align="left" class="noBorderRight" valign="bottom">Directive</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle"> <b>.break </b>[<i>well-defined expression</i>]</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">Optional repeatable block assembly</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle"> <span class="crossreference"><a href="#STDZ0738150">Section 6.5</a></span> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDloopdesc">.break</a>
+                                                    </span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle"> <b>.endif</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">End conditional assembly</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle"> <span class="crossreference"><a href="#STDZ0738150">Section 6.5</a></span> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDifelsedesc">.endif</a>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle"> <b>.endloop</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">End repeatable block assembly</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle"> <span class="crossreference"><a href="#STDZ0738150">Section 6.5</a></span> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDloopdesc">.endloop</a>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">
+                                                    <b>.else</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">Optional conditional assembly block</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle"> <span class="crossreference"><a href="#STDZ0738150">Section 6.5</a></span> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDifelsedesc">.else</a>
+                                                    </span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">
+                                                    <b>.elseif</b>
+                                                    <i>well-defined expression</i>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">Optional conditional assembly block</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">
+                                                    <span class="crossreference">
+                                                        <a href="#STDZ0738150">Section 6.5</a>
+                                                    </span>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDifelsedesc">.elseif</a>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle"> <b>.if </b><i>well-defined expression</i> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">Begin conditional assembly</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle"> <span class="crossreference"><a href="#STDZ0738150">Section 6.5</a></span> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDifelsedesc">.if</a>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle"> <b>.loop </b>[<i>well-defined expression</i>]</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">Begin repeatable block assembly</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle"> <span class="crossreference"><a href="#STDZ0738150">Section 6.5</a></span> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDloopdesc">.loop</a>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="subsection">
+                                    <p class="table" id="STDZ0730694">
+                                        <span class="table-label">Table 6-5 </span>Producing Assembly-Time Messages </p>
+                                    <table class="gentable">
+                                        <colgroup>
+                                            <col align="left" />
+                                            <col align="left" />
+                                            <col align="left" />
+                                            <col align="left" />
+                                        </colgroup>
+                                        <thead class="tbl_hdr_gray">
+                                            <tr>
+                                                <th align="left" class="noBorderRight noBorderBottom" valign="bottom" />
+                                                <th align="left" class="noBorderRight noBorderBottom" valign="bottom" />
+                                                <th align="center" class="noBorderRight" colspan="2" valign="bottom">See</th>
+                                            </tr>
+                                            <tr>
+                                                <th align="left" class="noBorderRight" valign="bottom">Mnemonic and Syntax</th>
+                                                <th align="left" class="noBorderRight" valign="bottom">Description</th>
+                                                <th align="left" class="noBorderRight" valign="bottom">Macro Use</th>
+                                                <th align="left" class="noBorderRight" valign="bottom">Directive</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.emsg</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Send error message to standard output</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <span class="crossreference"><a href="#STDZ073603">Section 6.7</a></span> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDmsgsdesc">.emsg</a>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.mmsg</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Send assembly-time message to standard output</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <span class="crossreference"><a href="#STDZ073603">Section 6.7</a></span> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDmsgsdesc">.mmsg</a>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.wmsg</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Send warning message to standard output</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <span class="crossreference"><a href="#STDZ073603">Section 6.7</a></span> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDmsgsdesc">.wmsg</a>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="subsection">
+                                    <p class="table" id="STDZ0730695">
+                                        <span class="table-label">Table 6-6 </span>Formatting the Listing </p>
+                                    <table class="gentable">
+                                        <colgroup>
+                                            <col />
+                                            <col />
+                                            <col />
+                                            <col />
+                                        </colgroup>
+                                        <thead class="tbl_hdr_gray">
+                                            <tr>
+                                                <th />
+                                                <th />
+                                                <th align="center" colspan="2">See</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Mnemonic and Syntax</th>
+                                                <th>Description</th>
+                                                <th>Macro Use</th>
+                                                <th>Directive</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td> <b>.fclist</b> <![CDATA[ ]]></td>
+                                                <td>Allow false conditional code block listing (default)</td>
+                                                <td> <span class="crossreference"><a href="#STDZ0737274">Section 6.8</a></span> <![CDATA[ ]]></td>
+                                                <td>
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDfclistdesc">.fclist</a>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>.fcnolist</b> <![CDATA[ ]]></td>
+                                                <td>Suppress false conditional code block listing</td>
+                                                <td> <span class="crossreference"><a href="#STDZ0737274">Section 6.8</a></span> <![CDATA[ ]]></td>
+                                                <td>
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDfclistdesc">.fcnolist</a>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>.mlist</b> <![CDATA[ ]]></td>
+                                                <td>Allow macro listings (default)</td>
+                                                <td> <span class="crossreference"><a href="#STDZ0737274">Section 6.8</a></span> <![CDATA[ ]]></td>
+                                                <td>
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDmlistdesc">.mlist</a>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>.mnolist</b> <![CDATA[ ]]></td>
+                                                <td>Suppress macro listings</td>
+                                                <td> <span class="crossreference"><a href="#STDZ0737274">Section 6.8</a></span> <![CDATA[ ]]></td>
+                                                <td>
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDmlistdesc">.mnolist</a>
+                                                    </span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>.sslist</b> <![CDATA[ ]]></td>
+                                                <td>Allow expanded substitution symbol listing</td>
+                                                <td> <span class="crossreference"><a href="#STDZ0737274">Section 6.8</a></span> <![CDATA[ ]]></td>
+                                                <td>
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDsslistdesc">.sslist</a>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>.ssnolist</b> <![CDATA[ ]]></td>
+                                                <td>Suppress expanded substitution symbol listing (default)</td>
+                                                <td> <span class="crossreference"><a href="#STDZ0737274">Section 6.8</a></span> <![CDATA[ ]]></td>
+                                                <td>
+                                                    <span class="crossreference">
+                                                        <a href="assembler-directives.html#IDsslistdesc">.ssnolist</a>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="abstract.html">Back to Top</a>
+                    <p />
+                    <a href="http://www.go-dsp.com/forms/techdoc/doc_feedback.htm?litnum=SLAU131R&amp;partnum=MSP430">Submit Documentation Feedback</a>
+                    <p>Copyright© 2018, Texas Instruments Incorporated. An <a href="includes/important_notice.html">IMPORTANT NOTICE</a> for this document addresses availability, warranty, changes, use in safety-critical applications, intellectual property matters and other important disclaimers.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

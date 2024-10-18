@@ -1,0 +1,61 @@
+<html><body>
+<h2> Typical message </h2>
+
+warning #17003-D: relocation to symbol "_main" overflowed; the 18-bit relocated address 0x23a21 is too large to encode in the 16-bit field (type = 'R_RELWORD' (16), file = "x.obj", offset = 0x00000000, section = ".data")
+
+<h2> What it means </h2>
+
+<p><a href="http://en.wikipedia.org/wiki/Relocation_%28computer_science%29">Relocation</a> is one of the jobs performed by the linker.  When a function is called or a variable is accessed, the assembly language source code refers to the function or variable by its name (in object file terminology, this is the <b>symbol</b>).  The assembler does not know the machine address of the symbol, so it leaves a blank hole (the <b>relocation field</b>) in the object file where the address needs to go, and creates a <b>relocation</b>, which tells the linker that it needs to fill in the field.  For each relocation, the linker fills in the relocation field with the machine address of the referred-to function or variable. </p>
+
+<p>However, sometimes the address does not fit in the field.  This is called a <b>relocation overflow</b>.</p>
+
+<h2> Why it is happening </h2>
+
+<p>A complete explanation of every possible way you can get relocation overflow would make this page too long.  What follows is a quick overview to help you understand what relocation overflow is, and how to look for more help fixing it. </p>
+
+<p>When deciphering a relocation overflow error message, it is important to know whether the referred-to symbol is a function or variable, whether the relocation field itself is in a code section or data section, and what type of relocation it is.  There are many relocation types, which fall into these broad categories:</p>
+
+<h3> Absolute </h3>
+
+<p>An absolute relocation requires the entire machine address to be placed in the relocation field.  An absolute relocation is usually the result of the C <i>address-of</i> operator.  For example:
+
+<pre><code> int *pointer = &object;
+
+ int *function(void) { return &object; }</code></pre>
+
+It is unusual for an absolute relocation to overflow.</p>
+
+<h3> PC-relative </h3>
+
+<p>A PC-relative relocation is usually found in a branch or call.  Some targets (ARM, MSP430) support PC-relative addressing of data.  In a PC-relative relocation, the value that needs to be placed in the relocation field is the offset from the current PC of the referred-to function or variable.  The offset is the difference between the address of the instruction containing the relocation field (for some architectures, a nearby address such as the fetch packet start) and the address of the referred-to function or variable. PC-relative addressing is usually used because the absolute address would be too large to encode in a single instruction, so a field smaller than the size of an address is used.  However, because the field is smaller than the address width, it has a limited <i>reach</i>.  That is, it can only refer to addresses that are within a certain limit.</p>
+
+<p>A typical scenario for PC-relative relocation overflow is on C6200 when "near" code memory model is used.  The C6200 has a call instruction which has only a 21-bit offset, but the width of an absolute address is 32 bits.  If the call destination is more than pow(2,23) bits away (21 bits, plus 2 bits for scaling), the call instruction cannot reach the target function.</p>
+
+<p>For extremely large functions, it is possible to have a branch within the function that cannot reach the destination.  This is very rare.</p>
+
+<h4> Remedy </h4>
+
+<ol>
+<li> Use trampolines (if available) </li>
+<li> Use a large code (or data) memory model </li>
+<li> Make the code size smaller </li>
+<li> Modify the linker command file to place the calling function closer to the called function. </li>
+</ol>
+
+<h3> Static-base/.bss/DP(data page) relative </h3>
+
+<p>Static-base-relative (also known as .bss-relative, DP-relative and data-page-relative) relocations are similar to PC-relative relocations, but they are instead relative to a known fixed location (such as the starting address of the .bss section).</p>
+
+<h4> Remedy </h4>
+
+<ol>
+<li> Make the data <b>const</b> </li>
+<li> Use the <b>far</b> keyword (if available) </li>
+<li> Use a large data memory model </li>
+<li> Make the data size smaller </li>
+</ol>
+
+<h2> Risks, Severity </h2>
+
+<p>Until the relocation overflow is fixed, the program will not link.</p>
+</body></html>

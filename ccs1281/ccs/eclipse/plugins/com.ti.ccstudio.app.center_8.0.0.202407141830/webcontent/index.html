@@ -1,0 +1,237 @@
+<!------------------------------------------------------------------------
+ * Copyright (c) 2013 Texas Instruments and others
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Patrick Chuong (Texas Instruments) - Initial API and implementation
+ -------------------------------------------------------------------------> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Code Composer App Center</title>
+<!--[if lt IE 9]>
+<meta http-equiv="refresh" content="0; URL=file:///${web_content_dir}/browser_error.html">
+<![endif]-->
+<meta charset="UTF-8" />
+
+<link rel="stylesheet" type="text/css" href="file:///${web_content_dir}/css/page.css" />
+<link rel="stylesheet" type="text/css" href="file:///${web_content_dir}/css/tiles/style_common.css" />
+<link rel="stylesheet" type="text/css" href="file:///${web_content_dir}/css/tiles/style10.css" />
+<link rel="stylesheet" type="text/css" href="file:///${web_content_dir}/css/drop_list/style.css" />
+<link rel="stylesheet" type="text/css" href="file:///${web_content_dir}/css/search.css" />
+<link rel="stylesheet" type="text/css" href="file:///${web_content_dir}/css/tooltip.css" />
+
+<script type="text/javascript" src="file:///${web_content_dir}/js/modernizr.js"></script>
+<script type="text/javascript" src="file:///${web_content_dir}/js/appcenter.js"></script>
+
+<script type="text/javascript">
+	var delay = 100;
+	var timeout = 30000;
+	var count = 0;    
+    
+    /* set the filter location */
+    function setActionBarVisible() {
+	    var bannerHeight = document.getElementById("banner").clientHeight;
+    	var actionBarContainer = document.getElementById("actionBarContainer");
+    	var actionBarPadding = document.getElementById("actionBarPadding");
+    	
+    	if (window.scrollY >= bannerHeight) {
+    		actionBarContainer.classList.add("sticky");
+    		var offset = window.scrollY - bannerHeight;
+    		if (offset > 0) {
+    			actionBarPadding.style.height = actionBarContainer.clientHeight - offset + "px";
+    		} else {
+    			actionBarPadding.style.height = actionBarContainer.clientHeight + "px";
+    		}
+    		
+    	} else {
+    		actionBarContainer.classList.remove("sticky");
+    		actionBarPadding.style.height = "0px";
+    	}
+    	
+    	
+    }
+    
+    /* add a polling interval to update search filter tags */
+    var setFilterTagsCounter = 0;
+    function setFilterTags() {
+    	setFilterTagsCounter++;
+    	setTimeout(function() {
+    		setFilterTagsCounter--;
+    		if (setFilterTagsCounter <= 0) {
+		    	var searchBox = document.getElementById("search");
+		    	if (searchBox)
+		    		appCenter.setFilterTags(searchBox.elements["text"].value);
+	    	}
+	    }, 500);
+    };
+    
+    function filterKeydown(event) {
+    	/* esc key */
+		if (event.keyCode == 27) {
+    		var searchBox = document.getElementById("search");
+		    if (searchBox) {
+		    	searchBox.elements["text"].value = "";
+		    }
+    	}
+    	
+    	/* set the new filter text */
+    	setFilterTags();
+    }
+    
+	function getParameterByName(name) {
+		name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+   		var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+       	results = regex.exec(location.search);
+   		return results == null ? null : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+
+	function queryApps() {
+		if (window.getAppsJson) {
+			try {
+				var json = window.getAppsJson();
+				
+				if (json && json.length > 0) {
+					/* handles the case where the json file has apps = {} */
+					if (json.indexOf("apps") == 0) {
+						window.apps = eval(json);
+					/* handles the case where the json file is a valid json object */
+					} else {
+						window.apps = JSON.parse(json);
+					}
+				}
+			} catch (e) {
+				window.log(e.message);
+			}
+		}
+	}
+
+	function run() {
+		queryApps();
+			
+		if (window.apps && window.appCenter && window.browserReady) {
+			var numTiles = null;
+			var sectionId = getParameterByName("sectionId");
+			var productFilter = getParameterByName("productFilter");
+			if (productFilter != null) {
+				appCenter.setSelectedProduct(productFilter);
+				var productElement = document.getElementById("productFilter");
+				productElement.value = productFilter;
+			}
+			
+			if (sectionId != null) {
+				var sections = document.getElementsByClassName("main");
+				for (var i = 0;  i < sections.length; ++i) {
+					var section = sections[i];
+					section.style.display = section.id !== sectionId ? "none" : "";
+					
+					var title = document.getElementById(section.id+"Title");
+					if (title) {
+						title.style.display = section.style.display;
+					}
+				}
+				numTiles = Number.MAX_VALUE;
+				
+				appCenter.setElementVisibleByClass(sectionId, "seeMore", false);
+				appCenter.setElementVisibleByClass(sectionId, "recommended", false);
+			}			
+			try {
+				appCenter.init(numTiles, sectionId);
+			} catch (e) {
+				window.log(e.message);
+			}
+			
+			var loader = document.getElementById("loader");
+			loader.style.display = "none";
+
+			var container = document.getElementsByClassName("container");
+			container[0].style.display = "";
+			appCenter.onSize();
+			return;
+		}
+		count += delay;
+		if (count == timeout) {
+			window.location = "file:///${web_content_dir}/error.html";
+			return;
+		}
+		setTimeout(run, delay);
+	}
+	
+	function more(sectionId) {
+		var href = window.location.href;
+		var productFilter = appCenter.getSelectedProduct();
+		var index = href.lastIndexOf("#");
+		href = href.substr(0, index);			
+		window.location = href + "?sectionId=" + sectionId + "&productFilter=" + productFilter;
+	}
+	
+	function goHome() {
+		var href = window.location.href;
+		var index = href.lastIndexOf("/")+1;
+		var productFilter = appCenter.getSelectedProduct();
+		href = href.substr(0, index);
+		window.location = href + "index.html" + "?productFilter=" + productFilter;
+	}
+</script>
+
+</head>
+<body onresize="appCenter.onSize()">
+	<div id="loader">
+		<img src="file:///${web_content_dir}/images/busy.gif">
+		<div>Connecting to CCS App Center Server...</div>
+	</div>
+
+	<div class="container" style="display: none;">
+		<div id="banner">
+			<div id="logo"></div>
+			<div id="main-text"></div>
+			<div id="sub-text"></div>
+		</div>
+		
+		<div id="actionBarContainer" class="us-form banner">
+			<a onclick="goHome()" style="margin-left:5px;" href="#"><img class="actionBarBtn" src="file:///${web_content_dir}/images/home.png" title="Return to App Center Home"></a>
+			<a href="#" id="installSoftwareBtn" style="margin-right: 15px;"><img class="actionBarBtn" src="file:///${web_content_dir}/images/install.png" title="Install Selected Software"></a>
+			<form id="search" class="actionBarBtn" style="top:-8px;" onsubmit="return false;">
+				<input type="text" name="text" required onkeydown="filterKeydown(event)" oncut="setFilterTags()" onpaste="setFilterTags()" />
+				<input type="reset" value="x" onclick="setFilterTags()" />
+			</form>
+			<select id="productFilter" class="cd-select actionBarBtn" style="top:-9px;" onchange="appCenter.setSelectedProduct(this.options[this.selectedIndex].text)">
+				<option>Relevance</option>
+				<option>All</option>
+			</select>
+			
+			<!-- popup tooltip -->
+			<div class="speech-bubble hidden" id="installSoftwareTooltip">
+	    		<div class="arrow top"></div>
+	    		<a href="#" title="Close" onclick="appCenter.setInstallTooltipVisible(false); return false;">x</a>
+	    		<p>Click this button to begin installing the selected add-on(s).<p>
+			</div>
+		</div>
+		
+		<div id="actionBarPadding"></div>
+		
+		<!-- managed section -->
+		<h2 class="mainTitle" id="managedSectionTitle">Code Composer Studio Add-ons<a class="seeMore flatBtn blueColor-bg" href="#" onclick="more('managedSection')"></a>
+			<div style="font-size: 16px; padding: 5px;">To install other software packages, please use <b><a class="flatBtn blueColor-bg" href="#" onclick="window.openTirex2(); return false;">Resource Explorer</a></b></div>
+		</h2>
+		
+		<div class="main" id="managedSection"></div>
+
+		<!--  standalone section -->
+		<h2 class="mainTitle" id="standaloneSectionTitle">Standalone Software<a class="seeMore flatBtn redColor-bg" href="#" onclick="more('standaloneSection')"></a></h2>
+		<div class="main" id="standaloneSection"></div>
+		
+		<!-- additional resources -->
+		<h2 class="mainTitle" id="resourceSectionTitle">Additional Resources<a class="seeMore flatBtn grayColor-bg" href="#" onclick="more('resourceSection')"></a></h2>
+		<div class="main" id="resourceSection">	</div>
+	</div>
+		
+	<script type="text/javascript">
+		run();
+		window.onscroll = function() {setActionBarVisible();}
+	</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: i1jttlUo1z8UyzOy9emD9zd0SGO8v
+ iTXpUj9n+j1Yeo=
+SHA-256-Digest-Manifest: qSbVbp69Onxmra0BidlkIdY+HvZruR2984wIAww/hNc=
+Created-By: 1.8.0_102 (Oracle Corporation)
+
+Name: plugin.xml
+SHA-256-Digest: Oefr2obdltvUvRoYzy8gUrRIz23DKY5QLZ725Y03t/c=
+
+Name: bsf.jar
+SHA-256-Digest: 8a8+XIwUIbJ1h1tNr0Xlf9T4OnxknybVOvDZBAf+puk=
+
+Name: com.ti.dvt.control.engine.tasks.jar
+SHA-256-Digest: bMx23dU2FQgSmd+Azq734BIF14pDQHDK3tscO7MBVoI=
+
+Name: commons-logging-api-1.1.1.jar
+SHA-256-Digest: LsA4T19jqSnEYyqR5ostg4pkYNAjhvvHHD4oNzdLII8=
+
+Name: com.ti.dvt.control.engine.jar
+SHA-256-Digest: FDBToPRnTwpIpDkvzf1cebpdGpUGvNRnG73E3B/qnJk=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: ak2bzOGDjLurhLXRsFA/N7TRhvaP+YA1QdnivLjcXtk=
+

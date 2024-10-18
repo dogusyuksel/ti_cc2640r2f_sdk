@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.xdctools.update"
+      label="XDCtools Core Update Feature"
+      version="3.62.1.16"
+      provider-name="Texas Instruments"
+      os="win32,linux,macosx">
+
+    <description>
+This update provides the built-in XDCtools support for Code Composer Studio.
+
+    </description>
+
+    <copyright url="http://www.ti.com">
+Copyright, Texas Instruments Inc.
+    </copyright>
+
+    <license url="http://www.eclipse.org/legal/epl-v10.html">
+This patch is delivered to you under the license terms that you agreed to when activating Code Composer Studio.  You can view your specific license agreement by visiting www.ti.com/myregisteredsoftware and clicking on "View EULA" under your Code Composer Studio activation.
+    </license>
+
+    <url>
+    </url>
+
+    <requires>
+        <import feature="com.ti.ccstudio.idemain" version="7.1.0" match="greaterOrEqual"/>
+    </requires>
+
+    <plugin
+        id="com.ti.xdctools_3_62.base"
+        download-size="34430110"
+        install-size="34430110"
+        version="3.62.1.16" />
+
+    <plugin
+        id="com.ti.xdctools_3_62.win32"
+        os="win32"
+        download-size="5541772"
+        install-size="5541772"
+        version="3.62.1.16"
+        fragment="true" />
+
+    <plugin
+        id="com.ti.xdctools_3_62.linux"
+        os="linux"
+        download-size="2293688"
+        install-size="2293688"
+        version="3.62.1.16"
+        fragment="true" />
+
+    <plugin
+        id="com.ti.xdctools_3_62.macosx"
+        os="macosx"
+        download-size="2500130"
+        install-size="2500130"
+        version="3.62.1.16"
+        fragment="true" />
+
+</feature>

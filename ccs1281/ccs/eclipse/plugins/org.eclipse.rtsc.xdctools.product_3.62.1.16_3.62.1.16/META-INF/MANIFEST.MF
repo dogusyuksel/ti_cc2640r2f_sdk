@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.he
+ lp,org.eclipse.rtsc.xdctools.ui;resolution:=optional
+Bundle-Vendor: Texas Instruments
+Eclipse-LazyStart: true
+Bundle-Version: 3.62.1.16
+Bundle-Name: XDCtools Embedded Runtime Content
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.rtsc.xdctools.ui.cdt.CCSActivator;resolu
+ tion:=optional
+Created-By: 1.7.0_60 (Oracle Corporation)
+Bundle-SymbolicName: org.eclipse.rtsc.xdctools.product_3.62.1.16;singl
+ eton:=true
+
+Name: plugin.xml
+SHA-256-Digest: uYav7A1wImX3M/gm7IP2Wkq2KkOZZA9O5J+F24zR+Yk=
+
+Name: rtsc.png
+SHA-256-Digest: 2hUC0fTiPrTctfXX9GJKG+zWcMx/HYyl+OyMLmVmjbM=
+
+Name: about.ini
+SHA-256-Digest: JiqNL8UFp1EoUzjAnTIlEMwj6yQ9KQk9bQkq+x619BQ=
+

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.chromium.browser"
+      label="Chromium Browser Feature"
+      version="12.4.0.202407141830"
+      provider-name="Texas Instruments">
+
+   <description>
+      Chromium Browser Feature
+   </description>
+
+   <copyright>
+      Copyright Texas Instruments 2013-2016
+   </copyright>
+
+   <license>
+      See Code Composer Studio license for special terms and conditions.
+   </license>
+
+   <plugin
+         id="com.ti.chromium.browser"
+         download-size="0"
+         install-size="0"
+         version="12.4.0.202407141830"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.chromium.browser.cocoa.macosx.x86_64"
+         os="macosx"
+         ws="cocoa"
+         arch="x86_64"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"/>
+
+   <plugin
+         id="com.ti.chromium.browser.gtk.linux.x86_64"
+         os="linux"
+         ws="gtk"
+         arch="x86_64"
+         download-size="0"
+         install-size="0"
+         version="2.0.0.202407141830"
+         fragment="true"/>
+
+   <plugin
+         id="com.ti.chromium.browser.win32.win32.x86_64"
+         os="win32"
+         ws="win32"
+         arch="x86_64"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"/>
+
+</feature>

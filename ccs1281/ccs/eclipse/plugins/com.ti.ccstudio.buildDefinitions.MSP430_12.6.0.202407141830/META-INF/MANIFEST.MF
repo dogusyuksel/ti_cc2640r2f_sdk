@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CCS MSP430 Build Definitions
+Bundle-SymbolicName: com.ti.ccstudio.buildDefinitions.MSP430; singleton:
+ =true
+Bundle-Version: 12.6.0.202407141830
+Bundle-Vendor: Texas Instruments
+Bundle-Localization: plugin
+Require-Bundle: com.ti.ccstudio.core,com.ti.ccstudio.project.core,com.ti
+ .ccstudio.system.setup,com.ti.ccstudio.buildDefinitions.GNU,org.eclipse
+ .cdt.core,org.eclipse.core.resources,org.eclipse.core.runtime,org.eclip
+ se.debug.core
+Export-Package: com.ti.ccstudio.buildDefinitions.MSP430;x-internal:=true
+ ,com.ti.ccstudio.deviceModel.MSP430;x-internal:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Eclipse-BundleShape: dir
+
+

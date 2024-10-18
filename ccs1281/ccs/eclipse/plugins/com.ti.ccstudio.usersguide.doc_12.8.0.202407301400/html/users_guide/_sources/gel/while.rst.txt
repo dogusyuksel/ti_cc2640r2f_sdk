@@ -1,0 +1,43 @@
+GEL while and do-while Statements
+---------------------------------
+
+GEL while and do-while statements are similar to the standard C while and do-while statements, but the GEL versions do not support embedded continue statements. The general form is:
+
+.. code:: cpp
+
+   while ( expression )
+   statement1;
+
+Or   
+ 
+.. code:: cpp
+
+   do statement1
+   while ( expression );
+
+In the while statement, the expression is evaluated before each execution of statement1. If and only if the value of the expression is true (unequal zero), statement1 is executed. If the value of the expression becomes false (equal to 0), the while statement is terminated. The statement can be a single statement or several in braces.
+
+In the do-while statement, the expression is evaluated after each execution of statement1. That is, statement1 is executed, then the expression is evaluated. If and only if the value of the expression is true (unequal zero), statement1 is executed again. If the value of the expression becomes false (equal to 0), the do-while statement is terminated. The statement can be a single statement or several in braces.
+
+___
+
+**Example:**
+
+.. code:: cpp
+
+   while (a != Count)
+   {
+      dataspace[a] = 0;
+      a--;
+   }
+   do
+   {
+      dataspace[a] = 0;
+      a--;
+   } while (a != Count);
+   
+___
+
+**See also:**
+
+`GEL Functions: Alphabetical List <functions_list.html>`__

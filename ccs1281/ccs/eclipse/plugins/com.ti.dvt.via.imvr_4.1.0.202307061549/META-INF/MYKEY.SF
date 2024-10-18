@@ -1,0 +1,63 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: RxNuHlLj4GUakdc4ivRSfL4548Q6t
+ ckjRUleCyXU5gc=
+SHA-256-Digest-Manifest: fkXDxVY3qNGI/+chjlFKq3gdxCcWyGONYS7qbH17dP0=
+Created-By: 1.8.0_102 (Oracle Corporation)
+
+Name: plugin.xml
+SHA-256-Digest: ZanOuFaGP2sg1jDpIa6ZdOK0nuHvzgMSIyL4PVfpifU=
+
+Name: META-INF/p2.inf
+SHA-256-Digest: XrYyK6KKuZv88Y+Z8H93ZdmOGIIPycgcZ/CHeeZLlfg=
+
+Name: uninstall.xml
+SHA-256-Digest: LwbtaUil3lgbCF8Vy13tmuJLBL+K5Str83njxSghLs0=
+
+Name: icons/image_load.gif
+SHA-256-Digest: LYq2DY0NGPYlD9H1e8cjb30Y2UG0iyAPEbmvxp0q75Y=
+
+Name: icons/green.gif
+SHA-256-Digest: Qt1GhgVsMJE5UoLIyUpt1ZgoxGW0FXNkxJycCNL2dwk=
+
+Name: com.ti.dvt.via.imvr.jar
+SHA-256-Digest: WPaKYPJM620tRJ1wuKUyGerDXGzJ2xxumUIrADwTggQ=
+
+Name: icons/red.gif
+SHA-256-Digest: +0vyZ6w4qOqzHiU4FW7RZ3oFyZjPs7doQzy9ySo+5gs=
+
+Name: icons/image_save.gif
+SHA-256-Digest: jWvrwQMu3UrsoxxhKmdzmkuReBqGLI5YG7P2fkDa7TY=
+
+Name: icons/image.gif
+SHA-256-Digest: 4YBXHuSWWmZukiCIrCown1ACrt6S5DmgMInm4JaQjEg=
+
+Name: icons/rgb.gif
+SHA-256-Digest: ULfyi+U8wMRS2iwh5Nhd9QZtcnNbu51FylFYBX+ksCk=
+
+Name: icons/data_load.gif
+SHA-256-Digest: ZBTRkz7l2sPGyZw+wNw25kdfJIg468ViXmCr29llHsE=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: ak2bzOGDjLurhLXRsFA/N7TRhvaP+YA1QdnivLjcXtk=
+
+Name: dvt.zip
+SHA-256-Digest: pr9V20/gwAFgA6VncmjL++PjQxW6TXXg4wF2DBEd4y4=
+
+Name: icons/data_save.gif
+SHA-256-Digest: BojfLk5RFuhnflCvQ7Ju9yR+qcbnF/s/C1Asuywebdw=
+
+Name: install.xml
+SHA-256-Digest: lL8aP15852fSrfHsE74RHzi+m+SzF4MDfFdPfLFqCy0=
+
+Name: icons/prop_export.gif
+SHA-256-Digest: 4sE0y1rfCVmDlwG7TYqw5l9TYgip7fpCMfEOVfP2Oy8=
+
+Name: plugin.properties
+SHA-256-Digest: AuGuhsW4y1vH+/NIsX28RoTMYHhvUsjAa1Jrn8HQeec=
+
+Name: icons/blue.gif
+SHA-256-Digest: ehwSvYpRNJaAU14/55YxTS2+c92vl/4GIJwsQ8nUH2Y=
+
+Name: icons/prop_import.gif
+SHA-256-Digest: LX1MKD675bwOCPszxM2i64ffT1DAvQn25FQtsD+SGKc=
+

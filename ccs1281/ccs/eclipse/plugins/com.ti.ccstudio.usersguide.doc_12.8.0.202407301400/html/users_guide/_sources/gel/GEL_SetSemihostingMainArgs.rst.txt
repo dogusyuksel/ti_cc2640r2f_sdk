@@ -1,0 +1,30 @@
+GEL_SetSemihostingMainArgs
+--------------------------
+
+Set the arguments that must be forwarded to the target program's main
+function in response to a SYS_GET_CMDLINE semihosting call.
+
+**GEL_SetSemihostingMainArgs(**\ args\ **)**;
+
+**Parameters**
+
+args - String of arguments to be passed
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: No
+
+**Example**
+
+GEL_SetSemihostingMainArgs("arg1 arg2 arg3 arg4 arg5") will pass an
+array of size 5 containing [arg1,arg2,arg3,arg4,arg5]
+
+GEL_SetSemihostingMainArgs("arg1 \\"arg2 with space\" arg3 arg4") will
+pass an array of size 4 containing [arg1, arg2 with space, arg3, arg4]
+
+**Related Topics**
+
+This function should be called to set the desired behaviour prior to
+calling `GEL_Load <GEL_Load.html>`__ to start a program load

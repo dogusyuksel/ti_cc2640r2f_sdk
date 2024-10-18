@@ -1,0 +1,27 @@
+OnRestart()
+-----------
+
+GEL callback function called when the program is restarted.
+
+**Syntax**
+
+**OnRestart( int** nErrorCode **);**
+
+**Parameters**
+
+nErrorCode0 (zero) indicates success.
+
+**Description**
+
+If defined in a loaded GEL file, OnRestart() is called when the program
+is restarted.
+
+**Example**
+
+| OnRestart(int nErrorCode)
+| {
+| if (nErrorCode)
+| GEL_TextOut("An error occurred while restarting. -%d-\n",,,,,
+  nErrorCode);
+| else
+| GEL_TextOut("Restart was successful. -%d-\n",,,,, nErrorCode);}

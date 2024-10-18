@@ -1,0 +1,23 @@
+OnPreTargetConnect()
+--------------------
+
+Called after the parent router is connected, but before the target is connected.
+
+**Format**
+
+**OnPreTargetConnect()**
+
+**Parameters**
+
+None
+
+**Description**
+
+OnPreTargetConnect() is called after the parent router of a target is connected, but before the target itself is connected. The callback
+is executed synchronously. 
+
+**Example**
+
+OnPreTargetConnect()
+
+**Related Topics**

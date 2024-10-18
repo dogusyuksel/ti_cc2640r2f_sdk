@@ -1,0 +1,3006 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Defining Application Behavior &mdash; 
+SimpleLink™ CC2640R2 SDK
+BLE5-Stack User&#39;s Guide
+ 1.01.15.00 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Creating a Custom Board File" href="custom-hardware-cc2640.html" />
+    <link rel="prev" title="Stack Configurations" href="stack-configuration-cc2640.html" />
+    <script language="JavaScript">
+        var tiPageName;
+        tiPageName = "sug ble-stack-5.x creating-a-custom-bluetooth-low-energy-application-cc2640";
+
+        if (location.protocol == "file:"){
+            var ci_analytics_poc_load = true;
+        }
+    </script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../ble-stack-5.x-guide/index-cc2640.html" class="icon icon-home"> 
+SimpleLink™ CC2640R2 SDK
+BLE5-Stack User's Guide
+
+          </a>
+              <div class="version">
+                1.01.15.00
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-5.x-guide/disclaimer.html">Disclaimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart-guide/ble5-quick-start-cc2640.html">TI BLE5-Stack Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-5.x-guide/software_architecture.html">Software Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-5.x-guide/tirtos-index.html">TI-RTOS (RTOS Kernel) Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-5.x-guide/ble-stack-5-index-cc2640.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-5.x-guide/ble-stack-5-index-cc2640.html#ble5-stack">BLE5-Stack</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../ble-stack-5.x-guide/ble-stack-5-index-cc2640.html#developing-a-custom-application">Developing a Custom Application</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Defining Application Behavior</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#directed-advertisements-as-gatt-server">Directed Advertisements as GATT Server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#compiler-options">Compiler Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linker-options">Linker Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ccs">CCS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#iar">IAR</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-additional-icall-enabled-tasks">Creating Additional ICall Enabled Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#production-and-direct-test-mode-ptm-dtm">Production and Direct Test Mode (PTM, DTM)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#direct-test-mode-dtm">Direct Test Mode (DTM)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#production-test-mode-ptm">Production Test Mode (PTM)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#optimizing-bluetooth-low-energy-stack-memory-usage">Optimizing Bluetooth Low Energy Stack Memory Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#flash-optimization">Flash optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ram-optimization">RAM optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decrease-flash-consumption-of-the-examples-project">Decrease flash consumption of the examples project</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#remove-the-two-buttons-menu-and-display">Remove the two buttons menu and display</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#remove-the-2-long-range-advertisement">Remove the #2 (long range) advertisement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#remove-the-auto-phy-update">Remove the auto-PHY update</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#remove-the-connection-parameters-update">Remove the connection parameters update</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#remove-the-pairing-capabilities">Remove the pairing capabilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#remove-the-resolvable-private-address-rpa-functionality">Remove the Resolvable Private Address (RPA) functionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optimize-ti-drivers-for-your-project">Optimize TI drivers for your project</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#defining-bluetooth-low-energy-behavior">Defining Bluetooth Low Energy Behavior</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-5.x-guide/ble-stack-5-index-cc2640.html#running-the-sdk-on-custom-hardware">Running the SDK on Custom Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../voice/voice.html">Creating a Voice Enabled Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-common/npi-index.html">Network Processor Interface (NPI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sensor-controller/sensor-controller.html">Sensor Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-5.x-guide/debugging-index.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-5.x-guide/memory-index.html">Memory overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-5.x-guide/migration-cc2640.html">Updating from previous SDKs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-5.x-guide/api-reference-cc2640.html">API References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-5.x-guide/reference-cc2640.html">Terms and Definitions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../ble-stack-5.x-guide/index-cc2640.html">
+SimpleLink™ CC2640R2 SDK
+BLE5-Stack User's Guide
+</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../ble-stack-5.x-guide/index-cc2640.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../ble-stack-5.x-guide/ble-stack-5-index-cc2640.html">Application</a> &raquo;</li>
+      <li>Defining Application Behavior</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="defining-application-behavior">
+<h1>Defining Application Behavior<a class="headerlink" href="#defining-application-behavior" title="Permalink to this headline">¶</a></h1>
+<p>The Sample Applications will often contain simple TI-RTOS tasks with a
+barebones messaging system between tasks. For more information on how the
+application tasks works in general, review <a class="reference internal" href="the-application.html#the-application"><span class="std std-ref">Introduction</span></a>.</p>
+<div class="section" id="directed-advertisements-as-gatt-server">
+<span id="creating-a-custom-ble-app-directed-advertisements"></span><h2>Directed Advertisements as GATT Server<a class="headerlink" href="#directed-advertisements-as-gatt-server" title="Permalink to this headline">¶</a></h2>
+<p>In BLE5-Stack 1.01.15.00, Privacy is always enabled. Most of the privacy
+features are handled by the GAP bond manager in the stack. To conserve
+flash memory, by default, the GAP bond manager does not enable GATT
+client features. The implication of these disabled GATT client features
+is that the GAP bond manager will not query the Central Address
+Resolution characteristic of the remote device.</p>
+<p>In order to perform a directed advertisement when the initiator’s
+address is set to Private Resolvable Address, the peripheral device
+must read the Central Address Resolution characteristic of its remote
+device to make sure address resolution is supported. Failure to do so
+before sending directed advertisements violates the <a class="reference external" href="https://www.bluetooth.com/specifications/adopted-specifications">Bluetooth Core Specifications Version 5.2</a>.</p>
+<p>By default, sample applications such as simple_peripheral does not define
+<code class="docutils literal notranslate"><span class="pre">GATT_NO_CLIENT</span></code> but initializes the GATT Client as shown below:</p>
+<blockquote>
+<div><div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * Initialize GATT Client, used by GAPBondMgr to look for RPAO</span>
+<span class="cm"> * characteristic for network privacy</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="n">GATT_InitClient</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="compiler-options">
+<span id="sec-compiler-options"></span><h1>Compiler Options<a class="headerlink" href="#compiler-options" title="Permalink to this headline">¶</a></h1>
+<p>For BLE5-Stack projects, compiler options are defined via <code class="docutils literal notranslate"><span class="pre">.opt</span></code> files that are
+included in the IDE’s <code class="docutils literal notranslate"><span class="pre">TOOLS\defines</span></code> folder. Each project’s build
+configuration will include its very own <code class="docutils literal notranslate"><span class="pre">.opt</span></code> file.</p>
+<p>The predefined symbols in the <code class="docutils literal notranslate"><span class="pre">.opt</span></code> files are prefixed with a <code class="docutils literal notranslate"><span class="pre">-D</span></code>, which
+is standard commandline prefix notation across all the supported toolchains.
+Of the predefined symbols in the <code class="docutils literal notranslate"><span class="pre">.opt</span></code> files, some of them are configurable
+and some are not. See <a class="reference internal" href="stack-configuration-cc2640.html#appconfigurablefeatures"><span class="std std-ref">Bluetooth Low Energy Application Configuration Parameters</span></a> and
+<a class="reference internal" href="stack-configuration-cc2640.html#stackconfigurablefeatures"><span class="std std-ref">Bluetooth Low Energy Stack Configuration Parameters</span></a> for reference as to which options are
+configurable.</p>
+<p>The convention to disable a symbol in the <code class="docutils literal notranslate"><span class="pre">.opt</span></code> files is to put an ‘x’ in
+front of the name. For example, to disable power management,
+change <code class="docutils literal notranslate"><span class="pre">-DPOWER_SAVING</span></code> to <code class="docutils literal notranslate"><span class="pre">-DxPOWER_SAVING</span></code>. It is also possible to
+disable a symbol by commenting it out via ‘C - style’ syntax
+(e.g. <code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">-DPOWER_SAVING</span> <span class="pre">*/</span></code>)</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Changes in an <code class="docutils literal notranslate"><span class="pre">.opt</span></code> file may not be detected by the compiler/toolchain.
+It is best to rebuild the entire project when a define is changed.</p>
+</div>
+</div>
+<div class="section" id="linker-options">
+<h1>Linker Options<a class="headerlink" href="#linker-options" title="Permalink to this headline">¶</a></h1>
+<p>Linker symbols may need to be set or adjusted at the project level in order to
+control the memory layout of the generated image.
+The following procedure describes how to access and modify linker
+symbols.</p>
+<div class="section" id="ccs">
+<h2>CCS<a class="headerlink" href="#ccs" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Open <strong>Project Properties</strong></p></li>
+<li><p>Navigate to <strong>Build</strong> -&gt; <strong>ARM Linker</strong> -&gt; <strong>Command File Preprocessing</strong></p></li>
+<li><p>Use the buttons highlighted in <a class="reference internal" href="#fig-ccs-linker-defines-box"><span class="std std-numref">Figure 85.</span></a> to add,
+delete, or edit a linker symbol.</p></li>
+</ol>
+<div class="figure align-center" id="id4">
+<span id="fig-ccs-linker-defines-box"></span><a class="reference internal image-reference" href="../_images/ccs_linker_opts.png"><img alt="../_images/ccs_linker_opts.png" src="../_images/ccs_linker_opts.png" style="width: 75%;" /></a>
+<p class="caption"><span class="caption-number">Figure 85. </span><span class="caption-text">CCS Linker Symbols</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="iar">
+<h2>IAR<a class="headerlink" href="#iar" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Open the Project’s <strong>Options</strong> and select the <strong>Linker</strong> Category.</p></li>
+<li><p>Open the <strong>Config</strong> tab.</p></li>
+<li><p>View the <strong>Configuration File symbol definitions</strong> box (see <a class="reference internal" href="#fig-iar-linker-defines-box"><span class="std std-numref">Figure 86.</span></a>).</p></li>
+<li><p>Add or edit the preprocessor symbols.</p></li>
+</ol>
+<div class="figure align-center" id="id5">
+<span id="fig-iar-linker-defines-box"></span><img alt="../_images/iar_linker_opts.png" src="../_images/iar_linker_opts.png" />
+<p class="caption"><span class="caption-number">Figure 86. </span><span class="caption-text">IAR Defined Symbols Box</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="creating-additional-icall-enabled-tasks">
+<span id="sec-creating-custom-ble-application-creating-additional-tasks"></span><h1>Creating Additional ICall Enabled Tasks<a class="headerlink" href="#creating-additional-icall-enabled-tasks" title="Permalink to this headline">¶</a></h1>
+<p>The objective of this section is to familiarize the programmer with the
+process of adding an RTOS task that can communicate with the BLE5-Stack. Tasks
+call functions within the BLE5-Stack must follow a few additional steps
+to register with ICall. These details are covered below:</p>
+<p>1. Follow all the steps detailed in <a class="reference internal" href="../ble-stack-tirtos/tasks.html#sec-rtos-overview-tasks"><span class="std std-ref">Tasks</span></a> to
+create a TI-RTOS task.</p>
+<ol class="arabic simple" start="2">
+<li><p>Modify the task’s init function to register with ICall
+(explained in <a class="reference internal" href="the-application.html#the-application-icall-initialization-and-registration"><span class="std std-ref">ICall Initialization and Registration</span></a>)</p></li>
+</ol>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Listing 101. </span><span class="caption-text">ICall Registration for custom task</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">// ******************************************************************</span>
+<span class="linenos">2</span><span class="c1">// N0 STACK API CALLS CAN OCCUR BEFORE THIS CALL TO ICall_registerApp</span>
+<span class="linenos">3</span><span class="c1">// ******************************************************************</span>
+<span class="linenos">4</span><span class="c1">// Register the current thread as an ICall dispatcher application</span>
+<span class="linenos">5</span><span class="c1">// so that the application can send and receive messages.</span>
+<span class="linenos">6</span><span class="n">ICall_registerApp</span><span class="p">(</span><span class="o">&amp;</span><span class="n">selfEntity</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">syncEvent</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>Modify the task’s main function to pend on <code class="docutils literal notranslate"><span class="pre">syncEvent</span></code>
+(explained in <a class="reference internal" href="the-application.html#sec-the-application-icall-thread-sync"><span class="std std-ref">ICall Thread Synchronization</span></a>)</p></li>
+</ol>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-number">Listing 102. </span><span class="caption-text">ICall Wait</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">NotificationTask_taskFxn</span><span class="p">(</span><span class="n">UArg</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">UArg</span><span class="w"> </span><span class="n">a1</span><span class="p">)</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="w">  </span><span class="c1">// Initialize application</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="n">NotificationTask_init</span><span class="p">();</span><span class="w"></span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="c1">// Application main loop</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(;;)</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">      </span><span class="c1">// Waits for an event to be posted associated with the calling thread.</span>
+<span class="linenos">10</span><span class="w">      </span><span class="c1">// Note that an event associated with a thread is posted when a</span>
+<span class="linenos">11</span><span class="w">      </span><span class="c1">// message is queued to the message receive queue of the thread</span>
+<span class="linenos">12</span><span class="w">      </span><span class="n">events</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Event_pend</span><span class="p">(</span><span class="n">syncEvent</span><span class="p">,</span><span class="w"> </span><span class="n">Event_Id_NONE</span><span class="p">,</span><span class="w"> </span><span class="n">SBP_ALL_EVENTS</span><span class="p">,</span><span class="w"> </span><span class="n">ICALL_TIMEOUT_FOREVER</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="w">      </span><span class="c1">//...</span>
+<span class="linenos">15</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">  </span><span class="c1">// ...</span>
+<span class="linenos">17</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>Modify number of ICall enabled tasks:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>Increase the following preprocessor defines:</p>
+<ul>
+<li><p>ICALL_MAX_NUM_TASKS (<strong>App</strong>)</p></li>
+<li><p>OSAL_MAX_NUM_PROXY_TASKS (<strong>Stack</strong>)</p></li>
+</ul>
+</li>
+<li><p>See <a class="reference internal" href="#sec-compiler-options"><span class="std std-ref">Compiler Options</span></a> for steps on how to change symbols.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If (OSAL_MAX_NUM_PROXY_TASKS + 1) != ICALL_MAX_NUM_TASKS the
+stack will abort.</p>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Modify number of ICall entities:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>Increase the following preprocessor defines:</p>
+<ul>
+<li><p>ICALL_MAX_NUM_ENTITIES (<strong>App</strong>)</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p>For further description of the above preprocessor defines, please see
+<a class="reference internal" href="stack-configuration-cc2640.html#stackconfigurablefeatures"><span class="std std-numref">Table 16.</span></a></p>
+</div>
+<div class="section" id="production-and-direct-test-mode-ptm-dtm">
+<span id="sec-using-production-test-mode"></span><h1>Production and Direct Test Mode (PTM, DTM)<a class="headerlink" href="#production-and-direct-test-mode-ptm-dtm" title="Permalink to this headline">¶</a></h1>
+<p>This page will describe Production Test Mode (PTM) which allows a
+CC2640R2 BLE application in a “single-chip” configuration to
+temporarily expose the host control interface (HCI) test commands over the
+serial interface when triggered externally to do so (e.g. holding a GPIO pin
+low during power up). This test mode allows the device to be connected to a
+Bluetooth RF Tester in order to run Direct Test Mode (DTM) commands on a
+production line using the final release firmware, while leaving the UART GPIO
+pins available for the application to use at all other times. Note that this
+page only considers UART, and not SPI, as the transport protocol since it uses
+the least amount of GPIO’s and throughput is not a factor for DTM.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note: DTM defines two interface methods for controlling the LE PHY: HCI and
+2-wire UART. The TI Bluetooth Low Energy protocol stack only supports the HCI
+method for DTM and PTM.</p>
+</div>
+<div class="section" id="direct-test-mode-dtm">
+<h2>Direct Test Mode (DTM)<a class="headerlink" href="#direct-test-mode-dtm" title="Permalink to this headline">¶</a></h2>
+<p>DTM is a standard method for testing BLE devices using the DTM HCI commands. A
+number of wireless test equipment manufactures, including Anritsu (MT8852B),
+Keysight and Rhode and Schwarz, make BLE Testers that use this mode. It is very
+useful to use these testers during development or on the production line in
+order to verify the RF performance of a BLE system. Complementary to these
+testers, it is also possible to create your own PC application that sends
+these DTM commands over the serial link. DTM is very well described in the
+<a class="reference external" href="https://www.bluetooth.com/specifications/adopted-specifications">Bluetooth Core Specifications Version 5.2</a> Volume 6 Part F. All DTM commands as well as
+TI Vendor Specific modem test commands are accessible in embedded
+(single-device) application via API calls as well as over HCI in the
+Host_Test sample application. Refer to the <a class="reference external" href="../../../vendor_specific_guide/BLE_Vendor_Specific_HCI_Guide/index.html">TI Vendor Specific HCI Guide</a> in
+the documents folder of the <a class="reference external" href="http://www.ti.com/tool/SIMPLELINK-CC2640R2-SDK">SimpleLink CC2640R2 SDK</a>.</p>
+</div>
+<div class="section" id="production-test-mode-ptm">
+<h2>Production Test Mode (PTM)<a class="headerlink" href="#production-test-mode-ptm" title="Permalink to this headline">¶</a></h2>
+<p>One problem with DTM is that it relies on a certain stack configuration
+(network processor with HCI exposed over UART) in order to work with the
+testers, though many end-applications don’t use this configuration.
+This would require the customer, during production, to flash the wireless
+MCU with a network processor image (e.g., <code class="docutils literal notranslate"><span class="pre">host_test</span></code>) before testing, and
+then re-flash with the final product image. To circumvent this, the TI
+BLE-Stack has implemented a feature called Production Test Mode (PTM), which
+allows for an embedded software application to support direct test mode without
+exposing the HCI to the UART pins under normal operation.
+Note that the pins used for PTM can also be used for an application UART
+interface. In this case, it is necessary to ensure that the other device that
+is connected to the UART interface does not run at the same time that DTM is
+being exercised. If the device powers up and goes into PTM mode (by a GPIO
+being held high or low or some other stimulus), the UART will then be used for
+DTM commands. If the device powers up normally and does not go into PTM mode,
+then the UART can be initialized by the application and used to communicate
+with the other device.
+DTM commands can also be called by the embedded BLE application.</p>
+<p>Those wishing to use PTM in their application, should reference the <code class="docutils literal notranslate"><span class="pre">_PTM_</span></code>
+configuration of the <code class="docutils literal notranslate"><span class="pre">simple_peripheral</span></code> project. Diffing this build
+configuration to the default build configuration should show the steps needed
+to enable PTM mode.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When adding PTM mode to the application, it is recommended to change the
+NPI task to use <code class="docutils literal notranslate"><span class="pre">Task_create(...)</span></code> as opposed to construct. In this way,
+the RAM needed by the NPI runtime task stack is consuming RAM that is
+not used in the application’s default behavior.</p>
+</div>
+<p>In order to determine if a command is accessible via PTM mode, users should
+refer to the translation tables created in <code class="docutils literal notranslate"><span class="pre">icall_hci_tl.c</span></code> under the define
+<code class="docutils literal notranslate"><span class="pre">PTM_MODE</span></code>.</p>
+<p>Note: Out of box PTM builds does not support enabling gapbondmgr due to the
+limited flash space.</p>
+</div>
+</div>
+<div class="section" id="optimizing-bluetooth-low-energy-stack-memory-usage">
+<span id="optimizing-ble-memory-usage"></span><h1>Optimizing Bluetooth Low Energy Stack Memory Usage<a class="headerlink" href="#optimizing-bluetooth-low-energy-stack-memory-usage" title="Permalink to this headline">¶</a></h1>
+<p>Configuration of the Bluetooth Low Energy protocol stack is
+essential for maximizing the amount of RAM and flash memory
+available for the application. Refer to <a class="reference internal" href="stack-configuration-cc2640.html#stack-features-configuration"><span class="std std-ref">Stack Configurations</span></a>
+to configure parameters that impact runtime RAM usage, such as the maximum
+allowable size and number of PDUs. The TI Bluetooth Low Energy
+protocol stack is implemented to use a small RAM footprint, and
+allow the application to control the behavior of the stack by using
+the runtime ICall heap. For example, an application that only sends
+one GATT notification per connection event must store only one PDU
+in the heap, whereas as an application that must send multiple
+notifications must enqueue multiple PDUs in the heap.</p>
+<p>To increase the available flash memory allocated to the application
+project, minimize the flash usage of the protocol stack by including
+only Bluetooth Low Energy features required to implement the defined
+role of the device. The available protocol stack configurable
+features are described in <a class="reference internal" href="stack-configuration-cc2640.html#stack-features-configuration"><span class="std std-ref">Stack Configurations</span></a>.
+Adding additional features to the protocol stack has the net effect
+of reducing the amount of flash memory to the application.</p>
+<div class="section" id="flash-optimization">
+<h2>Flash optimization<a class="headerlink" href="#flash-optimization" title="Permalink to this headline">¶</a></h2>
+<p>The following tips may be useful for reducing the footprint of the BLE5-Stack.
+In general, there is a feature vs. flash footprint tradeoff. Each of the
+improvements below offer a cost in terms of feature removal.</p>
+<ul class="simple">
+<li><p>Verify that your application uses the <em>optimize for flash size</em> compiler
+optimization settings (default for TI projects).</p></li>
+<li><p>Use only one page of SNV or do not use any NV pages if the GAP bond
+manager is not required. Set the <code class="docutils literal notranslate"><span class="pre">NO_OSAL_SNV</span></code> stack preprocessor
+option. See <a class="reference internal" href="../ble-stack-common/flash_memory-cc2640.html#using-simple-nv"><span class="std std-ref">Using Simple NV for Flash Storage</span></a> for a description of SNV.</p></li>
+<li><p>Exclude the GATT client functionality by defining the
+<code class="docutils literal notranslate"><span class="pre">GATT_NO_CLIENT</span></code> predefined symbol in the stack project for
+peripheral devices. Alternatively, if you’re using a single-project example,
+the <code class="docutils literal notranslate"><span class="pre">StackWrapper.a</span></code> must be replaced with <code class="docutils literal notranslate"><span class="pre">StackWrapper_GattNoClient.a</span></code> in
+the Linker file search paths. This should only be done by devices that do not
+wish to discover the RPAO characteristic.</p></li>
+<li><p>Remove or exclude debug DISPLAY, Two button menu or other unused drivers from
+your project.</p></li>
+<li><p>Use the stack library options defined in <code class="docutils literal notranslate"><span class="pre">build_config.opt</span></code> to pull in
+the smallest library available for the given use case. In general, this
+means a library that implements only one role (i.e. peripheral) with no
+additional features enabled (i.e. L2CAP CoC). See
+<a class="reference internal" href="stack-configuration-cc2640.html#stack-features-configuration"><span class="std std-ref">Stack Configurations</span></a>.</p></li>
+<li><p>Remove HAL Asserts by removing the <code class="docutils literal notranslate"><span class="pre">EXT_HAL_ASSERT</span></code> define</p></li>
+</ul>
+<ul>
+<li><p>Disable LE Secure Connections pairing if not needed. See <a class="reference internal" href="gapbondmngr-cc2640.html#lesc-intro"><span class="std std-ref">LE Secure Connections</span></a>
+on how to do this. Once LE Secure Connections is disabled,
+then all the functions in <code class="docutils literal notranslate"><span class="pre">ECCROMCC26XX.c</span></code> can be stubbed out to
+simply return <code class="docutils literal notranslate"><span class="pre">ECCROMCC26XX_STATUS_SUCCESS</span></code>. Note that the ECC driver
+must still be present in the build, but stubbing the functions will save
+around 1.3kB of flash.</p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-number">Listing 104. </span><span class="caption-text">Stubbing out ECC driver</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kt">int8_t</span><span class="w"> </span><span class="nf">ECCROMCC26XX_genKeys</span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">privateKey</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">publicKeyX</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">2</span><span class="w">                        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">publicKeyY</span><span class="p">,</span><span class="w"> </span><span class="n">ECCROMCC26XX_Params</span><span class="w"> </span><span class="o">*</span><span class="n">params</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">3</span><span class="p">{</span><span class="w"></span>
+<span class="linenos">4</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">ECCROMCC26XX_STATUS_SUCCESS</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">5</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p>If LESC is removed as above, then any code referencing <code class="docutils literal notranslate"><span class="pre">SECURE_CONNS_CFG</span></code>
+can be removed.</p></li>
+</ul>
+</div>
+<div class="section" id="ram-optimization">
+<h2>RAM optimization<a class="headerlink" href="#ram-optimization" title="Permalink to this headline">¶</a></h2>
+<p>The following tips may be useful for reducing the RAM footprint of the BLE5-Stack.
+It is important to remember that often removing RAM results in reduced
+throughput or features, the tradeoffs listed below should be evaluated
+carefully.</p>
+<ul>
+<li><p>If using L2CAP CoC, reference <a class="reference internal" href="../ble-stack-common/l2cap.html#l2cap-ram"><span class="std std-ref">RAM Considerations</span></a> for defines that may configure
+L2CAP CoC functionality and their RAM implications</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">MAX_NUM_PDU</span></code> and <code class="docutils literal notranslate"><span class="pre">MAX_PDU_SIZE</span></code> to reduce the amount of packets
+that can be queued up by the stack at a time. This will reduce heap
+consumption.</p></li>
+<li><p>Disable LE Secure Connections pairing if not needed. See <a class="reference internal" href="gapbondmngr-cc2640.html#lesc-intro"><span class="std std-ref">LE Secure Connections</span></a>
+on how to do this. This will save
+<code class="docutils literal notranslate"><span class="pre">ECCROMCC26XX_NIST_P256_WORKZONE_LEN_IN_BYTES</span></code> during pairing.
+Removing LESC also removes the requirement of having <code class="docutils literal notranslate"><span class="pre">MAX_PDU_SIZE</span></code> set to
+69, this can be overriden in <code class="docutils literal notranslate"><span class="pre">ble_user_config.h</span></code> to as low as 27.</p></li>
+<li><p>The LE Data Length Extension feature will default to an RX size of 251.
+If the peer device also supports DLE and a <code class="docutils literal notranslate"><span class="pre">connMaxRxOctets</span></code> value is
+negotiated &gt; 27 (default) then the controller will allocate
+connMaxRxOctets*4. 4 is the number of receive buffers in the
+controller and is a fixed parameter of the stack. However, connMaxRxOctets
+can be limited by either disabling Data Length Extension or limiting the
+max of TX and RX ocetets. Trimming the values of TX and RX is covered in
+<a class="reference internal" href="../ble-stack-common/link-layer-cc2640.html#sec-ram-considerations-dle"><span class="std std-ref">RAM Considerations when using DLE</span></a>.</p></li>
+<li><p>Carefully set <code class="docutils literal notranslate"><span class="pre">MAX_NUM_BLE_CONNS</span></code>. This define has a large affect on the
+amount of dynamic memory used by the stack. Below is a list of structures
+that the stack will alloc on initialization based on number of Connections.
+Each structure is multiplied by <code class="docutils literal notranslate"><span class="pre">MAX_NUM_BLE_CONNS</span></code>. This is not an
+exhaustive list A rule of thumb is that the stack will allocate the sizes of
+the structures above on initialization, and around
+~(1070 + connMaxRxOctets*4) per connection on connect.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sizeof(linkDBItem_t)</span></code> : Link data base entry for each connection</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sizeof(</span> <span class="pre">l2capChannel_t</span> <span class="pre">)</span></code> : At least one signaling channel for each connection</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sizeof(prepareWrites_t)</span></code> : Structure to hold prepare write table</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GATT_MAX_NUM_PREPARE_WRITES</span> <span class="pre">*</span> <span class="pre">sizeof(</span> <span class="pre">attPrepareWriteReq_t</span> <span class="pre">)</span></code> : Prepare write queue.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sizeof(llConnState_t)</span></code>: Structure to hold connection information</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2*sizeof(dataQ_t)</span></code> : Each connection’s RX and TX data queue</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Check for heap failures by checking <code class="docutils literal notranslate"><span class="pre">heapmgrMemFail</span></code> from
+<a class="reference internal" href="../ble-stack-5.x-guide/debugging-index.html#sec-heap-debugging"><span class="std std-ref">Debugging Common Heap Issues</span></a>. If heap failures are occurring, attempt to tune
+stack build configuration using the features and defines above.
+See <a class="reference internal" href="stack-configuration-cc2640.html#stack-features-configuration"><span class="std std-ref">Stack Configurations</span></a> for options that can be configured
+in the stack.</p></li>
+<li><p>If heap failures still  occur after optimizing the BLE-Stack build,
+the size of the heap can be increased by reducing the size of static
+allocation. Static allocation (.bss, .data) includes globally defined
+buffers, runtime task stacks, and other structures that are instantiated
+without the use of malloc.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Trim task stack sizes by inspecting them using Task –&gt; Detailed view in
+<a class="reference internal" href="../ble-stack-5.x-guide/debugging-index.html#sec-rov"><span class="std std-ref">TI-RTOS Object Viewer</span></a>. If there is unused space their size can be decreased.</p></li>
+<li><p>The system stack can be reduced in a similar way, its usage is shown
+under HWI –&gt; Module view in ROV. Changing the system stack size is
+covered in <a class="reference internal" href="../memory/memory_management.html#sec-memory-management-system-stack"><span class="std std-ref">System Stack</span></a>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The above RAM estimations may vary by release, and are not an exhaustive
+list. It is intended as a way to allow the developer to profile the RAM
+requirements based on the desired settings. The best way to estimate RAM
+usage is to measure it in the field using the techniques covered in
+<a class="reference internal" href="../ble-stack-5.x-guide/debugging-index.html#sec-heap-debugging"><span class="std std-ref">Debugging Common Heap Issues</span></a></p>
+</div>
+<p>See <a class="reference internal" href="../ble-stack-5.x-guide/debugging-index.html#development-and-debugging-check-system-flash-and-ram-usage-with-map-file"><span class="std std-ref">Check System Flash and RAM Usage With Map File</span></a> for
+the procedure to check the size of the configured protocol stack.</p>
+</div>
+<div class="section" id="decrease-flash-consumption-of-the-examples-project">
+<h2>Decrease flash consumption of the examples project<a class="headerlink" href="#decrease-flash-consumption-of-the-examples-project" title="Permalink to this headline">¶</a></h2>
+<p>The guidelines provided here are based on the simple_peripheral example
+but can be adapted to any example.</p>
+<div class="section" id="remove-the-two-buttons-menu-and-display">
+<h3>Remove the two buttons menu and display<a class="headerlink" href="#remove-the-two-buttons-menu-and-display" title="Permalink to this headline">¶</a></h3>
+<p>By removing the two_btn_menu and the display from your project,
+you can significantly increase the remaining memory available
+on the device. The guidelines are provided for the simple_peripheral
+project but this is possible for all examples that use TBM and display.</p>
+<p>Here are the guidelines:</p>
+<ol class="arabic">
+<li><p>Import the ble5_simple_peripheral project</p></li>
+<li><p>Change the IO Capabilities (used for pairing/bonding) of your device.
+To do so, look for <code class="docutils literal notranslate"><span class="pre">GAPBOND_IO_CAP_DISPLAY_ONLY</span></code> in
+<code class="docutils literal notranslate"><span class="pre">simple_peripheral.c</span></code> and change it in
+<code class="docutils literal notranslate"><span class="pre">GAPBOND_IO_CAP_NO_INPUT_NO_OUTPUT</span></code>).</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">main.c</span></code>, <code class="docutils literal notranslate"><span class="pre">simple_peripheral.c</span></code> and <code class="docutils literal notranslate"><span class="pre">simple_peripheral.h</span></code>
+in order to not use the tbm (<em>two buttons menu</em>) and the display:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">main.c</span></code></p>
+<ul>
+<li><p>remove the #include of <code class="docutils literal notranslate"><span class="pre">Display.h</span></code></p></li>
+<li><p>remove the (extern) declaration of <code class="docutils literal notranslate"><span class="pre">dispHandle</span></code></p></li>
+<li><p>modify the <code class="docutils literal notranslate"><span class="pre">AssertHandler()</span></code> function in order to only spinlock</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">simple_peripheral.c</span></code></p>
+<ul>
+<li><p>remove the #include of <code class="docutils literal notranslate"><span class="pre">Display.h</span></code>, <code class="docutils literal notranslate"><span class="pre">board_key.h</span></code>,
+<code class="docutils literal notranslate"><span class="pre">two_btn_menu.h</span></code>, <code class="docutils literal notranslate"><span class="pre">simple_peripheral_menu.h</span></code></p></li>
+<li><p>remove the declaration of <code class="docutils literal notranslate"><span class="pre">dispHandle</span></code> and all the code
+using it (especially the calls to <code class="docutils literal notranslate"><span class="pre">Display_printf()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Display_clearLine()</span></code> and <code class="docutils literal notranslate"><span class="pre">Display_clearLines()</span></code>)</p></li>
+<li><p>remove the functions <code class="docutils literal notranslate"><span class="pre">SimplePeripheral_keyChangeHandler()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">SimplePeripheral_handleKeys()</span></code> and
+<code class="docutils literal notranslate"><span class="pre">SimplePeripheral_menuSwitchCb()</span></code>. Remove their call too.</p></li>
+<li><p>remove all the calls to <code class="docutils literal notranslate"><span class="pre">tbm_initTwoBtnMenu()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">tbm_setItemStatus()</span></code>, <code class="docutils literal notranslate"><span class="pre">tbm_goTo()</span></code></p></li>
+<li><p>remove the function <code class="docutils literal notranslate"><span class="pre">SimplePeripheral_processCharValueChangeEvt()</span></code></p></li>
+<li><p>remove the function <code class="docutils literal notranslate"><span class="pre">SimplePeripheral_processPairState()</span></code> (and all it calls)</p></li>
+<li><p>remove the function <code class="docutils literal notranslate"><span class="pre">SimplePeripheral_doSelectConn()</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">simple_peripheral.h</span></code></p>
+<ul>
+<li><p>remove the declaration of the functions
+<code class="docutils literal notranslate"><span class="pre">SimplePeripheral_doSelectConn()</span></code> and
+<code class="docutils literal notranslate"><span class="pre">SimplePeripheral_doSetConnPhy()</span></code></p></li>
+</ul>
+</li>
+</ul>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p>Here are the diff files (based on SDK 4.10):</p>
+</div>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">main.c</span></code></p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gh">index f3eefd2..52a4825 100644</span>
+<span class="gu">@@ -73,8 +73,6 @@</span>
+ icall_userCfg_t user0Cfg = BLE_USER_CFG;
+ #endif // USE_DEFAULT_USER_CFG
+ 
+<span class="gd">-#include &lt;ti/display/Display.h&gt;</span>
+<span class="gd">-</span>
+ /*******************************************************************************
+  * MACROS
+  */
+<span class="gu">@@ -101,8 +99,6 @@ icall_userCfg_t user0Cfg = BLE_USER_CFG;</span>
+ 
+ extern void AssertHandler(uint8 assertCause, uint8 assertSubcause);
+ 
+<span class="gd">-extern Display_Handle dispHandle;</span>
+<span class="gd">-</span>
+ /*******************************************************************************
+  * @fn          Main
+  *
+<span class="gu">@@ -194,60 +190,7 @@ int main()</span>
+  */
+ void AssertHandler(uint8 assertCause, uint8 assertSubcause)
+ {
+<span class="gd">-  // Open the display if the app has not already done so</span>
+<span class="gd">-  if ( !dispHandle )</span>
+<span class="gd">-  {</span>
+<span class="gd">-    dispHandle = Display_open(Display_Type_ANY, NULL);</span>
+<span class="gd">-  }</span>
+<span class="gd">-</span>
+<span class="gd">-  Display_print0(dispHandle, 0, 0, &quot;&gt;&gt;&gt;STACK ASSERT&quot;);</span>
+<span class="gd">-</span>
+<span class="gd">-  // check the assert cause</span>
+<span class="gd">-  switch (assertCause)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    case HAL_ASSERT_CAUSE_OUT_OF_MEMORY:</span>
+<span class="gd">-      Display_print0(dispHandle, 0, 0, &quot;***ERROR***&quot;);</span>
+<span class="gd">-      Display_print0(dispHandle, 2, 0, &quot;&gt;&gt; OUT OF MEMORY!&quot;);</span>
+<span class="gd">-      break;</span>
+<span class="gd">-</span>
+<span class="gd">-    case HAL_ASSERT_CAUSE_INTERNAL_ERROR:</span>
+<span class="gd">-      // check the subcause</span>
+<span class="gd">-      if (assertSubcause == HAL_ASSERT_SUBCAUSE_FW_INERNAL_ERROR)</span>
+<span class="gd">-      {</span>
+<span class="gd">-        Display_print0(dispHandle, 0, 0, &quot;***ERROR***&quot;);</span>
+<span class="gd">-        Display_print0(dispHandle, 2, 0, &quot;&gt;&gt; INTERNAL FW ERROR!&quot;);</span>
+<span class="gd">-      }</span>
+<span class="gd">-      else</span>
+<span class="gd">-      {</span>
+<span class="gd">-        Display_print0(dispHandle, 0, 0, &quot;***ERROR***&quot;);</span>
+<span class="gd">-        Display_print0(dispHandle, 2, 0, &quot;&gt;&gt; INTERNAL ERROR!&quot;);</span>
+<span class="gd">-      }</span>
+<span class="gd">-      break;</span>
+<span class="gd">-</span>
+<span class="gd">-    case HAL_ASSERT_CAUSE_ICALL_ABORT:</span>
+<span class="gd">-      Display_print0(dispHandle, 0, 0, &quot;***ERROR***&quot;);</span>
+<span class="gd">-      Display_print0(dispHandle, 2, 0, &quot;&gt;&gt; ICALL ABORT!&quot;);</span>
+<span class="gd">-      HAL_ASSERT_SPINLOCK;</span>
+<span class="gd">-      break;</span>
+<span class="gd">-</span>
+<span class="gd">-    case HAL_ASSERT_CAUSE_ICALL_TIMEOUT:</span>
+<span class="gd">-      Display_print0(dispHandle, 0, 0, &quot;***ERROR***&quot;);</span>
+<span class="gd">-      Display_print0(dispHandle, 2, 0, &quot;&gt;&gt; ICALL TIMEOUT!&quot;);</span>
+<span class="gd">-      HAL_ASSERT_SPINLOCK;</span>
+<span class="gd">-      break;</span>
+<span class="gd">-</span>
+<span class="gd">-    case HAL_ASSERT_CAUSE_WRONG_API_CALL:</span>
+<span class="gd">-      Display_print0(dispHandle, 0, 0, &quot;***ERROR***&quot;);</span>
+<span class="gd">-      Display_print0(dispHandle, 2, 0, &quot;&gt;&gt; WRONG API CALL!&quot;);</span>
+<span class="gd">-      HAL_ASSERT_SPINLOCK;</span>
+<span class="gd">-      break;</span>
+<span class="gd">-</span>
+<span class="gd">-  default:</span>
+<span class="gd">-      Display_print0(dispHandle, 0, 0, &quot;***ERROR***&quot;);</span>
+<span class="gd">-      Display_print0(dispHandle, 2, 0, &quot;&gt;&gt; DEFAULT SPINLOCK!&quot;);</span>
+<span class="gd">-      HAL_ASSERT_SPINLOCK;</span>
+<span class="gd">-  }</span>
+<span class="gd">-</span>
+<span class="gi">+  HAL_ASSERT_SPINLOCK;</span>
+   return;
+ }
+ 
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">simple_peripheral.c</span></code></p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gh">index 4d8f312..1a22711 100644</span>
+<span class="gu">@@ -55,8 +55,6 @@</span>
+ #include &lt;ti/sysbios/knl/Event.h&gt;
+ #include &lt;ti/sysbios/knl/Queue.h&gt;
+ 
+<span class="gd">-#include &lt;ti/display/Display.h&gt;</span>
+<span class="gd">-</span>
+ #if !(defined __TI_COMPILER_VERSION__)
+ #include &lt;intrinsics.h&gt;
+ #endif
+<span class="gu">@@ -77,11 +75,7 @@</span>
+ #endif //USE_RCOSC
+ 
+ #include &lt;board.h&gt;
+<span class="gd">-#include &lt;board_key.h&gt;</span>
+<span class="gd">-</span>
+<span class="gd">-#include &lt;menu/two_btn_menu.h&gt;</span>
+ 
+<span class="gd">-#include &quot;simple_peripheral_menu.h&quot;</span>
+ #include &quot;simple_peripheral.h&quot;
+ 
+ #ifdef PTM_MODE
+<span class="gu">@@ -161,17 +155,6 @@</span>
+ // Size of string-converted device address (&quot;0xXXXXXXXXXXXX&quot;)
+ #define SP_ADDR_STR_SIZE     15
+ 
+<span class="gd">-// Row numbers for two-button menu</span>
+<span class="gd">-#define SP_ROW_SEPARATOR_1   (TBM_ROW_APP + 0)</span>
+<span class="gd">-#define SP_ROW_STATUS_1      (TBM_ROW_APP + 1)</span>
+<span class="gd">-#define SP_ROW_STATUS_2      (TBM_ROW_APP + 2)</span>
+<span class="gd">-#define SP_ROW_CONNECTION    (TBM_ROW_APP + 3)</span>
+<span class="gd">-#define SP_ROW_ADVSTATE      (TBM_ROW_APP + 4)</span>
+<span class="gd">-#define SP_ROW_RSSI          (TBM_ROW_APP + 5)</span>
+<span class="gd">-#define SP_ROW_IDA           (TBM_ROW_APP + 6)</span>
+<span class="gd">-#define SP_ROW_RPA           (TBM_ROW_APP + 7)</span>
+<span class="gd">-#define SP_ROW_DEBUG         (TBM_ROW_APP + 8)</span>
+<span class="gd">-</span>
+ // For storing the active connections
+ #define SP_RSSI_TRACK_CHNLS        1            // Max possible channels can be GAP_BONDINGS_MAX
+ #define SP_MAX_RSSI_STORE_DEPTH    5
+<span class="gu">@@ -264,9 +247,6 @@ typedef struct</span>
+  * GLOBAL VARIABLES
+  */
+ 
+<span class="gd">-// Display Interface</span>
+<span class="gd">-Display_Handle dispHandle = NULL;</span>
+<span class="gd">-</span>
+ // Task configuration
+ Task_Struct spTask;
+ #if defined __TI_COMPILER_VERSION__
+<span class="gu">@@ -397,7 +377,6 @@ static void SimplePeripheral_processGapMessage(gapEventHdr_t *pMsg);</span>
+ static void SimplePeripheral_advCallback(uint32_t event, void *pBuf, uintptr_t arg);
+ static void SimplePeripheral_processAdvEvent(spGapAdvEventData_t *pEventData);
+ static void SimplePeripheral_processAppMsg(spEvt_t *pMsg);
+<span class="gd">-static void SimplePeripheral_processCharValueChangeEvt(uint8_t paramId);</span>
+ static void SimplePeripheral_performPeriodicTask(void);
+ #if defined(BLE_V42_FEATURES) &amp;&amp; (BLE_V42_FEATURES &amp; PRIVACY_1_2_CFG)
+ static void SimplePeripheral_updateRPA(void);
+<span class="gu">@@ -410,12 +389,9 @@ static void SimplePeripheral_passcodeCb(uint8_t *pDeviceAddr, uint16_t connHandl</span>
+ static void SimplePeripheral_pairStateCb(uint16_t connHandle, uint8_t state,
+                                          uint8_t status);
+ #endif
+<span class="gd">-static void SimplePeripheral_processPairState(spPairStateData_t *pPairState);</span>
+ static void SimplePeripheral_processPasscode(spPasscodeData_t *pPasscodeData);
+ static void SimplePeripheral_charValueChangeCB(uint8_t paramId);
+ static status_t SimplePeripheral_enqueueMsg(uint8_t event, void *pData);
+<span class="gd">-static void SimplePeripheral_keyChangeHandler(uint8 keys);</span>
+<span class="gd">-static void SimplePeripheral_handleKeys(uint8_t keys);</span>
+ static void SimplePeripheral_processCmdCompleteEvt(hciEvt_CmdComplete_t *pMsg);
+ static void SimplePeripheral_initPHYRSSIArray(void);
+ static void SimplePeripheral_updatePHYStat(uint16_t eventCode, uint8_t *pMsg);
+<span class="gu">@@ -429,8 +405,6 @@ static status_t SimplePeripheral_setPhy(uint16_t connHandle, uint8_t allPhys,</span>
+                                         uint8_t txPhy, uint8_t rxPhy,
+                                         uint16_t phyOpts);
+ static uint8_t SimplePeripheral_clearConnListEntry(uint16_t connHandle);
+<span class="gd">-static void SimplePeripheral_menuSwitchCb(tbmMenuObj_t* pMenuObjCurr,</span>
+<span class="gd">-                                          tbmMenuObj_t* pMenuObjNext);</span>
+ static void SimplePeripheral_connEvtCB(Gap_ConnEventRpt_t *pReport);
+ static void SimplePeripheral_processConnEvt(Gap_ConnEventRpt_t *pReport);
+ #ifdef PTM_MODE
+<span class="gu">@@ -608,7 +582,7 @@ static void SimplePeripheral_init(void)</span>
+     // This device only has display capabilities. Therefore, it will display the
+     // passcode during pairing. However, since the default passcode is being
+     // used, there is no need to display anything.
+<span class="gd">-    uint8_t ioCap = GAPBOND_IO_CAP_DISPLAY_ONLY;</span>
+<span class="gi">+    uint8_t ioCap = GAPBOND_IO_CAP_NO_INPUT_NO_OUTPUT;</span>
+     // Request bonding (storing long-term keys for re-encryption upon subsequent
+     // connections without repairing)
+     uint8_t bonding = TRUE;
+<span class="gu">@@ -681,9 +655,6 @@ static void SimplePeripheral_init(void)</span>
+   // Initialize GATT Client
+   GATT_InitClient();
+ 
+<span class="gd">-  // Init key debouncer</span>
+<span class="gd">-  Board_initKeys(SimplePeripheral_keyChangeHandler);</span>
+<span class="gd">-</span>
+   // Initialize Connection List
+   SimplePeripheral_clearConnListEntry(CONNHANDLE_ALL);
+ 
+<span class="gu">@@ -692,18 +663,6 @@ static void SimplePeripheral_init(void)</span>
+ 
+   // Initialize array to store connection handle and RSSI values
+   SimplePeripheral_initPHYRSSIArray();
+<span class="gd">-</span>
+<span class="gd">-  // The type of display is configured based on the BOARD_DISPLAY_USE...</span>
+<span class="gd">-  // preprocessor definitions</span>
+<span class="gd">-  dispHandle = Display_open(Display_Type_ANY, NULL);</span>
+<span class="gd">-</span>
+<span class="gd">-  // Initialize Two-Button Menu module</span>
+<span class="gd">-  TBM_SET_TITLE(&amp;spMenuMain, &quot;Simple Peripheral&quot;);</span>
+<span class="gd">-  tbm_setItemStatus(&amp;spMenuMain, TBM_ITEM_NONE, TBM_ITEM_ALL);</span>
+<span class="gd">-</span>
+<span class="gd">-  tbm_initTwoBtnMenu(dispHandle, &amp;spMenuMain, 2, SimplePeripheral_menuSwitchCb);</span>
+<span class="gd">-  Display_printf(dispHandle, SP_ROW_SEPARATOR_1, 0, &quot;====================&quot;);</span>
+<span class="gd">-</span>
+ }
+ 
+ /*********************************************************************
+<span class="gu">@@ -828,18 +787,6 @@ static uint8_t SimplePeripheral_processStackMsg(ICall_Hdr *pMsg)</span>
+           {
+             case HCI_LE_SET_PHY:
+             {
+<span class="gd">-              if (pMyMsg-&gt;cmdStatus == HCI_ERROR_CODE_UNSUPPORTED_REMOTE_FEATURE)</span>
+<span class="gd">-              {</span>
+<span class="gd">-                Display_printf(dispHandle, SP_ROW_STATUS_1, 0,</span>
+<span class="gd">-                        &quot;PHY Change failure, peer does not support this&quot;);</span>
+<span class="gd">-              }</span>
+<span class="gd">-              else</span>
+<span class="gd">-              {</span>
+<span class="gd">-                Display_printf(dispHandle, SP_ROW_STATUS_1, 0,</span>
+<span class="gd">-                               &quot;PHY Update Status Event: 0x%x&quot;,</span>
+<span class="gd">-                               pMyMsg-&gt;cmdStatus);</span>
+<span class="gd">-              }</span>
+<span class="gd">-</span>
+               SimplePeripheral_updatePHYStat(HCI_LE_SET_PHY, (uint8_t *)pMsg);
+               break;
+             }
+<span class="gu">@@ -859,22 +806,6 @@ static uint8_t SimplePeripheral_processStackMsg(ICall_Hdr *pMsg)</span>
+           // A Phy Update Has Completed or Failed
+           if (pPUC-&gt;BLEEventCode == HCI_BLE_PHY_UPDATE_COMPLETE_EVENT)
+           {
+<span class="gd">-            if (pPUC-&gt;status != SUCCESS)</span>
+<span class="gd">-            {</span>
+<span class="gd">-              Display_printf(dispHandle, SP_ROW_STATUS_1, 0,</span>
+<span class="gd">-                             &quot;PHY Change failure&quot;);</span>
+<span class="gd">-            }</span>
+<span class="gd">-            else</span>
+<span class="gd">-            {</span>
+<span class="gd">-              // Only symmetrical PHY is supported.</span>
+<span class="gd">-              // rxPhy should be equal to txPhy.</span>
+<span class="gd">-              Display_printf(dispHandle, SP_ROW_STATUS_2, 0,</span>
+<span class="gd">-                             &quot;PHY Updated to %s&quot;,</span>
+<span class="gd">-                             (pPUC-&gt;rxPhy == PHY_UPDATE_COMPLETE_EVENT_1M) ? &quot;1M&quot; :</span>
+<span class="gd">-                             (pPUC-&gt;rxPhy == PHY_UPDATE_COMPLETE_EVENT_2M) ? &quot;2M&quot; :</span>
+<span class="gd">-                             (pPUC-&gt;rxPhy == PHY_UPDATE_COMPLETE_EVENT_CODED) ? &quot;CODED&quot; : &quot;Unexpected PHY Value&quot;);</span>
+<span class="gd">-            }</span>
+<span class="gd">-</span>
+             SimplePeripheral_updatePHYStat(HCI_BLE_PHY_UPDATE_COMPLETE_EVENT, (uint8_t *)pMsg);
+           }
+           break;
+<span class="gu">@@ -943,21 +874,6 @@ static uint8_t SimplePeripheral_processStackMsg(ICall_Hdr *pMsg)</span>
+  */
+ static uint8_t SimplePeripheral_processGATTMsg(gattMsgEvent_t *pMsg)
+ {
+<span class="gd">-  if (pMsg-&gt;method == ATT_FLOW_CTRL_VIOLATED_EVENT)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    // ATT request-response or indication-confirmation flow control is</span>
+<span class="gd">-    // violated. All subsequent ATT requests or indications will be dropped.</span>
+<span class="gd">-    // The app is informed in case it wants to drop the connection.</span>
+<span class="gd">-</span>
+<span class="gd">-    // Display the opcode of the message that caused the violation.</span>
+<span class="gd">-    Display_printf(dispHandle, SP_ROW_STATUS_1, 0, &quot;FC Violated: %d&quot;, pMsg-&gt;msg.flowCtrlEvt.opcode);</span>
+<span class="gd">-  }</span>
+<span class="gd">-  else if (pMsg-&gt;method == ATT_MTU_UPDATED_EVENT)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    // MTU size updated</span>
+<span class="gd">-    Display_printf(dispHandle, SP_ROW_STATUS_1, 0, &quot;MTU Size: %d&quot;, pMsg-&gt;msg.mtuEvt.MTU);</span>
+<span class="gd">-  }</span>
+<span class="gd">-</span>
+   // Free message payload. Needed only for ATT Protocol messages
+   GATT_bm_free(&amp;pMsg-&gt;msg, pMsg-&gt;method);
+ 
+<span class="gu">@@ -981,21 +897,15 @@ static void SimplePeripheral_processAppMsg(spEvt_t *pMsg)</span>
+   switch (pMsg-&gt;event)
+   {
+     case SP_CHAR_CHANGE_EVT:
+<span class="gd">-      SimplePeripheral_processCharValueChangeEvt(*(uint8_t*)(pMsg-&gt;pData));</span>
+       break;
+ 
+     case SP_KEY_CHANGE_EVT:
+<span class="gd">-      SimplePeripheral_handleKeys(*(uint8_t*)(pMsg-&gt;pData));</span>
+       break;
+ 
+     case SP_ADV_EVT:
+       SimplePeripheral_processAdvEvent((spGapAdvEventData_t*)(pMsg-&gt;pData));
+       break;
+ 
+<span class="gd">-    case SP_PAIR_STATE_EVT:</span>
+<span class="gd">-      SimplePeripheral_processPairState((spPairStateData_t*)(pMsg-&gt;pData));</span>
+<span class="gd">-      break;</span>
+<span class="gd">-</span>
+     case SP_PASSCODE_EVT:
+       SimplePeripheral_processPasscode((spPasscodeData_t*)(pMsg-&gt;pData));
+       break;
+<span class="gu">@@ -1077,8 +987,6 @@ static void SimplePeripheral_processGapMessage(gapEventHdr_t *pMsg)</span>
+         // Set Device Info Service Parameter
+         DevInfo_SetParameter(DEVINFO_SYSTEM_ID, DEVINFO_SYSTEM_ID_LEN, systemId);
+ 
+<span class="gd">-        Display_printf(dispHandle, SP_ROW_STATUS_1, 0, &quot;Initialized&quot;);</span>
+<span class="gd">-</span>
+         // Setup and start Advertising
+         // For more information, see the GAP section in the User&#39;s Guide:
+         // http://software-dl.ti.com/lprf/ble5stack-latest/
+<span class="gu">@@ -1139,10 +1047,6 @@ static void SimplePeripheral_processGapMessage(gapEventHdr_t *pMsg)</span>
+          // Enable &quot;Enable PTM Mode&quot; option
+          tbm_setItemStatus(&amp;spMenuMain, SP_ITEM_PTM_ENBL, SP_ITEM_NONE);
+ #endif
+<span class="gd">-        // Display device address</span>
+<span class="gd">-        Display_printf(dispHandle, SP_ROW_IDA, 0, &quot;%s Addr: %s&quot;,</span>
+<span class="gd">-                       (addrMode &lt;= ADDRMODE_RANDOM) ? &quot;Dev&quot; : &quot;ID&quot;,</span>
+<span class="gd">-                       Util_convertBdAddr2Str(pPkt-&gt;devAddr));</span>
+ 
+ #if defined(BLE_V42_FEATURES) &amp;&amp; (BLE_V42_FEATURES &amp; PRIVACY_1_2_CFG)
+         if (addrMode &gt; ADDRMODE_RANDOM)
+<span class="gu">@@ -1166,21 +1070,12 @@ static void SimplePeripheral_processGapMessage(gapEventHdr_t *pMsg)</span>
+ 
+       // Display the amount of current connections
+       uint8_t numActive = linkDB_NumActive();
+<span class="gd">-      Display_printf(dispHandle, SP_ROW_STATUS_2, 0, &quot;Num Conns: %d&quot;,</span>
+<span class="gd">-                     (uint16_t)numActive);</span>
+ 
+       if (pPkt-&gt;hdr.status == SUCCESS)
+       {
+         // Add connection to list and start RSSI
+         SimplePeripheral_addConn(pPkt-&gt;connectionHandle);
+ 
+<span class="gd">-        // Display the address of this connection</span>
+<span class="gd">-        Display_printf(dispHandle, SP_ROW_STATUS_1, 0, &quot;Connected to %s&quot;,</span>
+<span class="gd">-                       Util_convertBdAddr2Str(pPkt-&gt;devAddr));</span>
+<span class="gd">-</span>
+<span class="gd">-        // Enable connection selection option</span>
+<span class="gd">-        tbm_setItemStatus(&amp;spMenuMain, SP_ITEM_SELECT_CONN, TBM_ITEM_NONE);</span>
+<span class="gd">-</span>
+         // Start Periodic Clock.
+         Util_startClock(&amp;clkPeriodic);
+       }
+<span class="gu">@@ -1207,9 +1102,6 @@ static void SimplePeripheral_processGapMessage(gapEventHdr_t *pMsg)</span>
+ 
+       // Display the amount of current connections
+       uint8_t numActive = linkDB_NumActive();
+<span class="gd">-      Display_printf(dispHandle, SP_ROW_STATUS_1, 0, &quot;Device Disconnected!&quot;);</span>
+<span class="gd">-      Display_printf(dispHandle, SP_ROW_STATUS_2, 0, &quot;Num Conns: %d&quot;,</span>
+<span class="gd">-                     (uint16_t)numActive);</span>
+ 
+       // Remove the connection from the list and disable RSSI if needed
+       SimplePeripheral_removeConn(pPkt-&gt;connectionHandle);
+<span class="gu">@@ -1219,18 +1111,12 @@ static void SimplePeripheral_processGapMessage(gapEventHdr_t *pMsg)</span>
+       {
+         // Stop periodic clock
+         Util_stopClock(&amp;clkPeriodic);
+<span class="gd">-</span>
+<span class="gd">-        // Disable Connection Selection option</span>
+<span class="gd">-        tbm_setItemStatus(&amp;spMenuMain, TBM_ITEM_NONE, SP_ITEM_SELECT_CONN);</span>
+       }
+ 
+       // Start advertising since there is room for more connections
+       GapAdv_enable(advHandleLegacy, GAP_ADV_ENABLE_OPTIONS_USE_MAX , 0);
+       GapAdv_enable(advHandleLongRange, GAP_ADV_ENABLE_OPTIONS_USE_MAX , 0);
+ 
+<span class="gd">-      // Clear remaining lines</span>
+<span class="gd">-      Display_clearLine(dispHandle, SP_ROW_CONNECTION);</span>
+<span class="gd">-</span>
+       break;
+     }
+ 
+<span class="gu">@@ -1271,20 +1157,6 @@ static void SimplePeripheral_processGapMessage(gapEventHdr_t *pMsg)</span>
+       linkDBInfo_t linkInfo;
+       linkDB_GetInfo(pPkt-&gt;connectionHandle, &amp;linkInfo);
+ 
+<span class="gd">-      if(pPkt-&gt;status == SUCCESS)</span>
+<span class="gd">-      {</span>
+<span class="gd">-        // Display the address of the connection update</span>
+<span class="gd">-        Display_printf(dispHandle, SP_ROW_STATUS_2, 0, &quot;Link Param Updated: %s&quot;,</span>
+<span class="gd">-                       Util_convertBdAddr2Str(linkInfo.addr));</span>
+<span class="gd">-      }</span>
+<span class="gd">-      else</span>
+<span class="gd">-      {</span>
+<span class="gd">-        // Display the address of the connection update failure</span>
+<span class="gd">-        Display_printf(dispHandle, SP_ROW_STATUS_2, 0,</span>
+<span class="gd">-                       &quot;Link Param Update Failed 0x%x: %s&quot;, pPkt-&gt;opcode,</span>
+<span class="gd">-                       Util_convertBdAddr2Str(linkInfo.addr));</span>
+<span class="gd">-      }</span>
+<span class="gd">-</span>
+       // Check if there are any queued parameter updates
+       spConnHandleEntry_t *connHandleEntry = (spConnHandleEntry_t *)List_get(&amp;paramUpdateList);
+       if (connHandleEntry != NULL)
+<span class="gu">@@ -1300,7 +1172,6 @@ static void SimplePeripheral_processGapMessage(gapEventHdr_t *pMsg)</span>
+     }
+ 
+     default:
+<span class="gd">-      Display_clearLines(dispHandle, SP_ROW_STATUS_1, SP_ROW_STATUS_2);</span>
+       break;
+   }
+ }
+<span class="gu">@@ -1330,38 +1201,6 @@ static void SimplePeripheral_charValueChangeCB(uint8_t paramId)</span>
+   }
+ }
+ 
+<span class="gd">-/*********************************************************************</span>
+<span class="gd">- * @fn      SimplePeripheral_processCharValueChangeEvt</span>
+<span class="gd">- *</span>
+<span class="gd">- * @brief   Process a pending Simple Profile characteristic value change</span>
+<span class="gd">- *          event.</span>
+<span class="gd">- *</span>
+<span class="gd">- * @param   paramID - parameter ID of the value that was changed.</span>
+<span class="gd">- */</span>
+<span class="gd">-static void SimplePeripheral_processCharValueChangeEvt(uint8_t paramId)</span>
+<span class="gd">-{</span>
+<span class="gd">-  uint8_t newValue;</span>
+<span class="gd">-</span>
+<span class="gd">-  switch(paramId)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    case SIMPLEPROFILE_CHAR1:</span>
+<span class="gd">-      SimpleProfile_GetParameter(SIMPLEPROFILE_CHAR1, &amp;newValue);</span>
+<span class="gd">-</span>
+<span class="gd">-      Display_printf(dispHandle, SP_ROW_STATUS_1, 0, &quot;Char 1: %d&quot;, (uint16_t)newValue);</span>
+<span class="gd">-      break;</span>
+<span class="gd">-</span>
+<span class="gd">-    case SIMPLEPROFILE_CHAR3:</span>
+<span class="gd">-      SimpleProfile_GetParameter(SIMPLEPROFILE_CHAR3, &amp;newValue);</span>
+<span class="gd">-</span>
+<span class="gd">-      Display_printf(dispHandle, SP_ROW_STATUS_1, 0, &quot;Char 3: %d&quot;, (uint16_t)newValue);</span>
+<span class="gd">-      break;</span>
+<span class="gd">-</span>
+<span class="gd">-    default:</span>
+<span class="gd">-      // should not reach here!</span>
+<span class="gd">-      break;</span>
+<span class="gd">-  }</span>
+<span class="gd">-}</span>
+<span class="gd">-</span>
+ /*********************************************************************
+  * @fn      SimplePeripheral_performPeriodicTask
+  *
+<span class="gu">@@ -1395,8 +1234,7 @@ static void SimplePeripheral_performPeriodicTask(void)</span>
+ /*********************************************************************
+  * @fn      SimplePeripheral_updateRPA
+  *
+<span class="gd">- * @brief   Read the current RPA from the stack and update display</span>
+<span class="gd">- *          if the RPA has changed.</span>
+<span class="gi">+ * @brief   Read the current RPA from the stack</span>
+  *
+  * @param   None.
+  *
+<span class="gu">@@ -1411,9 +1249,7 @@ static void SimplePeripheral_updateRPA(void)</span>
+ 
+   if (memcmp(pRpaNew, rpa, B_ADDR_LEN))
+   {
+<span class="gd">-    // If the RPA has changed, update the display</span>
+<span class="gd">-    Display_printf(dispHandle, SP_ROW_RPA, 0, &quot;RP Addr: %s&quot;,</span>
+<span class="gd">-                   Util_convertBdAddr2Str(pRpaNew));</span>
+<span class="gi">+    // If the RPA has changed</span>
+     memcpy(rpa, pRpaNew, B_ADDR_LEN);
+   }
+ }
+<span class="gu">@@ -1455,59 +1291,6 @@ static void SimplePeripheral_clockHandler(UArg arg)</span>
+  }
+ }
+ 
+<span class="gd">-/*********************************************************************</span>
+<span class="gd">- * @fn      SimplePeripheral_keyChangeHandler</span>
+<span class="gd">- *</span>
+<span class="gd">- * @brief   Key event handler function</span>
+<span class="gd">- *</span>
+<span class="gd">- * @param   keys - bitmap of pressed keys</span>
+<span class="gd">- *</span>
+<span class="gd">- * @return  none</span>
+<span class="gd">- */</span>
+<span class="gd">-static void SimplePeripheral_keyChangeHandler(uint8_t keys)</span>
+<span class="gd">-{</span>
+<span class="gd">-  uint8_t *pValue = ICall_malloc(sizeof(uint8_t));</span>
+<span class="gd">-</span>
+<span class="gd">-  if (pValue)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    *pValue = keys;</span>
+<span class="gd">-</span>
+<span class="gd">-    if(SimplePeripheral_enqueueMsg(SP_KEY_CHANGE_EVT, pValue) != SUCCESS)</span>
+<span class="gd">-    {</span>
+<span class="gd">-      ICall_free(pValue);</span>
+<span class="gd">-    }</span>
+<span class="gd">-  }</span>
+<span class="gd">-}</span>
+<span class="gd">-</span>
+<span class="gd">-/*********************************************************************</span>
+<span class="gd">- * @fn      SimplePeripheral_handleKeys</span>
+<span class="gd">- *</span>
+<span class="gd">- * @brief   Handles all key events for this device.</span>
+<span class="gd">- *</span>
+<span class="gd">- * @param   keys - bit field for key events. Valid entries:</span>
+<span class="gd">- *                 KEY_LEFT</span>
+<span class="gd">- *                 KEY_RIGHT</span>
+<span class="gd">- */</span>
+<span class="gd">-static void SimplePeripheral_handleKeys(uint8_t keys)</span>
+<span class="gd">-{</span>
+<span class="gd">-  if (keys &amp; KEY_LEFT)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    // Check if the key is still pressed. Workaround for possible bouncing.</span>
+<span class="gd">-    if (PIN_getInputValue(Board_PIN_BUTTON0) == 0)</span>
+<span class="gd">-    {</span>
+<span class="gd">-      tbm_buttonLeft();</span>
+<span class="gd">-    }</span>
+<span class="gd">-  }</span>
+<span class="gd">-  else if (keys &amp; KEY_RIGHT)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    // Check if the key is still pressed. Workaround for possible bouncing.</span>
+<span class="gd">-    if (PIN_getInputValue(Board_PIN_BUTTON1) == 0)</span>
+<span class="gd">-    {</span>
+<span class="gd">-      tbm_buttonRight();</span>
+<span class="gd">-    }</span>
+<span class="gd">-  }</span>
+<span class="gd">-}</span>
+<span class="gd">-</span>
+ /*********************************************************************
+  * @fn      SimplePeripheral_doSetConnPhy
+  *
+<span class="gu">@@ -1534,7 +1317,6 @@ bool SimplePeripheral_doSetConnPhy(uint8 index)</span>
+   uint8_t connIndex = SimplePeripheral_getConnIndex(menuConnHandle);
+   if (connIndex &gt;= MAX_NUM_BLE_CONNS)
+   {
+<span class="gd">-    Display_printf(dispHandle, SP_ROW_STATUS_1, 0, &quot;Connection handle is not in the connList !!!&quot;);</span>
+     return FALSE;
+   }
+ 
+<span class="gu">@@ -1550,9 +1332,6 @@ bool SimplePeripheral_doSetConnPhy(uint8 index)</span>
+     SimplePeripheral_stopAutoPhyChange(connList[connIndex].connHandle);
+ 
+     SimplePeripheral_setPhy(menuConnHandle, 0, phy[index], phy[index], 0);
+<span class="gd">-</span>
+<span class="gd">-    Display_printf(dispHandle, SP_ROW_STATUS_1, 0, &quot;PHY preference: %s&quot;,</span>
+<span class="gd">-                   TBM_GET_ACTION_DESC(&amp;spMenuConnPhy, index));</span>
+   }
+   else
+   {
+<span class="gu">@@ -1597,13 +1376,9 @@ static void SimplePeripheral_processAdvEvent(spGapAdvEventData_t *pEventData)</span>
+   switch (pEventData-&gt;event)
+   {
+     case GAP_EVT_ADV_START_AFTER_ENABLE:
+<span class="gd">-      Display_printf(dispHandle, SP_ROW_ADVSTATE, 0, &quot;Adv Set %d Enabled&quot;,</span>
+<span class="gd">-                     *(uint8_t *)(pEventData-&gt;pBuf));</span>
+       break;
+ 
+     case GAP_EVT_ADV_END_AFTER_DISABLE:
+<span class="gd">-      Display_printf(dispHandle, SP_ROW_ADVSTATE, 0, &quot;Adv Set %d Disabled&quot;,</span>
+<span class="gd">-                     *(uint8_t *)(pEventData-&gt;pBuf));</span>
+       break;
+ 
+     case GAP_EVT_ADV_START:
+<span class="gu">@@ -1613,13 +1388,6 @@ static void SimplePeripheral_processAdvEvent(spGapAdvEventData_t *pEventData)</span>
+       break;
+ 
+     case GAP_EVT_ADV_SET_TERMINATED:
+<span class="gd">-    {</span>
+<span class="gd">-#ifndef Display_DISABLE_ALL</span>
+<span class="gd">-      GapAdv_setTerm_t *advSetTerm = (GapAdv_setTerm_t *)(pEventData-&gt;pBuf);</span>
+<span class="gd">-#endif</span>
+<span class="gd">-      Display_printf(dispHandle, SP_ROW_ADVSTATE, 0, &quot;Adv Set %d disabled after conn %d&quot;,</span>
+<span class="gd">-                     advSetTerm-&gt;handle, advSetTerm-&gt;connHandle );</span>
+<span class="gd">-    }</span>
+     break;
+ 
+     case GAP_EVT_SCAN_REQ_RECEIVED:
+<span class="gu">@@ -1701,62 +1469,6 @@ static void SimplePeripheral_passcodeCb(uint8_t *pDeviceAddr,</span>
+ }
+ #endif
+ 
+<span class="gd">-/*********************************************************************</span>
+<span class="gd">- * @fn      SimplePeripheral_processPairState</span>
+<span class="gd">- *</span>
+<span class="gd">- * @brief   Process the new paring state.</span>
+<span class="gd">- *</span>
+<span class="gd">- * @return  none</span>
+<span class="gd">- */</span>
+<span class="gd">-static void SimplePeripheral_processPairState(spPairStateData_t *pPairData)</span>
+<span class="gd">-{</span>
+<span class="gd">-  uint8_t state = pPairData-&gt;state;</span>
+<span class="gd">-  uint8_t status = pPairData-&gt;status;</span>
+<span class="gd">-</span>
+<span class="gd">-  switch (state)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    case GAPBOND_PAIRING_STATE_STARTED:</span>
+<span class="gd">-      Display_printf(dispHandle, SP_ROW_CONNECTION, 0, &quot;Pairing started&quot;);</span>
+<span class="gd">-      break;</span>
+<span class="gd">-</span>
+<span class="gd">-    case GAPBOND_PAIRING_STATE_COMPLETE:</span>
+<span class="gd">-      if (status == SUCCESS)</span>
+<span class="gd">-      {</span>
+<span class="gd">-        Display_printf(dispHandle, SP_ROW_CONNECTION, 0, &quot;Pairing success&quot;);</span>
+<span class="gd">-      }</span>
+<span class="gd">-      else</span>
+<span class="gd">-      {</span>
+<span class="gd">-        Display_printf(dispHandle, SP_ROW_CONNECTION, 0, &quot;Pairing fail: %d&quot;, status);</span>
+<span class="gd">-      }</span>
+<span class="gd">-      break;</span>
+<span class="gd">-</span>
+<span class="gd">-    case GAPBOND_PAIRING_STATE_ENCRYPTED:</span>
+<span class="gd">-      if (status == SUCCESS)</span>
+<span class="gd">-      {</span>
+<span class="gd">-        Display_printf(dispHandle, SP_ROW_CONNECTION, 0, &quot;Encryption success&quot;);</span>
+<span class="gd">-      }</span>
+<span class="gd">-      else</span>
+<span class="gd">-      {</span>
+<span class="gd">-        Display_printf(dispHandle, SP_ROW_CONNECTION, 0, &quot;Encryption failed: %d&quot;, status);</span>
+<span class="gd">-      }</span>
+<span class="gd">-      break;</span>
+<span class="gd">-</span>
+<span class="gd">-    case GAPBOND_PAIRING_STATE_BOND_SAVED:</span>
+<span class="gd">-      if (status == SUCCESS)</span>
+<span class="gd">-      {</span>
+<span class="gd">-        Display_printf(dispHandle, SP_ROW_CONNECTION, 0, &quot;Bond save success&quot;);</span>
+<span class="gd">-      }</span>
+<span class="gd">-      else</span>
+<span class="gd">-      {</span>
+<span class="gd">-        Display_printf(dispHandle, SP_ROW_CONNECTION, 0, &quot;Bond save failed: %d&quot;, status);</span>
+<span class="gd">-      }</span>
+<span class="gd">-      break;</span>
+<span class="gd">-</span>
+<span class="gd">-    default:</span>
+<span class="gd">-      break;</span>
+<span class="gd">-  }</span>
+<span class="gd">-}</span>
+<span class="gd">-</span>
+ /*********************************************************************
+  * @fn      SimplePeripheral_processPasscode
+  *
+<span class="gu">@@ -1769,8 +1481,6 @@ static void SimplePeripheral_processPasscode(spPasscodeData_t *pPasscodeData)</span>
+   // Display passcode to user
+   if (pPasscodeData-&gt;uiOutputs != 0)
+   {
+<span class="gd">-    Display_printf(dispHandle, SP_ROW_CONNECTION, 0, &quot;Passcode: %d&quot;,</span>
+<span class="gd">-                   B_APP_DEFAULT_PASSCODE);</span>
+   }
+ 
+ #if defined(GAP_BOND_MGR)
+<span class="gu">@@ -1810,7 +1520,6 @@ static void SimplePeripheral_processConnEvt(Gap_ConnEventRpt_t *pReport)</span>
+ 
+   if (connIndex &gt;= MAX_NUM_BLE_CONNS)
+   {
+<span class="gd">-    Display_printf(dispHandle, SP_ROW_STATUS_1, 0, &quot;Connection handle is not in the connList !!!&quot;);</span>
+     return;
+   }
+ 
+<span class="gu">@@ -1850,30 +1559,6 @@ static status_t SimplePeripheral_enqueueMsg(uint8_t event, void *pData)</span>
+   return(bleMemAllocError);
+ }
+ 
+<span class="gd">-/*********************************************************************</span>
+<span class="gd">- * @fn      SimplePeripheral_doSelectConn</span>
+<span class="gd">- *</span>
+<span class="gd">- * @brief   Select a connection to communicate with</span>
+<span class="gd">- *</span>
+<span class="gd">- * @param   index - item index from the menu</span>
+<span class="gd">- *</span>
+<span class="gd">- * @return  always true</span>
+<span class="gd">- */</span>
+<span class="gd">-bool SimplePeripheral_doSelectConn(uint8_t index)</span>
+<span class="gd">-{</span>
+<span class="gd">-  menuConnHandle = connList[index].connHandle;</span>
+<span class="gd">-</span>
+<span class="gd">-  // Set the menu title and go to this connection&#39;s context</span>
+<span class="gd">-  TBM_SET_TITLE(&amp;spMenuPerConn, TBM_GET_ACTION_DESC(&amp;spMenuSelectConn, index));</span>
+<span class="gd">-</span>
+<span class="gd">-  // Clear non-connection-related message</span>
+<span class="gd">-  Display_clearLine(dispHandle, SP_ROW_CONNECTION);</span>
+<span class="gd">-</span>
+<span class="gd">-  tbm_goTo(&amp;spMenuPerConn);</span>
+<span class="gd">-</span>
+<span class="gd">-  return (true);</span>
+<span class="gd">-}</span>
+<span class="gd">-</span>
+ /*********************************************************************
+  * @fn      SimplePeripheral_addConn
+  *
+<span class="gu">@@ -2088,7 +1773,6 @@ static void SimplePeripheral_processParamUpdate(uint16_t connHandle)</span>
+   connIndex = SimplePeripheral_getConnIndex(connHandle);
+   if (connIndex &gt;= MAX_NUM_BLE_CONNS)
+   {
+<span class="gd">-    Display_printf(dispHandle, SP_ROW_STATUS_1, 0, &quot;Connection handle is not in the connList !!!&quot;);</span>
+     return;
+   }
+ 
+<span class="gu">@@ -2233,10 +1917,6 @@ static void SimplePeripheral_processCmdCompleteEvt(hciEvt_CmdComplete_t *pMsg)</span>
+           } // end of if (connList[index].phyCngRq == FALSE)
+         } // end of if (rssi != LL_RSSI_NOT_AVAILABLE)
+ 
+<span class="gd">-        Display_printf(dispHandle, SP_ROW_RSSI, 0,</span>
+<span class="gd">-                       &quot;RSSI:%d dBm, AVG RSSI:%d dBm&quot;,</span>
+<span class="gd">-                       (uint32_t)(rssi),</span>
+<span class="gd">-                       connList[index].rssiAvg);</span>
+ 
+ 	  } // end of if (status == SUCCESS)
+       break;
+<span class="gu">@@ -2246,8 +1926,6 @@ static void SimplePeripheral_processCmdCompleteEvt(hciEvt_CmdComplete_t *pMsg)</span>
+     {
+       if (status == SUCCESS)
+       {
+<span class="gd">-        Display_printf(dispHandle, SP_ROW_RSSI + 2, 0, &quot;RXPh: %d, TXPh: %d&quot;,</span>
+<span class="gd">-                       pMsg-&gt;pReturnParam[3], pMsg-&gt;pReturnParam[4]);</span>
+       }
+       break;
+     }
+<span class="gu">@@ -2450,81 +2128,6 @@ static void SimplePeripheral_updatePHYStat(uint16_t eventCode, uint8_t *pMsg)</span>
+   } // end of switch (eventCode)
+ }
+ 
+<span class="gd">-/*********************************************************************</span>
+<span class="gd">- * @fn      SimplePeripheral_menuSwitchCb</span>
+<span class="gd">- *</span>
+<span class="gd">- * @brief   Detect menu context switching</span>
+<span class="gd">- *</span>
+<span class="gd">- * @param   pMenuObjCurr - the current menu object</span>
+<span class="gd">- * @param   pMenuObjNext - the menu object the context is about to switch to</span>
+<span class="gd">- *</span>
+<span class="gd">- * @return  none</span>
+<span class="gd">- */</span>
+<span class="gd">-static void SimplePeripheral_menuSwitchCb(tbmMenuObj_t* pMenuObjCurr,</span>
+<span class="gd">-                                       tbmMenuObj_t* pMenuObjNext)</span>
+<span class="gd">-{</span>
+<span class="gd">-  uint8_t NUMB_ACTIVE_CONNS = linkDB_NumActive();</span>
+<span class="gd">-</span>
+<span class="gd">-  // interested in only the events of</span>
+<span class="gd">-  // entering scMenuConnect, spMenuSelectConn, and scMenuMain for now</span>
+<span class="gd">-  if (pMenuObjNext == &amp;spMenuSelectConn)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    static uint8_t* pAddrs;</span>
+<span class="gd">-    uint8_t* pAddrTemp;</span>
+<span class="gd">-</span>
+<span class="gd">-    if (pAddrs != NULL)</span>
+<span class="gd">-    {</span>
+<span class="gd">-      ICall_free(pAddrs);</span>
+<span class="gd">-    }</span>
+<span class="gd">-</span>
+<span class="gd">-    // Allocate buffer to display addresses</span>
+<span class="gd">-    pAddrs = ICall_malloc(NUMB_ACTIVE_CONNS * SP_ADDR_STR_SIZE);</span>
+<span class="gd">-</span>
+<span class="gd">-    if (pAddrs == NULL)</span>
+<span class="gd">-    {</span>
+<span class="gd">-      TBM_SET_NUM_ITEM(&amp;spMenuSelectConn, 0);</span>
+<span class="gd">-    }</span>
+<span class="gd">-    else</span>
+<span class="gd">-    {</span>
+<span class="gd">-      uint8_t i;</span>
+<span class="gd">-</span>
+<span class="gd">-      TBM_SET_NUM_ITEM(&amp;spMenuSelectConn, MAX_NUM_BLE_CONNS);</span>
+<span class="gd">-</span>
+<span class="gd">-      pAddrTemp = pAddrs;</span>
+<span class="gd">-</span>
+<span class="gd">-      // Add active connection info to the menu object</span>
+<span class="gd">-      for (i = 0; i &lt; MAX_NUM_BLE_CONNS; i++)</span>
+<span class="gd">-      {</span>
+<span class="gd">-        if (connList[i].connHandle != CONNHANDLE_INVALID)</span>
+<span class="gd">-        {</span>
+<span class="gd">-          // Get the address from the connection handle</span>
+<span class="gd">-          linkDBInfo_t linkInfo;</span>
+<span class="gd">-          linkDB_GetInfo(connList[i].connHandle, &amp;linkInfo);</span>
+<span class="gd">-          // This connection is active. Set the corresponding menu item with</span>
+<span class="gd">-          // the address of this connection and enable the item.</span>
+<span class="gd">-          memcpy(pAddrTemp, Util_convertBdAddr2Str(linkInfo.addr),</span>
+<span class="gd">-                 SP_ADDR_STR_SIZE);</span>
+<span class="gd">-          TBM_SET_ACTION_DESC(&amp;spMenuSelectConn, i, pAddrTemp);</span>
+<span class="gd">-          tbm_setItemStatus(&amp;spMenuSelectConn, (1 &lt;&lt; i), SP_ITEM_NONE);</span>
+<span class="gd">-          pAddrTemp += SP_ADDR_STR_SIZE;</span>
+<span class="gd">-        }</span>
+<span class="gd">-        else</span>
+<span class="gd">-        {</span>
+<span class="gd">-          // This connection is not active. Disable the corresponding menu item.</span>
+<span class="gd">-          tbm_setItemStatus(&amp;spMenuSelectConn, SP_ITEM_NONE, (1 &lt;&lt; i));</span>
+<span class="gd">-        }</span>
+<span class="gd">-      }</span>
+<span class="gd">-    }</span>
+<span class="gd">-  }</span>
+<span class="gd">-  else if (pMenuObjNext == &amp;spMenuMain)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    // Now we are not in a specific connection&#39;s context</span>
+<span class="gd">-</span>
+<span class="gd">-    // Clear connection-related message</span>
+<span class="gd">-    Display_clearLine(dispHandle, SP_ROW_CONNECTION);</span>
+<span class="gd">-  }</span>
+<span class="gd">-}</span>
+<span class="gd">-</span>
+ #ifdef PTM_MODE
+ /*********************************************************************
+ * @fn      SimplePeripheral_doEnablePTMMode
+<span class="gu">@@ -2537,14 +2140,6 @@ static void SimplePeripheral_menuSwitchCb(tbmMenuObj_t* pMenuObjCurr,</span>
+ */
+ bool SimplePeripheral_doEnablePTMMode(uint8_t index)
+ {
+<span class="gd">-  // Clear Display</span>
+<span class="gd">-  Display_clearLines(dispHandle, 0, 15);</span>
+<span class="gd">-</span>
+<span class="gd">-  // Indicate in screen that PTM Mode is initializing</span>
+<span class="gd">-  Display_printf(dispHandle, 1, 0, &quot;PTM Mode initializing!\n\n\rPlease note UART feed will now stop...&quot;);  </span>
+<span class="gd">-  </span>
+<span class="gd">-  // Before starting the NPI task close Display driver to make sure there is no shared resource used by both</span>
+<span class="gd">-  Display_close(dispHandle);</span>
+   
+   // Start NPI task
+   NPITask_createTask(ICALL_SERVICE_CLASS_BLE);
+<span class="gu">@@ -2564,9 +2159,6 @@ bool SimplePeripheral_doEnablePTMMode(uint8_t index)</span>
+ 
+   // Inform Stack to Initialize PTM
+   HCI_EXT_EnablePTMCmd();
+<span class="gd">-</span>
+<span class="gd">-  // Open back the display to avoid crashes to future calls to Display_printf (even though they won&#39;t go through until reboot)</span>
+<span class="gd">-  dispHandle = Display_open(Display_Type_ANY, NULL);</span>
+   
+   return TRUE;
+ }
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">simple_peripheral.h</span></code></p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gh">index 5eeaa2e..8f9b703 100644</span>
+<span class="gu">@@ -79,15 +79,6 @@ extern &quot;C&quot;</span>
+  */
+ extern void SimplePeripheral_createTask(void);
+ 
+<span class="gd">-/*</span>
+<span class="gd">- * Functions for menu action</span>
+<span class="gd">- */</span>
+<span class="gd">-/* Actions for Menu: Choose connection to work with */</span>
+<span class="gd">-bool SimplePeripheral_doSelectConn(uint8 index);</span>
+<span class="gd">-</span>
+<span class="gd">-/* Actions for Menu: Set PHY - Select */</span>
+<span class="gd">-bool SimplePeripheral_doSetConnPhy(uint8 index);</span>
+<span class="gd">-</span>
+ #ifdef PTM_MODE
+ /* Actions for Menu: Enable PTM Mode */
+ bool SimplePeripheral_doEnablePTMMode(uint8 index);
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li><p>Build and test your project…
+No warning or error should be raised at build
+time and the project should still work smoothly!
+<em>It means you can still advertise (legacy advertisement only),
+join a connection, pair with another device, etc…</em></p></li>
+</ol>
+</div>
+<div class="section" id="remove-the-2-long-range-advertisement">
+<h3>Remove the #2 (long range) advertisement<a class="headerlink" href="#remove-the-2-long-range-advertisement" title="Permalink to this headline">¶</a></h3>
+<p>By removing the secondary advertisement (sometimes called “long range”
+advertisement) from the simple_peripheral example you can significantly
+save power. The power consumption due to the secondary advertisement
+(generally long range advertisement) can represent up to 80% of the
+power consumption of the advertisement period. In addition, this
+helps you to save memory.</p>
+<p>Here are the guidelines:</p>
+<ol class="arabic">
+<li><p>Import the ble5_simple_peripheral project</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">simple_peripheral.c</span></code> to remove the code related to
+the #2 advertisement.</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li><p>remove the declaration of the variable <code class="docutils literal notranslate"><span class="pre">advHandleLongRange</span></code></p></li>
+<li><p>remove all the code referencing the variable <code class="docutils literal notranslate"><span class="pre">advHandleLongRange</span></code></p></li>
+</ul>
+</div></blockquote>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p>Here is <code class="docutils literal notranslate"><span class="pre">simple_peripheral.c</span></code> diff file (based on SDK 4.10):</p>
+</div>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gh">index 4d8f312..2fe4f3c 100644</span>
+<span class="gu">@@ -374,7 +374,6 @@ static uint8_t scanRspData[] =</span>
+ 
+ // Advertising handles
+ static uint8 advHandleLegacy;
+<span class="gd">-static uint8 advHandleLongRange;</span>
+ 
+ // Address mode
+ static GAP_Addr_Modes_t addrMode = DEFAULT_ADDRESS_MODE;
+<span class="gu">@@ -1112,29 +1111,6 @@ static void SimplePeripheral_processGapMessage(gapEventHdr_t *pMsg)</span>
+         status = GapAdv_enable(advHandleLegacy, GAP_ADV_ENABLE_OPTIONS_USE_MAX , 0);
+         SIMPLEPERIPHERAL_ASSERT(status == SUCCESS);
+ 
+<span class="gd">-        // Use long range params to create long range set #2</span>
+<span class="gd">-        GapAdv_params_t advParamLongRange = GAPADV_PARAMS_AE_LONG_RANGE_CONN;</span>
+<span class="gd">-</span>
+<span class="gd">-        // Create Advertisement set #2 and assign handle</span>
+<span class="gd">-        status = GapAdv_create(&amp;SimplePeripheral_advCallback, &amp;advParamLongRange,</span>
+<span class="gd">-                               &amp;advHandleLongRange);</span>
+<span class="gd">-        SIMPLEPERIPHERAL_ASSERT(status == SUCCESS);</span>
+<span class="gd">-</span>
+<span class="gd">-        // Load advertising data for set #2 that is statically allocated by the app</span>
+<span class="gd">-        status = GapAdv_loadByHandle(advHandleLongRange, GAP_ADV_DATA_TYPE_ADV,</span>
+<span class="gd">-                                     sizeof(advertData), advertData);</span>
+<span class="gd">-        SIMPLEPERIPHERAL_ASSERT(status == SUCCESS);</span>
+<span class="gd">-</span>
+<span class="gd">-        // Set event mask for set #2</span>
+<span class="gd">-        status = GapAdv_setEventMask(advHandleLongRange,</span>
+<span class="gd">-                                     GAP_ADV_EVT_MASK_START_AFTER_ENABLE |</span>
+<span class="gd">-                                     GAP_ADV_EVT_MASK_END_AFTER_DISABLE |</span>
+<span class="gd">-                                     GAP_ADV_EVT_MASK_SET_TERMINATED);</span>
+<span class="gd">-</span>
+<span class="gd">-        // Enable long range advertising for set #2</span>
+<span class="gd">-        status = GapAdv_enable(advHandleLongRange, GAP_ADV_ENABLE_OPTIONS_USE_MAX , 0);</span>
+<span class="gd">-        SIMPLEPERIPHERAL_ASSERT(status == SUCCESS);</span>
+<span class="gd">-</span>
+ #ifdef PTM_MODE
+          // Enable &quot;Enable PTM Mode&quot; option
+          tbm_setItemStatus(&amp;spMenuMain, SP_ITEM_PTM_ENBL, SP_ITEM_NONE);
+<span class="gu">@@ -1189,12 +1165,10 @@ static void SimplePeripheral_processGapMessage(gapEventHdr_t *pMsg)</span>
+       {
+         // Start advertising since there is room for more connections
+         GapAdv_enable(advHandleLegacy, GAP_ADV_ENABLE_OPTIONS_USE_MAX , 0);
+<span class="gd">-        GapAdv_enable(advHandleLongRange, GAP_ADV_ENABLE_OPTIONS_USE_MAX , 0);</span>
+       }
+       else
+       {
+         // Stop advertising since there is no room for more connections
+<span class="gd">-        GapAdv_disable(advHandleLongRange);</span>
+         GapAdv_disable(advHandleLegacy);
+       }
+ 
+<span class="gu">@@ -1226,7 +1200,6 @@ static void SimplePeripheral_processGapMessage(gapEventHdr_t *pMsg)</span>
+ 
+       // Start advertising since there is room for more connections
+       GapAdv_enable(advHandleLegacy, GAP_ADV_ENABLE_OPTIONS_USE_MAX , 0);
+<span class="gd">-      GapAdv_enable(advHandleLongRange, GAP_ADV_ENABLE_OPTIONS_USE_MAX , 0);</span>
+ 
+       // Clear remaining lines
+       Display_clearLine(dispHandle, SP_ROW_CONNECTION);
+<span class="gu">@@ -2551,7 +2524,6 @@ bool SimplePeripheral_doEnablePTMMode(uint8_t index)</span>
+ 
+   // Disable Advertising and destroy sets
+   GapAdv_destroy(advHandleLegacy,GAP_ADV_FREE_OPTION_ALL_DATA);
+<span class="gd">-  GapAdv_destroy(advHandleLongRange,GAP_ADV_FREE_OPTION_ALL_DATA);</span>
+ 
+   // Intercept NPI RX events.
+   NPITask_registerIncomingRXEventAppCB(simple_peripheral_handleNPIRxInterceptEvent, INTERCEPT);
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Build and test your project…
+No warning or error should be raised at build
+time and the project should still work smoothly!
+<em>It means you can still advertise (legacy advertisement only),
+join a connection, pair with another device, etc…</em></p></li>
+</ol>
+</div>
+<div class="section" id="remove-the-auto-phy-update">
+<h3>Remove the auto-PHY update<a class="headerlink" href="#remove-the-auto-phy-update" title="Permalink to this headline">¶</a></h3>
+<p>The <em>auto-PHY update</em> is a feature provided by the application
+and consisting in dynamically change the PHY used by the BLE stack
+to handle a connection.
+The PHY is selected based on the RSSI measured. The better the RSSI,
+the faster the PHY selected is (e.g. if the RSSI is -25, then the
+2M PHY will be selected, if the RSSI is -65 then the S8 PHY will be
+selected).
+This functionality is available in the simple_peripheral project
+and has to be activated using the two buttons menu. Other projects
+provide this functionality too.</p>
+<p>This modification should free up some FLASH and some CPU time.
+The amount of stack required by the example should be decreased too.
+The goal is to remove the code responsible for the auto-PHY update.
+As the auto-PHY update is based on RSSI, we are also going to remove
+the code responsible to read the RSSI of the connection.</p>
+<p>Here are the guidelines:</p>
+<ol class="arabic">
+<li><p>Import the ble5_simple_peripheral project</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">simple_peripheral.c</span></code> and <code class="docutils literal notranslate"><span class="pre">simple_peripheral_menu.c</span></code>:</p>
+<ul class="simple">
+<li><p>In <code class="docutils literal notranslate"><span class="pre">simple_peripheral.c</span></code>:</p>
+<ul>
+<li><p>Remove the function <code class="docutils literal notranslate"><span class="pre">SimplePeripheral_processCmdCompleteEvt</span></code>
+and its calls</p></li>
+<li><p>Remove the function <code class="docutils literal notranslate"><span class="pre">SimplePeripheral_initPHYRSSIArray()</span></code>
+and its calls</p></li>
+<li><p>Remove the function <code class="docutils literal notranslate"><span class="pre">SimplePeripheral_startAutoPhyChange()</span></code>
+and its calls.</p></li>
+<li><p>Remove the function <code class="docutils literal notranslate"><span class="pre">SimplePeripheral_stopAutoPhyChange()</span></code>
+and its calls</p></li>
+<li><p>Remove the function <code class="docutils literal notranslate"><span class="pre">SimplePeripheral_updatePHYStat()</span></code>
+and its calls</p></li>
+<li><p>Modify the function <code class="docutils literal notranslate"><span class="pre">SimplePeripheral_doSetConnPhy()</span></code>
+in order to remove the support of the <code class="docutils literal notranslate"><span class="pre">AUTO_PHY_UPDATE</span></code></p></li>
+<li><p>Remove the callback function <code class="docutils literal notranslate"><span class="pre">SimplePeripheral_connEvtCB()</span></code></p></li>
+<li><p>Remove the RSSI thresholds defined (this does not save any FLASH
+or RAM but it these defines are useless now). Same remark for
+<code class="docutils literal notranslate"><span class="pre">SP_MAX_RSSI_STORE_DEPTH</span></code>, <code class="docutils literal notranslate"><span class="pre">SP_RSSI_TRACK_CHNLS</span></code>.
+You can also remove all the define related to auto-phy update:
+<code class="docutils literal notranslate"><span class="pre">SP_PHY_NONE</span></code>, <code class="docutils literal notranslate"><span class="pre">SP_INVALID_HANDLE</span></code> and <code class="docutils literal notranslate"><span class="pre">AUTO_PHY_UPDATE</span></code></p></li>
+<li><p>Modify the <code class="docutils literal notranslate"><span class="pre">spConnRec_t</span></code> structure. We don’t need anymore the
+RSSI related elements (<code class="docutils literal notranslate"><span class="pre">rssiArr</span></code>, <code class="docutils literal notranslate"><span class="pre">rssiCntr</span></code>, <code class="docutils literal notranslate"><span class="pre">rssiAvg</span></code>)
+and the PHY change related (<code class="docutils literal notranslate"><span class="pre">currPhy</span></code>, <code class="docutils literal notranslate"><span class="pre">rqPhy</span></code>, <code class="docutils literal notranslate"><span class="pre">phyCngRq</span></code>,
+<code class="docutils literal notranslate"><span class="pre">phyRqFailCnt</span></code>, <code class="docutils literal notranslate"><span class="pre">isAutoPHYEnable</span></code>).
+Remove all the code referring to these elements.</p></li>
+</ul>
+</li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">simple_peripheral_menu.c</span></code>:</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>In the “ConnPhy” menu, remove the <code class="docutils literal notranslate"><span class="pre">MENU_ITEM_ACTION</span></code> associated
+with the auto-PHY update.</p></li>
+<li><p>In the corresponding <code class="docutils literal notranslate"><span class="pre">MENU_OBJ</span></code>, modify the number of available
+items.</p></li>
+</ul>
+</div></blockquote>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p>Here are the diff files (based on SDK 4.10):</p>
+</div>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">simple_peripheral.c</span></code></p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gh">index 4d8f312..1e46ef1 100644</span>
+<span class="gu">@@ -172,17 +172,6 @@</span>
+ #define SP_ROW_RPA           (TBM_ROW_APP + 7)
+ #define SP_ROW_DEBUG         (TBM_ROW_APP + 8)
+ 
+<span class="gd">-// For storing the active connections</span>
+<span class="gd">-#define SP_RSSI_TRACK_CHNLS        1            // Max possible channels can be GAP_BONDINGS_MAX</span>
+<span class="gd">-#define SP_MAX_RSSI_STORE_DEPTH    5</span>
+<span class="gd">-#define SP_INVALID_HANDLE          0xFFFF</span>
+<span class="gd">-#define RSSI_2M_THRSHLD           -30</span>
+<span class="gd">-#define RSSI_1M_THRSHLD           -40</span>
+<span class="gd">-#define RSSI_S2_THRSHLD           -50</span>
+<span class="gd">-#define RSSI_S8_THRSHLD           -60</span>
+<span class="gd">-#define SP_PHY_NONE                LL_PHY_NONE  // No PHY set</span>
+<span class="gd">-#define AUTO_PHY_UPDATE            0xFF</span>
+<span class="gd">-</span>
+ // Spin if the expression is not true
+ #define SIMPLEPERIPHERAL_ASSERT(expr) if (!(expr)) simple_peripheral_spin();
+ 
+<span class="gu">@@ -250,14 +239,6 @@ typedef struct</span>
+   uint16_t         	    connHandle;                        // Connection Handle
+   spClockEventData_t*   pParamUpdateEventData;
+   Clock_Struct*    	    pUpdateClock;                      // pointer to clock struct
+<span class="gd">-  int8_t           	    rssiArr[SP_MAX_RSSI_STORE_DEPTH];</span>
+<span class="gd">-  uint8_t          	    rssiCntr;</span>
+<span class="gd">-  int8_t           	    rssiAvg;</span>
+<span class="gd">-  bool             	    phyCngRq;                          // Set to true if PHY change request is in progress</span>
+<span class="gd">-  uint8_t          	    currPhy;</span>
+<span class="gd">-  uint8_t          	    rqPhy;</span>
+<span class="gd">-  uint8_t          	    phyRqFailCnt;                      // PHY change request count</span>
+<span class="gd">-  bool             	    isAutoPHYEnable;                   // Flag to indicate auto phy change</span>
+ } spConnRec_t;
+ 
+ /*********************************************************************
+<span class="gu">@@ -416,22 +397,16 @@ static void SimplePeripheral_charValueChangeCB(uint8_t paramId);</span>
+ static status_t SimplePeripheral_enqueueMsg(uint8_t event, void *pData);
+ static void SimplePeripheral_keyChangeHandler(uint8 keys);
+ static void SimplePeripheral_handleKeys(uint8_t keys);
+<span class="gd">-static void SimplePeripheral_processCmdCompleteEvt(hciEvt_CmdComplete_t *pMsg);</span>
+<span class="gd">-static void SimplePeripheral_initPHYRSSIArray(void);</span>
+<span class="gd">-static void SimplePeripheral_updatePHYStat(uint16_t eventCode, uint8_t *pMsg);</span>
+ static uint8_t SimplePeripheral_addConn(uint16_t connHandle);
+ static uint8_t SimplePeripheral_getConnIndex(uint16_t connHandle);
+ static uint8_t SimplePeripheral_removeConn(uint16_t connHandle);
+ static void SimplePeripheral_processParamUpdate(uint16_t connHandle);
+<span class="gd">-static status_t SimplePeripheral_startAutoPhyChange(uint16_t connHandle);</span>
+<span class="gd">-static status_t SimplePeripheral_stopAutoPhyChange(uint16_t connHandle);</span>
+ static status_t SimplePeripheral_setPhy(uint16_t connHandle, uint8_t allPhys,
+                                         uint8_t txPhy, uint8_t rxPhy,
+                                         uint16_t phyOpts);
+ static uint8_t SimplePeripheral_clearConnListEntry(uint16_t connHandle);
+ static void SimplePeripheral_menuSwitchCb(tbmMenuObj_t* pMenuObjCurr,
+                                           tbmMenuObj_t* pMenuObjNext);
+<span class="gd">-static void SimplePeripheral_connEvtCB(Gap_ConnEventRpt_t *pReport);</span>
+ static void SimplePeripheral_processConnEvt(Gap_ConnEventRpt_t *pReport);
+ #ifdef PTM_MODE
+ void simple_peripheral_handleNPIRxInterceptEvent(uint8_t *pMsg);      // Declaration
+<span class="gu">@@ -690,9 +665,6 @@ static void SimplePeripheral_init(void)</span>
+   //Initialize GAP layer for Peripheral role and register to receive GAP events
+   GAP_DeviceInit(GAP_PROFILE_PERIPHERAL, selfEntity, addrMode, NULL);
+ 
+<span class="gd">-  // Initialize array to store connection handle and RSSI values</span>
+<span class="gd">-  SimplePeripheral_initPHYRSSIArray();</span>
+<span class="gd">-</span>
+   // The type of display is configured based on the BOARD_DISPLAY_USE...
+   // preprocessor definitions
+   dispHandle = Display_open(Display_Type_ANY, NULL);
+<span class="gu">@@ -810,11 +782,7 @@ static uint8_t SimplePeripheral_processStackMsg(ICall_Hdr *pMsg)</span>
+       switch(pMsg-&gt;status)
+       {
+         case HCI_COMMAND_COMPLETE_EVENT_CODE:
+<span class="gd">-        // Process HCI Command Complete Events here</span>
+<span class="gd">-        {</span>
+<span class="gd">-          SimplePeripheral_processCmdCompleteEvt((hciEvt_CmdComplete_t *) pMsg);</span>
+<span class="gd">-          break;</span>
+<span class="gd">-        }</span>
+<span class="gi">+         break;</span>
+ 
+         case HCI_BLE_HARDWARE_ERROR_EVENT_CODE:
+           AssertHandler(HAL_ASSERT_CAUSE_HARDWARE_ERROR,0);
+<span class="gu">@@ -839,8 +807,6 @@ static uint8_t SimplePeripheral_processStackMsg(ICall_Hdr *pMsg)</span>
+                                &quot;PHY Update Status Event: 0x%x&quot;,
+                                pMyMsg-&gt;cmdStatus);
+               }
+<span class="gd">-</span>
+<span class="gd">-              SimplePeripheral_updatePHYStat(HCI_LE_SET_PHY, (uint8_t *)pMsg);</span>
+               break;
+             }
+ 
+<span class="gu">@@ -874,8 +840,6 @@ static uint8_t SimplePeripheral_processStackMsg(ICall_Hdr *pMsg)</span>
+                              (pPUC-&gt;rxPhy == PHY_UPDATE_COMPLETE_EVENT_2M) ? &quot;2M&quot; :
+                              (pPUC-&gt;rxPhy == PHY_UPDATE_COMPLETE_EVENT_CODED) ? &quot;CODED&quot; : &quot;Unexpected PHY Value&quot;);
+             }
+<span class="gd">-</span>
+<span class="gd">-            SimplePeripheral_updatePHYStat(HCI_BLE_PHY_UPDATE_COMPLETE_EVENT, (uint8_t *)pMsg);</span>
+           }
+           break;
+         }
+<span class="gu">@@ -1527,8 +1491,7 @@ bool SimplePeripheral_doSetConnPhy(uint8 index)</span>
+ 
+   static uint8_t phy[] = {
+     HCI_PHY_1_MBPS, HCI_PHY_2_MBPS, HCI_PHY_1_MBPS | HCI_PHY_2_MBPS,
+<span class="gd">-    HCI_PHY_CODED, HCI_PHY_1_MBPS | HCI_PHY_2_MBPS | HCI_PHY_CODED,</span>
+<span class="gd">-    AUTO_PHY_UPDATE</span>
+<span class="gi">+    HCI_PHY_CODED, HCI_PHY_1_MBPS | HCI_PHY_2_MBPS | HCI_PHY_CODED</span>
+   };
+ 
+   uint8_t connIndex = SimplePeripheral_getConnIndex(menuConnHandle);
+<span class="gu">@@ -1541,24 +1504,11 @@ bool SimplePeripheral_doSetConnPhy(uint8 index)</span>
+ 
+   // Set Phy Preference on the current connection. Apply the same value
+   // for RX and TX.
+<span class="gd">-  // If auto PHY update is not selected and if auto PHY update is enabled, then</span>
+<span class="gd">-  // stop auto PHY update</span>
+<span class="gd">-  // Note PHYs are already enabled by default in build_config.opt in stack project.</span>
+<span class="gd">-  if(phy[index] != AUTO_PHY_UPDATE)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    // Cancel RSSI reading  and auto phy changing</span>
+<span class="gd">-    SimplePeripheral_stopAutoPhyChange(connList[connIndex].connHandle);</span>
+ 
+     SimplePeripheral_setPhy(menuConnHandle, 0, phy[index], phy[index], 0);
+ 
+     Display_printf(dispHandle, SP_ROW_STATUS_1, 0, &quot;PHY preference: %s&quot;,
+                    TBM_GET_ACTION_DESC(&amp;spMenuConnPhy, index));
+<span class="gd">-  }</span>
+<span class="gd">-  else</span>
+<span class="gd">-  {</span>
+<span class="gd">-    // Start RSSI read for auto PHY update (if it is disabled)</span>
+<span class="gd">-    SimplePeripheral_startAutoPhyChange(menuConnHandle);</span>
+<span class="gd">-  }</span>
+ 
+   return status;
+ }
+<span class="gu">@@ -1780,22 +1730,6 @@ static void SimplePeripheral_processPasscode(spPasscodeData_t *pPasscodeData)</span>
+ #endif
+ }
+ 
+<span class="gd">-/*********************************************************************</span>
+<span class="gd">- * @fn      SimplePeripheral_connEvtCB</span>
+<span class="gd">- *</span>
+<span class="gd">- * @brief   Connection event callback.</span>
+<span class="gd">- *</span>
+<span class="gd">- * @param pReport pointer to connection event report</span>
+<span class="gd">- */</span>
+<span class="gd">-static void SimplePeripheral_connEvtCB(Gap_ConnEventRpt_t *pReport)</span>
+<span class="gd">-{</span>
+<span class="gd">-  // Enqueue the event for processing in the app context.</span>
+<span class="gd">-  if(SimplePeripheral_enqueueMsg(SP_CONN_EVT, pReport) != SUCCESS)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    ICall_free(pReport);</span>
+<span class="gd">-  }</span>
+<span class="gd">-}</span>
+<span class="gd">-</span>
+ /*********************************************************************
+  * @fn      SimplePeripheral_processConnEvt
+  *
+<span class="gu">@@ -1813,13 +1747,6 @@ static void SimplePeripheral_processConnEvt(Gap_ConnEventRpt_t *pReport)</span>
+     Display_printf(dispHandle, SP_ROW_STATUS_1, 0, &quot;Connection handle is not in the connList !!!&quot;);
+     return;
+   }
+<span class="gd">-</span>
+<span class="gd">-  // If auto phy change is enabled</span>
+<span class="gd">-  if (connList[connIndex].isAutoPHYEnable == TRUE)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    // Read the RSSI</span>
+<span class="gd">-    HCI_ReadRssiCmd(pReport-&gt;handle);</span>
+<span class="gd">-  }</span>
+ }
+ 
+ 
+<span class="gu">@@ -1924,10 +1851,6 @@ static uint8_t SimplePeripheral_addConn(uint16_t connHandle)</span>
+       {
+         status = bleMemAllocError;
+       }
+<span class="gd">-</span>
+<span class="gd">-      // Set default PHY to 1M</span>
+<span class="gd">-      connList[i].currPhy = HCI_PHY_1_MBPS;</span>
+<span class="gd">-</span>
+       break;
+     }
+   }
+<span class="gu">@@ -1988,14 +1911,6 @@ static uint8_t SimplePeripheral_clearConnListEntry(uint16_t connHandle)</span>
+     if((connIndex == i) || (connHandle == CONNHANDLE_ALL))
+     {
+       connList[i].connHandle = CONNHANDLE_INVALID;
+<span class="gd">-      connList[i].currPhy = 0;</span>
+<span class="gd">-      connList[i].phyCngRq = 0;</span>
+<span class="gd">-      connList[i].phyRqFailCnt = 0;</span>
+<span class="gd">-      connList[i].rqPhy = 0;</span>
+<span class="gd">-      memset(connList[i].rssiArr, 0, SP_MAX_RSSI_STORE_DEPTH);</span>
+<span class="gd">-      connList[i].rssiAvg = 0;</span>
+<span class="gd">-      connList[i].rssiCntr = 0;</span>
+<span class="gd">-      connList[i].isAutoPHYEnable = FALSE;</span>
+     }
+   }
+ 
+<span class="gu">@@ -2058,8 +1973,6 @@ static uint8_t SimplePeripheral_removeConn(uint16_t connHandle)</span>
+     }
+     // Clear pending update requests from paramUpdateList
+     SimplePeripheral_clearPendingParamUpdate(connHandle);
+<span class="gd">-    // Stop Auto PHY Change</span>
+<span class="gd">-    SimplePeripheral_stopAutoPhyChange(connHandle);</span>
+     // Clear Connection List Entry
+     SimplePeripheral_clearConnListEntry(connHandle);
+   }
+<span class="gu">@@ -2121,222 +2034,6 @@ static void SimplePeripheral_processParamUpdate(uint16_t connHandle)</span>
+   }
+ }
+ 
+<span class="gd">-/*********************************************************************</span>
+<span class="gd">- * @fn      SimpleCentral_processCmdCompleteEvt</span>
+<span class="gd">- *</span>
+<span class="gd">- * @brief   Process an incoming OSAL HCI Command Complete Event.</span>
+<span class="gd">- *</span>
+<span class="gd">- * @param   pMsg - message to process</span>
+<span class="gd">- *</span>
+<span class="gd">- * @return  none</span>
+<span class="gd">- */</span>
+<span class="gd">-static void SimplePeripheral_processCmdCompleteEvt(hciEvt_CmdComplete_t *pMsg)</span>
+<span class="gd">-{</span>
+<span class="gd">-  uint8_t status = pMsg-&gt;pReturnParam[0];</span>
+<span class="gd">-</span>
+<span class="gd">-  //Find which command this command complete is for</span>
+<span class="gd">-  switch (pMsg-&gt;cmdOpcode)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    case HCI_READ_RSSI:</span>
+<span class="gd">-    {</span>
+<span class="gd">-      int8 rssi = (int8)pMsg-&gt;pReturnParam[3];  </span>
+<span class="gd">-</span>
+<span class="gd">-      // Display RSSI value, if RSSI is higher than threshold, change to faster PHY</span>
+<span class="gd">-      if (status == SUCCESS)</span>
+<span class="gd">-      {</span>
+<span class="gd">-        uint16_t handle = BUILD_UINT16(pMsg-&gt;pReturnParam[1], pMsg-&gt;pReturnParam[2]);</span>
+<span class="gd">-</span>
+<span class="gd">-        uint8_t index = SimplePeripheral_getConnIndex(handle);</span>
+<span class="gd">-        SIMPLEPERIPHERAL_ASSERT(index &lt; MAX_NUM_BLE_CONNS);</span>
+<span class="gd">-</span>
+<span class="gd">-        if (rssi != LL_RSSI_NOT_AVAILABLE)</span>
+<span class="gd">-        {</span>
+<span class="gd">-          connList[index].rssiArr[connList[index].rssiCntr++] = rssi;</span>
+<span class="gd">-          connList[index].rssiCntr %= SP_MAX_RSSI_STORE_DEPTH;</span>
+<span class="gd">-</span>
+<span class="gd">-          int16_t sum_rssi = 0;</span>
+<span class="gd">-          for(uint8_t cnt=0; cnt&lt;SP_MAX_RSSI_STORE_DEPTH; cnt++)</span>
+<span class="gd">-          {</span>
+<span class="gd">-            sum_rssi += connList[index].rssiArr[cnt];</span>
+<span class="gd">-          }</span>
+<span class="gd">-          connList[index].rssiAvg = (uint32_t)(sum_rssi/SP_MAX_RSSI_STORE_DEPTH);</span>
+<span class="gd">-</span>
+<span class="gd">-          uint8_t phyRq = SP_PHY_NONE;</span>
+<span class="gd">-          uint8_t phyRqS = SP_PHY_NONE;</span>
+<span class="gd">-          uint8_t phyOpt = LL_PHY_OPT_NONE;</span>
+<span class="gd">-</span>
+<span class="gd">-          if(connList[index].phyCngRq == FALSE)</span>
+<span class="gd">-          {</span>
+<span class="gd">-            if((connList[index].rssiAvg &gt;= RSSI_2M_THRSHLD) &amp;&amp;</span>
+<span class="gd">-            (connList[index].currPhy != HCI_PHY_2_MBPS) &amp;&amp;</span>
+<span class="gd">-                 (connList[index].currPhy != SP_PHY_NONE))</span>
+<span class="gd">-            {</span>
+<span class="gd">-              // try to go to higher data rate</span>
+<span class="gd">-              phyRqS = phyRq = HCI_PHY_2_MBPS;</span>
+<span class="gd">-            }</span>
+<span class="gd">-            else if((connList[index].rssiAvg &lt; RSSI_2M_THRSHLD) &amp;&amp;</span>
+<span class="gd">-                    (connList[index].rssiAvg &gt;= RSSI_1M_THRSHLD) &amp;&amp;</span>
+<span class="gd">-                    (connList[index].currPhy != HCI_PHY_1_MBPS) &amp;&amp;</span>
+<span class="gd">-                    (connList[index].currPhy != SP_PHY_NONE))</span>
+<span class="gd">-            {</span>
+<span class="gd">-              // try to go to legacy regular data rate</span>
+<span class="gd">-              phyRqS = phyRq = HCI_PHY_1_MBPS;</span>
+<span class="gd">-            }</span>
+<span class="gd">-            else if((connList[index].rssiAvg &gt;= RSSI_S2_THRSHLD) &amp;&amp;</span>
+<span class="gd">-                    (connList[index].rssiAvg &lt; RSSI_1M_THRSHLD) &amp;&amp;</span>
+<span class="gd">-                    (connList[index].currPhy != SP_PHY_NONE))</span>
+<span class="gd">-            {</span>
+<span class="gd">-              // try to go to lower data rate S=2(500kb/s)</span>
+<span class="gd">-              phyRqS = HCI_PHY_CODED;</span>
+<span class="gd">-              phyOpt = LL_PHY_OPT_S2;</span>
+<span class="gd">-              phyRq = BLE5_CODED_S2_PHY;</span>
+<span class="gd">-            }</span>
+<span class="gd">-            else if(connList[index].rssiAvg &lt; RSSI_S2_THRSHLD )</span>
+<span class="gd">-            {</span>
+<span class="gd">-              // try to go to lowest data rate S=8(125kb/s)</span>
+<span class="gd">-              phyRqS = HCI_PHY_CODED;</span>
+<span class="gd">-              phyOpt = LL_PHY_OPT_S8;</span>
+<span class="gd">-              phyRq = BLE5_CODED_S8_PHY;</span>
+<span class="gd">-            }</span>
+<span class="gd">-            if((phyRq != SP_PHY_NONE) &amp;&amp;</span>
+<span class="gd">-               // First check if the request for this phy change is already not honored then don&#39;t request for change</span>
+<span class="gd">-               (((connList[index].rqPhy == phyRq) &amp;&amp;</span>
+<span class="gd">-                 (connList[index].phyRqFailCnt &lt; 2)) ||</span>
+<span class="gd">-                 (connList[index].rqPhy != phyRq)))</span>
+<span class="gd">-            {</span>
+<span class="gd">-              //Initiate PHY change based on RSSI</span>
+<span class="gd">-              SimplePeripheral_setPhy(connList[index].connHandle, 0,</span>
+<span class="gd">-                                      phyRqS, phyRqS, phyOpt);</span>
+<span class="gd">-              connList[index].phyCngRq = TRUE;</span>
+<span class="gd">-</span>
+<span class="gd">-              // If it a request for different phy than failed request, reset the count</span>
+<span class="gd">-              if(connList[index].rqPhy != phyRq)</span>
+<span class="gd">-              {</span>
+<span class="gd">-                // then reset the request phy counter and requested phy</span>
+<span class="gd">-                connList[index].phyRqFailCnt = 0;</span>
+<span class="gd">-              }</span>
+<span class="gd">-</span>
+<span class="gd">-              if(phyOpt == LL_PHY_OPT_NONE)</span>
+<span class="gd">-              {</span>
+<span class="gd">-                connList[index].rqPhy = phyRq;</span>
+<span class="gd">-              }</span>
+<span class="gd">-              else if(phyOpt == LL_PHY_OPT_S2)</span>
+<span class="gd">-              {</span>
+<span class="gd">-                connList[index].rqPhy = BLE5_CODED_S2_PHY;</span>
+<span class="gd">-              }</span>
+<span class="gd">-              else</span>
+<span class="gd">-              {</span>
+<span class="gd">-                connList[index].rqPhy = BLE5_CODED_S8_PHY;</span>
+<span class="gd">-              }</span>
+<span class="gd">-</span>
+<span class="gd">-            } // end of if ((phyRq != SP_PHY_NONE) &amp;&amp; ...</span>
+<span class="gd">-          } // end of if (connList[index].phyCngRq == FALSE)</span>
+<span class="gd">-        } // end of if (rssi != LL_RSSI_NOT_AVAILABLE)</span>
+<span class="gd">-</span>
+<span class="gd">-        Display_printf(dispHandle, SP_ROW_RSSI, 0,</span>
+<span class="gd">-                       &quot;RSSI:%d dBm, AVG RSSI:%d dBm&quot;,</span>
+<span class="gd">-                       (uint32_t)(rssi),</span>
+<span class="gd">-                       connList[index].rssiAvg);</span>
+<span class="gd">-</span>
+<span class="gd">-	  } // end of if (status == SUCCESS)</span>
+<span class="gd">-      break;</span>
+<span class="gd">-    }</span>
+<span class="gd">-</span>
+<span class="gd">-    case HCI_LE_READ_PHY:</span>
+<span class="gd">-    {</span>
+<span class="gd">-      if (status == SUCCESS)</span>
+<span class="gd">-      {</span>
+<span class="gd">-        Display_printf(dispHandle, SP_ROW_RSSI + 2, 0, &quot;RXPh: %d, TXPh: %d&quot;,</span>
+<span class="gd">-                       pMsg-&gt;pReturnParam[3], pMsg-&gt;pReturnParam[4]);</span>
+<span class="gd">-      }</span>
+<span class="gd">-      break;</span>
+<span class="gd">-    }</span>
+<span class="gd">-</span>
+<span class="gd">-    default:</span>
+<span class="gd">-      break;</span>
+<span class="gd">-  } // end of switch (pMsg-&gt;cmdOpcode)</span>
+<span class="gd">-}</span>
+<span class="gd">-</span>
+<span class="gd">-/*********************************************************************</span>
+<span class="gd">-* @fn      SimplePeripheral_initPHYRSSIArray</span>
+<span class="gd">-*</span>
+<span class="gd">-* @brief   Initializes the array of structure/s to store data related</span>
+<span class="gd">-*          RSSI based auto PHy change</span>
+<span class="gd">-*</span>
+<span class="gd">-* @param   connHandle - the connection handle</span>
+<span class="gd">-*</span>
+<span class="gd">-* @param   addr - pointer to device address</span>
+<span class="gd">-*</span>
+<span class="gd">-* @return  index of connection handle</span>
+<span class="gd">-*/</span>
+<span class="gd">-static void SimplePeripheral_initPHYRSSIArray(void)</span>
+<span class="gd">-{</span>
+<span class="gd">-  //Initialize array to store connection handle and RSSI values</span>
+<span class="gd">-  memset(connList, 0, sizeof(connList));</span>
+<span class="gd">-  for (uint8_t index = 0; index &lt; MAX_NUM_BLE_CONNS; index++)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    connList[index].connHandle = SP_INVALID_HANDLE;</span>
+<span class="gd">-  }</span>
+<span class="gd">-}</span>
+<span class="gd">-/*********************************************************************</span>
+<span class="gd">-      // Set default PHY to 1M</span>
+<span class="gd">- * @fn      SimplePeripheral_startAutoPhyChange</span>
+<span class="gd">- *</span>
+<span class="gd">- * @brief   Start periodic RSSI reads on a link.</span>
+<span class="gd">- *</span>
+<span class="gd">- * @param   connHandle - connection handle of link</span>
+<span class="gd">- * @param   devAddr - device address</span>
+<span class="gd">- *</span>
+<span class="gd">- * @return  SUCCESS: Terminate started</span>
+<span class="gd">- *          bleIncorrectMode: No link</span>
+<span class="gd">- *          bleNoResources: No resources</span>
+<span class="gd">- */</span>
+<span class="gd">-static status_t SimplePeripheral_startAutoPhyChange(uint16_t connHandle)</span>
+<span class="gd">-{</span>
+<span class="gd">-  status_t status = FAILURE;</span>
+<span class="gd">-</span>
+<span class="gd">-  // Get connection index from handle</span>
+<span class="gd">-  uint8_t connIndex = SimplePeripheral_getConnIndex(connHandle);</span>
+<span class="gd">-  SIMPLEPERIPHERAL_ASSERT(connIndex &lt; MAX_NUM_BLE_CONNS);</span>
+<span class="gd">-</span>
+<span class="gd">-  // Start Connection Event notice for RSSI calculation</span>
+<span class="gd">-  status = Gap_RegisterConnEventCb(SimplePeripheral_connEvtCB, GAP_CB_REGISTER, connHandle);</span>
+<span class="gd">-</span>
+<span class="gd">-  // Flag in connection info if successful</span>
+<span class="gd">-  if (status == SUCCESS)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    connList[connIndex].isAutoPHYEnable = TRUE;</span>
+<span class="gd">-  }</span>
+<span class="gd">-</span>
+<span class="gd">-  return status;</span>
+<span class="gd">-}</span>
+<span class="gd">-</span>
+<span class="gd">-/*********************************************************************</span>
+<span class="gd">- * @fn      SimplePeripheral_stopAutoPhyChange</span>
+<span class="gd">- *</span>
+<span class="gd">- * @brief   Cancel periodic RSSI reads on a link.</span>
+<span class="gd">- *</span>
+<span class="gd">- * @param   connHandle - connection handle of link</span>
+<span class="gd">- *</span>
+<span class="gd">- * @return  SUCCESS: Operation successful</span>
+<span class="gd">- *          bleIncorrectMode: No link</span>
+<span class="gd">- */</span>
+<span class="gd">-static status_t SimplePeripheral_stopAutoPhyChange(uint16_t connHandle)</span>
+<span class="gd">-{</span>
+<span class="gd">-  // Get connection index from handle</span>
+<span class="gd">-  uint8_t connIndex = SimplePeripheral_getConnIndex(connHandle);</span>
+<span class="gd">-  SIMPLEPERIPHERAL_ASSERT(connIndex &lt; MAX_NUM_BLE_CONNS);</span>
+<span class="gd">-</span>
+<span class="gd">-  // Stop connection event notice</span>
+<span class="gd">-  Gap_RegisterConnEventCb(NULL, GAP_CB_UNREGISTER, connHandle);</span>
+<span class="gd">-</span>
+<span class="gd">-  // Also update the phychange request status for active RSSI tracking connection</span>
+<span class="gd">-  connList[connIndex].phyCngRq = FALSE;</span>
+<span class="gd">-  connList[connIndex].isAutoPHYEnable = FALSE;</span>
+<span class="gd">-</span>
+<span class="gd">-  return SUCCESS;</span>
+<span class="gd">-}</span>
+<span class="gd">-</span>
+ /*********************************************************************
+  * @fn      SimplePeripheral_setPhy
+  *
+<span class="gu">@@ -2364,92 +2061,6 @@ static status_t SimplePeripheral_setPhy(uint16_t connHandle, uint8_t allPhys,</span>
+   return SUCCESS;
+ }
+ 
+<span class="gd">-/*********************************************************************</span>
+<span class="gd">-* @fn      SimplePeripheral_updatePHYStat</span>
+<span class="gd">-*</span>
+<span class="gd">-* @brief   Update the auto phy update state machine</span>
+<span class="gd">-*</span>
+<span class="gd">-* @param   connHandle - the connection handle</span>
+<span class="gd">-*</span>
+<span class="gd">-* @return  None</span>
+<span class="gd">-*/</span>
+<span class="gd">-static void SimplePeripheral_updatePHYStat(uint16_t eventCode, uint8_t *pMsg)</span>
+<span class="gd">-{</span>
+<span class="gd">-  uint8_t connIndex;</span>
+<span class="gd">-</span>
+<span class="gd">-  switch (eventCode)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    case HCI_LE_SET_PHY:</span>
+<span class="gd">-    {</span>
+<span class="gd">-      // Get connection handle from list</span>
+<span class="gd">-      spConnHandleEntry_t *connHandleEntry =</span>
+<span class="gd">-                           (spConnHandleEntry_t *)List_get(&amp;setPhyCommStatList);</span>
+<span class="gd">-</span>
+<span class="gd">-      if (connHandleEntry)</span>
+<span class="gd">-      {</span>
+<span class="gd">-        // Get index from connection handle</span>
+<span class="gd">-        connIndex = SimplePeripheral_getConnIndex(connHandleEntry-&gt;connHandle);</span>
+<span class="gd">-</span>
+<span class="gd">-        ICall_free(connHandleEntry);</span>
+<span class="gd">-</span>
+<span class="gd">-        // Is this connection still valid?</span>
+<span class="gd">-        if (connIndex &lt; MAX_NUM_BLE_CONNS)</span>
+<span class="gd">-        {</span>
+<span class="gd">-          hciEvt_CommandStatus_t *pMyMsg = (hciEvt_CommandStatus_t *)pMsg;</span>
+<span class="gd">-</span>
+<span class="gd">-          if (pMyMsg-&gt;cmdStatus == HCI_ERROR_CODE_UNSUPPORTED_REMOTE_FEATURE)</span>
+<span class="gd">-          {</span>
+<span class="gd">-            // Update the phychange request status for active RSSI tracking connection</span>
+<span class="gd">-            connList[connIndex].phyCngRq = FALSE;</span>
+<span class="gd">-            connList[connIndex].phyRqFailCnt++;</span>
+<span class="gd">-          }</span>
+<span class="gd">-        }</span>
+<span class="gd">-      }</span>
+<span class="gd">-      break;</span>
+<span class="gd">-    }</span>
+<span class="gd">-</span>
+<span class="gd">-    // LE Event - a Phy update has completed or failed</span>
+<span class="gd">-    case HCI_BLE_PHY_UPDATE_COMPLETE_EVENT:</span>
+<span class="gd">-    {</span>
+<span class="gd">-      hciEvt_BLEPhyUpdateComplete_t *pPUC =</span>
+<span class="gd">-                                     (hciEvt_BLEPhyUpdateComplete_t*) pMsg;</span>
+<span class="gd">-</span>
+<span class="gd">-      if(pPUC)</span>
+<span class="gd">-      {</span>
+<span class="gd">-        // Get index from connection handle</span>
+<span class="gd">-        connIndex = SimplePeripheral_getConnIndex(pPUC-&gt;connHandle);</span>
+<span class="gd">-</span>
+<span class="gd">-        // Is this connection still valid?</span>
+<span class="gd">-        if (connIndex &lt; MAX_NUM_BLE_CONNS)</span>
+<span class="gd">-        {</span>
+<span class="gd">-          // Update the phychange request status for active RSSI tracking connection</span>
+<span class="gd">-          connList[connIndex].phyCngRq = FALSE;</span>
+<span class="gd">-</span>
+<span class="gd">-          if (pPUC-&gt;status == SUCCESS)</span>
+<span class="gd">-          {</span>
+<span class="gd">-            connList[connIndex].currPhy = pPUC-&gt;rxPhy;</span>
+<span class="gd">-          }</span>
+<span class="gd">-          if(pPUC-&gt;rxPhy != connList[connIndex].rqPhy)</span>
+<span class="gd">-          {</span>
+<span class="gd">-            connList[connIndex].phyRqFailCnt++;</span>
+<span class="gd">-          }</span>
+<span class="gd">-          else</span>
+<span class="gd">-          {</span>
+<span class="gd">-            // Reset the request phy counter and requested phy</span>
+<span class="gd">-            connList[connIndex].phyRqFailCnt = 0;</span>
+<span class="gd">-            connList[connIndex].rqPhy = 0;</span>
+<span class="gd">-          }</span>
+<span class="gd">-        }</span>
+<span class="gd">-      }</span>
+<span class="gd">-</span>
+<span class="gd">-      break;</span>
+<span class="gd">-    }</span>
+<span class="gd">-</span>
+<span class="gd">-    default:</span>
+<span class="gd">-      break;</span>
+<span class="gd">-  } // end of switch (eventCode)</span>
+<span class="gd">-}</span>
+<span class="gd">-</span>
+ /*********************************************************************
+  * @fn      SimplePeripheral_menuSwitchCb
+  *
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">simple_peripheral_menu.c</span></code></p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gh">index d20ee77..4342e6a 100644</span>
+<span class="gu">@@ -39,11 +39,10 @@ MENU_OBJ_END</span>
+ 
+ // Menu: ConnPhy
+ // upper: Select Device
+<span class="gd">-MENU_OBJ(spMenuConnPhy, &quot;Set Conn PHY Preference&quot;, 6, &amp;spMenuPerConn)</span>
+<span class="gi">+MENU_OBJ(spMenuConnPhy, &quot;Set Conn PHY Preference&quot;, 5, &amp;spMenuPerConn)</span>
+   MENU_ITEM_ACTION(&quot;1 Mbps&quot;,              SimplePeripheral_doSetConnPhy)
+   MENU_ITEM_ACTION(&quot;2 Mbps&quot;,              SimplePeripheral_doSetConnPhy)
+   MENU_ITEM_ACTION(&quot;1 &amp; 2 Mbps&quot;,          SimplePeripheral_doSetConnPhy)
+   MENU_ITEM_ACTION(&quot;Coded&quot;,               SimplePeripheral_doSetConnPhy)
+   MENU_ITEM_ACTION(&quot;1 &amp; 2 Mbps, &amp; Coded&quot;, SimplePeripheral_doSetConnPhy)
+<span class="gd">-  MENU_ITEM_ACTION(&quot;Auto PHY change&quot;,     SimplePeripheral_doSetConnPhy)</span>
+ MENU_OBJ_END
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li><p>Test your code. It should still compile and work smoothly!
+<em>It means you can still advertise, join a connection,
+pair with another device, change the Phy, etc…</em></p></li>
+</ol>
+</div>
+<div class="section" id="remove-the-connection-parameters-update">
+<h3>Remove the connection parameters update<a class="headerlink" href="#remove-the-connection-parameters-update" title="Permalink to this headline">¶</a></h3>
+<p>Once a connection has been formed, one of the two devices might want to
+modify the connection parameters (connection interval, slave latency,
+connection timeout). This can be done using a connection parameters
+update request.</p>
+<p>By default, some of the examples provided (e.g. simple_peripheral) send a
+connection parameters update request right after being connected.
+By default, the examples are also able to accept a connection update.
+Let’s see how to not send connection update request and to deny the
+incoming connection updates. Note that you can choose to apply only one
+of the two modifications or both of them.
+The goal is to save flash space and CPU time.</p>
+<ol class="arabic">
+<li><p>Import the ble5_simple_peripheral project</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">simple_peripheral.c</span></code> in order to deny all the connection
+parameters update requests.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Set the defined symbol <code class="docutils literal notranslate"><span class="pre">DEFAULT_PARAM_UPDATE_REQ_DECISION</span></code> to
+<code class="docutils literal notranslate"><span class="pre">GAP_UPDATE_REQ_DENY_ALL</span></code>. As a result, connection update requests
+will not be anymore passed to the application.</p></li>
+<li><p>As a result (still in <code class="docutils literal notranslate"><span class="pre">simple_peripheral.c</span></code>), remove all the code
+executed when a  <code class="docutils literal notranslate"><span class="pre">GAP_UPDATE_LINK_PARAM_REQ_EVENT</span></code> is received.
+(A <code class="docutils literal notranslate"><span class="pre">GAP_UPDATE_LINK_PARAM_REQ_EVENT</span></code> is triggered at the reception
+of a connection parameters update requests.)</p></li>
+</ul>
+<blockquote>
+<div><div class="toggle docutils container">
+<div class="header docutils container">
+<p>Here is <code class="docutils literal notranslate"><span class="pre">simple_peripheral.c</span></code> diff file (based on SDK 4.10):</p>
+</div>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gh">index 4d8f312..cdbffb6 100644</span>
+<span class="gu">@@ -120,7 +120,7 @@</span>
+ #define DEFAULT_DESIRED_CONN_TIMEOUT          300
+ 
+ // Pass parameter updates to the app for it to decide.
+<span class="gd">-#define DEFAULT_PARAM_UPDATE_REQ_DECISION     GAP_UPDATE_REQ_PASS_TO_APP</span>
+<span class="gi">+#define DEFAULT_PARAM_UPDATE_REQ_DECISION     GAP_UPDATE_REQ_DENY_ALL</span>
+ 
+ // How often to perform periodic event (in ms)
+ #define SP_PERIODIC_EVT_PERIOD               5000
+<span class="gu">@@ -593,6 +593,7 @@ static void SimplePeripheral_init(void)</span>
+ 
+     // Pass all parameter update requests to the app for it to decide
+     GAP_SetParamValue(GAP_PARAM_LINK_UPDATE_DECISION, paramUpdateDecision);
+<span class="gi">+    // The second parameter of the previous call must be GAP_UPDATE_REQ_DENY_ALL</span>
+   }
+ 
+ #if defined(GAP_BOND_MGR)
+<span class="gu">@@ -1234,35 +1235,6 @@ static void SimplePeripheral_processGapMessage(gapEventHdr_t *pMsg)</span>
+       break;
+     }
+ 
+<span class="gd">-    case GAP_UPDATE_LINK_PARAM_REQ_EVENT:</span>
+<span class="gd">-    {</span>
+<span class="gd">-      gapUpdateLinkParamReqReply_t rsp;</span>
+<span class="gd">-</span>
+<span class="gd">-      gapUpdateLinkParamReqEvent_t *pReq = (gapUpdateLinkParamReqEvent_t *)pMsg;</span>
+<span class="gd">-</span>
+<span class="gd">-      rsp.connectionHandle = pReq-&gt;req.connectionHandle;</span>
+<span class="gd">-</span>
+<span class="gd">-      // Only accept connection intervals with slave latency of 0</span>
+<span class="gd">-      // This is just an example of how the application can send a response</span>
+<span class="gd">-      if(pReq-&gt;req.connLatency == 0)</span>
+<span class="gd">-      {</span>
+<span class="gd">-        rsp.intervalMin = pReq-&gt;req.intervalMin;</span>
+<span class="gd">-        rsp.intervalMax = pReq-&gt;req.intervalMax;</span>
+<span class="gd">-        rsp.connLatency = pReq-&gt;req.connLatency;</span>
+<span class="gd">-        rsp.connTimeout = pReq-&gt;req.connTimeout;</span>
+<span class="gd">-        rsp.accepted = TRUE;</span>
+<span class="gd">-      }</span>
+<span class="gd">-      else</span>
+<span class="gd">-      {</span>
+<span class="gd">-        rsp.accepted = FALSE;</span>
+<span class="gd">-      }</span>
+<span class="gd">-</span>
+<span class="gd">-      // Send Reply</span>
+<span class="gd">-      VOID GAP_UpdateLinkParamReqReply(&amp;rsp);</span>
+<span class="gd">-</span>
+<span class="gd">-      break;</span>
+<span class="gd">-    }</span>
+<span class="gd">-</span>
+     case GAP_LINK_PARAM_UPDATE_EVENT:
+     {
+       gapLinkUpdateEvent_t *pPkt = (gapLinkUpdateEvent_t *)pMsg;
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic" start="3">
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">simple_peripheral.c</span></code> in order to remove the code related
+to connection update:</p>
+<blockquote>
+<div><ul>
+<li><p>Remove the treatment of the <code class="docutils literal notranslate"><span class="pre">GAP_LINK_PARAM_UPDATE_EVENT</span></code>
+(this event is posted when a connection updated has been attempted)</p></li>
+<li><p>Remove the <code class="docutils literal notranslate"><span class="pre">SimplePeripheral_processParamUpdate()</span></code> function</p></li>
+<li><p>Remove the treatments of <code class="docutils literal notranslate"><span class="pre">SP_SEND_PARAM_UPDATE_EVT</span></code></p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">SimplePeripheral_addConn()</span></code>, remove the code corresponding to
+connection parameters update.</p></li>
+<li><p>Modify the <code class="docutils literal notranslate"><span class="pre">spConnRec_t</span></code> structure to remove the elements
+<code class="docutils literal notranslate"><span class="pre">pParamUpdateEventData</span></code> and <code class="docutils literal notranslate"><span class="pre">pUpdateClock</span></code>.
+Remove the code using those elements too.</p></li>
+<li><p>Remove the list <code class="docutils literal notranslate"><span class="pre">paramUpdateList</span></code> (and the code referring to).</p></li>
+<li><p>Remove the function <code class="docutils literal notranslate"><span class="pre">SimplePeripheral_clearPendingParamUpdate()</span></code></p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p>Here is <code class="docutils literal notranslate"><span class="pre">simple_peripheral.c</span></code> diff file (based on SDK 4.10):</p>
+</div>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gh">index 4d8f312..831d89c 100644</span>
+<span class="gu">@@ -248,8 +248,6 @@ typedef struct</span>
+ typedef struct
+ {
+   uint16_t         	    connHandle;                        // Connection Handle
+<span class="gd">-  spClockEventData_t*   pParamUpdateEventData;</span>
+<span class="gd">-  Clock_Struct*    	    pUpdateClock;                      // pointer to clock struct</span>
+   int8_t           	    rssiArr[SP_MAX_RSSI_STORE_DEPTH];
+   uint8_t          	    rssiCntr;
+   int8_t           	    rssiAvg;
+<span class="gu">@@ -314,9 +312,6 @@ static uint16_t menuConnHandle = CONNHANDLE_INVALID;</span>
+ // List to store connection handles for set phy command status&#39;s
+ static List_List setPhyCommStatList;
+ 
+<span class="gd">-// List to store connection handles for queued param updates</span>
+<span class="gd">-static List_List paramUpdateList;</span>
+<span class="gd">-</span>
+ // GAP GATT Attributes
+ static uint8_t attDeviceName[GAP_DEVICE_NAME_LEN] = &quot;Simple Peripheral&quot;;
+ 
+<span class="gu">@@ -422,7 +417,6 @@ static void SimplePeripheral_updatePHYStat(uint16_t eventCode, uint8_t *pMsg);</span>
+ static uint8_t SimplePeripheral_addConn(uint16_t connHandle);
+ static uint8_t SimplePeripheral_getConnIndex(uint16_t connHandle);
+ static uint8_t SimplePeripheral_removeConn(uint16_t connHandle);
+<span class="gd">-static void SimplePeripheral_processParamUpdate(uint16_t connHandle);</span>
+ static status_t SimplePeripheral_startAutoPhyChange(uint16_t connHandle);
+ static status_t SimplePeripheral_stopAutoPhyChange(uint16_t connHandle);
+ static status_t SimplePeripheral_setPhy(uint16_t connHandle, uint8_t allPhys,
+<span class="gu">@@ -1010,18 +1004,6 @@ static void SimplePeripheral_processAppMsg(spEvt_t *pMsg)</span>
+       break;
+ #endif // PRIVACY_1_2_CFG
+ 
+<span class="gd">-    case SP_SEND_PARAM_UPDATE_EVT:</span>
+<span class="gd">-    {</span>
+<span class="gd">-      // Extract connection handle from data</span>
+<span class="gd">-      uint16_t connHandle = *(uint16_t *)(((spClockEventData_t *)pMsg-&gt;pData)-&gt;data);</span>
+<span class="gd">-</span>
+<span class="gd">-      SimplePeripheral_processParamUpdate(connHandle);</span>
+<span class="gd">-</span>
+<span class="gd">-      // This data is not dynamically allocated</span>
+<span class="gd">-      dealloc = FALSE;</span>
+<span class="gd">-      break;</span>
+<span class="gd">-    }</span>
+<span class="gd">-</span>
+     case SP_CONN_EVT:
+       SimplePeripheral_processConnEvt((Gap_ConnEventRpt_t *)(pMsg-&gt;pData));
+       break;
+<span class="gu">@@ -1263,42 +1245,6 @@ static void SimplePeripheral_processGapMessage(gapEventHdr_t *pMsg)</span>
+       break;
+     }
+ 
+<span class="gd">-    case GAP_LINK_PARAM_UPDATE_EVENT:</span>
+<span class="gd">-    {</span>
+<span class="gd">-      gapLinkUpdateEvent_t *pPkt = (gapLinkUpdateEvent_t *)pMsg;</span>
+<span class="gd">-</span>
+<span class="gd">-      // Get the address from the connection handle</span>
+<span class="gd">-      linkDBInfo_t linkInfo;</span>
+<span class="gd">-      linkDB_GetInfo(pPkt-&gt;connectionHandle, &amp;linkInfo);</span>
+<span class="gd">-</span>
+<span class="gd">-      if(pPkt-&gt;status == SUCCESS)</span>
+<span class="gd">-      {</span>
+<span class="gd">-        // Display the address of the connection update</span>
+<span class="gd">-        Display_printf(dispHandle, SP_ROW_STATUS_2, 0, &quot;Link Param Updated: %s&quot;,</span>
+<span class="gd">-                       Util_convertBdAddr2Str(linkInfo.addr));</span>
+<span class="gd">-      }</span>
+<span class="gd">-      else</span>
+<span class="gd">-      {</span>
+<span class="gd">-        // Display the address of the connection update failure</span>
+<span class="gd">-        Display_printf(dispHandle, SP_ROW_STATUS_2, 0,</span>
+<span class="gd">-                       &quot;Link Param Update Failed 0x%x: %s&quot;, pPkt-&gt;opcode,</span>
+<span class="gd">-                       Util_convertBdAddr2Str(linkInfo.addr));</span>
+<span class="gd">-      }</span>
+<span class="gd">-</span>
+<span class="gd">-      // Check if there are any queued parameter updates</span>
+<span class="gd">-      spConnHandleEntry_t *connHandleEntry = (spConnHandleEntry_t *)List_get(&amp;paramUpdateList);</span>
+<span class="gd">-      if (connHandleEntry != NULL)</span>
+<span class="gd">-      {</span>
+<span class="gd">-        // Attempt to send queued update now</span>
+<span class="gd">-        SimplePeripheral_processParamUpdate(connHandleEntry-&gt;connHandle);</span>
+<span class="gd">-</span>
+<span class="gd">-        // Free list element</span>
+<span class="gd">-        ICall_free(connHandleEntry);</span>
+<span class="gd">-      }</span>
+<span class="gd">-</span>
+<span class="gd">-      break;</span>
+<span class="gd">-    }</span>
+<span class="gd">-</span>
+     default:
+       Display_clearLines(dispHandle, SP_ROW_STATUS_1, SP_ROW_STATUS_2);
+       break;
+<span class="gu">@@ -1448,11 +1394,6 @@ static void SimplePeripheral_clockHandler(UArg arg)</span>
+    // Post event to read the current RPA
+    SimplePeripheral_enqueueMsg(SP_READ_RPA_EVT, NULL);
+  }
+<span class="gd">- else if (pData-&gt;event == SP_SEND_PARAM_UPDATE_EVT)</span>
+<span class="gd">- {</span>
+<span class="gd">-    // Send message to app</span>
+<span class="gd">-    SimplePeripheral_enqueueMsg(SP_SEND_PARAM_UPDATE_EVT, pData);</span>
+<span class="gd">- }</span>
+ }
+ 
+ /*********************************************************************
+<span class="gu">@@ -1896,35 +1837,6 @@ static uint8_t SimplePeripheral_addConn(uint16_t connHandle)</span>
+       // Found available entry to put a new connection info in
+       connList[i].connHandle = connHandle;
+ 
+<span class="gd">-      // Allocate data to send through clock handler</span>
+<span class="gd">-      connList[i].pParamUpdateEventData = ICall_malloc(sizeof(spClockEventData_t) +</span>
+<span class="gd">-                                                       sizeof (uint16_t));</span>
+<span class="gd">-      if(connList[i].pParamUpdateEventData)</span>
+<span class="gd">-      {</span>
+<span class="gd">-        connList[i].pParamUpdateEventData-&gt;event = SP_SEND_PARAM_UPDATE_EVT;</span>
+<span class="gd">-        *((uint16_t *)connList[i].pParamUpdateEventData-&gt;data) = connHandle;</span>
+<span class="gd">-</span>
+<span class="gd">-        // Create a clock object and start</span>
+<span class="gd">-        connList[i].pUpdateClock</span>
+<span class="gd">-          = (Clock_Struct*) ICall_malloc(sizeof(Clock_Struct));</span>
+<span class="gd">-</span>
+<span class="gd">-        if (connList[i].pUpdateClock)</span>
+<span class="gd">-        {</span>
+<span class="gd">-          Util_constructClock(connList[i].pUpdateClock,</span>
+<span class="gd">-                              SimplePeripheral_clockHandler,</span>
+<span class="gd">-                              SP_SEND_PARAM_UPDATE_DELAY, 0, true,</span>
+<span class="gd">-                              (UArg) (connList[i].pParamUpdateEventData));</span>
+<span class="gd">-        }</span>
+<span class="gd">-        else</span>
+<span class="gd">-        {</span>
+<span class="gd">-            ICall_free(connList[i].pParamUpdateEventData);</span>
+<span class="gd">-        }</span>
+<span class="gd">-      }</span>
+<span class="gd">-      else</span>
+<span class="gd">-      {</span>
+<span class="gd">-        status = bleMemAllocError;</span>
+<span class="gd">-      }</span>
+<span class="gd">-</span>
+       // Set default PHY to 1M
+       connList[i].currPhy = HCI_PHY_1_MBPS;
+ 
+<span class="gu">@@ -2002,28 +1914,6 @@ static uint8_t SimplePeripheral_clearConnListEntry(uint16_t connHandle)</span>
+   return(SUCCESS);
+ }
+ 
+<span class="gd">-/*********************************************************************</span>
+<span class="gd">- * @fn      SimplePeripheral_clearPendingParamUpdate</span>
+<span class="gd">- *</span>
+<span class="gd">- * @brief   clean pending param update request in the paramUpdateList list</span>
+<span class="gd">- *</span>
+<span class="gd">- * @param   connHandle - connection handle to clean</span>
+<span class="gd">- *</span>
+<span class="gd">- * @return  none</span>
+<span class="gd">- */</span>
+<span class="gd">-void SimplePeripheral_clearPendingParamUpdate(uint16_t connHandle)</span>
+<span class="gd">-{</span>
+<span class="gd">-  List_Elem *curr;</span>
+<span class="gd">-</span>
+<span class="gd">-  for (curr = List_head(&amp;paramUpdateList); curr != NULL; curr = List_next(curr)) </span>
+<span class="gd">-  {</span>
+<span class="gd">-    if (((spConnHandleEntry_t *)curr)-&gt;connHandle == connHandle)</span>
+<span class="gd">-    {</span>
+<span class="gd">-      List_remove(&amp;paramUpdateList, curr);</span>
+<span class="gd">-    }</span>
+<span class="gd">-  }</span>
+<span class="gd">-}</span>
+<span class="gd">-</span>
+ /*********************************************************************
+  * @fn      SimplePeripheral_removeConn
+  *
+<span class="gu">@@ -2039,25 +1929,6 @@ static uint8_t SimplePeripheral_removeConn(uint16_t connHandle)</span>
+ 
+   if(connIndex != MAX_NUM_BLE_CONNS)
+   {
+<span class="gd">-    Clock_Struct* pUpdateClock = connList[connIndex].pUpdateClock;</span>
+<span class="gd">-</span>
+<span class="gd">-    if (pUpdateClock != NULL)</span>
+<span class="gd">-    {</span>
+<span class="gd">-      // Stop and destruct the RTOS clock if it&#39;s still alive</span>
+<span class="gd">-      if (Util_isActive(pUpdateClock))</span>
+<span class="gd">-      {</span>
+<span class="gd">-        Util_stopClock(pUpdateClock);</span>
+<span class="gd">-      }</span>
+<span class="gd">-</span>
+<span class="gd">-      // Destruct the clock object</span>
+<span class="gd">-      Clock_destruct(pUpdateClock);</span>
+<span class="gd">-      // Free clock struct</span>
+<span class="gd">-      ICall_free(pUpdateClock);</span>
+<span class="gd">-      // Free ParamUpdateEventData</span>
+<span class="gd">-      ICall_free(connList[connIndex].pParamUpdateEventData);</span>
+<span class="gd">-    }</span>
+<span class="gd">-    // Clear pending update requests from paramUpdateList</span>
+<span class="gd">-    SimplePeripheral_clearPendingParamUpdate(connHandle);</span>
+     // Stop Auto PHY Change
+     SimplePeripheral_stopAutoPhyChange(connHandle);
+     // Clear Connection List Entry
+<span class="gu">@@ -2067,60 +1938,6 @@ static uint8_t SimplePeripheral_removeConn(uint16_t connHandle)</span>
+   return connIndex;
+ }
+ 
+<span class="gd">-/*********************************************************************</span>
+<span class="gd">- * @fn      SimplePeripheral_processParamUpdate</span>
+<span class="gd">- *</span>
+<span class="gd">- * @brief   Process a parameters update request</span>
+<span class="gd">- *</span>
+<span class="gd">- * @return  None</span>
+<span class="gd">- */</span>
+<span class="gd">-static void SimplePeripheral_processParamUpdate(uint16_t connHandle)</span>
+<span class="gd">-{</span>
+<span class="gd">-  gapUpdateLinkParamReq_t req;</span>
+<span class="gd">-  uint8_t connIndex;</span>
+<span class="gd">-</span>
+<span class="gd">-  req.connectionHandle = connHandle;</span>
+<span class="gd">-  req.connLatency = DEFAULT_DESIRED_SLAVE_LATENCY;</span>
+<span class="gd">-  req.connTimeout = DEFAULT_DESIRED_CONN_TIMEOUT;</span>
+<span class="gd">-  req.intervalMin = DEFAULT_DESIRED_MIN_CONN_INTERVAL;</span>
+<span class="gd">-  req.intervalMax = DEFAULT_DESIRED_MAX_CONN_INTERVAL;</span>
+<span class="gd">-</span>
+<span class="gd">-  connIndex = SimplePeripheral_getConnIndex(connHandle);</span>
+<span class="gd">-  if (connIndex &gt;= MAX_NUM_BLE_CONNS)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    Display_printf(dispHandle, SP_ROW_STATUS_1, 0, &quot;Connection handle is not in the connList !!!&quot;);</span>
+<span class="gd">-    return;</span>
+<span class="gd">-  }</span>
+<span class="gd">-</span>
+<span class="gd">-</span>
+<span class="gd">-  // Deconstruct the clock object</span>
+<span class="gd">-  Clock_destruct(connList[connIndex].pUpdateClock);</span>
+<span class="gd">-  // Free clock struct, only in case it is not NULL</span>
+<span class="gd">-  if (connList[connIndex].pUpdateClock != NULL)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    ICall_free(connList[connIndex].pUpdateClock);</span>
+<span class="gd">-    connList[connIndex].pUpdateClock = NULL;</span>
+<span class="gd">-  }</span>
+<span class="gd">-  // Free ParamUpdateEventData, only in case it is not NULL</span>
+<span class="gd">-  if (connList[connIndex].pParamUpdateEventData != NULL)</span>
+<span class="gd">-    ICall_free(connList[connIndex].pParamUpdateEventData);</span>
+<span class="gd">-</span>
+<span class="gd">-  // Send parameter update</span>
+<span class="gd">-  bStatus_t status = GAP_UpdateLinkParamReq(&amp;req);</span>
+<span class="gd">-</span>
+<span class="gd">-  // If there is an ongoing update, queue this for when the udpate completes</span>
+<span class="gd">-  if (status == bleAlreadyInRequestedMode)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    spConnHandleEntry_t *connHandleEntry = ICall_malloc(sizeof(spConnHandleEntry_t));</span>
+<span class="gd">-    if (connHandleEntry)</span>
+<span class="gd">-    {</span>
+<span class="gd">-      connHandleEntry-&gt;connHandle = connHandle;</span>
+<span class="gd">-</span>
+<span class="gd">-      List_put(&amp;paramUpdateList, (List_Elem *)connHandleEntry);</span>
+<span class="gd">-    }</span>
+<span class="gd">-  }</span>
+<span class="gd">-}</span>
+<span class="gd">-</span>
+ /*********************************************************************
+  * @fn      SimpleCentral_processCmdCompleteEvt
+  *
+</pre></div>
+</div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Test your code. It should still compile and work smoothly!
+<em>It means you can still advertise, join a connection,
+pair with another device, change the Phy, etc…</em></p></li>
+</ol>
+</div>
+<div class="section" id="remove-the-pairing-capabilities">
+<h3>Remove the pairing capabilities<a class="headerlink" href="#remove-the-pairing-capabilities" title="Permalink to this headline">¶</a></h3>
+<p>Pairing is the process of generating and exchanging keys (not to be confused
+with forming or establishing a BLE connection between two devices).
+The pairing capability is included in many examples provided in your SDK.</p>
+<p>As bonding consists in storing the keys generated during the pairing process
+in nonvolatile memory to use for the next encryption sequence, this
+functionality will be removed too.</p>
+<p>This modification should free up some FLASH and some CPU time.</p>
+<p><em>Some examples (e.g. simple_peripheral) provide a way to remove the code
+related to pairing and/or bonding through conditional compilation.
+To know if this the case of your project, verify if you can find
+preprocessor directives like</em> <code class="docutils literal notranslate"><span class="pre">#if</span> <span class="pre">defined(GAP_BOND_MGR)</span></code>.
+<em>In this case, only the bullets
+1. (project import), 2. (</em> <code class="docutils literal notranslate"><span class="pre">build_config.opt</span></code> <em>modification) and 4. (test)
+need to be done.</em></p>
+<ol class="arabic">
+<li><p>Import the ble5_simple_peripheral project</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">build_config.opt</span></code> in order remove the <code class="docutils literal notranslate"><span class="pre">GAP_BOND_MGR</span></code> symbol.
+The file <code class="docutils literal notranslate"><span class="pre">build_config.opt</span></code> is generally stored in the TOOLS folder
+(in the stack project’s TOOL folder for the examples having a separated
+app and stack projects).
+<em>You can basically remove the line</em> <code class="docutils literal notranslate"><span class="pre">-DGAP_BOND_MGR</span></code> <em>or comment it out
+using C comments style (</em> <code class="docutils literal notranslate"><span class="pre">/*comment*/</span></code> <em>).</em></p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">simple_peripheral.c</span></code> in order to not allow pairing and
+remove all the code related to pairing and/or bonding.</p>
+<blockquote>
+<div><ul>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">SimplePeripheral_init()</span></code>, remove the code related to the
+GAP Bond Manager setup. Remove also the call to the function
+<code class="docutils literal notranslate"><span class="pre">GAPBondMgr_Register()</span></code>.</p></li>
+<li><p>Remove the functions <code class="docutils literal notranslate"><span class="pre">SimplePeripheral_passcodeCb()</span></code> and
+<code class="docutils literal notranslate"><span class="pre">SimplePeripheral_pairStateCb()</span></code>.</p></li>
+<li><p>Remove the structure <code class="docutils literal notranslate"><span class="pre">SimplePeripheral_BondMgrCBs</span></code>.</p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">SimplePeripheral_processPairState()</span></code> remove the call to
+<code class="docutils literal notranslate"><span class="pre">GAPBondMgr_PasscodeRsp()</span></code>.</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p>Here is <code class="docutils literal notranslate"><span class="pre">simple_peripheral.c</span></code> diff file (based on SDK 4.10):</p>
+</div>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gh">index 4d8f312..d651529 100644</span>
+<span class="gu">@@ -403,13 +403,6 @@ static void SimplePeripheral_performPeriodicTask(void);</span>
+ static void SimplePeripheral_updateRPA(void);
+ #endif // PRIVACY_1_2_CFG
+ static void SimplePeripheral_clockHandler(UArg arg);
+<span class="gd">-#if defined(GAP_BOND_MGR)</span>
+<span class="gd">-static void SimplePeripheral_passcodeCb(uint8_t *pDeviceAddr, uint16_t connHandle,</span>
+<span class="gd">-                                        uint8_t uiInputs, uint8_t uiOutputs,</span>
+<span class="gd">-                                        uint32_t numComparison);</span>
+<span class="gd">-static void SimplePeripheral_pairStateCb(uint16_t connHandle, uint8_t state,</span>
+<span class="gd">-                                         uint8_t status);</span>
+<span class="gd">-#endif</span>
+ static void SimplePeripheral_processPairState(spPairStateData_t *pPairState);
+ static void SimplePeripheral_processPasscode(spPasscodeData_t *pPasscodeData);
+ static void SimplePeripheral_charValueChangeCB(uint8_t paramId);
+<span class="gu">@@ -447,15 +440,6 @@ extern void AssertHandler(uint8 assertCause, uint8 assertSubcause);</span>
+  * PROFILE CALLBACKS
+  */
+ 
+<span class="gd">-#if defined(GAP_BOND_MGR)</span>
+<span class="gd">-// GAP Bond Manager Callbacks</span>
+<span class="gd">-static gapBondCBs_t SimplePeripheral_BondMgrCBs =</span>
+<span class="gd">-{</span>
+<span class="gd">-  SimplePeripheral_passcodeCb,       // Passcode callback</span>
+<span class="gd">-  SimplePeripheral_pairStateCb       // Pairing/Bonding state Callback</span>
+<span class="gd">-};</span>
+<span class="gd">-#endif</span>
+<span class="gd">-</span>
+ // Simple GATT Profile Callbacks
+ static simpleProfileCBs_t SimplePeripheral_simpleProfileCBs =
+ {
+<span class="gu">@@ -595,31 +579,6 @@ static void SimplePeripheral_init(void)</span>
+     GAP_SetParamValue(GAP_PARAM_LINK_UPDATE_DECISION, paramUpdateDecision);
+   }
+ 
+<span class="gd">-#if defined(GAP_BOND_MGR)</span>
+<span class="gd">-  // Setup the GAP Bond Manager. For more information see the GAP Bond Manager</span>
+<span class="gd">-  // section in the User&#39;s Guide:</span>
+<span class="gd">-  // http://software-dl.ti.com/lprf/ble5stack-latest/</span>
+<span class="gd">-  {</span>
+<span class="gd">-    // Don&#39;t send a pairing request after connecting; the peer device must</span>
+<span class="gd">-    // initiate pairing</span>
+<span class="gd">-    uint8_t pairMode = GAPBOND_PAIRING_MODE_WAIT_FOR_REQ;</span>
+<span class="gd">-    // Use authenticated pairing: require passcode.</span>
+<span class="gd">-    uint8_t mitm = TRUE;</span>
+<span class="gd">-    // This device only has display capabilities. Therefore, it will display the</span>
+<span class="gd">-    // passcode during pairing. However, since the default passcode is being</span>
+<span class="gd">-    // used, there is no need to display anything.</span>
+<span class="gd">-    uint8_t ioCap = GAPBOND_IO_CAP_DISPLAY_ONLY;</span>
+<span class="gd">-    // Request bonding (storing long-term keys for re-encryption upon subsequent</span>
+<span class="gd">-    // connections without repairing)</span>
+<span class="gd">-    uint8_t bonding = TRUE;</span>
+<span class="gd">-</span>
+<span class="gd">-    GAPBondMgr_SetParameter(GAPBOND_PAIRING_MODE, sizeof(uint8_t), &amp;pairMode);</span>
+<span class="gd">-    GAPBondMgr_SetParameter(GAPBOND_MITM_PROTECTION, sizeof(uint8_t), &amp;mitm);</span>
+<span class="gd">-    GAPBondMgr_SetParameter(GAPBOND_IO_CAPABILITIES, sizeof(uint8_t), &amp;ioCap);</span>
+<span class="gd">-    GAPBondMgr_SetParameter(GAPBOND_BONDING_ENABLED, sizeof(uint8_t), &amp;bonding);</span>
+<span class="gd">-  }</span>
+<span class="gd">-#endif</span>
+<span class="gd">-</span>
+   // Initialize GATT attributes
+   GGS_AddService(GATT_ALL_SERVICES);           // GAP GATT Service
+   GATTServApp_AddService(GATT_ALL_SERVICES);   // GATT Service
+<span class="gu">@@ -651,11 +610,6 @@ static void SimplePeripheral_init(void)</span>
+   // Register callback with SimpleGATTprofile
+   SimpleProfile_RegisterAppCBs(&amp;SimplePeripheral_simpleProfileCBs);
+ 
+<span class="gd">-#if defined(GAP_BOND_MGR)</span>
+<span class="gd">-  // Start Bond Manager and register callback</span>
+<span class="gd">-  VOID GAPBondMgr_Register(&amp;SimplePeripheral_BondMgrCBs);</span>
+<span class="gd">-#endif</span>
+<span class="gd">-</span>
+   // Register with GAP for HCI/Host messages. This is needed to receive HCI
+   // events. For more information, see the HCI section in the User&#39;s Guide:
+   // http://software-dl.ti.com/lprf/ble5stack-latest/
+<span class="gu">@@ -1640,67 +1594,6 @@ static void SimplePeripheral_processAdvEvent(spGapAdvEventData_t *pEventData)</span>
+   }
+ }
+ 
+<span class="gd">-#if defined(GAP_BOND_MGR)</span>
+<span class="gd">-/*********************************************************************</span>
+<span class="gd">- * @fn      SimplePeripheral_pairStateCb</span>
+<span class="gd">- *</span>
+<span class="gd">- * @brief   Pairing state callback.</span>
+<span class="gd">- *</span>
+<span class="gd">- * @return  none</span>
+<span class="gd">- */</span>
+<span class="gd">-static void SimplePeripheral_pairStateCb(uint16_t connHandle, uint8_t state,</span>
+<span class="gd">-                                         uint8_t status)</span>
+<span class="gd">-{</span>
+<span class="gd">-  spPairStateData_t *pData = ICall_malloc(sizeof(spPairStateData_t));</span>
+<span class="gd">-</span>
+<span class="gd">-  // Allocate space for the event data.</span>
+<span class="gd">-  if (pData)</span>
+<span class="gd">-  {</span>
+<span class="gd">-    pData-&gt;state = state;</span>
+<span class="gd">-    pData-&gt;connHandle = connHandle;</span>
+<span class="gd">-    pData-&gt;status = status;</span>
+<span class="gd">-</span>
+<span class="gd">-    // Queue the event.</span>
+<span class="gd">-    if(SimplePeripheral_enqueueMsg(SP_PAIR_STATE_EVT, pData) != SUCCESS)</span>
+<span class="gd">-    {</span>
+<span class="gd">-      ICall_free(pData);</span>
+<span class="gd">-    }</span>
+<span class="gd">-  }</span>
+<span class="gd">-}</span>
+<span class="gd">-</span>
+<span class="gd">-/*********************************************************************</span>
+<span class="gd">- * @fn      SimplePeripheral_passcodeCb</span>
+<span class="gd">- *</span>
+<span class="gd">- * @brief   Passcode callback.</span>
+<span class="gd">- *</span>
+<span class="gd">- * @return  none</span>
+<span class="gd">- */</span>
+<span class="gd">-static void SimplePeripheral_passcodeCb(uint8_t *pDeviceAddr,</span>
+<span class="gd">-                                        uint16_t connHandle,</span>
+<span class="gd">-                                        uint8_t uiInputs,</span>
+<span class="gd">-                                        uint8_t uiOutputs,</span>
+<span class="gd">-                                        uint32_t numComparison)</span>
+<span class="gd">-{</span>
+<span class="gd">-  spPasscodeData_t *pData = ICall_malloc(sizeof(spPasscodeData_t));</span>
+<span class="gd">-</span>
+<span class="gd">-  // Allocate space for the passcode event.</span>
+<span class="gd">-  if (pData )</span>
+<span class="gd">-  {</span>
+<span class="gd">-    pData-&gt;connHandle = connHandle;</span>
+<span class="gd">-    memcpy(pData-&gt;deviceAddr, pDeviceAddr, B_ADDR_LEN);</span>
+<span class="gd">-    pData-&gt;uiInputs = uiInputs;</span>
+<span class="gd">-    pData-&gt;uiOutputs = uiOutputs;</span>
+<span class="gd">-    pData-&gt;numComparison = numComparison;</span>
+<span class="gd">-</span>
+<span class="gd">-    // Enqueue the event.</span>
+<span class="gd">-    if(SimplePeripheral_enqueueMsg(SP_PASSCODE_EVT, pData) != SUCCESS)</span>
+<span class="gd">-    {</span>
+<span class="gd">-      ICall_free(pData);</span>
+<span class="gd">-    }</span>
+<span class="gd">-  }</span>
+<span class="gd">-}</span>
+<span class="gd">-#endif</span>
+<span class="gd">-</span>
+ /*********************************************************************
+  * @fn      SimplePeripheral_processPairState
+  *
+<span class="gu">@@ -1772,12 +1665,6 @@ static void SimplePeripheral_processPasscode(spPasscodeData_t *pPasscodeData)</span>
+     Display_printf(dispHandle, SP_ROW_CONNECTION, 0, &quot;Passcode: %d&quot;,
+                    B_APP_DEFAULT_PASSCODE);
+   }
+<span class="gd">-</span>
+<span class="gd">-#if defined(GAP_BOND_MGR)</span>
+<span class="gd">-  // Send passcode response</span>
+<span class="gd">-  GAPBondMgr_PasscodeRsp(pPasscodeData-&gt;connHandle , SUCCESS,</span>
+<span class="gd">-                         B_APP_DEFAULT_PASSCODE);</span>
+<span class="gd">-#endif</span>
+ }
+ 
+ /*********************************************************************
+</pre></div>
+</div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Test your code. It should still compile and work smoothly!
+<em>It means you can still advertise, join a connection,
+change the Phy, etc…</em></p></li>
+</ol>
+</div>
+<div class="section" id="remove-the-resolvable-private-address-rpa-functionality">
+<h3>Remove the Resolvable Private Address (RPA) functionality<a class="headerlink" href="#remove-the-resolvable-private-address-rpa-functionality" title="Permalink to this headline">¶</a></h3>
+<p>(Random) Resolvable Private Address or RPA is a functionality helping
+to preserve privacy. It consists in changing the device address over time.
+The address can be matched, or resolved, to an Identity Address for
+tracking by trusted peers.</p>
+<p>This functionality is provided in several examples and can be removed
+in order to save memory and CPU time.</p>
+<p><em>Some examples (e.g. simple_peripheral) provide a way to remove the code
+related to RPA through conditional compilation.
+To know if this the  case of your project, verify if you can find
+preprocessor directives like</em>
+<code class="docutils literal notranslate"><span class="pre">#if</span> <span class="pre">defined(BLE_V42_FEATURES)</span> <span class="pre">&amp;&amp;</span> <span class="pre">(BLE_V42_FEATURES</span> <span class="pre">&amp;</span> <span class="pre">PRIVACY_1_2_CFG)</span></code>.
+<em>In this case, only the bullets
+1. (project import), 2. (</em> <code class="docutils literal notranslate"><span class="pre">build_components.opt</span></code> <em>modification) and 4. (test)
+need to be done.</em></p>
+<ol class="arabic">
+<li><p>Import the ble5_simple_peripheral project</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">build_components.opt</span></code> in order to not activate all the
+privacy features. This must be done by changing the value of the
+defined symbol <code class="docutils literal notranslate"><span class="pre">PRIVACY_1_2_CFG</span></code>.</p>
+<p>&gt; Find the line <code class="docutils literal notranslate"><span class="pre">-DPRIVACY_1_2_CFG=0x01</span></code> and change it in
+<code class="docutils literal notranslate"><span class="pre">-DPRIVACY_1_2_CFG=0x00</span></code></p>
+</li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">simple_peripheral.c</span></code> in order to remove all the code
+related to RPA.</p>
+<blockquote>
+<div><ul>
+<li><p>Remove the function <code class="docutils literal notranslate"><span class="pre">SimplePeripheral_updateRPA()</span></code> and all its calls.</p></li>
+<li><p>Remove the code sending or treating the <code class="docutils literal notranslate"><span class="pre">SP_READ_RPA_EVT_PERIOD</span></code> events.</p></li>
+<li><p>Remove the global variable <code class="docutils literal notranslate"><span class="pre">rpa[]</span></code>.</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p>Here is <code class="docutils literal notranslate"><span class="pre">simple_peripheral.c</span></code> diff file (based on SDK 4.10):</p>
+</div>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gh">index 4d8f312..74c4d3a 100644</span>
+<span class="gu">@@ -379,11 +379,6 @@ static uint8 advHandleLongRange;</span>
+ // Address mode
+ static GAP_Addr_Modes_t addrMode = DEFAULT_ADDRESS_MODE;
+ 
+<span class="gd">-#if defined(BLE_V42_FEATURES) &amp;&amp; (BLE_V42_FEATURES &amp; PRIVACY_1_2_CFG)</span>
+<span class="gd">-// Current Random Private Address</span>
+<span class="gd">-static uint8 rpa[B_ADDR_LEN] = {0};</span>
+<span class="gd">-#endif // PRIVACY_1_2_CFG</span>
+<span class="gd">-</span>
+ /*********************************************************************
+  * LOCAL FUNCTIONS
+  */
+<span class="gu">@@ -399,9 +394,6 @@ static void SimplePeripheral_processAdvEvent(spGapAdvEventData_t *pEventData);</span>
+ static void SimplePeripheral_processAppMsg(spEvt_t *pMsg);
+ static void SimplePeripheral_processCharValueChangeEvt(uint8_t paramId);
+ static void SimplePeripheral_performPeriodicTask(void);
+<span class="gd">-#if defined(BLE_V42_FEATURES) &amp;&amp; (BLE_V42_FEATURES &amp; PRIVACY_1_2_CFG)</span>
+<span class="gd">-static void SimplePeripheral_updateRPA(void);</span>
+<span class="gd">-#endif // PRIVACY_1_2_CFG</span>
+ static void SimplePeripheral_clockHandler(UArg arg);
+ #if defined(GAP_BOND_MGR)
+ static void SimplePeripheral_passcodeCb(uint8_t *pDeviceAddr, uint16_t connHandle,
+<span class="gu">@@ -1004,12 +996,6 @@ static void SimplePeripheral_processAppMsg(spEvt_t *pMsg)</span>
+       SimplePeripheral_performPeriodicTask();
+       break;
+ 
+<span class="gd">-#if defined(BLE_V42_FEATURES) &amp;&amp; (BLE_V42_FEATURES &amp; PRIVACY_1_2_CFG)</span>
+<span class="gd">-    case SP_READ_RPA_EVT:</span>
+<span class="gd">-      SimplePeripheral_updateRPA();</span>
+<span class="gd">-      break;</span>
+<span class="gd">-#endif // PRIVACY_1_2_CFG</span>
+<span class="gd">-</span>
+     case SP_SEND_PARAM_UPDATE_EVT:
+     {
+       // Extract connection handle from data
+<span class="gu">@@ -1143,18 +1129,6 @@ static void SimplePeripheral_processGapMessage(gapEventHdr_t *pMsg)</span>
+         Display_printf(dispHandle, SP_ROW_IDA, 0, &quot;%s Addr: %s&quot;,
+                        (addrMode &lt;= ADDRMODE_RANDOM) ? &quot;Dev&quot; : &quot;ID&quot;,
+                        Util_convertBdAddr2Str(pPkt-&gt;devAddr));
+<span class="gd">-</span>
+<span class="gd">-#if defined(BLE_V42_FEATURES) &amp;&amp; (BLE_V42_FEATURES &amp; PRIVACY_1_2_CFG)</span>
+<span class="gd">-        if (addrMode &gt; ADDRMODE_RANDOM)</span>
+<span class="gd">-        {</span>
+<span class="gd">-          SimplePeripheral_updateRPA();</span>
+<span class="gd">-</span>
+<span class="gd">-          // Create one-shot clock for RPA check event.</span>
+<span class="gd">-          Util_constructClock(&amp;clkRpaRead, SimplePeripheral_clockHandler,</span>
+<span class="gd">-                              SP_READ_RPA_EVT_PERIOD, 0, true,</span>
+<span class="gd">-                              (UArg) &amp;argRpaRead);</span>
+<span class="gd">-        }</span>
+<span class="gd">-#endif // PRIVACY_1_2_CFG</span>
+       }
+ 
+       break;
+<span class="gu">@@ -1391,34 +1365,6 @@ static void SimplePeripheral_performPeriodicTask(void)</span>
+   }
+ }
+ 
+<span class="gd">-#if defined(BLE_V42_FEATURES) &amp;&amp; (BLE_V42_FEATURES &amp; PRIVACY_1_2_CFG)</span>
+<span class="gd">-/*********************************************************************</span>
+<span class="gd">- * @fn      SimplePeripheral_updateRPA</span>
+<span class="gd">- *</span>
+<span class="gd">- * @brief   Read the current RPA from the stack and update display</span>
+<span class="gd">- *          if the RPA has changed.</span>
+<span class="gd">- *</span>
+<span class="gd">- * @param   None.</span>
+<span class="gd">- *</span>
+<span class="gd">- * @return  None.</span>
+<span class="gd">- */</span>
+<span class="gd">-static void SimplePeripheral_updateRPA(void)</span>
+<span class="gd">-{</span>
+<span class="gd">-  uint8_t* pRpaNew;</span>
+<span class="gd">-</span>
+<span class="gd">-  // Read the current RPA.</span>
+<span class="gd">-  pRpaNew = GAP_GetDevAddress(FALSE);</span>
+<span class="gd">-</span>
+<span class="gd">-  if (memcmp(pRpaNew, rpa, B_ADDR_LEN))</span>
+<span class="gd">-  {</span>
+<span class="gd">-    // If the RPA has changed, update the display</span>
+<span class="gd">-    Display_printf(dispHandle, SP_ROW_RPA, 0, &quot;RP Addr: %s&quot;,</span>
+<span class="gd">-                   Util_convertBdAddr2Str(pRpaNew));</span>
+<span class="gd">-    memcpy(rpa, pRpaNew, B_ADDR_LEN);</span>
+<span class="gd">-  }</span>
+<span class="gd">-}</span>
+<span class="gd">-#endif // PRIVACY_1_2_CFG</span>
+<span class="gd">-</span>
+ /*********************************************************************
+  * @fn      SimplePeripheral_clockHandler
+  *
+</pre></div>
+</div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Test your code. It should still compile and work smoothly!
+<em>It means you can still advertise, join a connection,
+change the Phy, etc…</em></p></li>
+</ol>
+</div>
+<div class="section" id="optimize-ti-drivers-for-your-project">
+<h3>Optimize TI drivers for your project<a class="headerlink" href="#optimize-ti-drivers-for-your-project" title="Permalink to this headline">¶</a></h3>
+<p>In order to have easy-to-use and portable code, the TI drivers handle a lot
+of different configurations. Most of the time, a specific application does
+not require all those configurations. By optimizing the TI drivers for your
+own application you can save RAM, FLASH and processor time.</p>
+<p>A good example of this is the Power driver (but you can analyze any
+TI driver in order to optimize it using a similar process).
+The Power driver is a pretty complex driver. A lot of different
+combinations of crystals can be used and it handles all of them.</p>
+<p>Let’s see how to optimize the Power driver:</p>
+<ol class="arabic">
+<li><p>Force CCS or IAR to not use the compiled sources for the Power driver.</p>
+<blockquote>
+<div><blockquote>
+<div><ul>
+<li><p>[CCS] Right click on your project and click “Add Files…”
+Add the files PowerCC26XX.c and PowerCC26XX.h to your project.
+<em>(The TI drivers files are stored in &lt;Your SDK&gt;/source/ti/drivers)</em></p>
+<p>It is recommended to select <em>Copy Files</em> and not <em>Link to files</em>.</p>
+<p>Verify if the linker is considering the files you added by checking
+the “MODULE SUMMARY” section of the .map file.
+You should find a line presenting the memory consumed by
+<code class="docutils literal notranslate"><span class="pre">PowerCC26XX.obj</span></code>.</p>
+</li>
+</ul>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><ul class="simple">
+<li><p>[IAR] Right click on your project, then chose “Add” and
+“Add Files…”.
+Add the files PowerCC26X2.c and PowerCC26X2.h to your project.
+<em>(The TI drivers files are stored in &lt;Your SDK&gt;/source/ti/drivers)</em></p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Review the configuration of your project (for the Power driver,
+the crystal configuration is the most important). To do so, use
+<code class="docutils literal notranslate"><span class="pre">SysConfig</span></code> and/or consult the file <code class="docutils literal notranslate"><span class="pre">ti_devices_config.c</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">SysConfig</span></code> is not used, consult the file <code class="docutils literal notranslate"><span class="pre">ccfg.c</span></code>.</p></li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic" start="3">
+<li><p>Optimize the code! The goal here is to find the variables that
+are not seen as constant by the code optimizer but that are
+constant in practice.</p>
+<blockquote>
+<div><p>a- Expressions returning always the same value for a given configuration:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CCFGRead_DIS_GPRAM()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CCFGRead_SCLK_LF_OPTION()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OSCClockSourceGet(OSC_SRC_CLK_LF)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OSCClockSourceGet(OSC_SRC_CLK_HF)</span></code></p></li>
+</ul>
+<p>Those expressions can be replaced by their constant value. This will
+allow the code optimizer to generate a simpler code.</p>
+</div></blockquote>
+<p>b- Variable that won’t be used (or that will always the same value).</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Function pointer never set (i.e. always pointing on NULL).
+In this case no need to test if the function is not NULL,
+just remove the corresponding code.
+(<em>The Power driver for CC2640R2 does not contain any example
+of this case</em>.)</p></li>
+<li><p>Variable with a constant value set only once at driver opening.
+(<em>The Power driver does not contain any example of this case</em>.)</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</li>
+<li><p>That’s it! Once again, these guidelines can be adapted to all the
+drivers used. It is important to test properly your code once optimized
+to be sure that no unexpected behavior occurs.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="defining-bluetooth-low-energy-behavior">
+<h1>Defining Bluetooth Low Energy Behavior<a class="headerlink" href="#defining-bluetooth-low-energy-behavior" title="Permalink to this headline">¶</a></h1>
+<p>This step involves using Bluetooth Low Energy protocol stack APIs to
+define the system behavior and adding profiles, defining the GATT
+database, configuring the security model, and so forth. Use the
+concepts explained in <a class="reference internal" href="../ble-stack-5.x-guide/ble-stack-5-index-cc2640.html#the-stack"><span class="std std-ref">BLE5-Stack</span></a> as well as the Bluetooth Low Energy
+API reference in <a class="reference internal" href="../ble-stack-5.x-guide/api-reference-cc2640.html#ble-api-reference"><span class="std std-ref">BLE Stack API Reference</span></a>.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="stack-configuration-cc2640.html" class="btn btn-neutral float-left" title="Stack Configurations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="custom-hardware-cc2640.html" class="btn btn-neutral float-right" title="Creating a Custom Board File" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2024, Texas Instruments.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

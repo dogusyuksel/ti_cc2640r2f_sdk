@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module id="DWT" HW_revision="1.0">
+    <register id="DWT_DWT_CTRL" width="32" offset="0xE0001000" description="Provides configuration and status information for the DWT unit, and used to control features of the unit">
+        <bitfield id="NUMCOMP" description="Number of DWT comparators implemented" begin="31" end="28" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="NOTRCPKT" description="Indicates whether the implementation does not support trace" begin="27" end="27" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="NOEXTTRIG" description="Reserved, RAZ" begin="26" end="26" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="NOCYCCNT" description="Indicates whether the implementation does not include a cycle counter" begin="25" end="25" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="NOPRFCNT" description="Indicates whether the implementation does not include the profiling counters" begin="24" end="24" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="CYCDISS" description="Controls whether the cycle counter is disabled in Secure state" begin="23" end="23" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="CYCEVTENA" description="Enables Event Counter packet generation on POSTCNT underflow" begin="22" end="22" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="FOLDEVTENA" description="Enables DWT_FOLDCNT counter" begin="21" end="21" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="LSUEVTENA" description="Enables DWT_LSUCNT counter" begin="20" end="20" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="SLEEPEVTENA" description="Enable DWT_SLEEPCNT counter" begin="19" end="19" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="EXCEVTENA" description="Enables DWT_EXCCNT counter" begin="18" end="18" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="CPIEVTENA" description="Enables DWT_CPICNT counter" begin="17" end="17" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="EXTTRCENA" description="Enables generation of Exception Trace packets" begin="16" end="16" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="RES0" description="Reserved, RES0" begin="15" end="13" width="3" rwaccess="R">
+        </bitfield>
+        <bitfield id="PCSAMPLENA" description="Enables use of POSTCNT counter as a timer for Periodic PC Sample packet generation" begin="12" end="12" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="SYNCTAP" description="Selects the position of the synchronization packet counter tap on the CYCCNT counter. This determines the Synchronization packet rate" begin="11" end="10" width="2" rwaccess="R">
+        </bitfield>
+        <bitfield id="CYCTAP" description="Selects the position of the POSTCNT tap on the CYCCNT counter" begin="9" end="9" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="POSTINIT" description="Initial value for the POSTCNT counter" begin="8" end="5" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="POSTPRESET" description="Reload value for the POSTCNT counter" begin="4" end="1" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="CYCCNTENA" description="Enables CYCCNT" begin="0" end="0" width="1" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_CYCCNT" width="32" offset="0xE0001004" description="Shows or sets the value of the processor cycle counter, CYCCNT">
+    </register>
+    <register id="DWT_DWT_CPICNT" width="32" offset="0xE0001008" description="CPI Count Register">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="CPICNT" description="Counts one on each cycle when all of the following are true:
+- DWT_CTRL.CPIEVTENA == 1 and DEMCR.TRCENA == 1.
+- No instruction is executed.
+- No load-store operation is in progress, see DWT_LSUCNT.
+- No exception-entry or exception-exit operation is in progress, see DWT_EXCCNT.
+- The PE is not in a power saving mode, see DWT_SLEEPCNT.
+- Either SecureNoninvasiveDebugAllowed() == TRUE, or the PE is in Non-secure state and NoninvasiveDebugAllowed() == TRUE." begin="7" end="0" width="8" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_EXCCNT" width="32" offset="0xE000100C" description="Counts the total cycles spent in exception processing">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="EXCCNT" description="Counts one on each cycle when all of the following are true:
+ - DWT_CTRL.EXCEVTENA == 1 and DEMCR.TRCENA == 1.
+ - No instruction is executed, see DWT_CPICNT.
+ - An exception-entry or exception-exit related operation is in progress.
+ - Either SecureNoninvasiveDebugAllowed() == TRUE, or NS-Req for the operation is set to Non-secure and NoninvasiveDebugAllowed() == TRUE." begin="7" end="0" width="8" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_SLEEPCNT" width="32" offset="0xE0001010" description="Sleep Count Register">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="SLEEPCNT" description="Counts one on each cycle when all of the following are true:
+- DWT_CTRL.SLEEPEVTENA == 1 and DEMCR.TRCENA == 1.
+- No instruction is executed, see DWT_CPICNT.
+- No load-store operation is in progress, see DWT_LSUCNT.
+- No exception-entry or exception-exit operation is in progress, see DWT_EXCCNT.
+- The PE is in a power saving mode.
+- Either SecureNoninvasiveDebugAllowed() == TRUE, or the PE is in Non-secure state and NoninvasiveDebugAllowed() == TRUE." begin="7" end="0" width="8" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_LSUCNT" width="32" offset="0xE0001014" description="Increments on the additional cycles required to execute all load or store instructions">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="LSUCNT" description="Counts one on each cycle when all of the following are true:
+ - DWT_CTRL.LSUEVTENA == 1 and DEMCR.TRCENA == 1.
+ - No instruction is executed, see DWT_CPICNT.
+ - No exception-entry or exception-exit operation is in progress, see DWT_EXCCNT.
+ - A load-store operation is in progress.
+ - Either SecureNoninvasiveDebugAllowed() == TRUE, or NS-Req for the operation is set to Non-secure and NoninvasiveDebugAllowed() == TRUE." begin="7" end="0" width="8" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_FOLDCNT" width="32" offset="0xE0001018" description="Increments on the additional cycles required to execute all load or store instructions">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="FOLDCNT" description="Counts on each cycle when all of the following are true:
+ - DWT_CTRL.FOLDEVTENA == 1 and DEMCR.TRCENA == 1.
+ - At least two instructions are executed, see DWT_CPICNT.
+ - Either SecureNoninvasiveDebugAllowed() == TRUE, or the PE is in Non-secure state and NoninvasiveDebugAllowed() == TRUE.
+ The counter is incremented by the number of instructions executed, minus one" begin="7" end="0" width="8" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_PCSR" width="32" offset="0xE000101C" description="Program Counter Sample Register">
+    </register>
+    <register id="DWT_DWT_COMP0" width="32" offset="0xE0001020" description="Provides a reference value for use by watchpoint comparator 0">
+    </register>
+    <register id="DWT_DWT_FUNCTION0" width="32" offset="0xE0001028" description="Controls the operation of watchpoint comparator 0">
+        <bitfield id="ID" description="Identifies the capabilities for MATCH for comparator *n" begin="31" end="27" width="5" rwaccess="R">
+        </bitfield>
+        <bitfield id="RES0" description="Reserved, RES0" begin="26" end="25" width="2" rwaccess="R">
+        </bitfield>
+        <bitfield id="MATCHED" description="Set to 1 when the comparator matches" begin="24" end="24" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="RES0_1" description="Reserved, RES0" begin="23" end="12" width="12" rwaccess="R">
+        </bitfield>
+        <bitfield id="DATAVSIZE" description="Defines the size of the object being watched for by Data Value and Data Address comparators" begin="11" end="10" width="2" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="RES0_2" description="Reserved, RES0" begin="9" end="6" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="ACTION" description="Defines the action on a match. This field is ignored and the comparator generates no actions if it is disabled by MATCH" begin="5" end="4" width="2" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="MATCH" description="Controls the type of match generated by this comparator" begin="3" end="0" width="4" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_COMP1" width="32" offset="0xE0001030" description="Provides a reference value for use by watchpoint comparator 1">
+    </register>
+    <register id="DWT_DWT_FUNCTION1" width="32" offset="0xE0001038" description="Controls the operation of watchpoint comparator 1">
+        <bitfield id="ID" description="Identifies the capabilities for MATCH for comparator *n" begin="31" end="27" width="5" rwaccess="R">
+        </bitfield>
+        <bitfield id="RES0" description="Reserved, RES0" begin="26" end="25" width="2" rwaccess="R">
+        </bitfield>
+        <bitfield id="MATCHED" description="Set to 1 when the comparator matches" begin="24" end="24" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="RES0_1" description="Reserved, RES0" begin="23" end="12" width="12" rwaccess="R">
+        </bitfield>
+        <bitfield id="DATAVSIZE" description="Defines the size of the object being watched for by Data Value and Data Address comparators" begin="11" end="10" width="2" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="RES0_2" description="Reserved, RES0" begin="9" end="6" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="ACTION" description="Defines the action on a match. This field is ignored and the comparator generates no actions if it is disabled by MATCH" begin="5" end="4" width="2" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="MATCH" description="Controls the type of match generated by this comparator" begin="3" end="0" width="4" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_COMP2" width="32" offset="0xE0001040" description="Provides a reference value for use by watchpoint comparator 2">
+    </register>
+    <register id="DWT_DWT_FUNCTION2" width="32" offset="0xE0001048" description="Controls the operation of watchpoint comparator 2">
+        <bitfield id="ID" description="Identifies the capabilities for MATCH for comparator *n" begin="31" end="27" width="5" rwaccess="R">
+        </bitfield>
+        <bitfield id="RES0" description="Reserved, RES0" begin="26" end="25" width="2" rwaccess="R">
+        </bitfield>
+        <bitfield id="MATCHED" description="Set to 1 when the comparator matches" begin="24" end="24" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="RES0_1" description="Reserved, RES0" begin="23" end="12" width="12" rwaccess="R">
+        </bitfield>
+        <bitfield id="DATAVSIZE" description="Defines the size of the object being watched for by Data Value and Data Address comparators" begin="11" end="10" width="2" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="RES0_2" description="Reserved, RES0" begin="9" end="6" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="ACTION" description="Defines the action on a match. This field is ignored and the comparator generates no actions if it is disabled by MATCH" begin="5" end="4" width="2" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="MATCH" description="Controls the type of match generated by this comparator" begin="3" end="0" width="4" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_COMP3" width="32" offset="0xE0001050" description="Provides a reference value for use by watchpoint comparator 3">
+    </register>
+    <register id="DWT_DWT_FUNCTION3" width="32" offset="0xE0001058" description="Controls the operation of watchpoint comparator 3">
+        <bitfield id="ID" description="Identifies the capabilities for MATCH for comparator *n" begin="31" end="27" width="5" rwaccess="R">
+        </bitfield>
+        <bitfield id="RES0" description="Reserved, RES0" begin="26" end="25" width="2" rwaccess="R">
+        </bitfield>
+        <bitfield id="MATCHED" description="Set to 1 when the comparator matches" begin="24" end="24" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="RES0_1" description="Reserved, RES0" begin="23" end="12" width="12" rwaccess="R">
+        </bitfield>
+        <bitfield id="DATAVSIZE" description="Defines the size of the object being watched for by Data Value and Data Address comparators" begin="11" end="10" width="2" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="RES0_2" description="Reserved, RES0" begin="9" end="6" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="ACTION" description="Defines the action on a match. This field is ignored and the comparator generates no actions if it is disabled by MATCH" begin="5" end="4" width="2" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="MATCH" description="Controls the type of match generated by this comparator" begin="3" end="0" width="4" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_DEVARCH" width="32" offset="0xE0001FBC" description="Provides CoreSight discovery information for the DWT">
+        <bitfield id="ARCHITECT" description="Defines the architect of the component. Bits [31:28] are the JEP106 continuation code (JEP106 bank ID, minus 1) and bits [27:21] are the JEP106 ID code." begin="31" end="21" width="11" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRESENT" description="Defines that the DEVARCH register is present" begin="20" end="20" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="REVISION" description="Defines the architecture revision of the component" begin="19" end="16" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="ARCHVER" description="Defines the architecture version of the component" begin="15" end="12" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="ARCHPART" description="Defines the architecture of the component" begin="11" end="0" width="12" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_DEVTYPE" width="32" offset="0xE0001FCC" description="Provides CoreSight discovery information for the DWT">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="SUB" description="Component sub-type" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="MAJOR" description="Component major type" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_PIDR4" width="32" offset="0xE0001FD0" description="Provides CoreSight discovery information for the DWT">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="SIZE" description="See CoreSight Architecture Specification" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="DES_2" description="See CoreSight Architecture Specification" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_PIDR5" width="32" offset="0xE0001FD4" description="Provides CoreSight discovery information for the DWT">
+    </register>
+    <register id="DWT_DWT_PIDR6" width="32" offset="0xE0001FD8" description="Provides CoreSight discovery information for the DWT">
+    </register>
+    <register id="DWT_DWT_PIDR7" width="32" offset="0xE0001FDC" description="Provides CoreSight discovery information for the DWT">
+    </register>
+    <register id="DWT_DWT_PIDR0" width="32" offset="0xE0001FE0" description="Provides CoreSight discovery information for the DWT">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="PART_0" description="See CoreSight Architecture Specification" begin="7" end="0" width="8" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_PIDR1" width="32" offset="0xE0001FE4" description="Provides CoreSight discovery information for the DWT">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="DES_0" description="See CoreSight Architecture Specification" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="PART_1" description="See CoreSight Architecture Specification" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_PIDR2" width="32" offset="0xE0001FE8" description="Provides CoreSight discovery information for the DWT">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="REVISION" description="See CoreSight Architecture Specification" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="JEDEC" description="See CoreSight Architecture Specification" begin="3" end="3" width="1" rwaccess="R">
+        </bitfield>
+        <bitfield id="DES_1" description="See CoreSight Architecture Specification" begin="2" end="0" width="3" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_PIDR3" width="32" offset="0xE0001FEC" description="Provides CoreSight discovery information for the DWT">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="REVAND" description="See CoreSight Architecture Specification" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="CMOD" description="See CoreSight Architecture Specification" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_CIDR0" width="32" offset="0xE0001FF0" description="Provides CoreSight discovery information for the DWT">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRMBL_0" description="See CoreSight Architecture Specification" begin="7" end="0" width="8" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_CIDR1" width="32" offset="0xE0001FF4" description="Provides CoreSight discovery information for the DWT">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="CLASS" description="See CoreSight Architecture Specification" begin="7" end="4" width="4" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRMBL_1" description="See CoreSight Architecture Specification" begin="3" end="0" width="4" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_CIDR2" width="32" offset="0xE0001FF8" description="Provides CoreSight discovery information for the DWT">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRMBL_2" description="See CoreSight Architecture Specification" begin="7" end="0" width="8" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="DWT_DWT_CIDR3" width="32" offset="0xE0001FFC" description="Provides CoreSight discovery information for the DWT">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="PRMBL_3" description="See CoreSight Architecture Specification" begin="7" end="0" width="8" rwaccess="R">
+        </bitfield>
+    </register>
+</module>

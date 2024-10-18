@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="General overview of IEEE1149.1 (JTAG) and IEEE1149.7 (cJTAG)"> 
+
+<!-- Change the title text for your page -->
+
+<title>JTAG</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+#Introduction
+
+JTAG is the common name of the IEEE1149.1 standard, which defines the Standard Test Access Port and Boundary-Scan Architecture for test access ports used for testing printed circuit boards using boundary scan ([BSDL](./emu_bsdl.html)). It is also used for application development. IEEE 1149.1 is also commonly known as JTAG (Joint Test Action Group) and has been in use for more than two decades. 
+
+This technology is integrated into Debug Probes and TI microcontrollers and processors to allow external inspection and debugging.  
+
+#IEEE 1149.1 (JTAG) Technology Overview
+
+Texas Instruments invented JTAG scan-based emulation, an approach that has since been broadly adopted for embedded systems development. JTAG emulation is now widely preferred over the older and more expensive "in-circuit emulation", or "ICE" technology. In-Circuit Emulation replaces the target processor with a different device that acts like, or "emulates", the original device, but has additional pins to make internal structures on the device, like busses, visible. In-Circuit Emulation is limited because the cost of supporting high-speed processors beyond 200 MHz quickly becomes prohibitive.
+
+The JTAG emulation technology used by TI' XDS-series emulators eliminates these debugging costs and difficulties by communicating directly with the processor, avoiding a special emulation device altogether. JTAG lets data be moved on- and off-chip non-intrusively, without interrupting the executing device. TI then augments this capability with additional emulation logic to provide even greater visibility and access into registers and other internal functions such as on-chip cache memories. JTAG emulation is also widely preferred over monitor based solutions as JTAG solutions do not need valuable processor resources.
+
+JTAG also acts as a connection for boundary scan. Boundary scan is valuable in ensuring the quality of products during manufacturing. Boundary scan can be used to perform board and system-level tests that can detect and diagnose pin-level structural faults such as opens and shorts.
+
+##References
+- IEEE 1149.1 JTAG Testability Primer: [SSYA002](https://www.ti.com/lit/an/ssya002d/ssya002d.pdf)
+- JTAG Scan Educator: [SATB002](https://www.ti.com/general/docs/litabsmultiplefilelist.tsp?literatureNumber=satb002a)
+- JTAG/MPSD Emulation Technical Reference: [SPDU079](http://www.ti.com/lit/ug/spdu079a/spdu079a.pdf)	
+- [WIKIpedia entry](http://en.wikipedia.org/wiki/JTAG)
+- The [IEEE 1149.1 standard](http://standards.ieee.org/reading/ieee/std_public/description/testtech/1149.1-2001_desc.html)
+- Free commercial quality software (BSDL, pin toggle, access internal regs, tcl/tk scripting) at [Intellitech](http://www.intellitech.com/jtag/free-jtag-software-ijtag.asp)
+
+#IEEE 1149.7 Technology Overview
+
+IEEE 1149.7 is complementary superset of the widely adopted IEEE 1149.1 (JTAG) standard and it was ratified in 2009. IEEE 1149.7 adds substantial functionality to the existing standard, but it is not a replacement for IEEE 1149.1. Backward compatibility is maintained so that any a board or system that integrates chips that support either standard is amenable to test or debug procedures.
+
+The new IEEE 1149.7 standard offers embedded designers several benefits, including: 
+
+- The ability to control debug logic power consumption in an industry standard way. Whereas IEEE 1149.1 (JTAG) had a single "always on" state, IEEE 1149.7 offers four selectable power modes to enable ultra-low power devices.
+- The ability to quickly access a specific device in a system with multiple devices. By implementing a system level bypass, the scan chain is drastically shorter, which directly improves the debugging experience.
+- The introduction of a star topology to complement the standard serial topology. Designers working with stacked-die devices, multi-chip modules and plug-in cards will favor the star topology because it simplifies the physical inter-device connections. 
+- Two-pin operation instead of the four-pin operation required in IEEE 1149.1. Since most of today's systems integrate multiple ICs and often have severe size constraints, reducing the number of pins and traces will help designers meet their form factor goals and allowing for additional functional pins and/or low package cost.
+- Compatibility with existing IEEE 1149.1 (JTAG) compliant IP, allowing preservation of investment.
+
+While IEEE 1149.7 adds substantial functionality to the existing standard, it is important to note that it is not a replacement for IEEE 1149.1. Backward compatibility is maintained so that any board or system that integrates chips that support either standard is amenable to test or debug procedures.
+
+##Related standards
+- IEEE 1149.1 (JTAG) is the predecessor to IEEE 1149.7.
+- [IEEE 1149.6](http://grouper.ieee.org/groups/1149/6) is focused on boundary-scan testing for advanced digital networks.
+- [IEEE 1149.7](http://grouper.ieee.org/groups/1149/7/) is a complementary superset of IEEE 1149.1.
+- [IEEE 1500](http://grouper.ieee.org/groups/1500) is a scalable standard architecture for enabling test reuse and integration for embedded cores and associated circuitry.
+- [IEEE P1687](http://grouper.ieee.org/groups/1687) is developing a methodology for access to embedded test and debug features, to include a description language.
+- [IEEE-ISTO 5001](http://www.nexus5001.org) is the NEXUS debug standard. IEEE 1149.1 is a connection type used by NEXUS. IEEE 1149.7 will be included in the new revision of the NEXUS debug specification. 
+- [MIPI](http://mipi.org/) is the Mobile Industry Processor Interface Alliance, and IEEE 1149.7 is a recommended Test and Debug interface. (see the [MIPI T&amp;D White Paper Interface Framework](http://www.mipi.org/docs/MIPI_TDWG_whitepaper_v3_2.pdf)
+- The [specification at the IEEE](http://ieeexplore.ieee.org/servlet/opac?punumber=5412864)
+
+##Related articles
+
+- Presentation from SWDFT 2009: [IEEE1149.7 Overview](./files/IEEE1149.7overview.pdf)
+- [The importance of standards](./files/IEEE1149.7importanceofstandards.pdf)
+- IEEE 1149.7 official webpage is [here](http://grouper.ieee.org/groups/1149/7/)
+- [Embedded Systems Magazine article](http://www.embedded.com/design/210200584)
+- [Corelis press release](http://www.corelis.com/news/pr-Corelis_Promotes_Improved_Circuit_Test.htm)
+- IEEE 1149.7 Overview at Southwest Design for Test Conference (SWDFT) Austin, Texas April 2009. [Hosted](http://www.siliconaid.com/2009_SWDFT_presentation/IEEE1149-7%20for%20SWDFT.pdf) and [Original](./files/IEEE1149.7overview.pdf)
+- [Embedded Instrumentation Integration Using IEEE Nexus 5001 and 1149.7](http://www.design-reuse.com/articles/21304/ieee-nexus-5001-1149-7.html)
+- [EDN: Embedded Instrumentation Integration Using IEEE Nexus 5001 and 1149.7](http://i.cmpnet.com/edadesignline/2009/aug/EI%20Using%20IEEE%205001%20and%201141_full_061509.pdf)
+
+<!-- Missing links
+* [TI press release](http://focus.ti.com/pr/docs/preldetail.tsp?sectionId=594&prelId=sc08106 here]
+* IPeXtreme press release is [http://www.businesswire.com/news/home/20080902005263/en here] or [http://www.ip-extreme.com/IP/cJTAG.html here]
+* SCDsource article is [http://www.scdsource.com/article.php?id=310 here]
+* ASSET InterTech press release is [http://www.asset-intertech.com/news_article.html?newsID=119 here]
+* Freescale press release is [http://media.freescale.com/phoenix.zhtml?c=196520&p=irol-newsArticle&ID=1196640&highlight= here]
+* Embedded Computing Design article [http://www.embedded-computing.com/articles/id/?3687 here]
+* Wireless Design and Development article on "Debug in End Packages Now Possible" is [http://www.wirelessdesignmag.com/ShowPR~PUBCODE~055~ACCT~0000100~ISSUE~0812~RELTYPE~PR~PRODCODE~V0140~PRODLETT~E.html here (see sidebar)]
+* IPeXtreme newsletter article on "Nascent 1149.7 complements venerable 1149.1 JTAG" is [http://www.ip-extreme.com/newsletter/newslet_081215/newslet_081215.html#techtip here]
+* ASSET InterTech newsletter article on "New 1149.7 enhances 1149.1 test access port, maintains compatibility for boundary scan" is [http://www.asset-intertech.com/connect/2009Q1/1149dot7.htm here]
+* IPeXtreme article one "Adding Physical Test and Debug Access to Chips with a Compact JTAG Core" in ChipEstimate.com is [http://www.chipestimate.com/techtalk/techtalk_090324.html here].
+* [http://www.techonline.com/learning/techpaper/217100198 The next generation in test and debug solution: IEEE 1149.7]
+*Evaluation Engineering: [http://www.evaluationengineering.com/features/2009_july/0709_design.aspx IEEE 1149.7 Expands JTAG Functionality]
+* [http://www.techonline.com/learning/techpaper/222600995 Major Benefits of IEEE 1149.7 (White paper)] or [http://www.docstoc.com/docs/document-preview.aspx?doc_id=24206523 alternate link]
+* [http://blogs.ip-extreme.com/2010/03/myth-busted-ieee-11497-does-not-replace-ieee-11491.html IPeXtreme Blog]
+* [http://blogs.ip-extreme.com/2010/03/myth-busted-ieee-11497-does-not-replace-ieee-11491.html Myth Busted: IEEE 1149.7 does not replace IEEE 1149.1]
+* [http://www.tmworld.com/article/509121-Solving_accessibility_issues.php Solving accessibility issues]
+-->
+
+<hr>
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

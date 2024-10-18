@@ -1,0 +1,29 @@
+GEL_HWBreakPtDel()
+------------------
+
+Removes a hardware breakpoint.
+
+**Syntax**
+
+**GEL_HWBreakPtDel(**\ address\ **);**
+
+**Parameters**
+
+address is the memory location of the hardware breakpoint to be removed.
+
+**Description**
+
+This function removes any hardware breakpoint currently set at the
+specified address, if the target supports it.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: No
+
+Related Topics
+
+`GEL_HWBreakPtAdd <GEL_HWBreakPtAdd.htm>`__
+
+`GEL_HWBreakPtReset <GEL_HWBreakPtReset.htm>`__

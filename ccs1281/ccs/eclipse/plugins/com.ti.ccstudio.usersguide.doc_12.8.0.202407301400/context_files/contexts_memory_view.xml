@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.contexts"?>
+
+<!-- Workbench: Actions, Dialogs, Editors, Preference Pages, Property Pages, Views               -->
+<!-- Workbench: Resource Properties, Windows, Wizard Pages, Wizards, Help Menu, Browser Support  -->
+	
+<contexts>
+
+
+<!-- Actions -->
+
+<!--    
+<context id="ti_memory_help">
+        <description>The memory view helps you to view the contents of memory starting at a specified address. You can enter a starting address in the Address Text box at the top of the view. You can also edit the contents of a selected memory location.</description>
+        <topic label="Overview of the Memory View" href="html/views_and_editors/memory_view/Memory_View.htm"/>
+        <topic label="Working with the Memory View" href="html/tasks/working_with_the_memory_view.html"/>
+        <topic label="Default Fonts And Colors" href="html/references/colors_fonts_for_memory_window.htm"/>
+        <topic label="Memory View Preferences" href="html/references/mem_view_pref.htm"/>
+        <topic label="Saving and Loading Memory Data Files" href="html/tasks/saving_and_loading_memory_data_files.htm"/>
+        <topic label="Data File Formats" href="html/references/data_file_formats.htm"/>
+</context>
+
+<context id="MemorySave_help">
+        <description> </description>
+        <topic label="save" href="html/tasks/saving_and_loading_memory_data_files.htm#save_memory"/>
+</context>
+
+<context id="MemoryLoad_help">
+        <description> </description>
+        <topic label="load" href="html/tasks/saving_and_loading_memory_data_files.htm#load_memory"/>
+</context>
+
+<context id="MemoryFill_help">
+        <description> </description>
+        <topic label="fill" href="html/views_and_editors/memory_view/Memory_View.htm#fill"/>
+</context>
+
+<context id="copy_to_memory_help">
+        <description> </description>
+        <topic label="copy" href="html/views_and_editors/memory_view/Memory_View.htm#copy"/>
+</context>
+
+<context id="setup_reference_buffer_help">
+        <description> </description>
+        <topic label="ref_buffer_setup" href="html/views_and_editors/memory_view/Memory_View.htm#ref_buffer_setup"/>
+</context>
+
+<context id="configure_memory_view_help">
+        <description> </description>
+        <topic label="config" href="html/views_and_editors/memory_view/Memory_View.htm#config"/>
+</context>
+-->
+
+<!-- This is the context sensitive help for old memory view. Remove if it's not necessary
+	<context  id="MemoryView_context" >
+		<description>This view displays renderings of memory monitors.</description>
+	</context>
+	
+	<context  id="ResetBaseAddressContextAction_context" >
+		<description>Go to the base address of the memory block.</description>
+	</context>
+	
+	<context  id="FormatColumnAction_context" >
+		<description>Format the table to the selected column size.</description>
+	</context>
+	
+	<context  id="TableRenderingPrefAction_context" >
+		<description>This command opens the dialog for modifying preferences in table renderings.</description>
+	</context>
+	
+	<context  id="PrintViewTabContextAction_context" >
+		<description>Print the memory monitor or rendering.</description>
+	</context>
+	
+	<context  id="GoToAddressAction_context" >
+		<description>Go to an address in the memory block.</description>
+	</context>
+	
+	<context  id="CopyViewTabToClipboardContextAction_context" >
+		<description>Copy selected tab to clipboard.</description>
+	</context>
+	
+	<context  id="RemoveMemoryBlockAction_context" >
+		<description>Remove selected memory block.</description>
+	</context>   
+	
+	<context  id="RemoveAllMemoryBlocksAction_context" >
+		<description>Remove all memory monitors from the workbench.</description>
+	</context>   
+	
+	<context   id="DefaultColumnSizePrefAction_context">
+		<description>This command sets the default column size for a memory monitor. </description>
+	</context>
+	
+	<context id="RemoveRenderingContextAction_context">
+		<description>This command removes the top visible rendering from the Memory Rendering pane. </description>
+	</context>
+	
+	<context id="AddRenderingContextAction_context">
+		<description>This command adds a rendering to the selected Memory Rendering pane. </description>
+	</context>   
+	
+	<context id="LittleEndianAction_context">
+		<description>This command formats a rendering as little endian. </description>
+	</context>   
+	
+	<context id="BigEndianAction_context">
+		<description>This command formats a rendering as big endian. </description>
+	</context>   
+	
+	<context id="RestoreDefEndianessAction_context">
+		<description>This command formats a rendering with its default endianess. </description>
+	</context>   
+	
+	<context id="ReformatAction_context">
+		<description>This command resizes all columns to fit the content of the table. </description>
+	</context>   
+	
+	<context id="ShowAddressColumnAction_context">
+		<description>This command toggles the visibility of the Address column. </description>
+	</context>   
+	
+	<context id="SelectCodePagesAction_context">
+		<description>This command opens the dialog for setting up codepage preferences in the Memory View </description>
+	</context>
+	
+	<context id="CodePagesPrefDialog_context">
+		<description>On this page, you can set codepage preferences in the Memory View</description>
+	</context>
+	
+	<context id="SelectCodepageDialog_context">
+		<description>This page sets the codepage for the selected preference.</description>
+	</context>
+	
+	<context id="SetPaddedStrAction_context">
+		<description>This commands opens the dialog for setting up the padded string used in memory renderings.</description>
+	</context>
+	
+	<context id="SetPaddedStrDialog_context">
+		<description>On this page, you can set the padded string in memory renderings.</description>
+	</context>
+	
+	<context id="NextPageAction_context">
+		<description>This command loads the next page of memory.</description>
+	</context>
+	
+	<context id="PrevPageAction_context">
+		<description>This command loads the previous page of memory.</description>
+	</context>
+	<context  id="switchToAction_context" >
+		<description>This command displays the renderings associated with the selected memory monitor.</description>
+	</context>
+	
+	<context  id="switchMemoryBlockAction_context" >
+		<description>This command displays the renderings associated with the next memory monitor.</description>
+	</context>
+	
+	<context  id="resetMemoryMonitor_context" >
+		<description>This command resets the renderings associated with the selected memory monitors.</description>
+	</context>
+	
+	<context  id="FormatTableRenderingAction_context" >
+		<description>This command allows you to format the selected rendering.</description>
+	</context>
+	
+	<context  id="MemoryViewPreferences_context" >
+		<description>This command allows you to open the preference dialog for the Memory View.</description>
+	</context>  
+	
+	<context  id="memory_view_pane_orientation_action_context" >
+		<description>This command allows you set the Memory View to the selected orientation.</description>
+	</context>
+	
+	<context  id="GoToAddressDialog_context" >
+		<description>This dialog lets you jump to an address in the memory block.</description>
+	</context>       
+	
+	<context  id="GoToAddressComposite_context" >
+		<description>This address bar allows you to go to an address in the memory block.</description>
+	</context>       
+	
+	<context  id="MemoryViewPreferencePage_context" >
+		<description>Preference page for setting the default column size when a new memory monitor is added. </description>
+	</context>
+	
+	<context  id="MonitorMemoryBlockDialog_context" >
+		<description>This dialog allows you to add a memory block to the Memory View</description>
+	</context>
+	
+	<context  id="FormatTableRenderingDialog_context" >
+		<description>This dialog allows you to format the selected rendering.</description>
+	</context>
+	
+	<context  id=" AbstractAsyncTableRendering_context" >
+		<description>This memory rendering displays content of a memory monitor in table format.</description>
+	</context> -->
+
+<!-- [12/4/2019 - Modifying paths to new CCS User Guide Help plugin] -->
+
+<context id="ti_memory_help">
+		<description>Help content for Memory Browser view.</description>
+        <topic label="CCS - Overview of the Memory Browser View" href="html/users_guide/ccs_debug-main.html#memory-browser-view"/>
+</context>
+
+<context id="MemorySave_help">
+        <description> </description>
+        <topic label="CCS - Save Memory" href="html/users_guide/ccs_debug-main.html#load-and-save-memory"/>
+</context>
+
+<context id="MemoryLoad_help">
+        <description> </description>
+        <topic label="CCS - Load Memory" href="html/users_guide/ccs_debug-main.html#load-and-save-memory"/>
+</context>
+
+<context id="MemoryFill_help">
+        <description> </description>
+        <topic label="CCS - Fill Memory" href="html/users_guide/ccs_debug-main.html#fill-memory"/>
+</context>
+
+</contexts>

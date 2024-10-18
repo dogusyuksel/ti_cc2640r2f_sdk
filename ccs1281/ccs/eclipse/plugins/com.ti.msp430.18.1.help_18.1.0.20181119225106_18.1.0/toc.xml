@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="MSP430 Compiler Version 18.1 User's Guides">
+<topic label="MSP430 Optimizing C/C++ Compiler User's Guide">
+	<link toc="cug_toc.xml" />
+</topic>
+<topic label="MSP430 Assembly Language Tools User's Guide">
+	<link toc="alt_toc.xml" />
+</topic>
+</toc>

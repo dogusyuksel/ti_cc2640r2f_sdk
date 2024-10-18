@@ -1,0 +1,35 @@
+TMS470 Hex Converter                    v4.5.2
+Tools Copyright (c) 1996-2009 Texas Instruments Incorporated
+
+Usage: E:\Work\tools\TI\ARM\arm_4.5.2\bin\hex470 [-options] filename
+
+Use 'E:\Work\tools\TI\ARM\arm_4.5.2\bin\hex470 -h <option>' for more information on a particular option.  Use
+'E:\Work\tools\TI\ARM\arm_4.5.2\bin\hex470 -h <text>' to search options for information regarding <text>.
+
+Option arguments surrounded by [] declare they are optional.  Option arguments
+separated by commas specify that the option's argument must be chosen from
+those arguments listed.
+
+General Options:
+  -a                   Output ASCII hex format
+  -byte                Output as bytes rather than target addressing
+  -e=addr              Specify entrypoint address or symbol name
+  -exclude=section     Exclude section from hex conversion
+  -fill=val            Specify fill value
+  -i                   Output Intel hex format
+  -image               Select image mode
+  -linkerfill          Include linker fill sections in images
+  -m[=1,2,3]           Output Motorola S hex format
+  -map=file            Specify map file name
+  -memwidth=width      Specify memory width
+  -o=file              Specify output file names
+  -olength=num         Number of data items per line of hex output
+  -options,-h          Display help
+  -order=LS,MS         Specify data ordering (endianness)
+  -quiet,-q            Quiet Operation
+  -romwidth=width      Specify rom width
+  -t                   Output TI-Tagged hex format
+  --ti_txt             Output TI-TXT hex format
+  -x                   Output Extended Tektronix hex format
+  -zero,-z             Zero based addressing
+

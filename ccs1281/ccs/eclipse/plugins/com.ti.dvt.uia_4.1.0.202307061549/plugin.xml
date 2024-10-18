@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="com.ti.dvt.control.engine.activityProviders">
+      <activityProvider
+            class="com.ti.dvt.uia.activities.UIAActivityProvider"
+            id="com.ti.dvt.uia.activities.UIAActivityProvider"
+            name="UIA Activity Provider"/>
+   </extension>
+   <!--
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="com.ti.dvt.uia.actionSet"
+            label="UIA"
+            visible="false">
+         <menu
+               id="uiaMenu"
+               label="UIA &amp;Demo">
+            <separator
+                  name="uiaGroup">
+            </separator>
+         </menu>
+         <action
+               class="com.ti.dvt.uia.demo.DemoUDP"
+               icon="icons/terminate.gif"
+               id="com.ti.dvt.uia.demo.DemoUDP_exit"
+               label="&amp;Exit"
+               menubarPath="uiaMenu/uiaGroup"
+               tooltip="DVT_UIA (M1) : Exit UDP">
+         </action>
+         <action
+               class="com.ti.dvt.uia.demo.DemoUDP"
+               icon="icons/stop.gif"
+               id="com.ti.dvt.uia.demo.DemoUDP_stop"
+               label="Stop"
+               menubarPath="uiaMenu/uiaGroup"
+               tooltip="DVT_UIA (M1) : Stop target service">
+         </action>
+         <action
+               class="com.ti.dvt.uia.demo.DemoUDP"
+               icon="icons/run.gif"
+               id="com.ti.dvt.uia.demo.DemoUDP_start"
+               label="Start"
+               menubarPath="uiaMenu/uiaGroup"
+               tooltip="DVT_UIA (M1) : Start target service">
+         </action>
+         <action
+               class="com.ti.dvt.uia.demo.DemoUDP"
+               icon="icons/solution.gif"
+               id="com.ti.dvt.uia.demo.DemoUDP_load"
+               label="&amp;DVT Analysis"
+               menubarPath="uiaMenu/uiaGroup"
+               tooltip="DVT_UIA (M1) : Load DVT/AFF solutions">
+         </action>
+         <action
+               class="com.ti.dvt.uia.demo.DemoUDP"
+               icon="icons/reset.gif"
+               id="com.ti.dvt.uia.demo.DemoUDP_uiaSession"
+               label="&amp;UIA Session"
+               menubarPath="uiaMenu/uiaGroup"
+               tooltip="DVT_UIA (M1) : Load UIA session">
+         </action>
+      </actionSet>
+   </extension>
+   -->
+   <extension
+         point="org.eclipse.ant.core.extraClasspathEntries">
+      <extraClasspathEntry
+            library=".">
+      </extraClasspathEntry>
+   </extension>
+</plugin>

@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset="utf-8" />
+        <meta name="description" content="" />
+        <meta name="author" content="" /><title>toc</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Resources/Stylesheets/headerfooter.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="content">
+            <div id="contentBody">
+                <div class="row collapse">
+                    <div class="sideContent">
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                    <div id="loadContentArea">
+                        <div class="c12 docHeader">
+                            <div class="c4 docTitle">
+                                <p><strong>ARM Assembly
+							Language Tools
+			v18.1.0.LTS User's Guide</strong>
+                                    <br /><span id="litnumber">SPNU118U</span> - REVISED JANUARY 2018</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="odsHeader">
+                        <p class="pdf"><a class="downloadPDF" href="http://www.ti.com/litv/SPNU118U" target="_new">Download PDF</a>
+                        </p>
+                    </div>
+                    <div id="loadContentArea1">
+                        <ol>
+                            <li value="1"><a href="abstract.html">Read This First</a>
+                                <ol>
+                                    <li value="1"><a href="abstract.html">About This Manual</a>
+                                    </li>
+                                    <li value="2"><a href="abstract.html">How to Use This Manual</a>
+                                    </li>
+                                    <li value="3"><a href="abstract.html">Notational Conventions</a>
+                                    </li>
+                                    <li value="4"><a href="abstract.html">Related Documentation From Texas Instruments</a>
+                                    </li>
+                                    <li value="5"><a href="abstract.html">Trademarks</a>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li value="2"><a href="introduction-to-the-software-development-tools.html">1 Introduction to the Software Development Tools</a>
+                                <ol>
+                                    <li value="1"><a href="introduction-to-the-software-development-tools.html">1.1 Software Development Tools Overview</a>
+                                    </li>
+                                    <li value="2"><a href="introduction-to-the-software-development-tools.html">1.2 Tools Descriptions</a>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li value="3"><a href="introduction-to-object-modules.html">2 Introduction to Object Modules</a>
+                                <ol>
+                                    <li value="1"><a href="introduction-to-object-modules.html">2.1 Object File Format Specifications</a>
+                                    </li>
+                                    <li value="2"><a href="introduction-to-object-modules.html">2.2 Executable Object Files</a>
+                                    </li>
+                                    <li value="3"><a href="introduction-to-object-modules.html">2.3 Introduction to Sections</a>
+                                        <ol>
+                                            <li value="1"><a href="introduction-to-object-modules.html">2.3.1 Special Section Names</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="4"><a href="introduction-to-object-modules.html">2.4 How the Assembler Handles Sections</a>
+                                        <ol>
+                                            <li value="1"><a href="introduction-to-object-modules.html">2.4.1 Uninitialized Sections</a>
+                                            </li>
+                                            <li value="2"><a href="introduction-to-object-modules.html">2.4.2 Initialized Sections</a>
+                                            </li>
+                                            <li value="3"><a href="introduction-to-object-modules.html">2.4.3 User-Named Sections</a>
+                                            </li>
+                                            <li value="4"><a href="introduction-to-object-modules.html">2.4.4 Current Section</a>
+                                            </li>
+                                            <li value="5"><a href="introduction-to-object-modules.html">2.4.5 Section Program Counters</a>
+                                            </li>
+                                            <li value="6"><a href="introduction-to-object-modules.html">2.4.6 Subsections</a>
+                                            </li>
+                                            <li value="7"><a href="introduction-to-object-modules.html">2.4.7 Using Sections Directives</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="5"><a href="introduction-to-object-modules.html">2.5 How the Linker Handles Sections</a>
+                                        <ol>
+                                            <li value="1"><a href="introduction-to-object-modules.html">2.5.1 Combining Input Sections</a>
+                                            </li>
+                                            <li value="2"><a href="introduction-to-object-modules.html">2.5.2 Placing Sections</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="6"><a href="introduction-to-object-modules.html">2.6 Symbols</a>
+                                        <ol>
+                                            <li value="1"><a href="introduction-to-object-modules.html">2.6.1 External Symbols</a>
+                                            </li>
+                                            <li value="2"><a href="introduction-to-object-modules.html">2.6.2 Weak Symbols</a>
+                                            </li>
+                                            <li value="3"><a href="introduction-to-object-modules.html">2.6.3 The Symbol Table</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="7"><a href="introduction-to-object-modules.html">2.7 Symbolic Relocations</a>
+                                    </li>
+                                    <li value="8"><a href="introduction-to-object-modules.html">2.8 Loading a Program</a>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li value="4"><a href="program-loading-and-running.html">3 Program Loading and Running</a>
+                                <ol>
+                                    <li value="1"><a href="program-loading-and-running.html">3.1 Loading</a>
+                                        <ol>
+                                            <li value="1"><a href="program-loading-and-running.html">3.1.1 Load and Run Addresses</a>
+                                            </li>
+                                            <li value="2"><a href="program-loading-and-running.html">3.1.2 Bootstrap Loading</a>
+                                                <ol>
+                                                    <li value="1"><a href="program-loading-and-running.html">3.1.2.1 Boot, Load, and Run Addresses</a>
+                                                    </li>
+                                                    <li value="2"><a href="program-loading-and-running.html">3.1.2.2 Primary Bootloader</a>
+                                                    </li>
+                                                    <li value="3"><a href="program-loading-and-running.html">3.1.2.3 Secondary Bootloader</a>
+                                                    </li>
+                                                    <li value="4"><a href="program-loading-and-running.html">3.1.2.4 Boot Table</a>
+                                                    </li>
+                                                    <li value="5"><a href="program-loading-and-running.html">3.1.2.5 Bootloader Routine</a>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="2"><a href="program-loading-and-running.html">3.2 Entry Point</a>
+                                    </li>
+                                    <li value="3"><a href="program-loading-and-running.html">3.3 Run-Time Initialization</a>
+                                        <ol>
+                                            <li value="1"><a href="program-loading-and-running.html">3.3.1 _c_int00</a>
+                                            </li>
+                                            <li value="2"><a href="program-loading-and-running.html">3.3.2 RAM Model vs. ROM Model</a>
+                                                <ol>
+                                                    <li value="1"><a href="program-loading-and-running.html">3.3.2.1 Autoinitializing Variables at Run Time (--rom_model)</a>
+                                                    </li>
+                                                    <li value="2"><a href="program-loading-and-running.html">3.3.2.2 Initializing Variables at Load Time (--ram_model)</a>
+                                                    </li>
+                                                    <li value="3"><a href="program-loading-and-running.html">3.3.2.3 The --rom_model and --ram_model Linker Options</a>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="3"><a href="program-loading-and-running.html">3.3.3 Copy Tables</a>
+                                                <ol>
+                                                    <li value="1"><a href="program-loading-and-running.html">3.3.3.1 BINIT</a>
+                                                    </li>
+                                                    <li value="2"><a href="program-loading-and-running.html">3.3.3.2 CINIT</a>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="4"><a href="program-loading-and-running.html">3.4 Arguments to main</a>
+                                    </li>
+                                    <li value="5"><a href="program-loading-and-running.html">3.5 Run-Time Relocation</a>
+                                    </li>
+                                    <li value="6"><a href="program-loading-and-running.html">3.6 Additional Information</a>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li value="5"><a href="assembler-description.html">4 Assembler Description</a>
+                                <ol>
+                                    <li value="1"><a href="assembler-description.html">4.1 Assembler Overview</a>
+                                    </li>
+                                    <li value="2"><a href="assembler-description.html">4.2 The Assembler's Role in the Software Development Flow</a>
+                                    </li>
+                                    <li value="3"><a href="assembler-description.html">4.3 Invoking the Assembler</a>
+                                    </li>
+                                    <li value="4"><a href="assembler-description.html">4.4 Controlling Application Binary Interface</a>
+                                    </li>
+                                    <li value="5"><a href="assembler-description.html">4.5 Naming Alternate Directories for Assembler Input</a>
+                                        <ol>
+                                            <li value="1"><a href="assembler-description.html">4.5.1 Using the --include_path Assembler Option</a>
+                                            </li>
+                                            <li value="2"><a href="assembler-description.html">4.5.2 Using the TI_ARM_A_DIR Environment Variable</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="6"><a href="assembler-description.html">4.6 Source Statement Format</a>
+                                        <ol>
+                                            <li value="1"><a href="assembler-description.html">4.6.1 Label Field</a>
+                                            </li>
+                                            <li value="2"><a href="assembler-description.html">4.6.2 Mnemonic Field</a>
+                                            </li>
+                                            <li value="3"><a href="assembler-description.html">4.6.3 Operand Field</a>
+                                                <ol>
+                                                    <li value="1"><a href="assembler-description.html">4.6.3.1 Operand Syntaxes for Instructions</a>
+                                                    </li>
+                                                    <li value="2"><a href="assembler-description.html">4.6.3.2 Immediate Values as Operands for Directives</a>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="4"><a href="assembler-description.html">4.6.4 Comment Field</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="7"><a href="assembler-description.html">4.7 Literal Constants</a>
+                                        <ol>
+                                            <li value="1"><a href="assembler-description.html">4.7.1 Integer Literals</a>
+                                                <ol>
+                                                    <li value="1"><a href="assembler-description.html">4.7.1.1 Binary Integer Literals</a>
+                                                    </li>
+                                                    <li value="2"><a href="assembler-description.html">4.7.1.2 Octal Integer Literals</a>
+                                                    </li>
+                                                    <li value="3"><a href="assembler-description.html">4.7.1.3 Decimal Integer Literals</a>
+                                                    </li>
+                                                    <li value="4"><a href="assembler-description.html">4.7.1.4 Hexadecimal Integer Literals</a>
+                                                    </li>
+                                                    <li value="5"><a href="assembler-description.html">4.7.1.5 Character Literals</a>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="2"><a href="assembler-description.html">4.7.2 Character String Literals</a>
+                                            </li>
+                                            <li value="3"><a href="assembler-description.html">4.7.3 Floating-Point Literals</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="8"><a href="assembler-description.html">4.8 Assembler Symbols</a>
+                                        <ol>
+                                            <li value="1"><a href="assembler-description.html">4.8.1 Identifiers</a>
+                                            </li>
+                                            <li value="2"><a href="assembler-description.html">4.8.2 Labels</a>
+                                            </li>
+                                            <li value="3"><a href="assembler-description.html">4.8.3 Local Labels</a>
+                                            </li>
+                                            <li value="4"><a href="assembler-description.html">4.8.4 Symbolic Constants</a>
+                                            </li>
+                                            <li value="5"><a href="assembler-description.html">4.8.5 Defining Symbolic Constants (--asm_define Option)</a>
+                                            </li>
+                                            <li value="6"><a href="assembler-description.html">4.8.6 Predefined Symbolic Constants</a>
+                                            </li>
+                                            <li value="7"><a href="assembler-description.html">4.8.7 Registers</a>
+                                            </li>
+                                            <li value="8"><a href="assembler-description.html">4.8.8 Substitution Symbols</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="9"><a href="assembler-description.html">4.9 Expressions</a>
+                                        <ol>
+                                            <li value="1"><a href="assembler-description.html">4.9.1 Mathematical and Logical Operators</a>
+                                            </li>
+                                            <li value="2"><a href="assembler-description.html">4.9.2 Relational Operators and Conditional Expressions</a>
+                                            </li>
+                                            <li value="3"><a href="assembler-description.html">4.9.3 Well-Defined Expressions</a>
+                                            </li>
+                                            <li value="4"><a href="assembler-description.html">4.9.4 Relocatable Symbols and Legal Expressions</a>
+                                            </li>
+                                            <li value="5"><a href="assembler-description.html">4.9.5 Expression Examples</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="10"><a href="assembler-description.html">4.10 Built-in Functions and Operators</a>
+                                        <ol>
+                                            <li value="1"><a href="assembler-description.html">4.10.1 Built-In Math and Trigonometric Functions</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="11"><a href="assembler-description.html">4.11 Unified Assembly Language Syntax Support</a>
+                                    </li>
+                                    <li value="12"><a href="assembler-description.html">4.12 Source Listings</a>
+                                    </li>
+                                    <li value="13"><a href="assembler-description.html">4.13 Debugging Assembly Source</a>
+                                    </li>
+                                    <li value="14"><a href="assembler-description.html">4.14 Cross-Reference Listings</a>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li value="6"><a href="assembler-directives.html">5 Assembler Directives</a>
+                                <ol>
+                                    <li value="1"><a href="assembler-directives.html">5.1 Directives Summary</a>
+                                    </li>
+                                    <li value="2"><a href="assembler-directives.html">5.2 Directives that Define Sections</a>
+                                    </li>
+                                    <li value="3"><a href="assembler-directives.html">5.3 Directives that Change the Instruction Type</a>
+                                    </li>
+                                    <li value="4"><a href="assembler-directives.html">5.4 Directives that Initialize Values</a>
+                                    </li>
+                                    <li value="5"><a href="assembler-directives.html">5.5 Directives that Perform Alignment and Reserve Space</a>
+                                    </li>
+                                    <li value="6"><a href="assembler-directives.html">5.6 Directives that Format the Output Listings</a>
+                                    </li>
+                                    <li value="7"><a href="assembler-directives.html">5.7 Directives that Reference Other Files</a>
+                                    </li>
+                                    <li value="8"><a href="assembler-directives.html">5.8 Directives that Enable Conditional Assembly</a>
+                                    </li>
+                                    <li value="9"><a href="assembler-directives.html">5.9 Directives that Define Union or Structure Types</a>
+                                    </li>
+                                    <li value="10"><a href="assembler-directives.html">5.10 Directives that Define Enumerated Types</a>
+                                    </li>
+                                    <li value="11"><a href="assembler-directives.html">5.11 Directives that Define Symbols at Assembly Time</a>
+                                    </li>
+                                    <li value="12"><a href="assembler-directives.html">5.12 Miscellaneous Directives</a>
+                                    </li>
+                                    <li value="13"><a href="assembler-directives.html">5.13 Directives Reference</a>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li value="7"><a href="macro-language-description.html">6 Macro Language Description</a>
+                                <ol>
+                                    <li value="1"><a href="macro-language-description.html">6.1 Using Macros</a>
+                                    </li>
+                                    <li value="2"><a href="macro-language-description.html">6.2 Defining Macros</a>
+                                    </li>
+                                    <li value="3"><a href="macro-language-description.html">6.3 Macro Parameters/Substitution Symbols</a>
+                                        <ol>
+                                            <li value="1"><a href="macro-language-description.html">6.3.1 Directives That Define Substitution Symbols</a>
+                                            </li>
+                                            <li value="2"><a href="macro-language-description.html">6.3.2 Built-In Substitution Symbol Functions</a>
+                                            </li>
+                                            <li value="3"><a href="macro-language-description.html">6.3.3 Recursive Substitution Symbols</a>
+                                            </li>
+                                            <li value="4"><a href="macro-language-description.html">6.3.4 Forced Substitution</a>
+                                            </li>
+                                            <li value="5"><a href="macro-language-description.html">6.3.5 Accessing Individual Characters of Subscripted Substitution Symbols</a>
+                                            </li>
+                                            <li value="6"><a href="macro-language-description.html">6.3.6 Substitution Symbols as Local Variables in Macros</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="4"><a href="macro-language-description.html">6.4 Macro Libraries</a>
+                                    </li>
+                                    <li value="5"><a href="macro-language-description.html">6.5 Using Conditional Assembly in Macros</a>
+                                    </li>
+                                    <li value="6"><a href="macro-language-description.html">6.6 Using Labels in Macros</a>
+                                    </li>
+                                    <li value="7"><a href="macro-language-description.html">6.7 Producing Messages in Macros</a>
+                                    </li>
+                                    <li value="8"><a href="macro-language-description.html">6.8 Using Directives to Format the Output Listing</a>
+                                    </li>
+                                    <li value="9"><a href="macro-language-description.html">6.9 Using Recursive and Nested Macros</a>
+                                    </li>
+                                    <li value="10"><a href="macro-language-description.html">6.10 Macro Directives Summary</a>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li value="8"><a href="archiver-description.html">7 Archiver Description</a>
+                                <ol>
+                                    <li value="1"><a href="archiver-description.html">7.1 Archiver Overview</a>
+                                    </li>
+                                    <li value="2"><a href="archiver-description.html">7.2 The Archiver's Role in the Software Development Flow</a>
+                                    </li>
+                                    <li value="3"><a href="archiver-description.html">7.3 Invoking the Archiver</a>
+                                    </li>
+                                    <li value="4"><a href="archiver-description.html">7.4 Archiver Examples</a>
+                                    </li>
+                                    <li value="5"><a href="archiver-description.html">7.5 Library Information Archiver Description</a>
+                                        <ol>
+                                            <li value="1"><a href="archiver-description.html">7.5.1 Invoking the Library Information Archiver</a>
+                                            </li>
+                                            <li value="2"><a href="archiver-description.html">7.5.2 Library Information Archiver Example</a>
+                                            </li>
+                                            <li value="3"><a href="archiver-description.html">7.5.3 Listing the Contents of an Index Library</a>
+                                            </li>
+                                            <li value="4"><a href="archiver-description.html">7.5.4 Requirements</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li value="9"><a href="linker-description.html">8 Linker Description</a>
+                                <ol>
+                                    <li value="1"><a href="linker-description.html">8.1 Linker Overview</a>
+                                    </li>
+                                    <li value="2"><a href="linker-description.html">8.2 The Linker's Role in the Software Development Flow</a>
+                                    </li>
+                                    <li value="3"><a href="linker-description.html">8.3 Invoking the Linker</a>
+                                    </li>
+                                    <li value="4"><a href="linker-description.html">8.4 Linker Options</a>
+                                        <ol>
+                                            <li value="1"><a href="linker-description.html">8.4.1 Wildcards in File, Section, and Symbol Patterns</a>
+                                            </li>
+                                            <li value="2"><a href="linker-description.html">8.4.2 Specifying C/C++ Symbols with Linker Options</a>
+                                            </li>
+                                            <li value="3"><a href="linker-description.html">8.4.3 Relocation Capabilities (--absolute_exe and --relocatable Options)</a>
+                                                <ol>
+                                                    <li value="1"><a href="linker-description.html">8.4.3.1 Producing an Absolute Output Module (--absolute_exe option)</a>
+                                                    </li>
+                                                    <li value="2"><a href="linker-description.html">8.4.3.2 Producing a Relocatable Output Module (--relocatable option)</a>
+                                                    </li>
+                                                    <li value="3"><a href="linker-description.html">8.4.3.3 Producing an Executable, Relocatable Output Module (-ar Option)</a>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="4"><a href="linker-description.html">8.4.4 Allocate Memory for Use by the Loader to Pass Arguments (--arg_size Option)</a>
+                                            </li>
+                                            <li value="5"><a href="linker-description.html">8.4.5 Changing Encoding of Big-Endian Instructions</a>
+                                            </li>
+                                            <li value="6"><a href="linker-description.html">8.4.6 Compression (--cinit_compression and --copy_compression Option)</a>
+                                            </li>
+                                            <li value="7"><a href="linker-description.html">8.4.7 Compress DWARF Information (--compress_dwarf Option)</a>
+                                            </li>
+                                            <li value="8"><a href="linker-description.html">8.4.8 Control Linker Diagnostics</a>
+                                            </li>
+                                            <li value="9"><a href="linker-description.html">8.4.9 Automatic Library Selection (--disable_auto_rts Option)</a>
+                                            </li>
+                                            <li value="10"><a href="linker-description.html">8.4.10 Do Not Remove Unused Sections (--unused_section_elimination Option)</a>
+                                            </li>
+                                            <li value="11"><a href="linker-description.html">8.4.11 Linker Command File Preprocessing (--disable_pp, --define and --undefine Options)</a>
+                                            </li>
+                                            <li value="12"><a href="linker-description.html">8.4.12 Error Correcting Code Testing (--ecc Options)</a>
+                                            </li>
+                                            <li value="13"><a href="linker-description.html">8.4.13 Define an Entry Point (--entry_point Option)</a>
+                                            </li>
+                                            <li value="14"><a href="linker-description.html">8.4.14 Set Default Fill Value (--fill_value Option)</a>
+                                            </li>
+                                            <li value="15"><a href="linker-description.html">8.4.15 Generate List of Dead Functions (--generate_dead_funcs_list Option)</a>
+                                            </li>
+                                            <li value="16"><a href="linker-description.html">8.4.16 Define Heap Size (--heap_size Option)</a>
+                                            </li>
+                                            <li value="17"><a href="linker-description.html">8.4.17 Hiding Symbols</a>
+                                            </li>
+                                            <li value="18"><a href="linker-description.html">8.4.18 Alter the Library Search Algorithm (--library Option, --search_path Option, and TI_ARM_C_DIR Environment Variable)</a>
+                                                <ol>
+                                                    <li value="1"><a href="linker-description.html">8.4.18.1 Name an Alternate Library Directory (--search_path Option)</a>
+                                                    </li>
+                                                    <li value="2"><a href="linker-description.html">8.4.18.2 Name an Alternate Library Directory (TI_ARM_C_DIR Environment Variable)</a>
+                                                    </li>
+                                                    <li value="3"><a href="linker-description.html">8.4.18.3 Exhaustively Read and Search Libraries (--reread_libs and --priority Options)</a>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="19"><a href="linker-description.html">8.4.19 Change Symbol Localization</a>
+                                                <ol>
+                                                    <li value="1"><a href="linker-description.html">8.4.19.1 Make All Global Symbols Static (--make_static Option)</a>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="20"><a href="linker-description.html">8.4.20 Create a Map File (--map_file Option)</a>
+                                            </li>
+                                            <li value="21"><a href="linker-description.html">8.4.21 Managing Map File Contents (--mapfile_contents Option)</a>
+                                            </li>
+                                            <li value="22"><a href="linker-description.html">8.4.22 Disable Name Demangling (--no_demangle)</a>
+                                            </li>
+                                            <li value="23"><a href="linker-description.html">8.4.23 Disable Merging of Symbolic Debugging Information (--no_sym_merge Option)</a>
+                                            </li>
+                                            <li value="24"><a href="linker-description.html">8.4.24 Strip Symbolic Information (--no_symtable Option)</a>
+                                            </li>
+                                            <li value="25"><a href="linker-description.html">8.4.25 Name an Output Module (--output_file Option)</a>
+                                            </li>
+                                            <li value="26"><a href="linker-description.html">8.4.26 Prioritizing Function Placement (--preferred_order Option)</a>
+                                            </li>
+                                            <li value="27"><a href="linker-description.html">8.4.27 C Language Options (--ram_model and --rom_model Options)</a>
+                                            </li>
+                                            <li value="28"><a href="linker-description.html">8.4.28 Retain Discarded Sections (--retain Option)</a>
+                                            </li>
+                                            <li value="29"><a href="linker-description.html">8.4.29 Create an Absolute Listing File (--run_abs Option)</a>
+                                            </li>
+                                            <li value="30"><a href="linker-description.html">8.4.30 Scan All Libraries for Duplicate Symbol Definitions (--scan_libraries)</a>
+                                            </li>
+                                            <li value="31"><a href="linker-description.html">8.4.31 Define Stack Size (--stack_size Option)</a>
+                                            </li>
+                                            <li value="32"><a href="linker-description.html">8.4.32 Enforce Strict Compatibility (--strict_compatibility Option)</a>
+                                            </li>
+                                            <li value="33"><a href="linker-description.html">8.4.33 Mapping of Symbols (--symbol_map Option)</a>
+                                            </li>
+                                            <li value="34"><a href="linker-description.html">8.4.34 Generate Far Call Trampolines (--trampolines Option)</a>
+                                                <ol>
+                                                    <li value="1"><a href="linker-description.html">8.4.34.1 Advantages and Disadvantages of Using Trampolines</a>
+                                                    </li>
+                                                    <li value="2"><a href="linker-description.html">8.4.34.2 Minimizing the Number of Trampolines Required (--minimize_trampolines Option)</a>
+                                                    </li>
+                                                    <li value="3"><a href="linker-description.html">8.4.34.3 Making Trampoline Reservations Adjacent (--trampoline_min_spacing Option)</a>
+                                                    </li>
+                                                    <li value="4"><a href="linker-description.html">8.4.34.4 Carrying Trampolines From Load Space to Run Space</a>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="35"><a href="linker-description.html">8.4.35 Introduce an Unresolved Symbol (--undef_sym Option)</a>
+                                            </li>
+                                            <li value="36"><a href="linker-description.html">8.4.36 Display a Message When an Undefined Output Section Is Created (--warn_sections)</a>
+                                            </li>
+                                            <li value="37"><a href="linker-description.html">8.4.37 Generate XML Link Information File (--xml_link_info Option)</a>
+                                            </li>
+                                            <li value="38"><a href="linker-description.html">8.4.38 Zero Initialization (--zero_init Option)</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="5"><a href="linker-description.html">8.5 Linker Command Files</a>
+                                        <ol>
+                                            <li value="1"><a href="linker-description.html">8.5.1 Reserved Names in Linker Command Files</a>
+                                            </li>
+                                            <li value="2"><a href="linker-description.html">8.5.2 Constants in Linker Command Files</a>
+                                            </li>
+                                            <li value="3"><a href="linker-description.html">8.5.3 Accessing Files and Libraries from a Linker Command File</a>
+                                            </li>
+                                            <li value="4"><a href="linker-description.html">8.5.4 The MEMORY Directive</a>
+                                                <ol>
+                                                    <li value="1"><a href="linker-description.html">8.5.4.1 Default Memory Model</a>
+                                                    </li>
+                                                    <li value="2"><a href="linker-description.html">8.5.4.2 MEMORY Directive Syntax</a>
+                                                    </li>
+                                                    <li value="3"><a href="linker-description.html">8.5.4.3 Expressions and Address Operators</a>
+                                                    </li>
+                                                    <li value="4"><a href="linker-description.html">8.5.4.4 The ALIAS Statement</a>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="5"><a href="linker-description.html">8.5.5 The SECTIONS Directive</a>
+                                                <ol>
+                                                    <li value="1"><a href="linker-description.html">8.5.5.1 SECTIONS Directive Syntax</a>
+                                                    </li>
+                                                    <li value="2"><a href="linker-description.html">8.5.5.2 Section Allocation and Placement</a>
+                                                        <ol>
+                                                            <li value="1"><a href="linker-description.html">8.5.5.2.1 Example: Placing Functions in RAM</a>
+                                                            </li>
+                                                            <li value="2"><a href="linker-description.html">8.5.5.2.2 Binding</a>
+                                                            </li>
+                                                            <li value="3"><a href="linker-description.html">8.5.5.2.3 Named Memory</a>
+                                                            </li>
+                                                            <li value="4"><a href="linker-description.html">8.5.5.2.4 Controlling Placement Using The HIGH Location Specifier</a>
+                                                            </li>
+                                                            <li value="5"><a href="linker-description.html">8.5.5.2.5 Alignment and Blocking</a>
+                                                            </li>
+                                                            <li value="6"><a href="linker-description.html">8.5.5.2.6 Alignment With Padding</a>
+                                                            </li>
+                                                        </ol>
+                                                    </li>
+                                                    <li value="3"><a href="linker-description.html">8.5.5.3 Specifying Input Sections</a>
+                                                    </li>
+                                                    <li value="4"><a href="linker-description.html">8.5.5.4 Using Multi-Level Subsections</a>
+                                                    </li>
+                                                    <li value="5"><a href="linker-description.html">8.5.5.5 Specifying Library or Archive Members as Input to Output Sections</a>
+                                                    </li>
+                                                    <li value="6"><a href="linker-description.html">8.5.5.6 Allocation Using Multiple Memory Ranges</a>
+                                                    </li>
+                                                    <li value="7"><a href="linker-description.html">8.5.5.7 Automatic Splitting of Output Sections Among Non-Contiguous Memory Ranges</a>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="6"><a href="linker-description.html">8.5.6 Placing a Section at Different Load and Run Addresses</a>
+                                                <ol>
+                                                    <li value="1"><a href="linker-description.html">8.5.6.1 Specifying Load and Run Addresses</a>
+                                                    </li>
+                                                    <li value="2"><a href="linker-description.html">8.5.6.2 Referring to the Load Address by Using the .label Directive</a>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="7"><a href="linker-description.html">8.5.7 Using GROUP and UNION Statements</a>
+                                                <ol>
+                                                    <li value="1"><a href="linker-description.html">8.5.7.1 Grouping Output Sections Together</a>
+                                                    </li>
+                                                    <li value="2"><a href="linker-description.html">8.5.7.2 Overlaying Sections With the UNION Statement</a>
+                                                    </li>
+                                                    <li value="3"><a href="linker-description.html">8.5.7.3 Nesting UNIONs and GROUPs</a>
+                                                    </li>
+                                                    <li value="4"><a href="linker-description.html">8.5.7.4 Checking the Consistency of Allocators</a>
+                                                    </li>
+                                                    <li value="5"><a href="linker-description.html">8.5.7.5 Naming UNIONs and GROUPs</a>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="8"><a href="linker-description.html">8.5.8 Special Section Types (DSECT, COPY, NOLOAD, and NOINIT)</a>
+                                            </li>
+                                            <li value="9"><a href="linker-description.html">8.5.9 Configuring Error Correcting Code (ECC) with the Linker</a>
+                                                <ol>
+                                                    <li value="1"><a href="linker-description.html">8.5.9.1 Using the ECC Specifier in the Memory Map</a>
+                                                    </li>
+                                                    <li value="2"><a href="linker-description.html">8.5.9.2 Using the ECC Directive</a>
+                                                    </li>
+                                                    <li value="3"><a href="linker-description.html">8.5.9.3 Using the VFILL Specifier in the Memory Map</a>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="10"><a href="linker-description.html">8.5.10 Assigning Symbols at Link Time</a>
+                                                <ol>
+                                                    <li value="1"><a href="linker-description.html">8.5.10.1 Syntax of Assignment Statements</a>
+                                                    </li>
+                                                    <li value="2"><a href="linker-description.html">8.5.10.2 Assigning the SPC to a Symbol</a>
+                                                    </li>
+                                                    <li value="3"><a href="linker-description.html">8.5.10.3 Assignment Expressions</a>
+                                                    </li>
+                                                    <li value="4"><a href="linker-description.html">8.5.10.4 Symbols Defined by the Linker</a>
+                                                    </li>
+                                                    <li value="5"><a href="linker-description.html">8.5.10.5 Assigning Exact Start, End, and Size Values of a Section to a Symbol</a>
+                                                    </li>
+                                                    <li value="6"><a href="linker-description.html">8.5.10.6 Why the Dot Operator Does Not Always Work</a>
+                                                    </li>
+                                                    <li value="7"><a href="linker-description.html">8.5.10.7 Address and Dimension Operators</a>
+                                                        <ol>
+                                                            <li value="1"><a href="linker-description.html">8.5.10.7.1 Input Items</a>
+                                                            </li>
+                                                            <li value="2"><a href="linker-description.html">8.5.10.7.2 Output Section</a>
+                                                            </li>
+                                                            <li value="3"><a href="linker-description.html">8.5.10.7.3 GROUPs</a>
+                                                            </li>
+                                                            <li value="4"><a href="linker-description.html">8.5.10.7.4 UNIONs</a>
+                                                            </li>
+                                                        </ol>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="11"><a href="linker-description.html">8.5.11 Creating and Filling Holes</a>
+                                                <ol>
+                                                    <li value="1"><a href="linker-description.html">8.5.11.1 Initialized and Uninitialized Sections</a>
+                                                    </li>
+                                                    <li value="2"><a href="linker-description.html">8.5.11.2 Creating Holes</a>
+                                                    </li>
+                                                    <li value="3"><a href="linker-description.html">8.5.11.3 Filling Holes</a>
+                                                    </li>
+                                                    <li value="4"><a href="linker-description.html">8.5.11.4 Explicit Initialization of Uninitialized Sections</a>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="6"><a href="linker-description.html">8.6 Linker Symbols</a>
+                                        <ol>
+                                            <li value="1"><a href="linker-description.html">8.6.1 Using Linker Symbols in C/C++ Applications</a>
+                                            </li>
+                                            <li value="2"><a href="linker-description.html">8.6.2 Declaring Weak Symbols</a>
+                                            </li>
+                                            <li value="3"><a href="linker-description.html">8.6.3 Resolving Symbols with Object Libraries</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="7"><a href="linker-description.html">8.7 Default Placement Algorithm</a>
+                                        <ol>
+                                            <li value="1"><a href="linker-description.html">8.7.1 How the Allocation Algorithm Creates Output Sections</a>
+                                            </li>
+                                            <li value="2"><a href="linker-description.html">8.7.2 Reducing Memory Fragmentation</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="8"><a href="linker-description.html">8.8 Linker-Generated Copy Tables</a>
+                                        <ol>
+                                            <li value="1"><a href="linker-description.html">8.8.1 Using Copy Tables for Boot Loading</a>
+                                            </li>
+                                            <li value="2"><a href="linker-description.html">8.8.2 Using Built-in Link Operators in Copy Tables</a>
+                                            </li>
+                                            <li value="3"><a href="linker-description.html">8.8.3 Overlay Management Example</a>
+                                            </li>
+                                            <li value="4"><a href="linker-description.html">8.8.4 Generating Copy Tables With the table() Operator</a>
+                                                <ol>
+                                                    <li value="1"><a href="linker-description.html">8.8.4.1 The table() Operator</a>
+                                                    </li>
+                                                    <li value="2"><a href="linker-description.html">8.8.4.2 Boot-Time Copy Tables</a>
+                                                    </li>
+                                                    <li value="3"><a href="linker-description.html">8.8.4.3 Using the table() Operator to Manage Object Components</a>
+                                                    </li>
+                                                    <li value="4"><a href="linker-description.html">8.8.4.4 Linker-Generated Copy Table Sections and Symbols</a>
+                                                    </li>
+                                                    <li value="5"><a href="linker-description.html">8.8.4.5 Splitting Object Components and Overlay Management</a>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="5"><a href="linker-description.html">8.8.5 Compression</a>
+                                                <ol>
+                                                    <li value="1"><a href="linker-description.html">8.8.5.1 Compressed Copy Table Format</a>
+                                                    </li>
+                                                    <li value="2"><a href="linker-description.html">8.8.5.2 Compressed Section Representation in the Object File</a>
+                                                    </li>
+                                                    <li value="3"><a href="linker-description.html">8.8.5.3 Compressed Data Layout</a>
+                                                    </li>
+                                                    <li value="4"><a href="linker-description.html">8.8.5.4 Run-Time Decompression</a>
+                                                    </li>
+                                                    <li value="5"><a href="linker-description.html">8.8.5.5 Compression Algorithms</a>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="6"><a href="linker-description.html">8.8.6 Copy Table Contents</a>
+                                            </li>
+                                            <li value="7"><a href="linker-description.html">8.8.7 General Purpose Copy Routine</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="9"><a href="linker-description.html">8.9 Linker-Generated CRC Tables</a>
+                                        <ol>
+                                            <li value="1"><a href="linker-description.html">8.9.1 The crc_table() Operator</a>
+                                            </li>
+                                            <li value="2"><a href="linker-description.html">8.9.2 Restrictions</a>
+                                            </li>
+                                            <li value="3"><a href="linker-description.html">8.9.3 Examples</a>
+                                            </li>
+                                            <li value="4"><a href="linker-description.html">8.9.4 Interface</a>
+                                            </li>
+                                            <li value="5"><a href="linker-description.html">8.9.5 A Note on the TMS570_CRC64_ISO Algorithm</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="10"><a href="linker-description.html">8.10 Partial (Incremental) Linking</a>
+                                    </li>
+                                    <li value="11"><a href="linker-description.html">8.11 Linking C/C++ Code</a>
+                                        <ol>
+                                            <li value="1"><a href="linker-description.html">8.11.1 Run-Time Initialization</a>
+                                            </li>
+                                            <li value="2"><a href="linker-description.html">8.11.2 Object Libraries and Run-Time Support</a>
+                                            </li>
+                                            <li value="3"><a href="linker-description.html">8.11.3 Setting the Size of the Stack and Heap Sections</a>
+                                            </li>
+                                            <li value="4"><a href="linker-description.html">8.11.4 Initializing and AutoInitialzing Variables at Run Time</a>
+                                            </li>
+                                            <li value="5"><a href="linker-description.html">8.11.5 Initialization of Cinit and Watchdog Timer Hold</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="12"><a href="linker-description.html">8.12 Linker Example</a>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li value="10"><a href="absolute-lister-description.html">9 Absolute Lister Description</a>
+                                <ol>
+                                    <li value="1"><a href="absolute-lister-description.html">9.1 Producing an Absolute Listing</a>
+                                    </li>
+                                    <li value="2"><a href="absolute-lister-description.html">9.2 Invoking the Absolute Lister</a>
+                                    </li>
+                                    <li value="3"><a href="absolute-lister-description.html">9.3 Absolute Lister Example</a>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li value="11"><a href="cross-reference-lister-description.html">10 Cross-Reference Lister Description</a>
+                                <ol>
+                                    <li value="1"><a href="cross-reference-lister-description.html">10.1 Producing a Cross-Reference Listing</a>
+                                    </li>
+                                    <li value="2"><a href="cross-reference-lister-description.html">10.2 Invoking the Cross-Reference Lister</a>
+                                    </li>
+                                    <li value="3"><a href="cross-reference-lister-description.html">10.3 Cross-Reference Listing Example</a>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li value="12"><a href="object-file-utilities.html">11 Object File Utilities</a>
+                                <ol>
+                                    <li value="1"><a href="object-file-utilities.html">11.1 Invoking the Object File Display Utility</a>
+                                    </li>
+                                    <li value="2"><a href="object-file-utilities.html">11.2 Invoking the Disassembler</a>
+                                    </li>
+                                    <li value="3"><a href="object-file-utilities.html">11.3 Invoking the Name Utility</a>
+                                    </li>
+                                    <li value="4"><a href="object-file-utilities.html">11.4 Invoking the Strip Utility</a>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li value="13"><a href="hex-conversion-utility-description.html">12 Hex Conversion Utility Description</a>
+                                <ol>
+                                    <li value="1"><a href="hex-conversion-utility-description.html">12.1 The Hex Conversion Utility's Role in the Software Development Flow</a>
+                                    </li>
+                                    <li value="2"><a href="hex-conversion-utility-description.html">12.2 Invoking the Hex Conversion Utility</a>
+                                        <ol>
+                                            <li value="1"><a href="hex-conversion-utility-description.html">12.2.1 Invoking the Hex Conversion Utility From the Command Line</a>
+                                            </li>
+                                            <li value="2"><a href="hex-conversion-utility-description.html">12.2.2 Invoking the Hex Conversion Utility With a Command File</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="3"><a href="hex-conversion-utility-description.html">12.3 Understanding Memory Widths</a>
+                                        <ol>
+                                            <li value="1"><a href="hex-conversion-utility-description.html">12.3.1 Target Width</a>
+                                            </li>
+                                            <li value="2"><a href="hex-conversion-utility-description.html">12.3.2 Specifying the Memory Width</a>
+                                            </li>
+                                            <li value="3"><a href="hex-conversion-utility-description.html">12.3.3 Partitioning Data Into Output Files</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="4"><a href="hex-conversion-utility-description.html">12.4 The ROMS Directive</a>
+                                        <ol>
+                                            <li value="1"><a href="hex-conversion-utility-description.html">12.4.1 When to Use the ROMS Directive</a>
+                                            </li>
+                                            <li value="2"><a href="hex-conversion-utility-description.html">12.4.2 An Example of the ROMS Directive</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="5"><a href="hex-conversion-utility-description.html">12.5 The SECTIONS Directive</a>
+                                    </li>
+                                    <li value="6"><a href="hex-conversion-utility-description.html">12.6 The Load Image Format (--load_image Option)</a>
+                                        <ol>
+                                            <li value="1"><a href="hex-conversion-utility-description.html">12.6.1 Load Image Section Formation</a>
+                                            </li>
+                                            <li value="2"><a href="hex-conversion-utility-description.html">12.6.2 Load Image Characteristics</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="7"><a href="hex-conversion-utility-description.html">12.7 Excluding a Specified Section</a>
+                                    </li>
+                                    <li value="8"><a href="hex-conversion-utility-description.html">12.8 Assigning Output Filenames</a>
+                                    </li>
+                                    <li value="9"><a href="hex-conversion-utility-description.html">12.9 Image Mode and the --fill Option</a>
+                                        <ol>
+                                            <li value="1"><a href="hex-conversion-utility-description.html">12.9.1 Generating a Memory Image</a>
+                                            </li>
+                                            <li value="2"><a href="hex-conversion-utility-description.html">12.9.2 Specifying a Fill Value</a>
+                                            </li>
+                                            <li value="3"><a href="hex-conversion-utility-description.html">12.9.3 Steps to Follow in Using Image Mode</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="10"><a href="hex-conversion-utility-description.html">12.10 Array Output Format</a>
+                                    </li>
+                                    <li value="11"><a href="hex-conversion-utility-description.html">12.11 Building a Table for an On-Chip Boot Loader</a>
+                                        <ol>
+                                            <li value="1"><a href="hex-conversion-utility-description.html">12.11.1 Description of the Boot Table</a>
+                                            </li>
+                                            <li value="2"><a href="hex-conversion-utility-description.html">12.11.2 The Boot Table Format</a>
+                                            </li>
+                                            <li value="3"><a href="hex-conversion-utility-description.html">12.11.3 How to Build the Boot Table</a>
+                                                <ol>
+                                                    <li value="1"><a href="hex-conversion-utility-description.html">12.11.3.1 Building the Boot Table</a>
+                                                    </li>
+                                                    <li value="2"><a href="hex-conversion-utility-description.html">12.11.3.2 Leaving Room for the Boot Table</a>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="4"><a href="hex-conversion-utility-description.html">12.11.4 Booting From a Device Peripheral</a>
+                                            </li>
+                                            <li value="5"><a href="hex-conversion-utility-description.html">12.11.5 Setting the Entry Point for the Boot Table</a>
+                                            </li>
+                                            <li value="6"><a href="hex-conversion-utility-description.html">12.11.6 Using the ARM Boot Loader</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="12"><a href="hex-conversion-utility-description.html">12.12 Controlling the ROM Device Address</a>
+                                    </li>
+                                    <li value="13"><a href="hex-conversion-utility-description.html">12.13 Control Hex Conversion Utility Diagnostics</a>
+                                    </li>
+                                    <li value="14"><a href="hex-conversion-utility-description.html">12.14 Description of the Object Formats</a>
+                                        <ol>
+                                            <li value="1"><a href="hex-conversion-utility-description.html">12.14.1 ASCII-Hex Object Format (--ascii Option)</a>
+                                            </li>
+                                            <li value="2"><a href="hex-conversion-utility-description.html">12.14.2 Intel MCS-86 Object Format (--intel Option)</a>
+                                            </li>
+                                            <li value="3"><a href="hex-conversion-utility-description.html">12.14.3 Motorola Exorciser Object Format (--motorola Option)</a>
+                                            </li>
+                                            <li value="4"><a href="hex-conversion-utility-description.html">12.14.4 Extended Tektronix Object Format (--tektronix Option)</a>
+                                            </li>
+                                            <li value="5"><a href="hex-conversion-utility-description.html">12.14.5 Texas Instruments SDSMAC (TI-Tagged) Object Format (--ti_tagged Option)</a>
+                                            </li>
+                                            <li value="6"><a href="hex-conversion-utility-description.html">12.14.6 TI-TXT Hex Format (--ti_txt Option)</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li value="14"><a href="sharing-c-c-header-files-with-assembly-source.html">13 Sharing C/C++ Header Files With Assembly Source</a>
+                                <ol>
+                                    <li value="1"><a href="sharing-c-c-header-files-with-assembly-source.html">13.1 Overview of the .cdecls Directive</a>
+                                    </li>
+                                    <li value="2"><a href="sharing-c-c-header-files-with-assembly-source.html">13.2 Notes on C/C++ Conversions</a>
+                                        <ol>
+                                            <li value="1"><a href="sharing-c-c-header-files-with-assembly-source.html">13.2.1 Comments</a>
+                                            </li>
+                                            <li value="2"><a href="sharing-c-c-header-files-with-assembly-source.html">13.2.2 Conditional Compilation (#if/#else/#ifdef/etc.)</a>
+                                            </li>
+                                            <li value="3"><a href="sharing-c-c-header-files-with-assembly-source.html">13.2.3 Pragmas</a>
+                                            </li>
+                                            <li value="4"><a href="sharing-c-c-header-files-with-assembly-source.html">13.2.4 The #error and #warning Directives</a>
+                                            </li>
+                                            <li value="5"><a href="sharing-c-c-header-files-with-assembly-source.html">13.2.5 Predefined symbol _ _ASM_HEADER_ _</a>
+                                            </li>
+                                            <li value="6"><a href="sharing-c-c-header-files-with-assembly-source.html">13.2.6 Usage Within C/C++ asm( ) Statements</a>
+                                            </li>
+                                            <li value="7"><a href="sharing-c-c-header-files-with-assembly-source.html">13.2.7 The #include Directive</a>
+                                            </li>
+                                            <li value="8"><a href="sharing-c-c-header-files-with-assembly-source.html">13.2.8 Conversion of #define Macros</a>
+                                            </li>
+                                            <li value="9"><a href="sharing-c-c-header-files-with-assembly-source.html">13.2.9 The #undef Directive</a>
+                                            </li>
+                                            <li value="10"><a href="sharing-c-c-header-files-with-assembly-source.html">13.2.10 Enumerations</a>
+                                            </li>
+                                            <li value="11"><a href="sharing-c-c-header-files-with-assembly-source.html">13.2.11 C Strings</a>
+                                            </li>
+                                            <li value="12"><a href="sharing-c-c-header-files-with-assembly-source.html">13.2.12 C/C++ Built-In Functions</a>
+                                            </li>
+                                            <li value="13"><a href="sharing-c-c-header-files-with-assembly-source.html">13.2.13 Structures and Unions</a>
+                                            </li>
+                                            <li value="14"><a href="sharing-c-c-header-files-with-assembly-source.html">13.2.14 Function/Variable Prototypes</a>
+                                            </li>
+                                            <li value="15"><a href="sharing-c-c-header-files-with-assembly-source.html">13.2.15 C Constant Suffixes</a>
+                                            </li>
+                                            <li value="16"><a href="sharing-c-c-header-files-with-assembly-source.html">13.2.16 Basic C/C++ Types</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="3"><a href="sharing-c-c-header-files-with-assembly-source.html">13.3 Notes on C++ Specific Conversions</a>
+                                        <ol>
+                                            <li value="1"><a href="sharing-c-c-header-files-with-assembly-source.html">13.3.1 Name Mangling</a>
+                                            </li>
+                                            <li value="2"><a href="sharing-c-c-header-files-with-assembly-source.html">13.3.2 Derived Classes</a>
+                                            </li>
+                                            <li value="3"><a href="sharing-c-c-header-files-with-assembly-source.html">13.3.3 Templates</a>
+                                            </li>
+                                            <li value="4"><a href="sharing-c-c-header-files-with-assembly-source.html">13.3.4 Virtual Functions</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li value="4"><a href="sharing-c-c-header-files-with-assembly-source.html">13.4 Special Assembler Support</a>
+                                        <ol>
+                                            <li value="1"><a href="sharing-c-c-header-files-with-assembly-source.html">13.4.1 Enumerations (.enum/.emember/.endenum)</a>
+                                            </li>
+                                            <li value="2"><a href="sharing-c-c-header-files-with-assembly-source.html">13.4.2 The .define Directive</a>
+                                            </li>
+                                            <li value="3"><a href="sharing-c-c-header-files-with-assembly-source.html">13.4.3 The .undefine/.unasg Directives</a>
+                                            </li>
+                                            <li value="4"><a href="sharing-c-c-header-files-with-assembly-source.html">13.4.4 The $$defined( ) Built-In Function</a>
+                                            </li>
+                                            <li value="5"><a href="sharing-c-c-header-files-with-assembly-source.html">13.4.5 The $$sizeof Built-In Function</a>
+                                            </li>
+                                            <li value="6"><a href="sharing-c-c-header-files-with-assembly-source.html">13.4.6 Structure/Union Alignment and $$alignof( )</a>
+                                            </li>
+                                            <li value="7"><a href="sharing-c-c-header-files-with-assembly-source.html">13.4.7 The .cstring Directive</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li value="15"><a href="symbolic-debugging-directives.html">A Symbolic Debugging Directives</a>
+                                <ol>
+                                    <li value="1"><a href="symbolic-debugging-directives.html">A.1 DWARF Debugging Format</a>
+                                    </li>
+                                    <li value="2"><a href="symbolic-debugging-directives.html">A.2 Debug Directive Syntax</a>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li value="16"><a href="xml-link-information-file-description.html">B XML Link Information File Description</a>
+                                <ol>
+                                    <li value="1"><a href="xml-link-information-file-description.html">B.1 XML Information File Element Types</a>
+                                    </li>
+                                    <li value="2"><a href="xml-link-information-file-description.html">B.2 Document Elements</a>
+                                        <ol>
+                                            <li value="1"><a href="xml-link-information-file-description.html">B.2.1 Header Elements</a>
+                                            </li>
+                                            <li value="2"><a href="xml-link-information-file-description.html">B.2.2 Input File List</a>
+                                            </li>
+                                            <li value="3"><a href="xml-link-information-file-description.html">B.2.3 Object Component List</a>
+                                            </li>
+                                            <li value="4"><a href="xml-link-information-file-description.html">B.2.4 Logical Group List</a>
+                                            </li>
+                                            <li value="5"><a href="xml-link-information-file-description.html">B.2.5 Placement Map</a>
+                                            </li>
+                                            <li value="6"><a href="xml-link-information-file-description.html">B.2.6 Far Call Trampoline List</a>
+                                            </li>
+                                            <li value="7"><a href="xml-link-information-file-description.html">B.2.7 Symbol Table</a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li value="17"><a href="hex-conversion-utility-examples.html">C Hex Conversion Utility Examples</a>
+                                <ol>
+                                    <li value="1"><a href="hex-conversion-utility-examples.html">C.1 Scenario 1 -- Building a Hex Conversion Command File for a Single 8-Bit EPROM</a>
+                                    </li>
+                                    <li value="2"><a href="hex-conversion-utility-examples.html">C.2 Scenario 2 -- Building a Hex Conversion Command File for 16-BIS Code</a>
+                                    </li>
+                                    <li value="3"><a href="hex-conversion-utility-examples.html">C.3 Scenario 3 -- Building a Hex Conversion Command File for Two 8-Bit EPROMs</a>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li value="18"><a href="glossary.html">D Glossary</a>
+                                <ol>
+                                    <li value="1"><a href="glossary.html">D.1 Terminology</a>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li value="19"><a href="revision-history.html">E Revision History</a>
+                                <ol>
+                                    <li value="1"><a href="revision-history.html">E.1 Recent Revisions</a>
+                                    </li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </div><a href="../../Resources/MasterPages/..SPNU118U_HTML/abstract.html">Back to Top</a>
+                    <p /><a href="http://www.go-dsp.com/forms/techdoc/doc_feedback.htm?litnum=SPNU118U&amp;partnum=ARM">Submit Documentation Feedback</a>
+                    <p>Copyright© 2018, Texas Instruments Incorporated. An <a href="important_notice.html">IMPORTANT NOTICE</a> for this document addresses availability, warranty, changes, use in safety-critical applications, intellectual property matters and other important disclaimers.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

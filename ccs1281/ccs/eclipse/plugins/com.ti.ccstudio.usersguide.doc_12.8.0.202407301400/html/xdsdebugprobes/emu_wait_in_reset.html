@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="General overview of the wait in reset feature"> 
+
+<!-- Change the title text for your page -->
+
+<title>Wait in reset</title>
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+#Overview
+
+Wait-In-Reset is a debug feature present on TI devices. 
+
+It keeps the processor or core under debugger control from the first instruction the processor executes. This allows the user to step or run the processor through the first instructions that it executes immediately after reset. This is very useful for debugging software such as boot code or initialization code. 
+
+Wait-In-Reset mode is usually detected based on the state of the EMU0 and EMU1 pins at power up and can be latched on power-on reset. For some devices, Wait-In-Reset mode is implemented by the [ICEPICK](./emu_icepick.html) module.
+
+For some devices, if the card utilizes the proper [JTAG Connectors](./emu_jtag_connectors.html) with the system reset signal under debug control, wait in reset can be done by the debugger. 
+
+Some ARM based chips are designed to implement a similar mechanism without EMU0/EMU1 support.  The mechanism involves setting on-chip ''vector catch'' hardware to provide a breakpoint on processor reset, then issuing the reset and handling that breakpoint.  This may not work for initial power-up in all cores.
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

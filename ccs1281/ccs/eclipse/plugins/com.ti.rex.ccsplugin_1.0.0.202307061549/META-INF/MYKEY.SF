@@ -1,0 +1,124 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: 4riWs2mm1eJBLMqf3qhdV9qXZfvso
+ wmNp0lyLdOw0Bs=
+SHA-256-Digest-Manifest: cFCeHQfWX5iy6tmmxlP3mWF8YCWL6hICDLOuoBVHwLY=
+Created-By: 1.8.0_102 (Oracle Corporation)
+
+Name: plugin.xml
+SHA-256-Digest: rq80QliDnfQ+mBmStyIyfhN5meVy9pX1ghQqmmyW6/A=
+
+Name: com/ti/rex/ccsplugin/OpenExplorerHandler.class
+SHA-256-Digest: g30kSkCIko0RxSBuqFPeSQqf+7SxIYJDLBzjvravqUk=
+
+Name: com/ti/rex/ccsplugin/cloudagent/BrowserExtension$5.class
+SHA-256-Digest: 3RM1/JwsIBN9yGnu6noJOKaMMSmnI6f0h8QUGlw7vv4=
+
+Name: com/ti/rex/ccsplugin/editors/ResourceExplorerPage$2.class
+SHA-256-Digest: LqNY/w9HM9yyb412CYUjwHyQoH9svI6Su4bv/U5Qc8Q=
+
+Name: icons/obj16/navigator.png
+SHA-256-Digest: hKPrf7+chgFqlHtFPA8vTSkoY0zU2BcYr1WXGdp4e7w=
+
+Name: com/ti/rex/ccsplugin/server/Rex3Server$IStateChangeListener.clas
+ s
+SHA-256-Digest: YKZeFTWHYegl77npWRjIrBQerfc+mU7LpRvrQLuIBz8=
+
+Name: com/ti/rex/ccsplugin/IResourceExplorer.class
+SHA-256-Digest: +/599XUGTo+EwnaqO9qJHcnbJFWp1OE0K3xTGxLqoz0=
+
+Name: com/ti/rex/ccsplugin/Utilities$StartServerRunnable.class
+SHA-256-Digest: MM3W6MStP8TmLJbQgVF/BhTp2qNFCmtE8408pjaCeas=
+
+Name: com/ti/rex/ccsplugin/cloudagent/BrowserExtension$1.class
+SHA-256-Digest: QRBXhN6EExi149IkueKVYalPabYDmLGcuMiwBStCpx4=
+
+Name: com/ti/rex/ccsplugin/editors/ResourceExplorerEditorInput$1.class
+SHA-256-Digest: DvZdxH7AGvYFCFwkRnq/XyhFuMcN16XTl55o8IlFxGw=
+
+Name: com/ti/rex/ccsplugin/editors/ResourceExplorerEditor.class
+SHA-256-Digest: bmWiF8gGLW6mL1wInLfzuxQ8uZHChn1KynFL52Z7MKI=
+
+Name: com/ti/rex/ccsplugin/editors/ResourceExplorerEditorInput.class
+SHA-256-Digest: ppQgNTgiZzc+Rw7R+YA81+rTu81zhkDlmQkRPBQSwnY=
+
+Name: proxy-vole_20131209.jar
+SHA-256-Digest: sAe/NVMnl6sF+rhXrIIYQ5f4o+pLr9KTfXGpGL4avo0=
+
+Name: com/ti/rex/ccsplugin/ResourceExplorerPlugin$RexParam.class
+SHA-256-Digest: wSQr/jTGGka5CrmhJMWzwGSSwvXKrUIkgLtb0l531DY=
+
+Name: plugin.properties
+SHA-256-Digest: m2KVCIHUE32904TmwMP3BFaEIfB+dDh3OQlY62RuzSc=
+
+Name: com/ti/rex/ccsplugin/editors/ResourceExplorerPage.class
+SHA-256-Digest: 9OJ8S42PrqDu7/qFViDczmnZJX8uedARpnTCWokqu9o=
+
+Name: com/ti/rex/ccsplugin/ResourceExplorerPlugin.class
+SHA-256-Digest: NFJYW4hXzI48lIHt8qdrXZnyjIzwlrB3FPSyBtw7yaY=
+
+Name: com/ti/rex/ccsplugin/server/Rex3Server.class
+SHA-256-Digest: wtp8pGzVst/rax3P12IexnkYBbf9CNH2LWOkadfekhM=
+
+Name: com/ti/rex/ccsplugin/ResourceExplorerOpener.class
+SHA-256-Digest: 6B+x0rJy1ub2m+XxXIla3dFYDJKNVJ/LehPPlF5CIv0=
+
+Name: com/ti/rex/ccsplugin/messages.properties
+SHA-256-Digest: ocivAy3csGr84Sz/ErdJxgPMfFJUNwlIPXS4UlMSg0A=
+
+Name: com/ti/rex/ccsplugin/cloudagent/BrowserExtension$3.class
+SHA-256-Digest: a5+0AeZQXvTecVqJPlhyX62UKlbKODhJnB9xw8amZwo=
+
+Name: com/ti/rex/ccsplugin/Messages.class
+SHA-256-Digest: pI+yzLakoWr16sYB46x1RX2JJMudRAMpUfV+NWGBvew=
+
+Name: com/ti/rex/ccsplugin/server/Rex3Server$TimeProfile.class
+SHA-256-Digest: fzv8HFoBgc/m6Wc53l9HK4NKOTuCeXsGIwcNZgXMfhA=
+
+Name: com/ti/rex/ccsplugin/cloudagent/BrowserExtension$4.class
+SHA-256-Digest: t9yBx8apDDuRrX2zCVPd67SxFA003wviAkWlvEdQWNk=
+
+Name: com/ti/rex/ccsplugin/editors/ResourceExplorerPage$3.class
+SHA-256-Digest: sek8OdbhHisJc1BvAqJseX73ecZIsQGUxWQIxsN1bwo=
+
+Name: com/ti/rex/ccsplugin/editors/ResourceEditorInputFactory.class
+SHA-256-Digest: yublHfLa5bir+wQnLvfoldmze4EZkeUiV4Dcna3URzk=
+
+Name: com/ti/rex/ccsplugin/server/Rex3ServerListener.class
+SHA-256-Digest: qA/1XJ0s7/0IJ+tdLtk6G3TFXIompsyQiOAt1wgeFF0=
+
+Name: com/ti/rex/ccsplugin/cloudagent/BrowserExtension$2.class
+SHA-256-Digest: uDDmfT74yxkBy+68taEp7hd1yBwPlCVa4lVnj07uxRo=
+
+Name: com/ti/rex/ccsplugin/ResourceExplorerPlugin$Logger.class
+SHA-256-Digest: E2HV7Phj7dBbWTaRCLDtsbbzKL7jDJ1yMPsKIVmBNtU=
+
+Name: com/ti/rex/ccsplugin/cloudagent/BrowserExtension.class
+SHA-256-Digest: xV4/EJXGichFj6W+w9EZfpXEBCzuQeDJVZFTtAC502g=
+
+Name: config.properties
+SHA-256-Digest: lqhDlgBLxsvGOshhm9xtPQdAntbCceLMqMppK6nN4Dw=
+
+Name: com/ti/rex/ccsplugin/Utilities.class
+SHA-256-Digest: 76BVmuNKSEvExW+yCdm/H1tsJXQ6AvOOL0Fjxp+aT2s=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: ak2bzOGDjLurhLXRsFA/N7TRhvaP+YA1QdnivLjcXtk=
+
+Name: com/ti/rex/ccsplugin/Utilities$1.class
+SHA-256-Digest: i8MduXD41JdcJN5qLYS5MHAtPDw8etuV3zFdvVdSW7U=
+
+Name: com/ti/rex/ccsplugin/editors/ProjectWizardEditor.class
+SHA-256-Digest: zZQnyNfLnkTj6mMEJzydY+R/xAEOlHyoUF8n3FEv5qo=
+
+Name: com/ti/rex/ccsplugin/editors/ResourceExplorerPage$1.class
+SHA-256-Digest: JBEdr2muE7bPZDGf02UcMkLT26eMN2kPcjPjMVoNkSk=
+
+Name: com/ti/rex/ccsplugin/server/Rex3Server$Rex3State.class
+SHA-256-Digest: G1MPSC9BNRDhUwXzIZgnlBvxRVVglxh5IMzOadTlhkc=
+
+Name: com/ti/rex/ccsplugin/server/Rex3Server$MonitorThread.class
+SHA-256-Digest: 9PhlDb5J+z7A1Ocg/joETtNptaMfEOQ03abuZTbvgZg=
+
+Name: com/ti/rex/ccsplugin/editors/ResourceExplorerEditor$1.class
+SHA-256-Digest: PbKDlyeKT/DpjeuEHnBcaHExgrMfAcIR63seCkt6rhw=
+

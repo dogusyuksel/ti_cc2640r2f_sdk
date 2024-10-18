@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="The General Extension Language (GEL)">
+    <topic label="GEL Grammar" href="html/users_guide/gel/grammar.html">
+      <topic label="GEL Function Definition" href="html/users_guide/gel/function.html"/>
+      <topic href="html/users_guide/gel/param.html" label="GEL Function Parameters">
+      </topic>
+      <topic label="Calling GEL Functions" href="html/users_guide/gel/calling.html"/>
+      <topic label="Local Variables for Functions" href="html/users_guide/gel/local.html"/>
+      <topic label="Function Recursion" href="html/users_guide/gel/recursion.html"/>
+      <topic label="GEL return Statement" href="html/users_guide/gel/return.html"/>
+      <topic label="GEL if and if-else Statements" href="html/users_guide/gel/if.html"/>
+      <topic label="GEL for Statement" href="html/users_guide/gel/for.html"/>
+      <topic label="GEL while and do-while Statements" href="html/users_guide/gel/while.html"/>
+      <topic label="GEL break Statement" href="html/users_guide/gel/break.html"/>
+      <topic href="html/users_guide/gel/io.html" label="File I/O Functions">
+      </topic>
+      <topic href="html/users_guide/gel/hw_brkpt.html" label="Hardware Breakpoints">
+      </topic>
+      <topic label="GEL Comments" href="html/users_guide/gel/comments.html"/>
+      <topic label="GEL Preprocessing Statements" href="html/users_guide/gel/preprocessing.html"/>
+      <topic href="html/users_guide/gel/cond_brkpt.html" label="Conditional Breakpoints">
+      </topic>
+      <topic href="html/users_guide/gel/cpp_limit.html" label="C++ Limitations within GEL Expressions">
+      </topic>
+      <topic href="html/users_guide/gel/cpp_support.html" label="C++ Support within GEL Expressions">
+      </topic>
+      <topic label="GEL Expression Evaluation" href="html/users_guide/gel/expression.html"/>
+      <topic href="html/users_guide/gel/format.html" label="Format Specifiers">
+      </topic>
+      <topic label="Global Variables for GEL Functions" href="html/users_guide/gel/global.html"/>
+      <topic href="html/users_guide/gel/namespace.html" label="GEL Namespace">
+      </topic>
+      <topic href="html/users_guide/gel/shared_mem.html" label="Defining Shared Memory">
+      </topic>
+      <topic href="html/users_guide/gel/sym_expr.html" label="Using Symbols as Expressions">
+      </topic>
+      <topic href="html/users_guide/gel/registers.html" label="Register access">
+      </topic>
+      <topic href="html/users_guide/gel/debug.html" label="GEL Debugging">
+         <topic href="html/users_guide/gel/debug.html#gel-trace" label="GEL_Trace">
+         </topic>
+      </topic>
+    </topic>
+    <topic label="Built-In GEL Functions" href="html/users_guide/gel/built-in.html">
+       <topic href="html/users_guide/gel/changes.html" label="Legacy unsupported functions">
+       </topic>
+      <topic label="Synchronous Options" href="html/users_guide/gel/sync.html">
+      </topic>
+    </topic>
+    <topic label="GEL Macros" href="html/users_guide/gel/macros.html">
+    </topic>
+    <topic label="Loading and Unloading GEL Files" href="html/users_guide/gel/files.html">
+    </topic>
+    <topic href="html/users_guide/gel/targetconfig.html" label="Adding GEL Files to a Target Configuration">
+    </topic>
+    <topic href="html/users_guide/gel/production.html" label="Moving GEL Initialization to Production Code">
+    </topic>
+    <topic label="Adding GEL Functions to the GEL Menu Using Keywords" href="html/users_guide/gel/menu_bar.html">
+      <topic label="The hotmenu Keyword" href="html/users_guide/gel/hotmenu.html">
+      </topic>
+      <topic label="The dialog Keyword" href="html/users_guide/gel/dialog.html">
+      </topic>
+      <topic label="The slider Keyword" href="html/users_guide/gel/slider.html">
+      </topic>
+    </topic>
+          <topic label="GEL Functions Alphabetical List" href="html/users_guide/gel/functions_list.html">
+        <topic label="GEL_AddInputFile()" href="html/users_guide/gel/GEL_AddInputFile.html"/>
+        <topic label="GEL_AddOutputFile()" href="html/users_guide/gel/GEL_AddOutputFile.html"/>
+        <topic label="GEL_AdvancedReset()" href="html/users_guide/gel/GEL_AdvancedReset.html"/>
+        <topic label="GEL_Animate()" href="html/users_guide/gel/GEL_Animate.html"/>
+        <topic label="GEL_AsmStepInto()" href="html/users_guide/gel/GEL_AsmStepInto.html"/>
+        <topic label="GEL_AsmStepOver()" href="html/users_guide/gel/GEL_AsmStepOver.html"/>
+        <topic label="GEL_BreakPtAdd()" href="html/users_guide/gel/GEL_BreakPtAdd.html"/>
+        <topic label="GEL_BreakPtDel()" href="html/users_guide/gel/GEL_BreakPtDel.html"/>
+        <topic label="GEL_BreakPtDisable" href="html/users_guide/gel/GEL_BreakPtDisable.html"/>
+        <topic label="GEL_BreakPtReset()" href="html/users_guide/gel/GEL_BreakPtReset.html"/>
+        <topic label="GEL_CancelTimer()" href="html/users_guide/gel/GEL_CancelTimer.html"/>
+        <topic label="GEL_ClearProfileConfiguration()" href="html/users_guide/gel/GEL_ClearProfileConfiguration.html"/>
+        <topic href="html/users_guide/gel/GEL_Connect.html" label="GEL_Connect()">
+        </topic>
+		<topic label="GEL_DisableFileOutput()" href="html/users_guide/gel/GEL_DisableFileOutput.html"/>
+        <topic label="GEL_DisableRealtime()" href="html/users_guide/gel/GEL_DisableRealtime.html"/>
+        <topic label="GEL_Disconnect()" href="html/users_guide/gel/GEL_Disconnect.html"/>
+        <topic label="GEL_EnableClock()" href="html/users_guide/gel/GEL_EnableClock.html"/>
+		<topic label="GEL_EnableFileOutput()" href="html/users_guide/gel/GEL_EnableFileOutput.html"/>
+        <topic label="GEL_EnableRealtime()" href="html/users_guide/gel/GEL_EnableRealtime.html"/>
+        <topic href="html/users_guide/gel/GEL_EnableZeroFill.html" label="GEL_EnableZeroFill">
+        </topic>
+        <topic label="GEL_EvalOnTarget()" href="html/users_guide/gel/GEL_EvalOnTarget.html"/>
+        <topic label="GEL_Go()" href="html/users_guide/gel/GEL_Go.html"/>
+        <topic label="GEL_Halt()" href="html/users_guide/gel/GEL_Halt.html"/>
+        <topic href="html/users_guide/gel/GEL_HandleTargetError.html" label="GEL_HandleTargetError()">
+        </topic>
+        <topic label="GEL_HWBreakPtAdd()" href="html/users_guide/gel/GEL_HWBreakPtAdd.html"/>
+        <topic label="GEL_HWBreakPtDel()" href="html/users_guide/gel/GEL_HWBreakPtDel.html"/>
+        <topic label="GEL_HWBreakPtDisable" href="html/users_guide/gel/GEL_HWBreakPtDisable.html"/>
+        <topic label="GEL_HWBreakPtReset()" href="html/users_guide/gel/GEL_HWBreakPtReset.html"/>
+        <topic label="GEL_IsConnected()" href="html/users_guide/gel/GEL_IsConnected.html"/>
+        <topic label="GEL_IsHalted()" href="html/users_guide/gel/GEL_IsHalted.html"/>
+        <topic label="GEL_IsInRealTimeMode()" href="html/users_guide/gel/GEL_IsInRealTimeMode.html"/>
+        <topic label="GEL_Load()" href="html/users_guide/gel/GEL_Load.html"/>
+        <topic label="GEL_LoadGel()" href="html/users_guide/gel/GEL_LoadGel.html"/>
+        <topic label="GEL_LoadProfileConfiguration()" href="html/users_guide/gel/GEL_LoadProfileConfiguration.html"/>
+        <topic label="GEL_LowPowerRun()" href="html/users_guide/gel/GEL_LowPowerRun.html"/>
+        <topic label="GEL_MapAdd()" href="html/users_guide/gel/GEL_MapAdd.html"/>
+        <topic label="GEL_MapAddStr()" href="html/users_guide/gel/GEL_MapAddStr.html"/>
+        <topic label="GEL_MapDelete()" href="html/users_guide/gel/GEL_MapDelete.html"/>
+        <topic label="GEL_MapOff()" href="html/users_guide/gel/GEL_MapOff.html"/>
+        <topic label="GEL_MapOn()" href="html/users_guide/gel/GEL_MapOn.html"/>
+        <topic label="GEL_MapReset()" href="html/users_guide/gel/GEL_MapReset.html"/>
+        <topic label="GEL_MemoryFill()" href="html/users_guide/gel/GEL_MemoryFill.html"/>
+        <topic href="html/users_guide/gel/GEL_MemoryListSupportedTypes.html" label="GEL_MemoryListSupportedTypes()">
+        </topic>
+        <topic label="GEL_MemoryLoad()" href="html/users_guide/gel/GEL_MemoryLoad.html"/>
+        <topic href="html/users_guide/gel/GEL_MemoryLoadData.html" label="GEL_MemoryLoadData()">
+        </topic>
+        <topic href="html/users_guide/gel/GEL_MemorySave.html" label="GEL_MemorySave()">
+        </topic>
+        <topic href="html/users_guide/gel/GEL_MemorySaveData.html" label="GEL_MemorySaveData()">
+        </topic>
+        <topic href="html/users_guide/gel/GEL_MemorySaveHex.html" label="GEL_MemorySaveHex()">
+        </topic>
+        <topic label="GEL_PatchAssembly()" href="html/users_guide/gel/GEL_PatchAssembly.html"/>
+        <topic label="GEL_PinConnect()" href="html/users_guide/gel/GEL_PinConnect.html"/>
+        <topic label="GEL_PinDisconnect()" href="html/users_guide/gel/GEL_PinDisconnect.html"/>
+        <topic label="GEL_PortConnect()" href="html/users_guide/gel/GEL_PortConnect.html"/>
+        <topic label="GEL_PortDisconnect()" href="html/users_guide/gel/GEL_PortDisconnect.html"/>
+        <topic label="GEL_ProbePtAdd()" href="html/users_guide/gel/GEL_ProbePtAdd.html"/>
+        <topic label="GEL_ProbePtDel()" href="html/users_guide/gel/GEL_ProbePtDel.html"/>
+        <topic label="GEL_ProbePtDisable" href="html/users_guide/gel/GEL_ProbePtDisable.html"/>
+        <topic label="GEL_ProbePtReset()" href="html/users_guide/gel/GEL_ProbePtReset.html"/>
+        <topic label="GEL_RefreshWindows()" href="html/users_guide/gel/GEL_RefreshWindows.html"/>
+        <topic label="GEL_RemoveDebugState()" href="html/users_guide/gel/GEL_RemoveDebugState.html"/>
+        <topic label="GEL_RemoveInputFile()" href="html/users_guide/gel/GEL_RemoveInputFile.html"/>
+        <topic label="GEL_RemoveOutputFile()" href="html/users_guide/gel/GEL_RemoveOutputFile.html"/>
+        <topic label="GEL_Reset()" href="html/users_guide/gel/GEL_Reset.html"/>
+        <topic label="GEL_Restart()" href="html/users_guide/gel/GEL_Restart.html"/>
+        <topic label="GEL_RestoreDebugState()" href="html/users_guide/gel/GEL_RestoreDebugState.html"/>
+        <topic label="GEL_Run()" href="html/users_guide/gel/GEL_Run.html"/>
+        <topic label="GEL_RunF()" href="html/users_guide/gel/GEL_RunF.html"/>
+        <topic label="GEL_SetBlockResetMode()" href="html/users_guide/gel/GEL_SetBlockResetMode.html"/>
+        <topic href="html/users_guide/gel/GEL_SetSemihostingMainArgs.html" label="GEL_SetSemihostingMainArgs()">
+        </topic>
+        <topic label="GEL_SetSimMode()" href="html/users_guide/gel/GEL_SetSimMode.html"/>
+        <topic label="GEL_SetTimer()" href="html/users_guide/gel/GEL_SetTimer.html"/>
+        <topic label="GEL_SetWaitInResetMode()" href="html/users_guide/gel/GEL_SetWaitInResetMode.html"/>
+        <topic label="GEL_SrcStepInto()" href="html/users_guide/gel/GEL_SrcStepInto.html"/>
+        <topic label="GEL_SrcStepOver()" href="html/users_guide/gel/GEL_SrcStepOver.html"/>
+        <topic label="GEL_StepInto()" href="html/users_guide/gel/GEL_StepInto.html"/>
+        <topic label="GEL_StepOut()" href="html/users_guide/gel/GEL_StepOut.html"/>
+        <topic href="html/users_guide/gel/GEL_StepOver.html" label="GEL_StepOver()">
+        </topic>
+        <topic href="html/users_guide/gel/GEL_StrCat.html" label="GEL_StrCat()">
+        </topic>
+        <topic href="html/users_guide/gel/GEL_StrLen.html" label="GEL_StrLen()">
+        </topic>
+        <topic href="html/users_guide/gel/GEL_SubStr.html" label="GEL_SubStr()">
+        </topic>
+        <topic label="GEL_SymbolAdd()" href="html/users_guide/gel/GEL_SymbolAdd.html"/>
+        <topic label="GEL_SymbolAddRel()" href="html/users_guide/gel/GEL_SymbolAddRel.html"/>
+        <topic label="GEL_SymbolHideSection()" href="html/users_guide/gel/GEL_SymbolHideSection.html"/>
+        <topic label="GEL_SymbolLoad()" href="html/users_guide/gel/GEL_SymbolLoad.html"/>
+        <topic label="GEL_SymbolLoadRel()" href="html/users_guide/gel/GEL_SymbolLoadRel.html"/>
+        <topic label="GEL_SymbolRemove()" href="html/users_guide/gel/GEL_SymbolRemove.html"/>
+        <topic label="GEL_SymbolShowSection()" href="html/users_guide/gel/GEL_SymbolShowSection.html"/>
+        <topic label="GEL_SyncHalt()" href="html/users_guide/gel/GEL_SyncHalt.html"/>
+        <topic label="GEL_SyncRun()" href="html/users_guide/gel/GEL_SyncRun.html"/>
+        <topic label="GEL_SyncStepInto()" href="html/users_guide/gel/GEL_SyncStepInto.html"/>
+        <topic label="GEL_SyncStepOut()" href="html/users_guide/gel/GEL_SyncStepOut.html"/>
+        <topic label="GEL_SyncStepOver()" href="html/users_guide/gel/GEL_SyncStepOver.html"/>
+        <topic label="GEL_System()" href="html/users_guide/gel/GEL_System.html"/>
+        <topic label="GEL_TargetTextOut()" href="html/users_guide/gel/GEL_TargetTextOut.html"/>
+        <topic label="GEL_TextOut()" href="html/users_guide/gel/GEL_TextOut.html"/>
+        <topic href="html/users_guide/gel/GEL_Trace.html" label="GEL_Trace()">
+        </topic>
+        <topic href="html/users_guide/gel/GEL_UnloadAllGels.html" label="GEL_UnloadAllGELs()">
+        </topic>
+        <topic label="GEL_UnloadAllSymbols()" href="html/users_guide/gel/GEL_UnloadAllSymbols.html"/>
+        <topic label="GEL_UnloadGel()" href="html/users_guide/gel/GEL_UnloadGel.html"/>
+        <topic label="GEL_VerifyProgram()" href="html/users_guide/gel/GEL_VerifyProgram.html"/>
+        <topic label="OnChildRunning()" href="html/users_guide/gel/OnChildRunning.html"/>
+        <topic label="OnFileLoaded()" href="html/users_guide/gel/OnFileLoaded.html"/>
+        <topic label="OnHalt()" href="html/users_guide/gel/OnHalt.html"/>
+        <topic href="html/users_guide/gel/OnPreFileLoaded.html" label="OnPreFileLoaded()">
+        </topic>
+        <topic href="html/users_guide/gel/OnPreTargetConnect.html" label="OnPreTargetConnect()">
+        </topic>
+        <topic label="OnReset()" href="html/users_guide/gel/OnReset.html"/>
+        <topic label="OnResetDetected()" href="html/users_guide/gel/OnResetDetected.html"/>
+        <topic label="OnRestart()" href="html/users_guide/gel/OnStart.html"/>
+        <topic href="html/users_guide/gel/OnTargetConnect.html" label="OnTargetConnect()">
+        </topic>
+      </topic>
+</toc>

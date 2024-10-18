@@ -1,0 +1,13 @@
+var xmlHelpSystemData = "";
+xmlHelpSystemData += '<?xml version=\"1.0\" encoding=\"utf-8\"?>';
+xmlHelpSystemData += '<WebHelpSystem DefaultUrl=\"Content/SLAU132R_HTML/abstract.html\" Toc=\"Data/Toc.js\" Index=\"Data/Index.js\" Concepts=\"Data/Concepts.js\" BrowseSequence=\"Data/BrowseSequence.js\" Glossary=\"Data/Glossary.js\" SearchDatabase=\"Data/Search.js\" Synonyms=\"Data/Synonyms.xml\" SkinName=\"TI_logo_Skin\" SkinID=\"TI_logo_Skin\" Multilingual=\"false\" Skins=\"TI_logo_Skin\" BuildTime=\"1/17/2018 2:45:34 PM\" BuildVersion=\"12.0.5991.25330\" TargetType=\"WebHelp2\" SkinTemplateFolder=\"Skin/\" InPreviewMode=\"false\" MoveOutputContentToRoot=\"false\" ReplaceReservedCharacters=\"false\" MakeFileLowerCase=\"false\" UseCustomTopicFileExtension=\"false\" PreventExternalUrls=\"false\" EnableResponsiveOutput=\"true\" IncludeGlossarySearchResults=\"true\" ResultsPerPage=\"10\" xml:lang=\"en-us\" LanguageName=\"English\">';
+xmlHelpSystemData += '    <CatapultSkin Version=\"2\" SkinType=\"WebHelp2\" Comment=\"HTML5 skin\" Anchors=\"Width,Height\" Width=\"800\" Height=\"600\" Top=\"0\" Left=\"0\" Bottom=\"0\" Right=\"0\" Tabs=\"TOC\" DefaultTab=\"TOC\" UseBrowserDefaultSize=\"true\" UseDefaultBrowserSetup=\"True\" NavigationLinkTop=\"false\" Title=\"MSP430 Optimizing C/C++ Compiler v18.1.0.LTS User\'s Guide (Rev. R)\" EnableResponsiveOutput=\"true\" AutoSyncTOC=\"true\" Name=\"TI_logo_Skin\" SkinID=\"TI_logo_Skin\" SkinClass=\"_Skins_TI_logo_Skin\" HideNavOnStartup=\"False\" LogoUrl=\"\">';
+xmlHelpSystemData += '        <Toolbar EnableCustomLayout=\"true\" Buttons=\"Print|Separator|TopicRatings|Separator|Filler|PreviousTopic|CurrentTopicIndex|NextTopic\">';
+xmlHelpSystemData += '            <Script>$(document).ready(function(){';
+xmlHelpSystemData += '   $(\"div#header&gt;a\").attr(\"href\", \"http://www.ti.com/\");';
+xmlHelpSystemData += '});</Script>';
+xmlHelpSystemData += '        </Toolbar>';
+xmlHelpSystemData += '        <WebHelpOptions HideNavigationOnStartup=\"false\" />';
+xmlHelpSystemData += '    </CatapultSkin>';
+xmlHelpSystemData += '</WebHelpSystem>';
+MadCap.Utilities.Xhr._FilePathToXmlStringMap.Add('HelpSystem', xmlHelpSystemData);

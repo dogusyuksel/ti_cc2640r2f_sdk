@@ -1,0 +1,1810 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset="utf-8" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>4 Assembler Description</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../Resources/Stylesheets/headerfooter.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="content">
+            <div id="contentBody">
+                <div class="row collapse">
+                    <div class="sideContent">
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                    <div id="loadContentArea">
+                        <div class="c12 docHeader">
+                            <div class="c4 docTitle">
+                                <p>
+                                    <strong>MSP430 Assembly
+							Language Tools
+			v18.1.0.LTS User's Guide</strong>
+                                    <br />
+                                    <span id="litnumber">SLAU131R</span> - REVISED JANUARY 2018</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="odsHeader">
+                        <p class="pdf">
+                            <a class="downloadPDF" href="http://www.ti.com/litv/SLAU131R" target="_new">Download PDF</a>
+                        </p>
+                    </div>
+                    <div id="loadContentArea1">
+                        <div class="subsection">
+                            <h2 id="STDZ0710625">
+                                <a MadCap:generatedBookmark="TOC" name="4_Assembler_Description">
+                                </a>
+                                <span class="section-label">4 </span>Assembler Description</h2>
+                            <div class="subsection">
+                                <p> The <span>MSP430</span> assembler translates assembly language source files into machine language object files. These files are object modules, which are discussed in <span class="crossreference"><a href="introduction-to-object-modules.html#STDZ0690623">Section 2</a></span>. Source files can contain the following assembly language elements:</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                            <col />
+                                            <col />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr class="noBorderBottom">
+                                                <td class="noBorderRight noBorderBottom" />
+                                                <td class="noBorderRight noBorderBottom">Assembler directives</td>
+                                                <td class="noBorderBottom">described in <span class="crossreference"><a href="assembler-directives.html#STDZ0720639">Section 5</a></span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr class="noBorderBottom">
+                                                <td class="noBorderRight noBorderBottom" />
+                                                <td class="noBorderRight noBorderBottom">Macro directives</td>
+                                                <td class="noBorderBottom">described in <span class="crossreference"><a href="macro-language-description.html#STDZ0730691">Section 6</a></span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="noBorderRight" />
+                                                <td class="noBorderRight">Assembly language instructions</td>
+                                                <td>described in the <i></i><span><i>MSP430x1xx Family User's Guide</i>, <i>MSP430x3xx Family User's Guide</i>, or <i>MSP430x4xx Family User's Guide</i></span>.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0713520">
+                                    <a MadCap:generatedBookmark="TOC" name="4.1_Assembler_Overview">
+                                    </a>
+                                    <span class="section-label">4.1 </span>Assembler Overview</h3>
+                                <p>The 2-pass assembler does the following: </p>
+                                <ul>
+                                    <li value="1">Processes the source statements in a text file to produce a relocatable object file</li>
+                                    <li value="2">Produces a source listing (if requested) and provides you with control over this listing</li>
+                                    <li value="3">Allows you to divide your code into sections and maintain a section program counter (SPC) for each section of object code</li>
+                                    <li value="4">Defines and references global symbols and appends a cross-reference listing to the source listing (if requested)</li>
+                                    <li value="5">Allows conditional assembly</li>
+                                    <li value="6">Supports macros, allowing you to define macros inline or in a library</li>
+                                </ul>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0711445">
+                                    <a MadCap:generatedBookmark="TOC" name="4.2_The_Assembler's_Role_in_the_Software_Development_Flow">
+                                    </a>
+                                    <span class="section-label">4.2 </span>The Assembler's Role in the Software Development Flow</h3>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="#STDZ0714065">Figure 4-1</a>
+                                    </span> illustrates the assembler's role in the software development flow. The shaded portion highlights the most common assembler development path. The assembler accepts assembly language source files as input, both those you create and those created by the <span>MSP430</span> C/C++ compiler.</p>
+                                <div class="figure">
+                                    <span class="caption" id="STDZ0714065">
+                                        <span class="figure-label">Figure 4-1 </span>The Assembler in the <span>MSP430 </span>Software Development Flow</span> <img alt="assyflow_lau131.gif" itemprop="image" src="ods/images/SLAU131R/assyflow_lau131.gif" title="The Assembler in the&#xA;    MSP430 Software Development&#xA;    Flow" /> </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0719026">
+                                    <a MadCap:generatedBookmark="TOC" name="4.3_Invoking_the_Assembler">
+                                    </a>
+                                    <span class="section-label">4.3 </span>Invoking the Assembler</h3>
+                                <p>To invoke the assembler, enter the following:</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col align="left" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr valign="middle">
+                                                <td align="left" valign="middle"> <b> <span>cl430</span></b><i>input file</i> [<i>options</i>]</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                            <col />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td class="noBorderRight noBorderBottom"> <b> <span>cl430</span></b> <![CDATA[ ]]></td>
+                                                <td class="noBorderRight noBorderBottom">is the command that invokes the assembler through the compiler. The compiler considers any file with an .asm extension to be an assembly file and invokes the assembler.</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="noBorderRight noBorderBottom"> <i>input file</i> <![CDATA[ ]]></td>
+                                                <td class="noBorderRight noBorderBottom">names the assembly language source file.</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="noBorderRight noBorderBottom"> <i>options</i> <![CDATA[ ]]></td>
+                                                <td class="noBorderRight noBorderBottom">
+                                                    <p> identify the assembler options that you want to use. Options are case sensitive and can appear anywhere on the command line following the command. Precede each option with one or two hyphens as shown.</p>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>The valid assembler options are listed in <span class="crossreference"><a href="#STDZ0713182">Table 4-1</a></span>. </p>
+                                <p>
+                                    <span>Some runtime model options such as --code_model and --silicon version influence the behavior of the assembler. These options are passed to the compiler, assembler, and linker from the shell utility, which is detailed in the <i>MSP430 Optimizing C/C++ Compiler User's Guide.</i></span>
+                                </p>
+                                <div class="subsection">
+                                    <p class="table" id="STDZ0713182">
+                                        <span class="table-label">Table 4-1 </span>
+                                        <span>MSP430</span> Assembler Options </p>
+                                    <table class="gentable">
+                                        <colgroup>
+                                            <col />
+                                            <col />
+                                            <col />
+                                        </colgroup>
+                                        <thead class="tbl_hdr_gray">
+                                            <tr>
+                                                <th>Option</th>
+                                                <th>Alias</th>
+                                                <th>Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr valign="top">
+                                                <td> <b>--absolute_listing</b> <![CDATA[ ]]></td>
+                                                <td> <b>-aa</b> <![CDATA[ ]]></td>
+                                                <td>Creates an absolute listing. When you use --absolute_listing, the assembler does not produce an object file. The --absolute_listing option is used in conjunction with the absolute lister.</td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td> <b>--asm_define</b>=<i>name</i>[=<i>def</i>]</td>
+                                                <td> <b>-ad</b> <![CDATA[ ]]></td>
+                                                <td>Sets the <i>name</i> symbol. This is equivalent to defining <i>name</i> with a .set directive in the case of a numeric value or with an .asg directive otherwise. If <i>value</i> is omitted, the symbol is set to 1. See <span class="crossreference"><a href="#STDZ0715466">Section 4.8.5</a></span>.</td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td> <b>--asm_dependency</b></td>
+                                                <td> <b>-apd</b> <![CDATA[ ]]></td>
+                                                <td>Performs preprocessing for assembly files, but instead of writing preprocessed output, writes a list of dependency lines suitable for input to a standard make utility. The list is written to a file with the same name as the source file but with a .ppa extension.</td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td> <b>--asm_includes</b></td>
+                                                <td> <b>-api</b> <![CDATA[ ]]></td>
+                                                <td>Performs preprocessing for assembly files, but instead of writing preprocessed output, writes a list of files included with the .include directive. The list is written to a file with the same name as the source file but with a .ppa extension.</td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td> <b>--asm_listing</b></td>
+                                                <td> <b>-al</b> <![CDATA[ ]]></td>
+                                                <td>Produces a listing file with the same name as the input file with a .lst extension.</td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td> <b>--asm_listing_cross_reference</b></td>
+                                                <td> <b>-ax</b> <![CDATA[ ]]></td>
+                                                <td>Produces a cross-reference table and appends it to the end of the listing file<span>; it also adds cross-reference information to the object file for use by the cross-reference utility</span>. If you do not request a listing file but use the --asm_listing_cross_reference option, the assembler creates a listing file automatically, naming it with the same name as the input file with a .lst extension.</td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td> <b>--asm_undefine</b>=<i>name</i></td>
+                                                <td> <b>-au</b> <![CDATA[ ]]></td>
+                                                <td>Undefines the predefined constant <i>name</i>, which overrides any --asm_define options for the specified constant.</td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td> <b>--cmd_file</b>=<i>filename</i></td>
+                                                <td> <b>-@</b> <![CDATA[ ]]></td>
+                                                <td>Appends the contents of a file to the command line. You can use this option to avoid limitations on command line length imposed by the host operating system. Use an asterisk or a semicolon (* or ;) at the beginning of a line in the command file to include comments. Comments that begin in any other column must begin with a semicolon. Within the command file, filenames or option parameters containing embedded spaces or hyphens must be surrounded with quotation marks. For example: "this-file.asm"</td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td> <b>--include_file</b>=<i>filename</i></td>
+                                                <td> <b>-ahi</b> <![CDATA[ ]]></td>
+                                                <td>Includes the specified file for the assembly module. The file is included before source file statements. The included file does not appear in the assembly listing files.</td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td> <b>--include_path</b>=<i>pathname</i></td>
+                                                <td> <b>-I</b> <![CDATA[ ]]></td>
+                                                <td>Specifies a directory where the assembler can find files named by the .copy, .include, or .mlib directives. There is no limit to the number of directories you can specify in this manner; each pathname must be preceded by the --include_path option. See <span class="crossreference"><a href="#STDZ0715094">Section 4.5.1</a></span>.</td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td> <b>--quiet</b></td>
+                                                <td> <b>-q</b> <![CDATA[ ]]></td>
+                                                <td>Suppresses the banner and progress information (assembler runs in quiet mode).</td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td> <b>--silicon_version={msp</b>|<b>mspx}</b></td>
+                                                <td />
+                                                <td>Selects the instruction set version. Using --silicon_version=mspx generates code for MSP430x devices (20-bit code addresses). Using --silicon_version=msp generates code for 16-bit MSP430 devices. <p>Modules assembled/compiled for 16-bit MSP devices are not compatible with modules that are assembled/compiled for 20-bit MSPx devices. The linker generates errors if an attempt is made to combine incompatible object files.</p></td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td> <b>--symdebug:dwarf</b> or <br /><b>--symdebug:none</b></td>
+                                                <td> <b>-g</b> <![CDATA[ ]]></td>
+                                                <td>(DWARF is on by default) Enables assembler source debugging in the C source debugger. Line information is output to the object module for every line of source in the assembly language source file. You cannot use this option on assembly code that contains .line directives. See <span class="crossreference"><a href="#STDZ0716489">Section 4.12</a></span>.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0586x430">
+                                    <a MadCap:generatedBookmark="TOC" name="4.4_Controlling_Application_Binary_Interface">
+                                    </a>
+                                    <span class="section-label">4.4 </span>Controlling Application Binary Interface</h3>
+                                <p> An Application Binary Interface (ABI) defines the low level interface between object files, and between an executable and its execution environment. The ABI exists to allow ABI-compliant object code to link together, regardless of its source, and allows the resulting executable to run on any system that supports that ABI. <span>See the <i>MSP430 Optimizing C/C++ Compiler User's Guide</i> (<a href="http://www.ti.com/lit/pdf/SLAU132" target="_blank">SLAU132</a>) and <i>The MSP430 Embedded Application Binary Interface Application Report</i> (<a href="http://www.ti.com/lit/pdf/SLAA534" target="_blank">SLAA534</a>) for information on the EABI ABI.</span></p>
+                                <p>COFF object files are not supported in v15.6.0.STS and later versions of the TI Code Generation Tools. If you would like to produce COFF output files, please use <span>v4.4 of the MSP430 Code Generation Tools and refer to <a href="http://www.ti.com/lit/pdf/slau131J" target="_blank">SLAU131J</a> for documentation.</span></p>
+                                <p>All object files in an EABI application must be built for EABI. The linker detects situations where object modules conform to different ABIs and generates an error. </p>
+                                <p>Note that converting an assembly file from the COFF API to EABI requires some changes to the assembly code.</p>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0714376">
+                                    <a MadCap:generatedBookmark="TOC" name="4.5_Naming_Alternate_Directories_for_Assembler_Input">
+                                    </a>
+                                    <span class="section-label">4.5 </span>Naming Alternate Directories for Assembler Input</h3>
+                                <p>The .copy, .include, and .mlib directives tell the assembler to use code from external files. The .copy and .include directives tell the assembler to read source statements from another file, and the .mlib directive names a library that contains macro functions. <span class="crossreference"><a href="assembler-directives.html#STDZ0720639">Section 5</a></span> contains examples of the .copy, .include, and .mlib directives. The syntax for these directives is:</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                            <col align="left" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr valign="middle">
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="middle" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle"> <b>.copy </b>[<b>"</b>]<i>filename</i>[<b>"</b>] <br /><b>.include</b> [<b>"</b>]<i>filename</i>[<b>"</b>] <br /><b>.mlib </b>[<b>"</b>]<i>filename</i>[<b>"</b>]</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p> The <i>filename</i> names a copy/include file that the assembler reads statements from or a macro library that contains macro definitions. If <i>filename</i> begins with a number the double quotes are required. Quotes are recommended so that there is no issue in dealing with path information that is included in the filename specification or path names that include white space. The filename may be a complete pathname, a partial pathname, or a filename with no path information. </p>
+                                <p>The assembler searches for the file in the following locations in the order given:</p>
+                                <ol>
+                                    <li value="1"> The directory that contains the current source file. The current source file is the file being assembled when the .copy, .include, or .mlib directive is encountered.</li>
+                                    <li value="2"> Any directories named with the --include_path option</li>
+                                    <li value="3"> Any directories named with the <span>MSP430_A_DIR </span>environment variable</li>
+                                    <li value="4">Any directories named with the <span>MSP430_C_DIR </span>environment variable</li>
+                                </ol>
+                                <p>Because of this search hierarchy, you can augment the assembler's directory search algorithm by using the --include_path option (described in <span class="crossreference"><a href="#STDZ0715094">Section 4.5.1</a></span>) or the <span>MSP430_A_DIR </span>environment variable (described in <span class="crossreference"><a href="#STDZ0715092">Section 4.5.2</a></span>). The <span>MSP430_C_DIR </span> environment variable is discussed in the <i> <span>MSP430 Optimizing C/C++ Compiler User's Guide</span></i>.</p>
+                                <div class="subsection">
+                                    <h4 id="STDZ0715094">
+                                        <a MadCap:generatedBookmark="TOC" name="4.5.1_Using_the_--include_path_Assembler_Option">
+                                        </a>
+                                        <span class="section-label">4.5.1 </span>Using the --include_path Assembler Option</h4>
+                                    <p>The --include_path assembler option names an alternate directory that contains copy/include files or macro libraries. The format of the --include_path option is as follows:</p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr valign="middle">
+                                                    <td valign="middle"> <b> <span>cl430</span> --include_path=</b><i>pathname </i><i>source filename </i> [<i>other options</i>]</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>There is no limit to the number of --include_path options per invocation; each --include_path option names one pathname. In assembly source, you can use the .copy, .include, or .mlib directive without specifying path information. If the assembler does not find the file in the directory that contains the current source file, it searches the paths designated by the --include_path options.</p>
+                                    <p> For example, assume that a file called source.asm is in the current directory; source.asm contains the following directive statement:</p>
+                                    <code>     .copy "copy.asm"</code>
+                                    <p>Assume the following paths for the copy.asm file:</p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col align="left" />
+                                                <col align="left" />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">UNIX:</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">/tools/files/copy.asm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Windows:</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">c:\tools\files\copy.asm</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>You could set up the search path with the commands shown below:</p>
+                                    <div class="subsection">
+                                        <table class="gentable">
+                                            <colgroup>
+                                                <col align="left" />
+                                                <col align="left" />
+                                            </colgroup>
+                                            <thead class="tbl_hdr_gray">
+                                                <tr>
+                                                    <th>Operating System</th>
+                                                    <th>Enter</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>UNIX (Bourne shell)</td>
+                                                    <td> <code>cl430 --include_path=/tools/files source.asm</code> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Windows</td>
+                                                    <td> <code>cl430 --include_path=c:\tools\files source.asm</code> <![CDATA[ ]]></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>The assembler first searches for copy.asm in the current directory because source.asm is in the current directory. Then the assembler searches in the directory named with the --include_path option.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0715092">
+                                        <a MadCap:generatedBookmark="TOC" name="4.5.2_Using_the_MSP430_A_DIR_Environment_Variable">
+                                        </a>
+                                        <span class="section-label">4.5.2 </span>Using the <span>MSP430_A_DIR </span>Environment Variable</h4>
+                                    <p>An environment variable is a system symbol that you define and assign a string to. The assembler uses the <span>MSP430_A_DIR </span>environment variable to name alternate directories that contain copy/include files or macro libraries.</p>
+                                    <p>The assembler looks for the <span>MSP430_A_DIR </span>environment variable and then reads and processes it. If the assembler does not find the <span>MSP430_A_DIR </span>variable, it then searches for <span>MSP430_C_DIR</span>. The processor-specific variables are useful when you are using Texas Instruments tools for different processors at the same time.</p>
+                                    <p>See the <i> <span>MSP430 Optimizing C/C++ Compiler User's Guide</span></i> for details on <span>MSP430_C_DIR</span>.</p>
+                                    <p>The command syntax for assigning the environment variable is as follows:</p>
+                                    <div class="subsection">
+                                        <table class="gentable">
+                                            <colgroup>
+                                                <col />
+                                                <col />
+                                            </colgroup>
+                                            <thead class="tbl_hdr_gray">
+                                                <tr>
+                                                    <th>Operating System</th>
+                                                    <th>Enter</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>UNIX (Bourne Shell)</td>
+                                                    <td> <b> <span>MSP430_A_DIR</span>="</b><i>pathname<sub>1</sub> <![CDATA[ ]]></i><b>;</b><i>pathname<sub>2</sub> <![CDATA[ ]]></i><b>;</b> . . . <b>"; export <span>MSP430_A_DIR</span></b> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Windows</td>
+                                                    <td> <b>set <span>MSP430_A_DIR</span>=</b><i>pathname<sub>1</sub> <![CDATA[ ]]></i><b>;</b><i>pathname<sub>2</sub> <![CDATA[ ]]></i><b>;</b> . . .</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>The <i>pathnames</i> are directories that contain copy/include files or macro libraries. The pathnames must follow these constraints:</p>
+                                    <ul>
+                                        <li value="1">Pathnames must be separated with a semicolon.</li>
+                                        <li value="2">Spaces or tabs at the beginning or end of a path are ignored. For example the space before and after the semicolon in the following is ignored:</li>
+                                        <code>    set MSP_A_DIR= c:\path\one\to\tools ; c:\path\two\to\tools</code>
+                                        <li value="3">Spaces and tabs are allowed within paths to accommodate Windows directories that contain spaces. For example, the pathnames in the following are valid:</li>
+                                        <code>    set MSP_A_DIR=c:\first path\to\tools;d:\second path\to\tools</code>
+                                    </ul>
+                                    <p>In assembly source, you can use the .copy, .include, or .mlib directive without specifying path information. If the assembler does not find the file in the directory that contains the current source file or in directories named by the --include_path option, it searches the paths named by the environment variable.</p>
+                                    <p>For example, assume that a file called source.asm contains these statements:</p>
+                                    <code>     .copy "copy1.asm" .copy "copy2.asm"</code>
+                                    <p>Assume the following paths for the files:</p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col align="left" />
+                                                <col align="left" />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">UNIX:</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">/tools/files/copy1.asm and /dsys/copy2.asm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Windows:</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">c:\tools\files\copy1.asm and c:\dsys\copy2.asm</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>You could set up the search path with the commands shown below:</p>
+                                    <div class="subsection">
+                                        <table class="gentable">
+                                            <colgroup>
+                                                <col align="left" />
+                                                <col align="left" />
+                                            </colgroup>
+                                            <thead class="tbl_hdr_gray">
+                                                <tr>
+                                                    <th>Operating System</th>
+                                                    <th>Enter</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>UNIX (Bourne shell)</td>
+                                                    <td> <code>MSP430_A_DIR="/dsys"; export MSP430_A_DIR<br />
+cl430 --include_path=/tools/files source.asm</code> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Windows</td>
+                                                    <td> <code>MSP430_A_DIR=c:\dsys<br />
+cl430 --include_path=c:\tools\files source.asm</code> <![CDATA[ ]]></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>The assembler first searches for copy1.asm and copy2.asm in the current directory because source.asm is in the current directory. Then the assembler searches in the directory named with the --include_path option and finds copy1.asm. Finally, the assembler searches the directory named with <span>MSP430_A_DIR</span> and finds copy2.asm.</p>
+                                    <p>The environment variable remains set until you reboot the system or reset the variable by entering one of these commands:</p>
+                                    <div class="subsection">
+                                        <table class="gentable">
+                                            <colgroup>
+                                                <col align="left" />
+                                                <col align="left" />
+                                            </colgroup>
+                                            <thead class="tbl_hdr_gray">
+                                                <tr>
+                                                    <th>Operating System</th>
+                                                    <th>Enter</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>UNIX (Bourne shell)</td>
+                                                    <td> <code>unset MSP430_A_DIR</code> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Windows</td>
+                                                    <td> <code>set MSP430_A_DIR=</code> <![CDATA[ ]]></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0712229">
+                                    <a MadCap:generatedBookmark="TOC" name="4.6_Source_Statement_Format">
+                                    </a>
+                                    <span class="section-label">4.6 </span>Source Statement Format</h3>
+                                <p> Each line in a <span>MSP430</span> assembly input file can be empty, a comment, an assembler directive, a macro invocation, or an assembly instruction.</p>
+                                <p>Assembly language source statements can contain <span>four</span> ordered fields (label, mnemonic, operand list, and comment). The general syntax for source statements is as follows:</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col align="left" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr valign="top">
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">[<i>label</i>[:]]<i>mnemonic</i> [<i>operand list</i>][;<i>comment</i>]</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>Following are examples of source statements:</p>
+                                <code>SYM1 .set 2 ; Symbol SYM1 = 2
+Begin: MOV.W #SYM1, R11 ; Load R11 with 2
+ .word 016h ; Initialize word (016h)</code>
+                                <p>The MSP430 assembler reads an unlimited number of characters per line. Source statements that extend beyond 400 characters in length (including comments) are truncated in the listing file.</p>
+                                <p>Follow these guidelines:</p>
+                                <ul>
+                                    <li value="1">All statements must begin with a label, a blank, an asterisk, or a semicolon.</li>
+                                    <li value="2">Labels are optional for most statements; if used, they must begin in column 1.</li>
+                                    <li value="3">One or more space or tab characters must separate each field.</li>
+                                    <li value="4">Comments are optional. Comments that begin in column 1 can begin with an asterisk or a semicolon (* or ;), but comments that begin in any other column <i>must</i> begin with a semicolon.</li>
+                                </ul>
+                                <span class="note">
+                                    <p class="note_title">NOTE</p>
+                                    <p>A mnemonic cannot begin in column 1 or it will be interpreted as a label. Mnemonic opcodes and assembler directive names without the . prefix are valid label names. Remember to always use whitespace before the mnemonic, or the assembler will think the identifier is a new label definition.</p>
+                                </span>
+                                <p>The following sections describe each of the fields.</p>
+                                <div class="subsection">
+                                    <h4 id="STDZ0710626">
+                                        <a MadCap:generatedBookmark="TOC" name="4.6.1_Label_Field">
+                                        </a>
+                                        <span class="section-label">4.6.1 </span>Label Field</h4>
+                                    <p>A label must be a legal identifier (see <span class="crossreference"><a href="#SLAU1316833">Section 4.8.1</a></span>) placed in column 1. Every instruction may optionally have a label. Many directives allow a label, and some require a label. </p>
+                                    <p>A label can be followed by a colon (:). The colon is not treated as part of the label name. If you do not use a label, the first character position must contain a blank, a semicolon, or an asterisk. </p>
+                                    <p>When you use a label on an assembly instruction or data directive, an <i>assembler symbol</i> (<span class="crossreference"><a href="#STDZ071620">Section 4.8</a></span>) with the same name is created. Its value is the current value of the<i> section program counter</i> (SPC, see <span class="crossreference"><a href="introduction-to-object-modules.html#STDZ0698045">Section 2.4.5</a></span>). This symbol represents the address of that instruction. In the following example, the .word directive is used to create an array of 3 words. Because a label was used, the assembly symbol Start refers to the first word, and the symbol will have the value 40h.</p>
+                                    <code>. . . .
+ 9 0000 ; Assume some code was assembled
+ 10 0040 000A Start: .word 0Ah,3,7
+ 0044 0003 
+ 0048 0007</code>
+                                    <p>
+                                        <span>A label on a line by itself is a valid statement. </span>When a label appears on a line by itself, it points to the instruction on the next line (the SPC is not incremented):</p>
+                                    <code>       3 0050 Here:
+ 4 0050 0003 .word 3</code>
+                                    <p>A label on a line by itself is equivalent to writing:</p>
+                                    <code>Here: .equ $ ; $ provides the current value of the SPC</code>
+                                    <p>If you do not use a label, the character in column 1 must be a blank, an asterisk, or a semicolon.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0715912">
+                                        <a MadCap:generatedBookmark="TOC" name="4.6.2_Mnemonic_Field">
+                                        </a>
+                                        <span class="section-label">4.6.2 </span>Mnemonic Field</h4>
+                                    <p>The mnemonic field follows the label field. The mnemonic field cannot start in column 1; if it does, it is interpreted as a label. The mnemonic field contains one of the following items:</p>
+                                    <ul>
+                                        <li value="1">Machine-instruction mnemonic (such as ADD, MOV, JMP)</li>
+                                        <li value="2">Assembler directive (such as .data, .list, .equ)</li>
+                                        <li value="3">Macro directive (such as .macro, .var, .mexit)</li>
+                                        <li value="4">Macro invocation</li>
+                                    </ul>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0715451">
+                                        <a MadCap:generatedBookmark="TOC" name="4.6.3_Operand_Field">
+                                        </a>
+                                        <span class="section-label">4.6.3 </span>Operand Field</h4>
+                                    <p>The operand field follows the mnemonic field and contains zero or more comma-separated operands. An operand can be one of the following:</p>
+                                    <ul>
+                                        <li value="1">an immediate operand (usually a constant or symbol) (see <span class="crossreference"><a href="#STDZ071156">Section 4.7</a></span> and <span class="crossreference"><a href="#STDZ071620">Section 4.8</a></span>)</li>
+                                        <li value="2"> a register operand</li>
+                                        <li value="3"> a memory reference operand </li>
+                                        <li value="4"> an expression that evaluates to one of the above (see <span class="crossreference"><a href="#STDZ0716698">Section 4.9</a></span>) </li>
+                                    </ul>
+                                    <p>An <i>immediate operand</i> is encoded directly in the instruction. The value of an immediate operand must be a <i>constant expression</i>. Most instructions with an immediate operand require an <i>absolute constant expression</i>, such as 1234. Some instructions (such as a call instruction) allow a <i>relocatable constant expression</i>, such as a symbol defined in another file. (See <span class="crossreference"><a href="#STDZ0716698">Section 4.9</a></span> for details about types of expressions.)</p>
+                                    <p>A <i>register operand</i> is a special pre-defined symbol that represents a CPU register. </p>
+                                    <p>A <i>memory reference operand</i> uses one of several memory addressing modes to refer to a memory location. Memory reference operands use a target-specific syntax defined in the appropriate <i>CPU and Instruction Set Reference Guide</i>.</p>
+                                    <p>You must separate operands with commas. Not all operand types are supported for all operands. See the description of the specific instruction in the <i>CPU and Instruction Set Reference Guide</i> for your device family.</p>
+                                    <p>You use immediate values as operands primarily with instructions. In some cases, you can use immediate values with the operands of directives.</p>
+                                    <p>See the <i>MSP430x1xx Family User’s Guide</i>, the <i>MSP430x3xx Family User’s Guide</i>, and the <i>MSP430x4xx Family User’s Guide</i> for more information on the syntax and usage of instructions. See <span class="crossreference"><a href="assembler-directives.html#STDZ0720639">Section 5</a></span> for more information on the syntax and usage of directives.</p>
+                                    <div class="subsection">
+                                        <h4 id="HTMLI037130">
+                                            <a MadCap:generatedBookmark="TOC" name="4.6.3.1_Operand_Syntaxes_for_Instructions">
+                                            </a>
+                                            <span class="section-label">4.6.3.1 </span>Operand Syntaxes for Instructions</h4>
+                                        <p>The assembler allows you to specify that an operand should be used as an immediate value by using the # sign as a prefix. For instance, you can use immediate values with the .byte directive to load values into the current section. It is not usually necessary or permitted to use the # prefix in directives. Compare the following statements:</p>
+                                        <code>     ADD.W #10, R11
+ .byte 10</code>
+                                        <p>In the first statement, the # prefix is necessary to tell the assembler to add the value 10 to R11. In the second statement, however, the # prefix is not used; the assembler expects the operand to be a value and initializes a byte with the value 10.</p>
+                                    </div>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0710629">
+                                        <a MadCap:generatedBookmark="TOC" name="4.6.4_Comment_Field">
+                                        </a>
+                                        <span class="section-label">4.6.4 </span>Comment Field</h4>
+                                    <p> A comment can begin in any column and extends to the end of the source line. A comment can contain any ASCII character, including blanks. Comments are printed in the assembly source listing, but they do not affect the assembly.</p>
+                                    <p> A source statement that contains only a comment is valid. If it begins in column 1, it can start with a semicolon ( <b>; </b>) or an asterisk ( <b>*</b>). Comments that begin anywhere else on the line must begin with a semicolon. The asterisk identifies a comment only if it appears in column 1.</p>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ071156">
+                                    <a MadCap:generatedBookmark="TOC" name="4.7_Literal_Constants">
+                                    </a>
+                                    <span class="section-label">4.7 </span>Literal Constants</h3>
+                                <p>A <i>literal constant</i> (also known as a <i>literal</i> or in some other documents as an <i>immediate value</i>) is a value that represents itself, such as 12, 3.14, or "hello".</p>
+                                <p>The assembler supports several types of literals: </p>
+                                <ul>
+                                    <li value="1">Binary integer literals</li>
+                                    <li value="2">Octal integer literals</li>
+                                    <li value="3">Decimal integer literals</li>
+                                    <li value="4">Hexadecimal integer literals</li>
+                                    <li value="5">Character literals</li>
+                                    <li value="6">Character string literals</li>
+                                    <li value="7">Floating-point literals</li>
+                                </ul>
+                                <p>Error checking for invalid or incomplete literals is performed.</p>
+                                <div class="subsection">
+                                    <h4 id="HTMLI032314">
+                                        <a MadCap:generatedBookmark="TOC" name="4.7.1_Integer_Literals">
+                                        </a>
+                                        <span class="section-label">4.7.1 </span>Integer Literals</h4>
+                                    <p>The assembler maintains each integer literal internally as a 32-bit signless quantity. Literals are considered unsigned values, and are not sign extended. For example, the literal 00FFh is equal to 00FF (base 16) or 255 (base 10); it <i>does not</i> equal -1. which is 0FFFFFFFFh (base 16). Note that if you store 0FFh in a .byte location, the bits will be exactly the same as if you had stored -1. It is up to the reader of that location to interpret the signedness of the bits.</p>
+                                    <div class="subsection">
+                                        <h4 id="STDZ0710630">
+                                            <a MadCap:generatedBookmark="TOC" name="4.7.1.1_Binary_Integer_Literals">
+                                            </a>
+                                            <span class="section-label">4.7.1.1 </span>Binary Integer Literals</h4>
+                                        <p>A binary integer literal is a string of up to 32 binary digits (0s and 1s) followed by the suffix B (or b). Binary literals of the form "0[bB][10]+" are also supported. If fewer than 32 digits are specified, the assembler right justifies the value and fills the unspecified bits with zeros. These are examples of valid binary literals:</p>
+                                        <div class="subsection">
+                                            <table class="tabbedtext">
+                                                <colgroup>
+                                                    <col align="left" />
+                                                    <col align="left" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">00000000B</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Literal equal to 0<sub>10</sub> or 0<sub>16</sub> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">0100000b</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Literal equal to 32<sub>10</sub> or 20<sub>16 </sub> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">01b</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Literal equal to 1<sub>10</sub> or 1<sub>16 </sub> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">11111000B</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Literal equal to 248<sub>10</sub> or 0F8<sub>16</sub> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">0b00101010</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Literal equal to 42<sub>10</sub> or 2A<sub>16</sub> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">0B101010</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Literal equal to 42<sub>10</sub> or 2A<sub>16</sub></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="STDZ0710631">
+                                            <a MadCap:generatedBookmark="TOC" name="4.7.1.2_Octal_Integer_Literals">
+                                            </a>
+                                            <span class="section-label">4.7.1.2 </span>Octal Integer Literals</h4>
+                                        <p>An octal integer literal is a string of up to 11 octal digits (0 through 7) followed by the suffix Q (or q). Octal literals may also begin with a 0, contain no 8 or 9 digits, and end with no suffix. These are examples of valid octal literals: </p>
+                                        <div class="subsection">
+                                            <table class="tabbedtext">
+                                                <colgroup>
+                                                    <col align="left" />
+                                                    <col align="left" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">10Q</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Literal equal to 8<sub>10</sub> or 8<sub>16</sub> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">054321</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Literal equal to 22737<sub>10</sub> or 58D1<sub>16 </sub></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">100000Q</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Literal equal to 32768<sub>10</sub> or 8000<sub>16</sub> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">226q</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Literal equal to 150<sub>10</sub> or 96<sub>16</sub> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="STDZ0710632">
+                                            <a MadCap:generatedBookmark="TOC" name="4.7.1.3_Decimal_Integer_Literals">
+                                            </a>
+                                            <span class="section-label">4.7.1.3 </span>Decimal Integer Literals</h4>
+                                        <p>A decimal integer literal is a string of decimal digits ranging from -2147 483 648 to 4 294 967 295. These are examples of valid decimal integer literals:</p>
+                                        <div class="subsection">
+                                            <table class="tabbedtext">
+                                                <colgroup>
+                                                    <col align="left" />
+                                                    <col align="left" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">1000</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Literal equal to 1000<sub>10</sub> or 3E8<sub>16</sub> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">-32768 </td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Literal equal to -32 768<sub>10</sub> or -8000<sub>16</sub> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">25</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Literal equal to 25<sub>10</sub> or 19<sub>16</sub> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">4815162342</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Literal equal to 4815162342<sub>10</sub> or 11F018BE6<sub>16</sub> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="STDZ0710633">
+                                            <a MadCap:generatedBookmark="TOC" name="4.7.1.4_Hexadecimal_Integer_Literals">
+                                            </a>
+                                            <span class="section-label">4.7.1.4 </span>Hexadecimal Integer Literals</h4>
+                                        <p>A hexadecimal integer literal is a string of up to eight hexadecimal digits followed by the suffix H (or h) or preceded by 0x. <i>A hexadecimal literal must begin with a decimal value (0-9) if it is indicated by the H or h suffix.</i></p>
+                                        <p>Hexadecimal digits include the decimal values 0-9 and the letters A-F or a-f. If fewer than eight hexadecimal digits are specified, the assembler right-justifies the bits. </p>
+                                        <p>These are examples of valid hexadecimal literals:</p>
+                                        <div class="subsection">
+                                            <table class="tabbedtext">
+                                                <colgroup>
+                                                    <col align="left" />
+                                                    <col align="left" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">78h</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Literal equal to 120<sub>10</sub> or 0078<sub>16</sub> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">0x78</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Literal equal to 120<sub>10</sub> or 0078<sub>16 </sub></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">0Fh</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Literal equal to 15<sub>10</sub> or 000F<sub>16</sub> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">37ACh</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Literal equal to 14252<sub>10</sub> or 37AC<sub>16</sub> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="STDZ0710634">
+                                            <a MadCap:generatedBookmark="TOC" name="4.7.1.5_Character_Literals">
+                                            </a>
+                                            <span class="section-label">4.7.1.5 </span>Character Literals</h4>
+                                        <p>A character literal is a single character enclosed in <i>single</i> quotes. The characters are represented internally as 8-bit ASCII characters. Two consecutive single quotes are required to represent each single quote that is part of a character literal. A character literal consisting only of two single quotes is valid and is assigned the value 0. These are examples of valid character literals:</p>
+                                        <div class="subsection">
+                                            <table class="tabbedtext">
+                                                <colgroup>
+                                                    <col align="left" />
+                                                    <col align="left" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">'a'</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Defines the character literal <i>a</i> and is represented internally as 61<sub>16</sub> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">'C'</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Defines the character literal <i>C</i> and is represented internally as 43<sub>16</sub> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">''''</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Defines the character literal <i>'</i> and is represented internally as 27<sub>16</sub> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">''</td>
+                                                        <td align="left" class="noBorderRight noBorderBottom" valign="top">Defines a null character and is represented internally as 00<sub>16</sub> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">Notice the difference between character <i>literals</i> and character <i>string literals</i> (<span class="crossreference"><a href="#STDZ0716039">Section 4.7.2</a></span> discusses character strings). A character literal represents a single integer value; a string is a sequence of characters.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0716039">
+                                        <a MadCap:generatedBookmark="TOC" name="4.7.2_Character_String_Literals">
+                                        </a>
+                                        <span class="section-label">4.7.2 </span>Character String Literals</h4>
+                                    <p>A character string is a sequence of characters enclosed in <i>double</i> quotes. Double quotes that are part of character strings are represented by two consecutive double quotes. The maximum length of a string varies and is defined for each directive that requires a character string. Characters are represented internally as 8-bit ASCII characters.</p>
+                                    <p>These are examples of valid character strings:</p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col align="left" />
+                                                <col align="left" />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>"sample program"</b> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">defines the 14-character string <i>sample program.</i> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>"PLAN ""C"""</b> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">defines the 8-character string <i>PLAN "C".</i> <![CDATA[ ]]></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>Character strings are used for the following:</p>
+                                    <ul>
+                                        <li value="1">Filenames, as in .copy "filename"</li>
+                                        <li value="2">Section names, as in .sect "section name"</li>
+                                        <li value="3">Data initialization directives, as in .byte "charstring"</li>
+                                        <li value="4">Operands of .string directives</li>
+                                    </ul>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0718816">
+                                        <a MadCap:generatedBookmark="TOC" name="4.7.3_Floating-Point_Literals">
+                                        </a>
+                                        <span class="section-label">4.7.3 </span>Floating-Point Literals</h4>
+                                    <p>A floating-point literal is a string of decimal digits followed by a required decimal point, an optional fractional portion, and an optional exponent portion. The syntax for a floating-point number is:</p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td>[ +|- ] <i>nnn</i> . [ <i>nnn</i>] [ <b>E</b>|<b>e</b> [ +|- ] <i>nnn</i> ] </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>Replace <i>nnn</i> with a string of decimal digits. You can precede <i>nnn</i> with a + or a -. You must specify a decimal point. For example, 3.e5 is valid, but 3e5 is not valid. The exponent indicates a power of 10. These are examples of valid floating-point literals: </p>
+                                    <code>3.0
+3.14
+3.
+-0.314e13
++314.59e-2</code>
+                                    <p>The assembler syntax does not support all C89-style float literals nor C99-style hexadecimal constants, but the $strtod built-in mathematical function supports both. If you want to specify a floating-point literal using one of those formats, use $strtod. For example: </p>
+                                    <code>$strtod(".3")
+$strtod("0x1.234p-5")</code>
+                                    <p>You cannot directly use NaN, Inf, or -Inf as floating-point literals. Instead, use $strtod to express these values. The "NaN" and "Inf" strings are handled case-insensitively. <span>See <span class="crossreference"><a href="#STDZ0718590">Section 4.10.1</a></span> for built-in functions.</span></p>
+                                    <code>$strtod("NaN")
+$strtod("Inf")</code>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ071620">
+                                    <a MadCap:generatedBookmark="TOC" name="4.8_Assembler_Symbols">
+                                    </a>
+                                    <span class="section-label">4.8 </span>Assembler Symbols</h3>
+                                <p>An assembler symbol is a named 32-bit signless integer value, usually representing an address or absolute integer. A symbol can represent such things as the starting address of a function, variable, or section. The name of a symbol must be a legal identifier. The identifier becomes a symbolic representation of the symbol's value, and may be used in subsequent instructions to refer to the symbol's location or value.</p>
+                                <p>Some assembler symbols become external symbols, and are placed in the object file's symbol table. A symbol is valid only within the module in which it is defined, unless you use the .global directive or the .def directive to declare it as an <i>external symbol</i> (see <span class="crossreference"><a href="assembler-directives.html#IDglobaldesc">.global directive</a></span>).</p>
+                                <p>See <span class="crossreference"><a href="introduction-to-object-modules.html#STDZ069309">Section 2.6</a></span> for more about symbols and the symbol tables in object files.</p>
+                                <div class="subsection">
+                                    <h4 id="SLAU1316833">
+                                        <a MadCap:generatedBookmark="TOC" name="4.8.1_Identifiers">
+                                        </a>
+                                        <span class="section-label">4.8.1 </span>Identifiers</h4>
+                                    <p>Identifiers are names used as labels, registers, symbols, and substitution symbols. An identifier is a string of alphanumeric characters, the dollar sign, and underscores (A-Z, a-z, 0-9, $, and _). The first character in an identifier cannot be a number, and identifiers cannot contain embedded blanks. The identifiers you define are case sensitive; for example, the assembler recognizes ABC, Abc, and abc as three distinct identifiers. </p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0710636">
+                                        <a MadCap:generatedBookmark="TOC" name="4.8.2_Labels">
+                                        </a>
+                                        <span class="section-label">4.8.2 </span>Labels</h4>
+                                    <p>An identifier used as a label becomes an assembler symbol, which represent an address in the program. Labels within a file must be unique.</p>
+                                    <span class="note">
+                                        <p class="note_title">NOTE</p>
+                                        <p>A mnemonic cannot begin in column 1 or it will be interpreted as a label. Mnemonic opcodes and assembler directive names without the . prefix are valid label names. Remember to always use whitespace before the mnemonic, or the assembler will think the identifier is a new label definition.</p>
+                                    </span>
+                                    <p>Symbols derived from labels can also be used as the operands of <span>.bss, </span>.global, .ref, or .def directives.</p>
+                                </div>
+                                <code>     .global func
+
+ MOV #CON1, R11
+ MOV R11, 0(SP)
+ CALL #func</code>
+                                <div class="subsection">
+                                    <h4 id="STDZ0715557">
+                                        <a MadCap:generatedBookmark="TOC" name="4.8.3_Local_Labels">
+                                        </a>
+                                        <span class="section-label">4.8.3 </span>Local Labels</h4>
+                                    <p>Local labels are special labels whose scope and effect are temporary. A local label can be defined in two ways:</p>
+                                    <ul>
+                                        <li value="1">$n, where n is a decimal digit in the range 0-9. For example, $4 and $1 are valid local labels. See <span class="crossreference"><a href="#STDZ0718407">Example 4-1</a></span>.</li>
+                                        <li value="2">
+                                            <i>name</i>?, where <i>name</i> is any legal identifier as described above. The assembler replaces the question mark with a period followed by a unique number. When the source code is expanded, <i>you will not see the unique number in the listing file</i>. Your label appears with the question mark as it did in the source definition. </li>
+                                    </ul>
+                                    <p>You cannot declare these types of labels as global. </p>
+                                    <p>Normal labels must be unique (they can be declared only once), and they can be used as constants in the operand field. Local labels, however, can be undefined and defined again. Local labels cannot be defined by directives.</p>
+                                    <p>A local label can be undefined or reset in one of these ways:</p>
+                                    <ul>
+                                        <li value="1">By using the .newblock directive</li>
+                                        <li value="2">By changing sections (using a .sect, .text, or .data directive)</li>
+                                        <li value="3">By entering an include file (specified by the .include or .copy directive)</li>
+                                        <li value="4">By leaving an include file (specified by the .include or .copy directive)</li>
+                                    </ul>
+                                    <div class="example">
+                                        <h4 id="STDZ0718407">
+                                            <a MadCap:generatedBookmark="TOC" name="Example_4-1_Local_Labels_of_the_Form_$n">
+                                            </a>
+                                            <span class="example-label">Example 4-1 </span>Local Labels of the Form $n</h4>
+                                        <p>This is an example of code that declares and uses a local label legally:</p>
+                                        <code>        .global ADDRA, ADDRB, ADDRC
+Label1: MOV #ADDRA, R11 ; Load Address A to R11.
+ SUB #ADDRB, R11 ; Subtract Address B.
+ JL $1 ; If &lt; 0, branch to $1
+ MOV #ADDRB, R11 ; otherwise, load ADDRB to R11
+ JMP $2 ; and branch to $2.
+$1 MOV #ADDRA, R11 ; $1: load ADDRA to AC0.
+$2 ADD #ADDRC, R11 ; $2: add ADDRC.
+ .newblock ; Undefine $1 so it can be used again.
+ JMP $1 ; If less than zero, branch to $1.
+ MOV R11, &amp;ADDRC ; Store AC0 low in ADDRC.
+$1 NOP</code>
+                                        <p>The following code uses a local label illegally:</p>
+                                        <code>        .global ADDRA, ADDRB, ADDRC
+Label1: MOV #ADDRA, R11 ; Load Address A to R11.
+ SUB #ADDRB, R11 ; Subtract Address B.
+ JL $1 ; If &lt; 0, branch to $1
+ MOV #ADDRB, R11 ; otherwise, load ADDRB to R11
+ JMP $2 ; and branch to $2.
+$1 MOV #ADDRA, R11 ; $1: load ADDRA to AC0.
+$2 ADD #ADDRC, R11 ; $2: add ADDRC.
+ JMP $1 ; If less than zero, branch to $1.
+ MOV R11, &amp;ADDRC ; Store AC0 low in ADDRC.
+$1 NOP</code>
+                                        <p>The $1 label is not undefined before being reused by the second branch instruction. Therefore, $1 is redefined, which is illegal.</p>
+                                    </div>
+                                    <p>Local labels are especially useful in macros. If a macro contains a normal label and is called more than once, the assembler issues a multiple-definition error. If you use a local label and .newblock within a macro, however, the local label is used and reset each time the macro is expanded.</p>
+                                    <p>Up to ten local labels of the $n form can be in effect at one time. Local labels of the form name? are not limited. After you undefine a local label, you can define it and use it again. Local labels do not appear in the object code symbol table.</p>
+                                    <p>For more information about using labels in macros see <span class="crossreference"><a href="macro-language-description.html#STDZ0736022">Section 6.6</a></span>.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0710637">
+                                        <a MadCap:generatedBookmark="TOC" name="4.8.4_Symbolic_Constants">
+                                        </a>
+                                        <span class="section-label">4.8.4 </span>Symbolic Constants</h4>
+                                    <p>A symbolic constant is a symbol with a value that is an absolute constant expression (see <span class="crossreference"><a href="#STDZ0716698">Section 4.9</a></span>). By using symbolic constants, you can assign meaningful names to constant expressions. The .set and .struct/.tag/.endstruct directives enable you to set symbolic constants (see <span class="crossreference"><a href="assembler-directives.html#IDsetequdesc">Define Assembly-Time Constant</a></span>). Once defined, symbolic constants <i>cannot</i> be redefined. </p>
+                                    <p>If you use the .set directive to assign a value to a symbol , the symbol becomes a symbolic constant and may be used where a constant expression is expected. For example:</p>
+                                    <code>shift3 .set 3
+ MOV #shift3, R11</code>
+                                    <p>You can also use the .set directive to assign symbolic constants for other symbols, such as register names. In this case, the symbolic constant becomes a synonym for the register:</p>
+                                    <code>OP1 .set R11
+ MOV OP1, 2(SP)</code>
+                                    <p>The following example shows how the .set directive can be used with the .struct, .tag. and .endstruct directives. It creates the symbolic constants K, maxbuf, item, value, delta, and i_len.</p>
+                                    <code>K .set 1024 ; constant definitions
+maxbuf .set 2*K
+
+item .struct ; item structure definition
+value .int ; constant offsets value = 0
+delta .int ; constant offsets value = 1
+i_len .endstruct
+
+array .tag item ; array declaration
+ .bss array, i_len*K </code>
+                                    <p>The assembler also has many predefined symbolic constants; these are discussed in <span class="crossreference"><a href="#STDZ0717163">Section 4.8.6</a></span>.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0715466">
+                                        <a MadCap:generatedBookmark="TOC" name="4.8.5_Defining_Symbolic_Constants_(--asm_define_Option)">
+                                        </a>
+                                        <span class="section-label">4.8.5 </span>Defining Symbolic Constants (--asm_define Option)</h4>
+                                    <p>The --asm_define option equates a constant value or a string with a symbol. The symbol can then be used in place of a value in assembly source. The format of the --asm_define option is as follows:</p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col align="left" />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr valign="middle">
+                                                    <td align="left" valign="middle"> <b> <span>cl430</span> --asm_define=</b><i>name</i>[<b>=</b><i>value</i>]</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>The <i>name</i> is the name of the symbol you want to define. The <i>value</i> is the constant or string value you want to assign to the symbol. If the <i>value</i> is omitted, the symbol is set to 1. If you want to define a quoted string and keep the quotation marks, do one of the following:</p>
+                                    <p />
+                                    <ul>
+                                        <li value="1">For Windows, use <b>--asm_define=</b><i>name</i><b>="\"</b><i>value</i><b>\""</b>. For example, --asm_define=car="\"sedan\""</li>
+                                        <li value="2">For UNIX, use <b>--asm_define=</b><i>name</i><b>='"</b><i>value</i><b>"'</b>. For example, --asm_define=car='"sedan"'</li>
+                                        <li value="3">For Code Composer, enter the definition in a file and include that file with the --cmd_file (or -@) option.</li>
+                                    </ul>
+                                    <p>Once you have defined the name with the --asm_define option, the symbol can be used with assembly directives and instructions as if it had been defined with the .set directive. For example, on the command line you enter:</p>
+                                    <code>cl430 --asm_define=SYM1=1 --asm_define=SYM2=2 --asm_define=SYM3=3 --asm_define=SYM4=4 value.asm</code>
+                                    <p>Since you have assigned values to SYM1, SYM2, SYM3, and SYM4, you can use them in source code. <span class="crossreference"><a href="#STDZ0714308">Example 4-2</a></span> shows how the value.asm file uses these symbols without defining them explicitly.</p>
+                                    <p>Within assembler source, you can test the symbol defined with the --asm_define option with these directives:</p>
+                                    <div class="subsection">
+                                        <table class="gentable">
+                                            <colgroup>
+                                                <col />
+                                                <col />
+                                            </colgroup>
+                                            <thead class="tbl_hdr_gray">
+                                                <tr>
+                                                    <th align="left" class="noBorderRight" valign="bottom">Type of Test</th>
+                                                    <th align="left" class="noBorderRight" valign="bottom">Directive Usage</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Existence</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.if $isdefed("</b><i>name</i><b>")</b> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Nonexistence</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.if $isdefed("</b><i>name</i><b>") = 0</b> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Equal to value</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.if</b><i>name</i><b>=</b><i>value</i> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Not equal to value</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.if </b><i>name</i><b>!=</b><i>value</i> <![CDATA[ ]]></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>The argument to the $isdefed built-in function must be enclosed in quotes. The quotes cause the argument to be interpreted literally rather than as a substitution symbol.</p>
+                                </div>
+                                <div class="example">
+                                    <h4 id="STDZ0714308">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_4-2_Using_Symbolic_Constants_Defined_on_Command_Line">
+                                        </a>
+                                        <span class="example-label">Example 4-2 </span>Using Symbolic Constants Defined on Command Line</h4>
+                                    <code>IF_4: .if SYM4 = SYM2 * SYM2
+ .byte SYM4 ; Equal values
+ .else
+ .byte SYM2 * SYM2 ; Unequal values
+ .endif
+
+IF_5: .if SYM1 &lt;= 10
+ .byte 10 ; Less than / equal
+ .else
+ .byte SYM1 ; Greater than
+ .endif
+
+IF_6: .if SYM3 * SYM2 != SYM4 + SYM2
+ .byte SYM3 * SYM2 ; Unequal value
+ .else
+ .byte SYM4 + SYM4 ; Equal values
+ .endif
+
+IF_7: .if SYM1 = SYM2 
+ .byte SYM1
+ .elseif SYM2 + SYM3 = 5
+ .byte SYM2 + SYM3
+ .endif</code>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0717163">
+                                        <a MadCap:generatedBookmark="TOC" name="4.8.6_Predefined_Symbolic_Constants">
+                                        </a>
+                                        <span class="section-label">4.8.6 </span>Predefined Symbolic Constants</h4>
+                                    <p>The assembler has several types of predefined symbols.</p>
+                                    <p>
+                                        <b>$</b>, the dollar-sign character, represents the current value of the section program counter (SPC). </p>
+                                    <p>In addition, the following predefined processor symbolic constants are available:</p>
+                                    <div class="subsection">
+                                        <p class="table" id="STDZ0711018">
+                                            <span class="table-label">Table 4-2 </span>MSP430 Processor Symbolic Constants </p>
+                                        <table class="gentable">
+                                            <colgroup>
+                                                <col align="left" />
+                                                <col align="left" />
+                                            </colgroup>
+                                            <thead class="tbl_hdr_gray">
+                                                <tr>
+                                                    <th align="left" class="noBorderRight" valign="top">Symbol name</th>
+                                                    <th align="left" class="noBorderRight" valign="top">Description</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">.MSP430<sup><a class="crossreference" href="#MSP430_symbol_note">(1)</a></sup></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Always set to 1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">.MSP430X<sup><a class="crossreference" href="#MSP430_symbol_note">(1)</a></sup></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Set to 1 if the --silicon_version=mspx option is specified, otherwise 0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">.MSP4619<sup><a class="crossreference" href="#MSP430_symbol_note">(1)</a></sup></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Set to 1 if the --silicon_version=mspx option is specified, otherwise 0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">_ _LARGE_CODE_MODEL_ _</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Set to 1 if the --code_model=large option is specified; otherwise 0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">_ _LARGE_DATA_MODEL_ _</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Set to 1 if the --data_model=large or −−data_model=restricted option is specified, otherwise<span>&#160;</span>0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">_ _LONG_PTRDIFF_T_ _</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Set to 1(indicates ptrdiff_t is a long) if the --data_model=large option is specified, otherwise 0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">_ _UNSIGNED_LONG_SIZE_T_ _</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Set to 1 (indicates size_t is an unsigned long) if the --data_model=large option is specified, otherwise 0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">_ _TI_EABI_ _</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Set to 1 if EABI is enabled. EABI is now the only supported ABI; see <span class="crossreference"><a href="#STDZ0586x430">Section 4.4</a></span>.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="tablenote" id="MSP430_symbol_note">
+                                            <span class="section-label">(1) </span>The processor symbol can be entered as all uppercase or all lowercase characters; for example: .MSP430X could also be entered as .msp430x.</div>
+                                    </div>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="SLAU1311277">
+                                        <a MadCap:generatedBookmark="TOC" name="4.8.7_Registers">
+                                        </a>
+                                        <span class="section-label">4.8.7 </span>Registers</h4>
+                                    <p>The names of MSP430 registers are predefined symbols, including R0-R15 and their aliases.</p>
+                                    <div class="subsection">
+                                        <p class="table" id="HTMLI035743">
+                                            <span class="table-label">Table 4-3 </span>MSP430 Register Symbols with Aliases </p>
+                                        <table class="gentable">
+                                            <colgroup>
+                                                <col align="center" />
+                                                <col align="center" />
+                                            </colgroup>
+                                            <thead class="tbl_hdr_gray">
+                                                <tr>
+                                                    <th>Register Name</th>
+                                                    <th>Alias</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>R0</td>
+                                                    <td>PC</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>R1</td>
+                                                    <td>SP</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>R2</td>
+                                                    <td>SR</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>Register symbols <span>and aliases </span>can be entered as all uppercase or all lowercase characters.<span> For example, R1 could also be entered as r1, SP, or sp.</span></p>
+                                    <p>Control register symbols can be entered in all upper-case or all lower-case characters. </p>
+                                    <p>See the "Register Conventions" section of the <i><span>MSP430 Optimizing C/C++ Compiler User's Guide</span></i> for details about the registers and their uses.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0719781">
+                                        <a MadCap:generatedBookmark="TOC" name="4.8.8_Substitution_Symbols">
+                                        </a>
+                                        <span class="section-label">4.8.8 </span>Substitution Symbols</h4>
+                                    <p>Symbols can be assigned a string value. This enables you to create aliases for character strings by equating them to symbolic names. Symbols that represent character strings are called substitution symbols. When the assembler encounters a substitution symbol, its string value is substituted for the symbol name. Unlike symbolic constants, substitution symbols can be redefined.</p>
+                                    <p>A string can be assigned to a substitution symbol anywhere within a program; for example:</p>
+                                    <code>    .asg "SP", stack-pointer
+ ; Assigns the string SP to the substitution symbol
+ ; stack-pointer.
+ .asg "#0x20", block2
+ ; Assigns the string #0x20 to the substitution
+ ; symbol block2.
+ ADD block2, stack-pointer
+ ; Adds the value in SP to #0x20 and stores the
+ ; result in SP.</code>
+                                    <p>When you are using macros, substitution symbols are important because macro parameters are actually substitution symbols that are assigned a macro argument. The following code shows how substitution symbols are used in macros:</p>
+                                    <code>myadd .macro src, dest
+ ; addl macro definition
+ ADD src, dest
+ ; Add the value in register dest to the value in
+ ; register src.
+ .endm
+
+*myadd invocation
+ myadd R4, R5
+ ; Calls the macro addl and substitutes R4 for src
+ ; and R5 for dest. The macro adds the value of R4
+ ; and the value of R5.</code>
+                                    <p>See <span class="crossreference"><a href="macro-language-description.html#STDZ0730691">Section 6</a></span> for more information about macros.</p>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0716698">
+                                    <a MadCap:generatedBookmark="TOC" name="4.9_Expressions">
+                                    </a>
+                                    <span class="section-label">4.9 </span>Expressions</h3>
+                                <p>Nearly all values and operands in assembly language are <i>expressions</i>, which may be any of the following:</p>
+                                <ul>
+                                    <li value="1"> a literal constant </li>
+                                    <li value="2"> a register </li>
+                                    <li value="3"> a memory reference </li>
+                                    <li value="4"> a symbol </li>
+                                    <li value="5"> a built-in function invocation </li>
+                                    <li value="6"> a mathematical or logical operation on one or more expressions</li>
+                                </ul>
+                                <p>This section defines several types of expressions that are referred to throughout this document. Some instruction operands accept limited types of expressions. For example, the .if directive requires its operand be an absolute constant expression with an integer value. Absolute in the context of assembly code means that the value of the expression must be known at assembly time.</p>
+                                <p>A <i>constant expression</i> is any expression that does not in any way refer to a register or memory reference. An <i>immediate operand</i> will usually not accept a register or memory reference. It must be given a constant expression. Constant expressions may be any of the following:</p>
+                                <ul>
+                                    <li value="1"> a literal constant </li>
+                                    <li value="2"> an address constant expression </li>
+                                    <li value="3"> a symbol whose value is a constant expression </li>
+                                    <li value="4"> a built-in function invocation on a constant expression</li>
+                                    <li value="5"> a mathematical or logical operation on one or more constant expressions</li>
+                                </ul>
+                                <p>An <i>address constant expression</i> is a special case of a constant expression. Some immediate operands that require an address value can accept a symbol plus an addend; for example, some branch instructions. The symbol must have a value that is an address, and it may be an external symbol. The addend must be an absolute constant expression with an integer value. For example, a valid address constant expression is "array+4".</p>
+                                <p>A constant expression may be absolute or relocatable. <i>Absolute</i> means known at assembly time. <i>Relocatable</i> means constant, but not known until link time. External symbols are relocatable, even if they refer to a symbol defined in the same module.</p>
+                                <p>An <i>absolute constant expression</i> may not refer to any external symbols anywhere in the expression. In other words, an absolute constant expression may be any of the following:</p>
+                                <ul>
+                                    <li value="1"> a literal constant </li>
+                                    <li value="2"> an absolute address constant expression </li>
+                                    <li value="3"> a symbol whose value is an absolute constant expression </li>
+                                    <li value="4"> a built-in function invocation whose arguments are all absolute constant expressions </li>
+                                    <li value="5"> a mathematical or logical operation on one or more absolute constant expressions </li>
+                                </ul>
+                                <p>A <i>relocatable constant expression</i> refers to at least one external symbol. <span>For ELF, such expressions may contain at most one external symbol.</span> A relocatable constant expression may be any of the following: </p>
+                                <ul>
+                                    <li value="1"> an external symbol </li>
+                                    <li value="2"> a relocatable address constant expression</li>
+                                    <li value="3"> a symbol whose value is a relocatable constant expression</li>
+                                    <li value="4"> a built-in function invocation with any arguments that are relocatable constant expressions</li>
+                                    <li value="5"> a mathematical or logical operation on one or more expressions, at least one of which is a relocatable constant expression</li>
+                                </ul>
+                                <p>In some cases, the value of a relocatable address expression may be known at assembly time. For example, a relative displacement branch may branch to a label defined in the same section.</p>
+                                <div class="subsection">
+                                    <h4 id="STDZ0712286">
+                                        <a MadCap:generatedBookmark="TOC" name="4.9.1_Mathematical_and_Logical_Operators">
+                                        </a>
+                                        <span class="section-label">4.9.1 </span>Mathematical and Logical Operators</h4>
+                                    <p>The operands of a mathematical or logical operator must be well-defined expressions. That is, you must use the correct number of operands and the operation must make sense. For example, you cannot take the XOR of a floating-point value. In addition, well-defined expressions contain only symbols or assembly-time constants that have been defined before they occur in the directive's expression.</p>
+                                    <p>Three main factors influence the order of expression evaluation:</p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col align="left" />
+                                                <col align="left" />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>Parentheses</b> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Expressions enclosed in parentheses are always evaluated first. <p>8 / (4 / 2) = 4, but 8 / 4 / 2 = 1 </p><p> You <i>cannot</i> substitute braces ( { } ) or brackets ( [ ] ) for parentheses. </p></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>Precedence groups</b> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Operators, listed in <span class="crossreference"><a href="#STDZ0711092">Table 4-4</a></span>, are divided into nine precedence groups. When parentheses do not determine the order of expression evaluation, the highest precedence operation is evaluated first. <p>8 + 4 / 2 = 10 (4 / 2 is evaluated first) </p></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>Left-to-right evaluation</b> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">When parentheses and precedence groups do not determine the order of expression evaluation, the expressions are evaluated from left to right, except for Group 1, which is evaluated from right to left. <p> 8 / 4*2 = 4, but 8 / (4*2) = 1</p></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>
+                                        <span class="crossreference">
+                                            <a href="#STDZ0711092">Table 4-4</a>
+                                        </span> lists the operators that can be used in expressions, according to precedence group.</p>
+                                    <div class="subsection">
+                                        <p class="table" id="STDZ0711092">
+                                            <span class="table-label">Table 4-4 </span>Operators Used in Expressions (Precedence)  </p>
+                                        <table class="gentable">
+                                            <colgroup>
+                                                <col align="center" />
+                                                <col align="center" />
+                                                <col align="left" />
+                                            </colgroup>
+                                            <thead class="tbl_hdr_gray">
+                                                <tr>
+                                                    <th align="center" class="noBorderRight" valign="bottom">Group<sup><a class="crossreference" href="#STDZ0718420">(1)</a></sup> <![CDATA[ ]]></th>
+                                                    <th align="center" class="noBorderRight" valign="bottom">Operator</th>
+                                                    <th align="left" class="noBorderRight" valign="bottom">Description<sup><a class="crossreference" href="#STDZ0712819">(2)</a></sup> <![CDATA[ ]]></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="top">1</td>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="middle">+<br /> -<br /> ~<br /> !</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Unary plus<br /> Unary minus<br /> 1s complement<br /> Logical NOT</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="top">2</td>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="middle">*<br /> /<br /> %</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Multiplication<br /> Division<br /> Modulo</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="top">3</td>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="middle">+<br /> -</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Addition<br /> Subtraction</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="top">4</td>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="middle">&lt;&lt;<br /> &gt;&gt;</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Shift left<br /> Shift right</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="top">5</td>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="middle">&lt;<br /> &lt;=<br /> &gt;<br /> &gt;=</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Less than<br /> Less than or equal to<br /> Greater than<br /> Greater than or equal to</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="top">6</td>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="middle">=[=]<br /> != </td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Equal to<br /> Not equal to</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="top">7</td>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="middle">&amp;</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Bitwise AND</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="top">8</td>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="middle">^</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Bitwise exclusive OR (XOR)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="top">9</td>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="middle">|</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Bitwise OR</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="tablenote" id="STDZ0718420">
+                                            <span class="section-label">(1) </span>Group 1 operators are evaluated right to left. All other operators are evaluated left to right.</div>
+                                        <div class="tablenote" id="STDZ0712819">
+                                            <span class="section-label">(2) </span>Unary + and - have higher precedence than the binary forms.</div>
+                                    </div>
+                                    <p>The assembler checks for overflow and underflow conditions when arithmetic operations are performed during assembly. It issues a warning (the "value truncated" message) whenever an overflow or underflow occurs. The assembler <i>does not</i> check for overflow or underflow in multiplication.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0718526">
+                                        <a MadCap:generatedBookmark="TOC" name="4.9.2_Relational_Operators_and_Conditional_Expressions">
+                                        </a>
+                                        <span class="section-label">4.9.2 </span>Relational Operators and Conditional Expressions</h4>
+                                    <p>The assembler supports relational operators that can be used in any expression; they are especially useful for conditional assembly. Relational operators include the following:</p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col align="left" />
+                                                <col align="left" />
+                                                <col align="left" />
+                                                <col align="left" />
+                                                <col />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>=</b> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Equal to</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                        <p>
+                                                            <b>! =</b>
+                                                        </p>
+                                                    </td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Not equal to</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>&lt;</b> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Less than</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>&lt;=</b> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Less than or equal to</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>&gt;</b> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Greater than</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>&gt; =</b> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Greater than or equal to</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>Conditional expressions evaluate to 1 if true and 0 if false and can be used only on operands of equivalent types; for example, absolute value compared to absolute value, but not absolute value compared to relocatable value.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0711868">
+                                        <a MadCap:generatedBookmark="TOC" name="4.9.3_Well-Defined_Expressions">
+                                        </a>
+                                        <span class="section-label">4.9.3 </span>Well-Defined Expressions</h4>
+                                    <p>Some assembler directives, such as .if, require well-defined absolute constant expressions as operands. Well-defined expressions contain only symbols or assembly-time constants that have been defined before they occur in the directive's expression. In addition, they must use the correct number of operands and the operation must make sense. The evaluation of a well-defined expression must be unambiguous.</p>
+                                    <p>This is an example of a well-defined expression:</p>
+                                    <code>1000h+X</code>
+                                    <p>where X was previously defined as an absolute symbol.</p>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0717434">
+                                    <a MadCap:generatedBookmark="TOC" name="4.10_Built-in_Functions_and_Operators">
+                                    </a>
+                                    <span class="section-label">4.10 </span>Built-in Functions and Operators</h3>
+                                <p>The assembler supports built-in mathematical functions and built-in addressing operators.</p>
+                                <p>The built-in substitution symbol functions are discussed in <span class="crossreference"><a href="macro-language-description.html#STDZ0735215">Section 6.3.2</a></span>.</p>
+                                <div class="subsection">
+                                    <h4 id="STDZ0718590">
+                                        <a MadCap:generatedBookmark="TOC" name="4.10.1_Built-In_Math_and_Trigonometric_Functions">
+                                        </a>
+                                        <span class="section-label">4.10.1 </span>Built-In Math and Trigonometric Functions</h4>
+                                    <p>The assembler supports built-in functions for conversions and various math computations. <span class="crossreference"><a href="#STDZ0715323">Table 4-5</a></span> describes the built-in functions. The <i>expr</i> must be an absolute constant expression. </p>
+                                    <div class="subsection">
+                                        <p class="table" id="STDZ0715323">
+                                            <span class="table-label">Table 4-5 </span>Built-In Mathematical Functions </p>
+                                        <table class="gentable">
+                                            <colgroup>
+                                                <col />
+                                                <col />
+                                            </colgroup>
+                                            <thead class="tbl_hdr_gray">
+                                                <tr>
+                                                    <th>Function</th>
+                                                    <th>Description</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td> <b>$acos</b>(<i>expr</i>)</td>
+                                                    <td>Returns the arccosine of <i>expr</i> as a floating-point value</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$asin</b>(<i>expr</i>)</td>
+                                                    <td>Returns the arcsine of <i>expr</i> as a floating-point value</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$atan</b>(<i>expr</i>)</td>
+                                                    <td>Returns the arctangent of <i>expr</i> as a floating-point value</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$atan2</b>(<i>expr</i>, <i>y</i>)</td>
+                                                    <td>Returns the arctangent of <i>expr</i> as a floating-point value in range [-π, π] </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$ceil</b>(<i>expr</i>)</td>
+                                                    <td>Returns the smallest integer not less than <i>expr</i> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$cos</b>(<i>expr</i>)</td>
+                                                    <td>Returns the cosine of <i>expr</i> as a floating-point value</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$cosh</b>(<i>expr</i>)</td>
+                                                    <td>Returns the hyperbolic cosine of <i>expr</i> as a floating-point value</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$cvf</b>(<i>expr</i>)</td>
+                                                    <td>Converts <i>expr</i> to a floating-point value</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$cvi</b>(<i>expr</i>)</td>
+                                                    <td>converts <i>expr</i> to integer value</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$exp</b>(<i>expr</i>)</td>
+                                                    <td>Returns the exponential function e<i> <sup>expr</sup> <![CDATA[ ]]></i> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$fabs</b>(<i>expr</i>)</td>
+                                                    <td>Returns the absolute value of <i>expr</i> as a floating-point value</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$floor</b>(<i>expr</i>)</td>
+                                                    <td>Returns the largest integer not greater than <i>expr</i> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$fmod</b>(<i>expr</i>, <i>y</i>)</td>
+                                                    <td>Returns the remainder of <i>expr1</i> ÷ <i>expr2</i> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$int</b>(<i>expr</i>)</td>
+                                                    <td>Returns 1 if <i>expr</i> has an integer value; else returns 0. Returns an integer.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$ldexp</b>(<i>expr</i>, <i>expr2</i>)</td>
+                                                    <td>Multiplies <i>expr</i> by an integer power of 2. That is, <i>expr1</i> × 2<i> <sup>expr2</sup> <![CDATA[ ]]></i> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$log</b>(<i>expr</i>)</td>
+                                                    <td>Returns the natural logarithm of <i>expr</i>, where <i>expr</i>&gt;0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$log10</b>(<i>expr</i>)</td>
+                                                    <td>Returns the base 10 logarithm of <i>expr</i>, where <i>expr</i>&gt;0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$max</b>(<i>expr1</i>, <i>expr2</i>)</td>
+                                                    <td>Returns the maximum of two values</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$min</b>(<i>expr1</i>, <i>expr2</i>)</td>
+                                                    <td>Returns the minimum of two values</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$pow</b>(<i>expr1</i>, <i>expr2</i>)</td>
+                                                    <td>Returns <i>expr1</i>raised to the power of <i>expr2</i> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$round</b>(<i>expr</i>)</td>
+                                                    <td>Returns <i>expr</i> rounded to the nearest integer</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$sgn</b>(<i>expr</i>)</td>
+                                                    <td>Returns the sign of <i>expr</i>. </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$sin</b>(<i>expr</i>)</td>
+                                                    <td>Returns the sine of <i>expr</i> <![CDATA[ ]]></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$sinh</b>(<i>expr</i>)</td>
+                                                    <td>Returns the hyperbolic sine of <i>expr</i> as a floating-point value</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$sqrt</b>(<i>expr</i>)</td>
+                                                    <td>Returns the square root of expr, expr≥0, as a floating-point value</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>$strtod</b>(<i>str</i>)</td>
+                                                    <td>Converts a character string to a double precision floating-point value. The string contains a properly-formatted C99-style floating-point literal. </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$tan</b>(<i>expr</i>)</td>
+                                                    <td>Returns the tangent of <i>expr</i> as a floating-point value</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$tanh</b>(<i>expr</i>)</td>
+                                                    <td>Returns the hyperbolic tangent of <i>expr</i> as a floating-point value</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>$trunc</b>(<i>expr</i>)</td>
+                                                    <td>Returns <i>expr</i> rounded toward 0</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0715907">
+                                        <a MadCap:generatedBookmark="TOC" name="4.10.2_MSP430_Built-In_ELF_Relocation_Generating_Operators">
+                                        </a>
+                                        <span class="section-label">4.10.2 </span>MSP430 Built-In ELF Relocation Generating Operators</h4>
+                                    <p>The assembler supports MSP430-specific ELF relocation generating built-in operators. The operators are used in compiler-generated code to support symbolic addressing of objects. </p>
+                                    <p>$HI16 and $LO16 create an ELF relocation representing the high and low 16 bits respectively of a link-time constant (such as an address). These operators are sometimes necessary when treating a 20-bit data or function pointer as a 32-bit unsigned long value. </p>
+                                    <p>The argument to these operators must be a relocatable constant expression.</p>
+                                    <p>
+                                        <b>Example:</b>
+                                    </p>
+                                    <p>The following C function, when compiled for EABI in large data model, will generate the following assembly code to load the appropriate 32-bit value into the return registers. </p>
+                                    <code>/* cl430 --abi=eabi -ml -vmspx */
+extern int xyz;
+unsigned long func() { return _symval(&amp;xyz); }
+
+ MOV.W #$LO16(xyz),r12
+ MOV.W #$HI16(xyz),r13 ; after this instruction, the register
+ ; pair r13:r12 holds the 32-bit value of &amp;x.
+ RETA</code>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ071744">
+                                    <a MadCap:generatedBookmark="TOC" name="4.11_Source_Listings">
+                                    </a>
+                                    <span class="section-label">4.11 </span>Source Listings</h3>
+                                <p>A source listing shows source statements and the object code they produce. To obtain a listing file, invoke the assembler with the --asm_listing option (see <span class="crossreference"><a href="#STDZ0719026">Section 4.3</a></span>).</p>
+                                <p>Two banner lines, a blank line, and a title line are at the top of each source listing page. Any title supplied by the .title directive is printed on the title line. A page number is printed to the right of the title. If you do not use the .title directive, the name of the source file is printed. The assembler inserts a blank line below the title line.</p>
+                                <p>Each line in the source file produces at least one line in the listing file. This line shows a source statement number, an SPC value, the object code assembled, and the source statement. <span> <span class="crossreference"><a href="#STDZ0719339">Figure 4-2</a></span> shows these in an actual listing file.</span></p>
+                                <p>
+                                    <b>Field 1: Source Statement Number</b>
+                                </p>
+                                <p>
+                                    <b>Line number</b>
+                                </p>
+                                <p>The source statement number is a decimal number. The assembler numbers source lines as it encounters them in the source file; some statements increment the line counter but are not listed. (For example, .title statements and statements following a .nolist are not listed.) The difference between two consecutive source line numbers indicates the number of intervening statements in the source file that are not listed.</p>
+                                <p>
+                                    <b>Include file letter</b>
+                                </p>
+                                <p>A letter preceding the line number indicates the line is assembled from the include file designated by the letter.</p>
+                                <p>
+                                    <b>Nesting level number</b>
+                                </p>
+                                <p>A number preceding the line number indicates the nesting level of macro expansions or loop blocks.</p>
+                                <p>
+                                    <b>Field 2: Section Program Counter</b>
+                                </p>
+                                <p>This field contains the SPC value, which is hexadecimal. All sections (.text, .data, <span>.bss</span>, and named sections) maintain separate SPCs. Some directives do not affect the SPC and leave this field blank.</p>
+                                <p>
+                                    <b>Field 3: Object Code</b>
+                                </p>
+                                <p>This field contains the hexadecimal representation of the object code. All machine instructions and directives use this field to list object code. This field also indicates the relocation type associated with an operand for this line of source code. If more than one operand is relocatable, this column indicates the relocation type for the first operand. The characters that can appear in this column and their associated relocation types are listed below:</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col align="left" />
+                                            <col align="center" />
+                                            <col align="left" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top">!</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">undefined external reference</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top"> <b>'</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">.text relocatable</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top">+</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">.sect relocatable</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top">"</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">.data relocatable</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top">-</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <span>.bss, </span>.usect relocatable</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top">%</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">relocation expression</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>
+                                    <b>Field 4: Source Statement Field</b>
+                                </p>
+                                <p>This field contains the characters of the source statement as they were scanned by the assembler. The assembler accepts a maximum line length of 200 characters. Spacing in this field is determined by the spacing in the source statement.</p>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="#STDZ0719339">Figure 4-2</a>
+                                    </span> shows an assembler listing with each of the four fields identified. </p>
+                                <div class="figure">
+                                    <span class="caption" id="STDZ0719339">
+                                        <span class="figure-label">Figure 4-2 </span>Example Assembler Listing</span> <img alt="assylist_lau131.gif" itemprop="image" src="ods/images/SLAU131R/assylist_lau131.gif" title="Example Assembler&#xA;    Listing" /> </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0716489">
+                                    <a MadCap:generatedBookmark="TOC" name="4.12_Debugging_Assembly_Source">
+                                    </a>
+                                    <span class="section-label">4.12 </span>Debugging Assembly Source</h3>
+                                <p>By default, when you compile an assembly file, the assembler provides symbolic debugging information that allows you to step through your assembly code in a debugger rather than using the Disassembly window in Code Composer Studio. This enables you to view source comments and other source-code annotations while debugging. The default has the same behavior as using the --symdebug:dwarf option. You can disable the generation of debugging information by using the --symdebug:none option.</p>
+                                <p>The .asmfunc and .endasmfunc (see <span class="crossreference"><a href="assembler-directives.html#IDasmfuncdesc">.asmfunc directive</a></span>) directives enable you to use C characteristics in assembly code that makes the process of debugging an assembly file more closely resemble debugging a C/C++ source file.</p>
+                                <p>The .asmfunc and .endasmfunc directives allow you to name certain areas of your code, and make these areas appear in the debugger as C functions. Contiguous sections of assembly code that are not enclosed by the .asmfunc and .endasmfunc directives are automatically placed in assembler-defined functions named with this syntax:</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td> <b>$</b><i>filename</i><b>:</b><i>starting source line</i><b>:</b><i>ending source line</i><b>$</b> <![CDATA[ ]]></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>If you want to view your variables as a user-defined type in C code, the types must be declared and the variables must be defined in a C file. This C file can then be referenced in assembly code using the .ref directive (see <span class="crossreference"><a href="assembler-directives.html#IDglobaldesc">.ref directive</a></span>). <span class="crossreference"><a href="#STDZ0713387">Example 4-3</a></span> shows the cvar.c C program that defines a variable, svar, as the structure type X. The svar variable is then referenced in the addfive.asm assembly program in <span class="crossreference"><a href="#STDZ0711256">Example 4-4</a></span> and 5 is added to svar's second data member.</p>
+                                <p>Compile both source files with the --symdebug:dwarf option (-g) and link them as follows:</p>
+                                <code>cl430 --symdebug:dwarf cvars.c addfive.asm --run_linker --library=lnk.cmd --library=rts430.lib
+ --output_file=addfive.out</code>
+                                <p>When you load this program into a symbolic debugger, addfive appears as a C function. You can monitor the values in svar while stepping through main just as you would any regular C variable.</p>
+                                <div class="example">
+                                    <h4 id="STDZ0713387">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_4-3_Viewing_Assembly_Variables_as_C_Types_C_Program">
+                                        </a>
+                                        <span class="example-label">Example 4-3 </span>Viewing Assembly Variables as C Types C Program</h4>
+                                    <code>typedef struct
+{
+ int m1;
+ int m2;
+} X;
+X svar = { 1, 2 };</code>
+                                </div>
+                                <div class="example">
+                                    <h4 id="STDZ0711256">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_4-4_Assembly_Program_for_Example_4-3">
+                                        </a>
+                                        <span class="example-label">Example 4-4 </span>Assembly Program for <span class="crossreference"><a href="#STDZ0713387">Example 4-3</a></span></h4>
+                                    <code>    .ref svar
+
+ .global addfive
+
+addfive: .asmfunc
+ MOV #5,R12
+ ADD R12,&amp;svar
+ ADD R12,&amp;svar + 2
+ RET
+ .endasmfunc</code>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0717784">
+                                    <a MadCap:generatedBookmark="TOC" name="4.13_Cross-Reference_Listings">
+                                    </a>
+                                    <span class="section-label">4.13 </span>Cross-Reference Listings</h3>
+                                <p>A cross-reference listing shows symbols and their definitions. To obtain a cross-reference listing, invoke the assembler with the --asm_listing_cross_reference option (see <span class="crossreference"><a href="#STDZ0719026">Section 4.3</a></span>) or use the .option directive with the X operand (see <span class="crossreference"><a href="assembler-directives.html#IDoptiondesc">Select Listing Options</a></span>). The assembler appends the cross-reference to the end of the source listing. <span class="crossreference"><a href="#STDZ0719232">Example 4-5</a></span> shows the four fields contained in the cross-reference listing.</p>
+                                <div class="example">
+                                    <h4 id="STDZ0719232">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_4-5_An_Assembler_Cross-Reference_Listing">
+                                        </a>
+                                        <span class="example-label">Example 4-5 </span>An Assembler Cross-Reference Listing</h4>
+                                    <code>LABEL VALUE DEFN REF
+
+.MSP430 0001 0 
+.msp430 0001 0 
+addfive 0000' 6 3 
+svar REF 1 7 8 </code>
+                                </div>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                            <col align="left" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>Label</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">column contains each symbol that was defined or referenced during the assembly.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>Value</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">column contains an 8-digit hexadecimal number (which is the value assigned to the symbol) <i>or</i> a name that describes the symbol's attributes. A value may also be preceded by a character that describes the symbol's attributes. <span class="crossreference"><a href="#STDZ0716163">Table 4-6</a></span> lists these characters and names.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>Definition</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">(DEFN) column contains the statement number that defines the symbol. This column is blank for undefined symbols.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>Reference</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">(REF) column lists the line numbers of statements that reference the symbol. A blank in this column indicates that the symbol was never used.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="subsection">
+                                    <p class="table" id="STDZ0716163">
+                                        <span class="table-label">Table 4-6 </span>Symbol Attributes </p>
+                                    <table class="gentable">
+                                        <colgroup>
+                                            <col />
+                                            <col />
+                                            <col />
+                                        </colgroup>
+                                        <thead class="tbl_hdr_gray">
+                                            <tr>
+                                                <th align="left" class="noBorderRight" valign="bottom" />
+                                                <th align="left" class="noBorderRight" valign="bottom">Character or Name </th>
+                                                <th align="left" class="noBorderRight" valign="bottom">Meaning</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">REF</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">External reference (global symbol)</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="middle">UNDF</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Undefined</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">'</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Symbol defined in a .text section</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">"</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Symbol defined in a .data section</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">+</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Symbol defined in a .sect section</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">-</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Symbol defined in a <span>.bss or </span>.usect section</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="abstract.html">Back to Top</a>
+                    <p />
+                    <a href="http://www.go-dsp.com/forms/techdoc/doc_feedback.htm?litnum=SLAU131R&amp;partnum=MSP430">Submit Documentation Feedback</a>
+                    <p>Copyright© 2018, Texas Instruments Incorporated. An <a href="includes/important_notice.html">IMPORTANT NOTICE</a> for this document addresses availability, warranty, changes, use in safety-critical applications, intellectual property matters and other important disclaimers.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

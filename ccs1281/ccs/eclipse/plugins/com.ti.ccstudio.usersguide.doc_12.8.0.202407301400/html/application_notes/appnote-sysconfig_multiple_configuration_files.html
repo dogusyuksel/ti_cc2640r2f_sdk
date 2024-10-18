@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="It is possible to have multiple SysConfig files in a Code Composer Studio (CCS) project.  This may be desired if the same project is supporting multiple boards.">
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="Code Composer Studio">
+<meta name="product-link" content="https://www.ti.com/tool/CCSTUDIO">
+
+<!-- Change the title text for your page -->
+<title>Multiple SysConfig Files and Boards in a Project</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+# Overview
+It is possible to have multiple SysConfig files in a Code Composer Studio (CCS) project.  There are different use scenarios for this. One is if you have different SysConfig files for configuring different items and the files are independent.  Another scenario is where you have a project that supports multiple boards and there are different SysConfig files for each board.  In this case the files are mutually exclusive.  This document focuses on the second scenario.
+
+Supporting this scenario is accomplished by leveraging the ability to include/exclude source files on a per build configuration basis.  As far as the build system is concerned .syscfg files are source files.
+
+# Procedure
+###Create a build configuration
+The general idea is that you have a SysConfig file per build configuration.  You can then specify the file to use for each configuration.  If you already have multiple configurations you can skip this step.
+* Right-click on the project and select **Build Configurations -> Manage...**
+![Project context menu](images/SysConfigManageConfigurationsMenu.png)
+* This will open a dialog box to manage build configurations and will list the existing configurations in the project.
+![Manage build configurations dialog](images/SysConfigManageConfigurationsDialog.png)
+* Click the **New...** button to create a new build configuration.  Give this configuration a name such as **Board2**.  Optionally you can also provide a description.
+[[y Warning:
+It is not recommended to have spaces in the name of the configuration.
+]]
+Select the existing build configuraiton that you want to copy the settings from.
+![Creating a new build configuration](images/SysConfigNewConfigurationDialog.png)
+* Once you click **OK** it will show the new configuration in the manage configurations dialog.
+![Manage build configurations dialog](images/SysConfigBothConfigurationsListed.png)
+* Click **OK** again to go back to the project.
+
+###Replicate your SysConfig file
+The next step is to create a copy of the SysConfig configuration file (.syscfg).
+* Right-click on the **.syscfg** file in **Project Explorer** and select **Copy**.
+![Copy file context menu](images/SysConfigCopyFile.png)
+* Right-click on the project and select **Paste**.
+![Paste context menu](images/SysConfigPasteContextMenu.png)
+* This will open a dialog box that prompts for a name for the new file.  Enter a name.
+![Name the new file](images/SysConfigNameTheFile.png)
+* Both files will now be in the project and it will have automatically excluded the old file from both build configurations.
+![Both files are now present](images/SysConfigBothFilesPresent.png)
+
+###Specify SysConfig file to use for each configuration
+It is now necessary to specify which SysConfig file to use for each build configuration.
+* To enable the original file for the current build configuration right-click on it and select **Exclude from build**.  As this is already set it will clear the status.
+![Enable original file](images/SysConfigEnableOriginalFile.png)
+Both Files will now be enabled.
+![Both files enabled](images/SysConfigBothFilesEnabled.png)
+* Right-click on the second file and select **Exclude from build** so that is it not used for this build configuration.
+![Exclude second file](images/SysConfigExcludeSecondFile.png)
+* Now for the first configuration the original SysConfig file is included and the new one is excluded.
+![First build configuration is complete](images/SysConfigBoard1Configuration.png)
+* Change the active build configuration to the other build configuration by right-clicking on the project and selecting **Build Configurations -> Set Active -> Board2**
+![Set active configuration to the second configuration](images/SysConfigSetActiveConfiguration.png)
+* Confirm that the correct file is excluded and if not follow the same procedure to adjust it.
+![Second build configuration to the second configuration](images/SysConfigBoard2Configuration.png)
+
+Now when build configuration **Board1** is built it will use **developmentboard.syscfg** and when **Board2** is built it will use **productionboard.syscfg**.
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

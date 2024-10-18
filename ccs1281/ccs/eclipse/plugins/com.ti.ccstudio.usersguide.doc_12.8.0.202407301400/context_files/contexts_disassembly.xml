@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.contexts"?>
+
+<!-- Disassembly View: Single context sensitive link  -->
+
+<contexts>
+
+<!--
+<context id="disassembly_help" title="About Disassembly View">
+	<description>Help content for disassembly view</description>
+	<topic href="html/views_and_editors/disassembly_view/disassembly_overview.htm" label="Overview of the Disassembly View" />
+	<topic href="html/views_and_editors/disassembly_view/working_with_disassembly_view.htm" label="Working with the Disassembly View" /> 
+	<topic href="html/views_and_editors/disassembly_view/assembly_stepping.htm" label="Stepping into disassembled code" /> 	 
+	<topic href="html/views_and_editors/disassembly_view/disassembly_format.htm" label="Disassembly format" />	
+	
+</context>
+-->
+
+<!-- [12/4/2019 - Modifying paths to new CCS User Guide Help plugin] -->
+
+<context id="disassembly_view_context" title="About Disassembly View">
+	<description>Help content for disassembly view</description>
+	<topic href="html/users_guide/ccs_debug-main.html#disassembly-view" label="CCS - Overview of the Disassembly View" />
+</context>
+
+</contexts>

@@ -1,0 +1,111 @@
+Log started 10/18/2024 at 10:55:43
+Preferred installation mode : unattended
+Trying to init installer in mode unattended
+Mode unattended successfully initialized
+[10:55:43] deletelist = 
+[10:55:43] paddedversion = 1.1.61.1.6
+Preparing to Install
+Preparing to Install
+Creating directory /home/spire/ti/ccs1281/ccs/tools/compiler/dmed
+Unpacking files
+Directory already exists: /home/spire/ti/ccs1281/ccs/tools/compiler/dmed
+Creating directory /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML
+Creating directory /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430
+Creating directory /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/C6000
+Unpacking files
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/dmed.xml
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/16008.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/start_opt_assist.png
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/16000.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/10198.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/Entry_point.jpg
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/status_while_running.png
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/10234.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/10202.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/27011.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/27007.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/internal_error.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/status_while_running4.png
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/advice_view.png
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/17003.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/opt_assist_advice.png
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/10099.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/27010.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/994.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/results.png
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/status_while_running3.png
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/status_while_running2.png
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/5.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/27009.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/27008.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/225.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1539.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1531.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/RAM_Function_Example.zip
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1535.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/10372.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/Suppress_init_vector_msp430.jpg
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1533.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1542.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1537.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/10374.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1543.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1540.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1528.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1545.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1530.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/10420.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/10436.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1546.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/ULPAdvisorBanner.png
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/E2e.jpg
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1536.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1541.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1534.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1521.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/Ulp6.2_3.jpg
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/10421.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1538.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/320px-ULPAdvisorBanner.PNG
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1544.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1532.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/10030.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/10422.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/Ulp6.2_2.jpg
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/10424.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/10371.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/MSP430/1527.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/C6000/30003.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/C6000/30008.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/C6000/27004.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/C6000/30002.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/C6000/27002.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/C6000/30010.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/C6000/30006.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/C6000/30000.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/C6000/27001.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/C6000/30001.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/C6000/30004.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/C6000/30007.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/C6000/27000.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/C6000/27003.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/C6000/30011.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/C6000/30009.html
+Unpacking /home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/C6000/30005.html
+Executing chmod -R 666 "/tmp/bitrock_installer_9737.log"
+Script exit code: 0
+
+Script output:
+ 
+
+Script stderr:
+ 
+
+Creating Uninstaller
+Creating uninstaller 25%
+Creating uninstaller 50%
+Creating uninstaller 75%
+Creating uninstaller 100%
+Installation completed
+Log finished 10/18/2024 at 10:55:44
+Exiting with code 0

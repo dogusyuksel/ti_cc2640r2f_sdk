@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="This article describes how to create a custom target configuration using the advanced setup utility"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Composer Studio Product Page">
+<meta name="product-link" content="https://www.ti.com/tool/CCStudio">
+
+<!-- Change the title text for your page -->
+<title>Custom Target Configurations</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+Overview
+---
+The Code Composer Studio Target Configuration tool provides a way for users to create and modify target configuration (<tt>\*.ccxml</tt>) files for use by the debugger. It is recommended to use the **General Setup** to specify a custom target when possible. However, the desired option for your particular connection and device combination may not be covered by the **Connection** and **Board or Device** lists of the **General Setup**. In these cases, you will need to build your own configuration using the **Advanced Setup** utility.
+
+The **Advanced Setup** tool allows you to build a configuration by selecting from a list of available Connections and a list of available components (**Devices**, **Cpus**, **Routers**). Be aware, that using the utility will be difficult without sufficient knowledge of the device for which the configuration is being built.
+
+To access the **Advanced Setup** utility, open a target configuration file and click on the **Target Configuration** link under **Advanced Setup**, or click on the **Advanced** tab in the lower left corner of the view.
+
+![The location of the Advanced Setup Target Configuration link and Advanced tab.](images/ccs_custom_target_config_advanced_setup.png)
+
+
+Device Files
+---
+Device files are XML files that provide all the information for an entire device. This can include router information, multiple CPUs, etc. For example, a DM6446 device consists of one router (IcePick C) with three subpaths, each with a CPU (ARM9, ETB, C64x+). As an example the steps below build a target configuration for a DM6446 in the **Advanced Setup**. Since this is a single device, the result is no different from using the basic setup. However, the same steps can be used to add any device to any new or existing target configuration.
+
+1.  Create a new **Target Configuration File** in CCS.
+
+2.  Access the **Advanced Setup** as described above.
+
+3.  Click on **New...** to open the **Connection Selection** window.
+
+4.  Select the desired connection (**Blackhawk USB560-M Emulator** in this case) and click **Finish**.
+    ![In the Connection Selection window, the Blackhawk USB560-M Emulator is selected.](images/ccs_custom_target_config_connection_select.png)
+
+    The selected connection will now be added to the left pane. In the right pane the **Connection Properties** can be modified if needed.
+
+    ![The XDS100v2 Debug Probe is shown in the left pane and the Connection Properties are shown in the right pane.](images/ccs_custom_target_config_connection_added.png)
+
+5.  With the connection selected in the left pane, click on **Add...** to open the **Component Selection** window.
+
+6.  Under the **Devices** tab, select the desired device (**TMS320DM6446** in this case) and click **Finish**.
+
+    ![Under the Devices tab of the Component Selection window, the TMS320DM6446 is selected.](images/ccs_custom_target_config_add_device.png)
+
+    This will add the selected device as its own icon below the connection and the rest of the configuration will be completed below it.
+
+    ![The target configuration is completed to show the IcePick_C router, subpaths and CPUs under the DM6446 device.](images/ccs_custom_target_config_device_added.png)
+
+The target configuration for a single DM6446 device is now complete.
+
+Device files make it easy to add entire devices to your target configuration. They have other benefits as well. Device files often reference other module XML files which describe device specific memory mapped register information for the CCS **Registers** view. This allows for more detailed information to appear in the **Registers** view. The files can also contain additional configuration information that is not available in the **Advanced Setup**.
+
+Multiple devices, (identical or not) can be added to a single connection. Simply repeat steps 5 and 6 above to add additional devices to a connection. You can also add multiple copies of a device at once by specifying a number of copies in the lower right corner of the **Component Selection** window.
+
+![The left pane shows a single XDS100v2 probe with two C6474 devices. To the right, the **Component Selection** window shows the C6474 device selected with two copies requested in the lower right corner.](images/ccs_custom_target_config_dual_device.png)
+
+For more details, check out the short video below.
+
+<iframe width="854" height="480" src="https://www.youtube.com/embed/DgMRth5SR1Q" frameborder="0" allowfullscreen></iframe>
+
+Combining devices with non-device file specified information for a single connection is also allowed. Adding additional devices or components can be done in the same way a device is added to a connection. See [this section](#building-or-extending-a-target-configuration) for more details
+
+![The Component Selection window is accessed with the 'Add...' button. The tabs allow you to select Boards, Devices, CPUs (Bypass can be found here), and Routers. In the upper right you can filter components by ISA. At the bottom you can give the device a human readable name, and you can add multiple devices at a time.](images/ccs_custom_target_config_add_component.png)
+
+
+Multiple Debug Probes
+---
+When using multiple debug probes, the procedure is very similar to the above. In the **Advanced Setup**, click on **New...** to add a second connection to the configuration.
+
+![In the left pane, an XDS110 debug probe has already been added with a CC1352 device. The New... button can be clicked to add a new second connection.](images/ccs_custom_target_config_adding_other_connection.png)
+
+After selecting a new connection and clicking **Finish**, the new connection should appear in the left pane. If your configuration contains identical debug probes, they must be differentiated by their serial numbers.
+
+![The left pane shows two XDS110 Debug Probes. The second is selected and the right pane shows the 'Debug Probe Selection' property is set to 'Select by serial number' and a serial number is entered in the box below.](images/ccs_custom_target_config_two_connections.png)
+
+Then devices and components can be added to the new debug probe in the same way described above.
+
+![The left pane shows two XDS110 Debug Probes one with a CC1352 device and the other with a CC2640 device](images/ccs_custom_target_config_two_devices_completed.png)
+
+You can find more details on debugging with multiple debug probes [here](https://software-dl.ti.com/ccs/esd/documents/sdto_ccs_multi-probe-debug.html).
+
+
+Building or Extending a Target Configuration
+---
+It may be that your particular device configuration cannot be built using device files. In this case, you will need to build part, or all, of your target configuration from scratch.
+
+[[r Warning:
+Building a target configuration from scratch is difficult and requires in-depth knowledge of your device. It should only be done as a last resort if existing device XML files do not suffice.
+]]
+
+The following steps show how to create a target configuration file without the use of device files. A basic target configuration for a F28377S C2000 LaunchPad will be created.
+
+1.  Create a new target configuration file and open the **Advanced Setup**.
+
+2.  Click on the **New...** button to open the **Connection Selection** window. Select the desired connection (**XDS100v2 Debug Probe** in this case) and click **Finish**.
+
+    ![In the left pane of the Advanced Setup a Texas Instruments XDS100v2 USB Debug Probe is shown](images/ccs_custom_target_config_from_scratch_1.png)
+
+3.  Next the components for the F28377S will be added. With the debug probe selected, click on **Add...** and select the **IcePick_C** in the **Routers** tab.
+
+    ![In the Component Selection window, the IcePick_C item is selected in the Routers tab.](images/ccs_custom_target_config_from_scratch_2.png)
+
+    Click **Finish** to add it to the target configuration. This will add an **IcePick_C** in the left pane.
+
+4.  Select the **IcePick_C** router and click **Add...**. Here you can add subpaths to the router. You can specify a number of subpaths to add in the bottom right corner (only one subpath is needed for this example).
+
+    ![With the router selected, the Add Component window allows you to add subpaths.](images/ccs_custom_target_config_from_scratch_3.png)
+
+    This will add a subpath to the **IcePick_C** component in the left pane. In the right pane it is possible to modify the subpath's properties (or the router's properties if the IcePick is selected), such as the port number (the default value of **0x10** is fine in this case).
+
+    ![The subpath has been added to the left pane. The right pane shows the Subpath Properties](images/ccs_custom_target_config_from_scratch_4.png)
+
+5.  Now we add the CPUs for the device. With the subpath selected, click **Add...**, select the **C28xx** in the **Cpus** tab, and click **Finish**.
+
+    ![In the Component Selection window, the C28xx item is selected in the Cpus tab.](images/ccs_custom_target_config_from_scratch_5.png)
+
+    Repeat this step to add a **TMS192C2008** and a **cs_child** component (both can be found in the **Cpus** tab).
+
+6.  Selecting one of the CPUs allows you to specify a GEL startup script. The image below shows this being done for the C28xx CPU.
+
+    ![In the left pane, all three CPUs have been added. The C28xx is selected and in the right pane, a gel script is specified in the 'initialization script' box.](images/ccs_custom_target_config_from_scratch_6.png)
+
+7.  Select the cs_child component and set the **Address** and **Identity** to the values shown below.
+
+    ![In the right pane for the cs_child component, the Address and Identity boxes have been filled with the values 0xE0042000 and 0x4bc44c09 respectively.](images/ccs_custom_target_config_from_scratch_7.png)
+
+This completes the target configuration for a F28377S. As mentioned in earlier, the device files also reference other module XML files which describe register information, and sometimes contain additional configuration information that cannot be configured in the **Advanced Setup**. A target configuration like the one built above cannot contain this kind of information unless it is added to the XML source directly.
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

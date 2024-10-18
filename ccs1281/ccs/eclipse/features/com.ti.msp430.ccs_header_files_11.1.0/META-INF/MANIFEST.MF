@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Created-By: 1.8.0_74 (Oracle Corporation)
+
+Name: p2.inf
+SHA-256-Digest: 0qTfoqNBU61DPAi53PcO8Chxr6hQjIojiKb1gdKdgkA=
+
+Name: feature.xml
+SHA-256-Digest: xitdK+VFT7pF3dnLFPWPa1BsAfmwknfPD5FVHQGUYpM=
+
+Name: com.ti.msp430.ccs_header_files.properties
+SHA-256-Digest: liQYzSltqxyZuLUe9d7FTOLviiterHjCk9sXfNjLNoM=
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.ccstudio.base"
+      label="Code Composer Studio Base Components"
+      version="12.8.0.03471"
+      provider-name="Texas Instruments">
+   <install-handler library="" handler=""/>
+
+   <description url="http://ti.com">
+      Code Composer Studio Base Components
+   </description>
+
+   <copyright>
+      Copyright Texas Instruments 2014
+   </copyright>
+
+   <license>
+	This feature is delivered to you under the license terms that you agreed to when activating Code Composer Studio. 
+   </license>
+
+   <plugin
+         id="com.ti.ccstudio.base"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+</feature>

@@ -1,0 +1,27 @@
+OnTargetConnect()
+-----------------
+
+Called every time a target is connected.
+
+**Format**
+
+**OnTargetConnect()**
+
+**Parameters**
+
+None
+
+**Description**
+
+OnTargetConnect() is called every time a target is connected. Its
+execution will finish before anything else occurs. Note: If you connect
+to the target in real-time mode, you can connect unobtrusively and leave
+the target in a running state. Issuing a command in OnTargetConnect()
+that modifies the target state (such as GEL_Reset), will halt the target
+and defeat the ability to connect unobtrusively.
+
+**Example**
+
+OnTargetConnect()
+
+**Related Topics**

@@ -1,0 +1,35 @@
+GEL_AsmStepOver()
+-----------------
+
+Steps over the next assembly instruction.
+
+**Syntax
+GEL_AsmStepOver(**\ [count]?**);**
+
+**Parameters**
+
+count:(optional) specifies the number of times the command is to be
+repeated. If no count is specified, steps over a single assembly
+instruction.
+
+**Description**
+
+In the Assembly or mixed mode, steps over a single assembly instruction.
+Repeats count times. If the instruction is an assembly subroutine,
+executes the assembly subroutine and then halts after the assembly
+function returns. In source mode, may not appear to move the source
+cursor at all.
+
+**Synchronous**
+
+Synchronous from GEL: No
+
+Completely synchronous: No
+
+**Related Topics**
+
+`GEL_SrcStepInto <GEL_SrcStepInto.html>`__
+
+`GEL_SrcStepOver <GEL_SrcStepOver.html>`__
+
+`GEL_AsmStepInto <GEL_AsmStepInto.html>`__

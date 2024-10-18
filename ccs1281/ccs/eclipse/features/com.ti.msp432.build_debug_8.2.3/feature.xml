@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.msp432.build_debug"
+      label="MSP432 tool-chain"
+      version="8.2.3"
+      provider-name="Texas Instruments"
+      arch="x86,x86_64"
+      os="">
+
+    <description>
+This feature includes the MSP Debug Stack, the Device Flash Library and the Header and Support Files for MSP432
+    </description>
+
+    <copyright url="http://www.ti.com">
+Copyright, Texas Instruments Inc.
+    </copyright>
+
+    <license url="">
+This patch is delivered to you under the license terms that you agreed to when activating Code Composer Studio.  You can view your specific license agreement by visiting www.ti.com/myregisteredsoftware and clicking on View EULA under your Code Composer Studio activation.
+    </license>
+
+    <url>
+    </url>
+
+    <requires>
+        <import feature="com.ti.msp432.support_files" version="8.2.2" match="greaterOrEqual"/>
+        <import feature="com.ti.msp432.flash_files" version="8.2.3" match="greaterOrEqual"/>
+        <import feature="com.ti.msp.debug_probe" version="7.0.0" match="greaterOrEqual"/>
+    </requires>
+
+</feature>

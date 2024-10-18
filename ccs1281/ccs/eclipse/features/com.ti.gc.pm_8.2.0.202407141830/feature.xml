@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.gc.pm"
+      label="GUI Composer Program Model Feature"
+      version="8.2.0.202407141830"
+      provider-name="Texas Instruments">
+
+   <description>
+      GUI Composer Program Model Feature
+   </description>
+
+   <copyright>
+      Copyright Texas Instruments 2013-2014
+   </copyright>
+
+   <license>
+      See Code Composer Studio license for special terms and conditions.
+   </license>
+
+   <requires>
+      <import feature="com.ti.gc.backplane" version="6.0.0.qualifier"/>
+      <import feature="com.ti.debug.server" version="1.0.0.qualifier"/>
+   </requires>
+
+   <plugin
+         id="com.ti.binding.program"
+         download-size="0"
+         install-size="0"
+         version="8.0.0.202407141830"
+         unpack="false"/>
+
+</feature>

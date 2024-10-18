@@ -1,0 +1,22 @@
+OnHalt
+------
+
+GEL callback function called after a halt operation is performed on the
+current target
+
+**Syntax**
+
+**OnHalt();**
+
+**Parameters**
+
+None
+
+**Description**
+
+If defined in a loaded GEL file, OnHalt() is called after the target is
+halted.
+
+**Example**
+
+OnHalt() {GEL_TextOut("OnHalt called …\n")}

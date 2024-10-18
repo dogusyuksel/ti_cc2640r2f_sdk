@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset="utf-8" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>9 Absolute Lister Description</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../Resources/Stylesheets/headerfooter.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="content">
+            <div id="contentBody">
+                <div class="row collapse">
+                    <div class="sideContent">
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                    <div id="loadContentArea">
+                        <div class="c12 docHeader">
+                            <div class="c4 docTitle">
+                                <p>
+                                    <strong>ARM Assembly
+							Language Tools
+			v18.1.0.LTS User's Guide</strong>
+                                    <br />
+                                    <span id="litnumber">SPNU118U</span> - REVISED JANUARY 2018</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="odsHeader">
+                        <p class="pdf">
+                            <a class="downloadPDF" href="http://www.ti.com/litv/SPNU118U" target="_new">Download PDF</a>
+                        </p>
+                    </div>
+                    <div id="loadContentArea1">
+                        <div class="subsection">
+                            <h2 id="STDZ0760723">
+                                <a MadCap:generatedBookmark="TOC" name="9_Absolute_Lister_Description">
+                                </a>
+                                <span class="section-label">9 </span>Absolute Lister Description</h2>
+                            <div class="subsection">
+                                <p> The <span>ARM</span> absolute lister is a debugging tool that accepts linked object files as input and creates .abs files as output. These .abs files can be assembled to produce a listing that shows the absolute addresses of object code. Manually, this could be a tedious process requiring many operations; however, the absolute lister utility performs these operations automatically.</p>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="SPRU1862063">
+                                    <a MadCap:generatedBookmark="TOC" name="9.1_Producing_an_Absolute_Listing">
+                                    </a>
+                                    <span class="section-label">9.1 </span>Producing an Absolute Listing</h3>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="#STDZ0767003">Figure 9-1</a>
+                                    </span> illustrates the steps required to produce an absolute listing.</p>
+                                <div class="figure">
+                                    <span class="caption" id="STDZ0767003">
+                                        <span class="figure-label">Figure 9-1 </span>Absolute Lister Development Flow</span> <img alt="absoflow_tdz076.gif" itemprop="image" src="ods/images/SPNU118U/absoflow_tdz076.gif" title="Absolute Lister Development&#xA;    Flow" /> </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ076810">
+                                    <a MadCap:generatedBookmark="TOC" name="9.2_Invoking_the_Absolute_Lister">
+                                    </a>
+                                    <span class="section-label">9.2 </span>Invoking the Absolute Lister</h3>
+                                <p> The syntax for invoking the absolute lister is:</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                        </colgroup>
+                                        <tbody align="left">
+                                            <tr>
+                                                <td align="left"> <b> <span>armabs</span></b> [-<i>options</i>] <i>input file</i> <![CDATA[ ]]></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                            <col align="left" />
+                                            <col align="left" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td valign="top"> <b> <span>armabs</span></b> <![CDATA[ ]]></td>
+                                                <td colspan="2" valign="top">is the command that invokes the absolute lister.</td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top"> <i>options</i> <![CDATA[ ]]></td>
+                                                <td colspan="2" valign="top">identifies the absolute lister options that you want to use. Options are not case sensitive and can appear anywhere on the command line following the command. Precede each option with a hyphen (-). The absolute lister options are as follows:</td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top" />
+                                                <td valign="top">
+                                                    <b>-e</b>
+                                                </td>
+                                                <td valign="top">enables you to change the default naming conventions for filename extensions on assembly files, C source files, and C header files. The valid options are: <p /><ul><li value="1">ea [.]<i>asmext</i> for assembly files (default is .asm)</li><li value="2">ec [.]<i>cext</i> for C source files (default is .c)</li><li value="3">eh [.]<i>hext</i> for C header files (default is .h)</li><li value="4">ep [.]<i>pext</i> for CPP source files (default is cpp)</li></ul></td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top" />
+                                                <td valign="top" />
+                                                <td valign="top">The . in the extensions and the space between the option and the extension are optional.</td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top" />
+                                                <td valign="top">
+                                                    <b>-q</b>
+                                                </td>
+                                                <td valign="top">(quiet) suppresses the banner and all progress information.</td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top"> <i>input file</i> <![CDATA[ ]]></td>
+                                                <td colspan="2" valign="top">names the linked object file. If you do not supply an extension, the absolute lister assumes that the input file has the default extension .out. If you do not supply an input filename when you invoke the absolute lister, the absolute lister prompts you for one.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p> The absolute lister produces an output file for each file that was linked. These files are named with the input filenames and an extension of .abs. Header files, however, do not generate a corresponding .abs file.</p>
+                                <p>Assemble these files with the --absolute_listing assembler option as follows to create the absolute listing:</p>
+                                <p>
+                                    <b> <span>armcl</span> --absolute_listing</b>
+                                    <i>filename</i>
+                                    <b>.abs</b>
+                                </p>
+                                <p>The -e options affect both the interpretation of filenames on the command line and the names of the output files. They should always precede any filename on the command line.</p>
+                                <p>The -e options are useful when the linked object file was created from C files compiled with the debugging option (--symdebug:dwarf compiler option). When the debugging option is set, the resulting linked object file contains the name of the source files used to build it. In this case, the absolute lister does not generate a corresponding .abs file for the C header files. Also, the .abs file corresponding to a C source file uses the assembly file generated from the C source file rather than the C source file itself.</p>
+                                <p>For example, suppose the C source file hello.csr is compiled with the debugging option set; the debugging option generates the assembly file hello.s. The hello.csr file includes hello.hsr. Assuming the executable file created is called hello.out, the following command generates the proper .abs file:</p>
+                                <code>armabs -ea s -ec csr -eh hsr hello.out</code>
+                                <p>An .abs file is not created for hello.hsr (the header file), and hello.abs includes the assembly file hello.s, not the C source file hello.csr.</p>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0763515">
+                                    <a MadCap:generatedBookmark="TOC" name="9.3_Absolute_Lister_Example">
+                                    </a>
+                                    <span class="section-label">9.3 </span>Absolute Lister Example</h3>
+                                <p> This example uses <span>three</span> source files. <span>The files module1.asm and module2.asm both include the file globals.def.</span></p>
+                                <p>
+                                    <b>module1.asm</b>
+                                </p>
+                                <code>        .text
+ .bss dflag, 1
+ .bss array, 100
+dflag_a .word dflag
+array_a .word array
+offst_a .word offst
+ .copy globals.def
+ LDR r4, array_a 
+ LDR r5, offst_a
+ LDR r3, dflag_a
+ LDR r0, [r4, r5]
+ STR r0, [r3]</code>
+                                <p>
+                                    <b>module2.asm</b>
+                                </p>
+                                <code>        .text
+ .bss offst, 1
+offst_a .word offst
+ .copy globals.def
+ LDR r4, offst_a
+ STR r0, [r4]</code>
+                                <p>
+                                    <b>globals.def</b>
+                                </p>
+                                <code>        .global array
+ .global offst
+ .global dflag</code>
+                                <p>The following steps create absolute listings for the files <b>module1.asm</b> and <b>module2.asm</b>:</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                            <col />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr valign="top">
+                                                <td class="noBorderRight noBorderBottom" valign="top"> Step 1: </td>
+                                                <td class="noBorderRight noBorderBottom" valign="top">First, assemble <b>module1.asm</b> and <b>module2.asm</b>: <code>armcl module1<br />armcl module2</code><br /><p>This creates two object files called module1.obj and module2.obj.</p></td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td class="noBorderRight noBorderBottom" valign="top"> Step 2: </td>
+                                                <td class="noBorderRight noBorderBottom" valign="top">Next, link module1.obj and module2.obj using the following linker command file, called bttest.cmd:</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <code>            --output_file=bttest.out
+ --map_file=bttest.map
+ module1.obj
+ module2.obj
+ MEMORY
+ {
+ P_MEM : org = 0x00000000 len = 0x00001000
+ D_MEM : org = 0x00001000 len = 0x00001000
+ }
+ SECTIONS
+ { 
+ .data: &gt;D_MEM
+ .text: &gt;P_MEM
+ .bss: &gt;D_MEM
+ }</code>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                            <col />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr valign="top">
+                                                <td class="noBorderRight noBorderBottom" valign="top" />
+                                                <td class="noBorderRight noBorderBottom" valign="top">Invoke the linker: <code>armcl --run_linker bttest.cmd</code><br /><p>This command creates an executable object file called bttest.out; use this file as input for the absolute lister.</p></td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td class="noBorderRight noBorderBottom" valign="top" />
+                                                <td class="noBorderRight noBorderBottom" valign="top" />
+                                            </tr>
+                                            <tr valign="top">
+                                                <td class="noBorderRight noBorderBottom" valign="top"> Step 3: </td>
+                                                <td class="noBorderRight noBorderBottom" valign="top">Now, invoke the absolute lister: <code>armabs bttest.out<br /></code><p>This command creates two files called module1.abs and module2.abs:</p><br /><br /><p><b>module1.abs:</b></p></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <code>                       .nolist
+ array .setsym 000001001h
+ dflag .setsym 000001000h
+ offst .setsym 000001068h
+ .data .setsym 000001000h
+ edata .setsym 000001000h
+ .text .setsym 000000000h
+ etext .setsym 00000002ch
+ .bss .setsym 000001000h
+ end .setsym 00000106ch
+ .setsect ".text",000000000h
+ .setsect ".data",000001000h
+ .setsect ".bss",000001000h
+ .list
+ .text
+ .copy "module1.asm"
+</code>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                            <col />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr valign="top">
+                                                <td class="noBorderRight noBorderBottom" valign="top">&#160;</td>
+                                                <td class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>module2.abs:</b> <![CDATA[ ]]></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <code>                       .nolist
+ array .setsym 000001001h
+ dflag .setsym 000001000h
+ offst .setsym 000001068h
+ .data .setsym 000001000h
+ edata .setsym 000001000h
+ .text .setsym 000000000h
+ etext .setsym 00000002ch
+ .bss .setsym 000001000h
+ end .setsym 00000106ch
+ .setsect ".text",000000020h
+ .setsect ".data",000001000h
+ .setsect ".bss",000001068h
+ .list
+ .text
+ .copy "module2.asm"</code>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                            <col />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr valign="top">
+                                                <td class="noBorderRight noBorderBottom" valign="top">&#160;</td>
+                                                <td class="noBorderRight noBorderBottom" valign="top">These files contain the following information that the assembler needs for Step 4: <ul><li value="1"> They contain .setsym directives, which equate values to global symbols. Both files contain global equates for the symbol <i>dflag</i>. The symbol dflag was defined in the file globals.def, which was included in module1.asm and module2.asm.</li><li value="2"> They contain .setsect directives, which define the absolute addresses for sections.</li><li value="3">They contain .copy directives, which defines the assembly language source file to include.</li></ul><p>The .setsym and .setsect directives are useful only for creating absolute listings, not normal assembly.</p></td>
+                                            </tr>
+                                            <tr valign="top">
+                                                <td class="noBorderRight noBorderBottom" valign="top"> Step 4: </td>
+                                                <td class="noBorderRight noBorderBottom" valign="top">Finally, assemble the .abs files created by the absolute lister (remember that you must use the --absolute_listing option when you invoke the assembler): <code>armcl --absolute_listing module1.abs<br />armcl --absolute_listing module2.abs</code><p>This command sequence creates two listing files called module1.lst and module2.lst; no object code is produced. These listing files are similar to normal listing files; however, the addresses shown are absolute addresses.</p><p>The absolute listing files created are module1.lst (see <span class="crossreference"><a href="#STDZ0762976">Example 9-1</a></span> ) and module2.lst (see <span class="crossreference"><a href="#STDZ0765266">Example 9-2</a></span>).</p></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="example">
+                                    <h4 id="STDZ0762976">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_9-1_module1.lst">
+                                        </a>
+                                        <span class="example-label">Example 9-1 </span>module1.lst</h4>
+                                    <code>module1.abs PAGE 1
+ 15 00000000 .text
+ 16 .copy "module1.asm" A 1 00000000 .text
+ A 2 00001000 .bss dflag, 1
+ A 3 00001001 .bss array, 100
+ A 4 00000000 00001000- dflag_a .word dflag
+ A 5 00000004 00001001- array_a .word array
+ A 6 00000008 00001068! offst_a .word offst
+ A 7 .copy globals.def
+ B 1 .global array
+ B 2 .global offst
+ B 3 .global dflag
+ A 8 
+ A 9 0000000c E51F4010 LDR r4, array_a 
+ A 10 00000010 E51F5010 LDR r5, offst_a
+ A 11 00000014 E51F301C LDR r3, dflag_a
+ A 12 00000018 E7940005 LDR r0, [r4, r5]
+ A 13 0000001c E5830000 STR r0, [r3]
+ No Errors, No Warnings</code>
+                                </div>
+                                <div class="example">
+                                    <h4 id="STDZ0765266">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_9-2_module2.lst">
+                                        </a>
+                                        <span class="example-label">Example 9-2 </span>module2.lst</h4>
+                                    <code>module2.abs PAGE 1
+ 15 00000020 .text
+ 16 .copy "module2.asm" A 1 00000020 .text
+ A 2 00001068 .bss offst, 1
+ A 3 00000020 00001068- offst_a .word offst
+ A 4 .copy globals.def
+ B 1 .global array
+ B 2 .global offst
+ B 3 .global dflag
+ A 5 
+ A 6 00000024 E51F400C LDR r4, offst_a
+ A 7 00000028 E5840000 STR r0, [r4]
+ No Errors, No Warnings</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="../Resources/MasterPages/..SPNU118U_HTML/abstract.html">Back to Top</a>
+                    <p />
+                    <a href="http://www.go-dsp.com/forms/techdoc/doc_feedback.htm?litnum=SPNU118U&amp;partnum=ARM">Submit Documentation Feedback</a>
+                    <p>Copyright© 2018, Texas Instruments Incorporated. An <a href="includes/important_notice.html">IMPORTANT NOTICE</a> for this document addresses availability, warranty, changes, use in safety-critical applications, intellectual property matters and other important disclaimers.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

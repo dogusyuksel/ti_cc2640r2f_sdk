@@ -1,0 +1,25 @@
+<html><body>
+<h2> Typical message </h2>
+
+<pre>
+ fatal error #16000: object files have incompatible formats
+   ("/db/lang/msp/exec/rts430_eabi.lib<boot.obj>" = ELF, "example.obj" =
+   TI-COFF)
+</pre>
+
+<h2> What it means </h2>
+
+<p>The linker has been supplied with object files or libraries that were compiled with different, incompatible object file formats.</p>
+
+<h2> Why is it happening </h2>
+
+<p>The linker can only combine object files and libraries of a single object file format, but files of multiple object file formats were specified.  The object file format is controlled by the application-binary interface (ABI), so ultimately files were compiled with a different --abi option.  Since the object files for your project are compiled according to the build options this is usually an issue with using a library file built for a different ABI.</p>
+
+<h2> Remedy </h2>
+
+<p>Make sure all of the pre-built object and library files are built for the ABI that you are using.  You can verify the ABI being used by looking at the --abi option in the build options dialog.  If you are explicitly specifying the RTS library to be used through the --library option you can remove it -- the linker will automatically include the correct RTS library.  If you are using additional libraries provided by TI or 3rd parties please confirm that they are for the correct ABI.</p>
+
+<h2> Risks, Severity </h2>
+
+<p>An executable cannot be created until this error is resolved.</p>
+</body></html>

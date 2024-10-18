@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="This page provides details on the XDS100 debug probe."> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="XDS110">
+<meta name="product-link" content="https://www.ti.com/tool/TMDSEMU110-U">
+
+<!-- Change the title text for your page -->
+
+<title>XDS100 Debug Probe</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+#Product page
+TI does not sell standalone XDS100 Debug Probes anymore. Check the [XDS110](emu_xds110.html) for the upgraded version.
+
+Please check the various third party suppliers of standalone XDS100 Debug Probes:
+
+##XDS100v2
+
+[Blackhawk USB100v2](https://www.blackhawk-dsp.com/products/jtag-emulators/usb100v2d)
+
+[Olimex TMS320-XDS100-V2](https://www.olimex.com/Products/DSP/Emulators/TMS320-XDS100-V2/)
+
+[Spectrum Digital XDS100v2](http://www.spectrumdigital.com/xds100v2-usb-jtag-emulator/)
+
+##XDS100v3
+
+[Embest XDS100v3](http://www.embest-tech.com/prod_view.aspx?TypeId=107&Id=365&FId=t3:107:3)
+
+[Olimex](https://www.olimex.com/Products/DSP/Emulators/TMS320-XDS100-V3/)
+
+[00IC XDS100V3](https://world.tmall.com/item/521413174572.htm)
+
+[Spectrum Digital XDS100v3](http://www.spectrumdigital.com/xds100v2-usb-jtag-emulator/)
+
+#Additional information
+Please check the archived [XDS100 page](./files/XDS100.pdf) for additional details, design features, FAQ and troubleshooting, etc.
+
+#Template collection
+Please check below template files of popular boards to be used with the FT_Prog utility to program the FTDI device. 
+
+[[+y Expand for a brief summary of programming steps
+
+Thorough documentation about the use of the FT_Prog utility can be found at the [FTDI Utilities page](https://www.ftdichip.com/Support/Utilities.htm#FT_PROG).
+
+1. If your board is not recognized by the OS, install the appropriate [FTDI D2XX driver](https://www.ftdichip.com/Drivers/D2XX.htm)
+2. Install the the FT_PROG utility. It requires the Microsoft .NET 4.0 support installed.
+3. Download and unzip the appropriate template from the list below.
+4. Connect the USB cable between the PC and the target board.
+5. Open FT_PROG and go to menu **Devices** &rarr; **Scan and Parse** (or press F5) to refresh the list of connected FTDI devices.
+6. Right click on the device and select **Erase Device**. Tip: to avoid confusion and erasing the wrong adapter, keep only one connected at a time.
+7. Right click on the device and choose **Apply Template** &rarr; **From File** and choose the corresponding .xml downloaded in step 3.
+8. Right click on the device and choose **Program Device** (or press Ctrl+P) to write the template to the device.
+9. Reset board by unplugging and re-plugging the USB cable.
+
++]]
+
+   - [Standalone XDS100v1](./files/XDS100v1.zip)
+   - [Standalone XDS100v2](./files/XDS100v2.zip)
+   - [Standalone XDS100v3](./files/XDS100v3.zip)
+   
+   - [F28x eXperimenter's kit Dock](./files/F28x_Dock_XDS100v1.zip)
+   - [F28M35/F28M36 controlCARD](./files/F28M36_XDS100v2.zip)
+   - [F28377S Launchpad](./files/F28377S_LAUNCHXL.zip)
+   - [F28379D Launchpad](./files/F28379D_LAUNCHXL.zip)
+
+   - [CC3200 Launchpad](./files/CC3200LP.zip)
+
+   - [AM437x IDK](./files/AM437x_IDK.zip)
+   - [AM571x/AM572x IDK](./files/AM571x_IDK.zip)
+   - [AM574x IDK](./files/AM574x_IDK.zip)
+   - [BeagleBone White Rev. A3](./files/BBA3.zip)
+   - [BeagleBone White Rev. A5](./files/BBA5.zip)
+   
+   - [TMS570L0403 Launchpad](./files/LAUNCHXL-TMS57004.zip)
+   - [TMS570LC4357 HDK](./files/TMDX570LC43HDK.zip)
+
+   - [C6657 Evaluation Module](./files/C6657EVM_XDS100v1.zip)
+   - [C6678 Evaluation Module](./files/C6678EVM_XDS100v1.zip)
+
+   - [C5505 USB stick](./files/USBSTK5505_XDS100v1.zip)
+   - [C5515 USB stick](./files/USBSTK5515_XDS100v1.zip)
+   - [C5535 USB stick](./files/USBSTK5535_XDS100v2.zip)
+
+<hr>
+
+<br>
+<br>
+<hr>
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

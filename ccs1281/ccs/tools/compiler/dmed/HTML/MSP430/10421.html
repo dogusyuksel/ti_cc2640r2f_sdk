@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;
+      charset=ISO-8859-1">
+    <title>FRAM device usage: FRAM waitstate configuration</title>
+  </head>
+  <body>
+    <h1> <span class="mw-headline"
+        id="FRAM_device_usage:_FRAM_waitstate_configuration"> FRAM
+        device usage: FRAM waitstate configuration </span></h1>
+    <h2> <span class="mw-headline" id="Typical_message"> Typical
+        message </span></h2>
+    <p>"For FRAM devices running at higher than 8MHz, FRAM waitstate
+      needs to be configured accordingly." </p>
+    <h2> <span class="mw-headline" id="What_it_means"> What it means </span></h2>
+    <p>On the MSP430 devices with FRAM, the FRAM operating frequency is
+      limited to 8MHz. When the device operates at higher frequency
+      (MCLK&gt;8MHz), FRAM should be configured to allow for sufficient
+      delays between FRAM memory accesses. This can be achieved by
+      inserting the appropriate amount of waitstates between FRAM
+      accesses based on the operating frequency. </p>
+    <h2> <span class="mw-headline" id="Risks.2C_Severity"> Risks,
+        Severity </span></h2>
+    <p>If the FRAM waitstate is not properly configured, FRAM accesses
+      when device is running at higher than 8MHz can be corrupted and
+      resulting in runtime failure. <br>
+    </p>
+    <h2> <span class="mw-headline" id="Why_it_is_happening"> Why it is
+        happening </span></h2>
+    <p>The FRAM waitstate configuration code cannot be detected in the
+      project. <br>
+      Note: keep in mind that this compiler check does not verify
+      whether the sufficient amount of waitstates is configured. </p>
+    <h2> <span class="mw-headline" id="Remedy"> Remedy </span></h2>
+    <p>If the device is not running at higher than 8MHz, no remedy is
+      necessary. Otherwise, prior to having the device run at higher
+      than 8MHz, add the following lines of code to add FRAM waitstate
+      configuration: </p>
+    <pre> // Configure one FRAM waitstate as required by the device datasheet for MCLK
+ // operation beyond 8MHz _before_ configuring the clock system.
+ FRCTL0 = FRCTLPW | NACCESS_1; // Change the NACCESS_x value to add the right amount of waitstates
+</pre>
+    <h2> <span class="mw-headline" id="Code_Example"> Code Example </span></h2>
+    <p>Refer to FRAM device code examples from CCS - TI Resource
+      Explorer or as downloadable packages at <a
+href="http://www.ti.com/lsds/ti/microcontroller/16-bit_msp430/tools_software.page#code"
+        class="external free" rel="nofollow" target="_blank">http://www.ti.com/lsds/ti/microcontroller/16-bit_msp430/tools_software.page#code</a>
+    </p>
+    <h2> <span class="mw-headline" id="More_Resources"> More Resources
+      </span></h2>
+    <p>Refer to the MSP430 Family User's Guides for FRAM devices for
+      more details. </p>
+    <ul>
+      <li> <a href="http://www.ti.com/lit/pdf/slau367" class="external
+          text" rel="nofollow" target="_blank">www.ti.com/lit/pdf/slau367</a>
+        MSP430FR58xx/MSP430FR59xx Family User&#8217;s Guide </li>
+      <li> <a href="http://www.ti.com/lit/pdf/slau272" class="external
+          text" rel="nofollow" target="_blank">www.ti.com/lit/pdf/slau272</a>
+        MSP430FR57xx Family User&#8217;s Guide<br>
+      </li>
+    </ul>
+    <p><br>
+      For more questions/answers, <a
+href="http://e2e.ti.com/support/microcontrollers/msp43016-bit_ultra-low_power_mcus/f/166.aspx"
+        class="external text" rel="nofollow" target="_blank">Go to
+        MSP430's e2e online forum!</a>&nbsp; </p>
+    <p>If you are posting on the forums in relation to this rule, try
+      using the tags "DiagMessage_10421" and "FRAM_WaitState" </p>
+    <table style="text-align:center; background:white; width:100%;
+      text-align:left; height: 65px border-top: 1px solid;
+      border-bottom: 1px solid; border-left: 1px solid; border-right:
+      1px solid; border-width: 1px; border-style: solid;">
+      <tbody>
+        <tr>
+          <td width="305px"><a
+              href="http://processors.wiki.ti.com/index.php/File:E2e.jpg"
+              class="image"><img alt="E2e.jpg"
+                src="http://processors.wiki.ti.com/images/8/82/E2e.jpg"
+                height="63" width="305"></a> </td>
+          <td><i>For technical support please post your questions at <a
+                href="http://e2e.ti.com/" class="external free"
+                rel="nofollow" target="_blank">http://e2e.ti.com</a>.
+              Please post only comments about the article <b>Compiler/diagnostic
+
+                messages/MSP430/10421</b> here.</i></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

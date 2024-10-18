@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+    <title>ULP Advisor Rule 9.1 Use pass by reference for large
+      variables</title>
+  </head>
+  <body>
+    <h1> <span class="mw-headline"
+        id="ULP_Advisor_.3E_Rule_9.1_Use_pass_by_reference_for_large_variables">
+        <a href="http://processors.wiki.ti.com/index.php/ULP_Advisor"
+          title="ULP Advisor"> ULP Advisor</a> &gt; Rule 9.1 Use pass by
+        reference for large variables </span></h1>
+    <table style="float: right; background: #F9F9F9;" border="5"
+      cellpadding="10" cellspacing="0">
+      <tbody>
+        <tr>
+          <td>
+            <div class="center">
+              <div class="floatnone"><a
+                  href="http://processors.wiki.ti.com/index.php/ULP_Advisor"
+                  title="ULP Advisor"><img alt="ULPAdvisorBanner.PNG"
+src="http://processors.wiki.ti.com/images/thumb/b/b9/ULPAdvisorBanner.PNG/320px-ULPAdvisorBanner.PNG"
+                    height="107" width="320"></a></div>
+            </div>
+            <h2> <span class="mw-headline"
+                id="ULP_Advisor_-_Rule_Table"> <a
+                  href="http://processors.wiki.ti.com/index.php/ULP_Advisor"
+                  title="ULP Advisor"><span style="color:#1F2BB8;"> ULP
+                    Advisor</span></a> - Rule Table </span></h2>
+            <p><a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/10371"
+                title="Compiler/diagnostic messages/MSP430/10371"><span
+                  style="color:#1F2BB8;"> ULP 1.1 Ensure LPM usage</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1527"
+                title="Compiler/diagnostic messages/MSP430/1527"><span
+                  style="color:#1F2BB8;"> ULP 2.1 Leverage timer module
+                  for delay loops</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1528"
+                title="Compiler/diagnostic messages/MSP430/1528"><span
+                  style="color:#1F2BB8;"> ULP 3.1 Use ISRs instead of
+                  flag polling</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/10372"
+                title="Compiler/diagnostic messages/MSP430/10372"><span
+                  style="color:#1F2BB8;"> ULP 4.1 Terminate unused GPIOs</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1530"
+                title="Compiler/diagnostic messages/MSP430/1530"><span
+                  style="color:#1F2BB8;"> ULP 5.1 Avoid
+                  processing-intensive operations: modulo, divide.</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1531"
+                title="Compiler/diagnostic messages/MSP430/1531"><span
+                  style="color:#1F2BB8;"> ULP 5.2 Avoid
+                  processing-intensive operations: floating point</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1532"
+                title="Compiler/diagnostic messages/MSP430/1532"><span
+                  style="color:#1F2BB8;"> ULP 5.3 Avoid
+                  processing-intensive operations: (s)printf()</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1533"
+                title="Compiler/diagnostic messages/MSP430/1533"><span
+                  style="color:#1F2BB8;"> ULP 6.1 Avoid multiplication
+                  on devices without hardware multiplier </span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/10422"
+                title="Compiler/diagnostic messages/MSP430/10422"><span
+                   style="color:#1F2BB8;"> ULP 6.2 Use MATHLIB for complex
+                   math operations </span></a><br>
+             <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/10436"
+                title="Compiler/diagnostic messages/MSP430/10436"><span
+                   style="color:#1F2BB8;"> ULP 6.3 Use Low Energy Accelerator (LEA) software
+      library </span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1534"
+                title="Compiler/diagnostic messages/MSP430/1534"><span
+                  style="color:#1F2BB8;"> ULP 7.1 Use local instead of
+                  global variables where possible</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1535"
+                title="Compiler/diagnostic messages/MSP430/1535"><span
+                  style="color:#1F2BB8;"> ULP 8.1 Use 'static' &amp;
+                  'const' modifiers for local variables</span></a> <br>
+              <strong class="selflink"><span style="color:#1F2BB8;"> ULP
+                  9.1 Use pass by reference for large variables</span></strong><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1538"
+                title="Compiler/diagnostic messages/MSP430/1538"><span
+                  style="color:#1F2BB8;"> ULP 10.1 Minimize function
+                  calls from within ISRs</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1539"
+                title="Compiler/diagnostic messages/MSP430/1539"><span
+                  style="color:#1F2BB8;"> ULP 11.1 Use lower bits for
+                  loop program control flow</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1540"
+                title="Compiler/diagnostic messages/MSP430/1540"><span
+                  style="color:#1F2BB8;"> ULP 11.2 Use lower bits for
+                  port bit-banging</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1541"
+                title="Compiler/diagnostic messages/MSP430/1541"><span
+                  style="color:#1F2BB8;"> ULP 12.1 Use DMA for large
+                  memcpy() calls</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1542"
+                title="Compiler/diagnostic messages/MSP430/1542"><span
+                  style="color:#1F2BB8;"> ULP 12.1b Use DMA for
+                  potentially large memcpy() calls</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1543"
+                title="Compiler/diagnostic messages/MSP430/1543"><span
+                  style="color:#1F2BB8;">ULP 12.2 Use DMA for repetitive
+                  transfer</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1544"
+                title="Compiler/diagnostic messages/MSP430/1544"><span
+                  style="color:#1F2BB8;"> ULP 13.1 Count down in loops</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1545"
+                title="Compiler/diagnostic messages/MSP430/1545"><span
+                  style="color:#1F2BB8;"> ULP 14.1 Use unsigned
+                  variables for indexing</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1546"
+                title="Compiler/diagnostic messages/MSP430/1546"><span
+                  style="color:#1F2BB8;"> ULP 15.1 Use bit-masks instead
+                  of bit-fields</span></a> <br>
+            </p>
+            <p><b>Let us know what you think!</b> Feedback, suggestions
+              &amp; comments <br>
+              are welcome @ ULPAdvisorFeedback@list.ti.com </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2> <span class="mw-headline" id="What_it_means"> What it means </span></h2>
+    <p>C function parameters can be passed by value (e.g. int value) or
+      by reference (e.g. int *value). When passing by value, the
+      compiler needs to generate code to copy the variables' values into
+      the general-purpose registers and the stack. The registers have
+      faster access time but are limited in number hence they are used
+      for the first small variables. For larger variables such as
+      structures or unions, the stack located in RAM is required to
+      store the additional data. Copying of the data structures requires
+      additional code execution. When passing by reference, the function
+      only needs to copy the addresses of the variables, limiting the
+      overall data-copying instructions to the number of the parameters
+      of the function. This greatly reduces the number of instructions
+      being executed each time the function is invoked.
+    </p>
+    <p>Notice that in C, arrays are by default pointers and hence
+      technically are already passed by reference.
+    </p>
+    <h2> <span class="mw-headline" id="Risks.2C_Severity"> Risks,
+        Severity </span></h2>
+    <p>Passing large variables such as structures &amp; unions can
+      generate additional code executions for the function, depending on
+      the size of the data being passed. The impact increases
+      significantly if the function is frequently invoked. </p>
+    <h2> <span class="mw-headline" id="Why_it_is_happening"> Why it is
+        happening </span></h2>
+    <p>At least one function in the project passes a structure or union
+      by value. <br>
+    </p>
+    <h2> <span class="mw-headline" id="Remedy"> Remedy </span></h2>
+    <p>If the size of the structure or union is significant, change the
+      function parameter passing method to pass by reference.
+    </p>
+    <h2> <span class="mw-headline" id="Code_Example"> Code Example </span></h2>
+    <pre>  /*-------------ULP 9.1-------------------------------------------------
+  * 
+  * Detect structures or unions being used as function parameter
+  * 
+  * NOTICE that arrays are automatically treated as pointers so this rule
+  * should not raise the flag for passing array parameters
+  *
+  *-------------ULP9.1-------------------------------------------------*/
+ #include "msp430.h"
+ typedef struct  
+ {
+   unsigned char variable1;
+   int variable2; 
+   char variable3[3];
+ } structOne;
+ 
+ structOne  structVariable, *structPointer;
+ typedef union 
+ {
+   int variable1;
+   char variable2;
+   char variable5[5];    
+ } unionOne;
+ 
+ unionOne unionVariable, *unionPointer;
+ char    array[30];
+ //----------------------------------------------------------
+ //--------- STRUCTURE EXAMPLE      -------------------------
+ //----------------------------------------------------------
+ void ULP9_1_BadExample1(structOne structVariableParam)
+ {
+   if (structVariableParam.variable2 &gt; 0)
+   P1DIR |= BIT0;
+ }
+ 
+ void ULP9_1_GoodExample1(structOne* structVariablePointer)
+ {
+   structVariablePointer-&gt;variable2 = 0xBEEF;
+   if (structVariablePointer-&gt;variable2 &gt; structVariablePointer-&gt;variable1)
+     P1DIR ^= BIT0;
+ }
+ //----------------------------------------------------------
+ //--------- UNION EXAMPLE      -----------------------------
+ //----------------------------------------------------------
+ void ULP9_1_BadExample2(unionOne unionVariableParam)
+ {
+   unionVariableParam.variable1 = 0xBEEF;
+ }
+ 
+ void ULP9_1_GoodExample2(unionOne* unionVariablePointer)
+ {
+   unionVariablePointer-&gt;variable1 = 0xBEEF;
+ }
+ 
+ //----------------------------------------------------------
+ //--------- ARRAY EXAMPLE      -----------------------------
+ //----------------------------------------------------------
+ void ULP9_1_GoodExample3(char array[30])
+ {
+   array[0] = 1;
+ }
+ 
+ void ULP9_1_Examples(void)
+ {
+   ULP9_1_BadExample1(structVariable);
+   ULP9_1_BadExample2(unionVariable);
+ 
+ 
+   //-------Good examples-----------------
+   ULP9_1_GoodExample1(&amp;structVariable);
+ 
+   structPointer = &amp;structVariable;  
+   ULP9_1_GoodExample1(structPointer);
+   
+   ULP9_1_GoodExample2(&amp;unionVariable);
+   
+   unionPointer = &amp;unionVariable;
+   ULP9_1_GoodExample2(unionPointer);
+   
+   ULP9_1_GoodExample3(array);
+ }
+ 
+ void main(void)
+ {
+   WDTCTL = WDTPW + WDTHOLD;     // Hold watchdog timer
+   ULP9_1_Examples();
+   
+ }
+</pre>
+    <p><br>
+      <a
+        href="http://focus.ti.com/mcu/docs/mcusplash.tsp?contentId=128826#CE"
+        class="external text" rel="nofollow" target="_blank">See the
+        rest of the code examples for all MSP430 devices here!</a>
+    </p>
+    <h2> <span class="mw-headline" id="More_Resources"> More Resources
+      </span></h2>
+    <p>Want to squeeze a few more nanoAmps out of your application?
+      Leverage the e2e (Engineer-to-Engineer) online community to get
+      all of your ULP questions answered! Or, if you are an Ultra-Low
+      Power pro, give back to the community with your expertise. </p>
+    <p><a
+href="http://e2e.ti.com/support/microcontrollers/msp43016-bit_ultra-low_power_mcus/f/166.aspx"
+        class="external text" rel="nofollow" target="_blank">Go to
+        MSP430's e2e online forum!</a>&nbsp; </p>
+    <p>If you are posting on the forums in relation to this rule, try
+      using the tag "ULP_9.1"
+    </p>
+    <table style="text-align:center; background:white; width:100%;
+      text-align:left; height: 65px border-top: 1px solid;
+      border-bottom: 1px solid; border-left: 1px solid; border-right:
+      1px solid; border-width: 1px; border-style: solid;">
+      <tbody>
+        <tr>
+          <td width="305px"><a
+              href="http://processors.wiki.ti.com/index.php/File:E2e.jpg"
+              class="image"><img alt="E2e.jpg"
+                src="http://processors.wiki.ti.com/images/8/82/E2e.jpg"
+                height="63" width="305"></a>
+          </td>
+          <td><i>For technical support please post your questions at <a
+                href="http://e2e.ti.com" class="external free"
+                rel="nofollow" target="_blank">http://e2e.ti.com</a>.
+              Please post only comments about the article <b>Compiler/diagnostic
+                messages/MSP430/1537</b> here.</i></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

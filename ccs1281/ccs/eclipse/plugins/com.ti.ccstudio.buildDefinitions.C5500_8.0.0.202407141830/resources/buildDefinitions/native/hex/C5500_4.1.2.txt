@@ -1,0 +1,37 @@
+General Options:
+  -a                   Output ASCII hex format
+  -b                   Binary output format (for DSKs)
+  -boot                Select boot mode
+  -bootorg=addr        Specify origin address or symbol of boot table ROM
+  -bootpage=page       Page of boot table in target ROM
+  -delay=value         Insert a delay
+  -e=addr              Specify entrypoint address or symbol name
+  -emif16,-parallel16  Specify a 16-bit parallel interface boot table
+  -emif32,-parallel32  Specify a 32-bit parallel interface boot table
+  -exclude=section     Exclude section from hex conversion
+  -fill=val            Specify fill value
+  -i                   Output Intel hex format
+  -image               Select image mode
+  -linkerfill          Include linker fill sections in images
+  -m[=1,2,3]           Output Motorola S hex format
+  -map=file            Specify map file name
+  -mcbsp16,-serial16   Specify a 16-bit serial interface boot table
+  -mcbsp8,-serial8,-parallel8
+                       Specify an 8-bit serial interface boot table
+  -memwidth=width      Specify memory width
+  -o=file              Specify output file names
+  -olength=num         Number of data items per line of hex output
+  -options,-h          Display help
+  -order=LS,MS         Specify data ordering (endianness)
+  -quiet,-q            Quiet Operation
+  -reg_config=addr,data,data,...
+                       Load data into register at address
+  -romwidth=width      Specify rom width
+  -t                   Output TI-Tagged hex format
+  --ti_txt             Output TI-TXT hex format
+  -v3010_startdsp=value
+                       Insert a Janus core value
+  -v=dev[:rev]         Specify device and silicon revision
+  -x                   Output Extended Tektronix hex format
+  -zero,-z             Zero based addressing
+

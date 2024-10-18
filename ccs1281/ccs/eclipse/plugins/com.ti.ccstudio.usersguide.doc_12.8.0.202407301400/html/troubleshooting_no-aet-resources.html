@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="This guide provides suggestions for users experiencing 'lack of resource' errors when attempting to enable a debug operation in CCS"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="Code Composer Studio">
+<meta name="product-link" content="https://www.ti.com/tool/CCSTUDIO">
+
+<!-- Change the title text for your page -->
+<title>Troubleshooting "lack of resource" errors when attempting to enable debug actions</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+# Overview
+
+This guide provides suggestions for users experiencing "lack of resource" errors when attempting to enable a debug operation in CCS.
+
+
+# Background 
+
+When attempting to perform a debug operation in CCS, the following cryptic error may appear:
+
+**C2000**
+
+![](./images/aet_error_00.png)
+
+Another variation of this error can look like:
+
+**ARM Cortex-M**
+
+![](./images/aet_error_00a.png)
+
+Earlier versions of CCS may have displayed the error with the below message:
+
+<pre>
+
+Error enabling this function: There is no AET resource to support this job
+ 
+</pre>
+
+This most commonly appears when attempting to set a hardware [breakpoint](https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_debug-main.html#breakpoints), though it can appear when attempting to enable other "jobs" (debug operations) that may use an AET (or AET-like) resource.
+
+
+# What is AET?
+
+AET stands for **Advanced Event Trigging**. Without going into detail, AET refers to a set of logic, that is part of the on-chip debug analysis module, that can generate various "triggers" based on combinations of application "events". Historically, the AET terminology specifically referred to the functionality on the on-chip debug analysis module for TI DSPs. Other device families (such as ARM) have similar such functionality under a different name.
+
+This on-chip debug analysis module allows for such debug capabilities as hardware breakpoints, watchpoints, counters, etc (see [this](https://software-dl.ti.com/ccs/esd/documents/ccs_breakpoint_watchpoint_c2000.html) article for examples on C2000 devices). The resources for this module are not limitless - there are only a finite number available. The actual number can vary per device (please refer to the User's Guide for the device). Typically, smaller MCUs tend to have less resources available. When a specific debug capability that relies these resources is enabled, some of those resources are claimed - dwindling the available pool of resources. Hence, there are only so many dependent debug capabilities that can be enabled at the same time. When a dependent debug capability is attempted to be enabled when there are no more available resources, an error message complaining about the lack of resources will appear.
+
+The most common reason for this occurance is trying to set multiple breakpoints when debugging code in Flash memory. If you try to set one too many, the error will appear.
+
+For more details on AET, please refer to [this](http://software-dl.ti.com/ccs/esd/training/modules/advanced_breakpoints/AET.pptx) presentation. 
+
+
+# Causes
+
+Besides hardware breakpoints, the other common debug operations that require such resources are:
+* Watchpoints
+* [Event Counters](https://software-dl.ti.com/ccs/esd/documents/ccs_counting_cycles.html#count-event)
+* [Profile Clock](https://software-dl.ti.com/ccs/esd/documents/ccs_counting_cycles.html#profile-clock)
+
+Trying to enable any of the above actions, when there are no more analysis resources available, can trigger the error to appear. In many cases, the action will be applied but appear in a disabled state.
+
+[[y Software Breakpoints do NOT use a debug analysis resource!
+A software breakpoint is implemented as an opcode replacement in RAM, and hence does not use a resource. There is no (theoretical) limit to the number of software breakpoints that can be set.
+]]
+
+
+# Resolution
+
+If the user wishes to enable a debug operation when there are no more resources available, the user must first free up some resources. This can mean disabling some existing hardware breakpoints/watchpoints/counters, disabling the profile clock, etc. When enough resources are freed up, then the user can retry to enable the desired operation.
+
+## Be aware of "hidden" debug operations that can use such resources!
+
+The debugger may automatically use some debug analysis resources "under the hood". Since this is done silently, users are not often aware of this consumption of resources. Most of these operations involve "hidden" breakpoint usage when debugging code in Flash. These breakpoints will NOT appear in the **[Breakpoints](https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_debug-main.html#breakpoints-view)** view
+
+Some potential "hidden" breakpoints:
+* Program exit point breakpoint - this is so that the target will halt when the program exit point is reached
+* [C I/O breakpoints](https://software-dl.ti.com/ccs/esd/documents/sdto_cgt_tips_for_using_printf.html#special-breakpoints) - standard C I/O requires breakpoints to work
+* Auto-Run to **Main** (or some other label) - the debugger can be configured to auto-run to a specified label on program load/restart, or CPU reset. This label is set to **main** by default. Note that unlike the prior two items above, this breakpoint is set before the load/restart/reset and removed after the target reaches the label location and halts. 
+
+The above "hidden" breakpoints can be disabled by disabling the associated debug action in the [Debug Properties](https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_debug-main.html#debug-properties)
+
+**Program/Memory Load Options**
+![](./images/aet_error_01.png)
+
+**Auto Run and Launch Options**
+![](./images/aet_error_02.png)
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

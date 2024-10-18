@@ -1,0 +1,47 @@
+GEL_IsInRealtimeMode
+--------------------
+
+Called every time a target is connected. GEL built-in function that can
+be called at any time to determine if the target is in realtime mode.
+
+**Syntax**
+
+**GEL_IsInRealtimeMode()**
+
+**Parameters**
+
+None
+
+**Description**
+
+The function returns 0 is the DSP is currently in Stop mode and 1 if it
+is in Real Time Mode. Some targets cannot enter Real Time mode; for
+those cases, the function will always return 0. (See real-time mode)
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: Yes
+
+**Example**
+
+OnTargetConnect()
+
+{ if( GEL_IsInRealtimeMode() )
+
+{
+
+// The target was connected in realtime mode
+
+}
+
+else
+
+{
+
+//The target was connected in stop mode
+
+}
+
+**Related Topics**

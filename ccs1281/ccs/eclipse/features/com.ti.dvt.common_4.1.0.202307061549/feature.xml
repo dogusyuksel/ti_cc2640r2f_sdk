@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.dvt.common"
+      label="DVT Common Components"
+      version="4.1.0.202307061549"
+      provider-name="Texas Instruments">
+
+   <description>
+      DVT Common Components
+   </description>
+
+   <license>
+      Provided under the terms of the original DVT or Code Composer Studio License Agreement.
+   </license>
+
+   <plugin
+         id="com.ti.dvt.core"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.dvt.ui"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"/>
+
+   <plugin
+         id="com.ti.util"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"/>
+
+   <plugin
+         id="com.ti.dvt.ideadapter"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"/>
+
+   <plugin
+         id="com.ti.util.diskspacemonitor"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"/>
+
+   <plugin
+         id="com.ti.dvt.ideadapter2"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"/>
+
+   <plugin
+         id="com.ti.util.diskspacemonitor.bin"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"/>
+
+   <plugin
+         id="com.ti.dvt.symbolmanager"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"/>
+
+   <plugin
+         id="com.ti.dvt.symbolmanager.bin"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"/>
+
+   <plugin
+         id="com.ti.dvt.ccstudioideadapter"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.dvt.ccstudioideadapter.bin"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"/>
+
+</feature>

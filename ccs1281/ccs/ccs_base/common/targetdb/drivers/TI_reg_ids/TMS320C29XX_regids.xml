@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  TI File $Revision:  $
+  Checkin $Date:  $
+  -->
+
+
+<register_ids id="TMS320C29xx" XML_version="2.0">
+	
+	<register_id id="PC" value="0x100" address="0" page="0" />
+	<register_id id="RPC" value="0x110" address="0" page="0" />
+	<register_id id="DSTS" value="0x104" address="0" page="0" />
+	<register_id id="ESTS" value="0x108" address="0" page="0" />
+	<register_id id="ISTS" value="0x10c" address="0" page="0" />
+	
+    <register_id id="A0" value="0x00" address="0" page="0" />
+    <register_id id="A1" value="0x04" address="0" page="0" />
+    <register_id id="A2" value="0x08" address="0" page="0" />
+    <register_id id="A3" value="0x0C" address="0" page="0" />
+    <register_id id="A4" value="0x10" address="0" page="0" />
+    <register_id id="A5" value="0x14" address="0" page="0" />
+    <register_id id="A6" value="0x18" address="0" page="0" />
+    <register_id id="A7" value="0x1C" address="0" page="0" />
+    <register_id id="A8" value="0x20" address="0" page="0" />
+    <register_id id="A9" value="0x24" address="0" page="0" />
+    <register_id id="A10" value="0x28" address="0" page="0" />
+    <register_id id="A11" value="0x2C" address="0" page="0" />
+    <register_id id="A12" value="0x30" address="0" page="0" />
+    <register_id id="A13" value="0x34" address="0" page="0" />
+    <register_id id="A14" value="0x38" address="0" page="0" />
+    <register_id id="A15" value="0x3C" address="0" page="0" />
+
+    <register_id id="XA0" value="0x00" address="0" page="0" />
+    <register_id id="XA1" value="0x08" address="0" page="0" />
+    <register_id id="XA2" value="0x10" address="0" page="0" />
+    <register_id id="XA3" value="0x18" address="0" page="0" />
+    <register_id id="XA4" value="0x20" address="0" page="0" />
+    <register_id id="XA5" value="0x28" address="0" page="0" />
+    <register_id id="XA6" value="0x30" address="0" page="0" />
+    <register_id id="XA7" value="0x38" address="0" page="0" />
+
+    <register_id id="D0" value="0x40" address="0" page="0" />
+    <register_id id="D1" value="0x44" address="0" page="0" />
+    <register_id id="D2" value="0x48" address="0" page="0" />
+    <register_id id="D3" value="0x4C" address="0" page="0" />
+    <register_id id="D4" value="0x50" address="0" page="0" />
+    <register_id id="D5" value="0x54" address="0" page="0" />
+    <register_id id="D6" value="0x58" address="0" page="0" />
+    <register_id id="D7" value="0x5C" address="0" page="0" />
+    <register_id id="D8" value="0x60" address="0" page="0" />
+    <register_id id="D9" value="0x64" address="0" page="0" />
+    <register_id id="D10" value="0x68" address="0" page="0" />
+    <register_id id="D11" value="0x6C" address="0" page="0" />
+    <register_id id="D12" value="0x70" address="0" page="0" />
+    <register_id id="D13" value="0x74" address="0" page="0" />
+    <register_id id="D14" value="0x78" address="0" page="0" />
+    <register_id id="D15" value="0x7C" address="0" page="0" />
+
+    <register_id id="XD0" value="0x40" address="0" page="0" />
+    <register_id id="XD1" value="0x48" address="0" page="0" />
+    <register_id id="XD2" value="0x50" address="0" page="0" />
+    <register_id id="XD3" value="0x58" address="0" page="0" />
+    <register_id id="XD4" value="0x60" address="0" page="0" />
+    <register_id id="XD5" value="0x68" address="0" page="0" />
+    <register_id id="XD6" value="0x70" address="0" page="0" />
+    <register_id id="XD7" value="0x78" address="0" page="0" />
+
+    <register_id id="M0" value="0x80" address="0" page="0" />
+    <register_id id="M1" value="0x84" address="0" page="0" />
+    <register_id id="M2" value="0x88" address="0" page="0" />
+    <register_id id="M3" value="0x8C" address="0" page="0" />
+    <register_id id="M4" value="0x90" address="0" page="0" />
+    <register_id id="M5" value="0x94" address="0" page="0" />
+    <register_id id="M6" value="0x98" address="0" page="0" />
+    <register_id id="M7" value="0x9C" address="0" page="0" />
+    <register_id id="M8" value="0xA0" address="0" page="0" />
+    <register_id id="M9" value="0xA4" address="0" page="0" />
+    <register_id id="M10" value="0A8" address="0" page="0" />
+    <register_id id="M11" value="0xAC" address="0" page="0" />
+    <register_id id="M12" value="0xB0" address="0" page="0" />
+    <register_id id="M13" value="0xB4" address="0" page="0" />
+    <register_id id="M14" value="0xB8" address="0" page="0" />
+    <register_id id="M15" value="0xBC" address="0" page="0" />
+    <register_id id="M16" value="0xC0" address="0" page="0" />
+    <register_id id="M17" value="0xC4" address="0" page="0" />
+    <register_id id="M18" value="0xC8" address="0" page="0" />
+    <register_id id="M19" value="0xCC" address="0" page="0" />
+    <register_id id="M20" value="0xD0" address="0" page="0" />
+    <register_id id="M21" value="0xD4" address="0" page="0" />
+    <register_id id="M22" value="0xD8" address="0" page="0" />
+    <register_id id="M23" value="0xDC" address="0" page="0" />
+    <register_id id="M24" value="0xE0" address="0" page="0" />
+    <register_id id="M25" value="0xE4" address="0" page="0" />
+    <register_id id="M26" value="0xE8" address="0" page="0" />
+    <register_id id="M27" value="0xEC" address="0" page="0" />
+    <register_id id="M28" value="0xF0" address="0" page="0" />
+    <register_id id="M29" value="0xF4" address="0" page="0" />
+    <register_id id="M30" value="0xF8" address="0" page="0" />
+    <register_id id="M31" value="0xFC" address="0" page="0" />
+
+    <register_id id="XM0" value="0x80" address="0" page="0" />
+    <register_id id="XM1" value="0x88" address="0" page="0" />
+    <register_id id="XM2" value="0x90" address="0" page="0" />
+    <register_id id="XM3" value="0x98" address="0" page="0" />
+    <register_id id="XM4" value="0xA0" address="0" page="0" />
+    <register_id id="XM5" value="0xA8" address="0" page="0" />
+    <register_id id="XM6" value="0xB0" address="0" page="0" />
+    <register_id id="XM7" value="0xB8" address="0" page="0" />
+    <register_id id="XM8" value="0xC0" address="0" page="0" />
+    <register_id id="XM9" value="0xC8" address="0" page="0" />
+    <register_id id="XM10" value="0xD0" address="0" page="0" />
+    <register_id id="XM11" value="0xD8" address="0" page="0" />
+    <register_id id="XM12" value="0xE0" address="0" page="0" />
+    <register_id id="XM13" value="0xE8" address="0" page="0" />
+    <register_id id="XM14" value="0xF0" address="0" page="0" />
+    <register_id id="XM15" value="0xF8" address="0" page="0" />
+
+    <register_id id="DBG_PID" value="0x204" address="0" page="0" />
+    <register_id id="DBG_CNTL0" value="0x20C" address="0" page="0" />
+    <register_id id="DBG_CNTL1" value="0x210" address="0" page="0" />
+    <register_id id="DBG_STAT" value="0x214" address="0" page="0" />
+    <register_id id="DBG_MEM_CNTL" value="0x218" address="0" page="0" />
+    <register_id id="DBG_MEM_ADDR0" value="0x240" address="0" page="0" />
+    <register_id id="DBG_MEM_DATA0" value="0x248" address="0" page="0" />
+    <register_id id="DBG_MEM_DATA1" value="0x24C" address="0" page="0" />
+    <register_id id="DBG_VIS_READ_P0" value="0x250" address="0" page="0" />
+    <register_id id="DBG_VIS_READ_P1" value="0x254" address="0" page="0" />
+    <register_id id="DBG_VIS_CLR_P1" value="0x258" address="0" page="0" />
+</register_ids>

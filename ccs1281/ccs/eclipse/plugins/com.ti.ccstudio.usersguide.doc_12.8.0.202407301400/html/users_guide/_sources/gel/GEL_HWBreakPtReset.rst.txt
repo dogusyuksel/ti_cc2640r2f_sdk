@@ -1,0 +1,29 @@
+GEL_HWBreakPtReset()
+--------------------
+
+Removes all hardware breakpoints.
+
+**Syntax**
+
+**GEL_HWBreakPtReset();**
+
+**Parameters**
+
+None.
+
+**Description**
+
+This function removes all hardware breakpoints currently set, whether
+they are enabled or disabled.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: No
+
+Related Topics
+
+`GEL_HWBreakPtAdd <GEL_HWBreakPtAdd.htm>`__
+
+`GEL_HWBreakPtDel <GEL_HWBreakPtDel.htm>`__

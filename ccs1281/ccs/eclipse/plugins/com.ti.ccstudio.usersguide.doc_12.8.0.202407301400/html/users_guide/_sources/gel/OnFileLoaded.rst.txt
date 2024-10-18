@@ -1,0 +1,34 @@
+OnFileLoaded()
+--------------
+
+GEL callback function called after a program is loaded.
+
+**Syntax**
+
+**OnFileLoaded(** **int** nErrorCode\ **, int** bSymbolsOnly **);**
+
+**Parameters**
+
+nErrorCode: 0 (zero) indicates success.
+
+bSymbolsOnlyBoolean indicates if only symbols were loaded.
+
+**Description**
+
+If defined in a loaded GEL file, OnFileLoaded() is called after a
+program is loaded.
+
+**Example**
+
+| OnFileLoaded(int nErrorCode, int bSymbolsOnly)
+| {
+| if (nErrorCode)
+| GEL_TextOut("An error occurred while loading a file. -%d-\n",,,,,
+  ErrorCode);
+| else
+| GEL_TextOut("File was loaded successfully. -%d-\n",,,,, nErrorCode);
+| if (bSymbolsOnly)
+| GEL_TextOut("Only symbols were loaded.\n");
+| else
+| GEL_TextOut("Full load.\n");
+| }

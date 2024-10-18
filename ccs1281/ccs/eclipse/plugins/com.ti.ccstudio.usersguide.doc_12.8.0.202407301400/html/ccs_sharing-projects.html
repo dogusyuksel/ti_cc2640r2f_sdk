@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="How to share and send a Code Composer Studio project to someone else."> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="Code Composer Studio">
+<meta name="product-link" content="https://www.ti.com/tool/CCSTUDIO">
+
+<!-- Change the title text for your page -->
+<title>Sharing Projects</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+#Introduction
+
+This article describes how to quickly package up and share a Code Composer Studio (CCS) project with another user. It focuses on how you can simply take an existing project without changing it and send it to another user. There is a separate [Portable Projects](./ccs_portable-projects.html) article that describes how to create portable projects that faciliate having multiple users working on the same project at the same time. 
+
+#Sharing "Simple" Projects
+
+This method assumes that all source/header files are contained within the project folder and the whole folder including all the files can be shared. 
+
+- To share such projects, zip up the entire project folder and share the zip file with other user.
+- User who receives the project can unzip the file and import the project into their workspace by using menu **Project &rarr; Import CCS Projects** and browsing to the unzipped project folder.
+
+#Sharing "Linked File" Projects
+
+This method works both for "simple" projects (where all source/header files are contained within the project folder) and for projects that have [linked files](./users_guide/ccs_project-management.html#adding-or-linking-source-files-to-project) that are located outside of the project folder. 
+
+When the archive is created, it can be told to include linked resources. When the archive is then imported into a new workspace, all linked files will be extracted into the root project folder.
+
+The method described here may not handle every use-case, so if it does not work for you then look into the [Portable Projects](./ccs_portable-projects.html) article for creating a completely portable project.
+
+
+##Exporting to Archive
+
+To export and create an archive of the project:
+
+- Go to CCS menu **File &rarr; Export**.
+- Expand **General** and select **Archive File**. Click **Next**.
+- Select the project(s) to be archived. <br>
+  For each project selected on the left, the right side shows all the resources available to export. 
+- If the project has linked resources that you want to add to the archive, check the box **Resolve and export linked resources**. 
+- Select the list of projects and resources to add to the archive.
+ ![](./images/project_export_to_archive.png)
+- Specify a name and location for the archive in the **To archive file** field. <br>
+  If a location is not specified, the file gets saved by default to &lt;ccs_install_dir&gt;\ccsv[x]\eclipse.
+- Select either zip or tar format. 
+- Click **Finish**.
+
+The project archive now contains the files that are physically located in the project directory as well as linked/referenced resources.
+
+See this link for a short video demo of exporting a project:
+[Exporting a project to archive file](https://youtube.com/embed/kCBLL-4eq3E)
+
+##Importing the Archive
+
+To import the project from archive: 
+
+- Go to menu **Project &rarr; Import CCS Projects**.
+- Change the radio button selection at the top to **Select archive file**.
+- Browse to and select the archive file. <br>
+  The projects discovered in the archive will be listed. They are all selected by default.
+- Select the ones you wish to import. 
+- Click **Finish**
+
+Note that all linked/referenced resources from the archive will be copied into the root project folder. See the [Notes](#notes) section for more information.
+
+Depending on the project, this may or may not be sufficient for the project to build. If the imported project fails to build, ensure that build and path [variables](./ccs_portable-projects.html#variables) are defined and resolve to the same paths as in the original project. 
+
+#Creating Example Projects
+
+When creating example projects to provide to other users, follow these guidelines to make it easier for other users to import and use the examples.
+
+- If possible include all of your source files in the project directory or in sub-directories under the project directory. This removes the issue of having to deal with linked files.
+- Include a readme.txt or similar file in the project that describes the purpose of the example as well as how to import it using the import from archive feature described in this topic. It would be helpful if the file also mentions any special build options or settings.
+- If the project is designed to work with a specific development board that has onboard emulation, consider including a target configuration file (.ccxml) in the project so that users can simply hit the **Debug** button to build it and launch a debug session without having to setup the debugger.
+- Don't duplicate files that already exist in the CCS installation in your project. Reference such files using some of the standard macros like: ${CCS_INSTALL_ROOT}
+- Export your project to an archive and share the zip or tar file.
+
+#Notes
+
+This section covers use cases that may require some extra steps and consideration.
+
+- If header files are not in the original project, either physically or added via linked resources, then they will not be included in the archive either.
+- Starting with CCSv5, all linked resources are extracted to the root project directory during import. This is different from the CCSv4 behavior where linked resources were extracted to the same directory where they resided in the original project (ie the directory path would be recreated in the new PC). The new behavior is an intentional Eclipse change as per bug 355049:
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=355049 <br>
+If this causes issues during build, ensure that build and path [variables](./ccs_portable-projects.html#variables) are defined and resolve to the same paths as in the original project, or create a fully [portable project](./ccs_portable-projects.html) to share with others. 
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

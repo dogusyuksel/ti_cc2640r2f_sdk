@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+    <title>Advice #30006</title>
+  </head>
+  <body>
+    <table style="float: right; background: #F9F9F9;" border="5"
+      cellpadding="10" cellspacing="0">
+      <tbody>
+        <tr>
+          <td>
+            <h2> <span class="mw-headline"
+                id="Advice_Advisor_-_Rule_Table"> <a
+                  href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000"
+                  title="Advice Advisor"><span style="color:#1F2BB8;"> Compiler Advice (on TI Wiki)</span></a>  </span></h2>
+            <p>
+              <a href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/27000"
+                title="Compiler/diagnostic messages/C6000/27000"><span
+                  style="color:#1F2BB8;"> Advice 27000: Use Optimization Options</span></a><br>
+              <a href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/27001"
+                title="Compiler/diagnostic messages/C6000/27001"><span
+                  style="color:#1F2BB8;"> Advice 27001: Increase Optimization Level</span></a><br>
+              <a href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/27002"
+                title="Compiler/diagnostic messages/C6000/27002"><span
+                  style="color:#1F2BB8;"> Advice 27002: Do not turn off software pipelining</span></a><br>
+              <a href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/27003"
+                title="Compiler/diagnostic messages/C6000/27003"><span
+                  style="color:#1F2BB8;"> Advice 27003: Avoid compiling with debug options</span></a><br>
+              <a href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/27004"
+                title="Compiler/diagnostic messages/C6000/27004"><span
+                  style="color:#1F2BB8;"> Advice 27004: No Performance Advice generated</span></a><br>
+              <a href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30000"
+                title="Compiler/diagnostic messages/C6000/30002"><span
+                  style="color:#1F2BB8;"> Advice 30000: Prevent Loop Disqualification due to call</span></a><br>
+              <a href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30001"
+                title="Compiler/diagnostic messages/C6000/30002"><span
+                  style="color:#1F2BB8;"> Advice 30001: Prevent Loop Disqualification due to rts-call</span></a><br>
+              <a href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30002"
+                title="Compiler/diagnostic messages/C6000/30002"><span
+                  style="color:#1F2BB8;"> Advice 30002: Prevent Loop Disqualification due to asm statement</span></a><br>
+              <a href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30003"
+                title="Compiler/diagnostic messages/C6000/30003"><span
+                  style="color:#1F2BB8;"> Advice 30003: Prevent Loop Disqualification due to complex condition</span></a><br>
+              <a href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30004"
+                title="Compiler/diagnostic messages/C6000/30004"><span
+                  style="color:#1F2BB8;"> Advice 30004: Prevent Loop Disqualification due to switch statement</span></a><br>
+              <a href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30005"
+                title="Compiler/diagnostic messages/C6000/30005"><span
+                  style="color:#1F2BB8;"> Advice 30005: Prevent Loop Disqualification due to arithmetic operation</span></a><br>
+              <a href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30006"
+                title="Compiler/diagnostic messages/C6000/30006"><span
+                  style="color:#1F2BB8;"> Advice 30006: Prevent Loop Disqualification due to call(2)</span></a><br>
+              <a href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30007"
+                title="Compiler/diagnostic messages/C6000/30007"><span
+                  style="color:#1F2BB8;"> Advice 30007: Prevent Loop Disqualification due to rts-call(2)</span></a><br>
+              <a href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30008"
+                title="Compiler/diagnostic messages/C6000/30008"><span
+                  style="color:#1F2BB8;"> Advice 30008: Improve Loop; Qualify with restrict</span></a><br>
+              <a href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30009"
+                title="Compiler/diagnostic messages/C6000/30009"><span
+                  style="color:#1F2BB8;"> Advice 30009: Improve Loop; Add MUST_ITERATE pragma</span></a><br>
+              <a href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30010"
+                title="Compiler/diagnostic messages/C6000/30010"><span
+                  style="color:#1F2BB8;"> Advice 30010: Improve Loop; Add MUST_ITERATE pragma(2)</span></a><br>
+              <a href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30011"
+                title="Compiler/diagnostic messages/C6000/30011"><span
+                  style="color:#1F2BB8;"> Advice 30011: Improve Loop; Add _nassert()</span></a><br>
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+<h2><span id="Typical_Advice" class="mw-headline">Typical Advice </span></h2>
+<pre> advice #30006: Loop at line 22 cannot be scheduled efficiently, as it
+contains a function call ("function_name"). Try making "function_name" an
+inline function.
+
+</pre>
+<h2><span id="Why_is_the_Compiler_giving_this_Advice_.3F"
+class="mw-headline">Why is the Compiler giving this
+Advice&nbsp;? </span></h2>
+<p>There is a function call within a loop, which prevents the
+software-pipelining loop optimization. Software-pipelining is a
+key optimization for achieving good performance. You may see
+reduced performance without software pipelining. </p>
+<p><br>
+</p>
+<h2><span id="What_it_means:" class="mw-headline">What it means: </span></h2>
+<p>For improved performance, at optimization levels --opt_level=2
+(-O2) and --opt_level=3 (-O3), the compiler attempts to software
+pipeline your loops. Sometimes the compiler may not be able to
+inline a function call that is in a loop. Because the compiler
+could not inline the function call, the loop could not be software
+pipelined, and the loop could not efficiently scheduled. </p>
+<p>Typical testcase: In the code below, call to function "func2"
+prevents software pipelining. </p>
+<pre> void func1(int *p, int *q, int n)
+{
+unsigned int i;
+
+for (i = 0; i &lt; n; i++)
+{
+int t = func2(i);
+
+&nbsp;; other operations
+}
+}
+int function func2() { . . . }
+
+</pre>
+<p>However if the function func2 is inlined, it: </p>
+<ul>
+<li>Saves the overhead of a function call </li>
+<li>The compiler is free to optimize the function in context with
+surrounding code </li>
+</ul>
+<p>Automatic inlining is controlled by the "inline" keyword; use it
+to allow inlining of specific functions&nbsp;: </p>
+<pre> inline int function func2() { . . . }
+</pre>
+<p><br>
+</p>
+<h2><span id="Risks.2C_Severity" class="mw-headline">Risks, Severity
+</span></h2>
+<p>The function call "func2" in the loop, prevents software
+pipelining and better performance. While inlining improves
+performance, expanding functions inline may increase code size,
+especially inlining a function that is called in a number of
+places. Function inlining is optimal for functions that are called
+only from a small number of places and for small functions. </p>
+<p><br>
+</p>
+<h2><span id="Suggested_Action" class="mw-headline">Suggested Action
+</span></h2>
+<p>Inline function call to "func2". </p>    <h2> <span class="mw-headline" id="More_Resources"> More Resources
+      </span></h2>
+    <p>Want to squeeze a few more Performance Cycles out of your application?
+      Leverage the e2e (Engineer-to-Engineer) online community to get
+      all of your Advice questions answered! Or, give back to the community
+      with your expertise. </p>
+    <p><a
+href="http://e2e.ti.com/support/development_tools/compiler/default.aspx"
+        class="external text" rel="nofollow">Go to the TI Compiler's e2e online
+        forum!</a>&nbsp; </p>
+    <div class="hf-nsfooter">
+      <table class="wikitable" style="text-align:center;
+        background:White;">
+        <tbody>
+          <tr>
+            <td><a
+                href="http://processors.wiki.ti.com/index.php/File:E2e.jpg"
+                class="image"><img alt="E2e.jpg"
+                  src="http://processors.wiki.ti.com/images/8/82/E2e.jpg"
+                  height="63" width="305"></a> </td>
+            <td><i>For technical support please post your questions at <a
+                  href="http://e2e.ti.com/" class="external free"
+                  rel="nofollow">http://e2e.ti.com</a>. </i> </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

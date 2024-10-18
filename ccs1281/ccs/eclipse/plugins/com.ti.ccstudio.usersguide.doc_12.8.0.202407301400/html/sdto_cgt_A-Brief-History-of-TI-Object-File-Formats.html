@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="A Brief History of TI Object File Formats"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Generation Tools">
+<meta name="product-link" content="https://www.ti.com/tool/TI-CGT">
+
+<!-- Change the title text for your page -->
+<title>A Brief History of TI Object File Formats</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+# Introduction
+
+A better title for this article is Overview of TI Object File Formats. But
+that's boring. This article brings together the basics about object file
+formats used by TI code generation tools. It also gives some background on two
+closely related topics: hex files and debug information.
+
+An *object file* contains the binary representation of the code to be executed.
+An *object file format* specifies the organization of the information in the
+file. An Internet search on those terms yields lots of good background
+information.
+
+# ELF: Executable and Linking Format
+
+The dominant object file format in use is named ELF, which stands for Executable
+and Linking Format. As of this writing, ELF is the default (or only) object file
+format for every TI toolset except C2000. For compilers which support both
+formats, the switch --abi=eabi sets the application binary interface (ABI) to
+EABI, which includes, among other things, use of ELF format.
+
+Is ELF an industry standard? Well, there is no standards body behind it such as
+the ANSI committees behind the C and C++ standards. Nonetheless, it is much
+closer to a standard than COFF (described next). It is fairly easy to encode
+information in an ELF file that only TI tools recognize, and other tools safely
+ignore. Thus the GNU utility readelf can be used to inspect TI generated ELF
+files. Conversely, TI tools can read Linux ELF files. Here is an example using
+armofd, the object file display utility from the ARM toolset:
+
+```
+% armofd /bin/ls | less
+
+OBJECT FILE:  /bin/ls
+
+ Object File Information
+
+    File Name:           /bin/ls
+    Format:              ELF Version 1
+    File Type:           executable file
+    Machine:             Intel 80386
+    Machine Endian:      little endian
+    Entry Point:         0x080498c0
+    Number of Sections:  26
+    File Length:         67700
+    ELF Class:           32-bit objects
+    ELF e_flags:         0x00000000
+
+ Program Segment Table
+ ...
+```
+
+The best way to find an ELF specification is by starting with TI documentation.
+The ARM compiler book contains a section titled *Application Binary Interface*.
+This section includes a link to the specification for EABI. From there, you can
+find a current specification for ELF. (Sorry this is a bit inconvenient. But
+anything else is likely to go stale, out of date, or worse. As of November 2018,
+[here](http://www.sco.com/developers/gabi/2003-12-17/contents.html) is a link
+to an ELF specification.)
+
+# COFF: Common Object File Format
+
+The first object file format used by TI toolsets is called COFF, which stands
+for Common Object File Format. COFF first appeared in early Unix systems. COFF
+is not an industry standard. TI adopted COFF from Unix, then started customizing
+it. This pattern occurred at other companies as well, including MicroSoft. So,
+while TI and MicroSoft both use COFF, the resulting object files are in no way
+compatible.
+
+For compilers which support both formats, the switch --abi=coffabi sets the
+application binary interface (ABI) to COFF ABI, which includes, among other
+things, use of COFF format.
+
+The best documentation on the TI variant of COFF is
+[this application note](https://www.ti.com/lit/pdf/spraao8).  Note there is not
+enough information in that application note to write your own COFF handling
+code. See the next section for that.
+
+# Processing Object Files
+
+So, you want to do some kind of processing on TI object files. Because reading
+specs and parsing binary files is neither fun nor productive, TI provides the
+Object File Display utility. The ARM toolset utility is named armofd. Other
+toolsets have a utility with a similar name. It is documented in the [Assembly
+Language Tools User's Guide](https://www.ti.com/tools-software/compilers/download.html)
+for your toolset.
+
+As seen in the example above, lots of information can be obtained with default
+options. You can get that same information in XML format by using -x. And you
+can process that XML data with the
+[cg_xml package](http://processors.wiki.ti.com/index.php/Code_Generation_Tools_XML_Processing_Scripts).
+
+These are much better options than creating your own custom solution.
+
+# Hex Files Come from Object Files
+
+Another representation of the information in an object file is a hexadecimal
+file, or hex file. A hex file is created by using the hex conversion utility
+from your toolset. The ARM hex conversion utility is named armhex. Other
+toolsets have a hex conversion utility with a similar name. The input is an
+object file, and the output is a hex file.  It is documented in the [Assembly
+Language Tools User's Guide](https://www.ti.com/tools-software/compilers/download.html)
+for your toolset.
+
+Hex files are used in numerous ways. A typical use case is programming flash
+memory with a utility that does not accept an object file as input, but a hex
+file instead.
+
+While an object file is binary, a hex file is an ASCII text file. You can
+inspect a hex file with your favorite text editor. There are several different
+hex file formats. The following is the beginning of a hex file that uses Intel
+MCS-86 format.
+
+```
+:20002000002A4AD05FEA000C8B071CD1830722D1102A08D370B4103A78C978C0103AFBD218
+:2000400070BC103238D0042A2CD3082A05D30C2A24BF08C908C008C908C008C908C0920776
+:200060002AD0920F22E00B780370491C401C521E22D08B07F7D1C30714D18307D8D0121F5E
+:2000800012D308C943801B0C0380001D121FF8D20AE008C9C3701B0A83701B0A43701B0A22
+```
+
+# Comparing Sizes: Object Files, Hex Files, System Memory Image
+
+An object file contains much more than the binary bits loaded to system memory.
+It contains additional information such as symbol tables, relocation entries,
+and debug information (described next). Therefore an object file typically takes
+up many more bytes than the corresponding image in system memory. A hex file
+contains additional information such as addresses and checksums, as well as
+spacing. So while a hex file is smaller than the corresponding object file, it
+is also larger than the image in system memory.
+
+
+# Debug Information Format
+
+Object files commonly contain information read by a debugger (such as CCS) to do
+things such as associate an address with a line of source code. Because of this
+relationship, it is common to think debug information is another detail of the
+object file format. It isn't. The format of the debug information is specified
+separately. It is better to think of the debug information as a separate concept
+that just happens to be encoded within an object file. In theory, an object file
+may contain debug information encoded in any format.
+
+As of this writing, the default debug format used by TI compilers is DWARF
+version 3. It is possible to select Dwarf version 2, 3, or 4.  Here are a few
+links with further information:
+
+* [The Impact of DWARF on TI Object Files](https://www.ti.com/lit/pdf/spraab5) from August 2005. [Here](http://processors.wiki.ti.com/index.php/The_Impact_of_DWARF_on_TI_Object_Files_Errata_(SPRAAB5%29) are corrections to that article.
+* [DWARF standard](http://dwarfstd.org/)
+* [TI Implementation of Dwarf Standard version 4](http://processors.wiki.ti.com/index.php/DWARF_4)
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

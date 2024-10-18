@@ -1,0 +1,42 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.ti.dvt.graph.visualization; singleton:=true
+Require-Bundle: com.ti.dvt.core,com.ti.dvt.datamodel,org.eclipse.ui,or
+ g.eclipse.core.runtime,com.ti.dvt.ui,org.eclipse.ui.views,com.ti.util
+ .ui,com.ti.util,com.ti.dvt.ideadapter2
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: Texas Instruments
+Eclipse-LazyStart: true
+Export-Package: com.ti.dvt.graph.visualization,com.ti.dvt.graph.visual
+ ization.actions,com.ti.dvt.graph.visualization.properties
+Bundle-Name: Visualization Plug-in
+Bundle-Version: 4.1.0.202307061549
+Bundle-ClassPath: com.ti.dvt.graph.visualization.jar
+Bundle-Activator: com.ti.dvt.graph.visualization.GraphVisualizationPlu
+ gin
+
+Name: plugin.xml
+SHA-256-Digest: XAzEB7mea+F8+i/3tWSmUCflqmmCw6U/1nuk9rvARKk=
+
+Name: dvt.zip
+SHA-256-Digest: wJvLhp7erQbXFMmvkLnO7LYg+ZA0HbsPJDyIbW6tFvc=
+
+Name: META-INF/p2.inf
+SHA-256-Digest: x2qb8em+HINYm0npE1M2uQoDCr9S8HFwpYWYJKrJksA=
+
+Name: uninstall.xml
+SHA-256-Digest: /atpnQiP2N14WV3aiPvub2gXQr4kG+2pAXhnzNMkoLs=
+
+Name: install.xml
+SHA-256-Digest: KxPYHaID4pkHVIS5GeI2A2Om24zGraZ46vkRrapRaQ4=
+
+Name: com.ti.dvt.graph.visualization.jar
+SHA-256-Digest: Qc4TmPFF1mHPtyU9MC6wJplb0KJq5sYidpvBmPWhBMg=
+
+Name: icons/line.gif
+SHA-256-Digest: qeqj1z2rrZK9Df3hUOZrnnnYhpx+vBSJF3H0c65a2N0=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: G2hFTVPngfh5NUf96Pyy87A7XIE083udjEBFy4pUc/M=
+

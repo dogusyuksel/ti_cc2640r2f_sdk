@@ -1,0 +1,108 @@
+const fs        = require('fs');
+const commander = require('commander');
+const print     = console.log;
+const hex       = n => `0x${n.toString(16)}`;
+
+function addr_type (addr, memory)
+{
+    let range = memory?.find(x=> addr >= x.origin && addr < x.origin + x.length);
+    return range ? range.name : hex(addr);
+}
+
+//------------------------------------------------------------------------------
+// Main
+//------------------------------------------------------------------------------
+commander.program
+   .description('json2cmd')
+   .argument   ('<json>', 'The input JSON file')
+   .option     ('-d, --debug', 'Print debug information.')
+   .option     ('-c, --core <coreId>',  'Specify core to extract')
+   .action     ((json, opts) => { process(json, opts); })
+   .parse      ();
+
+//------------------------------------------------------------------------------
+// Process
+//------------------------------------------------------------------------------
+function process(json, opts)
+{
+    let elf = JSON.parse(fs.readFileSync(json));
+    if (opts.core) elf = elf[opts.core];
+
+    // Options
+    print(`-e ${elf.entry_point.name || elf.entry_point.address}`);
+    //print(`-o ${elf.output_file}`);
+    print('-o regen.out\n-m regen.map\n-x');
+
+    let stack_size = elf.symbols.find(x=>x.name==='__STACK_SIZE')?.value;
+    let heap_size  = elf.symbols.find(x=>x.name==='__SYSMEM_SIZE')?.value;
+    if (stack_size) print(`--stack_size=${stack_size}`);
+    if (heap_size)  print(`--heap_size=${heap_size}`);
+    let cinit = elf.symbols.find(x=>x.name==='__TI_CINIT_Base')?.value;
+    if (cinit !== undefined && cinit === 0) print('-c');
+    if (cinit !== undefined && cinit !== 0) print('-cr');
+
+    print('\n');
+
+    // Files
+    let libs = [];
+    for (const [id, x] of Object.entries(elf.files)) {
+        if (x.file === '<internal>') continue;
+        if (x.kind == 'object')
+            print(`-l${x.path}${x.file}`);
+        else {
+            libs.push(`-l${x.path}${x.file}`);
+        }
+    }
+    libs = [... new Set(libs)];
+    libs.forEach(x=> print(x));
+    print('\n');
+
+    // Symbols
+    let gened_syms = ['binit', '__binit__', '__STACK_SIZE', '__STACK_END', '__SYSMEM_SIZE', '_system_post_cinit'];
+    elf.symbols
+       .filter(x=>!x.sectid && !x.name.includes('__TI_') && !gened_syms.includes(x.name))
+       .forEach(x=>print(`${x.name} = ${x.value};`));
+
+    // Memory
+    print('\nMEMORY {');
+    let pages = [... new Set (elf.memory.map(x=>x.page_id))];
+    pages.forEach(page=>{
+        print(`  PAGE ${page}:`);
+        elf.memory.forEach(x=>{
+            print (`    ${x.name} (${x.attributes}): ORIGIN=${hex(x.origin)}, LENGTH=${hex(x.length)}`);
+        });
+    });
+    print('}');
+
+    // Groups of Groups not yet handled
+    // Sections
+    print('\nSECTIONS {');
+    elf.logical_group_list.output_section_group.forEach(x=>{
+        print (`\n  GROUP {`);
+        x.contents.forEach(y=>{
+            let lg = elf.logical_group_list.logical_group.find(z=>y==z.id);
+            print(`    ${lg.name}${init_size(lg)}`);
+            lg.complete = true;
+        });
+        memrange('}',x,elf);
+    });
+
+    print('\n');
+    elf.logical_group_list.logical_group.forEach(x=>{
+        if (!x.complete) memrange(x.name,x,elf);
+    });
+    print('}\n');
+}
+
+function init_size(x)
+{
+    return x.contents || !x.size ? '' : `: { .+= ${x.size}; }`;
+}
+
+function memrange(name,x,elf)
+{
+    if (!x.load_address || x.load_address == x.run_address)
+        print (`  ${name}${init_size(x)} > ${addr_type(x.run_address, elf.memory)}`);
+    else
+        print (`  ${name}${init_size(x)} RUN = ${addr_type(x.run_address, elf.memory)} LOAD = ${addr_type(x.load_address, elf.memory)}`);
+}

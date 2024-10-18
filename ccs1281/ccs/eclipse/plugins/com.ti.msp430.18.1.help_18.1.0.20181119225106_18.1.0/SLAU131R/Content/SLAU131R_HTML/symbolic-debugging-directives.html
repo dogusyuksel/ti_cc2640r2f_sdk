@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset="utf-8" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>A Symbolic Debugging Directives</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../Resources/Stylesheets/headerfooter.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="content">
+            <div id="contentBody">
+                <div class="row collapse">
+                    <div class="sideContent">
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                    <div id="loadContentArea">
+                        <div class="c12 docHeader">
+                            <div class="c4 docTitle">
+                                <p>
+                                    <strong>MSP430 Assembly
+							Language Tools
+			v18.1.0.LTS User's Guide</strong>
+                                    <br />
+                                    <span id="litnumber">SLAU131R</span> - REVISED JANUARY 2018</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="odsHeader">
+                        <p class="pdf">
+                            <a class="downloadPDF" href="http://www.ti.com/litv/SLAU131R" target="_new">Download PDF</a>
+                        </p>
+                    </div>
+                    <div id="loadContentArea1">
+                        <div class="subsection">
+                            <h2 id="STDZ0810749">
+                                <a MadCap:generatedBookmark="TOC" name="A_Symbolic_Debugging_Directives">
+                                </a>
+                                <span class="section-label">A </span>Symbolic Debugging Directives</h2>
+                            <div class="subsection">
+                                <p>The assembler supports several directives that the <span>MSP430 </span>C/C++ compiler uses for symbolic debugging. </p>
+                                <p>These directives are not meant for use by assembly-language programmers. They require arguments that can be difficult to calculate manually, and their usage must conform to a predetermined agreement between the compiler, the assembler, and the debugger. This appendix documents these directives for informational purposes only.</p>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0812028">
+                                    <a MadCap:generatedBookmark="TOC" name="A.1_DWARF_Debugging_Format">
+                                    </a>
+                                    <span class="section-label">A.1 </span>DWARF Debugging Format</h3>
+                                <p> A subset of the DWARF symbolic debugging directives are always listed in the assembly language file that the compiler creates for program analysis purposes. To list the complete set used for full symbolic debug, invoke the compiler with the --symdebug:dwarf option, as shown below:</p>
+                                <code>cl430 --symdebug:dwarf --keep_asm input_file</code>
+                                <p>The --keep_asm option instructs the compiler to retain the generated assembly file.</p>
+                                <p>To disable the generation of all symbolic debug directives, invoke the compiler with the -symdebug:none option:</p>
+                                <code>cl430 --symdebug:none --keep_asm input_file</code>
+                                <p>The DWARF debugging format consists of the following directives:</p>
+                                <ul>
+                                    <li value="1">The <b>.dwtag</b> and <b>.dwendtag</b> directives define a Debug Information Entry (DIE) in the .debug_info section.</li>
+                                    <li value="2">The <b>.dwattr</b> directive adds an attribute to an existing DIE.</li>
+                                    <li value="3">The <b>.dwpsn</b> directive identifies the source position of a C/C++ statement. </li>
+                                    <li value="4">The <b>.dwcie</b> and <b>.dwendentry</b> directives define a Common Information Entry (CIE) in the .debug_frame section.</li>
+                                    <li value="5">The <b>.dwfde</b> and <b>.dwendentry</b> directives define a Frame Description Entry (FDE) in the .debug_frame section.</li>
+                                    <li value="6">The <b>.dwcfi</b> directive defines a call frame instruction for a CIE or FDE.</li>
+                                </ul>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ081530">
+                                    <a MadCap:generatedBookmark="TOC" name="A.2_Debug_Directive_Syntax">
+                                    </a>
+                                    <span class="section-label">A.2 </span>Debug Directive Syntax</h3>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="#STDZ081267">Table A-1</a>
+                                    </span> is an alphabetical listing of the symbolic debugging directives. For information on the C/C++ compiler, refer to the <i><span>MSP430 Optimizing C/C++ Compiler User's Guide</span>.</i></p>
+                                <div class="subsection">
+                                    <p class="table" id="STDZ081267">
+                                        <span class="table-label">Table A-1 </span>Symbolic Debugging Directives </p>
+                                    <table class="gentable">
+                                        <colgroup>
+                                            <col />
+                                            <col />
+                                            <col />
+                                        </colgroup>
+                                        <thead class="tbl_hdr_gray">
+                                            <tr>
+                                                <th align="left" valign="bottom">Label</th>
+                                                <th align="left" valign="bottom">Directive</th>
+                                                <th align="left" valign="bottom">Arguments</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.block</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">[<i>beginning line number</i>]</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.dwattr</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>DIE label</i><b>,</b><i>DIE attribute name</i><b>(</b><i>DIE attribute value</i><b>)[,</b><i>DIE attribute name</i><b>(</b><i>attribute value</i><b>) </b>[<b>,</b> ...]</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.dwcfi</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>call frame instruction opcode</i>[<b>,</b><i>operand</i>[<b>,</b><i>operand</i>]]</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>CIE label</i> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.dwcie</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>version</i><b>, </b><i>return address register</i> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.dwendentry</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.dwendtag</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.dwfde</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>CIE label</i> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.dwpsn</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>"</b><i>filename</i><b>", </b><i>line number</i><b>, </b><i>column number</i> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>DIE label</i> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">.<b>dwtag</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>DIE tag name</i><b>,</b><i>DIE attribute name</i><b>(</b><i>DIE attribute value</i><b>)[,</b><i>DIE attribute name</i><b>(</b><i>attribute value</i><b>) </b>[<b>,</b> ...]</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.endblock</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">[<i>ending line number</i>]</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.endfunc</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">[<i>ending line number</i>[<b>,</b><i>register mask</i>[<b>, </b><i>frame size</i>]]]</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.eos</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">.<b>etag</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>name</i>[<b>, </b><i>size</i>]</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.file</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>"</b><i>filename</i><b>"</b> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.func</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">[<i>beginning line number</i>]</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">.<b>line</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>line number</i>[<b>,</b><i> address</i>]</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.member</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>name</i><b>, </b><i>value</i>[<b>, </b><i>type</i><b>,</b><i> storage class</i><b>,</b><i> size</i><b>,</b><i> tag</i><b>,</b><i> dims</i>]</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.stag</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>name</i>[<b>, </b><i>size</i>]</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.sym</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>name</i><b>, </b><i>value</i>[<b>, </b><i>type</i><b>,</b><i> storage class</i><b>,</b><i> size</i><b>,</b><i> tag</i><b>,</b><i> dims</i>]</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>.utag</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>name</i>[<b>, </b><i>size</i>]</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="abstract.html">Back to Top</a>
+                    <p />
+                    <a href="http://www.go-dsp.com/forms/techdoc/doc_feedback.htm?litnum=SLAU131R&amp;partnum=MSP430">Submit Documentation Feedback</a>
+                    <p>Copyright© 2018, Texas Instruments Incorporated. An <a href="includes/important_notice.html">IMPORTANT NOTICE</a> for this document addresses availability, warranty, changes, use in safety-critical applications, intellectual property matters and other important disclaimers.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

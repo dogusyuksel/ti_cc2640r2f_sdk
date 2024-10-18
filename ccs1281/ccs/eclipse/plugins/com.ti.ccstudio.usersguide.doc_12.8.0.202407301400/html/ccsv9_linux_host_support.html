@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="This page contains details about running Code Composer Studio version 9 on Linux, including installation details, device support and debug probe support"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Composer Studio Product Page">
+<meta name="product-link" content="https://www.ti.com/tool/CCStudio">
+
+<!-- Change the title text for your page -->
+<title>Linux Host Support CCSv9</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+<!-- Add your markdown source here! -->
+<img src="./images/tux.jpg" alt="Tux" width="100" length="100" align="right">
+# Overview #
+This page contains information regarding Code Composer Studio v9 running on Linux. It includes installation instructions, device support and debug probe support.
+
+As there are many versions and distributions of Linux we are not able to verify and support every one. We verify CCS on a subset of distributions although it is possible to get it running on many others and as we obtain the information on how to do so we will include it on this page.
+
+Please note that Code Composer Studio is a 64-bit application and will not run on 32-bit distributions.
+
+# Devices  #
+
+## Supported  ##
+- <b>Microcontrollers</b>: MSP430, MSP432, C2000, TM4, Hercules
+- <b>Wireless Connectivity</b>: CC13xx, CC2538, CC26xx, CC32xx
+- <b>Processors</b>: Sitara (AMxxxx), Keystone / Keystone II, OMAPL
+- <b>DSP</b>: C64x+, C674x, C66x, C55x, C641x
+
+## Not Supported  ##
+- <b>Microcontrollers</b>: C/F24x
+- <b>DSP</b>: C3x/C4x/C5x/C8x, C54x, C62x, C670x/C671x/C672x
+
+# Debug Probes #
+
+## Supported  ##
+- MSP430: MSP-FET, MSP-FET430UIF, Launchpads with built-in MSP-FET and eZ-FET technology such as the [MSP-EXP430G2ET](https://www.ti.com/tool/MSP-EXP430G2ET)
+   - For a complete list, check the document [SLAU647](https://www.ti.com/lit/slau647)
+- XDS110: Standalone XDS110, LaunchPads with built-in XDS110 technology
+   - The XDS110 EnergyTrace HDR Add-on is also supported
+- XDS100: v1, v2 and v3
+- XDS200: USB, LAN
+- TM4C/Tiva/Stellaris ICDI as well as CC3200 LaunchPad
+- Spectrum Digital: XDS560v2
+- Blackhawk: XDS560v2 (LAN/USB), USB560, USB560m, USB560bp
+- SEGGER J-Link
+   - Not all TI devices are supported. Check [Segger's device list](https://www.segger.com/products/debug-probes/j-link/technology/cpus-and-devices/overview-of-supported-cpus-and-devices/)
+
+## Not Supported ##
+- MSP430: MSP-FET430PIF (Parallel port), Launchpads and Experimenters kits that use eZ430 technology such as Chronos, [MSP-EXP430G2](https://www.ti.com/tool/MSP-EXP430G2) and [MSP-EXP430FR4133](https://www.ti.com/tool/MSP-EXP430FR4133) LaunchPads. 
+   - **Note:** the [MSP-EXP430G2ET](https://www.ti.com/tool/MSP-EXP430G2ET) is supported.
+   - For a complete list, check the document [SLAU647](https://www.ti.com/lit/slau647)
+- Stellaris ICDI based on FTDI
+- Blackhawk: USB2.0, XDS560 PCI, XDS560T, XDS510
+- Spectrum Digital: XDS510, XDS560R, Parallel Port emulators
+- Texas Instruments: XDS560 PCI, XDS510 ISA
+- In general vendors are not supporting PCI, ISA or parallel port emulators on Linux
+
+For information on a specific debug probe please contact the manufacturer.
+
+# Distribution Validation #
+
+CCS is validated on a defined set of Linux distributions.  Typically this is the latest Ubuntu LTS, the previous Ubuntu LTS and a CentOS distribution (to represent RedHat).
+
+# Installation Instructions  #
+
+CCS requires a 64-bit distribution of Linux. 32-bit distributions are not supported with current versions of CCS.
+
+There is one 32-bit library required to support the compilers.
+From a terminal prompt, issue the following command to install it: <tt>sudo apt install libc6:i386</tt>. Please note that certain versions of Ubuntu require to use <tt>libc6-i386</tt> instead. 
+
+<font color="#FF0000"><b>IMPORTANT!</b></font> TI performs testing on Ubuntu LTS distributions and one CentOS distribution <b>only</b> and provides instructions for other distributions as a reference - sometimes these instructions are kindly provided by other developers with the intention to help others. In this case, consider these releases as <b>unsupported</b> and <b>untested</b>.
+
+<font color="#FF0000"><b>IMPORTANT!</b></font> if installing CCS as a superuser, keep in mind that versions 9.2.0 and 9.3.0 have a bug that sets incorrect permissions to several support files inside the installation tree. Check the section [Setting the correct permissions](#setting-the-correct-permissions) below for instructions on how to workaround this.  
+
+<font color="#FF0000"><b>NOTE</b></font>: Certain older SDKs and Compiler installers could hang when installing on a system with glibc2.26 and greater. While the component is installed correctly, the installer doesn't exit. In order to complete your installation of the component, kill off the hanging installer and remove the downloads folder from the <installdir>/eclipse directory, if it exists.
+
+<font color="#FF0000"><b>NOTE</b></font>: it is possible to install CCS as a superuser using sudo (gksu is not recommended), which automatically adds all the required driver udev rules at the end of the process. However this requires extra steps for regular operation of CCS as a regular user. Check the application note [Configuring CCS for multiuser](./application_notes/appnote-configuring_ccs_for_multiuser.html) for details.
+   - When installed as superuser using sudo, CCS must be run at the same privilege level to install updates.
+
+## Ubuntu 19.10 STS ##
+- Tested on 19.10
+   - Please note that CCS is not officially tested on this version.  
+- update system: <tt>sudo apt update</tt>
+- install dependent libraries: <tt>sudo apt install libc6:i386 libusb-0.1-4 libgconf-2-4 libgtk2.0-0 libncurses5 libpython2.7 libtinfo5 build-essential</tt>
+- install CCS
+- if CCS was installed as user then run the driver install script
+  - go to &lt;CCS_INSTALL_DIR&gt;/ccs/install_scripts
+  - <tt>sudo ./install_drivers.sh</tt>
+
+## Ubuntu 18.04 LTS ##
+- Tested on 18.04 bionic (with canonical partners repository enabled)
+- update system: <tt>sudo apt update</tt>
+- install dependent libraries: <tt>sudo apt install libc6:i386 libusb-0.1-4 libgconf-2-4 build-essential</tt>
+- install CCS
+- if CCS was installed as user then run the driver install script
+  - go to &lt;CCS_INSTALL_DIR&gt;/ccs/install_scripts
+  - <tt>sudo ./install_drivers.sh</tt>
+
+## Ubuntu 16.04 LTS ##
+- Tested on 16.04.1 
+  - Be sure that all updates are applied to the system. Issues were found when the original plain 16.04 version was used
+  - The Desktop shortcuts are not shown immediately after install. A logoff/logon is required. 
+- update system: <tt>sudo apt update</tt>
+- install dependent libraries: <tt>sudo apt install libc6:i386</tt>
+- install CCS
+- if CCS was installed as user then run the driver install script
+  - go to &lt;CCS_INSTALL_DIR&gt;/ccs/install_scripts<br>
+  - <tt>sudo ./install_drivers.sh</tt>
+
+## Linux Mint 18 ##
+- Tested on Linux 18 Xfce
+- update system: <tt>sudo apt update</tt>
+- install CCS
+- if CCS was installed as user then run the driver install script
+  - go to &lt;CCS_INSTALL_DIR&gt;/ccs/install_scripts<br>
+  - <tt>sudo ./install_drivers.sh</tt>
+
+## Debian GNU/Linux 9 (stretch) 64-bit ##
+- If you get a message about glibc try the following
+- From a terminal window, enter: $ software-properties-gtk
+- Select the Developer Options tab. Check the Proposed updates (stretch-proposed-updates)
+- Close the dialog.
+- Once again, from a terminal window: $ sudo apt install libc6-i386
+- Should work correctly now
+- now install CCS
+- go back and uncheck the Proposed updates (stretch-proposed-updates) option in the Developer Options Tab.
+
+# Proxy server considerations #
+
+Certain functions of Code Composer Studio require access to the Internet. In general, this works well for connections that do not require a proxy server, but in certain cases its use is mandatory by the corporate IT department.  
+
+Linux poses a challenge to configure proxy servers due to the nature of its various components and where they inherit its settings. For example, it is not uncommon to have a web browser fully connected to the internet while the aptitude or yum utilities (used to install system features or dependencies) is unable to do so. 
+
+In this case, it is important to observe a few aspects during CCS setup and runtime. 
+- The proxy server configuration can be set during the installation options. This is critical for a successful install if using the On-demand installer (web installer), as each component must be downloaded individually. 
+- The system update utility (apt, yum, etc.) has its own configuration files to set up a proxy, typically text files under the subdirectory /etc. To properly configure these utilities, please refer to your distro instructions. 
+- The system wide proxy setting is usually accessible via the GUI of choice (Gnome, KDE, etc.) and is normally present under the Network settings. This setting is inherited by the Eclipse features of Code Composer Studio, namely the ability to access its update sites to update the various components of an install (compilers, emupack, etc.)
+- The shell environment variable <tt>http_proxy</tt> (and its counterparts <tt>https_proxy</tt> and <tt>ftp_proxy</tt> not used by CCS) are inherited by the browser built into Code Composer Studio to access its online content and download the various SDK packages. In general this environment variable is set at the system wide shell init script (<tt>/etc/bash.bashrc</tt>, for example) but this can also be set by each user on its local shell <tt>~/.bashrc</tt>. 
+   - The scope where this configuration will reach is highly dependent on the install and definitely some experimentation is necessary. 
+   - In this case, experimentation can be done by setting the environment variable exclusively during the invocation of Code Composer Studio from a command line. For example, from a bash shell the proxy environment variable can be set prior to running CCS as:
+
+   user@host:~/ti/ccs930/ccs/eclipse$ **http_proxy=&lt;myproxy.mycompany.com&gt;:&lt;port80&gt; bash -c './ccstudio &'**
+
+# Setting the correct permissions #
+
+CCS versions 9.2.0 and 9.3.0 have a bug that, when installed as a superuser and run as a regular user, any attempts to configure a target on a project or create a new target configuration file using specific device families (C2000, Hercules, etc.) fail with the following errors: 
+
+Creating a target configuration file: 
+<pre>
+Trouble parsing include or instance xml file /opt/ti/ccs930/ccs/ccs_base/common/targetdb/../Modules/
+C2000/C2000_FPU32_Registers.xml (No such file or directory)
+</pre>
+<br>
+Configuring the connection on a new project:
+<pre>
+Error parsing file:
+Fatal Error at (0, 0): An exception occurred! Type:RuntimeException, 
+Message:The primary document entity could not be opened. 
+
+Id=/opt/ti/ccs930/ccs/ccs_base/common/targetdb/../Modules/C2000/C2000_FPU32_Registers.xml 
+
+while parsing file: 
+/opt/ti/ccs930/ccs/ccs_base/common/targetdb/../Modules/C2000/C2000_FPU32_Registers.xml
+</pre>
+<br>
+This is due to the fact that permissions of several support files inside the installation tree are improperly set.  
+
+To correct that, open a terminal and issue the following commands:
+
+   user@host:~$ **cd /opt/ti/ccs930/ccs**
+   
+   user@host:/opt/ti/ccs930/ccs$ **sudo chmod -R go+rX * **
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

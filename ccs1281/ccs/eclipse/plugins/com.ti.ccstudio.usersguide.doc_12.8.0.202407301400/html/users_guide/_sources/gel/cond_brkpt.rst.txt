@@ -1,0 +1,21 @@
+Conditional Breakpoints
+-----------------------
+
+Every conditional breakpoint has its own conditional expression. When the location of the conditional breakpoint is reached, the expression is evaluated. If the result of the expression is false, the processor resumes execution without updating the display; otherwise, the display is updated as if a traditional breakpoint were hit.
+
+To create a conditional breakpoint, you can define GEL (General Extension Language) files to meet conditions that must be satisfied for a breakpoint to be enabled.
+
+Input your GEL Expression for a Conditional Breakpoint
+
+1 Set your breakpoint at the desired location.
+
+2 Select Debug → Breakpoints. The Breakpoint Manager window appears.
+
+3 Select your breakpoint row, then right click and select Properties from the context menu. This will open the Properties Manager window for the selected breakpoint.
+
+4 Enter your GEL expression in the Condition field in the Property Manager. This condition will be evaluated by GEL, and if it returns false, the breakpoint will not trigger and the target will be re-run. This ensures that the breakpoint is only enabled if your condition is met. Note that if the expression calls a GEL function, it must be defined in one of your already loaded GEL files. If you don't do this, you will receive an error message that the function is not defined.
+
+5 Click OK.
+
+**Note:** The target processor halts while the expression is evaluated by the host. This means that the target application may not be able to meet real-time constraints with conditional breakpoints set.
+

@@ -1,0 +1,21 @@
+# ti-transport-usb
+
+
+
+<!-- Auto Generated Below -->
+
+
+## Properties
+
+| Property          | Attribute           | Description                                                                                                                                                                                                                                                                                                            | Type                                                                                                                                                                                                                      | Default     |
+| ----------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `defaultBaudRate` | `default-baud-rate` | Specifies the default baud rate to suggest to the user regular USB support mode only.  Add this attribute to use regular usb ports only and not usb-hid ports.                                                                                                                                                         | `50 \| 75 \| 110 \| 134 \| 150 \| 300 \| 600 \| 1200 \| 1800 \| 2400 \| 4800 \| 7200 \| 9600 \| 14400 \| 19200 \| 28800 \| 38400 \| 56000 \| 57600 \| 115200 \| 128000 \| 153600 \| 230400 \| 256000 \| 460800 \| 921600` | `9600`      |
+| `deviceId`        | `device-id`         | The optional identifier of a target device that is associated with this model, transport or codec. Specifying a target device idicates that this is necessary and/or optional for this connecting to the specified device.  The absence of a target device indicates this is necessary and/or optional for any device. | `string`                                                                                                                                                                                                                  | `undefined` |
+| `hid`             | `hid`               | Indicates regular USB-HID support mode only.  Add this attribute to use usb-hid ports only and not regular usb serial ports.                                                                                                                                                                                           | `boolean`                                                                                                                                                                                                                 | `false`     |
+| `optional`        | `optional`          | A flag indicating that this model, transport, or codec is not necessary for connecting to the target, and any failure should not prevent connection.                                                                                                                                                                   | `boolean`                                                                                                                                                                                                                 | `false`     |
+| `usb`             | `usb`               | Indicates regular USB serial port support mode only.  Add this attribute for to use regular usb ports only and not usb-hid ports.                                                                                                                                                                                      | `boolean`                                                                                                                                                                                                                 | `false`     |
+
+
+----------------------------------------------
+
+*Built with [StencilJS](https://stenciljs.com/)*

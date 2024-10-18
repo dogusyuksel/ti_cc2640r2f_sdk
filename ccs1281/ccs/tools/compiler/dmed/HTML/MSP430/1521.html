@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;
+      charset=ISO-8859-1">
+    <title>A variable cannot be noinit and also have DATA_SECTION
+      pragma.</title>
+  </head>
+  <body>
+    <h2> <span class="mw-headline" id="Typical_message"> Typical
+        message </span></h2>
+    <p>"main.c", line 36 (col. 5): error #1521: variable "fram_variable"
+      cannot be noinit and also have DATA_SECTION pragma. Without
+      DATA_SECTION pragma, "fram_variable" will be in section
+      .TI.noinit:fram_variable. With only DATA_SECTION pragma, you must
+      mark the section noinit in the linker cmd file.<br>
+      1 error detected in the compilation of "main.c". </p>
+    <h2> <span class="mw-headline" id="What_it_means"> What it means </span></h2>
+    <p>The code being compiled has a global variable that has the
+      DATA_SECTION pragma as well as either NOINIT or PERSISTENT pragma
+      (or attributes). </p>
+    <div class="csh">
+      <pre class="asm" style="font-family:monospace;">#pragma DATA_SECTION<span style="color: #009900; font-weight: bold;">(</span>fram_variable<span style="color: #339933;">,</span> <span style="color: #7f007f;">".infoA"</span><span style="color: #009900; font-weight: bold;">)</span>
+#pragma NOINIT<span style="color: #009900; font-weight: bold;">(</span>fram_variable<span style="color: #009900; font-weight: bold;">)</span>
+<span style="color: #00007f; font-weight: bold;">int</span> fram_variable<span style="color: #666666; font-style: italic;">;</span></pre>
+    </div>
+    <h2> <span class="mw-headline" id="Why_is_it_happening"> Why is it
+        happening </span></h2>
+    <p>The linker only supports marking an entire memory section in the
+      command linker file as <b>NOINIT</b> or non-NOINIT. NOINIT and
+      non-NOINIT variables may not be mixed within the same command
+      linker file memory section. The NOINIT mechanism is used by both
+      #pragma NOINIT and PERSISTENT. The linker then creates special
+      sections .TI.noinit and .TI.persistent which are marked as NOINIT,
+      ensuring it does not mix NOINIT and non-NOINIT. </p>
+    <p>However, if the same variable also has the #pragma DATA_SECTION
+      applied, then the compiler cannot ensure that that section will
+      only be NOINIT. The linker will not allow combining NOINIT and
+      non-NOINIT data in the same memory section. </p>
+    <h2> <span class="mw-headline" id="Remedy"> Remedy </span></h2>
+    <p>Specify <b>NOINIT</b> type which will make the variables
+      residing in the memory section not being initialized inside the
+      C-start-up function. </p>
+    <div class="csh">
+      <pre class="asm" style="font-family:monospace;">SECTIONS
+<span style="color: #009900; font-weight: bold;">{</span>
+    <span style="color: #339933;">.............</span>
+    <span style="color: #339933;">.</span>infoA     <span style="color: #339933;">:</span> <span style="color: #009900; font-weight: bold;">{</span><span style="color: #009900; font-weight: bold;">}</span> &gt; INFOA <span style="color: #000000; font-weight: bold;">type</span>=NOINIT              <span style="color: #339933;">/*</span> MSP430 INFO FRAM  <span style="color: #000000; font-weight: bold;">MEMORY</span> SEGMENTS <span style="color: #339933;">*/</span>
+    <span style="color: #339933;">.............</span>
+<span style="color: #009900; font-weight: bold;">}</span></pre>
+    </div>
+    <p>For more information on specifying a new memory segment with
+      NOINIT, see below article: <a
+href="http://processors.wiki.ti.com/index.php/Creating_MSP430_FRAM_Variables_Using_CCS"
+        class="external text" rel="nofollow" target="_blank">|processors.wiki.ti.com/index.php/Creating_MSP430_FRAM_Variables_Using_CCS</a>
+    </p>
+    <h2> <span class="mw-headline" id="Risks.2C_Severity"> Risks,
+        Severity </span></h2>
+    <p>An executable cannot be created until this error is resolved. </p>
+    <table style="text-align:center; background:white; width:100%;
+      text-align:left; height: 65px border-top: 1px solid;
+      border-bottom: 1px solid; border-left: 1px solid; border-right:
+      1px solid; border-width: 1px; border-style: solid;">
+      <tbody>
+        <tr>
+          <td width="305px"><a
+              href="http://processors.wiki.ti.com/index.php/File:E2e.jpg"
+              class="image"><img alt="E2e.jpg"
+                src="http://processors.wiki.ti.com/images/8/82/E2e.jpg"
+                height="63" width="305"></a> </td>
+          <td><i>For technical support please post your questions at <a
+                href="http://e2e.ti.com/" class="external free"
+                rel="nofollow" target="_blank">http://e2e.ti.com</a>.
+              Please post only comments about the article <b>Compiler/diagnostic
+
+                messages/MSP430/1521</b> here.</i></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

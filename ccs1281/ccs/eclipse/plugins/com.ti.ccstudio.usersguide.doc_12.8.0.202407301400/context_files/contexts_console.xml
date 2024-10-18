@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.contexts"?>
+
+<!-- Console View  -->
+
+<contexts>
+
+<context id="console_view_context" title="About Console View">
+	<description>Help content for Console View</description>	
+	<topic label="CCS - Console View (Build)" href="html/users_guide/ccs_project-management.html#console-view"/>
+	<topic label="CCS - Console View (Debug)" href="html/users_guide/ccs_debug-main.html#console-view"/>
+</context>
+
+</contexts>

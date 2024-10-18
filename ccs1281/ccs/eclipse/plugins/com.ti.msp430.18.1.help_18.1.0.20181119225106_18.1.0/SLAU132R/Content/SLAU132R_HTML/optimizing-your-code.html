@@ -1,0 +1,1271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset="utf-8" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>3 Optimizing Your Code</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../Resources/Stylesheets/headerfooter.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="content">
+            <div id="contentBody">
+                <div class="row collapse">
+                    <div class="sideContent">
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                    <div id="loadContentArea">
+                        <div class="c12 docHeader">
+                            <div class="c4 docTitle">
+                                <p>
+                                    <strong>MSP430 Optimizing
+							C/C++ Compiler
+			v18.1.0.LTS User's Guide</strong>
+                                    <br />
+                                    <span id="litnumber">SLAU132R</span> - REVISED JANUARY 2018</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="odsHeader">
+                        <p class="pdf">
+                            <a class="downloadPDF" href="http://www.ti.com/litv/SLAU132R" target="_new">Download PDF</a>
+                        </p>
+                    </div>
+                    <div id="loadContentArea1">
+                        <div class="subsection">
+                            <h2 id="STDZ0570807">
+                                <a MadCap:generatedBookmark="TOC" name="3_Optimizing_Your_Code">
+                                </a>
+                                <span class="section-label">3 </span>Optimizing Your Code</h2>
+                            <div class="subsection">
+                                <p>The compiler tools can perform many optimizations to improve the execution speed and reduce the size of C and C++ programs by simplifying loops, rearranging statements and expressions, and allocating variables into registers. </p>
+                                <p>This chapter describes how to invoke different levels of optimization and describes which optimizations are performed at each level. This chapter also describes how you can use the Interlist feature when performing optimization and how you can debug optimized code.</p>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0578406">
+                                    <a MadCap:generatedBookmark="TOC" name="3.1_Invoking_Optimization">
+                                    </a>
+                                    <span class="section-label">3.1 </span>Invoking Optimization</h3>
+                                <p>The C/C++ compiler is able to perform various optimizations. High-level optimizations are performed in the optimizer and low-level, target-specific optimizations occur in the code generator. Use high-level optimization levels, such as --opt_level=2 and --opt_level=3, to achieve optimal code.</p>
+                                <p> The easiest way to invoke optimization is to use the compiler program, specifying the --opt_level=<i>n</i> option on the compiler command line. You can use -O<i>n</i> to alias the --opt_level option. The <i>n</i> denotes the level of optimization (0, 1, 2, 3<span>, and 4</span>), which controls the type and degree of optimization.</p>
+                                <ul>
+                                    <li value="1">
+                                        <b> --opt_level=off</b> or <b>-Ooff</b><ul><li value="1">Performs no optimization</li></ul></li>
+                                    <li value="2">
+                                        <b>--opt_level=0</b> or <b>-O0</b><ul><li value="1">Performs control-flow-graph simplification</li><li value="2">Allocates variables to registers</li><li value="3">Performs loop rotation</li><li value="4">Eliminates unused code</li><li value="5">Simplifies expressions and statements</li><li value="6">Expands calls to functions declared inline</li></ul></li>
+                                    <li value="3">
+                                        <b>--opt_level=1</b> or <b>-O1</b></li>
+                                    <p>Performs all --opt_level=0 (-O0) optimizations, plus:</p>
+                                    <ul>
+                                        <li value="1">Performs local copy/constant propagation</li>
+                                        <li value="2">Removes unused assignments</li>
+                                        <li value="3">Eliminates local common expressions</li>
+                                    </ul>
+                                    <li value="4">
+                                        <b>--opt_level=2</b> or <b>-O2</b></li>
+                                    <p>Performs all --opt_level=1 (-O1) optimizations, plus:</p>
+                                    <ul>
+                                        <li value="1">Performs loop optimizations</li>
+                                        <li value="2">Eliminates global common subexpressions</li>
+                                        <li value="3">Eliminates global unused assignments</li>
+                                        <li value="4">Performs loop unrolling</li>
+                                    </ul>
+                                    <li value="5">
+                                        <b>--opt_level=3</b> or <b>-O3</b></li>
+                                    <p>Performs all --opt_level=2 (-O2) optimizations, plus:</p>
+                                    <ul>
+                                        <li value="1">Removes all functions that are never called</li>
+                                        <li value="2">Simplifies functions with return values that are never used</li>
+                                        <li value="3">Inlines calls to small functions</li>
+                                        <li value="4">Reorders function declarations; the called functions attributes are known when the caller is optimized</li>
+                                        <li value="5">Propagates arguments into function bodies when all calls pass the same value in the same argument position</li>
+                                        <li value="6">Identifies file-level variable characteristics</li>
+                                        <p>If you use --opt_level=3 (-O3), see <span class="crossreference"><a href="#STDZ0578544">Section 3.2</a></span> and <span class="crossreference"><a href="#STDZ0573631">Section 3.3</a></span> for more information.</p>
+                                    </ul>
+                                    <li value="6">
+                                        <b>--opt_level=4</b> or <b>-O4</b></li>
+                                    <p>Performs link-time optimization. See <span class="crossreference"><a href="#SLAU1324670">Section 3.4</a></span> for details.</p>
+                                </ul>
+                                <p>By default, debugging is enabled and the default optimization level is unaffected by the generation of debug information. However, the optimization level used is affected by whether or not the command line includes the -g (--symdebug:dwarf) option and the --opt_level option as shown in the following table:</p>
+                                <div class="subsection">
+                                    <p class="table" id="lit49202450">
+                                        <span class="table-label">Table 3-1 </span>Interaction Between Debugging and Optimization Options </p>
+                                    <table class="gentable">
+                                        <colgroup>
+                                            <col align="center" />
+                                            <col align="center" />
+                                            <col align="center" />
+                                        </colgroup>
+                                        <thead class="tbl_hdr_gray">
+                                            <tr valign="middle">
+                                                <th align="center">Optimization</th>
+                                                <th>no -g</th>
+                                                <th>-g</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr valign="middle">
+                                                <td>
+                                                    <b>no --opt_level</b>
+                                                </td>
+                                                <td>--opt_level=0</td>
+                                                <td>--opt_level=0</td>
+                                            </tr>
+                                            <tr valign="middle">
+                                                <td>
+                                                    <b>--opt_level</b>
+                                                </td>
+                                                <td>--opt_level=2</td>
+                                                <td>--opt_level=0</td>
+                                            </tr>
+                                            <tr valign="middle">
+                                                <td>
+                                                    <b>--opt_level=n</b>
+                                                </td>
+                                                <td>optimized as specified</td>
+                                                <td>optimized as specified</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>The levels of optimizations described above are performed by the stand-alone optimization pass. The code generator performs several additional optimizations, particularly processor-specific optimizations. It does so regardless of whether you invoke the optimizer. These optimizations are always enabled, although they are more effective when the optimizer is used.</p>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0578544">
+                                    <a MadCap:generatedBookmark="TOC" name="3.2_Performing_File-Level_Optimization_(--opt_level=3_option)">
+                                    </a>
+                                    <span class="section-label">3.2 </span>Performing File-Level Optimization (--opt_level=3 option)</h3>
+                                <p> The --opt_level=3 option (aliased as the -O3 option) instructs the compiler to perform file-level optimization. You can use the --opt_level=3 option alone to perform general file-level optimization, or you can combine it with other options to perform more specific optimizations. The options listed in <span class="crossreference"><a href="#STDZ0574833">Table 3-2</a></span> work with --opt_level=3 to perform the indicated optimization:</p>
+                                <div class="subsection">
+                                    <p class="table" id="STDZ0574833">
+                                        <span class="table-label">Table 3-2 </span>Options That You Can Use With --opt_level=3 </p>
+                                    <table class="gentable">
+                                        <colgroup>
+                                            <col />
+                                            <col align="left" />
+                                            <col align="left" />
+                                        </colgroup>
+                                        <thead class="tbl_hdr_gray">
+                                            <tr>
+                                                <th align="left" class="noBorderRight" valign="bottom">If You ...</th>
+                                                <th class="noBorderRight" valign="bottom">Use this Option</th>
+                                                <th class="noBorderRight" valign="bottom">See</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Want to create an optimization information file</td>
+                                                <td class="noBorderRight noBorderBottom" valign="top">--gen_opt_level=<i>n</i> <![CDATA[ ]]></td>
+                                                <td class="noBorderRight noBorderBottom" valign="top"> <span class="crossreference"><a href="#STDZ0576377">Section 3.2.1</a></span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Want to compile multiple source files</td>
+                                                <td class="noBorderRight noBorderBottom" valign="top">--program_level_compile</td>
+                                                <td class="noBorderRight noBorderBottom" valign="top"> <span class="crossreference"><a href="#STDZ0573631">Section 3.3</a></span> <![CDATA[ ]]></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0576377">
+                                        <a MadCap:generatedBookmark="TOC" name="3.2.1_Creating_an_Optimization_Information_File_(--gen_opt_info_Option)">
+                                        </a>
+                                        <span class="section-label">3.2.1 </span>Creating an Optimization Information File (--gen_opt_info Option)</h4>
+                                    <p> When you invoke the compiler with the --opt_level=3 option, you can use the --gen_opt_info option to create an optimization information file that you can read. The number following the option denotes the level (0, 1, or 2). The resulting file has an .nfo extension. Use <span class="crossreference"><a href="#STDZ0575824">Table 3-3</a></span> to select the appropriate level to append to the option.</p>
+                                    <div class="subsection">
+                                        <p class="table" id="STDZ0575824">
+                                            <span class="table-label">Table 3-3 </span>Selecting a Level for the --gen_opt_info Option </p>
+                                        <table class="gentable">
+                                            <colgroup>
+                                                <col />
+                                                <col align="left" />
+                                            </colgroup>
+                                            <thead class="tbl_hdr_gray">
+                                                <tr>
+                                                    <th align="left" class="noBorderRight" valign="top">If you...</th>
+                                                    <th class="noBorderRight" valign="top">Use this option</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Do not want to produce an information file, but you used the --gen_opt_level=1 or --gen_opt_level=2 option in a command file or an environment variable. The --gen_opt_level=0 option restores the default behavior of the optimizer.</td>
+                                                    <td class="noBorderRight noBorderBottom" valign="top">--gen_opt_info=0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Want to produce an optimization information file</td>
+                                                    <td class="noBorderRight noBorderBottom" valign="top">--gen_opt_info=1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Want to produce a verbose optimization information file</td>
+                                                    <td class="noBorderRight noBorderBottom" valign="top">--gen_opt_info=2</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0573631">
+                                    <a MadCap:generatedBookmark="TOC" name="3.3_Program-Level_Optimization_(--program_level_compile_and_--opt_level=3_opt...">
+                                    </a>
+                                    <span class="section-label">3.3 </span>Program-Level Optimization (--program_level_compile and --opt_level=3 options)</h3>
+                                <p> You can specify program-level optimization by using the --program_level_compile option with the --opt_level=3 option (aliased as -O3).<span> (If you use --opt_level=4 (-O4), the --program_level_compile option cannot be used, because link-time optimization provides the same optimization opportunities as program level optimization.)</span></p>
+                                <p>With program-level optimization, all of your source files are compiled into one intermediate file called a <i>module</i>. The module moves to the optimization and code generation passes of the compiler. Because the compiler can see the entire program, it performs several optimizations that are rarely applied during file-level optimization:</p>
+                                <ul>
+                                    <li value="1">If a particular argument in a function always has the same value, the compiler replaces the argument with the value and passes the value instead of the argument.</li>
+                                    <li value="2">If a return value of a function is never used, the compiler deletes the return code in the function.</li>
+                                    <li value="3">If a function is not called directly or indirectly by main(), the compiler removes the function.</li>
+                                </ul>
+                                <p>The --program_level_compile option requires use of --opt_level=3<span> or higher</span> in order to perform these optimizations.</p>
+                                <p>To see which program-level optimizations the compiler is applying, use the --gen_opt_level=2 option to generate an information file. See <span class="crossreference"><a href="#STDZ0576377">Section 3.2.1</a></span> for more information.</p>
+                                <p>In Code Composer Studio, when the --program_level_compile option is used, C and C++ files that have the same options are compiled together. However, if any file has a file-specific option that is not selected as a project-wide option, that file is compiled separately. For example, if every C and C++ file in your project has a different set of file-specific options, each is compiled separately, even though program-level optimization has been specified. To compile all C and C++ files together, make sure the files do not have file-specific options. Be aware that compiling C and C++ files together may not be safe if previously you used a file-specific option.</p>
+                                <span class="note">
+                                    <p class="note_title">NOTE</p>
+                                    <b>Compiling Files With the --program_level_compile and --keep_asm Options</b>
+                                    <p>If you compile all files with the --program_level_compile and --keep_asm options, the compiler produces only one .asm file, not one for each corresponding source file.</p>
+                                </span>
+                                <div class="subsection">
+                                    <h4 id="STDZ0577992">
+                                        <a MadCap:generatedBookmark="TOC" name="3.3.1_Controlling_Program-Level_Optimization_(--call_assumptions_Option)">
+                                        </a>
+                                        <span class="section-label">3.3.1 </span>Controlling Program-Level Optimization (--call_assumptions Option)</h4>
+                                    <p> You can control program-level optimization, which you invoke with --program_level_compile --opt_level=3, by using the --call_assumptions option. Specifically, the --call_assumptions option indicates if functions in other modules can call a module's external functions or modify a module's external variables. The number following --call_assumptions indicates the level you set for the module that you are allowing to be called or modified. The --opt_level=3 option combines this information with its own file-level analysis to decide whether to treat this module's external function and variable declarations as if they had been declared static. Use <span class="crossreference"><a href="#STDZ0576190">Table 3-4</a></span> to select the appropriate level to append to the --call_assumptions option.</p>
+                                    <div class="subsection">
+                                        <p class="table" id="STDZ0576190">
+                                            <span class="table-label">Table 3-4 </span>Selecting a Level for the --call_assumptions Option </p>
+                                        <table class="gentable">
+                                            <colgroup>
+                                                <col />
+                                                <col />
+                                            </colgroup>
+                                            <thead class="tbl_hdr_gray">
+                                                <tr>
+                                                    <th align="left" class="noBorderRight" valign="top">If Your Module …</th>
+                                                    <th align="center" class="noBorderRight" valign="top">Use this Option</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Has functions that are called from other modules and global variables that are modified in other modules</td>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="top">--call_assumptions=0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Does not have functions that are called by other modules but has global variables that are modified in other modules</td>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="top">--call_assumptions=1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Does not have functions that are called by other modules or global variables that are modified in other modules</td>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="top">--call_assumptions=2</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Has functions that are called from other modules but does not have global variables that are modified in other modules</td>
+                                                    <td align="center" class="noBorderRight noBorderBottom" valign="top">--call_assumptions=3</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>In certain circumstances, the compiler reverts to a different --call_assumptions level from the one you specified, or it might disable program-level optimization altogether. <span class="crossreference"><a href="#STDZ0576928">Table 3-5</a></span> lists the combinations of --call_assumptions levels and conditions that cause the compiler to revert to other --call_assumptions levels.</p>
+                                    <div class="subsection">
+                                        <p class="table" id="STDZ0576928">
+                                            <span class="table-label">Table 3-5 </span>Special Considerations When Using the --call_assumptions Option </p>
+                                        <table class="gentable">
+                                            <colgroup>
+                                                <col />
+                                                <col />
+                                                <col />
+                                            </colgroup>
+                                            <thead class="tbl_hdr_gray">
+                                                <tr>
+                                                    <th align="left" class="noBorderRight" valign="bottom">If --call_assumptions is...</th>
+                                                    <th align="left" class="noBorderRight" valign="bottom">Under these Conditions...</th>
+                                                    <th align="left" class="noBorderRight" valign="bottom">Then the --call_assumptions Level...</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Not specified</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">The --opt_level=3 optimization level was specified</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Defaults to --call_assumptions=2</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Not specified</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">The compiler sees calls to outside functions under the --opt_level=3 optimization level</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Reverts to --call_assumptions=0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Not specified</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Main is not defined</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Reverts to --call_assumptions=0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">--call_assumptions=1 or <br /> --call_assumptions=2</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">No function has main defined as an entry point, <i>and</i> no interrupt functions are defined, <i>and</i> no functions are identified by the FUNC_EXT_CALLED pragma</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Reverts to --call_assumptions=0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">--call_assumptions=1 or <br /> --call_assumptions=2</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">A main function is defined, <i>or</i>, an interrupt function is defined, <i>or</i> a function is identified by the FUNC_EXT_CALLED pragma</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Remains --call_assumptions=1 or --call_assumptions=2</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">--call_assumptions=3</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Any condition</td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">Remains --call_assumptions=3</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>In some situations when you use --program_level_compile and --opt_level=3, you <i>must</i> use a --call_assumptions option or the FUNC_EXT_CALLED pragma. <span>See <span class="crossreference"><a href="#STDZ0574658">Section 3.3.2</a></span> for information about these situations.</span></p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0574658">
+                                        <a MadCap:generatedBookmark="TOC" name="3.3.2_Optimization_Considerations_When_Mixing_C_C++_and_Assembly">
+                                        </a>
+                                        <span class="section-label">3.3.2 </span>Optimization Considerations When Mixing C/C++ and Assembly</h4>
+                                    <p> If you have any assembly functions in your program, you need to exercise caution when using the --program_level_compile option. The compiler recognizes only the C/C++ source code and not any assembly code that might be present. Because the compiler does not recognize the assembly code calls and variable modifications to C/C++ functions, the --program_level_compile option optimizes out those C/C++ functions. To keep these functions, place the FUNC_EXT_CALLED pragma (see <span class="crossreference"><a href="msp430-c-c-language-implementation.html#STDZ0552234">Section 5.11.12</a></span>) before any declaration or reference to a function that you want to keep.</p>
+                                    <p>Another approach you can take when you use assembly functions in your program is to use the --call_assumptions=<i>n</i> option with the --program_level_compile and --opt_level=3 options. See <span class="crossreference"><a href="#STDZ0577992">Section 3.3.1</a></span> for information about the --call_assumptions=<i>n</i> option.</p>
+                                    <p>In general, you achieve the best results through judicious use of the FUNC_EXT_CALLED pragma in combination with --program_level_compile --opt_level=3 and --call_assumptions=1 or --call_assumptions=2.</p>
+                                    <p>If any of the following situations apply to your application, use the suggested solution:</p>
+                                    <div class="deflist">
+                                        <ul class="deflistentry">
+                                            <span class="defterm">Situation </span>
+                                            <p> Your application consists of C/C++ source code that calls assembly functions. Those assembly functions do not call any C/C++ functions or modify any C/C++ variables.</p>
+                                        </ul>
+                                        <ul class="deflistentry">
+                                            <span class="defterm">Solution </span>
+                                            <p> Compile with --program_level_compile --opt_level=3 --call_assumptions=2 to tell the compiler that outside functions do not call C/C++ functions or modify C/C++ variables. </p>
+                                            <p>If you compile with the --program_level_compile --opt_level=3 options only, the compiler reverts from the default optimization level (--call_assumptions=2) to --call_assumptions=0. The compiler uses --call_assumptions=0, because it presumes that the calls to the assembly language functions that have a definition in C/C++ may call other C/C++ functions or modify C/C++ variables.</p>
+                                        </ul>
+                                        <ul class="deflistentry">
+                                            <span class="defterm">Situation </span>
+                                            <p>Your application consists of C/C++ source code that calls assembly functions. The assembly language functions do not call C/C++ functions, but they modify C/C++ variables.</p>
+                                        </ul>
+                                        <ul class="deflistentry">
+                                            <span class="defterm">Solution </span>
+                                            <p>Try both of these solutions and choose the one that works best with your code: </p>
+                                            <ul>
+                                                <li value="1">Compile with --program_level_compile --opt_level=3 --call_assumptions=1.</li>
+                                                <li value="2">Add the volatile keyword to those variables that may be modified by the assembly functions and compile with --program_level_compile --opt_level=3 --call_assumptions=2.</li>
+                                            </ul>
+                                        </ul>
+                                        <ul class="deflistentry">
+                                            <span class="defterm">Situation </span>
+                                            <p>Your application consists of C/C++ source code and assembly source code. The assembly functions are <span>interrupt service routines that call C/C++ functions</span>; the C/C++ functions that the assembly functions call are never called from C/C++. These C/C++ functions act like main: they function as entry points into C/C++.</p>
+                                        </ul>
+                                        <ul class="deflistentry">
+                                            <span class="defterm">Solution </span>
+                                            <p>Add the volatile keyword to the C/C++ variables that may be modified by the interrupts. Then, you can optimize your code in one of these ways:</p>
+                                            <ul>
+                                                <li value="1">You achieve the best optimization by applying the FUNC_EXT_CALLED pragma to all of the entry-point functions called from the assembly language interrupts, and then compiling with --program_level_compile --opt_level=3 --call_assumptions=2. <i>Be sure that you use the pragma with all of the entry-point functions.</i> If you do not, the compiler might remove the entry-point functions that are not preceded by the FUNC_EXT_CALLED pragma.</li>
+                                                <li value="2">Compile with --program_level_compile --opt_level=3 --call_assumptions=3. Because you do not use the FUNC_EXT_CALLED pragma, you must use the --call_assumptions=3 option, which is less aggressive than the --call_assumptions=2 option, and your optimization may not be as effective.</li>
+                                            </ul>
+                                            <p>Keep in mind that if you use --program_level_compile --opt_level=3 without additional options, the compiler removes the C functions that the assembly functions call. Use the FUNC_EXT_CALLED pragma to keep these functions.</p>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="SLAU1324670">
+                                    <a MadCap:generatedBookmark="TOC" name="3.4_Link-Time_Optimization_(--opt_level=4_Option)">
+                                    </a>
+                                    <span class="section-label">3.4 </span>Link-Time Optimization (--opt_level=4 Option)</h3>
+                                <p>Link-time optimization is an optimization mode that allows the compiler to have visibility of the entire program. The optimization occurs at link-time instead of compile-time like other optimization levels.</p>
+                                <p>Link-time optimization is invoked by using the --opt_level=4 option. This option must be used in both the compilation and linking steps. At compile time, the compiler embeds an intermediate representation of the file being compiled into the resulting object file. At link-time this representation is extracted from every object file which contains it, and is used to optimize the entire program.</p>
+                                <p>If you use --opt_level=4 (-O4), the --program_level_compile option cannot also be used, because link-time optimization provides the same optimization opportunities as program level optimization (<span class="crossreference"><a href="#STDZ0573631">Section 3.3</a></span>). Link-time optimization provides the following benefits:</p>
+                                <ul>
+                                    <li value="1">Each source file can be compiled separately. One issue with program-level compilation is that it requires all source files to be passed to the compiler at one time. This often requires significant modification of a customer's build process. With link-time optimization, all files can be compiled separately.</li>
+                                    <li value="2">References to C/C++ symbols from assembly are handled automatically. When doing program-level compilation, the compiler has no knowledge of whether a symbol is referenced externally. When performing link-time optimization during a final link, the linker can determine which symbols are referenced externally and prevent eliminating them during optimization.</li>
+                                    <li value="3">Third party object files can participate in optimization. If a third party vendor provides object files that were compiled with the --opt_level=4 option, those files participate in optimization along with user-generated files. This includes object files supplied as part of the TI run-time support. Object files that were not compiled with –opt_level=4 can still be used in a link that is performing link-time optimization. Those files that were not compiled with –opt_level=4 do not participate in the optimization.</li>
+                                    <li value="4">Source files can be compiled with different option sets. With program-level compilation, all source files must be compiled with the same option set. With link-time optimization files can be compiled with different options. If the compiler determines that two options are incompatible, it issues an error.</li>
+                                </ul>
+                                <div class="subsection">
+                                    <h4 id="SLAU1328859">
+                                        <a MadCap:generatedBookmark="TOC" name="3.4.1_Option_Handling">
+                                        </a>
+                                        <span class="section-label">3.4.1 </span>Option Handling</h4>
+                                    <p>When performing link-time optimization, source files can be compiled with different options. When possible, the options that were used during compilation are used during link-time optimization. For options which apply at the program level, --auto_inline for instance, the options used to compile the main function are used. If main is not included in link-time optimization, the option set used for the first object file specified on the command line is used. Some options, --opt_for_speed for instance, can affect a wide range of optimizations. For these options, the program-level behavior is derived from main, and the local optimizations are obtained from the original option set.</p>
+                                    <p>Some options are incompatible when performing link-time optimization. These are usually options which conflict on the command line as well, but can also be options that cannot be handled during link-time optimization.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="SLAU1324565">
+                                        <a MadCap:generatedBookmark="TOC" name="3.4.2_Incompatible_Types">
+                                        </a>
+                                        <span class="section-label">3.4.2 </span>Incompatible Types</h4>
+                                    <p>During a normal link, the linker does not check to make sure that each symbol was declared with the same type in different files. This is not necessary during a normal link. When performing link-time optimization, however, the linker must ensure that all symbols are declared with compatible types in different source files. If a symbol is found which has incompatible types, an error is issued. The rules for compatible types are derived from the C and C++ standards.</p>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="SPRU1877515">
+                                    <a MadCap:generatedBookmark="TOC" name="3.5_Using_Feedback_Directed_Optimization">
+                                    </a>
+                                    <span class="section-label">3.5 </span>Using Feedback Directed Optimization</h3>
+                                <p>Feedback directed optimization provides a method for finding frequently executed paths in an application using compiler-based instrumentation. This information is fed back to the compiler and is used to perform optimizations. This information is also used to provide you with information about application behavior. </p>
+                                <div class="subsection">
+                                    <h4 id="SPRU1871264">
+                                        <a MadCap:generatedBookmark="TOC" name="3.5.1_Feedback_Directed_Optimization">
+                                        </a>
+                                        <span class="section-label">3.5.1 </span>Feedback Directed Optimization</h4>
+                                    <p>Feedback directed optimization uses run-time feedback to identify and optimize frequently executed program paths. Feedback directed optimization is a two-phase process.</p>
+                                    <div class="subsection">
+                                        <h4 id="SPRU1872509">
+                                            <a MadCap:generatedBookmark="TOC" name="3.5.1.1_Phase_1_--_Collect_Program_Profile_Information">
+                                            </a>
+                                            <span class="section-label">3.5.1.1 </span>Phase 1 -- Collect Program Profile Information</h4>
+                                        <p>In this phase the compiler is invoked with the option --gen_profile_info, which instructs the compiler to add instrumentation code to collect profile information. The compiler inserts a minimal amount of instrumentation code to determine control flow frequencies. Memory is allocated to store counter information. </p>
+                                        <p>The instrumented application program is executed on the target using representative input data sets. The input data sets should correlate closely with the way the program is expected to be used in the end product environment. When the program completes, a run-time-support function writes the collected information into a profile data file called a PDAT file. Multiple executions of the program using different input data sets can be performed and in such cases, the run-time-support function appends the collected information into the PDAT file. The resulting PDAT file is post-processed using a tool called the Profile Data Decoder or pdd<span>430</span>. The pdd<span>430</span> tool consolidates multiple data sets and formats the data into a feedback file (PRF file, see <span class="crossreference"><a href="#SPRU1879166">Section 3.5.2</a></span>) for consumption by phase 2 of feedback directed optimization. </p>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="SPRU187730">
+                                            <a MadCap:generatedBookmark="TOC" name="3.5.1.2_Phase_2_--_Use_Application_Profile_Information_for_Optimization">
+                                            </a>
+                                            <span class="section-label">3.5.1.2 </span>Phase 2 -- Use Application Profile Information for Optimization</h4>
+                                        <p>In this phase, the compiler is invoked with the --use_profile_info=<i>file.prf</i> option, which reads the specified PRF file generated in phase 1. In phase 2, optimization decisions are made using the data generated during phase 1. The profile feedback file is used to guide program optimization. The compiler optimizes frequently executed program paths more aggressively.</p>
+                                        <p>The compiler uses data in the profile feedback file to guide certain optimizations of frequently executed program paths.</p>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="SPRU1879671">
+                                            <a MadCap:generatedBookmark="TOC" name="3.5.1.3_Generating_and_Using_Profile_Information">
+                                            </a>
+                                            <span class="section-label">3.5.1.3 </span>Generating and Using Profile Information</h4>
+                                        <p>There are two options that control feedback directed optimization:</p>
+                                        <div class="subsection">
+                                            <table class="tabbedtext">
+                                                <colgroup>
+                                                    <col />
+                                                    <col />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td> <b>--gen_profile_info</b> <![CDATA[ ]]></td>
+                                                        <td>tells the compiler to add instrumentation code to collect profile information. When the program executes the run-time-support exit() function, the profile data is written to a PDAT file. This option applies to all the C/C++ source files being compiled on the command-line. <p>If the environment variable TI_PROFDATA on the host is set, the data is written into the specified file. Otherwise, it uses the default filename: pprofout.pdat. The full pathname of the PDAT file (including the directory name) can be specified using the TI_PROFDATA host environment variable. </p><p>By default, the RTS profile data output routine uses the C I/O mechanism to write data to the PDAT file. You can install a device handler for the PPHNDL device to re-direct the profile data to a custom device driver routine. For example, this could be used to send the profile data to a device that does not use a file system.</p><p>Feedback directed optimization requires you to turn on at least some debug information when using the --gen_profile_info option. This enables the compiler to output debug information that allows pdd<span>430</span> to correlate compiled functions and their associated profile data. </p></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <b>--use_profile_info</b> <![CDATA[ ]]></td>
+                                                        <td>specifies the profile information file(s) to use for performing phase 2 of feedback directed optimization. More than one profile information file can be specified on the command line; the compiler uses all input data from multiple information files. The syntax for the option is: <p><b>--use_profile_info=</b>=<i>file1</i>[, <i>file2</i>, ..., <i>filen</i>] </p><p>If no filename is specified, the compiler looks for a file named pprofout.prf in the directory where the compiler in invoked.</p></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="SPRU187990">
+                                            <a MadCap:generatedBookmark="TOC" name="3.5.1.4_Example_Use_of_Feedback_Directed_Optimization">
+                                            </a>
+                                            <span class="section-label">3.5.1.4 </span>Example Use of Feedback Directed Optimization</h4>
+                                        <p>These steps illustrate the creation and use of feedback directed optimization.</p>
+                                        <ol>
+                                            <li value="1">Generate profile information.</li>
+                                            <code>cl430 --opt_level=2 --gen_profile_info foo.c --run_linker --output_file=foo.out
+ --library=lnk.cmd --library=rts430.lib</code>
+                                            <li value="2">Execute the application.</li>
+                                            <p>The execution of the application creates a PDAT file named pprofout.pdat in the current (host) directory. The application can be run on on target hardware connected to a host machine.</p>
+                                            <li value="3">Process the profile data.</li>
+                                            <p>After running the application with multiple data-sets, run pdd<span>430</span> on the PDAT files to create a profile information (PRF) file to be used with --use_profile_info. </p>
+                                            <code>pdd430 -e foo.out -o pprofout.prf pprofout.pdat</code>
+                                            <li value="4">Re-compile using the profile feedback file.</li>
+                                            <code>cl430 --opt_level=2 --use_profile_info=pprofout.prf foo.c --run_linker
+ --output_file=foo.out --library=lnk.cmd --library=rts430.lib</code>
+                                        </ol>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="SPRU1872884">
+                                            <a MadCap:generatedBookmark="TOC" name="3.5.1.5_The_.ppdata_Section">
+                                            </a>
+                                            <span class="section-label">3.5.1.5 </span>The .ppdata Section</h4>
+                                        <p>The profile information collected in phase 1 is stored in the <i>.ppdata</i> section, which must be allocated into target memory. The .ppdata section contains profiler counters for all functions compiled with --gen_profile_info. The default lnk.cmd file in has directives to place the .ppdata section in data memory. If the link command file has no section directive for allocating .ppdata section, the link step places the .ppdata section in a writable memory range. </p>
+                                        <p>The .ppdata section must be allocated memory in multiples of 32 bytes. Please refer to the linker command file in the distribution for example usage.</p>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="SPRU1871444">
+                                            <a MadCap:generatedBookmark="TOC" name="3.5.1.6_Feedback_Directed_Optimization_and_Code_Size_Tune">
+                                            </a>
+                                            <span class="section-label">3.5.1.6 </span>Feedback Directed Optimization and Code Size Tune</h4>
+                                        <p>Feedback directed optimization is different from the Code Size Tune feature in Code Composer Studio (CCS). The code size tune feature uses CCS profiling to select specific compilation options for each function in order to minimize code size while still maintaining a specific performance point. Code size tune is coarse-grained, since it is selecting an option set for the whole function. Feedback directed optimization selects different optimization goals along specific regions within a function.</p>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="SPRU1872442">
+                                            <a MadCap:generatedBookmark="TOC" name="3.5.1.7_Instrumented_Program_Execution_Overhead">
+                                            </a>
+                                            <span class="section-label">3.5.1.7 </span>Instrumented Program Execution Overhead</h4>
+                                        <p>During profile collection, the execution time of the application may increase. The amount of increase depends on the size of the application and the number of files in the application compiled for profiling. </p>
+                                        <p>The profiling counters increase the code and data size of the application. Consider using the --opt_for_space (-ms) code size options when using profiling to mitigate the code size increase. This has no effect on the accuracy of the profile data being collected. Since profiling only counts execution frequency and not cycle counts, code size optimization flags do not affect profiler measurements.</p>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="SPRU1878219">
+                                            <a MadCap:generatedBookmark="TOC" name="3.5.1.8_Invalid_Profile_Data">
+                                            </a>
+                                            <span class="section-label">3.5.1.8 </span>Invalid Profile Data</h4>
+                                        <p>When recompiling with --use_profile_info, the profile information is invalid in the following cases:</p>
+                                        <ul>
+                                            <li value="1">The source file name changed between the generation of profile information (gen-profile) and the use of the profile information (use-profile).</li>
+                                            <li value="2">The source code was modified since gen-profile. In this case, profile information is invalid for the modified functions.</li>
+                                            <li value="3">Certain compiler options used with gen-profile are different from those with used with use-profile. In particular, options that affect parser behavior could invalidate profile data during use-profile. In general, using different optimization options during use-profile should not affect the validity of profile data.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="SPRU1879166">
+                                        <a MadCap:generatedBookmark="TOC" name="3.5.2_Profile_Data_Decoder">
+                                        </a>
+                                        <span class="section-label">3.5.2 </span>Profile Data Decoder</h4>
+                                    <p>The code generation tools include a tool called the Profile Data Decoder or pdd<span>430</span>, which is used for post processing profile data (PDAT) files. The pdd<span>430</span> tool generates a profile feedback (PRF) file. See <span class="crossreference"><a href="#SPRU1871264">Section 3.5.1</a></span> for a discussion of where pdd<span>430</span> fits in the profiling flow. The pdd<span>430</span> tool is invoked with this syntax:</p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col align="left" />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight"> <b>pdd<span>430</span> -e</b><i>exec.out</i><b> -o</b><i>application.prf</i><i>filename</i><b>.pdat</b> <![CDATA[ ]]></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col />
+                                                <col />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td> <b>-a</b> <![CDATA[ ]]></td>
+                                                    <td>Computes the average of the data values in the data sets instead of accumulating data values</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>-e</b><i>exec.out</i> <![CDATA[ ]]></td>
+                                                    <td>Specifies <i>exec.out</i> is the name of the application executable.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>-o</b><i>application.prf</i> <![CDATA[ ]]></td>
+                                                    <td>Specifies <i>application.prf</i> is the formatted profile feedback file that is used as the argument to --use_profile_info during recompilation. If no output file is specified, the default output filename is pprofout.prf.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <i>filename</i><b>.pdat</b> <![CDATA[ ]]></td>
+                                                    <td>Is the name of the profile data file generated by the run-time-support function. This is the default name and it can be overridden by using the host environment variable TI_PROFDATA.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>The run-time-support function and pdd<span>430</span> append to their respective output files and do not overwrite them. This enables collection of data sets from multiple runs of the application.</p>
+                                    <span class="note">
+                                        <p class="note_title">NOTE</p>
+                                        <b>Profile Data Decoder Requirements</b>
+                                        <p>Your application must be compiled with at least DWARF debug support to enable feedback directed optimization. When compiling for feedback directed optimization, the pdd<span>430</span> tool relies on basic debug information about each function in generating the formatted .prf file.</p>
+                                        <p>The pprofout.pdat file generated by the run-time support is a raw data file of a fixed format understood only by pdd<span>430</span>. You should not modify this file in any way.</p>
+                                    </span>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="SPRU187404">
+                                        <a MadCap:generatedBookmark="TOC" name="3.5.3_Feedback_Directed_Optimization_API">
+                                        </a>
+                                        <span class="section-label">3.5.3 </span>Feedback Directed Optimization API</h4>
+                                    <p>There are two user interfaces to the profiler mechanism. You can start and stop profiling in your application by using the following run-time-support calls.</p>
+                                    <ul>
+                                        <li value="1">_TI_start_pprof_collection() </li>
+                                        <p>This interface informs the run-time support that you wish to start profiling collection from this point on and causes the run-time support to clear all profiling counters in the application (that is, discard old counter values).</p>
+                                        <li value="2">_TI_stop_pprof_collection()</li>
+                                        <p>This interface directs the run-time support to stop profiling collection and output profiling data into the output file (into the default file or one specified by the TI_PROFDATA host environment variable). The run-time support also disables any further output of profile data into the output file during exit(), unless you call _TI_start_pprof_collection() again.</p>
+                                    </ul>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="SPRU1877922">
+                                        <a MadCap:generatedBookmark="TOC" name="3.5.4_Feedback_Directed_Optimization_Summary">
+                                        </a>
+                                        <span class="section-label">3.5.4 </span>Feedback Directed Optimization Summary</h4>
+                                    <p>
+                                        <b>Options</b>
+                                    </p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col />
+                                                <col />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td> <b>--gen_profile_info</b> <![CDATA[ ]]></td>
+                                                    <td>Adds instrumentation to the compiled code. Execution of the code results in profile data being emitted to a PDAT file.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>--use_profile_info</b>=<i>file.prf</i> <![CDATA[ ]]></td>
+                                                    <td>Uses profile information for optimization and/or generating code coverage information. </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>--analyze=codecov</b> <![CDATA[ ]]></td>
+                                                    <td>Generates a code coverage information file and continues with profile-based compilation. Must be used with --use_profile_info.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>--analyze_only</b> <![CDATA[ ]]></td>
+                                                    <td>Generates only a code coverage information file. Must be used with --use_profile_info. You must specify both --analyze=codecov and --analyze_only to do code coverage analysis of the instrumented application. </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>
+                                        <b>Host Environment Variables</b>
+                                    </p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col />
+                                                <col />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td>TI_PROFDATA</td>
+                                                    <td>Writes profile data into the specified file</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>TI_COVDIR</td>
+                                                    <td>Creates code coverage files in the specified directory</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>TI_COVDATA</td>
+                                                    <td>Writes code coverage data into the specified file</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>
+                                        <b>API</b>
+                                    </p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col />
+                                                <col />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td>_TI_start_pprof_collection()</td>
+                                                    <td>Clears the profile counters to file</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>_TI_stop_pprof_collection()</td>
+                                                    <td>Writes out all profile counters to file</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>PPHDNL</td>
+                                                    <td>Device driver handle for low-level C I/O based driver for writing out profile data from a target program.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>
+                                        <b>Files Created</b>
+                                    </p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col />
+                                                <col />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td>*.pdat</td>
+                                                    <td>Profile data file, which is created by executing an instrumented program and used as input to the profile data decoder</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>*.prf</td>
+                                                    <td>Profiling feedback file, which is created by the profile data decoder and used as input to the re-compilation step</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0573518">
+                                    <a MadCap:generatedBookmark="TOC" name="3.6_Using_Profile_Information_to_Analyze_Code_Coverage">
+                                    </a>
+                                    <span class="section-label">3.6 </span>Using Profile Information to Analyze Code Coverage</h3>
+                                <p>You can use the analysis information from the Profile Data Decoder to analyze code coverage.</p>
+                                <div class="subsection">
+                                    <h4 id="SPRU1878050">
+                                        <a MadCap:generatedBookmark="TOC" name="3.6.1_Code_Coverage">
+                                        </a>
+                                        <span class="section-label">3.6.1 </span>Code Coverage</h4>
+                                    <p>The information collected during feedback directed optimization can be used for generating code coverage reports. As with feedback directed optimization, the program must be compiled with the --gen_profile_info option.</p>
+                                    <p>Code coverage conveys the execution count of each line of source code in the file being compiled, using data collected during profiling.</p>
+                                    <div class="subsection">
+                                        <h4 id="SPRU1879093">
+                                            <a MadCap:generatedBookmark="TOC" name="3.6.1.1_Phase1_--_Collect_Program_Profile_Information">
+                                            </a>
+                                            <span class="section-label">3.6.1.1 </span>Phase1 -- Collect Program Profile Information</h4>
+                                        <p>In this phase the compiler is invoked with the option --gen_profile_info, which instructs the compiler to add instrumentation code to collect profile information. The compiler inserts a minimal amount of instrumentation code to determine control flow frequencies. Memory is allocated to store counter information. </p>
+                                        <p>The instrumented application program is executed on the target using representative input data sets. The input data sets should correlate closely with the way the program is expected to be used in the end product environment. When the program completes, a run-time-support function writes the collected information into a profile data file called a PDAT file. Multiple executions of the program using different input data sets can be performed and in such cases, the run-time-support function appends the collected information into the PDAT file. The resulting PDAT file is post-processed using a tool called the Profile Data Decoder or pdd<span>430</span>. The pdd<span>430</span> tool consolidates multiple data sets and formats the data into a feedback file (PRF file, see <span class="crossreference"><a href="#SPRU1879166">Section 3.5.2</a></span>) for consumption by phase 2 of feedback directed optimization. </p>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="SPRU1872678">
+                                            <a MadCap:generatedBookmark="TOC" name="3.6.1.2_Phase_2_--_Generate_Code_Coverage_Reports">
+                                            </a>
+                                            <span class="section-label">3.6.1.2 </span>Phase 2 -- Generate Code Coverage Reports</h4>
+                                        <p>In this phase, the compiler is invoked with the --use_profile_info=<i>file.prf</i> option, which indicates that the compiler should read the specified PRF file generated in phase 1. The application must also be compiled with either the --codecov or --onlycodecov option; the compiler generates a code-coverage info file. The --codecov option directs the compiler to continue compilation after generating code-coverage information, while the --onlycodecov option stops the compiler after generating code-coverage data. For example:</p>
+                                        <code>cl430 --opt_level=2 --use_profile_info=pprofout.prf --onlycodecov foo.c</code>
+                                        <p>You can specify two environment variables to control the destination of the code-coverage information file.</p>
+                                        <ul>
+                                            <li value="1">The TI_COVDIR environment variable specifies the directory where the code-coverage file should be generated. The default is the directory where the compiler is invoked.</li>
+                                            <li value="2">The TI_COVDATA environment variable specifies the name of the code-coverage data file generated by the compiler. the default is <i>filename</i>.csv where filename is the base-name of the file being compiled. For example, if foo.c is being compiled, the default code-coverage data file name is foo.csv.</li>
+                                        </ul>
+                                        <p>If the code-coverage data file already exists, the compiler appends the new dataset at the end of the file. </p>
+                                        <p>Code-coverage data is a comma-separated list of data items that can be conveniently handled by data-processing tools and scripting languages. The following is the format of code-coverage data:</p>
+                                        <p>"<i>filename-with-full-path</i>","<i>funcname</i>",<i>line#</i>,<i>column#</i>,<i>exec-frequency</i>,"<i>comments</i>"</p>
+                                        <div class="subsection">
+                                            <table class="tabbedtext">
+                                                <colgroup>
+                                                    <col />
+                                                    <col />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>"<i>filename-with-full-path</i>"</td>
+                                                        <td>Full pathname of the file corresponding to the entry</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>"<i>funcname</i>"</td>
+                                                        <td>Name of the function</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <i>line#</i> <![CDATA[ ]]></td>
+                                                        <td>Line number of the source line corresponding to frequency data</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <i>column#</i> <![CDATA[ ]]></td>
+                                                        <td>Column number of the source line</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <i>exec-frequency</i> <![CDATA[ ]]></td>
+                                                        <td>Execution frequency of the line</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>"<i>comments</i>"</td>
+                                                        <td>Intermediate-level representation of the source-code generated by the parser</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <br />
+                                                            <br />
+                                                            <p>The full filename, function name, and comments appear within quotation marks ("). For example:</p>
+                                                            <code>"/some_dir/zlib/msp430/deflate.c","_deflateInit2_",216,5,1,"( strm-&gt;zalloc )"</code>
+                                                            <p>Other tools, such as a spreadsheet program, can be used to format and view the code coverage data.</p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0574487">
+                                        <a MadCap:generatedBookmark="TOC" name="3.6.2_Related_Features_and_Capabilities">
+                                        </a>
+                                        <span class="section-label">3.6.2 </span>Related Features and Capabilities</h4>
+                                    <p>The code generation tools provide some features and capabilities that can be used in conjunction with <span>code coverage analysis</span>. The following is a summary: </p>
+                                    <div class="subsection">
+                                        <h4 id="STDZ0571433">
+                                            <a MadCap:generatedBookmark="TOC" name="3.6.2.1_Path_Profiler">
+                                            </a>
+                                            <span class="section-label">3.6.2.1 </span>Path Profiler</h4>
+                                        <p>The code generation tools include a path profiling utility, pprof<span>430</span>, that is run from the compiler, cl<span>430</span>. The pprof<span>430</span> utility is invoked by the compiler when the --gen_profile or the --use_profile command is used from the compiler command line: </p>
+                                        <div class="subsection">
+                                            <table class="tabbedtext">
+                                                <colgroup>
+                                                    <col align="left" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight">
+                                                            <b>cl<span>430</span> --gen_profile</b> ... <i>file.c</i> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight">
+                                                            <b>cl<span>430</span> --use_profile</b> ... <i>file.c</i> <![CDATA[ ]]></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <p>For further information about profile-based optimization and a more detailed description of the profiling infrastructure, see <span class="crossreference"><a href="#SPRU1877515">Section 3.5</a></span>.</p>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="STDZ0574766">
+                                            <a MadCap:generatedBookmark="TOC" name="3.6.2.2_Analysis_Options">
+                                            </a>
+                                            <span class="section-label">3.6.2.2 </span>Analysis Options</h4>
+                                        <p>The path profiling utility, pprof<span>430</span>, appends code coverage information to existing CSV (comma separated values) files that contain the same type of analysis information. </p>
+                                        <p>The utility checks to make sure that an existing CSV file contains analysis information that is consistent with the type of analysis information it is being asked to generate. Attempts to mix code coverage and <span>other </span>analysis information in the same output CSV file will be detected, and pprof<span>430</span> will emit a fatal error and abort.</p>
+                                        <div class="subsection">
+                                            <table class="tabbedtext">
+                                                <colgroup>
+                                                    <col align="left" />
+                                                    <col align="left" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight">
+                                                            <b>--analyze=codecov</b>
+                                                        </td>
+                                                        <td align="left" class="noBorderRight"> Instructs the compiler to generate code coverage analysis information. This option replaces the previous --codecov option. </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight">
+                                                            <b>--analyze_only</b>
+                                                        </td>
+                                                        <td align="left" class="noBorderRight"> Halts compilation after generation of analysis information is completed. </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="STDZ0574981">
+                                            <a MadCap:generatedBookmark="TOC" name="3.6.2.3_Environment_Variables">
+                                            </a>
+                                            <span class="section-label">3.6.2.3 </span>Environment Variables</h4>
+                                        <p>To assist with the management of output CSV analysis files, pprof<span>430</span> supports <span>this environment variable</span>:</p>
+                                        <div class="subsection">
+                                            <table class="tabbedtext">
+                                                <colgroup>
+                                                    <col align="left" />
+                                                    <col align="left" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td align="left" class="noBorderRight">
+                                                            <b>TI_ANALYSIS_DIR</b>
+                                                        </td>
+                                                        <td align="left" class="noBorderRight">Specifies the directory in which the output analysis file will be generated. </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0578975">
+                                    <a MadCap:generatedBookmark="TOC" name="3.7_Accessing_Aliased_Variables_in_Optimized_Code">
+                                    </a>
+                                    <span class="section-label">3.7 </span>Accessing Aliased Variables in Optimized Code</h3>
+                                <p> Aliasing occurs when a single object can be accessed in more than one way, such as when two pointers point to the same object or when a pointer points to a named object. Aliasing can disrupt optimization because any indirect reference can refer to another object. The optimizer analyzes the code to determine where aliasing can and cannot occur, then optimizes as much as possible while still preserving the correctness of the program. The optimizer behaves conservatively. If there is a chance that two pointers are pointing to the same object, then the optimizer assumes that the pointers do point to the same object.</p>
+                                <p>The compiler assumes that if the address of a local variable is passed to a function, the function changes the local variable by writing through the pointer. This makes the local variable's address unavailable for use elsewhere after returning. For example, the called function cannot assign the local variable's address to a global variable or return the local variable's address. In cases where this assumption is invalid, use the --aliased_variables compiler option to force the compiler to assume worst-case aliasing. In worst-case aliasing, any indirect reference can refer to such a variable.</p>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ05782066">
+                                    <a MadCap:generatedBookmark="TOC" name="3.8_Use_Caution_With_asm_Statements_in_Optimized_Code">
+                                    </a>
+                                    <span class="section-label">3.8 </span>Use Caution With asm Statements in Optimized Code</h3>
+                                <p> You must be extremely careful when using asm (inline assembly) statements in optimized code. The compiler rearranges code segments, uses registers freely, and can completely remove variables or expressions. Although the compiler never optimizes out an asm statement (except when it is unreachable), the surrounding environment where the assembly code is inserted can differ significantly from the original C/C++ source code.</p>
+                                <p>It is usually safe to use asm statements to manipulate hardware controls<span> such as interrupt masks</span>, but asm statements that attempt to interface with the C/C++ environment or access C/C++ variables can have unexpected results. After compilation, check the assembly output to make sure your asm statements are correct and maintain the integrity of the program.</p>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0577441">
+                                    <a MadCap:generatedBookmark="TOC" name="3.9_Automatic_Inline_Expansion_(--auto_inline_Option)">
+                                    </a>
+                                    <span class="section-label">3.9 </span>Automatic Inline Expansion (--auto_inline Option)</h3>
+                                <p> When optimizing with the --opt_level=3 option (aliased as -O3), the compiler automatically inlines small functions. A command-line option, --auto_inline=<i>size</i>, specifies the size threshold. Any function larger than the <i>size</i> threshold is not automatically inlined. You can use the --auto_inline=<i>size</i> option in the following ways:</p>
+                                <ul>
+                                    <li value="1">If you set the <i>size</i> parameter to 0 (--auto_inline=0), automatic inline expansion is disabled.</li>
+                                    <li value="2">If you set the <i>size</i> parameter to a nonzero integer, the compiler uses this size threshold as a limit to the size of the functions it automatically inlines. The compiler multiplies the number of times the function is inlined (plus 1 if the function is externally visible and its declaration cannot be safely removed) by the size of the function.</li>
+                                </ul>
+                                <p>The compiler inlines the function only if the result is less than the size parameter. The compiler measures the size of a function in arbitrary units; however, the optimizer information file (created with the --gen_opt_level=1 or --gen_opt_level=2 option) reports the size of each function in the same units that the --auto_inline option uses.</p>
+                                <p>The --auto_inline=<i>size </i>option controls only the inlining of functions that are not explicitly declared as inline. If you do not use the --auto_inline=<i>size</i> option, the compiler inlines very small functions.</p>
+                                <span class="note">
+                                    <p class="note_title">NOTE</p>
+                                    <b>Optimization Level 3 and Inlining</b>
+                                    <p>In order to turn on automatic inlining, you must use the --opt_level=3 option. If you desire the --opt_level=3 optimizations, but not automatic inlining, use --auto_inline=0 with the --opt_level=3 option.</p>
+                                </span>
+                                <span class="note">
+                                    <p class="note_title">NOTE</p>
+                                    <b>Inlining and Code Size</b>
+                                    <p>Expanding functions inline increases code size, especially inlining a function that is called in a number of places. Function inlining is optimal for functions that are called only from a small number of places and for small functions. To prevent increases in code size because of inlining, use the --auto_inline=0 option. This option causes the compiler to inline intrinsics only.</p>
+                                </span>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0576596">
+                                    <a MadCap:generatedBookmark="TOC" name="3.10_Using_the_Interlist_Feature_With_Optimization">
+                                    </a>
+                                    <span class="section-label">3.10 </span>Using the Interlist Feature With Optimization</h3>
+                                <p> You control the output of the interlist feature when compiling with optimization (the --opt_level=<i>n</i> or -O<i>n</i> option) with the --optimizer_interlist and --c_src_interlist options.</p>
+                                <ul>
+                                    <li value="1">The --optimizer_interlist option interlists compiler comments with assembly source statements.</li>
+                                    <li value="2">The --c_src_interlist and --optimizer_interlist options together interlist the compiler comments and the original C/C++ source with the assembly code.</li>
+                                </ul>
+                                <p>When you use the --optimizer_interlist option with optimization, the interlist feature does <i>not</i> run as a separate pass. Instead, the compiler inserts comments into the code, indicating how the compiler has rearranged and optimized the code. These comments appear in the assembly language file as comments starting with ;**. The C/C++ source code is not interlisted, unless you use the --c_src_interlist option also.</p>
+                                <p>The interlist feature can affect optimized code because it might prevent some optimization from crossing C/C++ statement boundaries. Optimization makes normal source interlisting impractical, because the compiler extensively rearranges your program. Therefore, when you use the --optimizer_interlist option, the compiler writes reconstructed C/C++ statements.</p>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="#STDZ0573016">Example 3-1</a>
+                                    </span> shows a function that has been compiled with optimization (--opt_level=2) and the --optimizer_interlist option. The assembly file contains compiler comments interlisted with assembly code.</p>
+                                <span class="note">
+                                    <p class="note_title">NOTE</p>
+                                    <b>Impact on Performance and Code Size</b>
+                                    <p>The --c_src_interlist option can have a negative effect on performance and code size.</p>
+                                </span>
+                                <p>When you use the --c_src_interlist and --optimizer_interlist options with optimization, the compiler inserts its comments and the interlist feature runs before the assembler, merging the original C/C++ source into the assembly file.</p>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="#STDZ0578866">Example 3-2</a>
+                                    </span> shows the function from <span class="crossreference"><a href="#STDZ0573016">Example 3-1</a></span> compiled with the optimization (--opt_level=2) and the --c_src_interlist and --optimizer_interlist options. The assembly file contains compiler comments and C source interlisted with assembly code.</p>
+                                <div class="example">
+                                    <h4 id="STDZ0573016">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_3-1_The_Function_From_Example_2-1_Compiled_With_the_-O2_and_--optimiz...">
+                                        </a>
+                                        <span class="example-label">Example 3-1 </span>The Function From <span class="crossreference"><a href="using-the-c-c-compiler.html#STDZ0587740">Example 2-1</a></span> Compiled With the -O2 and --optimizer_interlist Options</h4>
+                                    <code>main:
+;* -----------------------------------------------------------------------*
+ SUB.W #2,SP
+;** 5 ------------------------- printf((const unsigned char *)"Hello, world\n");
+ MOV.W #$C$SL1+0,0(SP) ; |5|
+ CALL #printf ; |5|
+ ; |5|
+;** 6 ------------------------- return 0;
+ MOV.W #0,r12 ; |6|
+ ADD.W #2,SP
+ RET</code>
+                                </div>
+                                <div class="example">
+                                    <h4 id="STDZ0578866">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_3-2_The_Function_From_Example_2-1_Compiled_with_the_--opt_level=2,_--...">
+                                        </a>
+                                        <span class="example-label">Example 3-2 </span>The Function From <span class="crossreference"><a href="using-the-c-c-compiler.html#STDZ0587740">Example 2-1</a></span> Compiled with the --opt_level=2, --optimizer_interlist, and --c_src_interlist Options</h4>
+                                    <code>main:
+;* ----------------------------------------------------------------------------*
+ SUB.W #2,SP
+;** 5 ------------------------- printf((const unsigned char *)"Hello, world\n");
+;------------------------------------------------------------------------
+; 5 | printf ("Hello, world\n");
+;------------------------------------------------------------------------
+ MOV.W #$C$SL1+0,0(SP) ; |5|
+ CALL #printf ; |5|
+ ; |5|
+;** 6 ------------------------- return 0;
+;------------------------------------------------------------------------
+; 6 | return 0;
+;------------------------------------------------------------------------
+ MOV.W #0,r12 ; |6|
+ ADD.W #2,SP
+ RET</code>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0576041">
+                                    <a MadCap:generatedBookmark="TOC" name="3.11_Debugging_Optimized_Code">
+                                    </a>
+                                    <span class="section-label">3.11 </span>Debugging Optimized Code</h3>
+                                <p> Generating symbolic debugging information no longer affects the ability to optimize code. The same executable code is generated regardless of whether generation of debug information is turned on or off. For this reason, debug information is now generated by default. You do not need to specify the -g option in order to debug your application.</p>
+                                <p>If you do not specify the -g option and allow the default generation of debug information to be used, the default level of optimization is used unless you specify some other optimization level.</p>
+                                <p>The --symdebug:dwarf option no longer disables optimization, because generation of debug information no longer impacts optimization. </p>
+                                <p>If you specify the -g option explicitly but do not specify an optimization level, no optimization is performed. This is because while generating debug information does not affect the ability to optimize code, optimizing code does make it more difficult to debug code. At higher levels of optimization, the compiler's extensive rearrangement of code and the many-to-many allocation of variables to registers often make it difficult to correlate source code with object code for debugging purposes. It is recommended that you perform debugging using the lowest level of optimization possible.</p>
+                                <p>If you specify an --opt_level (aliased as -O) option, that optimization level is used no matter what type of debugging information you enabled.</p>
+                                <p>The optimization level used if you do not specify the level on the command line is affected by whether or not the command line includes the -g option and the --opt_level option as shown in the following table:</p>
+                                <div class="subsection">
+                                    <p class="table" id="lit1801725">
+                                        <span class="table-label">Table 3-6 </span>Interaction Between Debugging and Optimization Options </p>
+                                    <table class="gentable">
+                                        <colgroup>
+                                            <col align="center" />
+                                            <col align="center" />
+                                            <col align="center" />
+                                        </colgroup>
+                                        <thead class="tbl_hdr_gray">
+                                            <tr valign="middle">
+                                                <th align="center">Optimization</th>
+                                                <th>no -g</th>
+                                                <th>-g</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr valign="middle">
+                                                <td>
+                                                    <b>no --opt_level</b>
+                                                </td>
+                                                <td>--opt_level=0</td>
+                                                <td>--opt_level=0</td>
+                                            </tr>
+                                            <tr valign="middle">
+                                                <td>
+                                                    <b>--opt_level</b>
+                                                </td>
+                                                <td>--opt_level=2</td>
+                                                <td>--opt_level=0</td>
+                                            </tr>
+                                            <tr valign="middle">
+                                                <td>
+                                                    <b>--opt_level=n</b>
+                                                </td>
+                                                <td>optimized as specified</td>
+                                                <td>optimized as specified</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>Debug information increases the size of object files, but it does not affect the size of code or data on the target. If object file size is a concern and debugging is not needed, use --symdebug:none to disable the generation of debug information.</p>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="SPRU2813157">
+                                    <a MadCap:generatedBookmark="TOC" name="3.12_Controlling_Code_Size_Versus_Speed">
+                                    </a>
+                                    <span class="section-label">3.12 </span>Controlling Code Size Versus Speed </h3>
+                                <p>The latest mechanism for controlling the goal of optimizations in the compiler is represented by the --opt_for_speed=<i>num</i> option. The <i>num</i> denotes the level of optimization (0-5), which controls the type and degree of code size or code speed optimization:</p>
+                                <ul>
+                                    <li value="1">--opt_for_speed=0</li>
+                                    <p>Enables optimizations geared towards improving the code size with a <i>high</i> risk of worsening or impacting performance.</p>
+                                    <li value="2">--opt_for_speed=1</li>
+                                    <p>Enables optimizations geared towards improving the code size with a <i>medium</i> risk of worsening or impacting performance.</p>
+                                    <li value="3">--opt_for_speed=2</li>
+                                    <p>Enables optimizations geared towards improving the code size with a <i>low</i> risk of worsening or impacting performance.</p>
+                                    <li value="4">--opt_for_speed=3</li>
+                                    <p>Enables optimizations geared towards improving the code performance/speed with a <i>low</i> risk of worsening or impacting code size.</p>
+                                    <li value="5">--opt_for_speed=4</li>
+                                    <p>Enables optimizations geared towards improving the code performance/speed with a <i>medium</i> risk of worsening or impacting code size.</p>
+                                    <li value="6">--opt_for_speed=5</li>
+                                    <p>Enables optimizations geared towards improving the code performance/speed with a <i>high</i> risk of worsening or impacting code size.</p>
+                                </ul>
+                                <p>If you specify the --opt_for_speed option without a parameter, the default setting is --opt_for_speed=4. If you do not specify the --opt_for_speed option, the default setting is <span>1</span></p>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0574704">
+                                    <a MadCap:generatedBookmark="TOC" name="3.13_What_Kind_of_Optimization_Is_Being_Performed_">
+                                    </a>
+                                    <span class="section-label">3.13 </span>What Kind of Optimization Is Being Performed?</h3>
+                                <p> The <span>MSP430</span> C/C++ compiler uses a variety of optimization techniques to improve the execution speed of your C/C++ programs and to reduce their size.</p>
+                                <p>Following are some of the optimizations performed by the compiler:</p>
+                                <div class="subsection">
+                                    <table class="gentable">
+                                        <colgroup>
+                                            <col />
+                                            <col />
+                                        </colgroup>
+                                        <thead class="tbl_hdr_gray">
+                                            <tr>
+                                                <th align="left" class="noBorderRight" valign="top">Optimization</th>
+                                                <th align="center" class="noBorderRight" valign="top">See</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Cost-based register allocation</td>
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top"> <span class="crossreference"><a href="#STDZ0572740">Section 3.13.1</a></span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Alias disambiguation</td>
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top"> <span class="crossreference"><a href="#STDZ0572740">Section 3.13.1</a></span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Branch optimizations and control-flow simplification</td>
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top"> <span class="crossreference"><a href="#STDZ0579772">Section 3.13.3</a></span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Data flow optimizations<ul><li value="1">Copy propagation</li><li value="2">Common subexpression elimination</li><li value="3">Redundant assignment elimination</li></ul></td>
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top"> <span class="crossreference"><a href="#STDZ0575748">Section 3.13.4</a></span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Expression simplification</td>
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top"> <span class="crossreference"><a href="#STDZ0572300">Section 3.13.5</a></span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Inline expansion of functions</td>
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top"> <span class="crossreference"><a href="#STDZ0571788">Section 3.13.6</a></span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Function Symbol Aliasing</td>
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top">
+                                                    <span class="crossreference">
+                                                        <a href="#STDZ0574808">Section 3.13.7</a>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Induction variable optimizations and strength reduction</td>
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top"> <span class="crossreference"><a href="#STDZ0576565">Section 3.13.8</a></span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Loop-invariant code motion</td>
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top"> <span class="crossreference"><a href="#STDZ0577099">Section 3.13.9</a></span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Loop rotation</td>
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top"> <span class="crossreference"><a href="#STDZ0576943">Section 3.13.10</a></span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Instruction scheduling</td>
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top"> <span class="crossreference"><a href="#STDZ0576868">Section 3.13.11</a></span> <![CDATA[ ]]></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="subsection">
+                                    <table class="gentable">
+                                        <colgroup>
+                                            <col />
+                                            <col />
+                                        </colgroup>
+                                        <thead class="tbl_hdr_gray">
+                                            <tr>
+                                                <th align="left" class="noBorderRight" valign="top"> <span>MSP430</span>-Specific Optimization</th>
+                                                <th align="center" class="noBorderRight" valign="top">See</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Tail merging</td>
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top"> <span class="crossreference"><a href="#STDZ0578441">Section 3.13.12</a></span> <![CDATA[ ]]></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Integer division with constant divisor</td>
+                                                <td align="center" class="noBorderRight noBorderBottom" valign="top"> <span class="crossreference"><a href="#STDZ0579845">Section 3.13.13</a></span> <![CDATA[ ]]></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0572740">
+                                        <a MadCap:generatedBookmark="TOC" name="3.13.1_Cost-Based_Register_Allocation">
+                                        </a>
+                                        <span class="section-label">3.13.1 </span>Cost-Based Register Allocation</h4>
+                                    <p> The compiler, when optimization is enabled, allocates registers to user variables and compiler temporary values according to their type, use, and frequency. Variables used within loops are weighted to have priority over others, and those variables whose uses do not overlap can be allocated to the same register.</p>
+                                    <p>Induction variable elimination and loop test replacement allow the compiler to recognize the loop as a simple counting loop and unroll or eliminate the loop. Strength reduction turns the array references into efficient pointer references with autoincrements.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0579486">
+                                        <a MadCap:generatedBookmark="TOC" name="3.13.2_Alias_Disambiguation">
+                                        </a>
+                                        <span class="section-label">3.13.2 </span>Alias Disambiguation</h4>
+                                    <p> C and C++ programs generally use many pointer variables. Frequently, compilers are unable to determine whether or not two or more I values (lowercase L: symbols, pointer references, or structure references) refer to the same memory location. This aliasing of memory locations often prevents the compiler from retaining values in registers because it cannot be sure that the register and memory continue to hold the same values over time.</p>
+                                    <p>Alias disambiguation is a technique that determines when two pointer expressions cannot point to the same location, allowing the compiler to freely optimize such expressions.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0579772">
+                                        <a MadCap:generatedBookmark="TOC" name="3.13.3_Branch_Optimizations_and_Control-Flow_Simplification">
+                                        </a>
+                                        <span class="section-label">3.13.3 </span>Branch Optimizations and Control-Flow Simplification</h4>
+                                    <p> The compiler analyzes the branching behavior of a program and rearranges the linear sequences of operations (basic blocks) to remove branches or redundant conditions. Unreachable code is deleted, branches to branches are bypassed, and conditional branches over unconditional branches are simplified to a single conditional branch.</p>
+                                    <p>When the value of a condition is determined at compile time (through copy propagation or other data flow analysis), the compiler can delete a conditional branch. Switch case lists are analyzed in the same way as conditional branches and are sometimes eliminated entirely. Some simple control flow constructs are reduced to conditional instructions, totally eliminating the need for branches.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0575748">
+                                        <a MadCap:generatedBookmark="TOC" name="3.13.4_Data_Flow_Optimizations">
+                                        </a>
+                                        <span class="section-label">3.13.4 </span>Data Flow Optimizations</h4>
+                                    <p> Collectively, the following data flow optimizations replace expressions with less costly ones, detect and remove unnecessary assignments, and avoid operations that produce values that are already computed. The compiler with optimization enabled performs these data flow optimizations both locally (within basic blocks) and globally (across entire functions).</p>
+                                    <ul>
+                                        <li value="1">
+                                            <b>Copy propagation. </b> Following an assignment to a variable, the compiler replaces references to the variable with its value. The value can be another variable, a constant, or a common subexpression. This can result in increased opportunities for constant folding, common subexpression elimination, or even total elimination of the variable.</li>
+                                        <li value="2">
+                                            <b>Common subexpression elimination. </b> When two or more expressions produce the same value, the compiler computes the value once, saves it, and reuses it.</li>
+                                        <li value="3">
+                                            <b>Redundant assignment elimination.</b> Often, copy propagation and common subexpression elimination optimizations result in unnecessary assignments to variables (variables with no subsequent reference before another assignment or before the end of the function). The compiler removes these dead assignments.</li>
+                                    </ul>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0572300">
+                                        <a MadCap:generatedBookmark="TOC" name="3.13.5_Expression_Simplification">
+                                        </a>
+                                        <span class="section-label">3.13.5 </span>Expression Simplification</h4>
+                                    <p> For optimal evaluation, the compiler simplifies expressions into equivalent forms, requiring fewer instructions or registers. Operations between constants are folded into single constants. For example, a = (b + 4) - (c + 1) becomes a = b - c + 3.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0571788">
+                                        <a MadCap:generatedBookmark="TOC" name="3.13.6_Inline_Expansion_of_Functions">
+                                        </a>
+                                        <span class="section-label">3.13.6 </span>Inline Expansion of Functions</h4>
+                                    <p> The compiler replaces calls to small functions with inline code, saving the overhead associated with a function call as well as providing increased opportunities to apply other optimizations.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0574808">
+                                        <a MadCap:generatedBookmark="TOC" name="3.13.7_Function_Symbol_Aliasing">
+                                        </a>
+                                        <span class="section-label">3.13.7 </span>Function Symbol Aliasing</h4>
+                                    <p>The compiler recognizes a function whose definition contains only a call to another function. If the two functions have the same signature (same return value and same number of parameters with the same type, in the same order), then the compiler can make the calling function an alias of the called function. </p>
+                                    <p>For example, consider the following: </p>
+                                    <code>int bbb(int arg1, char *arg2);
+
+int aaa(int n, char *str)
+{
+ return bbb(n, str);
+} 
+</code>
+                                    <p>For this example, the compiler makes aaa an alias of bbb, so that at link time all calls to function aaa should be redirected to bbb. If the linker can successfully redirect all references to aaa, then the body of function aaa can be removed and the symbol aaa is defined at the same address as bbb.</p>
+                                    <p>For information about using the GCC function attribute syntax to declare function aliases, see <span class="crossreference"><a href="msp430-c-c-language-implementation.html#SPRU1878303">Section 5.16.2</a></span></p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0576565">
+                                        <a MadCap:generatedBookmark="TOC" name="3.13.8_Induction_Variables_and_Strength_Reduction">
+                                        </a>
+                                        <span class="section-label">3.13.8 </span>Induction Variables and Strength Reduction</h4>
+                                    <p> Induction variables are variables whose value within a loop is directly related to the number of executions of the loop. Array indices and control variables for loops are often induction variables.</p>
+                                    <p>Strength reduction is the process of replacing inefficient expressions involving induction variables with more efficient expressions. For example, code that indexes into a sequence of array elements is replaced with code that increments a pointer through the array.</p>
+                                    <p>Induction variable analysis and strength reduction together often remove all references to your loop-control variable, allowing its elimination.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0577099">
+                                        <a MadCap:generatedBookmark="TOC" name="3.13.9_Loop-Invariant_Code_Motion">
+                                        </a>
+                                        <span class="section-label">3.13.9 </span>Loop-Invariant Code Motion</h4>
+                                    <p> This optimization identifies expressions within loops that always compute to the same value. The computation is moved in front of the loop, and each occurrence of the expression in the loop is replaced by a reference to the precomputed value.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0576943">
+                                        <a MadCap:generatedBookmark="TOC" name="3.13.10_Loop_Rotation">
+                                        </a>
+                                        <span class="section-label">3.13.10 </span>Loop Rotation</h4>
+                                    <p> The compiler evaluates loop conditionals at the bottom of loops, saving an extra branch out of the loop. In many cases, the initial entry conditional check and the branch are optimized out.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0576868">
+                                        <a MadCap:generatedBookmark="TOC" name="3.13.11_Instruction_Scheduling">
+                                        </a>
+                                        <span class="section-label">3.13.11 </span>Instruction Scheduling</h4>
+                                    <p>The compiler performs instruction scheduling, which is the rearranging of machine instructions in such a way that improves performance while maintaining the semantics of the original order. Instruction scheduling is used to improve instruction parallelism and hide latencies. It can also be used to reduce code size.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0578441">
+                                        <a MadCap:generatedBookmark="TOC" name="3.13.12_Tail_Merging">
+                                        </a>
+                                        <span class="section-label">3.13.12 </span>Tail Merging</h4>
+                                    <p> If you are optimizing for code size, tail merging can be very effective for some functions. Tail merging finds basic blocks that end in an identical sequence of instructions and have a common destination. If such a set of blocks is found, the sequence of identical instructions is made into its own block. These instructions are then removed from the set of blocks and replaced with branches to the newly created block. Thus, there is only one copy of the sequence of instructions, rather than one for each block in the set.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0579845">
+                                        <a MadCap:generatedBookmark="TOC" name="3.13.13_Integer_Division_With_Constant_Divisor">
+                                        </a>
+                                        <span class="section-label">3.13.13 </span>Integer Division With Constant Divisor</h4>
+                                    <p> The optimizer attempts to rewrite integer divide operations with constant divisors. The integer divides are rewritten as a multiply with the reciprocal of the divisor. This occurs at optimization level 2 (--opt_level=2 or -O2) and higher. You must also compile with the --opt_for_speed option, which selects compile for speed.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="abstract.html">Back to Top</a>
+                    <p />
+                    <a href="http://www.go-dsp.com/forms/techdoc/doc_feedback.htm?litnum=SLAU132R&amp;partnum=MSP430">Submit Documentation Feedback</a>
+                    <p>Copyright© 2018, Texas Instruments Incorporated. An <a href="includes/important_notice.html">IMPORTANT NOTICE</a> for this document addresses availability, warranty, changes, use in safety-critical applications, intellectual property matters and other important disclaimers.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

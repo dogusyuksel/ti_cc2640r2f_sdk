@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setting up the BLE OAD Environment &mdash; 
+SimpleLink™ CC2640R2 SDK
+User&#39;s Guide for BLE-Stack 3.x.x
+ 3.03.09.00 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Performing a BLE OAD" href="performing-an-oad.html" />
+    <link rel="prev" title="BLE-Stack OAD Profile" href="oad-profile.html" />
+    <script language="JavaScript">
+        var tiPageName;
+        tiPageName = "sug ble3-stack-oad setting-up-environment";
+
+        if (location.protocol == "file:"){
+            var ci_analytics_poc_load = true;
+        }
+    </script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../ble-stack-3.x-guide/index.html" class="icon icon-home"> 
+SimpleLink™ CC2640R2 SDK
+User's Guide for BLE-Stack 3.x.x
+
+          </a>
+              <div class="version">
+                3.03.09.00
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-3.x-guide/disclaimer.html">Disclaimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-3.x-guide/get-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-3.x-guide/platform.html">The CC2640R2 SDK Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-3.x-guide/tirtos-index.html">TI-RTOS (RTOS Kernel) Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-3.x-guide/ble-stack-3-index.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-3.x-guide/ble-stack-3-index.html#ble-stack">BLE-Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-3.x-guide/ble-stack-3-index.html#developing-a-custom-application">Developing a Custom Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-3.x-guide/ble-stack-3-index.html#ble-network-processor">BLE Network Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-3.x-guide/ble-stack-3-index.html#running-the-sdk-on-custom-hardware">Running the SDK on Custom Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-3.x-guide/u-stack-index.html">Micro BLE Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-common/npi-index.html">Network Processor Interface (NPI)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../ble-stack-3.x-guide/index-oad-cc2640.html">Over-the-Air Download (OAD)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../oad-secure/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oad-secure/oad-types-cc2640.html">OAD Storage &amp; Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oad-secure/bim.html">Boot Image Manager (BIM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oad-secure/bim-off-chip.html">BIM for Off-Chip OAD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oad-secure/bim-on-chip-split-image.html">BIM for On-Chip OAD (Split Image)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oad-secure/image-header.html">OAD Image Header</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oad-secure/ext-flash-image-header.html">OAD External Flash Image Header</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oad-secure/flash-layout-off-chip.html">Flash Layout for Off-Chip OAD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oad-secure/flash-layout-on-chip-split-image.html">Flash Layout for On-Chip OAD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oad-secure/tools.html">OAD Image Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oad-application.html">OAD Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oad-profile.html">BLE-Stack OAD Profile</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Setting up the BLE OAD Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#oad-target-setup">OAD Target Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#oad-distributor-setup">OAD Distributor Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#flashing-the-host-test-image">Flashing the host_test Image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#connecting-btool-to-host-test">Connecting BTool to host_test</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="performing-an-oad.html">Performing a BLE OAD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating-a-production-image.html">Creating a Production Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add-ble-oad-to-proj.html">Adding BLE OAD to an Existing Project</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../voice/voice.html">Creating a Voice Enabled Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-3.x-guide/secure-fw-index.html">Secure Firmware (SFW)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sensor-controller/sensor-controller.html">Sensor Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-3.x-guide/debugging-index.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-3.x-guide/migration.html">Migration Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-3.x-guide/api-reference.html">API References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-3.x-guide/reference.html">Terms and Definitions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../ble-stack-3.x-guide/index.html">
+SimpleLink™ CC2640R2 SDK
+User's Guide for BLE-Stack 3.x.x
+</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../ble-stack-3.x-guide/index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../ble-stack-3.x-guide/index-oad-cc2640.html">Over-the-Air Download (OAD)</a> &raquo;</li>
+      <li>Setting up the BLE OAD Environment</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="setting-up-the-ble-oad-environment">
+<span id="sec-ble-oad-setup"></span><h1>Setting up the BLE OAD Environment<a class="headerlink" href="#setting-up-the-ble-oad-environment" title="Permalink to this headline">¶</a></h1>
+<p>This section will cover the steps required to setup a BLE OAD environment.</p>
+<p>The BLE OAD topology is described below. Refer to
+<a class="reference internal" href="../oad-secure/intro.html#fig-oad-downloader-and-target"><span class="std std-numref">Figure 89.</span></a> for a review of the devices involved in
+an OAD.</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li><p>OAD Distributor: BTool connected to Host Test on <a class="reference external" href="https://www.ti.com/tool/LAUNCHXL-CC2640R2">CC2640R2F LaunchPad</a>.</p></li>
+<li><p>OAD Target: BLE sample application (<code class="docutils literal notranslate"><span class="pre">simple_peripheral</span></code>)
+with OAD functionality enabled.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>TI provides mobile applications that support OAD, these are outside of
+the scope of the OAD guide. Refer to the Quick Start Guide for more
+information.</p>
+</div>
+</div></blockquote>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>This section requires the following hardware and software components</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>2x <a class="reference external" href="https://www.ti.com/tool/LAUNCHXL-CC2640R2">CC2640R2F LaunchPad</a></p></li>
+<li><p><a class="reference external" href="http://www.ti.com/tool/SIMPLELINK-CC2640R2-SDK">SimpleLink CC2640R2 SDK</a> installed</p></li>
+<li><p><a class="reference external" href="http://www.ti.com/tool/uniflash">Uniflash</a></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="oad-target-setup">
+<span id="sec-ble-oad-target-setup"></span><h2>OAD Target Setup<a class="headerlink" href="#oad-target-setup" title="Permalink to this headline">¶</a></h2>
+<p>In order to perform a BLE OAD, an OAD capable image must be loaded onto the OAD
+target device. This section will cover the steps required to load the <a class="reference external" href="https://www.ti.com/tool/LAUNCHXL-CC2640R2">CC2640R2F LaunchPad</a>
+with an OAD enabled BLE image.</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">simple_peripheral_oad_offchip</span></code> or
+<code class="docutils literal notranslate"><span class="pre">simple_peripheral_oad_onchip</span></code> folder inside the BLE-Stack.</p></li>
+<li><p>Import the project into the workspace of your selected IDE.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>See the Quick Start Guide for instructions on how to work with your
+selected IDE.</p></li>
+</ul>
+<ol class="arabic">
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">bim_offchip</span></code> or <code class="docutils literal notranslate"><span class="pre">bim_onchip</span></code> folder (respective to your
+chosen project) inside the <code class="docutils literal notranslate"><span class="pre">nortos</span></code> folder.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">bim_onchip</span></code> is used, enable the <code class="docutils literal notranslate"><span class="pre">AUTHENTICATE_PERSISTENT_IMG</span></code>
+define in the project’s .opt file if an authenticated persistent
+application is desired. By default, this is <strong>enabled</strong>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Import the project into the workspace.</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>Select the proper build configuration based on security needs:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FlashROM</span></code>: will use security and is the default configuration</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FlashROM_unsecure</span></code>: will not use security</p></li>
+<li><p>Be sure that all projects configurations are in sync. If one
+<code class="docutils literal notranslate"><span class="pre">_unsecure</span></code> project is used, all other projects should use the
+unsecure flavor as well.</p></li>
+<li><p>Based on the project configuration, the proper version of the
+<a class="reference internal" href="../oad-secure/tools.html#sec-oad-tools"><span class="std std-ref">OAD Image Tool</span></a> will be used. If security is enabled the
+signature is automatically added to the image.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>OAD security is only supported using <strong>off-chip</strong> OAD.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>(on-chip OAD only) Build and flash the persistent app project</p>
+<blockquote>
+<div><blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>The build steps must be done in order, or errors will occur</strong></p>
+</div>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.ti.com/tool/uniflash">Uniflash</a> must be used to flash the <code class="docutils literal notranslate"><span class="pre">_oad.bin</span></code> persistent image
+that is produced by the oad_image_tool or the device will not boot
+after a reset. When flashing the persistent image .bin file, you must
+specify the binary load address as the starting address specified in the
+persistent application project’s linker file. By default, this is at
+address: 0x00014000.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">_oad.bin</span></code> file contains CRC and (if applicable) security
+information about the image. This is used by the BIM on boot to determine the validity of an image.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>See <a class="reference internal" href="creating-a-production-image.html#sec-loading-a-release-image"><span class="std std-ref">Create Merged Production Image</span></a> for more information.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Build and flash the stack project directly in the IDE</p></li>
+<li><p>Build and flash the app project using UNIFLASH</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Flash the <cite>_oad.bin</cite> image that is produced
+by the oad_image_tool or the device will not boot after a reset.</p></li>
+<li><p>The <cite>_oad.bin</cite> file contains CRC and (if applicable) security
+information about the image. This is used by the BIM on boot to
+determine which image to run. <strong>If the image is flashed directly
+from the IDE, the device will not boot after subsequent resets
+as either CRC or security information is missing</strong> See
+<a class="reference internal" href="creating-a-production-image.html#sec-loading-a-release-image"><span class="std std-ref">Create Merged Production Image</span></a> for more information.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Build and flash the BIM project directly in the IDE</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The BIM <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> option(Project Settings -&gt; Build -&gt; ARM Compiler -&gt;
+Predefined Symbols: DEBUG) will disable CRC checks on the image
+(for off-chip), making it possible to flash an image straight from
+the IDE.</p></li>
+<li><p>If your device does not boot, it is likely that you have either
+forgotten to load the app project (_oad.bin) through uniflash or there
+might be different build configurations (secure/unsecure) for the
+bim/app/persistent/stack, see <a class="reference internal" href="creating-a-production-image.html#sec-loading-a-release-image"><span class="std std-ref">Create Merged Production Image</span></a> for
+more info.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Verify the device has booted up and is advertising</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Verification: Open a terminal window with 115200 8N1 to the
+<code class="docutils literal notranslate"><span class="pre">XDS110</span> <span class="pre">Class</span> <span class="pre">Application/User</span> <span class="pre">UART</span></code> port corresponding to your
+<a class="reference external" href="https://www.ti.com/tool/LAUNCHXL-CC2640R2">CC2640R2F LaunchPad</a>.</p></li>
+<li><p>The console should display the text below, use it to get the BLE
+address. Note that this text may be different between on and off-chip
+OAD, but the concept is the same.</p></li>
+</ul>
+<div class="figure align-center" id="fig-sbp-oad-boot-screen">
+<img alt="../_images/sbp_oad_boot_screen.png" src="../_images/sbp_oad_boot_screen.png" />
+</div>
+</div></blockquote>
+</li>
+<li><p>Alternatively, you can get the BLE address of the device using UNIFLASH.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>See the screenshot below for how to do this in UNIFLASH.</p></li>
+</ul>
+<div class="figure align-center" id="fig-verify-bdaddr-uniflash">
+<img alt="../_images/verify_bdaddr_uniflash.png" src="../_images/verify_bdaddr_uniflash.png" />
+</div>
+</div></blockquote>
+</li>
+<li><p>Plug/unplug the device to prevent <a class="reference internal" href="../oad-secure/bim.html#sec-oad-bim-hib"><span class="std std-ref">Halt In Boot (HIB)</span></a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If the device does not advertise after reset, ensure the
+<cite>_oad.bin</cite> file was loaded.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="oad-distributor-setup">
+<h2>OAD Distributor Setup<a class="headerlink" href="#oad-distributor-setup" title="Permalink to this headline">¶</a></h2>
+<p>As per the <a class="reference internal" href="../oad-secure/intro.html#sec-oad"><span class="std std-ref">Introduction</span></a> section, the OAD Distributor is the device
+responsible for fragmenting an OAD enabled image in to chunks of OAD blocks and
+sending each block over the to the OAD Target device as they are requested.</p>
+<p>In the case of BLE, the OAD Distributor is a combination of BTool running on
+the PC connected to host_test running on a <a class="reference external" href="https://www.ti.com/tool/LAUNCHXL-CC2640R2">CC2640R2F LaunchPad</a>. host_test is a BLE
+enabled network processor application. BTool is a PC tool that is capable of
+interfacing to host_test and performing various BLE functions in addition to
+OAD. For more information, refer to the <code class="docutils literal notranslate"><span class="pre">host_test</span></code> README file or the BTool
+User’s Guide.</p>
+<div class="section" id="flashing-the-host-test-image">
+<h3>Flashing the host_test Image<a class="headerlink" href="#flashing-the-host-test-image" title="Permalink to this headline">¶</a></h3>
+<p>See below for the steps to setup the host_test image on a <a class="reference external" href="https://www.ti.com/tool/LAUNCHXL-CC2640R2">CC2640R2F LaunchPad</a>.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">hexfiles</span></code> folder within the BLE-Stack.</p></li>
+<li><p>Select the <code class="docutils literal notranslate"><span class="pre">host_test_*.hex</span></code> file.</p></li>
+<li><p>Flash the above hexfile using UNIFLASH. See image below</p></li>
+</ol>
+<div class="figure align-center" id="fig-distributor-ble-uniflash">
+<img alt="../_images/host_test_uniflash.png" src="../_images/host_test_uniflash.png" />
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="connecting-btool-to-host-test">
+<h3>Connecting BTool to host_test<a class="headerlink" href="#connecting-btool-to-host-test" title="Permalink to this headline">¶</a></h3>
+<p>BTool and host_test communicate via USB through the XDS110 UART back channel.
+See below for a diagram</p>
+<blockquote>
+<div><img alt="../_images/ditaa-25975e5bce172072a8d33f3a7a14c4ecb566371e.png" src="../_images/ditaa-25975e5bce172072a8d33f3a7a14c4ecb566371e.png" />
+<ol class="arabic">
+<li><p>Find the port used by the UART backchannel of the <a class="reference external" href="https://www.ti.com/tool/LAUNCHXL-CC2640R2">CC2640R2F LaunchPad</a> running
+host_test. This is the one with the name <code class="docutils literal notranslate"><span class="pre">XDS110</span> <span class="pre">Class</span>
+<span class="pre">Application/User</span> <span class="pre">UART</span></code></p></li>
+<li><p>Open BTool (see the BTool executable in the tools folder of the BLE-Stack)</p></li>
+<li><p>Use the following serial port settings, hit OK</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Port: &lt;PORT_FROM_ABOVE_STEP&gt;</p></li>
+<li><p>Other settings: 115200 8N1</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>This should open and initialize the host_test device.</p></li>
+<li><p>Pressing the scan button should populate a list of devices in the log</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A screenshot of a properly initialized BTool session is shown below</p></li>
+</ul>
+<div class="figure align-center" id="fig-btool-init-success">
+<img alt="../_images/btool_init_success.png" src="../_images/btool_init_success.png" />
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="oad-profile.html" class="btn btn-neutral float-left" title="BLE-Stack OAD Profile" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="performing-an-oad.html" class="btn btn-neutral float-right" title="Performing a BLE OAD" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2024, Texas Instruments.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

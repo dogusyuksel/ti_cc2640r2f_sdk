@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+    <title>Invalid section type=VECT_INIT</title>
+  </head>
+  <body>
+    <h1><span class="mw-headline"
+        id=".C2.A0_Invalid_section_type.3DVECT_INIT">Invalid section
+        type=VECT_INIT<br>
+      </span></h1>
+    <h2> <span class="mw-headline" id="What_it_means"> What it means </span></h2>
+    <p>This error occurs when the linker is parsing a linker command
+      file and finds an invalid section type following a section
+      definition.
+      If you see below error then you might have MSP CGT 4.1.x device
+      linker command files being used with the 4.0.x version of MSP
+      compiler.
+    </p>
+    <pre>"lnk_msp430f5438a.cmd", line 177: error #10030-D: expecting section type (COPY, DSECT, or NOLOAD) instead of "VECT_INIT"
+</pre>
+    <p>MSP430 compiler revision 4.1.x has a new feature for section
+      type=VECT_INIT. For details see: <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/10374"
+        class="external autonumber" rel="nofollow" target="_blank">[1]</a>
+    </p>
+    <h2> <span class="mw-headline" id="Risks.2C_Severity"> Risks,
+        Severity </span></h2>
+    <p>This error can be avoided using below remedy. Once doing below if
+      you instead get a warning for &#8220;no matching section&#8221; then you may
+      need to generate an interrupt ISR. However, uninitialized ISR
+      vectors when triggered could lead to jumping to unknown addresses,
+      execution of erroneous code which at the very least could lead to
+      application crashing, unexpected application behavior, or more
+      severely memory erasure or electrical damage.<br>
+    </p>
+    <h2> <span class="mw-headline" id="Why_it_is_happening"> Why it is
+        happening </span></h2>
+    <p>The most likely scenario to generate this error is if a CCS 5.2.0
+      project was created and then later the compiler version choice was
+      changed from 4.1.x back to 4.0.x. CCS 5.2.0 includes new MSP CGT
+      4.1.0 and the associated linker command files containing section
+      type=VECT_INIT. <br>
+    </p>
+    <h2> <span class="mw-headline" id="Remedy"> Remedy </span></h2>
+    <p>Either replace the lnk_msp430xxxx.cmd file with an older version
+      or edit your project&#8217;s lnk_msp430xxxx.cmd file to remove
+      &#8220;type=VECT_INIT&#8221;. You will still get below warnings about &#8220;no
+      matching section&#8221; due to having explicit section specifiers eg: {
+      * ( .int14 ) }:
+    </p>
+    <pre>"lnk_msp430f5438a.cmd", line 165: warning #10068-D: no matching section</pre>
+    <p>Section entries for lnk_msp430f5438a.cmd as included with MSP CGT
+      4.1.x:
+    </p>
+    <pre>    .int38      &nbsp;: {}               &gt; INT38
+    .int39      &nbsp;: {}               &gt; INT39
+    .int40      &nbsp;: {}               &gt; INT40
+    RTC         &nbsp;: { * ( .int41 ) } &gt; INT41 type = VECT_INIT
+    PORT2       &nbsp;: { * ( .int42 ) } &gt; INT42 type = VECT_INIT
+    USCI_B3     &nbsp;: { * ( .int43 ) } &gt; INT43 type = VECT_INIT
+    USCI_A3     &nbsp;: { * ( .int44 ) } &gt; INT44 type = VECT_INIT
+</pre>
+    <p>Version of above included in MSP CGT 4.0.x:
+    </p>
+    <pre>    .int38  &nbsp;: {} &gt; INT38
+    .int39  &nbsp;: {} &gt; INT39
+    .int40  &nbsp;: {} &gt; INT40
+    .int41  &nbsp;: {} &gt; INT41
+    .int42  &nbsp;: {} &gt; INT42
+    .int43  &nbsp;: {} &gt; INT43
+    .int44  &nbsp;: {} &gt; INT44    
+</pre>
+    <h2> <span class="mw-headline" id="Code_Example"> Code Example </span></h2>
+    <p>Refer to our following code example for guidance on using and
+      initializing interrupt vectors. </p>
+    <p><a
+href="http://processors.wiki.ti.com/index.php/File:Msp430_initialize_unused_interrrupt_vectors.zip"
+        class="external text" rel="nofollow" target="_blank">processors.wiki.ti.com/index.php/File:Msp430_initialize_unused_interrrupt_vectors.zip</a>
+    </p>
+    <p><a
+        href="http://focus.ti.com/mcu/docs/mcusplash.tsp?contentId=128826#CE"
+        class="external text" rel="nofollow" target="_blank">See the
+        rest of the code examples for all MSP430 devices here!</a>
+    </p>
+    <h2> <span class="mw-headline" id="More_Resources"> More Resources
+      </span></h2>
+    <p>Leverage the e2e (Engineer-to-Engineer) online community to get
+      all of your MSP430 questions answered! Or, if you are an MSP430
+      pro user, give back to the community with your expertise. </p>
+    <p><a
+href="http://e2e.ti.com/support/microcontrollers/msp43016-bit_ultra-low_power_mcus/f/166.aspx"
+        class="external text" rel="nofollow" target="_blank">Go to
+        MSP430's e2e online forum!</a>&nbsp;
+    </p>
+    <table style="text-align:center; background:white; width:100%;
+      text-align:left; height: 65px border-top: 1px solid;
+      border-bottom: 1px solid; border-left: 1px solid; border-right:
+      1px solid; border-width: 1px; border-style: solid;">
+      <tbody>
+        <tr>
+          <td width="305px"><a
+              href="http://processors.wiki.ti.com/index.php/File:E2e.jpg"
+              class="image"><img alt="E2e.jpg"
+                src="http://processors.wiki.ti.com/images/8/82/E2e.jpg"
+                height="63" width="305"></a>
+          </td>
+          <td><i>For technical support please post your questions at <a
+                href="http://e2e.ti.com" class="external free"
+                rel="nofollow" target="_blank">http://e2e.ti.com</a>.
+              Please post only comments about the article <b>Compiler/diagnostic
+                messages/MSP430/10030</b> here.</i></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

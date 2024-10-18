@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="toc.xml">
+      </toc>
+      <toc
+            file="testToc.xml"
+            primary="true">
+      </toc>
+      <toc
+            file="toc_gel.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="toc_projects-create-manage.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="toc_projects-build.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="toc_projects-analysis-opt-tools.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="toc_install-steps.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="toc_getting-started-family.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="toc_debug-advanced.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="toc_debug-configuring.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="toc_debug-debugging.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="toc_debug-scripting.xml"
+            primary="false">
+      </toc>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+         
+        <!-- ============================================================================= -->
+		<!-- Eclipse context files                                                         -->
+		<!-- ============================================================================= -->
+		
+		<!-- Search dialog, Replace Dialog, Preferences page, Action Contexts, Regular Expressions NEEDS FIXING -->
+      	<contexts file="context_files/contexts_Search.xml" plugin="org.eclipse.search"/>
+      	
+      	<!-- Compare, preview, patch and recall local history files -->
+		<contexts file="context_files/contexts_Compare.xml" plugin="org.eclipse.compare"/>  
+		
+		<!-- Debugger: Details Pane, Dialogs Export/Import  -->
+		<!-- Debugger: Editors, Expression Views, Launch Configurations, Memory View, Multiview Actions -->
+		<!-- Debugger: Preference Page, Property Pages, Run Menu, Variables View                        -->
+		<contexts file="context_files/contexts_Debugger.xml" plugin="org.eclipse.debug.ui"/> 
+		
+		<!-- Breakpoint View -->
+		<contexts file="context_files/contexts_breakpoint.xml" plugin="org.eclipse.debug.ui"/> 
+		
+		<!-- Debug View -->
+		<contexts file="context_files/contexts_debug_view.xml" plugin="org.eclipse.debug.ui"/>
+		 
+		<!-- Console View -->
+      	<contexts file="context_files/contexts_console.xml" plugin="org.eclipse.ui.console"/>
+      	
+      	<!-- External Tools: File Select, Preferences, Builder Properties, Project Scheduling, Program Loc/attributes  -->
+      	<contexts file="context_files/contexts_ExternalTools.xml" plugin="org.eclipse.ui.externaltools"/>
+      	
+      	<!-- TEAM: Team CVS Dialogs, Preference Pages, Sync View  -->
+      	<contexts file="context_files/contexts_Team.xml" plugin="org.eclipse.team.ui"/>    
+      	
+      	<!-- TEAM CVS Actions: Tag Selection, Tag As Version, Wizard Pages, Team Menu Actions  -->
+		<!-- TEAM CVS Actions: Other Menu Actions, Tag Configuration, Watch / Editors, Dialogs -->
+		<!-- TEAM CVS Actions: Preference Pages, Views, Actions, Sync Actions, Properties Pages -->   	
+      	<contexts file="context_files/contexts_Team_CVS.xml" plugin="org.eclipse.team.cvs.ui"/> 
+      	
+      	<!-- Update: Configuration View, Main Preferences, Mode Selection, Current Install Details  -->
+      	<contexts file="context_files/contexts_Update.xml"  plugin="org.eclipse.update.ui"/> 
+      	
+      	<!-- User Assistance: Welcome Preference, Help, Cheat Sheets -->
+		<contexts file="context_files/contexts_UserAssistance.xml"  plugin="org.eclipse.help.ui"/> 
+		<contexts file="context_files/contexts_UserAssistance.xml"  plugin="org.eclipse.ui.cheatsheets"/> 
+		<contexts file="context_files/contexts_UserAssistance.xml"  plugin="org.eclipse.ui.intro"/> 
+		<contexts file="context_files/contexts_UserAssistance.xml"  plugin="org.eclipse.ui.intro.universal"/>    
+		
+		<!-- Workbanch: Actions, Dialogs, Editors, Preference Pages, Property Pages, Views               -->
+		<!-- Workbanch: Resource Properties, Windows, Wizard Pages, Wizards, Help Menu, Browser Support  -->
+		<contexts file="context_files/contexts_Workbench.xml" plugin="org.eclipse.ui"/> 
+        <contexts file="context_files/contexts_Workbench.xml" plugin="org.eclipse.ui.ide"/> 
+		<contexts file="context_files/contexts_Workbench.xml" plugin="org.eclipse.ui.workbench.texteditor"/> 
+   		<contexts file="context_files/contexts_Workbench.xml" plugin="org.eclipse.ui.editors"/> 
+   		<contexts file="context_files/contexts_Workbench.xml" plugin="org.eclipse.ui.browser"/> 
+         		
+      	<!-- ============================================================================= -->
+		<!-- CDT context files                                                             -->
+		<!-- ============================================================================= -->
+      	
+		<!-- C Development Tool: Views, Command Dialogs, C Editor, New Project, My Project  -->
+		<!-- C Development Tool: Standard Project, New Project Wizard, Debugger, Search  -->
+		<contexts file="context_files/contexts_CDT.xml" plugin="org.eclipse.cdt.ui"/>	
+		
+		<!-- C Development Tool: GDB MI Preference Page  -->
+		<contexts file="context_files/contexts_CDT_DEBUGGER_MI.xml" plugin="org.eclipse.cdt.debug.mi.ui"/>
+		
+		<!-- Launch the Debugger, its Run Arguments, plus Properties -->
+		<contexts file="context_files/contexts_CDT_LAUNCH.xml" plugin="org.eclipse.cdt.launch"/>
+		
+		<!-- Make Application Project and Wizard -->
+		<contexts file="context_files/contexts_CDT_make.xml" plugin="org.eclipse.cdt.make.ui"/>
+				
+		<!-- ============================================================================= -->
+		<!-- CCS context files                                                             -->
+		<!-- ============================================================================= -->
+      	
+      	<!-- CCS Managed Build -->
+      	<contexts file="context_files/contexts_ccs_project.xml" plugin="com.ti.ccstudio.project.ui"/> 
+        
+        <!-- Debug Configurations Dialog -->
+        <contexts file="context_files/contexts_debug_configurations_dialog.xml" plugin="org.eclipse.debug.ui"/>
+        
+      	<!-- Scripting Console -->
+      	<contexts file="context_files/contexts_scriptconsole.xml" plugin="com.ti.ccstudio.scripting.console"/> 
+      	
+      	<!-- Target Configuration View -->
+      	<contexts file="context_files/contexts_target_config_view.xml" plugin="com.ti.ccstudio.system.setup.ui"/>     	
+		
+		<!-- Registers View -->
+		<contexts file="context_files/contexts_registers_view.xml" plugin="org.eclipse.debug.ui"/>
+		
+		<!-- Disassembly View -->
+		<!-- <contexts file="context_files/contexts_disassembly.xml" plugin="com.ti.ccstudio.disassembly.ui"/> -->
+		<contexts file="context_files/contexts_disassembly.xml" plugin="org.eclipse.debug.ui"/>
+		
+      	<!-- Control Panel View -->
+      	<contexts file="context_files/contexts_control_panel.xml" plugin="com.ti.ccstudio.multi.purpose.view"/>
+      	
+      	<!-- Memory View -->
+		<contexts file="context_files/contexts_memory_view.xml" plugin="com.ti.ccstudio.debug.ui"/> 
+
+		<!-- Cache View -->
+		<contexts file="context_files/contexts_cache_view.xml" plugin="com.ti.ccstudio.debug.cacheview"/>    
+
+		<!-- Problem View -->
+    	<contexts file="context_files/contexts_problem_view.xml" plugin="org.eclipse.ui"/>     
+
+		<!-- Local View -->
+        <!-- <contexts file="context_files/contexts_variables_view.xml" plugin="com.ti.ccstudio.debug.registers.ui"/> -->
+    
+		<!-- Variables View -->
+        <contexts file="context_files/contexts_variables_view.xml" plugin="org.eclipse.debug.ui"/>
+		
+		<!-- Expressions View -->
+        <contexts file="context_files/contexts_watch_view.xml" plugin="org.eclipse.debug.ui"/> 
+        
+         
+   </extension>
+
+</plugin>

@@ -1,0 +1,57 @@
+GEL_RemoveOutputFile()
+----------------------
+
+Removes the output file from the breakpoint at the specified address.
+
+**Syntax**
+
+**GEL_RemoveOutputFile(**\ programAddr\ **,
+"**\ connectFileName\ **");**
+
+Removes the output file from the breakpoint in the specified file.
+
+**Syntax**
+
+**GEL_RemoveOutputFile("**\ srcFileName\ **",** lineNumber\ **,
+"**\ connectFileName\ **");**
+
+**Parameters**
+
+programAddr: is an expression specifying the memory location of the
+breakpoint to be removed. This expression should not be enclosed in
+quotation marks.
+
+srcFileName: is a string value specifying the filename (without path) of
+the source file in which the breakpoint to be removed is located. A
+double backslash escape sequence is required to ensure that a backslash
+is inserted into the filename; for example:
+"c:\\ti\\myprojects\\sine.dat"
+
+lineNumber: is a long integer value specifying the line number in said
+file at which the breakpoint to be removed is located.
+
+connectFileName: is a string value specifying the full path and filename
+of the file connected with the breakpoint. This connection will be
+severed and the file closed. A double backslash escape sequence is
+required to ensure that a backslash is inserted into the filename; for
+example: "c:\\ti\\myprojects\\sine.dat"
+
+**Description**
+
+This function disconnects the specified file from the appropriate
+breakpoint, puts the corresponding output FileI/O object into the
+Stopped state, closes the output file, and removes the breakpoint
+(whether or not it was originally added by a call to
+`GEL_AddOutputFile <GEL_AddOutputFile.html>`__).
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: No
+
+**Related Topics**
+
+`GEL_RemoveInputFile <GEL_RemoveInputFile.html>`__
+
+`GEL_AddOutputFile <GEL_AddOutputFile.html>`__

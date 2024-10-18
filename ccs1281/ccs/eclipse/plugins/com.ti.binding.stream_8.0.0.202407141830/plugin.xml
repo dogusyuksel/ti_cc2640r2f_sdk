@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="com.ti.backplane.datamodel">
+      <datamodel
+            class="com.ti.binding.stream.internal.StreamModel"
+            description="Stream Model"
+            id="com.ti.backplane.StreamModel"
+            name="streams">
+      </datamodel>
+   </extension>
+</plugin>

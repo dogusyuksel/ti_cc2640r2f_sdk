@@ -1,0 +1,38 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.ti.dvt.scripting.engine;singleton:=true
+Export-Package: com.ti.dvt.engine.scripting
+Bundle-Name: DVT Scripting Engine
+Bundle-Version: 4.1.0.202307061549
+Bundle-ClassPath: com.ti.dvt.scripting.engine.jar,external:$dvt.dir$_4
+ .1.0.202307061549/scripting/com.ti.dvt.scripting.engine_4.1.0.2023070
+ 61549.jar,external:$ccs.debugServerDir$/../dvt_4.1.0.202307061549/scr
+ ipting/com.ti.dvt.scripting.engine_4.1.0.202307061549.jar
+Require-Bundle: com.ti.dvt.gsb;resolution:=optional,com.ti.dvt.profile
+ analysismanager;visibility:=reexport,com.ti.dvt.ccstudioideadapter;re
+ solution:=optional,com.ti.util,com.ti.dvt.symbolmanager;visibility:=r
+ eexport,com.ti.dvt.ideadapter2,com.ti.dvt.datamodel;visibility:=reexp
+ ort,com.ti.dvt.profileanalysis;visibility:=reexport,com.ti.dvt.contro
+ l.engine;visibility:=reexport,com.ti.uia.transport.jtag,com.ti.dvt.en
+ ergytrace
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: Texas Instruments
+
+Name: dvt.zip
+SHA-256-Digest: azFQWhQoQzaLkYzM+Ljikq5cvbt81njdqovLVrhJ44I=
+
+Name: META-INF/p2.inf
+SHA-256-Digest: IJ6YTS4NBt3/8wLBvxz2QkJU4PU8T/FlXpt6+dY47TE=
+
+Name: uninstall.xml
+SHA-256-Digest: H7VMtaxM6CJK+pNHXxdiWC7nShj8vcHytUD13Q4epBo=
+
+Name: install.xml
+SHA-256-Digest: oEkEC3kTAldQikTEBgo1I6A9gMTx7FOW3HkwEp8589o=
+
+Name: com.ti.dvt.scripting.engine.jar
+SHA-256-Digest: NocTV5zEEPeF59gD6MXMrbxnUK0GeaRGIZxW7NcZeJA=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: G2hFTVPngfh5NUf96Pyy87A7XIE083udjEBFy4pUc/M=
+

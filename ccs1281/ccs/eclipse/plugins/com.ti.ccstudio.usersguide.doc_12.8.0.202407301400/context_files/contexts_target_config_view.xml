@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.contexts"?>
+
+<!-- Workbench: Actions, Dialogs, Editors, Preference Pages, Property Pages, Views               -->
+<!-- Workbench: Resource Properties, Windows, Wizard Pages, Wizards, Help Menu, Browser Support  -->
+	
+<contexts>
+<!-- [12/4/2019 - Modifying paths to new CCS User Guide Help plugin] -->
+	
+	<context id="targetConfigurationView_help" title="About Target Configuration View">
+		<description>How to set up target configurations</description>
+		<topic href="html/users_guide/ccs_debug-main.html#target-configuration-files" label="CCS - Target Configuration Files" />
+		<topic href="html/users_guide/ccs_debug-main.html#target-configuration-view" label="CCS - Target Configuration View" /> 
+		<topic href="html/users_guide/ccs_debug-main.html#target-configuration-files" label="CCS - Creating a Target Configuration" /> 
+		<topic href="html/users_guide/ccs_debug-main.html#advanced-target-configuration-options" label="CCS - Advanced Target Configuration Options" />
+		<topic href="html/users_guide/ccs_debug-main.html#launch-context" label="CCS - Setting Target Configuration Launch Context" />
+	</context>
+</contexts>

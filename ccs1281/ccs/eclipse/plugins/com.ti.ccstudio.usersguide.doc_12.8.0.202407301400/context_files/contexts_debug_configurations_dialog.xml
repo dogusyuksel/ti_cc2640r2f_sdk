@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.contexts"?>
+
+<contexts>
+<!-- Debug Configurations dialog Context Links -->
+
+	<context id="launch_configuration_view_context">
+	   <description>Help content for Debug Configurations.</description>
+	   <topic href="html/users_guide/ccs_debug-main.html#debug-configurations" label="CCS - Debug Configurations"/>
+	   <topic href="html/ccs_portable-projects.html#portable-target-and-debug-configurations" label="CCS - Making Portable Debug Configurations"/>
+	</context>
+
+
+</contexts>

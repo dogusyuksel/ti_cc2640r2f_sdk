@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- NOTE: the name tag has to match the ICCSUIConstants.CCS_WELCOME string -->
+<resource.explorer version="1.0" name="Welcome" href="welcome.html" showAtTop="true">
+</resource.explorer>

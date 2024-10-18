@@ -1,0 +1,31 @@
+GEL_Disconnect
+--------------
+
+GEL built-in function that can be called on a connected target to
+disconnect it.
+
+**Syntax**
+
+**GEL_Disconnect()**
+
+**Parameters**
+
+None
+
+**Description**
+
+The function disconnects the target and then returns. It throws an
+exception if the target is already disconnected or cannot be
+disconnected.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: Yes
+
+**Related Topics**
+
+`GEL_Connect <GEL_Connect.html>`__
+
+`GEL_IsConnected <GEL_IsConnected.html>`__

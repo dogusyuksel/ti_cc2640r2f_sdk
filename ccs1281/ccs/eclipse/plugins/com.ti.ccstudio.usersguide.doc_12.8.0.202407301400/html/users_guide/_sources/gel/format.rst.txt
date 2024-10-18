@@ -1,0 +1,44 @@
+Format Specifiers
+-----------------
+
+**Format Specifiers**
+
+A format specifier has the following form:
+
+``%type``
+
+Unlike C, the GEL format specification contains only the percent sign and a type character (for example %s). The type character determines whether the associated argument is interpreted as a string, or number:
+
++-----------------------+-----------------------+-----------------------+
+| **Character**         | **Type**              | **Output Format**     |
+|                       |                       |                       |
+| d                     | int                   | Signed decimal        |
+|                       |                       | integer.              |
+| u                     | int                   |                       |
+|                       |                       | Unsigned decimal      |
+| x                     | int                   | integer.              |
+|                       |                       |                       |
+| f                     | double                | Hexadecimal Format.   |
+|                       |                       |                       |
+| e                     | double                | Signed value having   |
+|                       |                       | the form              |
+| s                     | string                | [-]dddd.dddd.         |
+|                       |                       |                       |
+|                       |                       | Signed value having   |
+|                       |                       | the form [-]d.dddd e  |
+|                       |                       | [sign]ddd.            |
+|                       |                       |                       |
+|                       |                       | Characters printed up |
+|                       |                       | to the first null     |
+|                       |                       | character. The string |
+|                       |                       | passed to this format |
+|                       |                       | type must be a        |
+|                       |                       | constant string       |
+|                       |                       | declared on the host. |
++-----------------------+-----------------------+-----------------------+
+
+___
+
+**See also:**
+
+`GEL Functions: Alphabetical List <functions_list.html>`__

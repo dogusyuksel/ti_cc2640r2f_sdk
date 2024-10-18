@@ -1,0 +1,28 @@
+<html><body>
+<h2> Typical message </h2>
+
+<pre>
+ "example.c", line 3: fatal error #5: could not open source file "header.h"
+</pre>
+
+<h2> What it means </h2>
+
+<p>The compiler cannot find the file specified in the #include preprocessing directive.</p>
+
+<h2> Why is it happening </h2>
+
+<p>This error usually occurs for one of two basic reasons: 
+<ul>
+<li> The name of the file is specified incorrectly and doesn't exist. </li>
+<li> The file exists but the compiler can't locate it. </li>
+</ul>
+</p>
+
+<h2> Remedy </h2>
+
+<p>First, make sure the included file is correctly specified and exists.  If the file exists and the compiler cannot locate it, the best solution is to add the location of the file to the compiler's list of include paths; add the directory containing the file to the --include_path dialog in the Include Options category.</p>
+
+<h2> Risks, Severity </h2>
+
+<p>The error halts compilation.  You will not be able to build the program until this problem is fixed.</p>
+</body></html>

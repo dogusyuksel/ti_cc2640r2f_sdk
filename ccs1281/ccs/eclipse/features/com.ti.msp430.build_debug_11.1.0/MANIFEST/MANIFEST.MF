@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: TI MSP430 tool-chain
+Bundle-SymbolicName: com.ti.msp430.build_debug
+Bundle-Version: 11.1.0
+Bundle-Vendor: Texas Instruments

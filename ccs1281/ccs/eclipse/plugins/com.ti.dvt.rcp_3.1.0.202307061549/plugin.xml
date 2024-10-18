@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="com.ti.dvt.rcp.application"
+            description="%productBlurb"
+            name="%productName">
+         <property
+               name="aboutImage"
+               value="product_lg.gif">
+         </property>
+         <property
+               name="aboutText"
+               value="%productBlurb">
+         </property>
+         <property
+               name="preferenceCustomization"
+               value="plugin_customization.ini"/>
+         <property
+               name="windowImages"
+               value="icons/dvt.gif,icons/dvt32.gif">
+         </property>
+      </product>
+   </extension>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="com.ti.dvt.rcp.internal.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="com.ti.dvt.rcp.internal.Perspective"
+            fixed="false"
+            icon="icons/perspective.gif"
+            id="com.ti.dvt.perspective"
+            name="%perspectiveName">
+      </perspective>
+   </extension>
+
+</plugin>

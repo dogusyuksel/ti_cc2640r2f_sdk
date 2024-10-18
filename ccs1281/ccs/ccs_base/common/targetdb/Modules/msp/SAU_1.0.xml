@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module id="SAU" HW_revision="1.0">
+    <register id="SAU_CTRL" width="32" offset="0xE000EDD0" description="Allows enabling of the Security Attribution Unit">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="2" width="30" rwaccess="R">
+        </bitfield>
+        <bitfield id="ALLNS" description="When SAU_CTRL.ENABLE is 0 this bit controls if the memory is marked as Non-secure or Secure" begin="1" end="1" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="ENABLE" description="Enables the SAU" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="SAU_TYPE" width="32" offset="0xE000EDD4" description="Indicates the number of regions implemented by the Security Attribution Unit">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="SREGION" description="The number of implemented SAU regions" begin="7" end="0" width="8" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="SAU_RNR" width="32" offset="0xE000EDD8" description="Selects the region currently accessed by SAU_RBAR and SAU_RLAR">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="REGION" description="Indicates the SAU region accessed by SAU_RBAR and SAU_RLAR" begin="7" end="0" width="8" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="SAU_RBAR" width="32" offset="0xE000EDDC" description="Provides indirect read and write access to the base address of the currently selected SAU region">
+        <bitfield id="BADDR" description="Holds bits [31:5] of the base address for the selected SAU region" begin="31" end="5" width="27" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="RES0" description="Reserved, RES0" begin="4" end="0" width="5" rwaccess="R">
+        </bitfield>
+    </register>
+    <register id="SAU_RLAR" width="32" offset="0xE000EDE0" description="Provides indirect read and write access to the limit address of the currently selected SAU region">
+        <bitfield id="LADDR" description="Holds bits [31:5] of the limit address for the selected SAU region" begin="31" end="5" width="27" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="RES0" description="Reserved, RES0" begin="4" end="2" width="3" rwaccess="R">
+        </bitfield>
+        <bitfield id="NSC" description="Controls whether Non-secure state is permitted to execute an SG instruction from this region" begin="1" end="1" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="ENABLE" description="SAU region enable" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="SAU_SFSR" width="32" offset="0xE000EDE4" description="Provides information about any security related faults">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="8" width="24" rwaccess="R">
+        </bitfield>
+        <bitfield id="LSERR" description="Sticky flag indicating that an error occurred during lazy state activation or deactivation" begin="7" end="7" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="SFARVALID" description="This bit is set when the SFAR register contains a valid value. As with similar fields, such as BFSR.BFARVALID and MMFSR.MMARVALID, this bit can be cleared by other exceptions, such as BusFault" begin="6" end="6" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="LSPERR" description="Stick flag indicating that an SAU or IDAU violation occurred during the lazy preservation of floating-point state" begin="5" end="5" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="INVTRAN" description="Sticky flag indicating that an exception was raised due to a branch that was not flagged as being domain crossing causing a transition from Secure to Non-secure memory" begin="4" end="4" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="AUVIOL" description="Sticky flag indicating that an attempt was made to access parts of the address space that are marked as Secure with NS-Req for the transaction set to Non-secure. This bit is not set if the violation occurred during lazy state preservation. See LSPERR" begin="3" end="3" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="INVER" description="This can be caused by EXC_RETURN.DCRS being set to 0 when returning from an exception in the Non-secure state, or by EXC_RETURN.ES being set to 1 when returning from an exception in the Non-secure state" begin="2" end="2" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="INVIS" description="This bit is set if the integrity signature in an exception stack frame is found to be invalid during the unstacking operation" begin="1" end="1" width="1" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="INVEP" description="This bit is set if a function call from the Non-secure state or exception targets a non-SG instruction in the Secure state. This bit is also set if the target address is a SG instruction, but there is no matching SAU/IDAU region with the NSC flag set" begin="0" end="0" width="1" rwaccess="R/W">
+        </bitfield>
+    </register>
+    <register id="SAU_SFAR" width="32" offset="0xE000EDE8" description="Shows the address of the memory location that caused a Security violation">
+    </register>
+</module>

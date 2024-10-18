@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.emulation.pack.linux"
+      label="TI Emulators"
+      version="20.0.0.3178"
+      provider-name="Texas Instruments"
+      os="linux">
+
+   <copyright>
+      Copyright Texas Instruments 2021
+   </copyright>
+
+   <license>
+      See Code Composer Studio license for specific terms and conditions.
+   </license>
+
+   
+</feature>

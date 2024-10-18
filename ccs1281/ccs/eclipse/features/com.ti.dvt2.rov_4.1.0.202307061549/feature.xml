@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.dvt2.rov"
+      label="%featureName"
+      version="4.1.0.202307061549"
+      provider-name="%providerName"
+      >
+
+   <description url="https://sps02.itg.ti.com/sites/ccstudio_ide/SoCrates/Trace/default.aspx">
+      %description
+   </description>
+
+   <license>
+      Provided under the terms of the original DVT or Code Composer Studio License Agreement.
+   </license>
+
+   <includes
+         id="com.ti.dvt2.scripting.ui"
+         version="4.1.0.202307061549"
+         optional="true"/>
+
+   <includes
+         id="com.ti.ccstudio.rtsc"
+         version="9.0.0.201810041800"
+         optional="true"/>
+
+   <requires>
+      <import feature="com.ti.dvt2.scripting.ui" version="4.1.0.202307061549" match="greaterOrEqual"/>
+      <import feature="com.ti.ccstudio.rtsc" version="5.0.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="com.ti.dvt.gridview"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.dvt.rovsupport"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.dvt.rovsupport.doc"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.dvt.scripting.ui.rov"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+</feature>

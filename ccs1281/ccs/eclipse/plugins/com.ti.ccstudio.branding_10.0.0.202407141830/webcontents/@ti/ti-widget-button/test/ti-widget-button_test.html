@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <title>ti-widget-button test</title>
+
+    <script src="../../../test/environment.js"></script>
+    <script type="module" src="../../../@polymer/iron-icons/iron-icons.js"></script>
+    <script type="module" src="../ti-widget-button"></script>
+</head>
+
+<body>
+
+    <test-fixture id="BasicTestFixture">
+        <template>
+            <ti-widget-button raised></ti-widget-button>
+        </template>
+    </test-fixture>
+
+    <test-fixture id="ChangedPropertyTestFixture">
+        <template>
+            <ti-widget-button raised icon="icons:home" label="My Button"></ti-widget-button>
+        </template>
+    </test-fixture>
+
+    <script type="module">
+        import { TIWidgetBaseTest } from '../../ti-widget-base/test/ti-widget-base_test';
+        window.runTest = () => {
+            // Base class tests
+            TIWidgetBaseTest('BasicTestFixture');
+
+            // Widget tests
+            suite('ti-widget-button', () => {
+                test('enablement works', () => {
+                    const element = fixture('BasicTestFixture');
+                    let clickCount = 0;
+                    element.addEventListener('click', (e) => {
+                        clickCount++;
+                    });
+                    element.click();
+                    assert.equal(clickCount, 1);
+                    element.disabled = true;
+                    element.click();
+                    assert.equal(clickCount, 1);
+                });
+
+                test('instantiating the element with default properties works', () => {
+                    const element = fixture('BasicTestFixture');
+
+                    return wait().then(() => {
+                        assert.equal(element.label, 'Button');
+                        assert.equal(element.icon, '');
+                    });
+                });
+
+                test('setting buttonType works', () => {
+                    const element = fixture('BasicTestFixture');
+
+                    function getBGColor() {
+                        return rgb2hex(element.shadowRoot.querySelector('paper-button').getComputedStyleValue('background-color'));;
+                    }
+
+                    return executeAndWait([
+                        () => {
+                            element.buttonType = 'default';
+                            let theme = document.querySelector('ti-widget-theme').theme;
+                            switch (theme) {
+                                case 'ti-theme':
+                                    assert.equal(getBGColor(), '#cc0000');
+                                    break;
+
+                                case 'lightgray-theme':
+                                    assert.equal(getBGColor(), '#cccccc');
+                                    break;
+
+                                case 'navy-theme':
+                                    assert.equal(getBGColor(), '#20405a');
+                                    break;
+
+                                case 'black-theme':
+                                    assert.equal(getBGColor(), '#333333');
+                                    break;
+
+                                case 'sky':
+                                    assert.equal(getBGColor(), '#3ea1e6');
+                                    break;
+
+                                case 'teal-theme':
+                                    assert.equal(getBGColor(), '#115566');
+                                    break;
+
+                                default:
+                                    assert.fail('No test for theme name: ' + theme);
+                            }
+                        },
+                        () => {
+                            element.buttonType = 'primary';
+                            assert.equal(getBGColor(), '#63666a');
+                        },
+                        () => {
+                            element.buttonType = 'secondary';
+                            assert.equal(getBGColor(), '#63666a');
+                        },
+                        () => {
+                            element.buttonType = 'success';
+                            assert.equal(getBGColor(), '#7cb342');
+                        },
+                        () => {
+                            element.buttonType = 'info';
+                            assert.equal(getBGColor(), '#fdd835');
+                        },
+                        () => {
+                            element.buttonType = 'warning';
+                            assert.equal(getBGColor(), '#f9a825');
+                        },
+                        () => {
+                            element.buttonType = 'error';
+                            assert.equal(getBGColor(), '#e53935');
+                        },
+                        () => {
+                            element.buttonType = 'link';
+                            assert.equal(getBGColor(), '#63666a');  // link color
+                            let decoration = window.getComputedStyle(element.shadowRoot.querySelector('paper-button .label')).getPropertyValue('text-decoration');
+                            assert.isTrue(decoration.indexOf('underline') != -1);
+
+                        }
+                    ]);
+                });
+
+                test('setting a property on the element works', () => {
+                    const element = fixture('ChangedPropertyTestFixture');
+
+                    return wait().then(() => {
+                        assert.equal(element.label, 'My Button');
+                        assert.equal(element.icon, 'icons:home');
+                        assert.exists(element.shadowRoot.querySelector('paper-button').querySelector('iron-icon'));
+                    });
+                });
+
+                test('clicked event callback works', () => {
+                    const element = fixture('ChangedPropertyTestFixture');
+
+                    let clicked = false;
+                    element.addEventListener('click', () => {
+                        clicked = true;
+                    });
+
+                    return executeAndWait(element.click.bind(element)).then(() => {
+                        assert.isTrue(clicked);
+                    });
+                });
+
+                test('outlined property works', () => {
+                    const element = fixture('BasicTestFixture');
+
+                    element.outlined = true;
+                    assert.equal(element.getAttribute('outlined'), '');
+
+                    let paperButton = element.shadowRoot.querySelector('paper-button');
+                    // Firefox getComputedStyleValue forces us to specify exact styles
+                    let blw = paperButton.getComputedStyleValue('border-left-width');
+                    let brw = paperButton.getComputedStyleValue('border-right-width');
+                    let btw = paperButton.getComputedStyleValue('border-top-width');
+                    let bbw = paperButton.getComputedStyleValue('border-bottom-width');
+                    assert.isTrue(blw.startsWith('3px') && brw.startsWith('3px')
+                        && btw.startsWith('3px') && bbw.startsWith('3px'));
+                });
+
+                test('raised property works', () => {
+                    const element = fixture('BasicTestFixture');
+
+                    element.buttonType = 'primary';
+                    element.raised = true;
+                    assert.equal(element.getAttribute('raised'), '');
+
+                    let paperButton = element.shadowRoot.querySelector('paper-button');
+                    let backgroundStyle = paperButton.getComputedStyleValue('background-color');
+                    assert.isTrue(backgroundStyle.startsWith('rgb(99, 102, 106)'));
+                });
+
+                test('label property works', () => {
+                    const element = fixture('BasicTestFixture');
+
+                    return executeAndWait(() => {
+                        element.label = "Test Label";
+                        let textElement = element.shadowRoot.querySelector('.text-element-style');
+                        assert.equal(textElement.textContent.trim(), "Test Label");
+                    });
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+GEL Namespace
+-------------
+
+When GEL parses a symbol name in an expression, GEL determines if the
+symbol is a local variable defined in the loaded symbol files first. If
+not, GEL checks if it is a global variable. Then, GEL matches the name
+against target register names. Finally, GEL looks up if any GEL variable
+with the same name is defined.
+
+If you have a GEL variable named the same a variable in your code, only
+the variable in your code will ever be displayed. There is no way to
+change this lookup order.
+
+GEL namespace is introduced to allow you to specify from where GEL
+should resolve a symbol.
+
+**Syntax**
+
+A GEL namespace is like a regular C++ namespace except the namespace
+name is a single-quoted string.
+
+A GEL namespace is either GEL_namespace or REG_namespace or
+SYM_namespace.
+
+A GEL_namespace indicates that GEL should look up the symbol in the list
+of GEL global variable. It is represented by either 'GEL' or 'Gel' or
+'gel'. They have the same meaning and are defined for your convenience.
+
+A REG_namespace indicates that GEL should look up the symbol in the list
+of target register names. It is represented by either 'REG' or 'Reg' or
+'reg'. They have the same meaning and are defined for your convenience.
+
+The syntax for a SYM_namespace is ' < SYM > [ :: [ < symbol file name >
+] [ :: < source file name >] ] ' where is either 'SYM' or 'Sym' or
+'sym'.
+
+Here are some examples:
+
+============================== =============================================================================================================
+Expression                     Meaning
+============================== =============================================================================================================
+v                              look for v in the usual order
+'GEL'::v                       look for a GEL variable v
+'Gel'::v                       same as above
+'gel'::v                       same as above
+gel::v                         without single quotes, gel is interpreted as a C++ class name or namespace
+'REG'::v                       look for the register v
+'Reg'::v                       same as above
+'reg'::v                       same as above
+'SYM'::v                       look for a symbol v from the loaded symbol files
+'Sym'::v                       same as above
+'sym'::v                       same as above
+'a.c'::v                       look for a file static variable v defined in source file a.c from all loaded symbol files
+'sym::::a.c'::v                same as above
+'sym::a.out'::v                look for a variable v defined in a symbol file matching name a.out
+'sym::a.out::a.c'::v           look for a file static variable v defined in source file a.c from a symbol file matching name a.out
+'sym::arch/a.out::arch/a.c'::v look for a file static variable v defined in source file arch/a.c from a symbol file matching name arch/a.out
+============================== =============================================================================================================

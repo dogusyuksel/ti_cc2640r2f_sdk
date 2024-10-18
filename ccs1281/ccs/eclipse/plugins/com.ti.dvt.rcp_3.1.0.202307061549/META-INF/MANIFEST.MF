@@ -1,0 +1,57 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.ti.dvt.rcp; singleton:=true
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,com.ti.dvt.ui,
+ org.eclipse.ui.ide
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: Texas Instruments
+Eclipse-LazyStart: true
+Bundle-Name: DvtRcp Plug-in
+Bundle-Version: 3.1.0.202307061549
+Bundle-Localization: plugin
+Bundle-ClassPath: dvt.jar
+Bundle-Activator: com.ti.dvt.rcp.DvtRcpPlugin
+
+Name: plugin_customization.ini
+SHA-256-Digest: Z5jl0mQrzIS5ve9XNkSxHByihyq4BqMVnaiyeEWrGyk=
+
+Name: plugin.xml
+SHA-256-Digest: EqL+tKeodrJy4XgbImgI3bAvJ3zY+piod2Me/HvPAPU=
+
+Name: icons/dvt.gif
+SHA-256-Digest: Nm+N75JDmNsF0Ro89C18LCoziLecZ7cokvji2sNOTa0=
+
+Name: icons/dvt32.ico
+SHA-256-Digest: lTP0rTj+x9mo4FS4friFdhkuyuEch+wtdcY7LxI8qHE=
+
+Name: icons/linkto_help.gif
+SHA-256-Digest: K8TNWtrr8CbiAyz1PLTnN1fVgXWoSCZmXiKFU418/Jg=
+
+Name: splash.bmp
+SHA-256-Digest: rIbf8HyodBfNNSUQ0jQXX4VRWbDn0pptp5knukDSh1g=
+
+Name: icons/perspective.gif
+SHA-256-Digest: H9oquPUINycLv7tZEiR3SM4k91T3pL5XhcH97+5Je3I=
+
+Name: product_lg.gif
+SHA-256-Digest: hm9KlAB7ctZYRx+BRxAJ/G+JU7vGIT3H4/iFvt/b+QM=
+
+Name: dvt.jar
+SHA-256-Digest: 4pSdDfI9L0ACX+IJz5NFRbzF+95GLBr600IuKq/tvdU=
+
+Name: plugin_customization.properties
+SHA-256-Digest: cDVhGo8OBl18I59i2OBe4PH9AjEe21f0CyXhKDTYyVs=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: G2hFTVPngfh5NUf96Pyy87A7XIE083udjEBFy4pUc/M=
+
+Name: icons/dvt32.gif
+SHA-256-Digest: ZsbvV9AKD70O3m3grWOZ432abC3ItFiG9g04YCtN2Qk=
+
+Name: plugin.properties
+SHA-256-Digest: 5kKVx2g/paUX2kwJAdtfrh6BB/hEN5RnB6oMpfDepaM=
+
+Name: icons/perspective32.gif
+SHA-256-Digest: vc3zo86vv+kYnztWfPiwBsBPGFDaRWkwwnoCRk37ABQ=
+

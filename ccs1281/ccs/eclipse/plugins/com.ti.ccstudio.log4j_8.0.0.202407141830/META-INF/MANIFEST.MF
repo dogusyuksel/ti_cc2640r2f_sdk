@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Log4j
+Bundle-SymbolicName: com.ti.ccstudio.log4j
+Bundle-Version: 8.0.0.202407141830
+Fragment-Host: org.apache.log4j;bundle-version="1.2.15"
+Eclipse-BundleShape: dir
+Bundle-Vendor: Texas Instruments
+
+

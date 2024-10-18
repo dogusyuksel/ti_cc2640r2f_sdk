@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="Describes how to find compiler options in CCS"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Generation Tools">
+<meta name="product-link" content="https://www.ti.com/tool/TI-CGT">
+
+<!-- Change the title text for your page -->
+<title>Finding Compiler Options in CCS</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+# Introduction
+
+You build your project with Code Composer Studio (CCS). You are aware some
+particular compiler option solves your problem.  But you cannot turn it on
+because you cannot find it!  This article shows you how to find that option.
+
+This article applies to TI compilers, and not to any GCC compilers.
+
+# Overview
+
+Two methods are shown.  The first one is easier to use, but sometimes doesn't
+work.  The second one is a little more difficult to use, but always works.
+
+The first method is to search the compiler manual for the option, then see the
+name of the table which contains the option.  This table name is a close match
+to one of the names used to organize the compiler options in the CCS build
+dialog.  This method assumes CCS, the compiler, and the compiler manual are
+all in close agreement.  This is often the case, but not always.  When that
+happens, the second method becomes necessary.
+
+The second method is to manually collect all the possible compiler options into
+a text file.  Search the text file for the option.  The sub-heading which
+contains the option is a close match to one of the names used to organize the
+compiler options in the CCS build dialog.
+
+## Version Information
+
+All of the screen shots use CCSv9.3 and TI ARM compiler version 18.12.4.LTS.
+If you use different versions or a different CPU family, the screens you see
+will be similar, but not an exact match.
+
+## Running Example: --src_interlist
+
+One example option is used throughout the article: <tt>--src_interlist</tt>.
+This compiler option has two effects.
+
+1. The generated assembly file is not deleted. This file has the same name as
+   the source file, with the file extension changed to <tt>.asm</tt>.  It is
+   usually located in the directory with the same name as the current build
+   configuration, often Debug.
+2. Comments are added which make the assembly code easier to understand.
+
+# Method 1: Compiler Manual
+
+TI compiler manuals are available in two places: online and inside the Help
+feature of CCS.  The details of how you search each one are a bit different.
+
+## Online PDF Manuals
+
+All TI compiler manuals are available 
+[online](http://www.ti.com/tool/TI-CGT#technicaldocuments).  Be sure to use
+the PDF manuals, and not the HTML ones.  Unfortunately, the HTML manuals
+cannot be searched.  Search for <tt>--src_interlist</tt> in the TI ARM
+compiler manual until it appears in a table.
+
+![](./images/sdto_cgt_option_in_table.png)
+
+Note the name of the table is **Assembler Options**.  This is the category
+name to look for in the CCS build dialog.
+
+## Find the Category in the Build Dialog
+
+In CCS, right click on the name of the project and select **Show Build
+Settings**.  In the pane on the left, expand **Build**, and then **ARM
+Compiler**.  
+
+![](./images/sdto_cgt_build_dialog_one.png)
+
+The category name **Assembler Options** does not appear.  But not all of the
+category names are shown.  Expand the entry **Advanced Options**.
+
+![](./images/sdto_cgt_build_dialog_two.png)
+
+Found it!  But <tt>--src_interlist</tt> is still missing.  Note the drop down
+box named **Source Interlist**.  Try that.
+
+![](./images/sdto_cgt_build_dialog_three.png)
+
+It is not unusual for a compiler option to be inside a drop down box.
+
+## Manuals inside CCS
+
+In CCS, select **Help &rarr; Help Contents**.  In the pane on the left, expand
+the selection **ARM Compiler Version** *number.number* **User's Guides**.  If
+you use a different CPU family, change **ARM** to the name of that CPU family.
+Expand the selection for the **Compiler User's Guide**.  Select **Using the
+C/C++ Compiler**.  Then use Ctrl+F to search for the compiler option, until it
+appears in a table.  The name of that table is a close match to one of the
+names used to organize the compiler options in the CCS build dialog.
+
+The next screen shot shows finding the <tt>--src_interlist</tt> option in the
+ARM compiler manual.  Note the name of the table is **Assembler Options**.
+Look for it the CCS build dialog using the same steps as shown above in the
+sub-chapter titled **Find the Category in the Build Dialog**.
+
+![](./images/sdto_cgt_using_manual_inside_ccs.png)
+
+# Method 2: Manually Collect Compiler Options
+
+This method requires executing the compiler from the command line.  The
+details vary between systems.  The description here is for Windows.  It is
+similar for Linux and Mac systems.
+
+If CCSv9.3 is installed in the default location, and the compiler is ARM
+version 18.12.4.LTS, then the executables are located in ...
+
+```
+C:\ti\ccs930\ccs\tools\compiler\ti-cgt-arm_18.12.4.LTS\bin
+```
+
+Make adjustments to this location based on the version of CCS, where it is
+installed, and exactly which compiler is being used.  The rest of these
+directions presume the environment is configured to automatically find the
+compiler at that directory path.
+
+Execute the compiler from the command line with no options, and it dumps
+a help summary ...
+
+
+```
+C:\work>armcl
+TI ARM C/C++ Compiler                   v18.12.4.LTS
+Copyright (c) 1996-2018 Texas Instruments Incorporated
+
+...
+
+Processor Options:
+  -mv,--silicon_version=4,5e,6,6M0,7A8,7M3,7M4,7R4,7R5
+                               Target processor version (when not specified,
+                                compiler defaults to --silicon_version=4)
+  --code_state=16,32           Designate code state, 16-bit (thumb) or 32-bit
+  --float_support=VFPv2,VFPv3,VFPv3D16,vfplib,fpalib,FPv4SPD16,none
+                               Specify floating point support
+```
+
+Capture all the compiler options in a text file with a command similar to ...
+
+```
+C:\work>armcl > options.txt
+```
+
+Edit that text file and search for the compiler option of interest.  Note
+the sub-heading which contains that option.  The name of that sub-heading is a
+close match to one of the names used to organize the compiler options in the
+CCS build dialog.
+
+The next screen shot shows finding the <tt>--src_interlist</tt> option for the
+ARM compiler.  Note the name of the sub-heading is **Assembler Options**.
+Look for it the CCS build dialog using the same steps as shown above in the
+sub-chapter titled **Find the Category in the Build Dialog**.
+
+![](./images/sdto_cgt_command_line_options.png)
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

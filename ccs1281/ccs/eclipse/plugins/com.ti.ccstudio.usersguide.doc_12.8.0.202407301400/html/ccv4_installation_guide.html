@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="This page contains details about installing Code Composer 4.1x"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Composer Studio Product Page">
+<meta name="product-link" content="https://www.ti.com/tool/CCStudio">
+
+<!-- Change the title text for your page -->
+<title>Code Composer 4.1x Installation Guide</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+<!-- Add your markdown source here! -->
+## Overview
+
+[[y NOTE
+This article is for Code Composer (CC) v4.1x. Note that "Code Composer" (CC) is an IDE that predates the entire "Code Composer Studio" (CCS) line.
+]]
+
+Code Composer (CC) 4.1x was released sometime in the latter half of the 1990s. It is an extremely old tool that has not been supported for a long time. However, there may be circumstances where a customer will have no choice but to continue usage of CC 4.1x - such as supporting legacy products. It can be a challenge to resolve all the dependencies required to install/run CC 4.1x. This document will list these dependencies.
+
+## Requirements
+
+[[y Administrator account required!
+CC 4.1x *must be installed and run with an administrator account*. Without this, you will *not* be able to effectively install and run CC 4.1x. 
+]]
+
+PC requirements:
+- OS: Windows XP-32 or earlier. A VM should be sufficient if only working with a project and using the simulator for debug. A native Windows PC will be required for any debug with an actual hardware target.
+- If a parallel port debug probe (ex: XDS510PP) will be used, an *true full parallel port* at the default address with all of the extended parallel port capabilities on the PC is required. A USB parallel port adapter will **not** work. 
+- If the XDS510 ISA debug probe will be used, an available 16-bit [ISA](https://en.wikipedia.org/wiki/Industry_Standard_Architecture) slot is required.
+
+Software Requirements:
+- CC 4.1x requires a full paid license. 
+- CC 4.1x installer 
+- (optional) Spectrum Digital drivers
+
+Please post a question on the [E2E forums](https://e2e.ti.com/) for instructions on how to obtain all of the above. 
+
+Hardware Requirements:
+- Target board with debug access
+- Compatible [JTAG or MPSD](https://www.ti.com/lit/ug/spdu079a/spdu079a.pdf) debug probe. The type of probe supported will vary depending on the device
+    - C30-C32: XDS510PP (MPSD), SPI530 (MPSD), XDS510 ISA (MPSD)
+    - VC33: XDS510PP (JTAG), XDS510 USB (JTAG), XDS510 ISA (JTAG)
+    - C4x: XDS510PP (JTAG), XDS510 USB (JTAG), XDS510 ISA (JTAG)
+    - C20x/C50x: XDS510PP (JTAG), XDS510 ISA (JTAG)
+
+[[y Debug probes
+Majority of the debug probes supported by Code Composer are obsolete. If you do not have an existing debug probe to use, it may be a challenge to obtain one as there are very few (if any) legitimate vendors that still sell them. The secondary market is an option, however explore at your own risk.
+]]
+
+## Installation
+
+After downloading and extracting the CC 4.1x image, look for the <tt>setup.exe</tt> file in the extracted folder. Run the executable to launch the CC 4.1x installer. The install wizard should appear as below:
+
+![](./images/ccv4_install_splash.png)
+
+[[b Spectrum Digital Drivers
+Depending on the CC 4.1x installer, the Spectrum Digital drivers may be bundled with the installer. If so, then there will be an option to install **Spectrum Digital Drivers** as shown in the image above
+]]
+
+Select the option to install **Code Composer** or **Code Composer Studio** (the latter actually being a typo since "Studio" should not be there).
+
+Follow the steps in the install wizard to complete the installation.
+
+If hardware debug support with Spectrum Digital debug probes is needed and the Spectrum Digital drivers come bundled with the Code Composer installer, rerun the installer and select **Spectrum Digital Driver** to install it.
+
+If the drivers do not come bundled with the Code Composer installer, then run the standalone Spectrum Digital driver installer available for your Code Composer installer.
+
+The installation should now be complete.
+
+## Documentation
+
+The same initial install screen will have an option **Documentation**, which will have links to various related documentation. This will include various user's guides and sometimes a getting started guide will also be available.
+
+## Running CC 4.1x
+
+Please refer to the Code Composer User's Guide for your device for further instructions. There are also further documentation and tutorials under the "Help" menu of the main Code Composer IDE.
+
+## Support
+
+Any further questions can be asked on the [E2E forums](https://e2e.ti.com/). However, Code Composer 4.1x is very old and completely unsupported. It is available "as-is". The number of people still familiar with it is very limited. Also, Spectrum Digital was the main debug probe used with Code Composer and they are no longer in business. Hence any available support that can be provided will be very limited (if any).
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

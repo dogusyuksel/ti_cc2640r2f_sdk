@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="Using Code Composer Studio (CCS) with Virtual Machines: VMware, VirtualBox and Parallels"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="Code Composer Studio">
+<meta name="product-link" content="https://www.ti.com/tool/CCSTUDIO">
+
+<!-- Change the title text for your page -->
+<title>CCS with Virtual Machines</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+# Introduction
+Code Composer Studio can be run on Virtual Machines such as [VMware](http://www.vmware.com), [VirtualBox](https://www.virtualbox.org/) or [Parallels](https://www.parallels.com/). There are no limitations when using CCS for a simulator configuration (up to CCSv5.5) on virtual machines images; however, there are some limitations that need to be taken into consideration if a JTAG Debug Probe will be used. These limitations are covered in the below sections.
+
+[[r Notes:
+
+   Virtual Machines are not an officially supported configuration.
+   
+   Currently, there is NOT a viable method for using Trace from a VMWare image. The Blackhawk remote emulation server does not transport the Trace Streams necessary for collecting Trace data.
+
+]]
+
+#Windows as a guest OS 
+Over the years most of the tests were made using VMware, thus it features a more detailed version history. 
+
+## Workstation 12.x and newer
+Equivalent functionality was observed in this version with regards to USB support, and this version was checked to work fine with the following debug probe classes: XDS100v2, XDS110, XDS200, XDS560v2 (including all onboard/mezzanine variants) as well as Segger Jlink. The environment tested was Windows 7 as guest and Windows 10 as host Operating systems.
+
+## Workstation 10.x
+Equivalent functionality was observed in this version with regards to USB support, and this version was checked to work fine with the following debug probe classes: XDS100v2, XDS110, XDS200, XDS560v2 (including all onboard/mezzanine variants). The environment tested was Windows 7 as guest and Windows 7 and 10 as host Operating systems.
+
+## Workstation 8.x / Player 4.x
+Continuing with the improvements on USB support, these versions were checked to work fine with the following debug probe classes: XDS100v2, XDS200 and XDS560v2.
+The environment tested was Windows XP as guest and Windows 7 as host Operating system. In the case of XDS200 and XDS560v2, both standalone and the onboard (also called Mezzanine) debug probes were found to work.
+
+## Workstation 6.x / Player 2.x
+
+VMware has greatly improved their USB support in their latest versions of Workstation and Player. Previous limitations that existed with Workstation 5.x / Player 1.x have been resolved. Among the key improvements is USB 2.0 support, which means USB 2.0 debug probes can run at full speed. Also general improvements to their USB support have allowed some debug probes which did not work with VMware images to now work (such as SD XDS510USB).
+
+NOTE: For full USB 2.0 support, the VMware image must be a Workstation 6.x version. Older Workstation 5.x images can be updated to 6.x using the 'VM &rarr; Upgrade or Change Version...' option in Workstation 6.x. VMware Player 2.x can play Workstation 6.x images. Be aware that upgrading the image to Workstation 6.x will make it no longer playable by Workstation 5.x / Player 1.x.
+
+The following debug probe combinations have (so far) been validated with VMware images (Workstation 6.x / Player 2.x):
+
+- Spectrum Digital XDS510USB
+- BlackHawk 560M USB debug probe
+- Signum JTAGJet
+
+## Workstation 5.x / Player 1.x
+
+[BlackHawk](http://www.blackhawk-dsp.com) 560 USB debug probes have been known to successful work w/ VMWare images. The VMware image must have the USB auto connect feature enabled. The VMWare image will auto detect any USB devices connected to the host PC. This feature is typically disabled (default) when VMWare images are created. VMWare workstation users must enable this feature in the virtual machine settings on the USB Controller when creating the image.
+
+There are various issues with VMWare and other USB devices ([Knowledge base entry](http://kb.vmware.com/KanisaPlatform/Publishing/612/774_f.SAL_Public.html)). In a nutshell, some USB based debug probes (i.e. SD XDS510USB) do not work reliably with a VMware image.
+
+The following debug probe combinations have (so far) been validated with VMware images (using Workstation 5.x / Player 1.x):
+
+- [Spectrum Digital](http://www.spectrumdigital.com) Parallel Port based debug probes (SD XDS510PP/PLUS, SD SPI515, etc...)
+- TI XDS560 PCI w/BH Remote Emulation Technology
+- BlackHawk 560M USB debug probe
+- Ethernet based debug probes (BlackHawk LAN560, etc...)
+
+The following debug probe combinations have NOT worked with VMware images (using Workstation 5.x / Player 1.x):
+
+- SD XDS510USB
+- TI XDS560 PCI (on its own)
+
+## Virtualbox
+If using Virtualbox and the USB Debug Probes are not being properly acknowledged by the guest Windows OS, check the reference below for details on how to workaround this.
+ 
+https://stackoverflow.com/questions/20021300/how-to-recognize-usb-devices-in-virtualbox-running-on-a-linux-host
+
+# Linux and Mac OSX as a guest OS
+When using Linux in a Virtual Machine, most of the details and supported debug probes above are applicable to this scenario. However, XDS100-class debug probes perform very slowly in this configuration, thus preventing any practical usage. XDS200 and XDS560v2 work fine when using Windows 7 as host operating system.
+
+Also, Spectrum Digital debug probes are known to have problems in being properly initialized in Linux under VmWare, therefore avoid using them in such environments. The operation under Linux running natively does not have these issues.
+
+Some people reported that XDS200 on Parallels (MacOS virtual machine) does not work when using Windows 7 as guest OS, but no tests were done.
+
+#Debug Probes
+
+## PCI Based Debug Probes
+
+The PCI bus doesn't support multiple operating systems sharing it on the same host. What this means is that there is no way to see a PCI card installed in the host on the virtual machine. Thus PCI based debug probes (i.e. TI XDS560 PCI) cannot be used directly by the VMware image. However there is a workaround for people who wish to use a TI XDS560 debug probe - use the [Blackhawk Remote Emulation Technology](http://www.blackhawk-dsp.com/products/RemoteSE.aspx) and have the the host PC as the server and the VMware image as the client.
+
+## XDS100 Debug Probes
+
+Despite some configurations work fine with XDS100 on a virtual machine, the performance degradation is significant and should be expected, especially with more intricate ISAs such as C66x and ARM cores.  
+
+## XDS110 Debug Probes
+
+They generally work well, however it was observed that complex devices can suffer many problems from the severe lag imposed by the virtual machine software layers. 
+
+## Blackhawk tested scenarios
+This is legacy information and reproduced here for reference only. 
+
+**Base System Configurations:**
+- Red Hat Enterprise Linux Desktop v4 update5 and v5
+- VMware Workstation v6.5.1 (includes Player v2.5)
+
+
+- **Guest OS:** Windows XP Pro with SP2
+- **CCS version:** CCStudio: v3.3 with SR11 applied
+- **Driver version:** Blackhawk v3.3.200.3 Drivers
+- **Debug Probe Models Tested:** BH-USB-560bp, BH-USB-560m, BH-LAN-560, BH-USB-510, BH-USB-510L, BH-USB-2000
+- **Platforms Not Recommended for Virtual Emulation:** VirtualBox 4.1, Windows 7 XPMode SP1
+
+
+
+<hr>
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

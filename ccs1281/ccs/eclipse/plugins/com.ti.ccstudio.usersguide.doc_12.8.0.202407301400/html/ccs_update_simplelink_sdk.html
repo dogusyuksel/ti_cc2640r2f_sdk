@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="This document describes how to update the version of the SimpleLink SDK that a Code Composer Studio project is using."> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="Code Composer Studio">
+<meta name="product-link" content="https://www.ti.com/tool/CCSTUDIO">
+
+<!-- Change the title text for your page -->
+<title>Changing the SimpleLink SDK version used by a Project</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+This document describes how to update the version of the SimpleLink SDK that a Code Composer Studio project is using.  
+
+### Separate Kernel Project ###
+
+By default SimpleLink SDK projects are dependent on a separate "kernel" project.  This section describes how to change the SDK version when a kernel project is present.
+
+<iframe width="854" height="480" src="https://www.youtube.com/embed/o2yZyyN4UCw" frameborder="0" allowfullscreen></iframe>
+
+When working with the SimpleLink SDK there are multiple projects present.  One project contains the application and another project contains the kernel.  It is the kernel project that we need to modify to change the SDK version used.  In the image below the "tirtos_builds_MSP_EXP432P401R_release_ccs" project is the kernel project.
+![](./images/simplelink_sdk_projects.png)
+
+Select the kernel project in the Project Explorer view.  Open the context menu and select properties.  Right-click to open the context menu on Windows or Linux, on Mac use Control-click.  This will open the properties dialog for the project.  Select **General** in the tree on the left and then select the **RTSC** tab on the right as shown in the image below.
+![](./images/kernel_project_properties.png)
+
+The **RTSC** tab displays all of the products and versions that Code Composer Studio is aware of.  If you have installed a new version of the SDK via **Resource Explorer**, or by downloading and installing it manually, it will show up in this list.  You can expand a product and select the specific version that you want to use.
+![](./images/simplelink_sdk_selecting_version.png)
+
+Sometimes when upgrading the SDK it will be necessary to also change the version of the XDCTools that are used as part of the build process.  The release notes for the new version of the SDK will indicate if this is necessary.  The change can be performed here.
+![](./images/change_xdctools_version.png)
+
+Click **OK** to save the changes.  Now perform a **Rebuild** of kernel project and it will be using the new version of the SDK.  Note that when the kernel project is rebuilt that this will take a couple of minutes.
+
+### Single Project Scenario ###
+
+These steps apply if no separate kernel project is present and instead the RTOS configuration is present in the application project.
+
+Select your project in the Project Explorer view.  Open the context menu and select properties.  Right-click to open the context menu on Windows or Linux, on Mac use Control-click.  This will open the properties dialog for the project.  Select **General** in the tree on the left and then select the **RTSC** tab on the right as shown in the image below.
+![](./images/application_project_properties_rtsc_tab.png)
+
+The **RTSC** tab displays all of the products and versions that Code Composer Studio is aware of.  If you have installed a new version of the SDK via **Resource Explorer**, or by downloading and installing it manually, it will show up in this list.  You can expand a product and select the specific version that you want to use.
+![](./images/simplelink_sdk_selecting_version.png)
+
+Sometimes when upgrading the SDK it will be necessary to also change the version of the XDCTools that are used as part of the build process.  The release notes for the new version of the SDK will indicate if this is necessary.  The change can be performed here.
+![](./images/change_xdctools_version.png)
+
+If you are upgrading from a version of the SDK 1.40 or older to a version greater than 1.40 you will also need to add ${COMPILER_FLAGS} to the advanced settings for the XDC Tools.
+![](./images/extra_xdctools_compileroptions.png)
+
+Click **OK** to save the changes.  Now perform a **Rebuild** of project and it will be using the new version of the SDK.  
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

@@ -1,0 +1,20 @@
+.. _gel-macros:
+
+GEL Macros
+----------
+
+Now there is a way to make GEL files portable across different machines
+by using macros.
+
+In GEL files, you can use the macro "$(GEL_file_dir)" in an expression.
+Before evaluating, GEL will replace that with the directory that the GEL
+file is located in. This can simplify strings and / or make it easier to
+share GEL files between users.
+
+Now instead of having to type GEL_Load( "C:\\My Documents\\workspace\\My
+Projects\\Bull\\bull.out" ), you can simply type GEL_Load(
+"$(GEL_file_dir)\\bull.out" ).
+
+Example:
+
+GEL_Load( "$(GEL_file_dir)\\bull.out" )

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="Instructions for migrating SimpleLink SDK projects from armcl compiler to TI Arm Clang compiler">
+
+<!-- Change the title text for your page -->
+<title>Migrating SimpleLink Projects from armcl to TI Arm Clang</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+# Overview
+TI Arm Clang is a new set of compiler tools for TI Arm Cortex microcontrollers and represents the future of the TI Arm compiler. This new toolchain is based on the LLVM project and uses Clang as the C/C++ front end.  The main benefit of the new toolchain is improved code size which is critical for microcontroller applications.  The new tool also offers compatibility with source written for GCC, code coverage and other benefits.  For more information on the benefits of TI Arm Clang please see the article [here](https://e2e.ti.com/blogs_/b/process/posts/the-future-of-compiler-tools-for-ti-arm-cortex-based-mcus).
+
+This document covers the procedure for migrating SimpleLink SDK based projects from the legacy TI armcl compiler to the newer TI Arm Clang compiler.  If a project has source that leverages features that are specific to the TI armcl compiler such as pragmas, pre-defined macro symbols or intrinsics then there are additional steps that will need to be taken.  Information on this is available in the [Migration Guide](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/migration_guide/index.html) section of the [TI Arm Clang User's Guide](https://software-dl.ti.com/codegen/docs/tiarmclang/compiler_tools_user_guide/index.html).  While this document focuses on SimpleLink SDK projects many of techniques can be applied to other projects.
+
+[[b Note:
+The procedures described in this document apply to CC13x2, CC26x2 and CC32xx.  The CC2640R2, MSP432 and CC3200 software development kits (SDKs) do not support TI Arm Clang and as such are not covered by this document.
+]]
+
+# Procedure
+Projects can be structured in different ways that have an impact on the steps to perform to migrate them to a new toolchain.  For example if a project includes an RTOS such as TI-RTOS or freeRTOS there are migration steps that are specific to the RTOS used.  The RTOS configuration might be in the main project or a separate dependent project.  If the project uses the SysConfig software configuration tool then there are adjustments that need to be made.  This document will attempt to cover the migration steps necessary for each of these scenarios.
+
+## Compiler Selection
+Projects can have more than one build configuration.  The build configuration stores many things such as the files to include in the build, the toolchain used, version of the toolchain and the build options.
+* Open the properties for the project.
+* Select **General** in the tree on the left.
+* Change the compiler selection to be the version of the Clang compiler that you want to use.
+![Select compiler](images/clang_compiler_selection.png)
+* Click the **Apply and Close** button.
+
+##New build configuration
+* As the type of toolchain is being changed, Code Composer Studio will prompt to create a new build configuration. This is so that the original build configuration is preserved.
+![Select compiler](images/clang_buildconfiguration_create.png)
+* Click **OK** to create the new configuration.  The project system will then attempt to migrate your build options for the armcl toolchain to those used by TI Arm Clang.
+[[b Note:
+A project.log will be generated that shows how the options for the old compiler were migrated to the options for the new compiler.  It highlight the following as they are not supported by the TI Arm Clang toolchain:
+  * use of legacy TI pragmas will be flagged as errors
+  * use of legacy TI pre-defined macro symbols will be flagged as errors
+  * use of legacy TI intrinsics will be flagged as errors
+]]
+Now there is a new build configuration that uses TI Arm Clang and you can continue to use your previous build configuration with the armcl compiler.  The active configuration will be set to the new one that is using TI Arm Clang.
+
+## TI-RTOS settings
+If the project is using TI-RTOS it is necessary to change the target type that is used by XDCTools.  XDCTools is a build/configuration tool used by TI-RTOS distributions that use the SYS/BIOS v6 or earlier kernel.  If the project includes a .cfg file then this step is applicable.
+
+[[b Note:
+Some applications that use TI-RTOS are split into 2 projects, a main application project and then an RTOS configuration project.  For SDK examples the RTOS configuration project typically has a name like **tirtos_builds...**.  The steps below need to be applied to the project that contains the .cfg file.  If the **tirtos_builds** project exists then not only would the steps below need to be applied to it but also the previous steps of changing the compiler used.
+]]
+
+* Open the properties for the project.
+* Select **General** in the tree on the left.
+* Click on the **Products** tab on the right and then modify the Target value.
+  * for CC13x2/CC26x2 change this value to **ti.targets.arm.clang.M4F**
+  * for CC32xx change this to **ti.targets.arm.clang.M4**
+![XDCTools target](images/clang_xdctools_target.png)
+* Click **Apply and Close** to save the settings.
+
+## freeRTOS
+If the project is using freeRTOS there are some changes that will need to be made.  There are source differences when using TI Arm Clang vs the legacy armcl compiler.
+
+[[y: Warning
+These instructions assume that the project is referencing the freeRTOS source files in a separate folder and that they have not physically been copied into the project.  If the files have been copied into the project then adjustments will need to be made to the instructions.
+]]
+
+### Option 1: Change dependent project
+If freeRTOS is already in a separate project that came from a SimpleLink SDK example and has not been changed then the most simple way to migrate is to import an example from the SDK that uses freeRTOS and TI Arm Clang.  Then update the project to have a dependency on the **freeRTOS_builds_<device>_release_clang project** instead of the **freeRTOS_builds_<device>_release_ccs project**
+This is what the project dependency looks like for the build configuration that uses armcl.
+![Old freeRTOS dependency](images/clang_freertos_olddependencies.png)
+This is what the project dependency looks like for the build configuration that uses TI Arm Clang.  The old dependency was removed and a new one was added for the freeRTOS configuration project that is setup for TI Arm Clang.
+![New freeRTOS dependency](images/clang_freertos_newdependencies.png)
+
+### Option 2: Copy freeRTOS folder from another project
+This option is similar to #1 but instead of changing the dependency relationship, instead remove the freeRTOS folder from your existing project and copy in the freeRTOS folder from the **freeRTOS_builds_<device>_release_clang** project.
+
+### Option 3: Update startup and port files
+If the freeRTOS source files have been copied into the project then this may be the best option.  There are 2 source files that are specific to using armcl and need to be replaced with ones that are compatible with TI Arm Clang.
+*
+* CC13X2/CC26X2:
+  * Replace **/freeRTOS/portable/CCS/ARM_CM4F/port.c** with **/freeRTOS/portable/GCC/ARM_CM4F/port.c**
+  * Remove **/freeRTOS/portable/CCS/ARM_CM4F/portasm.asm**
+  * Replace **/freeRTOS/startup/startup_cc13x2_cc26x2_ccs.c** with **/freeRTOS/startup/startup_cc13x2_cc26x2_ticlang.c**
+* CC32XX:
+  * Replace **/freeRTOS/portable/CCS/ARM_CM3/port.c** with **/freeRTOS/portable/GCC/ARM_CM3/port.c**
+  * Replace **/freeRTOS/startup/startup_cc32xx_ccs.c** with **/freeRTOS/startup/startup_cc32xx_ticlang.c**
+
+### Compiler include paths
+Similar to how the **posix** search path was updated in a previous step it is also necessary to update a compiler search path for freeRTOS.
+
+* Open the properties for the project.
+* Select **Build->Arm Compiler->Include Options** in the tree on the left.
+* CC13x2/CC26X2
+  * Select the entry for **${FREERTOS_INSTALL_DIR}/FreeRTOS/Source/portable/CCS/ARM_CM4F** in the list on the right.
+  * Click the edit button to modify the value and change it to
+  ```
+  ${FREERTOS_INSTALL_DIR}/FreeRTOS/Source/portable/GCC/ARM_CM4F
+  ```
+* CC32XX
+  * Select the entry for **${FREERTOS_INSTALL_DIR}/FreeRTOS/Source/portable/CCS/ARM_CM3** in the list on the right.
+  * Click the edit button to modify the value and change it to
+  ```
+  ${FREERTOS_INSTALL_DIR}/FreeRTOS/Source/portable/GCC/ARM_CM3
+  ```
+![Change compiler search path](images/clang_freertos_compiler_searchpath.png)
+* Click **Apply and Close** to save the settings.
+
+## SysConfig options
+Many SimpleLink projects leverage the SysConfig tool for generating driver initialization code.  If the project contains a .syscfg file then these steps apply.
+
+In the SysConfig build options there is a parameter that specifies the compiler that is being used.  This is to account for if the generated code needs to be adjusted for the compiler being used.
+* Open the properties for the project.
+* Select **Build->SysConfg->Miscellaneous** in the tree on the left.
+* Change the Other flags option to be **--compiler ticlang**.
+![Specify compiler for SysConfig](images/clang_sysconfig_option.png)
+
+## Compiler search path for SDK
+The directory structure of the SDK includes references to the compiler being used.  Thus a change needs to be made to the compiler search path to account for the use of a different compiler.
+* Open the properties for the project.
+* Select **Build->Arm Compiler->Include Options** in the tree on the left.
+* CC13x2/CC26X2
+  * Select the entry for **${COM_TI_SIMPLELINK_CC13X2_26X2_SDK_INSTALL_DIR}/source/ti/posix/ccs** in the list on the right.
+  * Click the edit button to modify the value and change it to
+  ```
+  ${COM_TI_SIMPLELINK_CC13X2_26X2_SDK_INSTALL_DIR}/source/ti/posix/ticlang
+  ```
+* CC32XX
+  * Select the entry for **${COM_TI_SIMPLELINK_CC32XX_SDK_INSTALL_DIR}/source/ti/posix/ccs** in the list on the right.
+  * Click the edit button to modify the value and change it to
+  ```
+  ${COM_TI_SIMPLELINK_CC32XX_SDK_INSTALL_DIR}/source/ti/posix/ticlang
+  ```
+![Change compiler search path](images/clang_compiler_searchpath.png)
+* Click **Apply and Close** to save the settings.
+
+## Driverlib
+If the project is using driverlib then the location of the library will need to be updated.  For SDK examples the location of the library is typically specified with a relative path.  However projects could also reference the library just by name and then use the linker search path to specify the location.  The location to make the changes to both of these is the same.
+* Open the properties for the project.
+* Select **Build->Arm Linker->File Search Path** in the tree on the left.
+* Select the line item for driverlib in the list on the top right.
+  * CC13X2/CC26X2: **ti/devices/cc13x2_cc26x2/driverlib/bin/ccs/driverlib.lib**
+  * CC32XX: **ti/devices/cc32xx/driverlib/ticlang/Release/driverlib.a**
+* Click the **Edit** button and change the value to
+  * CC13X2/CC26X2: **driverlib.lib**
+  * CC32XX: **driverlib.a**
+* In the list of search paths click on the **add** button to add a new search path.  Add
+  * CC13X2/CC26X2:
+  ```
+  ${COM_TI_SIMPLELINK_CC13X2_26X2_SDK_INSTALL_DIR}/source/ti/devices/cc13x2_cc26x2/driverlib/bin/ticlang
+  ```
+  * CC32XX:
+  ```
+  ${COM_TI_SIMPLELINK_CC32XX_SDK_INSTALL_DIR}/source/ti/devices/cc32xx/driverlib/ticlang/Release
+  ```
+
+![Driverlib specification](images/clang_driverlib.png)
+
+[[b Note:
+The /ccs part of the path was replaced with /ticlang.
+]]
+
+## Other Libraries
+Some projects may include libraries such as the graphics library.  Take a look at the library references and update as need.  In this example project in addition to driverlib the paths to **grlib.a**, **spiffs_cc26xx.a** and **drivers_cc26x2x7.a** had to be updated.  In each case the **ccs** in the path was replaced with **ticlang**.
+![Additional libraries](images/clang_additional_libraries.png)
+
+## Dependent projects
+If the project is dependent on other projects, such as projects that build libraries, then it is suggested to also migrate those projects to use TI Arm Clang.  If those projects are not migrated then they would continue to use their current compiler.
+
+After creating the new build configurations for the dependent projects there may be extra actions to perform.  If the main project and the dependent projects have the same build configurations it is typical for the dependency relationshp to be setup as **<active>** so that when building Config1 of the main project it builds Config1 of the dependent projects as well.  However if that is not the case and the Configuration names are not the same or the relationship is not setup as **<active>** then it will be necessary to update the dependency relationship to specify which configuration to use when building your new build configuration.
+
+In the example below the main project originally had a **Debug** configuration and the dependent projects had **OptimizeSize** configurations.  As a result it is necessary to then set the relationship so that the new **Debug__TICLANG** configuration of the main project will build the new **OptimizeSize__TICLANG** configurations of the dependent projects.
+![Project dependencies](images/clang_projectdependency_mapping.png)
+
+Additionally the main project will typically link the output of the dependent projects.  Depending on this has been done it may be necessary to update the linker options.  In this case the names of the libraries are specified and then for the path a variable for the dependent project was used but the configuration name was used directly.  Thus these paths needed to be update
+
+If the configuration names are the same between the main and dependent project then the linker path could have been something like this:
+```
+${REF_PROJECT_1_LOC}/${ConfigName}
+```
+In this case the path would not have needed to be updated.
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

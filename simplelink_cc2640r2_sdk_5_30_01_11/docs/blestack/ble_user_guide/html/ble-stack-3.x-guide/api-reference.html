@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API References &mdash; 
+SimpleLink™ CC2640R2 SDK
+User&#39;s Guide for BLE-Stack 3.x.x
+ 3.03.09.00 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Terms and Definitions" href="reference.html" />
+    <link rel="prev" title="BLE-Stack 3.03.02 (SDK 3.40) to BLE-Stack 3.03.07 (SDK 5.10)" href="porting-guides/blestack3.03.02-to-blestack3.03.07.html" />
+    <script language="JavaScript">
+        var tiPageName;
+        tiPageName = "sug ble-stack-3.x-guide api-reference";
+
+        if (location.protocol == "file:"){
+            var ci_analytics_poc_load = true;
+        }
+    </script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> 
+SimpleLink™ CC2640R2 SDK
+User's Guide for BLE-Stack 3.x.x
+
+          </a>
+              <div class="version">
+                3.03.09.00
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="disclaimer.html">Disclaimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="platform.html">The CC2640R2 SDK Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tirtos-index.html">TI-RTOS (RTOS Kernel) Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ble-stack-3-index.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ble-stack-3-index.html#ble-stack">BLE-Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ble-stack-3-index.html#developing-a-custom-application">Developing a Custom Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ble-stack-3-index.html#ble-network-processor">BLE Network Processor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ble-stack-3-index.html#running-the-sdk-on-custom-hardware">Running the SDK on Custom Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="u-stack-index.html">Micro BLE Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ble-stack-common/npi-index.html">Network Processor Interface (NPI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index-oad-cc2640.html">Over-the-Air Download (OAD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../voice/voice.html">Creating a Voice Enabled Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="secure-fw-index.html">Secure Firmware (SFW)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sensor-controller/sensor-controller.html">Sensor Controller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging-index.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">Migration Guides</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API References</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ble-api-reference">BLE Stack API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#micro-ble-stack-api-reference">Micro BLE Stack API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#driver-api-reference">Driver API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">Simple Network Processor API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#over-the-air-download-oad-reference">Over the Air Download (OAD) Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Terms and Definitions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">
+SimpleLink™ CC2640R2 SDK
+User's Guide for BLE-Stack 3.x.x
+</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>API References</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="api-references">
+<h1>API References<a class="headerlink" href="#api-references" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="ble-api-reference">
+<span id="id3"></span><h2><a class="reference external" href="../../doxygen/ble/html/index.html">BLE Stack API Reference</a><a class="headerlink" href="#ble-api-reference" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="../../doxygen/ble/html/group___a_t_t___g_a_t_t.html">ATT_GATT</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/ble/html/group___g_a_t_t_serv_app.html">GATTServApp</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/ble/html/group___g_a_p.html">GAP</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/ble/html/group___g_a_p_bond_mgr.html">GAPBondMgr</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/ble/html/group___l2_c_a_p.html">L2CAP</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/ble/html/group___link_d_b.html">LinkDB</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/ble/html/group___h_c_i.html">HCI</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/ble/html/group___peripheral.html">Peripheral</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/ble/html/group___central.html">Central</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/ble/html/group___multi.html">Multi</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/ble/html/group___util.html">Util</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/ble/html/group___i_call.html">ICall</a></p></li>
+</ul>
+</div>
+<div class="section" id="micro-ble-stack-api-reference">
+<span id="micro-ble-api-reference"></span><h2>Micro BLE Stack API Reference<a class="headerlink" href="#micro-ble-stack-api-reference" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="../../doxygen/ble/html/group___u_b_l_e.html">uBLE API Reference</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/ble/html/group___u_g_a_p.html">uGAP API Reference</a></p></li>
+</ul>
+</div>
+<div class="section" id="driver-api-reference">
+<span id="ti-driver-reference"></span><h2>Driver API Reference<a class="headerlink" href="#driver-api-reference" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="../../../../tidrivers/tidriversAPIs.html">TI Drivers API Reference</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/ble/html/group___e_c_c_r_o_m_c_c26_x_x_8h.html">Elliptic Curve Cryptography (ECC) API Reference</a></p></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2><a class="reference external" href="../../doxygen/ble/html/group___s_n_p.html">Simple Network Processor API Reference</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="../../doxygen/ble/html/_s_n_p__d_e_v__a_p_i.html">SNP Device API Reference</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/ble/html/_s_n_p__g_a_t_t__a_p_i.html">SNP GATT API Reference</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/ble/html/_s_n_p__g_a_p__a_p_i.html">SNP GAP API Reference</a></p></li>
+</ul>
+</div>
+<div class="section" id="over-the-air-download-oad-reference">
+<h2>Over the Air Download (OAD) Reference<a class="headerlink" href="#over-the-air-download-oad-reference" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="../../doxygen/ble/html/group___o_a_d___p_r_o_f_i_l_e.html">OAD Profile</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/ble/html/group___o_a_d___i_m_a_g_e___h_e_a_d_e_r.html">OAD Image Header</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/ble/html/group___e_x_t___f_l_a_s_h___l_a_y_o_u_t.html">OAD External Flash Image Header</a></p></li>
+<li><p><a class="reference external" href="../../doxygen/ble/html/group___f_l_a_s_h___i_n_t_e_r_f_a_c_e.html">OAD Flash Interface</a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="porting-guides/blestack3.03.02-to-blestack3.03.07.html" class="btn btn-neutral float-left" title="BLE-Stack 3.03.02 (SDK 3.40) to BLE-Stack 3.03.07 (SDK 5.10)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="reference.html" class="btn btn-neutral float-right" title="Terms and Definitions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2024, Texas Instruments.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

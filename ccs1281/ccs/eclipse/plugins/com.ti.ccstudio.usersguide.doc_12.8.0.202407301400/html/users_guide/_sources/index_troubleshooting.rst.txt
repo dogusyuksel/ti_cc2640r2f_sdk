@@ -1,0 +1,11 @@
+Troubleshooting
+***************
+
+This chapter covers the recommended troubleshooting steps for more commonly encountered Code Composer Studio (CCS) issues.  
+
+.. toctree::
+   :maxdepth: 3
+
+   ccs_troubleshooting
+
+

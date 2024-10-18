@@ -1,0 +1,41 @@
+const fs        = require('fs');
+const commander = require('commander');
+const print     = console.log;
+
+//------------------------------------------------------------------------------
+// Main
+//------------------------------------------------------------------------------
+commander.program
+   .description('analyze')
+   .argument   ('<json>', 'The input JSON file')
+   .option     ('-d, --debug', 'Print debug information.')
+   .option     ('-c, --core <coreId>',  'Specify core to extract')
+   .action     ((json, opts) => { process(json, opts); })
+   .parse      ();
+
+//------------------------------------------------------------------------------
+// Process
+//------------------------------------------------------------------------------
+function process(json, opts)
+{
+    let elf = JSON.parse(fs.readFileSync(json));
+    if (opts.core) elf= elf[opts.core];
+
+    print('digraph elf {');
+
+    elf.logical_group_list.logical_group.forEach(x=>{
+        print(`"${x.id}" [label="${x.name}"]`);
+        //x.contents?.forEach(y=> { print(`"${x.id}" -> "${y}"`); });
+    });
+
+    elf.logical_group_list.output_section_group.forEach(x=>{
+        print(`"${x.id}" [label="${x.name}"]`);
+        x.contents?.forEach(y=> { print(`"${x.id}" -> "${y}"`); });
+    });
+
+    elf.logical_group_list.load_segment.forEach(x=>{
+        print(`"${x.id}" [label="${x.name}"]`);
+        x.contents?.forEach(y=> { print(`"${x.id}" -> "${y}"`); });
+    });
+    print('}');
+}

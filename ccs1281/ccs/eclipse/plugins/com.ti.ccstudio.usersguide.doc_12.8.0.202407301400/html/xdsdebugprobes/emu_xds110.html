@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="This page provides details on the XDS110 debug probe."> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="XDS110">
+<meta name="product-link" content="https://www.ti.com/tool/TMDSEMU110-U">
+
+<!-- Change the title text for your page -->
+
+<title>XDS110 Debug Probe</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+<!-- Start of markdown source -->
+
+#Product page
+
+<font size="5">
+[TMDSEMU110-U](https://www.ti.com/tool/tmdsemu110-u)
+</font>
+
+<br>
+Contains ordering information, availability, compliance data.
+<br>
+See additional products at the section below [Which XDS110 is right for me?](#which-xds110-is-right-for-me-)
+
+#Introduction
+
+The XDS110 is the latest entry level debug probe (emulators) for TI embedded processors. Designed to be a complete solution that delivers JTAG and SWD connectivity at a low cost, the XDS110 is the debug probe of choice for entry-level debugging of TI microcontrollers, processors and SimpleLink devices.
+
+The XDS110 replaces the XDS100 technology and is the first debug probe that supports all TI devices with JTAG, cJTAG and SWD/SWO debug port in a single product. Also, both Core Processor and System Trace are available for all ARM and DSP devices that support Embedded Trace Buffer (ETB).
+
+Following the trend for space reduction on modern TI development boards, the XDS110 features a standard TI 20-pin connector as the primary JTAG connectivity to the target. In addition to that, all variants feature modular target configuration adapters for TI and ARM standard JTAG headers (the offer of adapters varies per model).
+
+The XDS110 is also the first of the XDS family of debug probes to feature [EnergyTrace](emu_energytrace.html) and its add-on module EnergyTrace HDR for Simplelink microcontrollers. EnergyTrace is a technology that allows measuring the true Energy and Power consumption of the target board and it can measure up to 75mA natively and up to 800mA with the add-on module. As an added flexibility, the same physical connection for EnergyTrace also features one UART port and four GPIOs for total hardware control.
+
+Embedded (on-board) XDS110 debug probes are compatible with Code Composer Studio (CCS) development environment version 6.1.0 and newer.
+
+The standalone XDS110 Debug probe (TMDSEMU110-U) requires CCS version 7.0.0 or newer.
+
+#General Features
+
+- Protocols: IEEE1149.1 (JTAG), IEEE1149.7 (cJTAG) as well as ARM's Serial Wire Debug (SWD) and Serial Wire Output (SWO).
+- Target voltage: from +1.8V to 3.6V.
+- Debug features: 
+   - Emulation Connect/Disconnect, Read/Write memory, Read registers, Load program, Run, Halt, Step
+   - Software and Hardware Breakpoint support
+   - Real-Time Mode in selected microcontrollers and DSPs. 
+- Trace features: 
+   - Serial Wire Output (SWO) are available for selected microcontrollers and wireless connectivity microcontrollers
+   - Core and System trace are available via the ETB in selected ARM and DSP processors
+   - For more information on the trace capabilities of a particular device please refer to its technical reference manual (TRM)
+- Host interface: USB2.0 Full Speed (11Mbps) or High Speed (480Mbps). 
+- Other features supported:
+   - <strong>Target power-loss detection</strong> via the TVRef pin. 
+   - Built-in EnergyTrace technology for precise measurements of up to 75mA.
+   - Expansion header for the EnergyTrace HDR accessory (TMDSEMU110-ETH) for wider dynamic range up to 800mA.
+- Interface compliant with currently published XDS APIs and CMSIS-DAP.
+- OpenOCD ready (OpenOCD version 0.8 and above).
+
+#Devices supported
+
+- SimpleLink MCUs (CC13xx, CC26xx, CC3x, MSP432)
+- C2000, TM4C12x and Hercules microcontrollers
+- Sitara (AM24xx, AM26xx, AM27xx, AM335x, AM43xx, AM57xx, AM62xx, AM64xx, AM65xx, AMIC1xx)
+- Automotive SoCs (TDAx ADAS, DRAx infotainment)
+- mmWave sensors (IWR/AWR14xx, IWR/AWR16xx, IWR68xx)
+- C674x and C66x (Keystone I) Floating point DSPs
+- C642x and C645x
+- 66AK2 and TCI66x Multicore DSP + ARM&reg; SoCs (Keystone II)
+- C55x Low-power DSPs
+- UCD3x Digital Power devices
+- PGA970 SoC
+- Other TI SoCs with PRU, C674x, C66xx, Cortex M, Cortex R and Cortex A cores
+
+##Devices not supported
+
+- MSP430 Microcontrollers
+- ARM9 based processors that use [Adaptive clocking](emu_adaptive_clocking.html) such as OMAPL13x, AM1xxx, DM64xx
+- AWR12xx mmWave sensors
+- C54x
+- C62x, C670x, C671x, C672x, C640x and C641x
+
+#Which XDS110 is right for me?
+
+XDS110 is currently available in both standalone or embedded versions. Some embedded debuggers featured on development kits can function as a standalone debugger to custom boards. Check compatibility with actual kits. Available kits/probes with XDS110:
+- [XDS110 Standalone Debug Probe](https://www.ti.com/tool/TMDSEMU110-U)
+- [SimpleLink&trade; MCU Platform LaunchPad&trade; development kits](https://www.ti.com/lsds/ti/tools-software/launchpads/launchpads.page#connected_mcu) Support for MSP432&trade; host MCUs and Wi-Fi&reg;, <i>Bluetooth&reg;</i> low energy (BLE), Sub-1GHz wireless MCUs
+- [SimpleLink SensorTag Debugger DevPack](https://www.ti.com/tool/cc-devpack-debug) - <strong>only recommended to be used with Sensortag development kits</strong>
+- [Selected Hercules Launchpads](https://www.ti.com/lsds/ti/tools-software/launchpads/launchpads.page#safety) - LAUNCHXL2-RM46, LAUNCHXL2-RM57L, LAUNCHXL2-TMS57012 and LAUNCHXL2-570LC43
+
+##Optional
+
+- [EnergyTrace HDR](https://www.ti.com/tool/TMDSEMU110-ETH) - an accessory that expands the dynamic range of the EnergyTrace feature.
+
+#Installation Instructions
+
+- Make sure XDS110 is not plugged in
+- Install Code Composer Studio version 6.1.0 or later if using an embedded XDS110, install 7.0.0 or later if using a standalone XDS110.
+   - If installing CCS in Linux, make sure to follow the installation instructions at the [Linux Host support page](../ccsv8_linux_host_support.html).
+- Plug in the XDS110. It should be properly recognized by the system.
+
+#Unboxing
+
+Watch the video, hosted on the Code Composer channel on Youtube: 
+
+<iframe width="854" height="480" src="https://www.youtube.com/embed/NhsxE6b8Z4s" frameborder="0" allowfullscreen longdesc="Youtube video ID NhsxE6b8Z4s"></iframe>
+
+#Updating the Firmware
+
+##Automatic update
+
+When using ccsv8.1.1+ or ccsv8.1.0 with TI Emulators package version 6.0.14.5 or newer, the firmware on the XDS110 is updated automatically when connecting from inside CCS. 
+
+Note that the firmware is not automatically reverted to a prior version unless there's been a major change. For most scenarios, all changes are backwards compatible to ensure this works. If a change is needed that is not backwards compatible, then the major version numbers will change as a flag that it can't work.
+
+Examples:
+
+- CCS supports firmware 2.3.0.12, XDS110 has firmware 2.3.0.8 &rarr; XDS110 will be updated to 2.3.0.12
+- CCS supports firmware 2.3.0.12, XDS110 has firmware 2.3.0.14 &rarr; XDS110 will not be reverted
+- CCS supports firmware 2.3.0.12, XDS110 has firmware 2.4.0.1 &rarr; XDS110 will be reverted to 2.3.0.12
+
+[[b Note:
+
+   The firmware update process prompts the user when it is detected when launching a debug session in CCS, Uniflash and in other utilities such as SmartRF Studio or SmartRF Flash Programmer. When using the Test Connection button or the command line utility &lt;dbgjtag.exe&gt;, the update happens without prompting. 
+
+]]   
+
+##Manual update
+
+If manual updating or diagnostics is required, using a Windows host is highly recommended. Close any instances of CCS that are running in your system. Open a Windows Command Prompt and issue the following commands:
+
+[[b Note:
+
+The steps below are for an installation of CCSv10.4 in the default directory. Please update the path and firmware file name when using different CCS and firmware versions.
+      
+]]
+
+[[b Note:
+
+For UniFlash, the path to the XDS110 folder is: <tt>[UNIFLASH INSTALL DIR]\deskdb\content\TICloudAgent\win\ccs_base\common\uscif\xds110</tt>.     
+
+]]
+
+**1.** Go to the directory where the utility is installed:
+   
+      C:\\&gt;<strong>cd C:\\ti\\ccs1040\\ccs\base\\common\\uscif\\xds110</strong>
+   
+**2.** Run the configuration just to make sure a XDS110-class debugger is connected (or to list how many are connected) and what is the firmware revision installed on it: 
+   
+      C:\\ti\\ccs1040\\ccs\\base\\common\\uscif\\xds110&gt;<strong>xdsdfu -e</strong>
+   
+**3.** Put the XDS110 in DFU mode:
+
+      C:\\ti\\ccs1040\\ccs\\base\\common\\uscif\\xds110&gt;<strong>xdsdfu -m</strong>
+   
+**4.** Run the updater, passing the firmware file and resetting the debug probe afterwards:
+
+      C:\\ti\\ccs1040\\ccs\\base\\common\\uscif\\xds110&gt;<strong>xdsdfu -f firmware_3.0.0.16.bin -r</strong>
+
+##In case of a bricked pod
+
+In certain scenarios there is a chance your Pod or Launchpad becomes bricked by the firmware update. Check the [Troubleshooting](#troubleshooting) section below for additional details. 
+
+#Finding and updating the serial number
+
+When using multiple debug probes in the same host, in general it is necessary to properly differentiate each debug probe by serial number. 
+
+To find out what is the serial number of all connected debug probes, follow steps 1 and 2 above
+
+If you want to set the serial number to a specific value:
+
+**1.** Unplug all other debug probes from the host
+
+**2.** Follow steps 1 through 3 above
+
+**3.** Set the serial number suffix (<strong>RECOMMENDED</strong>):
+
+      C:\\ti\\ccs1040\\ccs\\ccs\_base\\common\\uscif\\xds110&gt;<strong>xdsdfu -n 4567 -r</strong>
+
+[[b Notes:
+
+The <strong>-n</strong> option preserves the prefix of the serial number, which allows the board to make use of the Autodetect feature. See [this short youtube clip](https://youtu.be/V3-xcRmu5S0) for details. 
+
+To set the entire serial number, use the option <strong>-s</strong> followed by an 8-digit unique number. 
+
+Additional details are also described in the document:
+
+[CCS INSTALL DIR]\\ccs\\base\\common\\uscif\\xds110\\XDS110SupportReadMe.pdf
+
+]]
+
+[[y Serial Number restrictions
+
+Serial numbers for the XDS110 must be 8 characters long and consisting of only [printable ASCII characters](https://www.ascii-code.com/characters/printable-characters) that is not a comma (ASCII HEX: 0x2C). It is recommended to use only alphanumeric characters for best compatibility.
+
+]]
+
+[[r IMPORTANT!
+
+As of June/2018, the standalone XDS110 Debug Probe (TMDSEMU110-U) requires an update to the bootloader to allow recording the serial number. To do that, issue the following commands before updating the serial number:
+
+   C:\\ti\\ccs1040\\ccs\\base\\common\\uscif\\xds110&gt;<strong>xdsdfu -m</strong>
+   
+   C:\\ti\\ccs1040\\ccs\\base\\common\\uscif\\xds110&gt;<strong>xdsdfu -b boot\_loader.bin -r</strong>
+
+]]
+
+For details on how to configure Code Composer Studio to use the multiple Debug Probes, please check the document [Debugging with Multiple Debug Probes](../sdto_ccs_multi-probe-debug.html)
+
+#Debug and Trace Usage Modes
+
+The XDS110 allows using multiple modes of operation through the option <i>JTAG / SWD / cJTAG Mode</i> of the Target Configuration Editor:
+![Advanced JTAG modes option](./images/XDS110_Advanced_tag_JTAG_Mode_option.PNG)
+
+##JTAG
+
+JTAG is the standard IEEE1149.1 4-wire debug protocol that is used by the majority of TI devices. When in doubt, this is usually a safe option. 
+- 4 pin debug (TDI, TDO, TMS, TCLK)
+- Supports TVRef
+
+##SWD/SWO
+
+Serial Wire Debug (SWD) is a debug mode that also uses two pins and transfers data at a higher clock rate when compared to JTAG. Serial Wire Output (SWO) adds one more pin that allows performing simple Trace operations on selected Cortex M4 microcontrollers.
+
+SWD: Serial Wire Debug
+
+- 2 pin debug: SWDIO/TMS and SWCLK/TCLK 
+
+SWO: Serial Wire Output
+- 1 pin trace (SWO/TDO) 
+- Supported only by DAP based devices like MSP432 which have DAP as the toplevel router in the scan chain. 
+- SWO trace can be obtained in UART or Manchester format. XDS110 only supports UART format. The TDO/SWO pin is routed to a UART on the debug processor (Snowflake) during SWO capture.
+   - <strong>SWO (ITM) Usesecases:</strong>
+      - Function profiling (DWT - Data Watchpoint and Trace) 
+      - Data variable trace (DWT - Data Watchpoint and Trace) 
+      - Interrupt profiling (DWT - Data Watchpoint and Trace) 
+      - Software messages (ITM - Instrumentation Trace Macrocell)
+
+For additional details about Trace via SWO, check the following resources:
+- [ITM for Cortex M video](https://www.youtube.com/watch?v=HG_i_uln6Es)
+- [ITM training](http://processors.wiki.ti.com/index.php/CCS_Modules_Library#Instrumentation_Trace_Macrocell_.28ITM.29_Trace)
+
+##cJTAG
+
+IEEE1149.7 or Compact JTAG (cJTAG) is a major improvement over the traditional JTAG, as it supports all its features while using only two pins, and is available in selected TI wireless connectivity microcontrollers.
+
+- 2 and 4 pin modes
+- 2 OSCAN modes
+- 2 pin mode allows using the other pins as a COM (UART) port 
+- Supported by selected Wireless Connectivity devices such as CC13xx, CC25xx, CC26xx and CC32xx families.
+
+#Improving the performance
+
+The JTAG/cJTAG/SWD data transfers are slave to a clock speed defined by the parameter <strong>JTAG TCLK Frequency (MHz)</strong> of the [Target Configuration File](./users_guide/ccs_debug-main.html#target-configuration-files). This speed can be improved by adjusting this setting, but it is highly dependent on the actual hardware, devices and the length of the connections between the Debug Probe and the device.
+
+The method to improve the speed of the TCLK is interactive - i.e., trial and error - and the two references below cover this process. 
+
+- [Experimenting with XDS110 JTAG clock speed](https://youtu.be/0k8oe1-2amY) - a walkthrough about the various settings and combinations of factors that influence the JTAG connectivity with Simplelink Launchpad boards. 
+
+- [Experimenting with JTAG clock speed](https://youtu.be/mKxaztkCsYw) - a thorough view about the effects of different JTAG TCLK speeds in the stability of communications. 
+
+[[b Note:
+
+Check the section [JTAG clock speed considerations](#jtag-clock-speed-considerations) below for additional tips depending on the version of CCS used. 
+
+]]
+
+#Energy Trace
+
+EnergyTrace technology for connectivity and MSP430 microcontrollers is an energy-based code analysis tool that measures and displays the application's energy profile and helps to optimize it for ultra-low-power consumption. 
+
+Additional information can be found at the [EnergyTrace article](emu_energytrace.html) or at the [EnergyTrace product page](http://www.ti.com/tool/ENERGYTRACE).
+
+[[b Note
+
+   The XDS110 does not support MSP430 devices.
+   
+]]
+
+##Using EnergyTrace
+
+EnergyTrace can be used from both the CCS GUI or from the command line. 
+
+###GUI
+
+Good references that show usage from the CCS GUI are available at the section **EnergyTrace Usage cases** of the [EnergyTrace article](emu_energytrace.html).
+
+###Command line
+The command line usage of EnergyTrace is done via a utility called **stune**. 
+
+This utility is available in Windows via either [Code Composer Studio](https://www.ti.com/tool/CCSTUDIO) or [XDS Emulation Software Package](emu_xds_software_package_download.html) and performs the functions of connecting to the XDS110 (both standalone and embedded to a Launchpad), configuring EnergyTrace and exporting its data to a CSV file. 
+
+Although CCS is not required to be installed, a [Target Configuration File](../users_guide/ccs_debug-main.html#configuring-the-debugger) (.ccxml) must be created prior to invoking the utility. Also, set the Advanced properties **Power Selection** to *Probe supplied power* and a suitable voltage (3.3V is the default). For details, check section 7.5.9 of the [CCS User's Guide](https://software-dl.ti.com/ccs/esd/documents/users_guide/index.html).
+
+####<u>Interactive mode</u>
+
+To use **stune** in interactive mode, open a command window, change to the installation directory and run the &lt;stune.exe&gt; executable.
+
+C:\ti\ccs1040\\ccs\\base\emulation\analysis\bin\stune
+
+A specific sequence of actions are needed: first **connect** and then issue the **energytrace** commands. 
+
+stune&gt; **connect --config=&lt;name_of_ccxml_file&gt; --device=&lt;device_name&gt; xds**
+
+- **config** is the .ccxml file to be used.
+- **device** is the base name of the device such as MSP432, CC1352, CC2652, etc. 
+- **xds** is required to interface with XDS110 Debug Probes
+
+stune&gt; **energytrace --out=&lt;name_of_csv_file&gt; --duration=&lt;time_in_ms&gt; &lt;et/et+&gt;**
+
+- **out** is the output .csv file to store the EnergyTrace data. It will be automatically created. 
+- **duration** specifies the amount of time to capture data in milisseconds. This parameter is optional and its absence means it runs until Ctrl-C is issued. 
+- **et/et+** specifies the type of EnergyTrace used: ET or ET+.
+
+When **duration** is specified, at the end of the data collection the average, maximum and minimum current and total energy consumed is reported. Otherwise, the tool performs live updates on screen of current and energy values. 
+
+Other optional options available are: 
+
+- **sampfreq**. The rate at which samples are collected. Default is 2000 SPS.
+- **trig**. Synchronize with hw trigger (GPIOIN1). This is only applicable to [XDS110 standalone probe](https://www.ti.com/tool/TMDSEMU110-U). 
+- **range**. Specify **lo** (for low range) and **hi** (for high range). This is only applicable to [XDS110 standalone probe](https://www.ti.com/tool/TMDSEMU110-U) with [ETHDR add-on](https://www.ti.com/tool/TMDSEMU110-ETH). Default is **lo**. 
+- **saveall**. Save all captured data to output file. By default the last ~33 minutes of data is saved for ET-MSP technology and last ~1 minute of data is saved for ETHDR technology due to large data size.
+
+Other commands are: 
+
+- **quit**. Exit the interactive tool
+- **help**. List all supported commands or get help on an individual command
+- **disconnect**. Disconnect from a target
+- **log**. Enable logging all the informational and error messages to a text file.
+
+**Example:**
+
+To connect to a CC2652 Launchpad and collect ET data at hi range and 200 kSPS for 10 seconds using the target configuration file &lt;CC2652_XDS110.ccxml&gt;, use the following:
+
+- stune&gt; **connect --config=CC2652_XDS110.ccxml --device=CC2652 xds**
+- stune&gt; **energytrace --out=CC2652ETData.csv --duration=10000 --sampfreq=200000 --range=hi et**
+
+####<u>Direct mode</u>
+
+To use **stune** in direct mode without user intervention, create a simple text file with all the desired commands and pass the filename as a parameter to the &lt;stune.exe&gt; utility. 
+
+**Example:**
+
+Assuming the text file &lt;stunecmd.txt&gt; contains the two stune commands above, simply redirect the file contents to directly to &lt;stune.exe&gt; during its invocation. 
+
+C:\ti\ccs1040\\ccs\\base\emulation\analysis\bin\stune> **stune &lt; stunecmd.txt**
+
+Optionally, the output of the tool can be logged to yet another log file &lt;stune.log&gt;:
+
+C:\ti\ccs1040\\ccs\\base\emulation\analysis\bin\stune> **stune &lt; stunecmd.txt > stune.log 2&lt;1**
+
+# Troubleshooting
+
+- Check whether the installation process was followed.
+
+- If the CCS debug fails, search for the error message number on the [Debugging JTAG](../ccs_debugging_jtag_connectivity_issues.html) page.
+
+- Check if the device drivers were properly instantiated. Check the screenshot below to see how they show up on Windows. 
+
+![XDS110 on Windows Control Panel](./images/XDS110onWin10_sysdevices.png) 
+
+- With the advent of Code Composer Studio v9, a few important changes to the JTAG clock speed (TCLK) of the XDS110 Debug Probe were introduced. Please check the topic [JTAG Clock speed considerations](#jtag-clock-speed-considerations) below.
+
+## To reinstall the Windows device drivers
+
+- Open the Windows Control Panel
+- Expand the node <strong>Texas Instruments Debug Probes</strong>
+- Right-click on node <strong>XDS110 Class Data Port</strong>
+- Select <strong>Update Driver Software</strong> &rarr; <strong>Browse my computer for driver software</strong>
+- Select <strong>Let me pick from a list of device drivers on my computer</strong>. If the drivers are already installed, the <strong>XDS110 Class Data Port Version: M.m.m.m [mm/dd/yyyy]</strong> will be shown. Select this one. Otherwise, repeat but skip this step. 
+- Click on Browse and select the directory C:\\ti\\ccsv8\\ccs\_base\\emulation\\windows\\xds110\_drivers
+- Repeat for <strong>XDS110 Class Debug Probe</strong>
+
+That should get you the same driver as installed by CCS.
+
+If Windows refuses to update the driver, they need to be fully removed. 
+
+- Right-click on node <strong>XDS110 Class Data Port</strong>
+- Select <strong>Uninstall...</strong>
+- Check the box <strong>Delete the driver software for this device</strong> and click <strong>OK</strong>
+- Repeat for <strong>XDS110 Class Debug Probe</strong>
+- Do the procedure above to reinstall the drivers
+
+## Flashing the bootloader
+
+In case the pod can't be acknowledged by the host or only shows the Stellaris DFU entry on the Control Panel (as shown in the picture below), it means the custom bootloader may be damaged. 
+
+![Stellaris DFU on Windows Control Panel](./images/XDS110_StellarisDFU.png)
+
+One option it to try to reflash the bootloader on the device used for the XDS110. There are two main ways to do this:
+
+### Option 1: Flash the bootloader from the command-line using the XDSDFU utility
+
+The XDS110 must be acknowledged by the host Operating System - in other words, either the Windows Control Panel, macOS System Information or lsusb must show the USB device when it is plugged. 
+
+If that does not happen, the XDS110 needs to be forced into its ROM bootloader: 
+
+**1.** Disconnect the XDS110 from the USB port, powering it down. 
+
+**2.** Connect the JTAG TDO pin of the XDS110 device to ground. For XDS110 designs using the TM4C1294NCPDT device, the TDO pin is pin 97 of the 128-pin package device. For other devices, please refer to the device datasheet.
+
+**3.** Re-connect the XDS110 to the USB port, powering it up. *At this moment the XDS110 should be in DFU Mode.*
+
+**4.** Disconnect the JTAG TDO pin from ground.
+
+[[b Notes:
+
+The JTAG TDO pin to be grounded is part of the device, not the GPIO pin that connects to the JTAG TDO pin of the target device.
+
+Launchpads usually have a small set of JTAG PCB pads on board that contains the JTAG TDO pin. 
+
+Check the device datasheet for the pin location; for the TM4C1294NCPDT, is located on a corner and easy to access.
+
+]]
+
+**5.** To be sure the XDS110 is in DFU mode, issue the following command: 
+
+   C:\\ti\\ccs1040\\ccs\\base\\common\\uscif\\xds110&gt;<strong>xdsdfu -e</strong>
+
+<hr>
+<pre>
+USB Device Firmware Upgrade Utility
+Copyright (c) 2008-2018 Texas Instruments Incorporated.  All rights reserved.
+
+Scanning USB buses for supported XDS110 devices...
+
+
+<<<< Device 0 >>>>
+
+VID: 0x1cbe    PID: 0x00ff
+Device Name:   Tiva Device Firmware Update
+Manufacturer:  Texas Instruments Incorporated
+Serial Num:    00000000
+Mode:          DFU
+
+Found 1 device.
+</pre>
+<hr>
+
+**6.** With the XDS110 in DFU Mode, issue the following command from a <strong>Windows</strong> host (the safest Operating System for this critical operation). 
+
+   C:\\ti\\ccsv8\\ccs\_base\\common\\uscif\\xds110&gt;<strong>xdsdfu -b boot\_loader.bin -r</strong>
+
+- Give some time to allow the operation to complete (maximum of 5~7 minutes, depending on the type of the USB port used) and unplug and replug the XDS110 from the USB port. Re-issue <strong>xdsdfu -e</strong> to verify what is the status of the probe. 
+- If the status is <strong>not found</strong>, retry steps <font color="f000f0"><strong>1</strong></font> through <font color="f000f0"><strong>3</strong></font> to bring it back to <strong>DFU Mode</strong> and flash the bootloader.
+- If the status is in <strong>DFU mode</strong>, then write the firmware according to the instructions shown at the section [Updating the XDS110 Firmmware](#updating-the-xds110-firmware) above. Unplug/replug the XDS110 after the operation completes successfully. 
+
+Instructions to do that are also shown at the end of the XDS110 Readme files, typically located at the following directories:  
+
+   - CCSv7:  <tt>[CCS INSTALL DIR]\\ccs\\base\\common\\uscif\\xdsdfu\\ReadMe.txt</tt>
+   
+   - CCSv8+: <tt>[CCS INSTALL DIR]\\ccs\base\\common\\uscif\\xds110\\XDS110SupportReadMe.pdf</tt>
+
+### Option 2: Flash the bootloader using Code Composer Studio
+
+To use this option, the following requirements are needed:
+
+* JTAG access to the device used for the XDS110.
+* Another XDS based debug probe.
+* Code Composer Studio (CCS).
+
+An example of an XDS110 debug probe that has JTAG access is the standalone XDS110 debug probe: [TMDSEMU110-U](https://www.ti.com/tool/tmdsemu110-u). There is a 10-pin ARM JTAG header that can be used to attach another XDS based debug probe which CCS can use to debug the XDS110 device (typically a TM4C1294NCPDT). The micro-USB connection on the XDS110 pod can still be used to supply power (use a power supply that is not a USB port connected to the same PC as the other XDS based debug probe to avoid potential issues). 
+
+![TMDSEMU110-U](./images/TMDSEMU110-U_debug.png) 
+
+**1.** Connect the separate XDS based probe to the JTAG connecter for the XDS110 device
+
+**2.** Power the original XDS110 device.
+
+**3.** Connect the other end of the separate XDS based probe to the PC with CCS.
+
+**4.** Launch CCS and start a debug session for the connection (separate XDS based probe) and device for the XDS110 being debugged.
+
+**5.** In CCS: Connect to the target.
+
+**6.** In CCS: Load `<CCS INSTALL DIR>\ccs\ccs_base\common\uscif\xds110\boot_loader.axf`
+
+**7.** In CCS: Run the target.   
+
+The bootloader should now be flashed. Terminate CCS, power down the XDS110, and disconnect the separate XDS based debug probe. Then try connecting to the XDS110 as normal and re-issue <strong>xdsdfu -e</strong> (see step 5 in Option 1 above) to verify what is the status of the probe. 
+- If the status is <strong>not found</strong>, retry steps <font color="f000f0"><strong>1</strong></font> through <font color="f000f0"><strong>7</strong></font> to bring it back to <strong>DFU Mode</strong> and flash the bootloader.
+- If the status is in <strong>DFU mode</strong>, then write the firmware according to the instructions shown at the section [Updating the XDS110 Firmmware](#updating-the-xds110-firmware) above. Unplug/replug the XDS110 after the operation completes successfully. 
+
+## JTAG Clock speed considerations
+
+When updating CCS from v8 to v9, some changes were introduced to the JTAG Clock speed (TCLK) parameter of the XDS110 Debug Probes. 
+
+**CCSv9.0.x** (emupack 8.1.0.000xx)
+
+   The TI Emulators package (emupack) that ships with CCSv9.0.x versions (8.1.0.000xx) has some jitter on the clock edges when running at 2.5MHz (the maximum speed of this version), which may cause very random communication errors with the target. 
+   
+   Although errors are not regularly seen with the common Launchpads, custom boards that feature longer cconnections or even the use of isolation adapters can cause the problem to manifest itself in the shape of errors 1170, PRSC errors and others.  
+   
+   The remedy for this is to lower the TCLK speed to 1.25MHz. This will reduce the jitter and should warrant a reliable connection.
+   
+   Another alternative is to update the emupack to the newest release. But that also features an important change. Read on.
+
+**CCSv9.1.x** (emupack 8.2.0.000xx) 
+
+   The TI Emulators package (emupack) that ships with CCSv9.1.x versions (8.2.0.000xx) changed the default TCLK speed.
+   
+   With this new emupack, some performance improvements enable higher speeds up to 14MHz and the default is set to 8MHz, which was tested to be compatible with the Launchpads and development kits. However, this may be too high depending on the length of the connections, the use of isolation adapters and other physical factors.
+   
+   In case there are problems, reduce the TCLK speed to the previous default of 2.5MHz and see if the connections can be made stable. 
+   
+   For details on how to change the TCLK speed, check section [Advanced target configuration options](../users_guide/ccs_debug-main.html#advanced-target-configuration-options)
+
+**Cloud** (emupack 8.2.0.000xxx)
+
+   In CCS Cloud there is no advanced Target Configuration Editor, therefore the change must be done directly on the XML code. Please refer to the post below for an example on how to proceed:
+   
+   https://e2e.ti.com/support/tools/ccs/f/81/p/821465/3039205#3039205 
+
+## UART considerations
+
+**1.** When using the UART channel without an active debug session and the debug connector disconnected, the voltage translation circuitry is not powered to provide the proper signaling to the UART TX pin and therefore the UART communications will not work properly. In order to power the voltage translators, it is necessary to also connect the pin **TGTVDD(Sense)** of the breakout adapter to the *Vdd* line of the target board. 
+
+**2.** The XDS110 User's Guide mentions the backchannel UART port implements the RS-232C signaling, but that is incorrect as it does not implement the necessary voltage levels mandated by the EIA RS-232-C standard. 
+
+**3.** The XDS110 does not implement the handshake lines for flow control (CTS, RTS, DSR, DTR, RTR) between the DTE and the DCE - commonly referred as **HW Flow Control** in terminal programs. When configuring your terminal program, use the option **None** instead.
+
+# Addendum and errata to XDS110 Users Guide
+
+The information below corrects or complements the [XDS110 Debug Probe User's Guide (SPRUI94)](http://www.ti.com/lit/ug/sprui94/sprui94.pdf). 
+
+## Section 2.4.1
+
+The AUX connection is a 14-pin IDC connection using .05 inch pitch. It is Samtec FFSD-compatible, with the female connector on both ends. The pin mapping is shown in Figure 3. 
+
+The signal descriptions are:
+
+<font size="2">
+<table id="st101">
+<tr>
+<th> <font color="#0000f0"><strong>PIN</strong></font> </th>
+<th> <font color="#0000f0"><strong>Name</strong></font> </th>
+<th> <font color="#0000f0"><strong>Function</strong></font> </th>
+</tr>
+<tr>
+<td> <font color="#f00000"><strong>1,2</strong></font> </td>
+<td> TGTSUPPLYIN </td>
+<td> Used for Energy Trace. Target board's power supply routed to the debug probe as input. </td>
+</tr>
+<tr>
+<td> <font color="#f00000"><strong>3,4</strong></font> </td>
+<td> TGTSUPPLYOUT </td>
+<td> Used for Energy Trace. Output supply from the debug probe to power the target board. </td>
+</tr>
+<tr>
+<td> <font color="#f00000"><strong>5</strong></font> </td>
+<td> GND </td>
+<td> Ground </td>
+</tr>
+<tr>
+<td> <font color="#f00000"><strong>6</strong></font> </td>
+<td> TGTVDD (Sense) </td>
+<td> Used for UART and GPIO. Target voltage sense for the voltage translation circuit of UART and GPIO functions. </td>
+</tr>
+<tr>
+<td> <font color="#f00000"><strong>7</strong></font> </td>
+<td> Key </td>
+<td> - </td>
+</tr>
+<tr>
+<td> <font color="#f00000"><strong>8</strong></font> </td>
+<td> GPIOOUT0 </td>
+<td> GPIO input/output port 0 </td>
+</tr>
+<tr>
+<tr>
+<td> <font color="#f00000"><strong>9</strong></font> </td>
+<td> GPIOIN0 </td>
+<td> GPIO input port 0 </td>
+</tr>
+<td> <font color="#f00000"><strong>10</strong></font> </td>
+<td> GPIOOUT1 </td>
+<td> GPIO input/output port 1 </td>
+</tr>
+<tr>
+<td> <font color="#f00000"><strong>11</strong></font> </td>
+<td> GPIOIN1 </td>
+<td> GPIO input port 1 </td>
+</tr>
+<tr>
+<td> <font color="#f00000"><strong>12</strong></font> </td>
+<td> UARTTX </td>
+<td> UART Transmit pin </td>
+</tr>
+<tr>
+<td> <font color="#f00000"><strong>13</strong></font> </td>
+<td> GND </td>
+<td> Ground </td>
+</tr>
+<tr>
+<td> <font color="#f00000"><strong>14</strong></font> </td>
+<td> UARTRX </td>
+<td> UART Receive pin </td>
+</tr>
+</table>
+</font>
+
+![](./images/XDS110_Aux_pinout.png)
+
+Figure 3. AUX Connection Signal Mapping
+
+A breaout adaptor is also supplied for this interface (see Section 4.1.2).
+
+## Section 3.1.2.2
+
+In CCSv9.3 a new option called &quot;Power Isolation&quot; has been added to the connection settings. This option is set to &quot;Remove power on final disconnect&quot; by default which follows legacy behavior. However this option can be set to &quot;Keep power at final disconnect&quot; to continue supplying power to the target even after the debug session has terminated. 
+
+The probe will stop supplying power when the following conditions occur:
+
+- When the computer reboots.
+- When power is removed from debug probe (USB cable disconnected). 
+- Launching and terminating a new target configuration that overrides this setting. 
+- Depending on the CCS configurations, launching a new debug session may momentarily remove power.
+
+[[b Note
+
+This option can also be automated using the dbgjtag utility. Check section [Section 3.7.3.3 Power](#section-3-7-3-3-power) below.
+
+]]
+
+## Section 3.6.5
+
+The contents of this section are superseded by the section [EnergyTrace](#energy-trace) above. 
+
+## Section 3.7.1
+
+A bidirectional UARTchannel is provided for additional host to target communications (with the probe as a UART-to-UART bridge and the UARTs mapped on the AUX header). The UART channel is exposed to the host through a USB CDC driver and enumerated as Virtual Com Port.
+
+Please note the UART has a voltage translation circuit that requires a supply from the target board. This can be done in two ways:
+
+- Connect the Debug connector to the target board
+- Connect pin 3 (TGTVDD sense) of the AUX connector to a Vcc pin on the target board
+   
+## Section 3.7.3.1 
+
+The title should read <strong>Reset Control Utility - xds110reset</strong>
+
+## Section 3.7.3.3 - GPIO
+
+In subsection <strong>how to use the XDS110 GPIO pins</strong> (page 24), the GPIO names are not correlated to the pinout of the AUX connector.
+
+The XDS110 includes 4 GPIO pins on the AUX connector that can be controlled by the user. dbgjtag includes a command to configure, write, and read these GPIO pins:
+
+```bash
+   dbgjtag -f @xds110 -Y gpiopins, config=number, write=number, read=boolean, mask=number
+```
+
+The GPIO pins are accessed by reading and writing the lower four bits of the number value. GPIOIN1 and GPIOIN0 are inputs into the XDS110. GPIOOUT1 and GPIOOUT0 are outputs from the XDS110. GPIOOUT1 and GPIOOUT0 are initially configured as inputs (hiZ). The user must configure these as outputs to enable these pins.
+
+- <strong>config=number</strong> sets the direction of each GPIO. Writing a binary value of 1 for a GPIO configures it as an output. Writing a binary value of 0 for a GPIO configures it as an input. Only GPIOOUT1 and GPIOOUT0 can be configured as outputs.
+- <strong>write=number</strong> sets the output level of the GPIO pins configured as outputs. Writing a binary value of 0 to a GPIO sets the output level low. Writing a binary value of 1 to a GPIO sets the output level high.
+- <strong>read=boolean</strong> selects if the command also reads the current value of the GPIO pins. The values of <strong>boolean</strong> may be either <strong>yes</strong> or <strong>no</strong>. If <strong>yes</strong>, the value of the pin(s) is read and displayed.
+- <strong>mask=number</strong> provides a bit mask to limit which GPIOs are to be affected. If a GPIO bit is set to a binary value of 0 in the mask, that GPIO is not affected by the config, write, or read commands. If not supplied, all pins are affected by the other commands.
+   
+Using the -v (verbose) command with the -Y gpiopins command modifies the output to display the current config value and always read the pins, and display the result.
+
+Examples:
+
+Configure GPIOIN1 and GPIOIN0 as inputs and GPIOOUT1 and GPIOOUT0 as outputs. Set the values of GPIOOUT1 and GPIOOUT0 both to a binary value of 0:
+
+```bash
+dbgjtag -f @xds110 -Y gpiopins, config=0x3, write=0x0
+```
+
+The mask limits the operations to GPIOOUT1. Configure GPIOOUT1 as an output and set its value to a binary value of 1. The configuration and values for the other three GPIOs are not affected.
+
+```bash
+dbgjtag -f @xds110 -Y gpiopins, config=0x3, write=0x3, mask=0x2
+```
+
+Read the current value of the GPIO pins.
+
+```bash
+dbgjtag -f @xds110 -Y gpiopins, read=yes
+```
+
+Display both the configuration and current value of the GPIO pins (following other output displayed by the verbose mode).
+
+```bash
+dbgjtag -f @xds110 -Y gpiopins -v
+```
+
+## Section 3.7.3.3 - Power
+
+New subsection: <strong>Controlling power to the target.</strong>
+
+Starting with CCSv9.3, the dbgjtag utility provides the ability to control the power supply pins to the target board.
+
+Examples:
+
+Turn on and off power to target:
+
+```bash
+dbgjtag -f @xds110 -Y power,supply=on,voltage=3.3 
+
+dbgjtag -f @xds110 -Y power,supply=off
+```
+
+The probe will stop supplying power when the following conditions occur:
+
+- When the computer reboots.
+- When power is removed from debug probe (USB cable disconnected). 
+- Depending on the CCS configurations, launching a new debug session may momentarily remove power.
+
+[[b Note
+
+This option can also be used in a debug session in Code Composer Studio. Check section [Section 3.1.2.2](#section-3-1-2-2) above.
+
+]]
+
+
+<br>
+<br>
+<hr>
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

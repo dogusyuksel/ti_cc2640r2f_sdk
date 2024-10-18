@@ -1,0 +1,55 @@
+<html>
+<head>
+<link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+
+<h1>DVT Graph State/Event Categories</h1>
+
+<p class="para">
+<br/>Some presentation types like <b>State</b>, <b>Shape</b>, <b>Icon</b> need color, shape or icon assignment based on the value of the field. 
+The color/shape/icon settings can also be categorized so different channel use the same color scheme or use different ones.
+
+<br/>Although a valid use case is that end user to come up with all the color/shape/icon and category assignments manually. 
+This task however might easily get out of control because in most cases, we might not know what the possible categories and 
+color assignment shall be especially if the data collection is handled with any data source that might not even exist today. 
+So we've came up with a scheme that hopefully addresses this a combination of manual and autodiscover cases with some control 
+over the color/shape/icons for a the known set of state values.
+ 
+<br/>To specify the known set of state values, delete all categories other than <b>Main</b> category and specify visibility, color, shap, icon settings
+for each state/event. This will serve as the <b>default</b> setting for autodiscoverred categories.
+
+<h3>Event/State Name</h3>
+<br/>When autodiscovery/autoassign is enabled for categories, each channel that with "State", "Shape", or "Icon" presentation type,
+is listed as a category and the values within that channel, would be listed as valid states. All the possible states of the system
+also get listed under the <b>Main</b> category.
+
+<h3>Visibility</h3>
+<br/>Control whether or not show a state using the "Visible" checkbox.
+
+<h3>Color</h3>
+<br/>Configure what color to use for each state within a category
+
+<h3>Shape</h3>
+<br/>Configure what shape to use for each state, the shapes will be colored using the specified color for the state/event. 
+Here are the supported shapes:
+<ul>
+<li>Circle</li>
+<li>Line</li> - Line is different with other shapes in that a vertical line crossing all channel (which will be a two pixels thicker on 
+		the channel that is responsible for drawing), will be plotted. This comes handy for inserting markers that for example could
+		mark start of frames.
+<li>Triangle</li>
+<li>Square</li>
+<li>Arrow</li>
+<li>Alphabet<li> - Shows the first character of state inside a circle shaped border
+</ul>
+
+<h3>Icon</h3>
+<br/>The list of shapes that the graph supports is limited to the above list however user may easily add any icons they'd like to see by
+dropping the icon file to &lt;install_dir&gt;\dvt\icons and modifying state_icon.txt. Restarting the tool and assigning their icon
+name to the state.
+
+<h3>Toolbar</h3>
+<br/>Multi Select assignment and drilling down based on channel name works the same way as "Channels" tab. 
+</body>
+</html>

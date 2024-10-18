@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+   <extension-point id="highlightsProvider" name="highlightsProvider" schema="schema/highlightsProvider.exsd"/>
+   <extension-point id="highlightsProvider2" name="highlightsProvider2" schema="schema/highlightsProvider2.exsd"/>
+
+	<extension point="org.eclipse.core.runtime.products"
+		id="product"
+		name="%Name">
+		<product 
+			description="%AboutText" 
+			name="%Name" 
+			application="com.ti.ccstudio.ui.workbench">
+			
+			<property name="appName" value="%Name"/>
+			<property name="windowImages" value="image_16.png,image_32.png,image_48.png,image_64.png,image_128.png"/>
+			<property name="preferenceCustomization" value="plugin_customization.ini"/>			
+			<property name="aboutText" value="%AboutText"/>			
+			<property name="featureImage" value="image_32.png"/>
+			
+			<property name="introTitle" value="%IntroTitle"/>		
+			<property name="introBrandingImage" value="product:/icons/obj/TexasInstruments.png"/>
+			<property name="introBrandingImageText" value="%Company"/>
+			<property name="startupForegroundColor" value="FFFFFF"/>
+			<property name="startupProgressRect" value="0,335,600,15"/>
+			<property name="startupMessageRect" value="5,245,590,20"/>
+			
+			<property name="applicationCSSResources" value="platform:/plugin/org.eclipse.platform/images/"/>
+		</product>	
+	</extension>
+	
+	<extension point="org.eclipse.e4.ui.css.swt.theme">
+		<theme basestylesheeturi="css/theme_light.css" id="com.ti.ccstudio.theme.light" label="%theme.light"/>
+		<theme basestylesheeturi="css/theme_dark.css" id="com.ti.ccstudio.theme.dark" label="%theme.dark"/>
+	</extension> 
+	
+ <extension
+       point="org.eclipse.ui.menus">
+    <menuContribution
+          allPopups="false"
+            locationURI="menu:com.ti.ccstudio.debug.ui.viewsMenu?after=com.ti.ccstudio.debug.ui.viewsMenu.group.intro">
+    	         <command
+                 commandId="org.eclipse.ui.help.quickStartAction"
+                 icon="icons/obj/welcome16.gif"
+                 label="%intro.label"
+            	 description="%intro.desc"
+                 style="push">
+	           	<visibleWhen checkEnabled="false">
+                	<reference definitionId="com.ti.ccstudio.debug.ui.anyCCSPerspective"/>
+              	</visibleWhen>
+	         </command>
+      </menuContribution>
+    <menuContribution
+          allPopups="false"
+          locationURI="menu:help?after=group.intro.ext">
+       <menu
+             icon="icons/elcl16/video.png"
+             label="%videosLabel">
+          <dynamic
+                class="com.ti.ccstudio.branding.internal.VideosMenuContribution"
+                id="com.ti.ccstudio.branding.dynamic1">
+          </dynamic>
+       </menu>
+    </menuContribution>
+    <menuContribution
+          allPopups="false"
+          locationURI="toolbar:org.eclipse.ui.trim.status">
+       <toolbar
+             id="com.ti.ccstudio.branding.contributedTrim">
+          <control
+                class="com.ti.ccstudio.branding.internal.NewVideoStatusBarIndicator">
+          </control>
+       </toolbar>
+    </menuContribution>
+    <menuContribution
+            locationURI="menu:com.ti.ccstudio.debug.ui.viewsMenu.simple?after=com.ti.ccstudio.debug.ui.viewsMenu.simple.group.intro">
+	         <command
+	               commandId="org.eclipse.ui.help.quickStartAction"
+                 icon="icons/obj/welcome16.gif"
+                 label="%intro.label"
+            	 description="%intro.desc"
+                 style="push">
+	            <visibleWhen
+	                  checkEnabled="false">
+	               <with
+	                     variable="activeWorkbenchWindow.activePerspective">
+	                  <or>
+	                     <equals
+	                           value="com.ti.ccstudio.TISimplePerspective">
+	                     </equals>
+	                  </or>
+	               </with>
+	            </visibleWhen>
+	         </command>
+    </menuContribution>
+ </extension>
+ <extension
+       point="org.eclipse.ui.intro">
+    <intro
+          class="com.ti.ccstudio.branding.internal.CCSIntroPart"
+          icon="icons/obj/welcome16.gif"
+          id="com.ti.ccstudio.branding.intro"
+          label="Getting Started">
+    </intro>
+    <introProductBinding
+          introId="com.ti.ccstudio.branding.intro"
+          productId="com.ti.ccstudio.branding.product">
+    </introProductBinding>
+ </extension>
+ <extension
+       point="org.eclipse.ui.startup">
+    <startup
+          class="com.ti.ccstudio.branding.internal.VideosMenuContribution">
+    </startup>
+ </extension>
+ <extension
+       point="com.ti.ccstudio.webcontent.httpRouteProvider">
+    <httpRouteProvider
+          class="com.ti.ccstudio.branding.internal.HttpRouteProvider">
+    </httpRouteProvider>
+ </extension>
+ <extension
+       point="com.ti.ccstudio.webcontent.httpSourceContainer">
+    <httpSourceContainer
+          class="com.ti.ccstudio.branding.internal.HttpSourceContainer">
+    </httpSourceContainer>
+ </extension>   
+</plugin>

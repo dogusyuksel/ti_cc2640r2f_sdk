@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>9. Troubleshooting &mdash; Code Composer Studio 12.8.0 Documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Code Composer Studio 12.8.0 Documentation" href="index.html"/>
+        <link rel="next" title="9.1. Installation" href="ccs_troubleshooting.html"/>
+        <link rel="prev" title="8.1. General" href="ccs_faqs.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="https://www.ti.com">
+            <img src="_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Code Composer Studio
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                12.8.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ccs_glossary.html">1. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_overview.html">2. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_installation.html">3. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_updates.html">4. Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_getting-started.html">5. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_project-management.html">6. Projects and Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_debug.html">7. Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_faqs.html">8. Frequently Asked Questions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9. Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html">9.1. Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#startup">9.2. Startup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#updates">9.3. Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#general-ide">9.4. General IDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#resource-explorer">9.5. Resource Explorer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#project-management-and-build">9.6. Project Management and Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#debug">9.7. Debug</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#getting-support">9.8. Getting Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#diagnostic-logs">9.9. Diagnostic Logs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ccs_legal.html">10. License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Code Composer Studio</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>9. Troubleshooting</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="https://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="troubleshooting">
+<h1>9. Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h1>
+<p>This chapter covers the recommended troubleshooting steps for more commonly encountered Code Composer Studio (CCS) issues.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ccs_troubleshooting.html">9.1. Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#general-tips-for-installing-ccs">9.1.1. General Tips for Installing CCS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#installation-error-related-to-missing-msvc-redistributable-libraries">9.1.2. Installation Error Related to Missing MSVC Redistributable Libraries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ccs_troubleshooting.html#windows-7">9.1.2.1. Windows 7</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#installation-fails-when-installing-eclipse">9.1.3. Installation Fails when &quot;Installing Eclipse&quot;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#installation-fails-with-error-about-permissions-on-temporary-folder">9.1.4. Installation Fails with Error About Permissions on Temporary Folder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#macos-installation-freezes-or-prompts-for-proxy-information">9.1.5. MacOS Installation Freezes or Prompts for Proxy Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#ccs-error-unable-to-install-repotype-executable">9.1.6. CCS ERROR: <em>Unable to install repotype executable</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#clearing-out-an-existing-installation">9.1.7. Clearing Out An Existing Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ccs_troubleshooting.html#startup">9.2. Startup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#jvm-max-heap-size-is-too-high-or-too-low">9.2.1. JVM Max Heap Size is Too High or Too Low</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#failed-to-create-the-java-virtual-machine">9.2.2. <em>Failed to Create the Java Virtual Machine</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#antivirus-or-other-security-software">9.2.3. Antivirus or Other Security Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#missing-msvc-redistributable-libraries">9.2.4. Missing MSVC Redistributable Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#corrupt-workspace-folder">9.2.5. Corrupt Workspace Folder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#com-ti-dvt-energytrace-errors">9.2.6. &quot;com/ti/dvt/energytrace&quot; Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ccs_troubleshooting.html#updates">9.3. Updates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#no-update-sites-found">9.3.1. No Update Sites Found</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#ccs-app-center-not-connecting">9.3.2. CCS <strong>App Center</strong> Not Connecting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#out-of-memory-error-when-installing-add-ons-from-ccs-app-center">9.3.3. <em>Out of Memory</em> Error When Installing Add-ons from CCS App Center</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#error-computing-size-has-encountered-a-problem">9.3.4. Error: <em>Computing size has encountered a problem</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#updates-fail-with-no-repository-found-or-connection-reset-or-artifact-for-binary-not-available-errors">9.3.5. Updates fail with <em>No repository found</em> or <em>Connection reset</em> or <em>artifact for binary not available</em> errors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ccs_troubleshooting.html#general-ide">9.4. General IDE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#reset-the-perspective">9.4.1. Reset the Perspective</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#use-the-clean-argument-when-calling-ccstudio-exe">9.4.2. Use the <code class="docutils literal notranslate"><span class="pre">-clean</span></code> Argument When Calling &quot;ccstudio(.exe)&quot;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#clean-the-workspace-or-try-using-a-new-one">9.4.3. Clean the Workspace (or try using a new one)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#heap-and-jvm-settings">9.4.4. Heap and JVM settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#gtk3-for-ccs-linux">9.4.5. GTK3 (for CCS Linux)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#failed-to-create-the-part-s-controls-errors-for-ccs-linux">9.4.6. <em>Failed to create the part's controls</em> Errors (for CCS Linux)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ccs_troubleshooting.html#resource-explorer">9.5. Resource Explorer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#check-your-internet-connection">9.5.1. Check your Internet Connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#check-the-proxy-setting">9.5.2. Check the Proxy Setting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ccs_troubleshooting.html#ti-cloud-agent-socket-error-ccs-macos">9.5.2.1. TI Cloud Agent Socket Error (CCS macOS)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#clear-the-resource-explorer-cache">9.5.3. Clear the Resource Explorer Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#clear-the-ccs-browser-cache">9.5.4. Clear the CCS Browser Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#check-for-running-processes">9.5.5. Check for Running Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#logs">9.5.6. Logs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ccs_troubleshooting.html#project-management-and-build">9.6. Project Management and Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ccs_troubleshooting.html#debug">9.7. Debug</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#jtag-connectivity-issues">9.7.1. JTAG Connectivity Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#data-verification-issues">9.7.2. Data Verification Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#delete-the-debug-launch-configuration">9.7.3. Delete the debug launch configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#delete-the-launch-file">9.7.4. Delete the <strong>.launch</strong> File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#delete-target-cache-files">9.7.5. Delete Target Cache Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#ccs-freezes-during-debug">9.7.6. CCS Freezes During Debug</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#hardware-trace-issues">9.7.7. Hardware Trace Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#mtb-trace-issues">9.7.8. MTB Trace Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#rtos-analyzer-issues">9.7.9. RTOS Analyzer Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ccs_troubleshooting.html#ccs-error-invalid-cio-command-x-in-the-cio-buffer-at-address-0xa000-was-not-recognized-please-check-the-device-and-program-memory-maps">9.7.10. CCS ERROR: <em>Invalid CIO command (x) in the CIO buffer at address (0xA000) was not recognized. Please check the device and program memory maps.</em></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ccs_troubleshooting.html#getting-support">9.8. Getting Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ccs_troubleshooting.html#diagnostic-logs">9.9. Diagnostic Logs</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ccs_troubleshooting.html" class="btn btn-neutral float-right" title="9.1. Installation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ccs_faqs.html" class="btn btn-neutral" title="8.1. General" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyight 1995-2019</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'12.8.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="https://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

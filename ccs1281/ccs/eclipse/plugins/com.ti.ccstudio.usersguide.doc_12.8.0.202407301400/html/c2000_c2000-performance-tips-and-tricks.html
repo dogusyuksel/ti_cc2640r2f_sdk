@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="C2000 Performance Tips and Tricks"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Generation Tools">
+<meta name="product-link" content="https://www.ti.com/tool/TI-CGT">
+
+<!-- Change the title text for your page -->
+<title>C2000 Performance Tips and Tricks</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+<!-- Add your markdown source here! -->
+#Introduction
+
+This article describes how to enable the compiler to generate code that takes 
+advantage of the C2000 architecture’s powerful performance features.
+
+#Other Resources
+
+* [Accelerators: Enhancing the Capabilities of the C2000 MCU Family](https://www.ti.com/lit/pdf/spry288)
+* [Floating Point Optimization](http://processors.wiki.ti.com/index.php/Floating_Point_Optimization#--fp_mode)
+* [TMS320C28x Optimizing C/C++ Compiler User's Guide (spru514)](https://www.ti.com/lit/pdf/spru514)
+* [TMS320C28x Assembly Language Tools User's Guide (spru513)](https://www.ti.com/lit/pdf/spru513)
+* [TMS320C28x Extended Instruction Sets Technical Reference Manual](https://www.ti.com/lit/pdf/spruhs1)
+
+
+#Auto-increment/decrement Addressing Modes
+
+The C2000 hardware has several addressing modes, including auto-increment/decrement 
+address registers (*XARn++/--). These operands eliminate the need for explicit 
+address calculation when striding through data arrays in loops. At optimization 
+level 2 and above, the optimizer will transform array accesses to enable this 
+addressing mode when possible. This provides a powerful performance boost not 
+only from eliminating non-essential address arithmetic in loops, but also, as 
+we will see in the topics to follow, by enabling the use of other powerful 
+architectural features.
+
+##Indexed array accesses in loops
+
+Source code written in a natural C language style, at Optimization level 2+:
+
+```c
+int i;
+for  (i=0; i < upper_bound;  i++) 
+     array[i] = …
+```
+will generate:
+
+* load base address of array into XARn
+* access *XARn++ for each iteration
+
+##Signed Array Index Variables
+
+The array index variable (i in the example above) should be a signed integer— not an unsigned integer— whenever possible.
+
+To the programmer, using an unsigned integer might be logical—after all, the 
+programmer assumes the array index variable will never have a negative value. 
+However, the semantics of unsigned integers mean that unless the optimizer can 
+prove the lower and upper bounds of the value, it must not assume the value will not 
+wrap around. In order to translate array[i] to *XARn++, the compiler must prove 
+that the value of i, and hence the address, is strictly increasing. In the absence 
+of a known upper bound, the compiler can’t rule out wrap around of the index 
+variable and thus can’t perform the transformation.
+
+The C language semantics of signed integers mean that wrap-around is undefined 
+behavior. Therefore, the compiler is not bound to support wrap-around for signed 
+integers and can do the transformation without needing to prove an upper bound.
+
+If the programmer specifically wishes to use an unsigned integer for greater range 
+of values, the optimizer can still perform the transformation if an upper bound 
+is statically knowable— such as through the use of a macro, constant 
+(if the definition can be seen in the scope of optimization), or **#pragma MUST_ITERATE**.
+
+##Address strictly increasing or decreasing by 1
+
+Additionally, the array accesses must be determined to be strictly increasing 
+(or decreasing) by increments of 1. The Optimizer can transform array accesses 
+to this addressing mode when it can detect that the addresses computed per 
+iteration only vary with respect to the incremented loop index value. For example:
+
+```c
+int i, j;
+float sum;
+for (i = 0; i < N; i++)
+     for (j=0; j < M; j++)
+          sum += array[j] * array[j - i];
+```
+
+##Efficient Pointer Modification
+
+The C28x CPU has some powerful architecture features for pointer modification.
+When writing C code, it is best to modify pointers in a way which maps to efficient C28x 
+instructions, and to avoid pointer modification which does not map to a C28x instruction.
+
+For example:
+* C28x CPU has single instructions for: \*p++, \*--p
+* C28x CPU does ***not*** have single instructions for: \*p--, \*++p
+
+It is recommended to use the modifiers whic the CPU has. However, sometimes the
+compiler can create efficient code even if the above recommended syntax is not used.
+
+
+#Single Repeatable Instructions
+
+The C2000 architecture has numerous instructions that can be issued as single 
+repeatable instructions (RPT || ). This construct eliminates all branching 
+overhead and only adds a total of 1 or 4 cycles depending on whether the repeat 
+count is used as an immediate value or register, respectively. When possible, 
+the C2000 compiler will transform loops containing supported operations into 
+single repeatable instructions. Supported operations include various types of 
+multiply-accumulate instructions, memory initialization with 0, 32-bit memory add, 
+unsigned subtraction used in integer divide, and block copies. (See [Appendix 1](#appendices) for source code examples.)
+
+In order to transform an operation in a loop into a single repeatable instruction, 
+the operation must be the only operation in the loop. This means the operation’s 
+operands can’t be replaced inside the loop body. Thus, generating 
+auto-incremented/decremented address operands is essential for generating single 
+repeatable instructions if the operation is not performing on the same data on 
+different loop iterations (which is typically not the case).
+
+
+#Memory Operands
+
+Many instructions on the C2000 ALU take memory operands, meaning they can operate 
+directly on data in memory without having to load to and store back from registers.
+
+##Data allocation for instructions with two memory operands
+
+For those instructions taking 2 memory operands (see [Appendix 3](#instructions-with-two-memory-operands)),
+the second memory operand (*XAR7) uses the program memory bus. The C2000 RAM 
+blocks are single-access (SRAM) and only support one access to the same memory 
+block in a single pipeline cycle. To avoid a pipeline stall, the data arrays 
+should be allocated to different physical RAM blocks. The physical RAM blocks 
+can be found in the memory map of the device in its data manual.
+
+
+#MAC-Style Instructions
+
+Another high-performance feature of the C2000 architecture is the multiply-accumulate 
+instructions (see [Appendix 2](#list-of-mac-style-instructions) for the list of MAC-style instructions.) 
+These instructions combine multiply and add operations, with an optional shift 
+of the accumulated value, into a single instruction. They also have forms taking 
+direct memory operands and are available as single repeatable instructions. 
+Thus performing a multiply-accumulate on a data array can be performed as a 
+single repeatable instruction using auto-incremented memory operands. 
+(For instructions operating on two memory operands, see the note in data allocation section.)
+
+A complication in generating these instructions is that the hardware instruction does 
+not correlate to the natural C-language construct. In C, a typical 
+multiply-accumulate operation performs a multiply and then adds the product 
+to an existing accumulation: a += b \* c. However, the C2000 MAC-style instructions 
+(with the exception of DMAC) operate by adding a previously-computed product in 
+the same cycle as performing the subsequent multiply: a += p; p’ = b \* c. 
+Therefore, the compiler must recognize the source-language construct and translate 
+the code to the proper form to generate the hardware instructions.
+
+
+##Note on generating 16 x 16->32 MAC
+
+The C language semantics for 16 \* 16 -> 32-bit multiplication 
+(such as the MAC instruction) require casting the multiply operands to 32-bits. 
+See https://www.ti.com/lit/an/spra683/spra683.pdf
+
+##MACF32
+
+The MACF32 is the only single-repeatable instruction on the FPU. Additionally, 
+it has a form taking two memory operands, and is the only FPU arithmetic instruction 
+that takes memory operands. However, this instruction performs two separate 
+multiply-accumulates and adds the results back together at the end, essentially 
+reassociating the adds. Since floating point addition is not naturally associative, 
+the compiler only generates this instruction when the **--fp_reassoc** flag is set 
+to “on” (which is the default setting). There can be a large difference in 
+precision between using the RPT || MACF32 and performing a serial 
+multiply-accumulate loop; if this variance is not acceptable, the **--fp_reassoc **
+flag should be set to “off”.
+
+
+***Figure 1*** shows how auto-incremented addressing mode, single repeatable instructions, 
+and MACF32 work together to provide a 71% performance improvement in a small 
+computational kernel. This benchmark was an example of compiler performance 
+improvements implemented in the C2000 CGT v.6.2 compiler. The performance was 
+measured as cycles on a cycle-accurate simulator.
+
+![](./images/c28x-perf-figure1.jpg)
+
+[[g Figure 1
+
+]]
+
+#DMAC w/RPT
+
+The DMAC instruction performs multiply-accumulates on 2 adjacent signed integers 
+at the same time. It is a SIMD (single instruction, multiple data) operation which
+performs dual 16 x 16 MAC operations in one instruction. It essentially operates
+on 2 int2 vectors in memory and results in 2 longs. The data addresses must be 
+32-bit aligned. There are 3 levels of compiler support ranging from almost fully
+automatic to intrinsics. The DMAC is a single repeatable operation with memory 
+operands: when there is nothing else in the loop, the compiler can generate a 
+RPT || DMAC. It is the most powerful computational instruction on the C2000 core.
+
+##Almost fully automatic
+
+The most fully automatic level of support requires that:
+
+* the source arrays are known to be 32-bit aligned and the arrays are accessed via array indices
+* the loop trip count is known to be **even**, either from a known trip count or use of **#pragma MUST_ITERATE**
+
+```c
+int src1[N], src2[N];                          // int arrays must be 32-bit aligned
+#pragma DATA_ALIGN(src1,2);    
+#pragma DATA_ALIGN(src2,2);
+ 
+{...}
+int i;
+long res = 0;
+#pragma MUST_ITERATE(,,2)	              // Can specify loop trip count multiple
+for (i = 0; i < N; i++)                       // Loop trip count N must be even
+    res += (long)src1[i] * src2[i];           // Arrays must be accessed via array indices
+```
+
+##Assertions for data address alignment
+
+The **_nassert** intrinsic can be used to assert that the data addresses are aligned 
+to 32-bits. It is up to the programmer to ensure that only properly aligned data 
+addresses are used by the operation. The source data must still be accessed as 
+indexed arrays and the loop trip count must be known to be **even**, either from a 
+known trip count or use of **#pragma MUST_ITERATE**.
+
+```c
+int *src1, *src2;     // src1 and src2 are pointers to int arrays of at least size N. 
+                      // User must ensure that both are 32-bit aligned addresses.
+{...}
+int i;
+long res = 0;
+ 
+_nassert((long)src1 % 2 == 0);
+_nassert((long)src2 % 2 == 0);
+                                             // Can use #pragma MUST_ITERATE(,,2)
+for (i = 0; i < N; i++)                      // Loop trip count N must be even
+     res += (long)src1[i] * src2[i];         // src1 and src2 must be accessed via array indices
+```
+
+##DMAC Intrinsic
+
+The DMAC instruction can also be generated from a source-level intrinsic:
+
+```c
+void __dmac( long *src1, long *src2, long &accum1, long &accum2, int shift); 
+```
+
+See the following two examples for using the intrinsic. Note that the user is 
+responsible for ensuring correct data alignment and loop count, and the two 
+partial accumulations must be added into a final result after the loop.
+
+###Example 1
+
+```c
+int src1[N], src2[N];           // src1 and src2 are int arrays of at least size N
+                                // User must ensure that both start on 32-bit
+                                // aligned boundaries.
+{...}
+
+int i;
+long res = 0;
+long temp = 0;
+
+_nassert((N % 2) == 0);
+for (i = 0; i < (N / 2); i++)            
+     __dmac(((long *)src1)[i], ((long *)src2)[i], res, temp, 0);
+ 
+res += temp;
+```
+
+###Example 2
+
+```c
+int *src1, *src2;               // src1 and src2 are pointers to int arrays of at
+                                // least size N. User must ensure that both are  
+                                // 32-bit aligned addresses.
+{...}
+
+int i;
+long res = 0;
+long temp = 0;
+ 
+long *ls1 = (long *)src1;
+long *ls2 = (long *)src2;
+ 
+_nassert((N % 2) == 0);
+for (i = 0; i < (N / 2); i++)            
+     __dmac(*ls1++, *ls2++, res, temp, 0);
+ 
+res += temp;
+```
+
+#RPTB (FPU Only)
+
+On devices with a floating point unit (FPU), the repeat block (RPTB) instruction 
+can eliminate all branching overhead for a loop. This is useful for any loop that 
+meets the requirements, not just floating point computations. It can drastically 
+improve performance for smaller loops in which the branching overhead contributes 
+an even larger percentage of loop runtime. The RPTB instruction adds only 1 or 4 
+cycles overhead (depending on whether an immediate value or a register is used 
+for the repeat count), regardless of the number of loop iterations.
+
+The two requirements for generating a RPTB are that the loop must have no internal 
+control flow (no nested loops or conditional statements), and that it must fall 
+between a minimum and maximum instruction word count (9 and 127). Additionally, 
+code must be compiled with **--float_support=fpu32** and may require an optimization 
+setting of 2 or higher.
+
+For small loops that don’t meet the minimum size threshold, the compiler will insert 
+NOPs if it is still profitable to do so at **--opt_for_speed** levels of 1 and 2, 
+and at levels of 3 and above the compiler will attempt to perform loop unrolling. 
+The **#pragma UNROLL** is also available to allow developers to specify that specific 
+loops should be unrolled. Loop unrolling is discussed further in the [Unrolling](#unrolling) section.
+
+***Figure 2*** shows a small computational kernel for which loop unrolling enables 
+RPTB generation, improving performance by 52%.
+
+![](./images/c28x-perf-figure2.jpg)
+
+[[g Figure 2
+
+]]
+
+#Unrolling
+
+Loop unrolling is a compiler transformation in which the code in the loop body 
+is replicated some number of times and the loop iteration count is decreased 
+accordingly. The primary advantage of loop unrolling is reducing loop branch 
+overhead, which is now amortized across the number of loop code replications. 
+See ***Figure 3*** for an example.
+
+![](./images/c28x-perf-figure3.jpg)
+
+[[g Figure 3
+
+]]
+
+As discussed in the previous section, on C2000 devices with FPU, the branch 
+overhead can be eliminated entirely in the case of enabling RPTB generation 
+(see Figure 2.) Loop unrolling can also enable other optimizations by providing 
+increased code context. For example, unrolling may enable the compiler to fill 
+delay slots or form parallel instructions by exposing independent computations 
+from multiple loop iterations in the same loop body.
+
+However, loop unrolling can also negatively impact performance. Loop unrolling 
+increases code size. Additionally, it may increase register pressure, resulting 
+in costly register spilling inside the loop. On devices with FPU, for a loop 
+already meeting the RPTB requirements, loop unrolling would not be likely to 
+improve performance and could result in surpassing the maximum size threshold 
+for a RPTB. To complicate matters, loop unrolling is performed early on in the 
+Optimizer, while machine code is not generated until later. Therefore, at the 
+time of unrolling, the compiler doesn’t know the loop size and cannot directly 
+determine whether a RPTB can be generated.
+
+Due to the increase in code size, the compiler turns on loop unrolling at 
+**--opt_for_speed** levels of 3 or greater, when performance has been prioritized 
+over code size. Because the compiler doesn’t know which loops are most important 
+for overall application performance, users may instead choose to use the **#pragma UNROLL** 
+to specify specific loops that should be unrolled. The syntax is 
+**#pragma UNROLL(n)**, where n is the number of copies of the original loop body 
+inside the transformed loop. See the compiler guide for more information.
+
+#Restrict Keyword
+
+The restrict keyword is a source-level construct that the application developer 
+can use to convey significant information to the compiler, enabling transformations 
+that might otherwise constitute a safety risk.
+
+```c
+Usage:    float *restrict ptr;
+```
+
+In the above usage example, the restrict keyword is used to tell the compiler 
+that for its lifetime, the pointer ***ptr*** points to data not referred to by any 
+other name. Therefore, in the following declaration:
+
+```c`
+    float *restrict ptr;
+    float f;
+    float *ptr2;
+```
+
+***ptr*** can be known NOT to point to ***f*** or to the same data to which ***ptr2*** points; 
+However, ***ptr2*** might point to ***f***.
+
+Knowing that memory is not aliased enables the compiler to perform certain 
+optimizations such as instruction reordering and eliminating unnecessary 
+memory accesses. In the following computational kernel, the use of the restrict 
+keyword enables the C2000 compiler to generate much better code, resulting in a 
+performance improvement of 58%.
+
+![](./images/restrict1.jpg)
+
+[[g Restrict Example Slide 1
+
+]]
+
+![](./images/restrict2.jpg)
+
+[[g Restrict Example Slide 2
+
+]]
+
+![](./images/restrict3.jpg)
+
+[[g Restrict Example Slide 3
+
+]]
+
+#Inlining
+
+Inlining functions with the **inline** keyword may increase performance by eliminating
+the function call and function return overhead. However, if the inlined function is often used
+in a program, then this may significantly increase code size since the code for the
+function is replicated and inlined in every instance the function is called.
+
+#Saturation in C
+
+In order to perform efficient saturation in C on the C28x, the ternary operator
+should be used. For example,
+
+Do not perform saturation in this way:
+```c
+if( sum > max )
+    sum = max;
+if( sum < min )
+    sum = min;
+
+```
+Rather, perform saturation in this way:
+```c
+sum = (sum > max) ? max : sum;
+sum = (sum < min) ? min : sum;
+```
+
+The first method compiles to:
+```c
+        CMPL      ACC,@_max
+        BF        $C$L1,LEQ
+ 
+        MOVL      ACC,@_max
+$C$L1:  CMPL      ACC,@_min
+        BF        $C$L2,GEQ
+
+        MOVL      ACC,@_min
+$C$L2:     
+
+```
+
+The second method compiles to the much more efficient:
+```c
+        MINL      ACC,@_max
+        MAXL      ACC,@_min
+```
+
+#TMU
+
+The Trigonometric Math Unit (TMU) provides hardware support for floating point 
+division, sqrt, sin, cos, atan, and atan2. The hardware support delivers superior 
+performance; however, as the results may vary from the standard library 
+implementations of these operations due to algorithmic differences, the library 
+calls are not replaced by default.
+
+When TMU support is enabled and the **--fp_mode=relaxed** option is selected, the 
+compiler will automatically replace library calls to these operations with 
+hardware instructions. If the floating point mode is strict (the default 
+setting, **--fp_mode=strict**), the compiler will issue performance advice if it 
+encounters any opportunities for replacing library calls with TMU instructions. 
+Advice will be issued once per operation type per file.
+
+Alternatively, intrinsics are available for the TMU operations listed above. 
+See the intrinsics table in the compiler guide.
+
+See [Accelerators: Enhancing the Capabilities of the C2000 MCU Family](https://www.ti.com/lit/an/spry288a/spry288a.pdf) 
+for more information and performance comparisons.
+
+#Miscellaneous
+
+* Group global variables into structures wherever possible to potentially enable
+the compiler to address the variables more efficiently.
+* Pass parameters via pointers to structures or arrays in function calls. Use this method
+if more than two variables are passed to a function.
+* Break up structures or arrays and keep them small. Keep structures to less than 64
+words if possible for best efficiency.
+* Put most ofetn used variables at the beginning of structures. This may allow the compiler
+to use more efficient pointer indexing modes for the first 8 words.
+* Organize variables in structures in the order they are used. This may enable more
+efficient increment or decrement pointer modes.
+* Avoid declaring too many local variables. Keep the local frame less than 64 words
+or else declare the least used local variables as ***static*** if possible.
+* Declare local variables and parameters in the same order in which they are used.
+
+#Appendices
+
+##Source code examples of single repeatable instructions
+
+```c
+/*****************************************************/
+/* Examples of C2000 RPT SINGLE INSTRUCTIONS         */
+/* REQUIRES --opt_level=2 [or greater]               */
+/*****************************************************/
+float fresult;
+long result;
+int N, M;
+int array[100];
+float farray[100];
+
+// Generates RPT || MAC (requires --unified_memory)
+void foo()
+{
+int i, j;
+long sum = 0;
+
+for (i = 0; i < N; i++)
+     for (j=0; j < M; j++)
+           sum += (long)array[j] * (long)array[j - i];
+
+ result = sum;
+}
+
+// Generates RPT || MACF32 (requires --float_support=fpu32 --unified_memory)
+void foo2()
+{
+int i, j;
+float sum = 0;
+
+for (i = 0; i < N; i++)
+     for (j=0; j < M; j++)
+          sum += farray[j] * farray[j-i];
+
+ fresult = sum;
+}
+
+// Generates RPT || MOV #0
+void foo3()
+{
+ int i;
+  
+ for (i = 0; i < N; i++)
+       array[i] = 0;
+}
+
+// Generates RPT || ADDL
+void foo4(long *x)
+{
+  int i;
+  long sum = 0;
+
+  for (i = 0; i < N; i++)
+       sum += x[i];
+
+  result = sum;
+}
+
+// Generates RPT || SUBCUL
+void foo5(unsigned long n, int b)
+{
+ n /= b;
+ result = n;
+}
+
+// Generates RPT || PREAD (requires --unified_memory)
+void foo6(int *x)
+{
+ int i = 0;
+ for (i = 0; i < N; i ++)
+     array[i] = x[i];
+}
+```
+
+##List of MAC-style instructions
+
+* MAC
+* MPYA
+* MPYS
+* SQRA
+* SQRS
+* IMACL
+* IMPYAL
+* IMPYSL
+* QMACL
+* QMPYAL
+* QMPYSL
+* DMAC
+* MACF32 (FPU only)
+
+##Instructions with two memory operands
+
+The following instructions use the program memory bus for a second memory access via *XAR7:
+
+* MAC
+* IMACL
+* QMACL
+* DMAC
+* MACF32 (FPU only)
+* PREAD
+* PWRITE (not currently generated by the compiler)
+
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

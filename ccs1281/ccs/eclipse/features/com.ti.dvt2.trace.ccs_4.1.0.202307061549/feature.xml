@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.dvt2.trace.ccs"
+      label="%featureName"
+      version="4.1.0.202307061549"
+      provider-name="%providerName"
+      >
+
+   <description>
+      %featureName
+   </description>
+
+   <license>
+      Provided under the terms of the original DVT or Code Composer Studio License Agreement.
+   </license>
+
+   <includes
+         id="com.ti.dvt2.scripting.ui"
+         version="4.1.0.202307061549"
+         optional="true"/>
+
+   <includes
+         id="com.ti.dvt2.control"
+         version="4.1.0.202307061549"
+         optional="true"/>
+
+   <requires>
+      <import feature="com.ti.dvt2.scripting.ui" version="4.1.0.202307061549" match="greaterOrEqual"/>
+      <import feature="com.ti.dvt2.control" version="4.1.0.202307061549" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="com.ti.dvt.scripting.ui.trace"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.dvt.analysis.traceviewer"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"/>
+
+   <plugin
+         id="com.ti.dvt.trace.doc"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+</feature>

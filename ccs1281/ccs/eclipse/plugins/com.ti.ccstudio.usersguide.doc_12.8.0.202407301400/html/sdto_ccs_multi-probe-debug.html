@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="Debugging with Multiple XDS Debug Probes"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Composer Studio Product Page">
+<meta name="product-link" content="https://www.ti.com/tool/CCStudio">
+
+<!-- Change the title text for your page -->
+<title>Debugging with Multiple XDS Debug Probes</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+## Overview
+
+It is possible to create a single debug session for multiple devices, each connected to the host machine by a separate debug probe. The level of support for this varies depending on the devices and debug probes used. This article details on how to to this.
+
+[[b Multiple CCS instances
+It is also possible to have two separate running instances of CCS communicating to to different debug probes (connected to two different targets) at the same time. This scenario is a bit simpler than the first since you do not need a single target configuration (ccxml) file for both debug probes. But the same rules apply regarding CCS needing a way to differentiate between debug probes of the same type that are connected to the host.
+]]
+
+## Different Type Debug Probe Configurations
+
+These configurations are multiple debug probe configurations where each debug probe uses a different connection type. A connection type is what appears in the **Connection** drop-down list in the Target Configuration Editor. Examples of a connection type are **Texas Instruments XDS110 USB Debug Probe** or **Spectrum Digital XDS560V2 STM TRAVELER Emulator**. Note that it is possible to have a multiple debug probe target configuration of the same class (ex. two XDS510USB) but using two different connection types because the vendors are different and each have their own connection type (**Spectrum Digital XDS510USB Debug Probe** and **Blackhawk USB510 Debug Probe**).
+
+Multiple debug probe configurations that use different connection types require a custom target configuration which include both debug probes and the device(s) they are connected to. You must create a custom configuration using the **Advanced** target configuration editor. The basics of creating custom target configurations is documented in [here](./ccs_custom_target_config.html).
+
+An example of an mixed multi-probe target configuration for a CC2560 target with an XDS100v3 connection and an F2812 target with an XDS200 connection is shown below:
+
+![](./images/CCSv6-hetero_multi_emu_01.png)
+
+When a multi-probe configuration is created, both probe/target is visible in the Debug view:
+
+![](./images/CCSv6-hetero_multi_emu_02.png)
+
+[[y Limitations
+It is NOT possible to have a mixed multi-probe configuration that consists of XDS560, XDS560v2 or XDS200 debug probe. For example, you cannot have a single configuration that has one XDS560v2 and one XDS200 debug probe (though it is possible to have two XDS560v2 or two XDS200 in a single configuration).
+]]
+
+## Same Type Debug Probe Configurations
+
+Using multiple debug probes that use the same connection type is a bit more tricky. This is because CCS needs to know how to distinguish between the debug probes and because the connection type is the same, it needs some other way to differentiate. This is usually done by associating the serial number of the debug probe to the connection type, or the I/O port number that the debug probe is connected to. In some cases, both identifiers are used.
+
+### XDS100
+
+Multiple XDS100 debug probes can be differentiated with their Serial Numbers. To find the serial numbers of all XDS100 debug probes attached to the host machine, see [the FAQ sections for XDS100](./xdsdebugprobes/files/XDS100.pdf).
+
+In the cases where a debug probes does not have a serial number programmed, or multiple debug probes have the same serial number, the serial number must be reprogrammed. To change the serial number, see [the FAQ sections for XDS100](./xdsdebugprobes/files/XDS100.pdf).
+
+Once the serial numbers for each XDS100 is known (an reprogrammed if needed), create a custom target configuration which include both debug probes and the device(s) they are connected to. You must create a custom configuration using the **Advanced** target configuration editor. The basics of creating custom target configurations is documented in [here](./ccs_custom_target_config.html).
+
+Once you have added all debug probes (and the device(s) they are connected to), go to each debug probe entry and change the **Debug Probe Selection** field to **Select by serial number** and then enter the serial number for that debug probe in the **-- Enter the serial number** field.
+
+![](./images/CCSv5_2xds100_01.png)
+
+Save your configuration and your target configuration file is now configured to launch a debug session for both debug probe targets. Test your configuration by launching a debug session for your new target configuration file.
+
+An example on how to do this is shown in the video below:
+
+<iframe width="854" height="480" src="https://www.youtube.com/embed/w-W4eWYBnN4" frameborder="0" allowfullscreen></iframe>
+
+### XDS110
+
+Multi-probe debug for XDS110 is supported and work similarly to the XDS100 above. Like the XDS100, multiple XDS110 debug probes can be differentiated with their Serial Numbers. To find the serial numbers of all XDS110 debug probes attached to the host machine, run the xdsdfu command found in: <tt>[CCS INSTALL DIR]\ccsv[x]\ccs_base\common\uscif\xds110</tt>.
+
+![](./images/CCSv6_2xds110_01.png)
+  
+[[b Autodetect
+Recent versions of CCS supports a feature for the XDS110 called **Autodetect**. If multiple XDS110 debug probes are connected and a debug session for one of them is launched, a pop-up will ask the user to select the serial number for the desired XDS110 to use.
+]]  
+
+[[y Serial Number restrictions
+Serial numbers for the XDS110 must be 8 characters long. Otherwise it will cause an error in a multi-probe environment. If it is not 8 characters, please use the xdsdfu command to set a serial number of 8 characters long.
+]]
+
+Once the serial numbers for each XDS110 is known (and reprogrammed if needed), create a custom target configuration which include both debug probes and the device(s) they are connected to. You must create a custom configuration using the **Advanced** target configuration editor. The basics of creating custom target configurations is documented in [here](./ccs_custom_target_config.html).
+
+Once you have added all debug probes (and the device(s) they are connected to), go to each debug probe entry and change the **Debug Probe Selection** field to **Select by serial number** and then enter the serial number for that debug probe in the **-- Enter the serial number** field.
+
+![](./images/CCSv6_2xds110_02.png)
+
+Save your configuration and your target configuration file is now configured to launch a debug session for both debug probe targets.
+
+### XDS200
+
+Multi-probe debug for XDS200 is supported. Similar to the XDS100, it does not matter if the debug probe vendors are different because all XDS200 debug probes of the same model share the same connection type. Multiple XDS200 debug probes of the same connection type can be differentiated with either the **Port number** or **Serial number** for the debug probe. 
+
+There are two types of port numbers for a debug probe - the **Generic** address and the **Specific** address. The **Generic** address is simply an index number for the debug probe. The first recognized debug probe would have an index of '0' and subsequent debug probes would increment from there. The **Specific** address maps to the specific COM port number for the debug probe.
+
+The **port number** for the debug probes can be determined with the **xds2xx_portchk.exe** utility:
+
+![](./images/2xds200usb_00.png)
+
+In the example above, there are two XDS200 debug probes attached to a PC. Both the **Specific** and **Generic** addresses are displayed for each debug probe.
+
+[[y Deprecation Notice
+If a **port number** will be specified to differentiate between the multiple XDS200 debug probes, a **Specific** port address should be used. **Generic** port addresses are being *deprecated* in support.
+]]
+
+Starting with TI Emulator Pack version 8.3.0.00003 (which comes with CCSv9.2.0 by default), the actual **serial number** for the XDS200 debug probe can also be used to differentiate between multiple XDS200 debug probes. Unlike the **port number**, the **serial number** is specific to the actual debug probe itself. The advantage of this is that the **serial number** value would always be the same for that debug probe - unlike the **port number**, which is subject to change each time the debug probe is connected to the PC. 
+
+The **serial number** for the XDS200 debug probe can be determined with the **xds2xxx_conf.exe** utility, by passing in the **port address**:
+
+![](./images/2xds200usb_01.png)
+
+Please note that the XDS200 must be configured so that the serial number can be used. This can be done by setting the **EnableUSBSerial** parameter to **true**. See the **ReadMe.txt** file in <tt>[CCS INSTALL DIR]/ccs/ccs_base/common/uscif/xds2xx</tt> for more information.
+
+Once the port/serial numbers for the debug probes have been identified, a custom target configuration can be created which include both debug probes and the device(s) they are connected to. This can be done using the **Advanced** target configuration editor. The basics of creating custom target configurations is documented in [here](./ccs_custom_target_config.html).
+
+Once you have added all debug probes (and the device(s) they are connected to), go to each debug probe entry and update the field for the **Debug Probe Selection** and specify the port/serial number underneath. In the screenshot below, the **specific** port address is used to differentiate between the multiple XDS200 debug probes.
+
+![](./images/2xds200usb_02.png)
+
+### Spectrum Digital XDS510USB
+
+Multiple Spectrum Digital XDS510USB debug probes can be differentiated with their **Emulator I/O Port number** and **Serial Number**. Instructions on how to determine the port numbers and serial numbers, and how to use this information in CCS is documented in the **SdConfig Setup** section on pages 3-5 of [this Tech Note documentation from Spectrum Digital](./xdsdebugprobes/files/SdTechNote_4.pdf).
+
+You must create a custom configuration which include all debug probes and the device(s) they are connected to. Note that the above tech note describes steps to create a multi-probe target configuration on CCSv3. The steps for CCSv4 (and greater) are different and require using the **Advanced** target configuration editor. The basics of creating custom target configurations is documented in [here](./ccs_custom_target_config.html).
+
+Once you have added all debug probes (and the device(s) they are connected to), go to EACH debug probe entry and specify the **Emulator I/O Port Number** that applies to the debug probe.
+
+![](./images/CCSv6_2sdxds510usb_01.png)
+
+### Spectrum Digital XDS560v2USB
+
+Multiple Spectrum Digital XDS560v2 debug probes can be differentiated with their **Emulator I/O Port** number and **Serial Number**. Instructions on how to determine the port numbers and serial numbers, and how to use this information in CCS is documented in [this Tech Note documentation from Spectrum Digital](./xdsdebugprobes/files/SdTechNote_13.pdf).
+
+The above tech note describes how to differentiate between debug probes attached to the host machine for a single debug probe debug session. For a multi-probe debug session, the steps are similar except for the need create a custom multi-probe target configuration which include all debug probes and the device(s) they are connected to. You must create a custom configuration using the **Advanced** target configuration editor. The basics of creating custom target configurations is documented in [here](https://software-dl.ti.com/ccs/esd/documents/ccs_custom_target_config.html).
+
+Once you have added all debug probes (and the device(s) they are connected to), go to EACH debug probe entry and update the **Emulator I/O Port Number** field as described in the tech note.
+
+### Blackhawk XDS560v2 Mezzanine Card
+
+Multiple Blackhawk XDS560v2 Mezzanine Cards can be differentiated with their **Emulator I/O Port** number. Each debug probe is assigned an individual port number. The **Blackhawk Control Panel** can be used to detect all the debug probes and their port numbers.
+
+![](./images/CCSv5_2mezz_card_01.png)
+
+In the screenshot above, there are two BH560v2 mezzanine card debug probes detected. Each entry has the following format: <tt>[PORT NUMBER]:[DEBUG PROBE NAME]:[SERIAL NUMBER]</tt>
+
+The issue in the screenshot is that name and serial numbers are identical for both debug probe entries. Hence this is not very helpful because it is necessary to be able to determine exactly which physical debug probe has which port number when we are configuring the target setup in CCS. While the name cannot be changed, Blackhawk DOES provide a utility to change the serial number. This utility (**BH560v2MezzCfg**) is available from [Blackhawk's website](https://www.blackhawk-dsp.com/support/Software.aspx#BH560v2MezzCfg). Note that the utility must be copied into a specific location in your CCS directory: <tt>[INSTALL DIR]\ccsv[x]\ccs_base\common\uscif</tt>
+
+[[y NOTE
+If the serial numbers for your debug probes differ, then you can use the BH560v2MezzCfg utility to determine which physical debug probe is associated with which serial number.
+]]
+
+Before running the utility, make sure one of the two debug probes are disconnected. This is because the utility can only detect the debug probe on port 0 so it is important to know exactly which physical debug probe it is detecting (otherwise you are back to square one if you don't know which physical debug probe got its serial number changed). When disconnecting one debug probe, there should only be an entry for the one still connected, and that will have port '0':
+
+![](./images/CCSv5_2mezz_card_02.png)
+
+Now open a command window and browse to the location of the utility and run the utility. Do the following:
+
+- Enter **y** to continue running the utility when prompted
+- Enter a value from 0 and 255 to change the last two digits of the serial number. Make sure a value that differs from the current value is chosen
+- Enter **y** to confirm your change
+
+The utility will then proceed with the serial number update. It will take a minute or two to complete the update and reboot the debug probe. Wait for the **done** message.
+
+![](./images/CCSv5_2mezz_card_03.png)
+
+When all is finished, the **Blackhawk Control Panel** will show the entry with the updated serial number:
+
+![](./images/CCSv5_2mezz_card_04.png)
+
+Keep note of this new serial number and which physical debug probe it is associated with.
+
+Now connect the other debug probe to the host machine. You will see both debug probes again, except each entry will have a different serial number. Now you know which physical serial number is associated with which port number.
+
+![](./images/CCSv5_2mezz_card_05.png)
+
+Next, create a custom target configuration which include both debug probes and the device(s) they are connected to. You must create a custom configuration using the **Advanced** target configuration editor. The basics of creating custom target configurations is documented in [here](https://software-dl.ti.com/ccs/esd/documents/ccs_custom_target_config.html).
+
+Once you have added both debug probes (and the device(s) they are connected to), go to the debug probe entry that is associated with the debug probe connected to port number '1' and update the **Emulator I/O Port Number** field to **I/O Port=1**.
+
+![](./images/CCSv5_2mezz_card_07.png)
+
+Save your configuration and your target configuration file is now configured to launch a debug session for both debug probe targets. Test your configuration by launching a debug session for your new target configuration file. As shown in the below screenshot, a debug session consisting of a BH560v2 mezzanine debug probe connected to a C6657 and a BH560v2 mezzanine debug probe connected to a C6678 has been successfully started and all cores of both devices have been connected to:
+
+![](./images/CCSv5_2mezz_card_08.png)
+
+### MSP430
+
+A single debug session consisting of multiple MSP430 connection types is not supported. However, you can still have multiple simultaneous instances (up to three) of CCS, with each one starting a debug session for a different target.
+
+### Stellaris ICDI
+
+A single debug session consisting of multiple Stellaris ICDI connection types is not supported.
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

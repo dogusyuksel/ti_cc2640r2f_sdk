@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+    <title>Advice #30008</title>
+  </head>
+  <body>
+    <table style="float: right; background: #F9F9F9;" border="5"
+      cellpadding="10" cellspacing="0">
+      <tbody>
+        <tr>
+          <td>
+            <h2> <span class="mw-headline"
+                id="Advice_Advisor_-_Rule_Table"> <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000"
+                  title="Advice Advisor"><span style="color:#1F2BB8;">
+                    Compiler Advice (on TI Wiki)</span></a> </span></h2>
+            <p> <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/27000"
+                title="Compiler/diagnostic messages/C6000/27000"><span
+                  style="color:#1F2BB8;"> Advice 27000: Use Optimization
+                  Options</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/27001"
+                title="Compiler/diagnostic messages/C6000/27001"><span
+                  style="color:#1F2BB8;"> Advice 27001: Increase
+                  Optimization Level</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/27002"
+                title="Compiler/diagnostic messages/C6000/27002"><span
+                  style="color:#1F2BB8;"> Advice 27002: Do not turn off
+                  software pipelining</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/27003"
+                title="Compiler/diagnostic messages/C6000/27003"><span
+                  style="color:#1F2BB8;"> Advice 27003: Avoid compiling
+                  with debug options</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/27004"
+                title="Compiler/diagnostic messages/C6000/27004"><span
+                  style="color:#1F2BB8;"> Advice 27004: No Performance
+                  Advice generated</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30000"
+                title="Compiler/diagnostic messages/C6000/30002"><span
+                  style="color:#1F2BB8;"> Advice 30000: Prevent Loop
+                  Disqualification due to call</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30001"
+                title="Compiler/diagnostic messages/C6000/30002"><span
+                  style="color:#1F2BB8;"> Advice 30001: Prevent Loop
+                  Disqualification due to rts-call</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30002"
+                title="Compiler/diagnostic messages/C6000/30002"><span
+                  style="color:#1F2BB8;"> Advice 30002: Prevent Loop
+                  Disqualification due to asm statement</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30003"
+                title="Compiler/diagnostic messages/C6000/30003"><span
+                  style="color:#1F2BB8;"> Advice 30003: Prevent Loop
+                  Disqualification due to complex condition</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30004"
+                title="Compiler/diagnostic messages/C6000/30004"><span
+                  style="color:#1F2BB8;"> Advice 30004: Prevent Loop
+                  Disqualification due to switch statement</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30005"
+                title="Compiler/diagnostic messages/C6000/30005"><span
+                  style="color:#1F2BB8;"> Advice 30005: Prevent Loop
+                  Disqualification due to arithmetic operation</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30006"
+                title="Compiler/diagnostic messages/C6000/30006"><span
+                  style="color:#1F2BB8;"> Advice 30006: Prevent Loop
+                  Disqualification due to call(2)</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30007"
+                title="Compiler/diagnostic messages/C6000/30007"><span
+                  style="color:#1F2BB8;"> Advice 30007: Prevent Loop
+                  Disqualification due to rts-call(2)</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30008"
+                title="Compiler/diagnostic messages/C6000/30008"><span
+                  style="color:#1F2BB8;"> Advice 30008: Improve Loop;
+                  Qualify with restrict</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30009"
+                title="Compiler/diagnostic messages/C6000/30009"><span
+                  style="color:#1F2BB8;"> Advice 30009: Improve Loop;
+                  Add MUST_ITERATE pragma</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30010"
+                title="Compiler/diagnostic messages/C6000/30010"><span
+                  style="color:#1F2BB8;"> Advice 30010: Improve Loop;
+                  Add MUST_ITERATE pragma(2)</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/C6000/30011"
+                title="Compiler/diagnostic messages/C6000/30011"><span
+                  style="color:#1F2BB8;"> Advice 30011: Improve Loop;
+                  Add _nassert()</span></a><br>
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2><span id="Typical_Advice" class="mw-headline">Typical Advice </span></h2>
+    <pre> advice #30008: Consider adding the restrict qualifier to the definition
+of inp1, inp2 if they don't access the same memory location.
+
+</pre>
+    <h2><span id="Why_is_the_Compiler_giving_this_Advice_.3F"
+        class="mw-headline">Why is the Compiler giving this
+        Advice&nbsp;? </span></h2>
+    <p>This Advice is issued to alert you to a potential performace
+      improvement in your code. The performance of loop mentioned in the
+      Advice can be improved by adding the "restrict" qualifier. </p>
+    <p><br>
+    </p>
+    <h2><span id="What_it_means:" class="mw-headline">What it means: </span></h2>
+    <p>To help the compiler determine memory dependencies, you can
+      qualify a pointer, reference, or array with the restrict keyword.
+      The restrict keyword is a type qualifier that can be applied to
+      pointers, references, and arrays. Its use represents a guarantee
+      by you, the programmer, that within the scope of the pointer
+      declaration the object pointed to can be accessed only by that
+      pointer. Any violation of this guarantee renders the program
+      undefined. <i>(For more information on the "restrict" qualifier
+        see <a title="Restrict Type Qualifier"
+          href="/index.php/Restrict_Type_Qualifier">Restrict Type
+          Qualifier</a>).</i> </p>
+    <p>This practice helps the compiler optimize certain sections of
+      code because aliasing information can be more easily determined.
+      In the below example, the restrict keyword is used to tell the
+      compiler that the function func1 is never called with the pointers
+      a and b pointing to objects that overlap in memory. You are
+      promising that accesses through a and b will never conflict;
+      therefore, a write through one pointer cannot affect a read from
+      any other pointers. The precise semantics of the restrict keyword
+      are described in the 1999 version of the ANSI/ISO C Standard. </p>
+    <p>Example 1: Use of the restrict Type Qualifier With Pointers </p>
+    <pre> void func1(int * restrict a, int * restrict b)
+{
+     /* func1's code here */
+}
+
+</pre>
+    <p>Example 2: Use of the restrict keyword when passing arrays to a
+      function. Here, the arrays c and d should not overlap, nor should
+      c and d point to the same array. </p>
+    <pre> void func2(int c[restrict], int d[restrict])
+{
+     int i;
+     for(i = 0; i &lt; 64; i++)
+     {
+        c[i] += d[i];
+        d[i] += 1;
+     }
+}
+</pre>
+    <p>For further information on conveying information to the compiler
+      to improve performance, see <a title="C6000 Compiler: Tuning
+        Software Pipelined Loops"
+        href="/index.php/C6000_Compiler:_Tuning_Software_Pipelined_Loops">C6000_Compiler:
+Tuning
+
+        Software Pipelined Loops</a> and <a title="C6000 CGT
+        Optimization Lab - 1"
+        href="/index.php/C6000_CGT_Optimization_Lab_-_1">Optimization
+        Lab</a>. </p>
+    <p><br>
+    </p>
+    <h2><span id="Risks.2C_Severity" class="mw-headline">Risks, Severity
+      </span></h2>
+    <p>When you use mechanisms such as restrict, MUST_ITERATE, or
+      _nassert, you are conveying extra information to the compiler.
+      Always verify all such information is correct for every call. </p>
+    <p><br>
+    </p>
+    <h2><span id="Suggested_Action" class="mw-headline">Suggested Action
+      </span></h2>
+    <p>Qualify declarations of pointers and arrays used in the loop with
+      "restrict". </p>
+    <h2> <span class="mw-headline" id="More_Resources"> More Resources
+      </span></h2>
+    <p>Want to squeeze a few more Performance Cycles out of your
+      application? Leverage the e2e (Engineer-to-Engineer) online
+      community to get all of your Advice questions answered! Or, give
+      back to the community with your expertise. </p>
+    <p><a
+        href="http://e2e.ti.com/support/development_tools/compiler/default.aspx"
+        class="external text" rel="nofollow">Go to the TI Compiler's e2e
+        online forum!</a>&nbsp; </p>
+    <div class="hf-nsfooter">
+      <table class="wikitable" style="text-align:center;
+        background:White;">
+        <tbody>
+          <tr>
+            <td><a
+                href="http://processors.wiki.ti.com/index.php/File:E2e.jpg"
+                class="image"><img alt="E2e.jpg"
+                  src="http://processors.wiki.ti.com/images/8/82/E2e.jpg"
+                  height="63" width="305"></a> </td>
+            <td><i>For technical support please post your questions at <a
+                  href="http://e2e.ti.com/" class="external free"
+                  rel="nofollow">http://e2e.ti.com</a>. </i> </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

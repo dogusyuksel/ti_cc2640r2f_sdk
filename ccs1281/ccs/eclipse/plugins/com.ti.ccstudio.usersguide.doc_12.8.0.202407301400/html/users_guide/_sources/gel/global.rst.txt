@@ -1,0 +1,15 @@
+Global Variables for GEL Functions
+----------------------------------
+
+It’s possible to declare global variables outside of a function in a GEL file. A global can be declared the same way as a GEL local variable in a function. 
+A string global must be declared with an initial value.
+A numeric global declared without an initial value will be initialized to 0.
+
+A GEL file with a global will be declared when it is loaded and "undeclared" when it is unloaded. Globals must have unique names; if you declare a global with the same name as one already declared, an error will result. Also, if a target global variable or label uses the same name as a GEL global, the target value will take precedence.
+
+___
+
+**See also:**
+
+`Local Variables for Functions <local.html>`__
+`GEL Functions: Alphabetical List <functions_list.html>`__

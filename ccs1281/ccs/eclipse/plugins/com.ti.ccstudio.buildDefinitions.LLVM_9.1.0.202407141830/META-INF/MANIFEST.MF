@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: [Legacy] CCS LLVM Managed Build Definitions
+Bundle-SymbolicName: com.ti.ccstudio.buildDefinitions.LLVM; singleton:=t
+ rue
+Bundle-Activator: com.ti.ccstudio.buildDefinitions.LLVM.LLVMBuildDefinit
+ ionsPlugin
+Bundle-Version: 9.1.0.202407141830
+Bundle-Vendor: Texas Instruments
+Bundle-Localization: plugin
+Require-Bundle: com.ti.ccstudio.core,com.ti.ccstudio.project.core,org.ec
+ lipse.core.resources,org.eclipse.core.runtime,org.eclipse.cdt.core,org.
+ eclipse.cdt.managedbuilder.core
+Export-Package: com.ti.ccstudio.buildDefinitions.LLVM;x-internal:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Eclipse-BundleShape: dir
+
+

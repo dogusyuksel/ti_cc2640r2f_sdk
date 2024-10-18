@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;
+      charset=ISO-8859-1">
+    <title></title>
+  </head>
+  <body>
+    <h2> <span class="mw-headline" id="Typical_message"> Typical
+        message </span></h2>
+    <pre> &lt;Linking&gt;
+ warning #10202-D: no suitable entry-point found; setting to 0
+</pre>
+    <h2> <span class="mw-headline" id="What_it_means"> What it means </span></h2>
+    <p>The linker has not found any entry points. </p>
+    <h2> <span class="mw-headline" id="Why_is_it_happening"> Why is it
+        happening </span></h2>
+    <p>This would not be an issue with most C projects, as there is an
+      entry point (defined by the C runtime library) which in turn calls
+      main, and so sections will be pulled into the link. In the case of
+      a single assembly source file, this is not the case. </p>
+    <p>Some background info on this is available here: <a
+href="http://processors.wiki.ti.com/index.php/C6000_EABI_Migration#Conditional_Linking_Feature"
+        class="external free" rel="nofollow" target="_blank">http://processors.wiki.ti.com/index.php/C6000_EABI_Migration#Conditional_Linking_Feature</a>
+      This page was written for the C6000 tools but how the ELF/EABI
+      feature works is the same for other devices as well. </p>
+    <h2> <span class="mw-headline" id="Remedy"> Remedy </span></h2>
+    <p>How to set the entry point (example for assembly only project): </p>
+    <ol>
+      <li> Update your assembly file to include <span style="color:
+          red">below line</span> where RESET is the reset vector label
+        name </li>
+    </ol>
+    <pre> .cdecls C,LIST,  "msp430x20x2.h"
+;------------------------------------------------------------------------------
+            .text                          &nbsp;; Program Start
+            <span style="color: red">.global RESET</span>                  &nbsp;; Define entry point
+;------------------------------------------------------------------------------
+RESET       mov.w   #0280h,SP              &nbsp;; Initialize stackpointer
+StopWDT     mov.w   #WDTPW+WDTHOLD,&amp;WDTCTL &nbsp;; Stop WDT
+SetupP1     bis.b   #001h,&amp;P1DIR           &nbsp;; P1.0 output
+                                           &nbsp;;
+Mainloop    bit.b   #010h,&amp;P1IN            &nbsp;;
+;  skipped lines of code 
+;------------------------------------------------------------------------------
+;           Interrupt Vectors
+;------------------------------------------------------------------------------
+            .sect   ".reset"               &nbsp;; MSP430 RESET Vector
+            .short  RESET
+</pre>
+    <ol>
+      <li> Next update CCS project linker options to indicate the
+        --entry_point as RESET </li>
+    </ol>
+    <p><a href="Entry_point.jpg" class="image"><img alt="Entry
+          point.JPG" src="Entry_point.jpg" height="228" width="476"></a>
+    </p>
+    <p>NOTE: After doing above, if your application fails to load and
+      debug then you may be experiencing bug SDSCM00043978. Setting the
+      entry point should retain both .text and .reset sections, however
+      for this bug, the .reset section is not being retained. </p>
+    <p>To work around this bug, see the remedy <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/10198"
+        class="external text" rel="nofollow" target="_blank">here</a>. </p>
+    <p><br>
+    </p>
+    <h2> <span class="mw-headline" id="Risks.2C_Severity"> Risks,
+        Severity </span></h2>
+    <p>An executable will not be created until this error is resolved. </p>
+    <table style="text-align:center; background:white; width:100%;
+      text-align:left; height: 65px border-top: 1px solid;
+      border-bottom: 1px solid; border-left: 1px solid; border-right:
+      1px solid; border-width: 1px; border-style: solid;">
+      <tbody>
+        <tr>
+          <td width="305px"><a
+              href="http://processors.wiki.ti.com/index.php/File:E2e.jpg"
+              class="image"><img alt="E2e.jpg"
+                src="http://processors.wiki.ti.com/images/8/82/E2e.jpg"
+                height="63" width="305"></a> </td>
+          <td><i>For technical support please post your questions at <a
+                href="http://e2e.ti.com" class="external free"
+                rel="nofollow" target="_blank">http://e2e.ti.com</a>.
+              Please post only comments about the article <b>Compiler/diagnostic
+
+
+                messages/10202</b> here.</i></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

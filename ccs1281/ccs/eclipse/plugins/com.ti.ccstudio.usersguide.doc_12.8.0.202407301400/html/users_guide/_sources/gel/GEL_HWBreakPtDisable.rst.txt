@@ -1,0 +1,40 @@
+GEL_HWBreakPtDisable
+--------------------
+
+Disables a hardware breakpoint at the specified address.
+
+**Format**
+
+**GEL_HWBreakPtDisable(**\ address\ **);**
+
+**Parameters**
+
+address specifies the location of the hardware breakpoint.
+
+**Description**
+
+The hardware breakpoint at the specified address is disabled. If the
+breakpoint does not exist or is already disabled, no action is taken.
+This function does not disable software breakpoints.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: No
+
+**Example**
+
+GEL_HWBreakPtDisable(0x2000);
+
+GEL_HWBreakPtDisable(main + 100);
+
+**Related Topics**
+
+`GEL_HWBreakPtAdd() <GEL_HWBreakPtAdd.html>`__
+
+`GEL_HWBreakPtDel() <GEL_HWBreakPtDel.html>`__
+
+`GEL_HWBreakPtReset() <GEL_HWBreakPtReset.html>`__
+
+`GEL_BreakPtDisable <GEL_BreakPtDisable.html>`__

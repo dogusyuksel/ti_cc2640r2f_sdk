@@ -1,0 +1,65 @@
+GEL_SymbolHideSection()
+-----------------------
+
+Hides a section of symbols.
+
+**Syntax**
+
+**GEL_SymbolHideSection( "**\ fileName\ **", "**\ sectionName\ **"**
+[**, "**\ cpuName\ **"** [**, "**\ boardName\ **"**]] **);**
+
+**Parameters**
+
+fileNamenames the symbol file containing the symbol information. The
+fileName must be enclosed in quotation marks. The symbol file can be a
+standard COFF output file (\*.out) or a specific symbol file obtained
+during the build process.
+
+sectionNamenames the section to remove. The sectionName must be enclosed
+in quotation marks.
+
+cpuName(optional) names the CPU on which to load the symbolic
+information (useful in a multiprocessor environment). The cpuName must
+be enclosed in quotation marks.
+
+boardName(optional) names the board on which to load the symbolic
+information. If not specified, uses the board name of the processor on
+which this GEL function is executed. The boardName must be enclosed in
+quotation marks.
+
+**Description**
+
+A section of symbols can be hidden. The symbols are still loaded but
+cannot be seen by the debugger. To show them again you must use
+GEL_SymbolShowSection().
+
+**Synchronous**
+
+Synchronous from GEL: No
+
+Completely synchronous: No
+
+**Example**
+
+GEL_SymbolHideSection( "C:\\mydir\\myfile.out", ".text", "CPU", "C55x
+Simulator (Texas Instruments)" );
+
+**Related Topics**
+
+`GEL_Load() <GEL_Load.html>`__
+
+`GEL_SymbolAdd() <GEL_SymbolAdd.html>`__
+
+`GEL_SymbolAddRel() <GEL_SymbolAddRel.html>`__
+
+`GEL_SymbolLoad() <GEL_SymbolLoad.html>`__
+
+`GEL_SymbolLoadRel() <GEL_SymbolLoadRel.html>`__
+
+`GEL_SymbolAddRel() <GEL_SymbolAddRel.html>`__
+
+`GEL_SymbolRemove() <GEL_SymbolRemove.html>`__
+
+`GEL_SymbolShowSection() <GEL_SymbolShowSection.html>`__
+
+`GEL_UnloadAllSymbols() <GEL_UnloadAllSymbols.html>`__

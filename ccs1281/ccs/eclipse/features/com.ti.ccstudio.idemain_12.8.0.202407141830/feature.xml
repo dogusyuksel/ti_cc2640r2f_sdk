@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.ccstudio.idemain"
+      label="Code Composer Studio IDE Main Feature"
+      version="12.8.0.202407141830"
+      provider-name="Texas Instruments">
+
+   <description>
+      Code Composer Studio IDE Main Feature
+   </description>
+
+   <copyright>
+      Copyright Texas Instruments 2010-2014
+   </copyright>
+
+   <license>
+      See Code Composer Studio license for specific terms and conditions.
+   </license>
+
+   <includes
+         id="com.ti.ccstudio"
+         version="12.8.0.202407141830"/>
+
+   <includes
+         id="com.ti.ccstudio.rtsc"
+         version="10.2.0.202407141830"/>
+
+</feature>

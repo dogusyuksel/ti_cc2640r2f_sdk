@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+    <title>ULP Advisor Rule 5.1 Avoid processing-intensive operations:
+      modulo, divide</title>
+  </head>
+  <body>
+    <h1> <span class="mw-headline"
+id="ULP_Advisor_.3E_Rule_5.1_Avoid_processing-intensive_operations:_modulo.2C_divide">
+        <a href="http://processors.wiki.ti.com/index.php/ULP_Advisor"
+          title="ULP Advisor"> ULP Advisor</a> &gt; Rule 5.1 Avoid
+        processing-intensive operations: modulo, divide </span></h1>
+    <table style="float: right; background: #F9F9F9;" border="5"
+      cellpadding="10" cellspacing="0">
+      <tbody>
+        <tr>
+          <td>
+            <div class="center">
+              <div class="floatnone"><a
+                  href="http://processors.wiki.ti.com/index.php/ULP_Advisor"
+                  title="ULP Advisor"><img alt="ULPAdvisorBanner.PNG"
+src="http://processors.wiki.ti.com/images/thumb/b/b9/ULPAdvisorBanner.PNG/320px-ULPAdvisorBanner.PNG"
+                    height="107" width="320"></a></div>
+            </div>
+            <h2> <span class="mw-headline"
+                id="ULP_Advisor_-_Rule_Table"> <a
+                  href="http://processors.wiki.ti.com/index.php/ULP_Advisor"
+                  title="ULP Advisor"><span style="color:#1F2BB8;"> ULP
+                    Advisor</span></a> - Rule Table </span></h2>
+            <p><a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/10371"
+                title="Compiler/diagnostic messages/MSP430/10371"><span
+                  style="color:#1F2BB8;"> ULP 1.1 Ensure LPM usage</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1527"
+                title="Compiler/diagnostic messages/MSP430/1527"><span
+                  style="color:#1F2BB8;"> ULP 2.1 Leverage timer module
+                  for delay loops</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1528"
+                title="Compiler/diagnostic messages/MSP430/1528"><span
+                  style="color:#1F2BB8;"> ULP 3.1 Use ISRs instead of
+                  flag polling</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/10372"
+                title="Compiler/diagnostic messages/MSP430/10372"><span
+                  style="color:#1F2BB8;"> ULP 4.1 Terminate unused GPIOs</span></a><br>
+              <strong class="selflink"><span style="color:#1F2BB8;"> ULP
+                  5.1 Avoid processing-intensive operations: modulo,
+                  divide.</span></strong><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1531"
+                title="Compiler/diagnostic messages/MSP430/1531"><span
+                  style="color:#1F2BB8;"> ULP 5.2 Avoid
+                  processing-intensive operations: floating point</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1532"
+                title="Compiler/diagnostic messages/MSP430/1532"><span
+                  style="color:#1F2BB8;"> ULP 5.3 Avoid
+                  processing-intensive operations: (s)printf()</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1533"
+                title="Compiler/diagnostic messages/MSP430/1533"><span
+                  style="color:#1F2BB8;"> ULP 6.1 Avoid multiplication
+                  on devices without hardware multiplier </span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/10422"
+                title="Compiler/diagnostic messages/MSP430/10422"><span
+                  style="color:#1F2BB8;"> ULP 6.2 Use MATHLIB for
+                  complex math operations </span></a><br>
+            <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/10436"
+                title="Compiler/diagnostic messages/MSP430/10436"><span
+                   style="color:#1F2BB8;"> ULP 6.3 Use Low Energy Accelerator (LEA) software
+      library </span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1534"
+                title="Compiler/diagnostic messages/MSP430/1534"><span
+                  style="color:#1F2BB8;"> ULP 7.1 Use local instead of
+                  global variables where possible</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1535"
+                title="Compiler/diagnostic messages/MSP430/1535"><span
+                  style="color:#1F2BB8;"> ULP 8.1 Use 'static' &amp;
+                  'const' modifiers for local variables</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1537"
+                title="Compiler/diagnostic messages/MSP430/1537"><span
+                  style="color:#1F2BB8;"> ULP 9.1 Use pass by reference
+                  for large variables</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1538"
+                title="Compiler/diagnostic messages/MSP430/1538"><span
+                  style="color:#1F2BB8;"> ULP 10.1 Minimize function
+                  calls from within ISRs</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1539"
+                title="Compiler/diagnostic messages/MSP430/1539"><span
+                  style="color:#1F2BB8;"> ULP 11.1 Use lower bits for
+                  loop program control flow</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1540"
+                title="Compiler/diagnostic messages/MSP430/1540"><span
+                  style="color:#1F2BB8;"> ULP 11.2 Use lower bits for
+                  port bit-banging</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1541"
+                title="Compiler/diagnostic messages/MSP430/1541"><span
+                  style="color:#1F2BB8;"> ULP 12.1 Use DMA for large
+                  memcpy() calls</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1542"
+                title="Compiler/diagnostic messages/MSP430/1542"><span
+                  style="color:#1F2BB8;"> ULP 12.1b Use DMA for
+                  potentially large memcpy() calls</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1543"
+                title="Compiler/diagnostic messages/MSP430/1543"><span
+                  style="color:#1F2BB8;">ULP 12.2 Use DMA for repetitive
+                  transfer</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1544"
+                title="Compiler/diagnostic messages/MSP430/1544"><span
+                  style="color:#1F2BB8;"> ULP 13.1 Count down in loops</span></a><br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1545"
+                title="Compiler/diagnostic messages/MSP430/1545"><span
+                  style="color:#1F2BB8;"> ULP 14.1 Use unsigned
+                  variables for indexing</span></a> <br>
+              <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/MSP430/1546"
+                title="Compiler/diagnostic messages/MSP430/1546"><span
+                  style="color:#1F2BB8;"> ULP 15.1 Use bit-masks instead
+                  of bit-fields</span></a> <br>
+            </p>
+            <p><b>Let us know what you think!</b> Feedback, suggestions
+              &amp; comments <br>
+              are welcome @ ULPAdvisorFeedback@list.ti.com </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2> <span class="mw-headline" id="What_it_means"> What it means </span></h2>
+    <p>Modulo and divide functions are processor intensive and consume
+      many instruction cycles, which waste time and energy. While the
+      MSP430 still performs extremely well on math-intensive functions
+      when compared to other 8-bit/16-bit micro-controllers thanks to
+      its advanced and efficient CPU architecture, more optimization in
+      software to minimize these types of functions could still result
+      in even lower power consumption. </p>
+    <h2> <span class="mw-headline" id="Risks.2C_Severity"> Risks,
+        Severity </span></h2>
+    <p>Using math functions such as modulo or divide adds a significant
+      number of instructions to your program execution. This
+      consequently results in additional power and energy consumption. </p>
+    <h2> <span class="mw-headline" id="Why_it_is_happening"> Why it is
+        happening </span></h2>
+    <p>The project code contains modulo or divide (math) operation. <br>
+    </p>
+    <h2><span class="mw-headline" id="Code_Example">Code Example</span><span
+        class="mw-editsection"><span class="mw-editsection-bracket"></span><span
+          class="mw-editsection-bracket"></span></span></h2>
+    <p>Note that this instruction is specific for CCS.&nbsp; </p>
+    <p>The key idea behind RAM-executed functions is to link the
+      functions to a memory section with the following attribute: "load
+      = FLASH_AREA, run = RAM_AREA" defined in the linker command file.
+      As the parameters suggest, the objects in the section will be
+      allocated to FLASH, but at start up they will be copied over to
+      RAM for execution. Note that the names FLASH_AREA or RAM_AREA can
+      be the default names (FLASH, RAM) or preferrably user-defined to
+      prevent confusion. For MSP430 devices with FRAM, FLASH regions can
+      be substituted by FRAM regions. </p>
+    <p>The following steps describe necessary procedure to relocate
+      functions to RAM for execution. </p>
+    <p><b>I. Create a <u>load = FLASH, run = RAM</u> memory section in
+        the device linker command file.</b> </p>
+    <ol>
+      <li>Reserve a memory region in FLASH to store the functions and a
+        memory region in RAM for copy/execution.</li>
+    </ol>
+    <p>Before<br>
+    </p>
+    <blockquote>RAM&nbsp;: origin = 0x2400, length = 0x2000<br>
+      INFOA&nbsp;: origin = 0x1980, length = 0x0080<br>
+      INFOB&nbsp;: origin = 0x1900, length = 0x0080<br>
+      INFOC&nbsp;: origin = 0x1880, length = 0x0080<br>
+      INFOD&nbsp;: origin = 0x1800, length = 0x0080<br>
+      FLASH&nbsp;: origin = 0x4400, length = 0xBB80<br>
+      FLASH2&nbsp;: origin = 0x10000,length = 0x14400<br>
+      ...</blockquote>
+    <p>After reserving 0x200 bytes for RAM_EXECUTE and 0x200 bytes for
+      FLASH_EXECUTE. NOtice the new starting addresses
+      (origins)&nbsp;&amp; lengths. </p>
+    <blockquote>RAM_EXECUTE&nbsp;: origin = 0x2400, <b>length = 0x0200</b><br>
+      RAM &nbsp;&nbsp;: <b>origin =&nbsp;0x2600, length = 0x1C00</b><br>
+      INFOA&nbsp;: origin = 0x1980, length = 0x0080<br>
+      INFOB&nbsp;: origin = 0x1900, length = 0x0080<br>
+      INFOC&nbsp;: origin = 0x1880, length = 0x0080<br>
+      INFOD&nbsp;: origin = 0x1800, length = 0x0080<br>
+      FLASH_EXECUTE:origin = 0x4400, <b>length = 0x0x200</b><br>
+      FLASH&nbsp;: <b>origin = 0x4600, length = 0xB980</b><br>
+      FLASH2&nbsp;: origin = 0x10000,length = 0x14400<br>
+      ...</blockquote>
+    <ol>
+      <li>&nbsp;Create a section to load from FLASH_EXECUTE &amp; run
+        from RAM_EXECUTE:</li>
+    </ol>
+    <blockquote>.bss&nbsp;: {} &gt; RAM /* GLOBAL &amp; STATIC VARS */<br>
+      .sysmem&nbsp;: {} &gt; RAM /* DYNAMIC MEMORY ALLOCATION AREA */<br>
+      .stack&nbsp;: {} &gt; RAM (HIGH) /* SOFTWARE SYSTEM STACK */<br>
+      // add this line<br>
+      <b>.run_from_ram: load = FLASH_EXECUTE, run = RAM_EXECUTE</b><br>
+      //&nbsp;<br>
+      .text&nbsp;: {}&gt;&gt; FLASH | FLASH2 /* CODE */<br>
+      .text:_isr&nbsp;: {} &gt; FLASH /* ISR CODE SPACE */<br>
+      .... </blockquote>
+    <p>We're done with the linker command file modification at this
+      point. </p>
+    <p><br>
+    </p>
+    <p><b>II. Relocate user-generated functions:</b> </p>
+    <p>&nbsp; &nbsp; 1. Identify the functions to be relocated to RAM in
+      your code. </p>
+    <p>&nbsp; &nbsp; 2. Before the definition of each function, add the
+      following line </p>
+    <p><br>
+    </p>
+    <blockquote><b>#pragma CODE_SECTION(FunctionName,".run_from_ram")</b><br>
+      void FunctionName(void)<br>
+      { </blockquote>
+    <p><br>
+    </p>
+    <p><b>III. Relocate built-in run-time library (rts430*) functions:</b>
+    </p>
+    <p>If you use division, multiplication, or printf/sprintf in your
+      applications, these functions are pulled in from the real-time
+      library. These processor intensive functions should also be
+      relocated to RAM to optimize your application for power. </p>
+    <p>You can find out whether your application uses many of these
+      functions by looking at the output map file and searching for
+      rts430*.lib. For example<br>
+    </p>
+    <blockquote>rts430xl.lib&nbsp;: mult16_f5hw.obj (.text)<br>
+      rts430xl.lib&nbsp;: div16u.obj (.text)<br>
+      rts430xl.lib&nbsp;: sprintf.obj (.text:sprintf)<br>
+      sprintf.obj (.text:_outs)<br>
+      sprintf.obj (.text:_outc) </blockquote>
+    <p>Add the following lines to the linker command file to redirect
+      these objects into the FLASH_EXECUTE//RAM_EXECUTE area </p>
+    <p><b>Option 1&nbsp;</b> </p>
+    <blockquote><br>
+      .text:rts430.lib_div&nbsp;: { rts*.lib&lt;div16u.obj&gt;(.text) }
+      load = FLASH_EXECUTE, run = RAM_EXECUTE<br>
+      .text:rts430.lib_mult&nbsp;: {
+      rts*.lib&lt;mult16_f5hw.obj&gt;(.text) } load = FLASH_EXECUTE, run
+      = RAM_EXECUTE<br>
+      .text:rts430.lib_printf&nbsp;: {
+      rts*.lib&lt;*printf.obj&gt;(.text) } load = FLASH_EXECUTE, run =
+      RAM_EXECUTE <br>
+    </blockquote>
+    <p>Option 2, if you have defined the <b>.run_from_ram</b>
+      section&nbsp; </p>
+    <p><br>
+    </p>
+    <blockquote>.text:rts430.lib_div&nbsp;: {
+      rts*.lib&lt;div16u.obj&gt;(.text) } .run_from_ram&nbsp;<br>
+      .text:rts430.lib_mult&nbsp;: {
+      rts*.lib&lt;mult16_f5hw.obj&gt;(.text) } .run_from_ram <br>
+      .text:rts430.lib_printf&nbsp;: {
+      rts*.lib&lt;*printf.obj&gt;(.text) }&nbsp;.run_from_ram <br>
+    </blockquote>
+    <p><br>
+      Refer to <a title="File:RAM Function Example.zip"
+href="http://processors.wiki.ti.com/index.php/File:RAM_Function_Example.zip">File:RAM
+
+        Function Example.zip</a> for an example in CCS on how to move a
+      function to RAM for execution. </p>
+    <p>In IAR, the keyword __ramfunc can be placed in front of the
+      function declaration to enable the function be copied from Flash
+      to RAM during startup and the function will be referenced from the
+      rest of the code in RAM. </p>
+    <p><a class="external text"
+        href="http://focus.ti.com/mcu/docs/mcusplash.tsp?contentId=128826#CE"
+        rel="nofollow">See the rest of the code examples for all MSP430
+        devices here!</a> </p>
+    <h2> <span class="mw-headline" id="Code_Example"> Code Example </span></h2>
+    <p>Refer to <a href="RAM_Function_Example.zip" title="RAM Function
+        Example.zip">RAM Function Example.zip</a> for an example in CCS
+      on how to move a function to RAM for execution. </p>
+    <p>In IAR, the keyword __ramfunc can be placed in front of the
+      function declaration to enable the function be copied from Flash
+      to RAM during startup and the function will be referenced from the
+      rest of the code in RAM. </p>
+    <p><a
+        href="http://focus.ti.com/mcu/docs/mcusplash.tsp?contentId=128826#CE"
+        class="external text" rel="nofollow" target="_blank">See the
+        rest of the code examples for all MSP430 devices here!</a> </p>
+    <h2> <span class="mw-headline" id="More_Resources"> More Resources
+      </span></h2>
+    <p>Want to squeeze a few more nanoAmps out of your application?
+      Leverage the e2e (Engineer-to-Engineer) online community to get
+      all of your ULP questions answered! Or, if you are an Ultra-Low
+      Power pro, give back to the community with your expertise. </p>
+    <p><a
+href="http://e2e.ti.com/support/microcontrollers/msp43016-bit_ultra-low_power_mcus/f/166.aspx"
+        class="external text" rel="nofollow" target="_blank">Go to
+        MSP430's e2e online forum!</a>&nbsp; </p>
+    <p>If you are posting on the forums in relation to this rule, try
+      using the tag "ULP_5.1" </p>
+    <table style="text-align:center; background:white; width:100%;
+      text-align:left; height: 65px border-top: 1px solid;
+      border-bottom: 1px solid; border-left: 1px solid; border-right:
+      1px solid; border-width: 1px; border-style: solid;">
+      <tbody>
+        <tr>
+          <td width="305px"><a
+              href="http://processors.wiki.ti.com/index.php/File:E2e.jpg"
+              class="image"><img alt="E2e.jpg"
+                src="http://processors.wiki.ti.com/images/8/82/E2e.jpg"
+                height="63" width="305"></a> </td>
+          <td><i>For technical support please post your questions at <a
+                href="http://e2e.ti.com" class="external free"
+                rel="nofollow" target="_blank">http://e2e.ti.com</a>.
+              Please post only comments about the article <b>Compiler/diagnostic
+
+
+
+
+                messages/MSP430/1530</b> here.</i></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

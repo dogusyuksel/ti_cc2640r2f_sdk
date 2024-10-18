@@ -1,0 +1,24 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: eT6ecDBkEeIgo973oEh3gn2sFqAgX
+ YwqMc+zXjJU2fI=
+SHA-256-Digest-Manifest: piNA7yZK8ODNKjPrIGH6kgJaaP4BH+eu+B9Z20WC9do=
+Created-By: 1.8.0_102 (Oracle Corporation)
+
+Name: dvt.zip
+SHA-256-Digest: I+/Jdi2PvrznjmdUNNqMCbaskccJXILdHKZW9OGtWPE=
+
+Name: META-INF/p2.inf
+SHA-256-Digest: hEhmxhdAGSQWeOQ87TyyByJ884lI9DmRg4jxS7vw/0w=
+
+Name: uninstall.xml
+SHA-256-Digest: Bb0gqxKL4ipc9ZJwOmcsC5SIZQGu23U1Wd8hxLnM0pE=
+
+Name: install.xml
+SHA-256-Digest: tiEF9jQkQ8Xn8vjJgByEryqyQ3oIeC8Ym9j3fEHACSU=
+
+Name: com.ti.dvt.scripting.engine.jar
+SHA-256-Digest: Bb86ZhCZweF3wuHK6seNoaCHkkjbIZ4/vIB9HSSx8oA=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: ak2bzOGDjLurhLXRsFA/N7TRhvaP+YA1QdnivLjcXtk=
+

@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset="utf-8" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>C CRC Reference Implementation</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../Resources/Stylesheets/headerfooter.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="content">
+            <div id="contentBody">
+                <div class="row collapse">
+                    <div class="sideContent">
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                    <div id="loadContentArea">
+                        <div class="c12 docHeader">
+                            <div class="c4 docTitle">
+                                <p>
+                                    <strong>MSP430 Assembly
+							Language Tools
+			v18.1.0.LTS User's Guide</strong>
+                                    <br />
+                                    <span id="litnumber">SLAU131R</span> - REVISED JANUARY 2018</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="odsHeader">
+                        <p class="pdf">
+                            <a class="downloadPDF" href="http://www.ti.com/litv/SLAU131R" target="_new">Download PDF</a>
+                        </p>
+                    </div>
+                    <div id="loadContentArea1">
+                        <div class="subsection">
+                            <h2 id="SPRU5134721">
+                                <a MadCap:generatedBookmark="TOC" name="C_CRC_Reference_Implementation">
+                                </a>
+                                <span class="section-label">C </span>CRC Reference Implementation</h2>
+                            <div class="subsection">
+                                <p>This appendix contains source code in C for a reference implementation of a CRC calculation routine that is compatible with the linker-generated CRC tables (<span class="crossreference"><a href="#SPRU5132581">Section C.1</a></span>). This code is found in the file labeled ref_crc.c.</p>
+                                <p>This appendix also contains source code for a simple example application using linker-generated CRC tables and copy tables <span class="crossreference"><a href="#SPRU5138273">Section C.2</a></span>. The application contains several tasks which share a common run area. Linker-generated copy tables move the tasks from their load addresses to the run address. The application also uses the reference CRC calculation routine to compute CRC values which are compared against the linker-generated values.</p>
+                                <p>This code is for reference only, and no warranty is made as to its suitability for any purpose.</p>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="SPRU5132581">
+                                    <a MadCap:generatedBookmark="TOC" name="C.1_Reference_CRC_Calculation_Routine">
+                                    </a>
+                                    <span class="section-label">C.1 </span>Reference CRC Calculation Routine</h3>
+                                <p>To run a stand-alone test of the reference implementation of CRC computation, follow these steps:</p>
+                                <ol>
+                                    <li value="1"> Create a CCS project with an empty main.c file.</li>
+                                    <li value="2">Copy the contents of example_c1.c (<span class="crossreference"><a href="#SPRU5138320">Example C-1</a></span>) to the main.c file.</li>
+                                    <li value="3">Create a crc_tbl.h file in the project, and copy the contents of <span class="crossreference"><a href="linker-description.html#STDZ0751026">Example 8-29</a></span> to that file.</li>
+                                    <li value="4">Build and test the project. You should see the following printf() statement results: </li>
+                                    <code>     CRC_32_PRIME: 74b85ade
+ CRC_8_PRIME: 10 
+ CRC16_802_15_4: b83d</code>
+                                </ol>
+                                <div class="example">
+                                    <h4 id="SPRU5138320">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_C-1_Reference_Implementation_of_a_CRC_Calculation_Function:_example_c1.c">
+                                        </a>
+                                        <span class="example-label">Example C-1 </span>Reference Implementation of a CRC Calculation Function: example_c1.c</h4>
+                                    <code>/*****************************************************************************/
+/* Reference implementation of a CRC calculation function */
+/* gen_crc is the interface function which should be called from the */
+/* application. There is also a stand-alone test mode that can be used */
+/* if _RUN_MAIN is defined. */
+/*****************************************************************************/
+/*---------------------------------------------------------------------------*/
+/* This file does NOT implement a general-purpose CRC function. */
+/* Specifically, it does not handle parameterization by initial value, bit */
+/* reflection, or final XOR value. This implementation is intended only to */
+/* implement the CRC funtions used by the linker for MSP430 CRC tables. The */
+/* algorithms used by the linker are selected to match the CRC algorithms in */
+/* the PRIME and IEEE 802.15.4-2006 standards. MSP430 crc hardware supports */
+/* CRC16_802_15_4 (CRC_CCITT). To understand CRCs in general, especially */
+/* what other parameters exist, see: */
+/* */
+/* "A Painless Guide To CRC Error Detection Algorithms" likely at: */
+/* http://www.ross.net/crc/download/crc_v3.txt */
+/* Author : Ross Williams (ross@guest.adelaide.edu.au.). */
+/* Date : 3 June 1993. */
+/* Status : Public domain (C code). */
+/*---------------------------------------------------------------------------*/
+#include &lt;msp430.h&gt;#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;limits.h&gt;/*---------------------------------------------------------------------------*/
+/* These are the CRC algorithms supported by the linker. MPS430 crc hardware */
+/* supports CRC16_802_15_4 (CRC_CCITT). These must match the values in */
+/* crc_tbl.h */
+/*---------------------------------------------------------------------------*/
+#define CRC32_PRIME 0
+#define CRC16_802_15_4 1
+#define CRC16_ALT 2
+#define CRC8_PRIME 3
+typedef struct crc_config_t
+{
+ int id;
+ int degree;
+ unsigned long poly;
+} crc_config_t;
+
+const crc_config_t crc_config[] = 
+{ 
+ { CRC32_PRIME, 32, 0x04c11db7 },
+ { CRC16_802_15_4, 16, 0x1021 },
+ { CRC16_ALT, 16, 0x8005 },
+ { CRC8_PRIME, 8, 0x07 }
+};
+
+unsigned long crc_table[256] = { 0 };
+
+const crc_config_t *find_config(int id) {
+ size_t i;
+ for (i = 0; i &lt; sizeof(crc_config) / sizeof(*crc_config); i++)
+ if (crc_config[i].id == id)
+ return &amp;crc_config[i];
+ fprintf(stderr, "invalid config id %d\n", id);
+ exit(EXIT_FAILURE);
+ return NULL;
+}
+
+/*---------------------------------------------------------------------------*/
+/* Table-driven version */
+/*---------------------------------------------------------------------------*/
+unsigned long generate_mask(int degree)
+{
+ unsigned long half = (1ul &lt;&lt; (degree / 2)) - 1;
+ return half &lt;&lt; (degree / 2) | half;
+}
+
+void generate_crc_table(const crc_config_t *config)
+{
+ int i, j;
+ unsigned long bit, crc;
+ unsigned long high_bit = (1ul &lt;&lt; (config-&gt;degree - 1));
+ unsigned long mask = generate_mask(config-&gt;degree);
+ for (i = 0; i &lt; 256; i++)
+ {
+ crc = (unsigned long)i &lt;&lt; config-&gt;degree - 8;
+ for (j = 0; j &lt; 8; j++)
+ {
+ bit = crc &amp; high_bit;
+ crc &lt;&lt;= 1;
+ if (bit) crc^= config-&gt;poly;
+ }
+ crc_table[i] = crc &amp; mask;
+ }
+}
+
+/*****************************************************************************/
+/* gen_crc - Return the CRC value for the data using the given CRC algorithm */
+/* int id : identifies the CRC algorithm */
+/* char *data : the data */
+/* size_t len : the size of the data */
+/*****************************************************************************/
+unsigned long gen_crc(int id, const unsigned char *data, size_t len)
+{
+ /*-----------------------------------------------------------------------*/
+ /* Note: this is not a general-purpose CRC function. It does not handle */
+ /* parameterization by initial value, bit reflection, or final XOR */
+ /* value. This CRC function is specialized to the CRC algorithms in the */
+ /* linker used for MSP430 CRC tables. */
+ /*-----------------------------------------------------------------------*/
+ /* This CRC function is not intended to be optimal; it is written such */
+ /* that it works and generates the same result on all 8-bit and 16-bit */
+ /* targets, including MSP430, other TI DSPs, and typical desktops. */
+ /*-----------------------------------------------------------------------*/
+ const crc_config_t *config = find_config(id);
+ unsigned long crc = 0;
+ unsigned long mask = generate_mask(config-&gt;degree);
+ size_t i;
+ generate_crc_table(config);
+ for (i = 0; i &lt; len; i++)
+ {
+ unsigned int datum = data[i];
+ /*--------------------------------------------------------------------*/
+ /* This loop handles 16-bit chars when we compile on 16-bit machines. */
+ /*--------------------------------------------------------------------*/
+ int n;
+ for (n = 0; n &lt; (CHAR_BIT / 8); n++)
+ {
+ unsigned long octet = ((datum &gt;&gt; (8 * n)) &amp; 0xff);
+ unsigned long term1 = (crc &lt;&lt; 8);
+ int idx = ((crc &gt;&gt; (config-&gt;degree - 8)) &amp; 0xff) ^ octet;
+ crc = term1 ^ crc_table[idx];
+ }
+ }
+ return crc &amp; mask;
+}
+
+/*****************************************************************************/
+/* main - If requested, compute the CRC of test data using each algorithm. */
+/*****************************************************************************/
+int main(void)
+{
+ 
+ const unsigned char data[] = { 0, 'a', 0, 'b', 0, 'c', 0, 'd' };
+
+ /* CRC_8_PRIME: 0x70 */
+ /* CRC_16_802: 0x1bd3 */
+ /* CRC_32_PRIME: 0x4beab53b */
+ const unsigned char *p = (const unsigned char *)data;
+ unsigned long crc;
+ crc = gen_crc(CRC32_PRIME, p, sizeof data);
+ printf("CRC_32_PRIME: %08lx\n", crc);
+ crc = gen_crc(CRC8_PRIME, p, sizeof data);
+ printf("CRC_8_PRIME: %02lx\n", crc);
+ crc = gen_crc(CRC16_802_15_4, p, sizeof data);
+ printf("CRC16_802_15_4: %04lx\n", crc);
+ 
+ return 0;
+}</code>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="SPRU5138273">
+                                    <a MadCap:generatedBookmark="TOC" name="C.2_Linker-Generated_Copy_Tables_and_CRC_Tables">
+                                    </a>
+                                    <span class="section-label">C.2 </span>Linker-Generated Copy Tables and CRC Tables</h3>
+                                <p>In this example, three tasks exist in separate load areas. As each is needed, it is copied into the common run area and executed. A separate copy table is generated for each task (see table() operator in ex1.cmd). CRC values for the task functions are verified as well. See <span class="crossreference"><a href="#SPRU5138667">Example C-7</a></span> for the crc_table() operator calls. </p>
+                                <p>To run a simple example that uses copy tables and CRC tables, follow these steps:</p>
+                                <ol>
+                                    <li value="1">Create a CCS project with an empty main.c file. </li>
+                                    <li value="2">Create following files in the project and copy code into the files from the following examples:<ul><li value="1">main.c (<span class="crossreference"><a href="#SPRU5138751">Example C-2</a></span>)</li><li value="2">crc_tbl.h (<span class="crossreference"><a href="linker-description.html#STDZ0751026">Example 8-29</a></span>)</li><li value="3">check_crc.c (<span class="crossreference"><a href="#SPRU5137820">Example C-3</a></span>)</li><li value="4">ref_crc.c (<span class="crossreference"><a href="#SPRU5138320">Example C-1</a></span>)</li><li value="5">task1.c (<span class="crossreference"><a href="#SPRU5137720">Example C-4</a></span>)</li><li value="6">task2.c (<span class="crossreference"><a href="#SPRU5131224">Example C-5</a></span>)</li><li value="7"> task3.c (<span class="crossreference"><a href="#SPRU5136230">Example C-6</a></span>)</li></ul></li>
+                                    <li value="3">Edit the linker command file (*.cmd) provided for your target in the CCS project. Add the UNION statement in <span class="crossreference"><a href="#SPRU5138667">Example C-7</a></span> to the SECTION directives in the file.</li>
+                                    <li value="4">Build and test the project. You should see the result: "Copy table and CRC tasks PASSED".</li>
+                                </ol>
+                                <div class="example">
+                                    <h4 id="SPRU5138751">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_C-2_Main_Routine_for_Example_Application:_main.c">
+                                        </a>
+                                        <span class="example-label">Example C-2 </span>Main Routine for Example Application: main.c</h4>
+                                    <code>#include &lt;msp430.h&gt;#include &lt;stdio.h&gt;#include &lt;cpy_tbl.h&gt;#include &lt;crc_tbl.h&gt;extern COPY_TABLE task1_ctbl;
+extern COPY_TABLE task2_ctbl;
+extern COPY_TABLE task3_ctbl;
+
+extern CRC_TABLE task1_crctbl;
+extern CRC_TABLE union_crctbl;
+
+/****************************************************************************/
+/* copy_in - provided by the RTS library to copy code from its load */
+/* address to its run address. */
+/* my_check_CRC - verify that the CRC values stored in the given table */
+/* match the computed value at run time, using load address. */
+/* taskX - perform a simple task. These routines share the same run */
+/* address. */
+/****************************************************************************/
+extern void copy_in(COPY_TABLE *tp);
+extern unsigned int my_check_CRC(CRC_TABLE *tp);
+extern void task1(void);
+extern void task2(void);
+extern void task3(void);
+
+int x = 0;
+
+main()
+{
+ unsigned int ret_val = 0;
+ unsigned int CRC_ok = 1;
+
+ printf("Start task copy test with CRC checking.\n");
+
+ printf("Check CRC of task1 section.\n");
+ ret_val = my_check_CRC(&amp;task1_crctbl);
+ if (ret_val == 1)
+ printf("\nPASSED: CRCs for task1_crc_tbl match.\n");
+ else
+ {
+ CRC_ok = 0;
+ printf("\nFAILED: CRCs for task1_crc_tbl do NOT match.\n");
+ }
+
+ /*************************************************************************/
+ /* Copy task1 into the run area and execute it. */
+ /*************************************************************************/
+ copy_in(&amp;task1_ctbl);
+ task1();
+
+ printf("Check CRC of UNION.\n");
+ if ((ret_val = my_check_CRC(&amp;union_crctbl)) == 1)
+ printf("\nPASSED: CRCs for union_crc_tbl match.\n");
+ else
+ {
+ CRC_ok = 0;
+ printf("\nFAILED: CRCs for union_crc_tbl do NOT match.\n");
+ }
+ copy_in(&amp;task2_ctbl);
+ task2();
+ copy_in(&amp;task3_ctbl);
+ task3();
+
+ printf("Copy table and CRC tasks %s!!\n", 
+ ((CRC_ok == 1 &amp;&amp; x == 6)) ? "PASSED" : "FAILED");
+}</code>
+                                </div>
+                                <div class="example">
+                                    <h4 id="SPRU5137820">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_C-3_Checking_CRC_Values:_check_crc.c">
+                                        </a>
+                                        <span class="example-label">Example C-3 </span>Checking CRC Values: check_crc.c</h4>
+                                    <code>#include &lt;stdio.h&gt;#include &lt;crc_tbl.h&gt;/****************************************************************************/
+/* gen_crc() - computes the CRC value of data using the CRC algorithm ID */
+/* specified. Found in ref_crc.c */
+/****************************************************************************/
+
+unsigned long gen_crc(int id, const unsigned char *data, size_t len);
+
+unsigned int my_check_CRC(CRC_TABLE *tp)
+{
+ int i;
+ unsigned int ret_val = 1;
+ uint32_t my_crc;
+
+ printf("\n\nTABLE INFO: rec size=%d, num_rec=%d.",
+ tp-&gt;rec_size, tp-&gt;num_recs);
+
+ for (i = 0; i &lt; tp-&gt;num_recs; i++)
+ {
+ CRC_RECORD crc_rec = tp-&gt;recs[i];
+
+ /**************************************************/
+ /* COMPUTE CRC OF DATA STARTING AT crc_rec.addr */
+ /* FOR crc_rec.size UNITS. USE */
+ /* crc_rec.crc_alg_ID to select algorithm. */
+ /* COMPARE COMPUTED VALUE TO crc_rec.crc_value. */
+ /**************************************************/
+ my_crc = gen_crc(crc_rec.crc_alg_ID, (unsigned char *)crc_rec.addr, 
+ crc_rec.size);
+
+#if defined(__LARGE_CODE_MODEL__) &amp;&amp; !defined(__LARGE_DATA_MODEL__)
+ printf("\nCRC record: alg=%x, addr=%lx, size=%lx, crc=%lx, my_crc=%x.",
+ crc_rec.crc_alg_ID,
+ crc_rec.addr,
+ crc_rec.size,
+ crc_rec.crc_value,
+ my_crc);
+#else
+ printf("\nCRC record: alg=%x, addr=%x, size=%x, crc=%lx, my_crc=%lx.",
+ crc_rec.crc_alg_ID,
+ crc_rec.addr, 
+ crc_rec.size, 
+ crc_rec.crc_value, 
+ my_crc);
+#endif
+
+ if (my_crc == crc_rec.crc_value)
+ printf("\nCRCs match for record %d.\n", i);
+ else
+ {
+ ret_val = 0;
+ printf("\nCRCs DO NOT match for record %d.\n", i);
+ }
+ }
+ return ret_val;
+}</code>
+                                </div>
+                                <div class="example">
+                                    <h4 id="SPRU5137720">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_C-4_Task1_Routine:_task1.c">
+                                        </a>
+                                        <span class="example-label">Example C-4 </span>Task1 Routine: task1.c</h4>
+                                    <code>#include &lt;stdio.h&gt;extern int x;
+
+#pragma CODE_SECTION(task1, ".task1_scn")
+void task1(void) { printf("hit task1, x is %d\n", x); x += 1; }</code>
+                                </div>
+                                <div class="example">
+                                    <h4 id="SPRU5131224">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_C-5_Task2_Routine:_task2.c">
+                                        </a>
+                                        <span class="example-label">Example C-5 </span>Task2 Routine: task2.c</h4>
+                                    <code>#include &lt;stdio.h&gt;extern int x;
+
+#pragma CODE_SECTION(task2, ".task2_scn")
+void task2(void) { printf("hit task2, x is %d\n", x); x += 2; }</code>
+                                </div>
+                                <div class="example">
+                                    <h4 id="SPRU5136230">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_C-6_Task3_Routine:_task3.c">
+                                        </a>
+                                        <span class="example-label">Example C-6 </span>Task3 Routine: task3.c</h4>
+                                    <code>#include &lt;stdio.h&gt;extern int x;
+
+#pragma CODE_SECTION(task3, ".task3_scn")
+void task3(void) { printf("hit task3, x is %d\n", x); x += 3; }</code>
+                                </div>
+                                <div class="example">
+                                    <h4 id="SPRU5138667">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_C-7_Command_File_Addition">
+                                        </a>
+                                        <span class="example-label">Example C-7 </span>Command File Addition</h4>
+                                    <code>UNION
+{
+ .task2_scn: load = FLASH, table(_task2_ctbl)
+ .task3_scn: load = FLASH, table(_task3_ctbl)
+ .task1_scn: load = FLASH, table(_task1_ctbl), crc_table(_task1_crctbl)
+} run = FLASH2, crc_table(_union_crctbl, algorithm=CRC16_802_15_4)</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="abstract.html">Back to Top</a>
+                    <p />
+                    <a href="http://www.go-dsp.com/forms/techdoc/doc_feedback.htm?litnum=SLAU131R&amp;partnum=MSP430">Submit Documentation Feedback</a>
+                    <p>Copyright© 2018, Texas Instruments Incorporated. An <a href="includes/important_notice.html">IMPORTANT NOTICE</a> for this document addresses availability, warranty, changes, use in safety-critical applications, intellectual property matters and other important disclaimers.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

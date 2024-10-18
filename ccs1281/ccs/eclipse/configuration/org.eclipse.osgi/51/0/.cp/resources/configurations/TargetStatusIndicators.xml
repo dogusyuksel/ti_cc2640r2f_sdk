@@ -1,0 +1,267 @@
+<status_indicator>
+	<!-- ARM/THUMB Mode -->
+	<indicator isa="TMS470R1,TMS470R2,TMS470R53" type="emu,dsk" description="Arm/Thumb mode" status_reg="REG_SYSTEM_TARGET_PSR" status_bar="true">
+		<status mask="0x00000020" value="0x00000000" icon="" icon_text="ARM" description="ARM mode" />
+		<status mask="0x00000020" value="0x00000020" icon="" icon_text="THUMB" description="Thumb mode" />
+	</indicator>
+	<indicator isa="TMS470R1,TMS470R2" type="sim" description="Arm/Thumb mode" status_reg="CPSR" status_bar="true">
+		  <status mask="0x00000020" value="0x00000000" icon="" icon_text="ARM" description="ARM mode" /> 
+		  <status mask="0x00000020" value="0x00000020" icon="" icon_text="THUMB" description="Thumb mode" /> 
+	 </indicator>
+	<!-- Note: need to use the REG_SYSTEM_TARGET_PSR when ARM11 supports this register -->
+	<indicator isa="TMS470R3" type="*" description="Arm/Thumb mode" status_reg="CPSR" status_bar="true">
+		<status mask="0x00000020" value="0x00000000" icon="" icon_text="ARM" description="ARM mode" />
+		<status mask="0x00000020" value="0x00000020" icon="" icon_text="THUMB" description="Thumb mode" />
+	</indicator>
+
+	<!-- Note: need to use the REG_SYSTEM_TARGET_PSR when Cortex supports this register -->
+	<indicator isa="TMS470RC,TMS470RD,TMS470R9,TMS470R15" type="*" description="Arm/Thumb mode" status_reg="CPSR" status_bar="true">
+		<status mask="0x00000020" value="0x00000000" icon="" icon_text="ARM" description="ARM mode" />
+		<status mask="0x00000020" value="0x00000020" icon="" icon_text="THUMB" description="Thumb mode" />
+	</indicator>
+	<indicator isa="TMS470RE" type="*" description="Thread Mode Privilege" status_reg="CTRL_FAULT_BASE_PRI">
+		<status mask="0x01000000" value="0x01000000" icon="" icon_text="User" description="Thread User Mode" />
+		<status mask="0x01000000" value="0x00000000" icon="" icon_text="Priv" description="Thread Privileged Mode" />
+	</indicator>
+
+	<!-- Endian -->
+	<indicator isa="TMS320C62,TMS320C64,TMS320C66,TMS320C67" type="*" description="Little Endian/Big Endian" status_reg="CSR" status_bar="true">
+		<status mask="0x00000100" value="0x00000100" icon="" icon_text="LE" description="Little Endian" />
+		<status mask="0x00000100" value="0x00000000" icon="" icon_text="BE" description="Big Endian" />
+	</indicator>
+	<indicator isa="TMS470R1,TMS470R2,TMS470R9,TMS470R15,TMS470R53" type="emu,dsk" description="Little Endian/Big Endian" status_reg="REG_SYSTEM_TARGET_CONFIG"  status_bar="true">
+		<status mask="0x00000100" value="0x00000000" icon="" icon_text="LE" description="Little Endian" />
+		<status mask="0x00000100" value="0x00000100" icon="" icon_text="BE" description="Big Endian" />
+	</indicator>
+	<!-- Note: Need to use REG_ENDIAN for ARM7,  REG_CP15_ENDIAN is not updated in ARM7 -->
+	<indicator isa="TMS470R2" type="sim" description="Little Endian/Big Endian" status_reg="REG_ENDIAN"  status_bar="true">
+		<status mask="0x00000003" value="0x00000000" icon="" icon_text="LE" description="Little Endian" />
+		<status mask="0x00000003" value="0x00000002" icon="" icon_text="BE" description="Big Endian" />
+	</indicator>
+	<indicator isa="TMS470R3" type="*" description="Little Endian/Big Endian" status_reg="REG_ENDIAN" status_bar="true">
+		<status mask="0x00000003" value="0x00000000" icon="" icon_text="LE" description="Little Endian" />
+		<status mask="0x00000003" value="0x00000001" icon="" icon_text="BE8" description="BE8 Endian" />
+		<status mask="0x00000003" value="0x00000002" icon="" icon_text="BE" description="Big Endian" />
+	</indicator>
+
+	<!-- Note: need to use the REG_SYSTEM_TARGET_CONFIG when Cortex supports this register -->	
+    <indicator isa="TMS470RC,TMS470RD,TMS470RE" type="*" description="Little Endian/Big Endian" status_reg="REG_ENDIAN" status_bar="true">
+		<status mask="0x00000003" value="0x00000000" icon="" icon_text="LE" description="Little Endian" />
+		<status mask="0x00000003" value="0x00000001" icon="" icon_text="BE8" description="BE8 Endian" />
+		<status mask="0x00000003" value="0x00000002" icon="" icon_text="BE" description="Big Endian" />
+	</indicator>
+	
+	<!-- ARM Status -->
+	<indicator isa="TMS470R1,TMS470R2" type="emu,dsk" description="Status mode" status_reg="REG_SYSTEM_TARGET_PSR" status_bar="true">
+		<status mask="0x0000001F" value="0x00000010" icon="" icon_text="USR" description="User mode" />
+		<status mask="0x0000001F" value="0x00000011" icon="" icon_text="FIQ" description="Fast interrupt mode" />
+		<status mask="0x0000001F" value="0x00000012" icon="" icon_text="IRQ" description="Interrupt mode" />
+		<status mask="0x0000001F" value="0x00000013" icon="" icon_text="SPV" description="Supervisor (protected) mode" />
+		<status mask="0x0000001F" value="0x00000017" icon="" icon_text="ABT" description="Abort mode (data or instruction prefetch abort occured)" />
+		<status mask="0x0000001F" value="0x0000001B" icon="" icon_text="UND" description="Undefined instruction exception occured" />
+		<status mask="0x0000001F" value="0x0000001F" icon="" icon_text="SYS" description="System (privileged) mode" />
+	</indicator>
+
+	<indicator isa="TMS470R3" type="emu,dsk" description="Status mode" status_reg="CPSR"> status_bar="true"
+		<status mask="0x0000001F" value="0x00000010" icon="" icon_text="USR" description="User mode" />
+		<status mask="0x0000001F" value="0x00000011" icon="" icon_text="FIQ" description="Fast interrupt mode" />
+		<status mask="0x0000001F" value="0x00000012" icon="" icon_text="IRQ" description="Interrupt mode" />
+		<status mask="0x0000001F" value="0x00000013" icon="" icon_text="SPV" description="Supervisor (protected) mode" />
+		<status mask="0x0000001F" value="0x00000017" icon="" icon_text="ABT" description="Abort mode (data or instruction prefetch abort occured)" />
+		<status mask="0x0000001F" value="0x0000001B" icon="" icon_text="UND" description="Undefined instruction exception occured" />
+		<status mask="0x0000001F" value="0x0000001F" icon="" icon_text="SYS" description="System (privileged) mode" />
+	</indicator>
+
+	<indicator isa="TMS470RC,TMS470R9" type="emu,dsk" description="Status mode" status_reg="CPSR" status_bar="true">
+		<status mask="0x0000001F" value="0x00000010" icon="" icon_text="USR" description="User mode" />
+		<status mask="0x0000001F" value="0x00000011" icon="" icon_text="FIQ" description="Fast interrupt mode" />
+		<status mask="0x0000001F" value="0x00000012" icon="" icon_text="IRQ" description="Interrupt mode" />
+		<status mask="0x0000001F" value="0x00000013" icon="" icon_text="SPV" description="Supervisor (protected) mode" />
+		<status mask="0x0000001F" value="0x00000017" icon="" icon_text="ABT" description="Abort mode (data or instruction prefetch abort occured)" />
+		<status mask="0x0000001F" value="0x0000001B" icon="" icon_text="UND" description="Undefined instruction exception occured" />
+		<status mask="0x0000001F" value="0x0000001F" icon="" icon_text="SYS" description="System (privileged) mode" />
+		<status mask="0x0000001F" value="0x00000016" icon="" icon_text="MON" description="Secure Monitor mode" />
+	</indicator>
+    
+    <indicator isa="TMS470R15,TMS470R7" type="emu,dsk" description="Status mode" status_reg="CPSR" status_bar="true">
+		<status mask="0x0000001F" value="0x00000010" icon="" icon_text="USR" description="User mode" />
+		<status mask="0x0000001F" value="0x00000011" icon="" icon_text="FIQ" description="Fast interrupt mode" />
+		<status mask="0x0000001F" value="0x00000012" icon="" icon_text="IRQ" description="Interrupt mode" />
+		<status mask="0x0000001F" value="0x00000013" icon="" icon_text="SPV" description="Supervisor (protected) mode" />
+		<status mask="0x0000001F" value="0x00000017" icon="" icon_text="ABT" description="Abort mode (data or instruction prefetch abort occured)" />
+		<status mask="0x0000001F" value="0x0000001B" icon="" icon_text="UND" description="Undefined instruction exception occured" />
+		<status mask="0x0000001F" value="0x0000001F" icon="" icon_text="SYS" description="System (privileged) mode" />
+		<status mask="0x0000001F" value="0x00000016" icon="" icon_text="MON" description="Secure Monitor mode" />
+        <status mask="0x0000001F" value="0x0000001A" icon="" icon_text="HYP" description="Hypervisor mode" />
+	</indicator>
+
+	<indicator isa="TMS470RD" type="*" description="Status mode" status_reg="CPSR" status_bar="true">
+		<status mask="0x0000001F" value="0x00000010" icon="" icon_text="USR" description="User mode" />
+		<status mask="0x0000001F" value="0x00000011" icon="" icon_text="FIQ" description="Fast interrupt mode" />
+		<status mask="0x0000001F" value="0x00000012" icon="" icon_text="IRQ" description="Interrupt mode" />
+		<status mask="0x0000001F" value="0x00000013" icon="" icon_text="SPV" description="Supervisor (protected) mode" />
+		<status mask="0x0000001F" value="0x00000017" icon="" icon_text="ABT" description="Abort mode (data or instruction prefetch abort occured)" />
+		<status mask="0x0000001F" value="0x0000001B" icon="" icon_text="UND" description="Undefined instruction exception occured" />
+		<status mask="0x0000001F" value="0x0000001F" icon="" icon_text="SYS" description="System (privileged) mode" />
+	</indicator>
+
+	<!-- Exception Status -->
+	<indicator isa="TMS470RE" type="*" description="Exception Type" status_reg="xPSR">
+		<status mask="0x000001FF" value="0x00000000" icon="" icon_text="Thread" description="Thread Mode" />
+		<status mask="0x000001FF" value="0x00000002" icon="" icon_text="NMI" description="NMI Exception" />
+		<status mask="0x000001FF" value="0x00000003" icon="" icon_text="HARDF" description="Hard Fault Exception" />
+		<status mask="0x000001FF" value="0x00000004" icon="" icon_text="MEMMGT" description="Memory Management Exception" />
+		<status mask="0x000001FF" value="0x00000005" icon="" icon_text="BUSF" description="Bus Fault Exception" />
+		<status mask="0x000001FF" value="0x00000006" icon="" icon_text="USGF" description="Usage Fault Exception" />
+		<status mask="0x000001FF" value="0x00000007" icon="" icon_text="RES" description="Reserved" />
+		<status mask="0x000001FF" value="0x00000008" icon="" icon_text="RES" description="Reserved" />
+		<status mask="0x000001FF" value="0x00000009" icon="" icon_text="RES" description="Reserved" />
+		<status mask="0x000001FF" value="0x0000000A" icon="" icon_text="RES" description="Reserved" />
+		<status mask="0x000001FF" value="0x0000000B" icon="" icon_text="SVCall" description="Supervisor Call" />
+		<status mask="0x000001FF" value="0x0000000C" icon="" icon_text="DBGMON" description="Debug Monitor Exception" />
+		<status mask="0x000001FF" value="0x0000000D" icon="" icon_text="RES" description="Reserved" />
+		<status mask="0x000001FF" value="0x0000000E" icon="" icon_text="PendSV" description="Pending SV" />
+		<status mask="0x000001FF" value="0x0000000F" icon="" icon_text="SYSTCK" description="System Tick" />
+		<status mask="0x000001FF" value="0x00000010" icon="" icon_text="ISR0" description="Interrupt Level 0" />
+		<status mask="0x000001FF" value="0x00000011" icon="" icon_text="ISR1" description="Interrupt Level 1" />
+		<status mask="0x000001FF" value="0x00000012" icon="" icon_text="ISR2" description="Interrupt Level 2" />
+		<status mask="0x000001FF" value="0x00000013" icon="" icon_text="ISR3" description="Interrupt Level 3" />
+		<status mask="0x000001FF" value="0x00000014" icon="" icon_text="ISR4" description="Interrupt Level 4" />
+		<status mask="0x000001FF" value="0x00000015" icon="" icon_text="ISR5" description="Interrupt Level 5" />
+		<status mask="0x000001FF" value="0x00000016" icon="" icon_text="ISR6" description="Interrupt Level 6" />
+		<status mask="0x000001FF" value="0x00000017" icon="" icon_text="ISR7" description="Interrupt Level 7" />
+	</indicator>
+
+	<!-- Multiprocessor -->
+	<indicator isa="TMS470R9,TMS470R15" type="emu,dsk" description="Multiprocessor/Uniprocessor" status_reg="REG_SYSTEM_TARGET_CONFIG">
+		<status mask="0x00020000" value="0x00000000" icon="" icon_text="UP" description="Uniprocessor system" />
+		<status mask="0x00020000" value="0x00020000" icon="" icon_text="MP" description="Multiprocessor system" />
+	</indicator>
+
+	<!-- CPU Number -->
+	<indicator isa="TMS470R9,TMS470R15" type="emu,dsk" description="Cpu number" 
+			conf_reg="REG_SYSTEM_TARGET_CONFIG"	conf_mask="0x00020000" conf_value="0x00020000" status_reg="REG_SYSTEM_TARGET_CONFIG">
+		<status mask="0x00C00000" value="0x00000000" icon="" icon_text="Cpu 0" description="Cpu number 0" />
+		<status mask="0x00C00000" value="0x00400000" icon="" icon_text="Cpu 1" description="Cpu number 1" />
+		<status mask="0x00C00000" value="0x00800000" icon="" icon_text="Cpu 2" description="Cpu number 2" />
+		<status mask="0x00C00000" value="0x00C00000" icon="" icon_text="Cpu 3" description="Cpu number 3" />
+	</indicator>
+
+	<!-- Synchronous mode -->
+	<indicator isa="TMS470R9,TMS470R15" type="emu,dsk" description="Synchronous mode" 
+			conf_reg="REG_SYSTEM_TARGET_CONFIG" conf_mask="0x00020000" conf_value="0x00020000" status_reg="REG_SYSTEM_TARGET_STATUS" status_bar="true">			
+		<status mask="0x00020000" value="0x00000000" icon="" icon_text="Async" description="Asynchronous mode" />
+		<status mask="0x00020000" value="0x00020000" icon="" icon_text="Sync" description="Synchronous mode" />
+	</indicator>
+
+	<!-- Snoop control -->
+	<indicator isa="TMS470R9,TMS470R15" type="emu,dsk" description="Snoop mode" 
+			conf_reg="REG_SYSTEM_TARGET_CONFIG" conf_mask="0x00080000" conf_value="0x00080000" status_reg="REG_SYSTEM_TARGET_STATUS">
+		<status mask="0x00080000" value="0x00000000" icon="" icon_text="SCU off" description="Snoop Control Unit disabled" />
+		<status mask="0x00080000" value="0x00080000" icon="" icon_text="SCU on" description="Snoop Control Unit enabled" />
+	</indicator>
+
+	<!-- Secure status -->
+	<indicator isa="TMS470R9,TMS470R15,TMS470R53" type="emu,dsk" description="Secure mode" 
+			conf_reg="REG_SYSTEM_TARGET_CONFIG" conf_mask="0x00040000" conf_value="0x00040000" status_reg="REG_SYSTEM_TARGET_STATUS" status_bar="true">
+		<status mask="0x00040000" value="0x00000000" icon="" icon_text="SEC off" description="Secure mode disabled" />
+		<status mask="0x00040000" value="0x00040000" icon="" icon_text="SEC on" description="Secure mode enabled" />
+	</indicator>
+
+	<!-- Neon status -->
+	<indicator isa="TMS470R9,TMS470R15" type="emu,dsk" description="Neon unit" 
+			conf_reg="REG_SYSTEM_TARGET_CONFIG" conf_mask="0x01000000" conf_value="0x01000000" status_reg="REG_SYSTEM_TARGET_STATUS">
+		<status mask="0x01000000" value="0x00000000" icon="" icon_text="Neon Off" description="Neon unit disabled" />
+		<status mask="0x01000000" value="0x01000000" icon="" icon_text="Neon On" description="Neon unit enabled" />
+	</indicator>
+
+	<!-- EL status -->
+	<indicator isa="TMS470R53" type="emu,dsk" description="Exception Level" 
+			conf_reg="REG_SYSTEM_TARGET_CONFIG" conf_mask="0x0C000000" conf_value="0x0C000000" status_reg="REG_SYSTEM_TARGET_STATUS" status_bar="true">
+		<status mask="0x0C000000" value="0x00000000" icon="" icon_text="EL0" description="Exception Level 0" />
+		<status mask="0x0C000000" value="0x04000000" icon="" icon_text="EL1" description="Exception Level 1" />
+		<status mask="0x0C000000" value="0x08000000" icon="" icon_text="El2" description="Exception Level 2" />
+		<status mask="0x0C000000" value="0x0C000000" icon="" icon_text="El3" description="Exception Level 3" />
+	</indicator>
+	
+<!-- AArch status -->
+	<indicator isa="TMS470R53" type="emu,dsk" description="AArch mode" 
+			conf_reg="REG_SYSTEM_TARGET_CONFIG" conf_mask="0x10000000" conf_value="0x10000000" status_reg="REG_SYSTEM_TARGET_STATUS" status_bar="true">
+		<status mask="0x10000000" value="0x00000000" icon="" icon_text="AArch32" description="AArch 32-bit" />
+		<status mask="0x10000000" value="0x10000000" icon="" icon_text="AArch64" description="AArch 64-bit" />
+	</indicator>
+	
+	<!-- JAVA Status bit -->
+	<indicator isa="TMS470R2" type="emu,dsk" description="Jazelle" status_reg="REG_SYSTEM_TARGET_PSR">
+		<status mask="0x01000000" value="0x01000000" icon="" icon_text="JAVA" description="JAVA execution bit is set" />
+	</indicator>
+	<!-- Note: need to use the REG_SYSTEM_TARGET_PSR when ARM11 supports this register -->
+	<indicator isa="TMS470R3" type="emu,dsk" description="Jazelle" status_reg="CPSR">
+		<status mask="0x01000000" value="0x01000000" icon="" icon_text="JAVA" description="JAVA execution bit is set" />
+	</indicator>
+
+	<!-- Note: need to use the REG_SYSTEM_TARGET_PSR when Cortex supports this register -->
+	<indicator isa="TMS470RC,TMS470RD" type="emu,dsk" description="Jazelle" status_reg="CPSR">
+		<status mask="0x01000000" value="0x01000000" icon="" icon_text="JAVA" description="JAVA execution bit is set" />
+	</indicator>
+
+	<indicator isa="TMS470RE" type="*" description="Thread Mode Stack" status_reg="CTRL_FAULT_BASE_PRI">
+		<status mask="0x02000000" value="0x00000000" icon="" icon_text="MAIN" description="Thread Main Stack" />
+		<status mask="0x02000000" value="0x02000000" icon="" icon_text="PROC" description="Thread Process Stack" />
+	</indicator>
+
+	<!-- MMU -->
+	<indicator isa="TMS470R2,TMS470R9,TMS470R53" type="emu,dsk" description="MMU" conf_reg="REG_SYSTEM_MMU_CONFIG"
+				conf_mask="0x00000001" conf_value="0x00000001" status_reg="REG_SYSTEM_MMU_STATUS" status_bar="true">
+		<status mask="0x00000001" value="0x00000001" icon="" icon_text="MMU On" description="MMU is enabled" />
+		<status mask="0x00000001" value="0x00000000" icon="" icon_text="MMU Off" description="MMU is disabled" />
+	</indicator>
+    
+		<indicator isa="TMS470R7,TMS470R15" type="emu,dsk" description="MMU" conf_reg="REG_SYSTEM_MMU_CONFIG"
+				conf_mask="0x00018000" conf_value="0x00018000" status_reg="REG_SYSTEM_MMU_STATUS" status_bar="true">
+		<status mask="0x00000001" value="0x00000001" icon="" icon_text="MMU On" description="MMU is enabled" />
+		<status mask="0x00000001" value="0x00000000" icon="" icon_text="MMU Off" description="MMU is disabled" />
+		<status mask="0x00008000" value="0x00008000" icon="" icon_text="Stage 2 MMU On" description="MMU is enabled" />
+		<status mask="0x00008000" value="0x00000000" icon="" icon_text="Stage 2 MMU Off" description="MMU is disabled" />
+		<status mask="0x00010000" value="0x00010000" icon="" icon_text="Hypervisor MMU On" description="MMU is enabled" />
+		<status mask="0x00010000" value="0x00000000" icon="" icon_text="Hypervisor MMU Off" description="MMU is disabled" />
+		</indicator>
+    
+	<!-- Note: need to use the REG_SYSTEM_TARGET_PSR when ARM11 supports this register -->
+	<indicator isa="TMS470R3" type="emu,dsk" description="MMU" status_reg="RCP15_CONTROL_REGISTER" status_bar="true">
+		<status mask="0x00000001" value="0x00000001" icon="" icon_text="MMU On" description="MMU is enabled" />
+		<status mask="0x00000001" value="0x00000000" icon="" icon_text="MMU Off" description="MMU is disabled" />
+	</indicator>
+
+	<indicator isa="TMS470RC" type="emu,dsk" description="MMU" status_reg="CP15_CONTROL_REGISTER" status_bar="true">
+		<status mask="0x00000001" value="0x00000001" icon="" icon_text="MMU On" description="MMU is enabled" />
+		<status mask="0x00000001" value="0x00000000" icon="" icon_text="MMU Off" description="MMU is disabled" />
+	</indicator>
+
+	<indicator isa="TMS470RC" type="emu,dsk" description="SECURE" status_reg="REG_TZ_SECURE">
+		<status mask="0x00000001" value="0x00000001" icon="" icon_text="SEC On" description="Target is in secure mode" />
+		<status mask="0x00000001" value="0x00000000" icon="" icon_text="SEC Off" description="Target is in non-secure mode" />
+	</indicator>
+
+	<indicator isa="TMS470RC,TMS470RD" type="emu,dsk" description="AHB" status_reg="REG_AHB_DOWNLOAD">
+		<status mask="0x00000001" value="0x00000001" icon="" icon_text="AHB On" description="Fast download on" />
+		<status mask="0x00000001" value="0x00000000" icon="" icon_text="AHB Off" description="Fast download off" />
+	</indicator>
+
+	<indicator isa="TMS470RD" type="emu,dsk" description="MPU" status_reg="CP15_SYSTEM_CONTROL">
+		<status mask="0x00000001" value="0x00000001" icon="" icon_text="MPU On" description="MPU is enabled" />
+		<status mask="0x00000001" value="0x00000000" icon="" icon_text="MPU Off" description="MPU is disabled" />
+	</indicator>
+
+	<indicator isa="TMS470RC" type="emu,dsk" description="Neon unit" status_reg="REG_NEON_ENABLE">
+		<status mask="0x00000001" value="0x00000001" icon="" icon_text="Neon On" description="Neon unit enabled" />
+		<status mask="0x00000001" value="0x00000000" icon="" icon_text="Neon Off" description="Neon unit disabled" />
+	</indicator>
+
+	<!-- 55x+ Byte mode -->
+	<indicator isa="TMS320C56" type="*" description="Byte mode" status_reg="ST3_55" status_bar="true">
+		<status mask="0x0008" value="0x0008" icon="" icon_text="BYTE" description="Byte mode is enabled" />
+		<status mask="0x0008" value="0x0000" icon="" icon_text="WORD" description="Word mode is enabled" />
+	</indicator>
+
+</status_indicator>

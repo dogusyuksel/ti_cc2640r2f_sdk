@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="projectDelegate" name="projectDelegate" schema="schema/projectDelegate.exsd"/>
+   <extension-point id="resourceContentProvider" name="resourceContentProvider" schema="schema/resourceContentProvider.exsd"/>
+   <extension-point id="debugDelegate" name="debugDelegate" schema="schema/debugDelegate.exsd"/>
+   <extension-point id="resourceContentProvider2" name="resourceContentProvider2" schema="schema/resourceContentProvider2.exsd"/>
+   <extension-point id="webAppDelegate" name="webAppDelegate" schema="schema/webAppDelegate.exsd"/>
+</plugin>

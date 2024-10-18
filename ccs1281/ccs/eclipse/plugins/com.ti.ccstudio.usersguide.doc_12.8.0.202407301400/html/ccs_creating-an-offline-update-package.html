@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="This page contains details on how to create offline CCS update packages to update CCS on machines without internet access"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Composer Studio Product Page">
+<meta name="product-link" content="https://www.ti.com/tool/CCStudio">
+
+<!-- Change the title text for your page -->
+
+<title>Creating an Offline CCS Update Package</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+## Overview
+
+Installing [updates to Code Composer Studo (CCS)](https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_updates.html#) typically requies internet access. If you use CCS behind a proxy server, or in a situation where external internet access is not available, then you may wish to create a local copy of update packages. The local update package can be created from a computer that has internet access, transferred to the computer or network that does not have access, and then installed into CCS.
+
+## Determine which updates to add to the offline update package
+
+First determine the URL, feature IDs, and version numbers of the updates you want to include. To do this, open the [**Install New Software**](https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_updates.html#installing-new-software) dialog. Use the dropdown menu for **Work with** field to select the update site for the desired update. If you are unsure of which update site applies to the desired update, you can try each site and look for your update, or you can simply ask in the [CCS Support Forum](https://e2e.ti.com/support/tools/ccs/f/81). 
+
+In the example below, I am looking to create an offline update package for the **Automotive device support** update version 1.1.8. That update is available from the main Code Composer Studio Updates site. 
+
+In the screenshot below, note the checkbox selections at the bottom of the dialog under **Details**. Since you are creating an update package for another computer, you will want to expose all the updates available - instead of filtering out updates already installed or not applicable to your target environment. 
+
+Select the desired update. Next, view the properties, and select the **More...** option in the lower right corner of the dialog. 
+
+![](./images/ccs_offline_update01a.png)
+
+The **General Information** in the properties dialog will have two key pieces if information needed to create the offline update package - the **Identifier** name (or feature ID) and the **Version** number. 
+
+![](./images/ccs_offline_update02a.png)
+
+It is important to also pay attention to any information in the description regarding dependencies. Note how the **Automotive device support** update version 1.1.8 has a dependency on **TI Emulators** version 9.1.0.00001 and **Shared support package** version 1.1.6. 
+
+[[+y See multiple entries for the same exact version of the same update? (Expand)
+Some updates of the same version have multiple entries. For example, the **TI Emulators** update for the same version number has three entries.
+
+![](./images/ccs_offline_update01.png)
+
+The reason for this is that each one applies to an different host OS type (Windows, Linux, macOS). To determine which option is needed, you will need to select each one and look at the identifier name for it in the properties to see which host OS type the update applies for. Note in the example below, the feature ID string is **com.ti.emulation.pack.win64.feature.group**. The **win64** part of the ID indicates that this update is for the Windows OS:
+
+![](./images/ccs_offline_update02.png)
++]]
+
+Once the **Identifier** name and **Version** number are known, CCS can be closed.
+
+## Creating the download script
+
+An ANT script that specifies the update site(s), **Identifier** name(s), and **Version** number(s) for the offline update package(s) will need to be created. This script is used to generate the offline update package. The name of this script should be **mirror.xml**. Please refer to the below example script for the **Automotive device support** update version 1.1.8:
+
+```ANT
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Create local mirror" default="run" >
+<target name="run" >
+ <p2.mirror>
+    <repository location="file:localmirror" name="localmirror" />
+    <source>
+    <repository location="http://software-dl.ti.com/ccs/esd/CCSv10/Updates/" />
+ </source>
+    <iu id="com.ti.ccstudio.automotive.devicesupport.feature.group" version="1.1.8" />
+ </p2.mirror>
+</target>
+</project>
+```
+
+Note that you can specify multiple repository (update site) and source (id & version) entries in one script. This will allow you to create a single offline update package for multiple updates.
+
+## Generating the offline update package
+
+Run the script in a terminal with the below command:
+
+- Windows
+<tt>
+[CCS INSTALL DIR]\ccs\eclipse\eclipsec --launcher.suppressErrors -nosplash -application org.eclipse.ant.core.antRunner -buildfile mirror.xml    
+</tt>
+
+- Linux / macOS
+<tt>
+[CCS INSTALL DIR]\ccs\eclipse\eclipse --launcher.suppressErrors -nosplash -application org.eclipse.ant.core.antRunner -buildfile mirror.xml    
+</tt>
+
+This can take some time so please be patient. When the script has finished running, a folder called **localmirror** should be generated. This is the offline update package repository location. This folder can be copied over to the machine with the CCS installation that needs to install from the offline update package repository. If any dependencies on other packages *are detected* while running the script, those packages will also be included.
+
+## Intalling from the offline update package repository
+
+From the **Install New Software** dialog, press the **Add** button add a new repository location. In the **Add Repository** dialog, use the **Local...** button to browse to the offline update package repository location. The **Name** field is optional. Select **Add** to finish the operation.
+
+![](./images/ccs_offline_update03a.png)
+
+Once the offline update package repository has been selected, all updates bundled in the repository should appear. Make sure the **Group items by category** checkbox under the **Details** is cleared, otherwise the update may not be visible:
+
+![](./images/ccs_offline_update04a.png)
+
+Note that an additional update is available - **Shared device support** version 1.1.6. As mentioned earlier, the **Automotive device support** version 1.1.8 update has a dependency on this particular version of the update, hence it was added to the offline repository. 
+
+[[y NOTE
+Not all dependent updates are always bundled in the offline repository. **Automotive device support** version 1.1.8 also has a dependency on **TI Emulators** version 9.1.0.00001, but that update is not available from the offline repository. It is important to be aware of the configuration of the computer that will attempt to use the offline repository.
+]]
+
+Once the desired updates in the list has been selected, proceed with installing the updates as usual.
+
+## Troubleshooting
+
+### Dependency errors during script execution
+
+The below dependency error may occur during script execution:
+
+<tt>
+[p2.mirror] Unable to satisfy dependency from [Feature ID] to org.eclipse.equinox.p2.iu; com.ti.ccstudio.installer.win32.feature.group 9.0.0.00018.
+</tt>
+
+This is a known issue that should not impact the generation of the offline package repository generation. If the build is successful, it can be ignored.
+
+
+<!-- End of markdown source -->
+ 
+<div id="footer"></div>
+</xmp>
+</html>
+

@@ -1,0 +1,124 @@
+GEL_MemoryFill()
+----------------
+
+Fills a block of memory.
+
+**Syntax**
+
+**GEL_MemoryFill(startAddress, page, length, pattern [,
+patternSizeType])**
+
+**Parameters**
+
+startAddressis the first address in the block.
+
+page identifies the type of memory to fill: 0 (Program memory), 1 (Data
+memory) or 2 (I/0 space).
+
+For processors that do not have more than one type of memory, use 0 for
+this Parameters. For simulated targets, the I/O space Parameters is not
+supported.
+
+length defines the number of words to fill.
+
+pattern is the value that is placed in each word in the block.
+
+patternSizeType (optional) specifies the size of pattern that CCStudio
+should interpret. If not provided, pattern size will be interpreted as
+being the word size on the memory page on which the GEL_MemoryFill
+operation is taking place. Acceptable values for patternSizeType are as
+follows:
+
+Target specific types: size of the type depends on the target used
+
+0x00 - Char
+
+0x01 - Unsigned Char
+
+0x02 - Short
+
+0x03 - Unsigned Short
+
+0x04 - Enum
+
+0x06 - Int
+
+0x07 - Unsigned Int
+
+0x08 - Long
+
+0x09 - Unsigned Long
+
+0x0B - Pointer
+
+Target independent signed types
+
+0x0C - 8 bit integer
+
+0x0E - 16 bit integer
+
+0x10 - 24 bit integer
+
+0x12 - 32 bit integer
+
+0x14 - 40 bit integer
+
+0x16 - 48 bit integer
+
+0x18 - 64 bit integer
+
+Target independent unsigned types
+
+0x0D - 8 bit unsigned integer
+
+0x0F - 16 bit unsigned integer
+
+0x11 - 24 bit unsigned integer
+
+0x13 - 32 bit unsigned integer
+
+0x15 - 40 bit unsigned integer
+
+0x17 - 48 bit unsigned integer
+
+0x19 - 64 bit unsigned integer
+
+Large and floating point types
+
+0x1E - long long
+
+0x1F - unsigned long long
+
+0x20 - float
+
+0x22 - 32 bit IEEE single precision float
+
+0x24 - double
+
+0x26 - 64 bit IEEE double precision float
+
+0x28 - long double
+
+**Description**
+
+This function can be used to fill a block of target memory with a
+specified pattern.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: Yes
+
+**Example**
+
+// Fill memory 0x1000 on page 0 with 0x1000 instances of 0xa5a5 where
+0xa5a5 is interpreted by CCS as a 32-bit unsigned integer.
+
+GEL_MemoryFill(0x1000, 0, 0x100, 0xa5a5, 0x13);
+
+**Related Topics**
+
+`GEL_MemoryLoad <GEL_MemoryLoad.html>`__
+
+`GEL_MemorySave <GEL_MemorySave.html>`__

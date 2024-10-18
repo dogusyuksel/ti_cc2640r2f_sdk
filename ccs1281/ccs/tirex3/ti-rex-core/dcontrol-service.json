@@ -1,0 +1,11 @@
+{
+    "legacy": false,
+    "roles": ["content"],
+    "invocation": {
+        "version": "6.5.0",
+        "directory": "tirex3/ti-rex-core",
+        "file": "app.js"
+    },
+    "steps": [{}],
+    "heap": 9e9
+}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.contexts"?>
+
+<contexts>
+	<context id="lineProp" title="Graph properties">
+		<topic href="html/DVT_concepts/graphs/common_graph_properties.htm" label="Graph view properties"/>
+	</context>
+
+	<context id="stateProp" title="Graph properties">
+		<topic href="html/DVT_concepts/graphs/common_graph_properties.htm" label="Graph view properties"/>
+	</context>
+
+
+	<context id="discreteProp" title="Discrete graph properties">
+		<topic href="html/DVT_concepts/graphs/common_graph_properties.htm" label="Graph view properties"/>
+	</context>
+
+	<context id="barProp" title="Bar graph properties">
+		<topic href="html/DVT_concepts/graphs/common_graph_properties.htm" label="Graph view properties"/>
+	</context>
+
+	<context id="tableProp" title="Table view properties">
+		<topic href="html/DVT_concepts/tables/common_table_properties.htm" label="Table view properties"/>
+	</context>
+
+
+	<context id="group" title="Grouping tables and graph views together">
+	     <topic href="html/DVT_tasks/synchronizingTablesGraphs/managing_groups.htm" label="Groups feature"/>
+	</context>
+	
+	<context id="measurementMarker" title="Measurement marker feature">
+	     <topic href="html/DVT_concepts/graphs/measurement_markers_feature.htm" label="Measurement marker feature"/>
+	</context>
+
+
+	<context id="preferences" title="Advanced Tools Preferences">
+	  <description>Advanced Tools Preferences</description>
+	     <topic href="html/DVT_tasks/dvt_preferences.htm" label="Advanced Tools Preferences"/>
+	</context>
+
+	<context id="dvtGraphProp" title="DVT Graph Display Properties">
+		<description>Configure how things show up on the graph</description>
+		<topic href="html/dvtgraph_displayproperties_overview.html" label="Overview" />
+		<topic href="html/dvtgraph_displayproperties_channels.html" label="Channels" />
+		<topic href="html/dvtgraph_displayproperties_categories.html" label="Event/State Categories" />
+		<topic href="html/dvtgraph_displayproperties_appearance.html" label="Appearance" />
+	</context>
+
+
+</contexts>
+

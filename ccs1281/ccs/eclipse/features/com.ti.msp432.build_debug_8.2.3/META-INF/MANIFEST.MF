@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Created-By: 1.8.0_74 (Oracle Corporation)
+
+Name: p2.inf
+SHA-256-Digest: wBu4oGUCE89DuRXX3Df1sB7PdWwi92wk/psV1hyL+R0=
+
+Name: com.ti.msp432.build_debug.properties
+SHA-256-Digest: 4Byn2AnnzdbxD3goRwNI9GJMDCjRPMKyPaUKwIDpO3s=
+
+Name: build.properties
+SHA-256-Digest: 4QWFvHnUdwERgKo3jWlThiEo/pjc9o2Rd3PBmYzdons=
+
+Name: feature.xml
+SHA-256-Digest: 9g+e8M62C6nlzNGcKjqvNkJNs2Q99z3yFtgKu+UvPVQ=
+
+Name: MANIFEST/MANIFEST.MF
+SHA-256-Digest: BwUeg8Ez2HQuokNN3Sw1CbmNAzFD5G3GK/kk09JgPWI=
+

@@ -1,0 +1,244 @@
+@import url("platform:/plugin/org.eclipse.ui.themes/css/e4-dark_win.css");
+
+/* ---------------------------------------------------------------- 
+NOTES:
+
+	Gutter background			: #232323 === 35,35,35
+	Gutter font					: #787878 === 120,120,120
+	
+	View background				: #1E1E1E === 30,30,30
+	View font					: #AAAAAA === 170,170,170
+	
+	Tree/StyledText selection	: #494949 === 73,73,73
+	Text selection background	: #0078d7 === 0,120,215
+	 
+	Disassembly label font		: #D8D8D8 === 216,216,216
+	
+	Symbols label font			: #0080ff === 0,128,255
+
+---------------------------------------------------------------- */
+
+Tree, Table {
+    swt-lines-visible: false;
+}
+
+
+/* ------------------------------------------------------------- */
+
+.MTrimmedWindow.topLevel { 
+	margin-top: 5px;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+/* ------------------------------------------------------------- */
+
+.MPartStack,
+.MPartStack.active {
+	swt-shadow-visible: false;
+	swt-mru-visible: true;
+	swt-corner-radius: 6;
+	swt-simple: true;
+	padding: 1px 1px 1px;
+	background-color: inherit;
+	color: #f4f7f7;
+}
+
+/* ------------------------------------------------------------- */
+
+.MPart Composite,
+.MPart Composite > *,
+.MPart Composite > * > *,
+.MPart Label,
+.MPart ScrolledForm,
+.MPart Form,
+.MPart Section,
+.MPart FormText,
+.MPart Link,
+.MPart Sash,
+.MPart Button,
+.MPart Group,
+.MPart SashForm,
+.MPart Tree,
+.MPart FilteredTree,
+.MPart RegistryFilteredTree,
+.MPart PageSiteComposite,
+.MPart DependenciesComposite,
+.MPart Text[style~='SWT.READ_ONLY'],
+.MPart FigureCanvas,
+.MPart ListEditorComposite,
+.MPart ScrolledComposite,
+.Mpart ScrolledComposite ProgressInfoItem,
+.MPart Form ScrolledPageBook,
+.MPart DependenciesComposite > SashForm > Section > * { /* Section > DependenciesComposite$... */
+    background-color: #1E1E1E;
+    color: #AAAAAA;
+}
+
+/* ------------------------------------------------------------- */
+
+#com-ti-ccstudio-scripting-console-ConsoleView .MPart ConsoleText,
+#org-eclipse-cdt-dsf-debug-ui-disassembly-view .MPart StyledText,
+#org-eclipse-ui-console-ConsoleView .MPart > Composite,
+#org-eclipse-ui-console-ConsoleView .MPart PageBook StyledText,
+#org-eclipse-ui-console-ConsoleView .MPart PageBook Label {
+    background-color: #1E1E1E;
+    color: #AAAAAA;
+}
+
+/* On the windows dark theme, the default is having the scrollbar themed
+ * Note that the user may also set -Dswt.enable.themedScrollBar=false to force
+ * it to false regardless of the CSS value.
+ */
+.MPart * {
+	swt-scrollbar-themed: true;
+
+	swt-scrollbar-background-color: #383838;
+	swt-scrollbar-foreground-color: #494949;
+	swt-scrollbar-width: 4px;
+	swt-scrollbar-border-radius: 4px;
+	swt-scrollbar-mouse-near-scroll-width: 15px;
+}
+
+/* ------------------------------------------------------------- */
+
+IEclipsePreferences#org-eclipse-debug-ui:org-eclipse-ui-themes {
+	preferences: 
+		'org.eclipse.debug.ui.outColor=170,170,170'
+}
+
+/* ------------------------------------------------------------- */
+/* http://www.eclipsecolorthemes.org/?view=theme&id=2069         */
+
+IEclipsePreferences#org-eclipse-cdt-ui:org-eclipse-ui-themes {
+	preferences:
+		'buildConsoleBackgroundColor=30,30,30',
+		'buildConsoleOutputStreamColor=170,170,170',
+		'inactiveCodeColor=35,35,35',
+		
+		'asm_directive=255,255,255',
+		'asm_label=216,216,216',
+		'c_braces=216,216,216',
+		'c_comment_task_tag=204,223,50',
+		'c_default=216,216,216',
+		'c_keyword=255,255,255',
+		'c_multi_line_comment=199,221,12',
+		'c_numbers=127,179,71',
+		'c_operators=216,216,216',
+		'c_single_line_comment=199,221,12',
+		'c_string=255,198,0',
+		'c_type=255,255,255',
+		'org.eclipse.cdt.internal.ui.text.doctools.multi=204,223,50',
+		'org.eclipse.cdt.internal.ui.text.doctools.recognizedTag=217,229,119',
+		'org.eclipse.cdt.internal.ui.text.doctools.single=204,223,50',
+		'pp_default=216,216,216',
+		'pp_directive=255,255,255',
+		'pp_header=255,198,0',
+		'semanticHighlighting.class.color=210,82,82',
+		'semanticHighlighting.class.enabled=true',
+		'semanticHighlighting.class.bold=false',
+		'semanticHighlighting.class.underline=false',
+		'semanticHighlighting.class.strikethrough=false',
+		'semanticHighlighting.enum.color=127,179,71',
+		'semanticHighlighting.enum.enabled=true',
+		'semanticHighlighting.enumerator.color=239,192,144',
+		'semanticHighlighting.enumerator.enabled=true',
+		'semanticHighlighting.externalSDK.color=190,214,255',
+		'semanticHighlighting.externalSDK.enabled=true',
+		'semanticHighlighting.field.color=190,214,255',
+		'semanticHighlighting.field.enabled=true',
+		'semanticHighlighting.function.color=255,255,255',
+		'semanticHighlighting.function.enabled=true',
+		'semanticHighlighting.functionDeclaration.color=190,214,255',
+		'semanticHighlighting.functionDeclaration.enabled=true',
+		'semanticHighlighting.localVariable.color=121,171,255',
+		'semanticHighlighting.localVariable.enabled=true',
+		'semanticHighlighting.localVariableDeclaration.color=190,214,255',
+		'semanticHighlighting.localVariableDeclaration.enabled=true',
+		'semanticHighlighting.macroDefinition.color=190,214,255',
+		'semanticHighlighting.macroDefinition.enabled=true',
+		'semanticHighlighting.method.color=255,255,255',
+		'semanticHighlighting.method.enabled=true',
+		'semanticHighlighting.methodDeclaration.color=190,214,255',
+		'semanticHighlighting.methodDeclaration.enabled=true',
+		'semanticHighlighting.namespace.color=209,151,217',
+		'semanticHighlighting.namespace.enabled=true',
+		'semanticHighlighting.parameterVariable.color=121,171,255',
+		'semanticHighlighting.parameterVariable.enabled=true',
+		'semanticHighlighting.staticField.color=239,192,144',
+		'semanticHighlighting.staticField.enabled=true',
+		'semanticHighlighting.staticMethod.color=190,214,255',
+		'semanticHighlighting.staticMethod.enabled=true',
+		'semanticHighlighting.typedef.color=210,82,82',
+		'semanticHighlighting.typedef.enabled=true',
+		'semanticHighlighting.typedef.bold=false',
+		'semanticHighlighting.typedef.underline=false',
+		'semanticHighlighting.typedef.strikethrough=false',
+		'semanticHighlighting.typeParameter.color=191,164,164',
+		'semanticHighlighting.typeParameter.enabled=true'
+}
+
+/* ------------------------------------------------------------- */
+
+IEclipsePreferences#org-eclipse-cdt-make-ui:org-eclipse-ui-themes {
+	preferences:
+		'org.eclipse.cdt.make.ui.editor.comment=199,221,12',
+		'org.eclipse.cdt.make.ui.editor.default=216,216,216',
+		'org.eclipse.cdt.make.ui.editor.function=255,255,255',
+		'org.eclipse.cdt.make.ui.editor.keyword=255,255,255',
+		'org.eclipse.cdt.make.ui.editor.macro_def=190,214,255',
+		'org.eclipse.cdt.make.ui.editor.macro_ref=190,214,255',
+		'org.eclipse.cdt.make.ui.editor.matching.brackets.color=216,216,216'		
+}
+
+/* ------------------------------------------------------------- */
+
+IEclipsePreferences#org-eclipse-ui-workbench:org-eclipse-ui-themes {
+	preferences:
+		'com.ti.ccstudio.memory.ui.view.rendering.colorBackground=30,30,30',
+		'com.ti.ccstudio.memory.ui.view.rendering.colorText=170,170,170',
+		'com.ti.ccstudio.memory.ui.view.rendering.colorSelection=0,120,215',
+		'com.ti.ccstudio.debug.ui.symbolFontColor=0,128,255',
+		'org.eclipse.ui.workbench.INFORMATION_BACKGROUND=81,86,88',
+		'org.eclipse.ui.workbench.INFORMATION_FOREGROUND=216,216,216',
+        'org.eclipse.egit.ui.DiffAddForegroundColor=216,254,245',
+        'org.eclipse.egit.ui.DiffHeadlineForegroundColor=242,242,242',
+        'org.eclipse.egit.ui.DiffHunkForegroundColor=233,242,254',
+        'org.eclipse.egit.ui.DiffRemoveForegroundColor=255,232,237',
+        'org.eclipse.egit.ui.IgnoredResourceForegroundColor=120,120,120',
+        'org.eclipse.egit.ui.UncommittedChangeForegroundColor=114,157,186'
+}
+
+/* ------------------------------------------------------------- */
+
+IEclipsePreferences#org-eclipse-ui-editors:org-eclipse-ui-themes {
+	preferences:
+        'AbstractTextEditor.Color.SelectionBackground=0,120,215',
+        'AbstractTextEditor.Color.SelectionBackground.SystemDefault=false',
+		'AbstractTextEditor.Color.Background.SystemDefault=false'
+		'AbstractTextEditor.Color.Background=35,35,35',
+		'currentLineColor=73,73,73',
+		'currentIPColor=0,128,192',
+		'secondaryIPColor=0,128,255',
+		'org.eclipse.cdt.ui.occurrenceIndicationColor=128,128,0'
+		'org.eclipse.cdt.ui.writeOccurrenceIndicationColor=100,100,100'
+}
+
+/* ------------------------------------------------------------- */
+
+IEclipsePreferences#org-eclipse-cdt-dsf-ui:org-eclipse-ui-themes {
+	preferences:
+		'disassembly.rulerBackgroundColor=35,35,35',
+		'disassembly.addressColor=120,120,120',
+		'disassembly.labelColor=216,216,216',
+		'disassembly.instructionColor=170,170,170'
+}
+
+/* ------------------------------------------------------------- */
+
+IEclipsePreferences#org-eclipse-tm-terminal-control:org-eclipse-ui-themes {
+	preferences:
+        'BACKGROUND=30,30,30',
+        'FOREGROUND=170,170,170'
+}

@@ -1,0 +1,26 @@
+GEL for Statement
+-----------------
+
+GEL supports the standard C for statement. The general form is:
+
+``for ( expression1; expression2; expression3 )  statement1;``
+
+The first expression is evaluated once. The value of expression1 initializes the loop counter. The second expression is evaluated before each execution of statement1. If and only if the value of expression2 is true (unequal zero), statement1 is executed. If the value of expression2 becomes false (equal to 0), the for statement is terminated. The third expression is evaluated after each execution of statement1. The value of expression3 re-initializes the loop counter. The statement can be a single statement or several statements in braces.
+
+___
+
+**Example:**
+
+.. code:: cpp
+
+   for (i = 0; i < 9; i++)
+   {
+      data1[i] = 0;
+      data2[i] = 0;
+   }
+
+___
+
+**See also:**
+
+`GEL Functions: Alphabetical List <functions_list.html>`__

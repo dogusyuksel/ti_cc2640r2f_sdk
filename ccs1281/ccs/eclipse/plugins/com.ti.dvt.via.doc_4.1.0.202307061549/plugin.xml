@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+<!-- Generated TOC from Perl Conversion Script -->
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="toc_IA_CCS.xml"
+            primary="false">
+      </toc>      
+   </extension>
+
+   
+<!-- Context-sensitive calls with new Oliver GUI structure -->  
+   <extension
+            point="org.eclipse.help.contexts">
+         <contexts
+               file="context_Image_Views.xml"
+               plugin="com.ti.dvt.via.imvr"/>
+   </extension>
+
+
+<!-- Generated Index from Perl Conversion Script -->  
+   <extension
+            point="org.eclipse.help.index">
+            <index file="IA_CCS_index.xml"/>
+   </extension>
+
+</plugin>
+

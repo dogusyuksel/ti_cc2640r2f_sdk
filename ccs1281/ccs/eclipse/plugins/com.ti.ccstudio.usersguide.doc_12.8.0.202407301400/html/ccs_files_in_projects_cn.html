@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="CCS 工程中的文件"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Composer Studio Product Page">
+<meta name="product-link" content="https://www.ti.com/tool/CCStudio">
+
+<!-- Change the title text for your page -->
+<title>CCS 工程中的文件</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+
+<!-- Start of markdown souce -->
+
+# 引言
+
+用于嵌入式应用程序的 Code Composer Studio 工程包含源文件和其他输入，并生成一个输出可执行文件或库。一个典型的工程包含源文件（C/C++/程序集）、链接器命令文件和运行时支持库。TI-RTOS或 SYS/BIOS 工程将额外包含 BIOS 配置文件。在编译完成之后将创建一个输出可执行文件。在大多数情况下，默认还会生成链接器映射文件。根据工程设置和选项，可能会生成其他输出文件。本页面将介绍其中一些文件及其意义。
+
+有关编译流程本身的更多信息，请参阅此[工程构建](https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_project-management.html#main-build)页面。
+
+# 默认文件
+
+使用新建工程向导（菜单 **File &rarr; New &rarr; CCS Project**）创建新的 CCS 工程时，默认情况下，通常会将一些文件添加到工程中。这些文件根据工程类型（BIOS 或非 BIOS）、所选模板以及是否指定了连接而有所不同。这样做仅仅是为了添加构建程序并将程序加载到 TI 器件所需的一些基本文件，从而简化用户的操作过程。
+
+无论工程类型如何，一个始终通用的文件是目标配置文件 (.ccxml)。在 CCS 5.3 和更高版本中，如果在创建 CCS 工程时选择了某个连接，则会将目标配置文件 (.ccxml) 添加到名为“targetConfigs”的文件夹内。目标配置文件定义了仿真器连接及其连接到的器件类型。通过创建该文件，在构建工程后，只需点击一个按钮，即可快速启动调试会话。该文件不是在编译过程中使用的，而是在准备好将程序加载到目标时起作用。
+
+# 链接器命令文件
+
+创建新的非 RTSC 工程时，通常会将链接器命令文件 (.cmd) 和源文件（取决于所选的模板）添加到工程中。您可以选择保留源文件，或将其删除并添加您自己的源文件。
+
+链接器命令文件是基于工程所选的器件而选择的默认文件。在新建工程向导的 **Tool-chain** 下可以找到允许添加此默认链接器命令文件的设置。如果 **Linker command file** 字段设置为 *&lt;automatic&gt;*，则会选择默认文件。如果您不想使用为您选择的默认链接器命令文件，而是希望将自己选择的文件添加到工程中，则可以将“Linker command file”字段设置为 *&lt;none&gt;*。或者，可以点击 **Browse** 并选择所需的链接器命令文件。
+
+链接器命令文件用于应用程序编译过程的链接阶段，在此阶段，链接器会组合目标文件并将片段分配到目标系统的已配置内存中。链接器命令文件是一个 ASCII 文件，它使用两个链接器指令 MEMORY 和 SECTIONS 将片段分配到内存的特定区域中。MEMORY 指令定义目标内存配置。SECTIONS 指令控制如何构建和分配片段。此外，链接器命令文件还可以包含输入文件名和链接器选项。
+
+[链接器命令文件入门](sdto_cgt_Linker-Command-File-Primer.html)页面介绍了链接器命令文件的基本信息，重点阐述了 MEMORY 和 SECTIONS 指令。
+
+在[《汇编语言工具用户指南》](https://www.ti.com/tool/ti-cgt)的“链接器”一章中可以找到有关链接器命令文件的完整详细信息。
+
+链接器命令文件在嵌入式程序中起着重要作用，因为它们指定了将代码和数据片段分配到目标内存中的位置。没有此文件，链接器将不知道目标内存配置以及如何正确分配这些片段。分配代码片段时，它将使用默认属性。这可能会在代码加载到目标时导致 **Data Verification** 错误或 **Trouble Writing Memory Block** 类型错误。在某些情况下，它可能仍会无错误地加载（例如，如果加载到某些仿真器），但这绝不是一个好习惯，并且通常会导致程序在目标器件上运行时无法按预期工作。因此，为目标使用正确的链接器命令文件非常重要。
+
+为了尽可能减少由于缺少链接器命令文件而导致的加载和运行错误，新建工程向导（在 CCS 5.2 及更高版本中）为大多数器件/电路板添加了默认的链接器命令文件。默认文件应该适用于大多数简单应用程序，但是随着应用程序要求越来越严格，可以根据需要自定义链接器命令文件。此外，如果已经有了应用程序相关的自定义链接器命令文件，则可以直接删除 CCS 添加的默认文件。
+
+# SysConfig 配置文件
+
+[SysConfig](https://www.ti.com/tool/SYSCONFIG) 是用于配置引脚、外设、无线电、子系统和软件组件的工具。  .syscfg 可以存储 SysConfig 的配置设置。  双击该文件将在 SysConfig 编辑器中将其打开。  编译工程时，SysConfig 命令行工具也会使用该文件。  SysConfig 的输出通常是在工程编译过程中使用的 C 源文件。
+
+
+# TI-RTOS 或 SYS/BIOS 配置文件
+
+创建新的 SYS/BIOS CCS 工程时，通常会将配置文件 (.cfg) 和源文件（取决于所选的模板）添加到工程中。在此情况下，目标内存定义和片段分配工作通常由用户在工程创建期间选择的 RTSC 平台文件执行。
+
+注意：MCU 器件（TM4C、C2000、MSP430）属于例外情况，在这种情况中，即使选择了平台文件，内存定义和片段分配也仅来自链接器命令文件 (.cmd)，而不是平台文件。
+
+一种更常见的用例是从 SimpleLink SDK、TI-RTOS 或 SYS/BIOS 随附的 TI 示例工程开始。在此情况下，工程附带一个 BIOS 内核配置文件 (.cfg)，该文件可以设置应用程序所需的 BIOS 对象和功能以及所有必需的源文件。此外，已根据目标器件选择了 RTSC 平台和目标。
+
+构建 SYS/BIOS 工程时，XDCtools 会导入平台和配置文件并自动生成以下文件：
+
+- compiler.opt：包含一组在编译用户源文件时传递给编译器的选项（通常为包含选项和预处理器定义）
+- linker.cmd：在链接应用程序时要传递给链接器的链接器命令文件
+
+此过程也显示在[构建流程图](https://software-dl.ti.com/ccs/esd/documents/users_guide/ccs_project-management.html#main-build)中。
+
+这些文件可以在激活编译配置目录下的 \configPkg 目录（例如，`<project_root>\Debug\configPkg` 目录）中找到。
+
+尽管链接器命令文件是由 SYS/BIOS 自动生成的，但是如果用户要分配其他自定义片段，或者希望将其中一个标准节分配给与默认内存区域不同的内存区域，则用户仍然可以额外提供自己的自定义链接器命令文件。如需了解更多详细信息和示例，请参阅以下页面：[内存管理](http://rtsc.eclipse.org/docs-tip/Memory_Management)。
+
+如果要更改默认的目标内存定义（例如，从 TI 评估板更改为定制板时），必须创建一个新的 RTSC 平台，因为它是定义目标内存和片段分配的平台。如需了解使用 CCS 中的 RTSC 平台向导创建定制 RTSC 平台的步骤，请参阅 [CCSv4 中的 RTSC 平台向导的演示](http://rtsc.eclipse.org/docs-tip/Demo_of_the_RTSC_Platform_Wizard_in_CCSv4)页面。
+
+# 链接器映射文件
+
+链接器映射文件 (.map) 是链接器的输出，其中概要提供了内存配置、片段分配、重定位后外部符号的地址，等等。该文件会列出程序中的代码和数据片段的大小，以及片段和符号在内存中的分配位置。要了解编译器生成的不同片段（.text、.bss、.const 等）并区分哪些是代码和哪些是数据，请参阅所使用的目标处理器的[编译器用户指南](https://www.ti.com/tool/ti-cgt)。
+
+一个常见的误解是 CCS 构建过程生成的可执行文件 (.out) 的大小表示正在加载到目标的程序的大小。这是不正确的，因为可执行文件包含实际不会加载到目标的符号调试信息。为了确定程序中代码和数据的实际大小，宜查看链接器映射文件。
+
+从 CCSv5 开始，默认情况下会在激活编译配置目录（默认为 \Debug）中生成链接器映射文件。
+
+要更改链接器映射文件的名称或位置，请转到 **Project Properties &rarr; Build &rarr; Linker &rarr; Basic Options**，然后更改 **--map_file** 选项。
+
+有关链接器映射文件的更多详细信息，请参阅[《汇编语言工具用户指南》](https://www.ti.com/tool/ti-cgt)中的“链接器”一章。
+
+**内存分配视图**提供了应用程序内存消耗量的直观表示。请参阅[内存分配视图](ccs_memory_allocation_view.html)页面以了解详情。
+
+# 可执行文件
+
+从编译过程中输出的可执行文件 (.out) 是可以在目标器件上加载并执行的文件。可以使用 CCS 直接加载和调试该文件，也可以将该文件转换为其他格式，例如十六进制格式，并使用十六进制编程器将该文件编程到目标板子。
+
+这个可执行文件通常生成于激活编译配置目录（默认为 \Debug）。
+
+要更改可执行文件的名称或位置，请转到 **Project Properties &rarr; Build &rarr; Linker &rarr; Basic Options**，然后更改 **--output_file** 选项。
+
+
+可执行文件的格式为 COFF 或 ELF。这两种格式的简要历史位于此页面中：
+[A_Brief_History_of_TI_Object_File_Formats](https://software-dl.ti.com/ccs/esd/documents/sdto_cgt_A-Brief-History-of-TI-Object-File-Formats.html)
+
+从 CCSv8 开始，如果是基于 C66x、MSP430 和 ARM/Cortex 的器件，新工程默认为 ELF 格式。C2000 和 C5500 仍默认为 COFF。
+
+要检查具体工程已设置为创建 ELF 还是 COFF 可执行文件，请右键点击该工程，然后转到 ** Properties &rarr; General &rarr; Advanced Settings**。**Output format** 字段将显示格式。对于同时支持 ELF 和 COFF 的器件，可以更改 **Output format** 设置。但是，切记，链接在一起的所有目标文件和库应采用相同的格式。例如，如果使用的是 ELF，则链接到工程中的所有库也应为 ELF 格式。否则，链接时将出现错误，并且不会创建可执行文件。
+
+您可能会听到 ELF 和 EABI 这两个术语互换使用。ELF 是文件格式，而 EABI（代表嵌入式应用程序二进制接口）是一组规则，编译器将遵循这些规则来创建内聚性的可执行文件。
+
+# 运行时支持库
+
+运行支持是一个 ANSI C/C++ 标准库，负责系统启动，并为诸如字符串处理、输入/输出处理和内存分配之类的工作提供支持函数。由于这些工作由运行时支持库处理，因此 CCS 工程应链接到该库中。
+
+编译器工具集附带了一组预编译好的运行时支持库。由于可以使用一组显式的选项（表示器件、字节序、abi 模式等，这些选项可能产生大量组合）来编译该库，因此我们仅在编译器版本中包含更常用的库。请查看编译器版本的 \lib 目录，以了解特定版本预先编译了哪些库。
+
+在 CCS 工程编译期间，如果链接器需要某个默认情况下未提供的库，它将在工程构编译程中自动编译该库，并将该库放置在编译器工具安装位置的 \lib 目录中。然后，该库将可用于后续编译，而无需再次重新编译。
+
+请注意，该库的首次编译将导致一次性的延迟。观察到的编译时间为 1-5 分钟，具体时间取决于主机计算机的速度和功率（CPU 的数量等）。
+
+还可以使用可执行文件 mklib 在 CCS 外部手动编译运行库，该可执行文件随附于编译器工具（从 CCS 5.1 开始）。
+
+创建新的 CCS 工程时，系统将自动针对器件/设置选择合适的运行库。要对此进行检查，请右键点击该工程，然后转到 **Properties &rarr; General &rarr; Project** 选项卡，并确认 **Runtime support library** 字段设置为 *&lt;automatic&gt;*。最好将此设置保留为 *<automatic>*，并让链接器选择与工程选项最匹配的库。如果您仍想设置使用特定的运行库，则可以从 **Runtime support library** 字段下拉列表中选择相应的库来实现。
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>
+

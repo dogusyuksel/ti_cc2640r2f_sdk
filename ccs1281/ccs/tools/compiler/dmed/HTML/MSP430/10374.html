@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+    <title>Uninitialized ISR Vector detected</title>
+  </head>
+  <body>
+    <h1><span class="mw-headline"
+        id=".C2.A0_Uninitialized_ISR.C2.A0Vector_detected">Uninitialized
+        ISR&nbsp;Vector detected<br>
+      </span></h1>
+    <h2> <span class="mw-headline" id="What_it_means"> What it means </span></h2>
+    <p>The MSP430 microcontroller dedicates a segment of the memory for
+      the interrupt sub-routine (ISR)&nbsp;vectors.This segment of
+      memory contains the addresses for the ISR associated with the
+      corresponding interrupts, allowing for the interrupt to trigger
+      the ISR vector and executing the ISR defined at the stored
+      addresses. Even if some of these interrupts are not used in the
+      application, the ISR&nbsp;vectors should be initialized and
+      assigned properly to ensure all interrupts, whether
+      application-intended or accidental, can be vectored,captured, and
+      executed properly to prevent any erroneous behaviors in the
+      application. </p>
+    <h2> <span class="mw-headline" id="Risks.2C_Severity"> Risks,
+        Severity </span></h2>
+    <p>An uninitialized ISR&nbsp;vector when triggered could lead to
+      jumping to unknown addresses, execution of erroneous code which at
+      the very least could lead to application crashing, unexpected
+      application behavior, or more severely memory erasure or
+      electrical damage. </p>
+    <h2> <span class="mw-headline" id="Why_it_is_happening"> Why it is
+        happening </span></h2>
+    <p>At least one of the ISR&nbsp;vector was detected to be
+      un-initialzed. <br>
+    </p>
+    <h2> <span class="mw-headline" id="Remedy"> Remedy </span></h2>
+    <ul>
+      <li>Initialize all of the ISR&nbsp;vectors available to your
+        device. Refer to the device datasheet and header files for the
+        exact list of ISR vectors available to your device. </li>
+    </ul>
+    <table style="text-align: left; width: 819px; height: 345px;"
+      border="1" cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;">
+            <pre>#pragma vector=unused_interrupts
+__interrupt void ISR_trap(void)
+{
+/* For debugging purposes, you can trap the CPU &amp;&nbsp;code execution here with an 
+  infinite loop */
+while (1);
+
+/* If a reset is preferred, in scenarios where you want to reset the entire system and 
+  restart the application from the beginning, use one of the following lines depending
+  on your MSP430 device family, and make sure to comment out the while (1)&nbsp;line above */
+
+/* If you are using MSP430F5xx or MSP430F6xx devices, use the following line
+  to trigger a software BOR.   */
+PMMCTL0 = PMMPW | PMMSWBOR;          // Apply PMM password and trigger SW BOR
+
+/* If you are using MSP430 devices that are part of the 1xx/2xx/4xx families
+  use the following line of code to cause an access violation which results 
+  in a PUC reset */
+WDTCTL = 0;                          // Write to WDT with a wrong password
+}</pre>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pre><br>
+</pre>
+    <p>Note that the recommended ISR handling codes are different
+      depending on the MSP430 platforms (1xx/2xx/4xx use Watch Dog Timer
+      (WDT) to cause a Power Up Clear (PUC) reset, 5xx/6xx can also use
+      the Power Management Module (PMM) to trigger software Brown Out
+      Reset (BOR). </p>
+    <ul>
+      <li>Suppress the warning: initializing all interrupt vectors is
+        good code practice and it is highly recommended. However, if you
+        insist on leaving the unused interrupt vectors uninitialized or
+        have other less common purposed for these memory addresses, you
+        can turn off the warning by adding the warning code #10374 to
+        the diagnostic message suppress list. </li>
+    </ul>
+    <p><a href="Suppress_init_vector_msp430.jpg" class="image"><img
+          alt="Suppress init vector msp430.jpg"
+          src="Suppress_init_vector_msp430.jpg" height="692" width="831"></a>
+    </p>
+    <h2> <span class="mw-headline" id="Code_Example"> Code Example </span></h2>
+    <p>Refer to our following code example for guidance on using and
+      initializing interrupt vectors. </p>
+    <p><a
+href="http://processors.wiki.ti.com/index.php/File:Msp430_initialize_unused_interrrupt_vectors.zip"
+        class="external text" rel="nofollow" target="_blank">processors.wiki.ti.com/index.php/File:Msp430_initialize_unused_interrrupt_vectors.zip</a>
+    </p>
+    <p><a
+        href="http://focus.ti.com/mcu/docs/mcusplash.tsp?contentId=128826#CE"
+        class="external text" rel="nofollow" target="_blank">See the
+        rest of the code examples for all MSP430 devices here!</a> </p>
+    <h2> <span class="mw-headline" id="More_Resources"> More Resources
+      </span></h2>
+    <p>Leverage the e2e (Engineer-to-Engineer) online community to get
+      all of your MSP430 questions answered! Or, if you are an MSP430
+      pro user, give back to the community with your expertise. </p>
+    <p><a
+href="http://e2e.ti.com/support/microcontrollers/msp43016-bit_ultra-low_power_mcus/f/166.aspx"
+        class="external text" rel="nofollow" target="_blank">Go to
+        MSP430's e2e online forum!</a>&nbsp; </p>
+    <div class="hf-nsfooter">
+      <table style="text-align:center; background:white; width:100%;
+        text-align:left; height: 65px border-top: 1px solid;
+        border-bottom: 1px solid; border-left: 1px solid; border-right:
+        1px solid; border-width: 1px; border-style: solid;">
+        <tbody>
+          <tr>
+            <td width="305px"><a
+                href="http://processors.wiki.ti.com/index.php/File:E2e.jpg"
+                class="image"><img alt="E2e.jpg"
+                  src="http://processors.wiki.ti.com/images/8/82/E2e.jpg"
+                  height="63" width="305"></a> </td>
+            <td><i>For technical support please post your questions at <a
+                  href="http://e2e.ti.com" class="external free"
+                  rel="nofollow" target="_blank">http://e2e.ti.com</a>.
+                Please post only comments about the article <b>Compiler/diagnostic
+
+
+
+                  messages/MSP430/10374</b> here.</i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

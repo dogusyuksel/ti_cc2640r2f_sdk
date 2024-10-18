@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<meta name="description" content="The Software Messaging application uses the System Trace Macrocell (STM) to allow application code to send printf style messages for debugging and diagnostics.">
+
+<!-- Change the title text for your page -->
+<title>Software Messaging (STM)</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+# Introduction
+The Software Messaging application enables the System Trace Macrocell (STM) in which instrumented application code can send printf style messages which are captured to an on-chip embedded trace buffer (ETB) or exported to the pins to a supported debug probe.
+Each SoC has a different set of masters which are capable of sending STM messages.
+Masters can consist of varying TI DSP and ARM core types.
+The benefit of using the STM to capture logging messages versus CIO/UARTS is performance.
+
+[[b Note:
+Application code must be instrumented with [CToolsLib STM libraries](http://software-dl.ti.com/emulation/esd/ctoolslib_k3/CToolsLib_K3.html) in order for the Software Message application to capture messages.
+]]
+
+## Supported Devices
+- AM65x
+- J721E
+
+## Getting Started in CCS
+
+To use the Software Messaging application, you must have an active debug session opened with a Keystone 3 device.
+The Software Messaging window can then be opened by right-clicking any of the cores and selecting SoC Analysis→Software Messaging.
+
+![](./images/tvt_stm_software_message_0.png)
+Figure 0: Open Software Messaging by right-clicking a connected core and selecting SoC Analysis→Software Messaging.
+
+## Trace Data
+The trace data contains the following fields:
+
+- **Master ID**  
+A unique identifier which indicates the source of the STM message.
+
+- **Master Name**  
+The name associated with a Master ID.
+
+- **Channel Number**  
+The STM channel in which the message came from.
+
+- **Data**  
+The message data transfered via a PutBUF() function.
+
+- **Data Message**  
+The message data transfered via a PutMSG() function.
+
+- **Domain**  
+Indicates if the message is from software (SW) or hardware (HW). Note that only SW messages are available in Keystone 3 devices.
+
+- **Class**  
+Indicates the STM library function that was used to transfer the message.
+
+- **Type**  
+Indicates the type of STM message.
+
+- **Global Timestamp**  
+The time of the traced operation clocked by the Global Timestamp Counter (GTC).
+
+- **Trace Status**  
+Indicates where trace operations were started and stopped.
+
+# Software Messaging Configuration
+
+Currently the only programmable options for Software Messaging are the Receiver settings.
+
+![](./images/tvt_stm_software_message_1.png)
+Figure 1: Software Messaging view after confirming receiver settings.
+
+- To start trace capture, select the circular record button on the top right.
+- To stop trace capture, select the square stop button on the top right.
+- Configuration settings make be accessed via the gear icon on the top left.
+- Trace data may be saved to a file via the Save icon on the top right.
+- The console tab provides a simpler view of the trace data.
+
+# Receiver Settings
+There are two options for exporting software messaging data: ETB or TPIU (pin trace).
+Currently for TPIU trace only the Pro Trace receiver is supported.
+
+![](./images/tvt_stm_software_message_2.png)
+Figure 2: Receiver settings configured to halt trace when DMSC_Cortex_M3_0 core halts.
+
+## Buffer Type
+
+All receivers support circular and stop-on-full buffer types.
+In circular buffer mode, the ETB or Pro Trace will overwrite data once the buffer is full continually until trace is stopped.
+In stop-on-full mode, the trace capture will automatically halt when the buffer is full.
+
+## Halt trace capture when specified core halts
+
+All receivers support the halt trace capture when specified core halts field. When this field is set to an existing core name, the trace data will halt automatically when the specified core halts.
+
+The Pro Trace has two additional options that the ETB receiver does not have: Pins and Buffer Size. 
+
+- **Pins**  
+Select the number of pins you will use to export data off-chip.
+More pins will allow more bandwidth.
+
+- **Buffer Size**  
+Select the size of buffer for binary trace data.
+Note that the trace data is highly compressed in binary form and will result in files much larger than the specified buffer size.
+   
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

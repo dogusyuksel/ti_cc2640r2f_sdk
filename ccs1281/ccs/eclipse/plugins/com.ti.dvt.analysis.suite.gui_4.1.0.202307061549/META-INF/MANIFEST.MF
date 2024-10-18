@@ -1,0 +1,69 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.ti.dvt.analysis.suite.gui;singleton:=true
+Export-Package: com.ti.dvt.analysis.suite
+Bundle-Name: Analysis Suite
+Bundle-Version: 4.1.0.202307061549
+Bundle-ClassPath: com.ti.dvt.analysis.suite.gui.jar
+Require-Bundle: com.ti.dvt.core,org.eclipse.ui,com.ti.dvt.control.gui,
+ com.ti.ccstudio.debug,com.ti.ccstudio.debug.ui,org.eclipse.cdt.dsf,co
+ m.ti.dvt.analysis.suite,com.ti.ccstudio.ui,com.ti.dvt.ideadapter2
+Bundle-ManifestVersion: 2
+Bundle-Activator: com.ti.dvt.analysis.suite.ActivatorGUI
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: Texas Instruments
+
+Name: icons/selection.gif
+SHA-256-Digest: csgLuuZR8EyMTgAmE+RTr1Ou4J+imJj0szsla/EZ4+Q=
+
+Name: html/index.html
+SHA-256-Digest: 5Hh1xXUakB3TLQcm2lMHxU+cUQUV+MFPKwocldQXv7Y=
+
+Name: plugin.xml
+SHA-256-Digest: VYdwRn3fVURUdcdV+UjeW1Yioa+0Rk0888eME/WlkCM=
+
+Name: icons/delete_all.gif
+SHA-256-Digest: lXDMxTEHLV6w5/9jKsY1zozG20qGTvBW9dyd82kaGgM=
+
+Name: icons/view.gif
+SHA-256-Digest: 5XbzlXzxU7tqhO7iMAVqUQoUU50NZDWA+lHV80r8svc=
+
+Name: com.ti.dvt.analysis.suite.gui.jar
+SHA-256-Digest: fE2UiR/6qNeeIZo/Uy/RXpDK9B+Sx+hAajPPGhej9ng=
+
+Name: icons/trigger_add.gif
+SHA-256-Digest: DnQEkxIyG7ss/X1WuMJiaedr2HINyZfgmd/6yq5tEPM=
+
+Name: icons/receiver_add.gif
+SHA-256-Digest: NAC5fpRLqF+z1N3SxxAcecR4p3a/02Zh72qokqRQC7k=
+
+Name: icons/solution_saveas.gif
+SHA-256-Digest: GkpaAq75q0R2Fb3maUs4Vyw0pgkhyXOVV5+6sOIO0x8=
+
+Name: icons/properties.gif
+SHA-256-Digest: TotydTGWACNo61iv1oQPB9WBbEJiRhZiGvlwHcSeEDc=
+
+Name: icons/save.gif
+SHA-256-Digest: juYDrNgRddBljUWo8+DARMLxea5gotRUXIgcA0pyI9A=
+
+Name: icons/expand.gif
+SHA-256-Digest: nGiUm46g+wv5fUyGJxs7qM3EJNK1GhCGgi0xA342WP0=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: G2hFTVPngfh5NUf96Pyy87A7XIE083udjEBFy4pUc/M=
+
+Name: icons/receiver.gif
+SHA-256-Digest: NsowuD+XxXv8aKtxie4ABQVfpmaQSdXhgp+rgctVi1k=
+
+Name: html/styles/styles.css
+SHA-256-Digest: YORZ2Hoi6PQ6u8AgxYJgY6ihPiWx8Nonmtg/FRBEyJQ=
+
+Name: icons/folder.gif
+SHA-256-Digest: wqM4dtWs3nUwodFkJVClht2D4gVOEQcYjXTU+4r9iAw=
+
+Name: icons/collapse.gif
+SHA-256-Digest: XJfkuNbf+CqNfRalha2pS1MdQs8DTYcaY6vp55OKGDc=
+
+Name: icons/trace.gif
+SHA-256-Digest: bfNufED/spFoMX9JBrIjKjELCnVV1n9/R/UvAXIden4=
+

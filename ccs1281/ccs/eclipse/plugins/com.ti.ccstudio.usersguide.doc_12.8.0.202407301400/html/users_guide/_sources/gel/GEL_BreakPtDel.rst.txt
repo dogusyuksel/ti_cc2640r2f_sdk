@@ -1,0 +1,36 @@
+GEL_BreakPtDel()
+----------------
+
+Delete a breakpoint.
+
+**Syntax**
+
+**GEL_BreakPtDel(** address **);**
+
+**Parameters**
+
+address identifies the location of the breakpoint.
+
+**Description**
+
+This function clears a software breakpoint at a specific address. If
+there is no software breakpoint set at address, nothing happens. The
+address can be an absolute address, any C expression, the name of a C
+function, or the name of an assembly language label.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: No
+
+**Example**
+
+| GEL_BreakPtDel(0x2000);
+| GEL_BreakPtDel(TargetLabel + 100);
+
+**Related Topics**
+
+`GEL_BreakPtAdd <GEL_BreakPtAdd.html>`__
+
+`GEL_BreakPtReset <GEL_BreakPtReset.html>`__

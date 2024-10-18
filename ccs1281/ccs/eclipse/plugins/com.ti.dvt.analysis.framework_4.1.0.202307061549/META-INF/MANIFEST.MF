@@ -1,0 +1,38 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.ti.dvt.analysis.framework
+Bundle-SymbolicName: com.ti.dvt.analysis.framework;singleton:=true
+Require-Bundle: com.ti.dvt.core,com.ti.dvt.ui,com.ti.dvt.datamodel,org
+ .eclipse.ui,org.eclipse.core.runtime,com.ti.util.ui,com.ti.util,com.t
+ i.util.diskspacemonitor,com.ti.dvt.ideadapter2
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: Texas Instruments
+Eclipse-LazyStart: true
+Export-Package: com.ti.dvt.analysis.framework
+Bundle-Name: DVT Analysis Framework
+Bundle-Version: 4.1.0.202307061549
+Bundle-ClassPath: com.ti.dvt.analysis.framework.jar
+Bundle-Activator: com.ti.dvt.analysis.framework.AnalysisPlugin$Plugin
+
+Name: dvt.zip
+SHA-256-Digest: 5lwgZDqs5xQTfI7m1RvHJvBwsXs36rzb1ykcXrHOEVo=
+
+Name: META-INF/p2.inf
+SHA-256-Digest: VdM+1FTNh32/jAABLurl1d3SbRSNeony1RzvDvK2/lg=
+
+Name: uninstall.xml
+SHA-256-Digest: d5XfeDVbS4Ql1VoZn6iKQqtVwVFLSgWzBywh6VITQyE=
+
+Name: analysis.zip
+SHA-256-Digest: O4L/fPuW9pMnIyd1r4lRzq08C9PJ/ozY36EI22fonMA=
+
+Name: install.xml
+SHA-256-Digest: 3rjQ1B0qaq0Styj3AFyYY52/KdF6aMIwyaTwijVTjCI=
+
+Name: com.ti.dvt.analysis.framework.jar
+SHA-256-Digest: z3ftdvNnW+IKtH4e0IUtxC+kR+j1cM6+wPQcJo5LJBA=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: G2hFTVPngfh5NUf96Pyy87A7XIE083udjEBFy4pUc/M=
+

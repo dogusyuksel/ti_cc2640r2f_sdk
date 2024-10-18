@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="XDCtools 3.62.01.16"
+     topic="index.html"
+>
+    <topic label="Using RTSC with Code Composer Studio" href="http://rtsc.eclipseprojects.io/docs-tip/Using_RTSC_with_CCStudio_v4"/>            
+    <topic label="RTSC-Pedia" href="https://software-dl.ti.com/dsps/dsps_public_sw/sdo_sb/targetcontent/rtsc/latest/docs/index.html"/>            
+    <topic label="API Reference (cdoc)">
+        <link toc="cdoc_toc.xml"/>
+    </topic>
+    <topic label="ROV User Guide" href="rov/index.html"/>            
+    <topic label="Release Notes" href="xdctools_3_62_01_16_release_notes.html"/>            
+    <topic label="License" href="license/xdc/shelf/package.html"/>            
+</toc>

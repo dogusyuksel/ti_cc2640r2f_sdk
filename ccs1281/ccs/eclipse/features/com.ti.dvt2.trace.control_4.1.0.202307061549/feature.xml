@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.dvt2.trace.control"
+      label="DVT - Trace Control"
+      version="4.1.0.202307061549"
+      provider-name="Texas Instruments"
+      >
+
+   <description>
+      Trace Control
+   </description>
+
+   <license>
+      Provided under the terms of the original DVT or Code Composer Studio License Agreement.
+   </license>
+
+   <includes
+         id="com.ti.dvt2.core"
+         version="4.1.0.202307061549"
+         optional="true"/>
+
+   <includes
+         id="com.ti.dvt2.core.ccstudio"
+         version="4.1.0.202307061549"
+         optional="true"/>
+
+   <requires>
+      <import feature="com.ti.dvt2.core" version="4.1.0.202307061549" match="greaterOrEqual"/>
+   </requires>
+
+</feature>

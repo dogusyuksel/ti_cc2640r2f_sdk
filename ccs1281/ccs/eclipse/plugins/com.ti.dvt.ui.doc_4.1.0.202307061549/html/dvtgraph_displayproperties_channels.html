@@ -1,0 +1,59 @@
+<html>
+<head>
+<link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+
+<h1>DVT Graph Channels</h1>
+
+<p class="para">
+We call the lines that are plotted horizontally a Channel however this might or might not map to an
+actual channel. 
+</p>
+
+<h3>Presentation</h3>
+<br/>Each channel can be presented on the Y-Axis in any of the following forms: 
+<ul>
+<li><b>State:</b> Where data in the channel are drawn same way as our original  State Graph 
+</li><li><b>Shape:</b> Good for event visualization, where data points in channels are drawn as Circle/Line/Triangle/Square/... 
+</li><li><b>Icon:</b> Same as Shape, this is good for event visualization. 
+</li><li><b>Message:</b> Good for presentation of long string messages where an "M" icon is drawn and text of message is shown as a tooltip on mouse-over.(Default) 
+</li><li><b>Value:</b> Similar to VCD where for each value change, a new hexagonal is drawn and the value is presented inside the hexagonal. 
+</li><li><b>Waveform:</b> Plotted as a a 0/1 digital step waveform.</li>
+</ul>
+
+<h3>State/Event Categories</h3>
+<br/>
+Color/shape/icon assignments for "State", "Shape", "Icon" presentation types, can be controlled using the <b>State/Event Categories</b>
+and assigning the proper category to the channel.
+
+<h3>Exapnd</h3>
+<br/>
+For State, Shape and Icon display formats, clicking on the channel name on Y-Axis, will expand the channel into possible states/events on separate lines, s
+imilar to to DVT's old Discrete Graph. You may control expanding for the supported types using the <b>Expand</b> checkbox. 
+
+<h3>Visiblity</h3>
+<br/>
+Channel visibility may also be controlled by using the <b>Visible</b> checkbox.
+
+<h3>Annotation</h3>
+<br/>
+Annotations can be added to the what gets drawn on DVT Graph globally or per channel. The correspoinding value of the field
+that user selects, for the same record, will show up underneath the point.
+
+<h3>Tooltip</h3>
+<br/>Tooltips are supported on mouse-over on states/events by default but user may also add any additional tooltips they'd like to get displayed along with the defaults as well.
+
+<h3>Alias</h3>
+<br/>If user wants to show a different channel name than the one that is autodiscoverred from the data stream, they could specify an
+<b>Alias</b>. And if the alias, contains the tree/hierarchical mode separator charactor (default '.'), when switched to tree mode, the channel
+would show up under the proper hierarchy in the tree.
+
+<h3>Toolbar</h3>
+<br/>Channels may also be removed or re-orderred using the icons on the toolbar, and when there are too many channels, user may use "Search Channel Name" text box and as s/he types in, 
+user can drill down to the channel s/he would like to configure. Multi selection to apply same changes on more than one channel is also
+supported both in tree mode and flat mode.
+
+
+</body>
+</html>

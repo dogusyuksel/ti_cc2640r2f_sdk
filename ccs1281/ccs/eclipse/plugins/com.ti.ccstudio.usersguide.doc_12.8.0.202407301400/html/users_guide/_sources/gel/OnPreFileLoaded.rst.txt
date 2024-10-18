@@ -1,0 +1,24 @@
+OnPreFileLoaded()
+-----------------
+
+GEL callback function called before a program is loaded.
+
+**Syntax**
+
+**OnPreFileLoaded();**
+
+**Parameters**
+
+None.
+
+**Description**
+
+If defined in a loaded GEL file, OnPreFileLoaded() is called before a
+program is loaded.
+
+**Example**
+
+| OnPreFileLoaded()
+| {
+| GEL_TextOut("OnPreFileLoaded called …\n")
+| }

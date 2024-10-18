@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<Logger>
+	<outputs>
+		<!-->Log files/outputs. Type may be 'STANDARD_OUT', 'STANDARD_ERR' or 'FILE'<-->
+		<!-->for a file, the absolute file-name (full path) must be specified<-->
+		<output type='STANDARD_OUT'></output>
+	</outputs>
+	
+	<!-->Global log filtering level. Possible values are:<-->
+	<!-->OFF, SEVERE, WARNING, INFO, TRACE, TRACE_FINE, TRACE_FINEST<-->
+	<Level>WARNING</Level>
+	
+	<Format>
+		<!-->List the fields in the order you want them to appear<-->
+		<!-->The available field are:<-->
+		<!-->sourceClassName,sourceMethodName,contextName,message,threadName,time,exception<-->
+		<Fields>sourceClassName,sourceMethodName,contextName,message,time,threadName,exception</Fields>
+		<!-->One character field separator. Additional characters are ignored<-->
+		<Field_Separator>,</Field_Separator>
+		<!-->Format of the time field in the log file based on Java Date/Time Format<-->
+		<Time_Format>HH:mm:ss.SSS yyyy-MM-dd</Time_Format>
+	</Format>
+	
+	<Packages>
+		<!-->This is used for SourceClassName filtering.<-->
+		<!-->Any sourceClassName starting with the package-String will trigger the filter<-->	
+		<!-->Note that these may be full/partial package names or full/partial class-names <-->
+		<!-->Levels are: OFF, SEVERE, WARNING, INFO, TRACE, TRACE_FINE, TRACE_FINEST<-->
+		<!-->Context is any string<-->
+	</Packages>
+</Logger>

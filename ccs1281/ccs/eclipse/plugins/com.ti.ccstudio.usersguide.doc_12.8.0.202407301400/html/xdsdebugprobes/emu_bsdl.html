@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="General overview of Boundary-scan Description Language."> 
+
+<!-- Change the title text for your page -->
+<title>BSDL</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+#Introduction
+
+Boundary-scan is a well established test technology. Boundary-scan has been in use since the early 1990s when the Joint Test Action Group (JTAG) devised a solution to testing the many new printed circuit boards that were being developed and manufactured where there was little or no physical access for test probes. Once boundary-scan was established, the next step was to develop a standard modeling language for silicon vendors to model their boundary-scan devices, for tool vendors to develop automation tools, and for end-users to create boundary-scan tests. Thus the Boundary-Scan Description Language (BSDL) was created. 
+
+BSDL is the standard modeling language for boundary-scan devices. Its syntax is a subset of VHDL and it complies with IEEE 1149.1-2001. It is used by boundary-scan test developers, device simulators, semiconductor testers, board level testers, and anyone using boundary-scan. The use of BSDL promotes consistency throughout the electronics industry. Additionally, it enables the specification of any boundary-scan functions on a device in a useful, understandable, and consistent manner. 
+
+BSDL came out of the development of the boundary-scan test philosophy. The initial IEEE 1149.1-1990 (see [IEEE 1149.1](./emu_jtag.html)) standard describing boundary-scan was approved and released in 1990, and as a result the use of boundary-scan techniques started to grow. The next revision of the standard occurred in 1993. In 1994 a further revision incorporated BSDL into the IEEE 1149.1-1994 standard. 
+
+#What is BSDL?
+
+The Boundary-Scan Description Language enables users to provide a description of the way in which boundary-scan is implemented in any particular device. As each chip designer tends to apply the boundary-scan standard in a slightly different way, it is necessary to express tests in a comprehensible, specific and usable fashion. 
+
+BSDL is written within a subset of VHDL. VHDL is commonly used as a design-entry language for FPGAs and ASICs in electronic design automation of digital circuits, and as such it is suitable for work with boundary-scan since design of many chips is performed using this language. However BSDL is a "subset and standard practice" of VHDL, i.e., the scope of VHDL is thereby limited for boundary-scan application. 
+
+During the design of BSDL there were two main criteria for the language: 
+
+- It should be easy to use 
+- It should be parsable by a computer in a simple and unambiguous fashion
+
+BDSL enables accurate and useful descriptions of the features of a device that uses boundary-scan. The BSDL file is used by the boundary-scan tools to make use of the device features to enable test program generation, failure diagnosis, as well as use in any testability analysis. BSDL is not a language that can be used for hardware description; rather, it is used to define the data transport characteristics of the device, i.e. how it captures, shifts, and updates scanned data. This is then used in defining the test capability. The BSDL file includes the following data: 
+
+- **Entity Declaration**: The Entity Declaration is a VHDL construct that is used to identify the name of the device that is described by the BSDL file. 
+- **Generic Parameter**: The Generic Parameter is the section that specifies which package is described. 
+- **Logical Port Description**: This description lists all the connections on the device. It defines its basic attributes, i.e., whether the connection is an input (in bit;), output (out bit;), bi-directional (inout bit;) or if it is unavailable for boundary-scan (linkage bit;). 
+- **Package Pin Mapping**: The Package Pin Mapping is used for determining the internal connections within an integrated circuit. It details how the pads on the device die are wired to the external pins. 
+- **Use Statements**: This statement is used to call the VHDL packages that contain the data that are referenced in the BSDL File. 
+- **Scan Port Identification**: The Scan Port Identification identifies the particular pins that are used for the boundary-scan / JTAG implementation. These include: TDI, TDO, TMS, TCK and TRST (if used). 
+- **Test Access Port (TAP) Description**: This entity provides additional information on the boundary-scan or JTAG logic for the device. The data includes the instruction register length, instruction opcodes, device IDCODE, etc. 
+- **Boundary Register Description**: This description provides the structure of the boundary-scan cells on the device. Each pin on a device may have up to three boundary-scan cells, each cell consisting of a register and a latch.
+
+# How Is BSDL Used?
+
+When a board is designed, boundary-scan-compliant devices are organized into *chains*. Scan chains form the basis for board-level and system-level tests that can detect and diagnose pin-level structural faults such as opens and shorts. Automated tools are used to generate test programs or procedures for the boards. The most important inputs to this process are the BSDL files for boundary-scan-enabled devices, and the netlist that describes the interconnects between the devices of the board. The generated test program, when applied to a target board, reports the structural test failures and can be used to help with board repair. 
+
+Some tools are able to use boundary-scan to create test patterns for clusters of components that include non-boundary-scan-compliant devices, and other tools can generate test patterns that an on-board processor can run to enable at-speed functional testing. These test procedures are applied stand-alone or in conjunction with other test techniques, such as In-Circuit Testing (ICT), with an overall goal of producing optimal test coverage at the lowest cost and the shortest test development time. 
+
+# References
+
+- BSDL files for many TI devices can be found at the design resources of its product pages 
+- The IEEE 1149.1 standard may be found at http://standards.ieee.org/reading/ieee/std_public/description/testtech/1149.1-2001_desc.html. BSDL is defined in Appendix B. The IEEE charges a fee for this document. 
+- A Free BSDL compiler - syntax, grammar and semantic checking is at https://www.intellitech.com/bsdl/bsdl.asp 
+- Commercial tools for automatically creating boundary-scan test procedures based on BSDL files are available from:
+
+   - ASSET InterTech, Inc. at http://www.asset-intertech.com 
+   - Corelis at http://www.corelis.com 
+   - Intellitech at http://www.intellitech.com 
+   - GOEPEL Electronics at http://www.goepel.com 
+   - Spectrum Digital, Inc. at http://www.spectrumdigital.com
+
+ <hr>
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

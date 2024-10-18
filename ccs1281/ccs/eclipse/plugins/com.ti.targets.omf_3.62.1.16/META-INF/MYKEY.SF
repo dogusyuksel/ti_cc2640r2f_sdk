@@ -1,0 +1,12 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: P61Qq1Y9EM8cL4PhjHH2KuIg6oz4K
+ K5NtDYApmOLF6I=
+SHA-256-Digest-Manifest: +fKZFj+HCp01iAAxInRxa9V0dj/wTp3jF2jNITmXftE=
+Created-By: 1.7.0_60 (Oracle Corporation)
+
+Name: ti/targets/omf/elf/java/package.jar
+SHA-256-Digest: LECO7NkjaO+7nmSOeS653rdIw/i+bhh3QXYOomunQB4=
+
+Name: ti/targets/omf/cof/java/package.jar
+SHA-256-Digest: qie6YFeCC94aOemsCECEDVxxiir2bauAxDYy4sCjQsE=
+

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="Read MMU page table information with Debug Server Scripting (DSS)."> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="Code Composer Studio">
+<meta name="product-link" content="https://www.ti.com/tool/CCSTUDIO">
+
+<!-- Change the title text for your page -->
+
+<title>MMU Page Table Visibility DSS API's</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+#Introduction
+The Debug Server Scripting (DSS) page table visibility API’s support debugging MMU page table configuration and set up. The API’s include support for both short format page table entries and new long format (LPAE ) entries.
+These API’s are available via [DSS](https://software-dl.ti.com/ccs/esd/documents/users_guide/sdto_dss_handbook.html) as part of the <tt>com.ti.debug.engine.scripting.PageTable</tt> class.
+
+<details> <summary>Note</summary>
+   There is a bug in CCS 5.4 and previous releases which will only reads the lower 32 bits of the TTBR registers. This will cause issues in scenarios where page tables are mapped to larger than 32 bit address space. To work around this please replace the following file at <tt><ccs root dir>/ccsv5/DebugServer/CacheInfo/include/TMS470R15XX_RegisterBase.xml</tt> with File:[Patch.zip](http://processors.wiki.ti.com/index.php/File:Patch.zip)
+</details>
+
+#Accessing the API’s via the Scripting Console in Code Composer Studio
+All of the page table visibility API’s are available as [Scripting Console](https://software-dl.ti.com/ccs/esd/documents/ccs_scripting_console.html) commands in CCS. All page table visibility related commands begin with the prefix **ptv**
+- To list all available commands type **ptv** and press the tab key
+![](./images/dss_page_table_visibility_dss_api_1.png)
+
+- To list the command documentation type **help &lt;command&gt;** and press enter
+![](./images/dss_page_table_visibility_dss_api_2.png)
+
+- To execute a command type **&lt;command&gt;** enter
+![](./images/dss_page_table_visibility_dss_api_3.png)
+
+
+#Reference
+### ptvSummary()
+> Get a summary of the mmu config and base table set up
+
+> @return summary 
+
+### ptvCurrentMode()
+> Get the current mode ( 32-bit, LPAE )
+
+> @return mode
+
+### ptvLookupAddress( address )
+> Lookup a physical address based on a virtual address.
+
+>Provides a trace of the entire page table walk and attributes associated with the mapping from different levels of the look up
+
+> @param address - virtual address to look up
+
+> @return the physical address associated with mapping and trace of the page table walk
+
+### ptvLookupPageTableEntries( TTBRNum, parentLevelIndices , beginIndex, endIndex )
+> Lists the entries in a page table within a given range.
+
+> @param	TTBRNum - Number of the TTBR register number which is this tables root. 
+
+> @param int [] parentLevelIndices - This is a list of indices described how to access the page table starting from the root page table.
+
+>                                   I.E : If you want to display entries from a L2 Page Table, you must provide the index into the L1
+                                         page table that is the parent of the L2 Page Table. 
+										 
+>@param    beginIndex - Index into the page table from where to start listing entries
+
+>@param    endIndex - Index into the page table where to stop listing entries	
+
+>@return 	The requested entries in a human readable form
+
+### ptvReverseLookup( physicalAddress )
+> Look up the first virtual address mapped to the physical address
+
+> @param physicalAddress - the physical address for which to look up the virtual address
+
+> @return The first virtaul address that is mapped to the provided address
+
+### ptvReverseLookupAll( physicalAddress )
+> Look up all the virtual addresses based mapped to the physical address
+
+> @param physicalAddress - physical address for which to look up the virtual address mappings
+
+> @return  All virtual address mapped to the given physical address
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

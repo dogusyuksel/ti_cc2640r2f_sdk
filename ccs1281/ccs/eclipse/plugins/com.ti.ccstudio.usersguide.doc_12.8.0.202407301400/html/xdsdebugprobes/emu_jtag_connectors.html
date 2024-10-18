@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="This document covers in detail several aspects to properly identify, specify and use these different standards."> 
+
+<!-- Change the title text for your page -->
+<title>JTAG Connectors and Pinout</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+# Introduction
+Texas Instruments supports a variety of JTAG connection methods to both its development kits and custom boards. This page covers in detail several aspects to properly identify, specify and use these different standards.  
+
+# References 
+
+* [XDS Target Connection Guide](emu_xds_target_connection_guide.html)
+* [Emulation and Trace Headers Technical Referece Manual](https://www.ti.com/lit/ug/spru655i/spru655i.pdf)
+* [JTAG Adapters](emu_jtag_adapters.html)
+* The document [Designing for JTAG Emulation Reference Guide](https://www.ti.com/lit/ug/spru641/spru641.pdf) describes the 14-pin JTAG connector and target board electrical requirements for XDS510 JTAG support (despite it's title it is not specific to the TMS320C6000 DSP). 
+* The [XDS560 Emulator Technical Reference](https://www.ti.com/lit/ug/spru589a/spru589a.pdf)
+* For Trace, you may also want to consider reading [Common Trace Transmission Problems and Solutions](https://www.ti.com/lit/an/spraak6/spraak6.pdf)
+* [Emulation Fundamentals for TI's DSP Solutions](https://www.ti.com/lit/an/spra439e/spra439e.pdf)
+
+# Pinout  
+
+* Part numbers for connectors and headers are at the bottom of the table and at section [Connector Information](#connector-information).
+* For the TI 60 pin connector and the MIPI 60 pin connector, please check the [Emulation and Trace Headers TRM](https://www.ti.com/lit/ug/spru655i/spru655i.pdf).
+* For MSP430 see [MSP430 JTAG](./files/JTAG_MSP430_legacy.pdf) for details.
+* For ARM connectors, see [Cortex debug connectors](https://documentation-service.arm.com/static/5fce6c49e167456a35b36af1)
+
+
+<font size="1">
+<table id="stl01">
+<tr>
+<th> <font color="#0000f0"><b>JTAG connector</b></font> </th>
+<th rowspan="2"> <font color="#0000f0"><b>TI 14-Pin</b></font><sup>1</sup> </th>
+<th rowspan="2"> <font color="#0000f0"><b>Compact TI 20-Pin (cTI)</b></font><sup>2</sup> </th>
+<th rowspan="2"> <font color="#0000f0"><b>ARM 20-Pin Cortex Debug + ETM</b></font><sup>3</sup> </th>
+<th rowspan="2"> <font color="#0000f0"><b>ARM 10-Pin</b></font><sup>3</sup> </th>
+<th rowspan="2"> <font color="#0000f0"><b>ARM 20-Pin</b></font><sup>1</sup> </th>
+<th rowspan="2"> <font color="#0000f0"><b>ARM 14-Pin</b></font><sup>1</sup> (OBSOLETE) </th>
+<th rowspan="2"> <font color="#0000f0"><b>TI 20-Pin</b></font><sup>1</sup> (OBSOLETE) </th>
+</tr>
+<tr>
+<th> <font color="#f00000"><b>Pin number</b></font> </th>
+</tr>
+<tr>
+<th> <font color="#f00000"><b>1</b></font> </th>
+<td> TMS </td>
+<td> SWDIO / TMS </td>
+<td> VTRef </td>
+<td> VTRef </td>
+<td> VTRef </td>
+<td> VTRef </td>
+<td> VTRef </td>
+<tr>
+<tr>
+<th> <font color="#f00000"><b>2</b></font> </th>
+<td> nTRST </td>
+<td> nTRST </td>
+<td> SWDIO / TMS </td>
+<td> SWDIO / TMS </td>
+<td> VSupply </td>
+<td> GND </td>
+<td> VSupply </td> 
+</tr>
+<tr>
+<th> <font color="#f00000"><b>3</b></font> </th>
+<td> TDI </td>
+<td> TDI </td>
+<td> GND </td>
+<td> GND </td>
+<td> nTRST </td>
+<td> nTRST </td>
+<td> nTRST </td>
+</tr>
+<tr>
+<th> <font color="#f00000"><b>4</b></font> </th>
+<td> TDIS </td>
+<td> TDIS </td>
+<td> SWDCLK / TCK </td>
+<td> SWDCLK / TCK </td>
+<td> GND </td>
+<td> GND </td>
+<td> TDIS </td>
+</tr>
+<tr>
+<th> <font color="#f00000"><b>5</b></font> </th>
+<td> VTRef </td>
+<td> VTRef </td>
+<td> GND </td>
+<td> GND </td>
+<td> TDI </td>
+<td> TDI </td>
+<td> TDI </td>
+</tr>
+<tr>
+<th> <font color="#f00000"><b>6</b></font> </th>
+<td> KEY </td>
+<td> KEY </td>
+<td> SWO / TDO / EXTa / TRACECTL </td>
+<td> SWO / TDO </td>
+<td> GND </td>
+<td> GND </td>
+<td> KEY </td>
+</tr>
+<tr>
+<th> <font color="#f00000"><b>7</b></font> </th>
+<td> TDO </td>
+<td> SWO / TDO </td>
+<td> KEY </td>
+<td> KEY </td>
+<td> SWDIO / TMS </td>
+<td> TMS </td>
+<td> TMS </td>
+</tr>
+<tr>
+<th> <font color="#f00000"><b>8</b></font> </th>
+<td> GND </td>
+<td> GND </td>
+<td> NC / EXTb / TDI </td>
+<td> NC / TDI </td>
+<td> GND </td>
+<td> GND </td>
+<td> GND </td>
+</tr>
+<tr>
+<th> <font color="#f00000"><b>9</b></font> </th>
+<td> RTCK </td>
+<td> RTCK </td>
+<td> GNDDetect </td>
+<td> GNDDetect </td>
+<td> SWDCLK / TCK </td>
+<td> TCK </td>
+<td> TCK </td>
+</tr>
+<tr>
+<th> <font color="#f00000"><b>10</b></font> </th>
+<td> GND </td>
+<td> GND </td>
+<td> nRESET </td>
+<td> nRESET </td>
+<td> GND </td>
+<td> GND </td>
+<td> GND </td>
+</tr>
+<tr>
+<th> <font color="#f00000"><b>11</b></font> </th>
+<td> TCK </td>
+<td> SWCLK / TCK </td>
+<td> GND / TgtPwr+Cap </td>
+<td> </td>
+<td> RTCK </td>
+<td> TDO </td>
+<td> RTCK </td>
+</tr>
+<tr>
+<th> <font color="#f00000"><b>12</b></font> </th>
+<td> GND </td>
+<td> GND </td>
+<td> TRACECLK </td>
+<td> </td>
+<td> GND </td>
+<td> SRST </td>
+<td> GND </td>
+</tr>
+<tr>
+<th> <font color="#f00000"><b>13</b></font> </th>
+<td> EMU0 </td>
+<td> EMU0 </td>
+<td> GND / TgtPwr+Cap </td>
+<td> </td>
+<td> SWO / TDO </td>
+<td> VTRef </td>
+<td> TDO </td>
+</tr>
+<tr>
+<th> <font color="#f00000"><b>14</b></font> </th>
+<td> EMU1 </td>
+<td> EMU1 </td>
+<td> TRACEDATA[0] </td>
+<td> </td>
+<td> GND </td>
+<td> GND </td>
+<td> GND </td>
+</tr>
+<tr>
+<th> <font color="#f00000"><b>15</b></font> </th>
+<td> </td>
+<td> nRESET </td>
+<td> GND </td>
+<td> </td>
+<td> nRESET </td>
+<td> </td>
+<td> nRESET </td>
+</tr>
+<tr>
+<th> <font color="#f00000"><b>16</b></font> </th>
+<td> </td>
+<td> GND </td>
+<td> TRACEDATA[1] </td>
+<td> </td>
+<td> GND </td>
+<td> </td>
+<td> GND </td>
+</tr>
+<tr>
+<th> <font color="#f00000"><b>17</b></font> </th>
+<td> </td>
+<td> EMU2 </td>
+<td> GND </td>
+<td> </td>
+<td> NC / DBGRQ </td>
+<td> </td>
+<td> NC </td>
+</tr>
+<tr>
+<th> <font color="#f00000"><b>18</b></font> </th>
+<td> </td>
+<td> EMU3 </td>
+<td> TRACEDATA[2] </td>
+<td> </td>
+<td> GND </td>
+<td> </td>
+<td> GND </td>
+</tr>
+<tr>
+<th> <font color="#f00000"><b>19</b></font> </th>
+<td> </td>
+<td> EMU4 </td>
+<td> GND </td>
+<td> </td>
+<td> NC / DBGACK </td>
+<td> </td>
+<td> NC </td>
+</tr>
+<tr>
+<th> <font color="#f00000"><b>20</b></font> </th>
+<td> </td>
+<td> GND </td>
+<td> TRACEDATA[3] </td>
+<td> </td>
+<td> GND </td>
+<td> </td>
+<td> GND </td>
+</tr>
+</table>
+</font>
+ 
+	<sup>1</sup>0.10" (2.54mm) pin and row pitch. For part numbers, check the next section.
+	
+	<sup>2</sup>0.05" (1.27mm) pin pitch, 0.10" (2.54mm) row pitch. For part numbers, check the next section.  
+	
+	<sup>3</sup>0.05" (1.27mm) pin and row pitch. For part numbers, check the next section.
+
+# Connector Information
+Target cable design and connectors vary between XDS manufacturers. For target mechanical requirements that could impact device heights in proximity to the emulation header on your board and possible keep-out areas required for good connection and room to disconnect the cable connector, see your XDS manufacturer's documentation.
+
+## Types of JTAG headers per device family
+<font size="1">
+<table id="stl01">
+<tr>
+<th> <font color="#0000f0"> Processor Family </font> </th>
+<th> <font color="#0000f0"> Recommended Header </font> </th>
+<th> <font color="#0000f0"> Alternate Header </font> </th>
+<th> <font color="#0000f0"> Notes </font> </th>
+</tr>
+<tr>
+<td> MSP430 </td>
+<td> [MSP430 JTAG](./files/JTAG_MSP430_legacy.pdf) </td>
+<td> </td>
+<td> Incompatible with XDS JTAG headers</td>
+</tr>
+<tr>
+<td> Simplelink MCU (MSP432, CC13x, CC264x, CC265x, CC32x) </td>
+<td> 10 pin ARM </td>
+<td> 20 pin TI </td>
+<td> Use the ARM Header if compatibility with ARM tools is desired. </td>
+</tr>
+<tr>
+<td> Sitara (AM4x, AM5x) / Keystone I (C66x) / Keystone II (66AK2)<sup>1</sup> </td>
+<td> 60 pin MIPI connector </td>
+<td> ARM 34 pin Mictor </td>
+<td> 60 pin MIPI connector recommended to support both MIPI STM and core tracing. ARM 34 pin Mictor only recommended when XDS support is not needed and compatiblity with ARM tools is required. </td>
+</tr>
+<tr>
+<td> Sitara (AM335x) / OMAPL / OMAP / <sup>2</sup> </td>
+<td> 20 pin TI </td>
+<td> 60 pin MIPI connector </td>
+<td> Use the 20 pin TI header for maximum MIPI STM trace performance. Use the 60 pin MIPI connector if it is desired to keep compatiblity with devices which support Core tracing/ETM+TPIU </td>
+</tr>
+<tr>
+<td> Sitara (AM170x, AM180x, AM35x, AM37x) / OMAPL / OMAP / Davinci<sup>3</sup> </td>
+<td> 20 pin TI </td>
+<td> 20 pin ARM </td>
+<td> Use a 20 pin ARM header if compatibility with ARM tools is desired </td>
+</tr>
+<tr>
+<td> C2000 / C5000 / C6000 DSPs </td>
+<td> 20 pin TI </td>
+<td> 14 pin TI </td>
+<td> The use of ARM headers causes loss of features as no EMU0/1 pins are present </td>
+</tr>
+</table>
+</font>
+
+Notes:
+
+	<sup>1</sup> These devices support CTools MIPI System Trace (STM) and core tracing or ARM ETM/TPIU core tracing to the pins
+
+	<sup>2</sup> These devices support CTools MIPI System Trace (STM) but NOT core tracing or ARM ETM/TPIU core tracing to the external pins
+
+	<sup>3</sup> These devices have one or multiple ARM CPUs, but do not support MIPI System Trace (STM), core tracing, or ARM ETM/TPIU core tracing to the external pins
+	
+	
+
+## TI 14-pin Header Information
+<b><font color="#0000C0">Features 2 rows of 7 pins each, 0.10" (2.54mm) pin and row pitch. Pin 6 is keyed.</font></b>
+
+<font color="#ff0000"><b>IMPORTANT!</b></font> The part numbers below are based on the manufacturers' specifications, which can change without prior notice.
+
+Manufacturer: [Samtec](https://www.samtec.com/products)
+* Board header: [TSW-107-01-L-D-006](https://www.samtec.com/products/tsw) (unshrouded, through hole), [TSM-107-01-L-DV-006](https://www.samtec.com/products/tsm) (unshrouded, surface mount), [TST-107-01-G-D-06](https://www.samtec.com/products/tst) (shrouded, through hole)
+* Debug probe connector: Samtec only has cable assemblies. [IDSD-07-S-04.00-P06](https://www.samtec.com/products/idsd) (without strain relief)
+
+Manufacturer: [Don Connex](http://www.donnex.com.tw/EN/index/)
+* Board header: [C03-14-A-G-1-G](http://www.donnex.com.tw/upload/20150430160222xa5xXYP.pdf)
+* Debug probe connector: [A01-14-B-G-A-1-G](http://www.donnex.com.tw/upload/20150429085157tHYsrZE.pdf) (with strain relief) and [A01c-14-B-G-B-1-G](http://www.donnex.com.tw/upload/20150429085157tHYsrZE.pdf) (without strain relief)
+
+Manufacturer: [Amphenol/FCI](https://www.amphenol-icc.com)
+* Board header: [98401-101-14LF](https://www.amphenol-icc.com/bergstik-9840110114lf.html) (SMT - surface mount) and [77313-101-14LF](https://www.amphenol-icc.com/bergstik-7731310114lf.html) (TH - through hole) - both models have no guide pins
+* Debug probe connector: [66900-214](https://www.amphenol-icc.com/quickie-66900214.html) (with strain relief) and [66900-314](https://www.amphenol-icc.com/quickie-66900314.html) (without strain relief)
+
+## cTI 20-pin Header Information 
+<b><font color="#0000C0">Features 2 rows of 10 pins each, 0.05" (1.27mm) pin pitch, 0.10" (2.54mm) row pitch. Pin 6 is keyed.</font></b>
+
+<font color="#ff0000"><b>IMPORTANT!</b></font> The part numbers below are based on the manufacturers' specifications, which can change without prior notice.
+
+Manufacturer: [Samtec](https://www.samtec.com/products)
+* Board header: [FTR-110-51-L-D-06](https://www.samtec.com/products/ftr)
+* Debug probe connector: [RSM-110-02-S-D](https://www.samtec.com/products/rsm)
+
+Manufacturer: [OUPIIN](http://www.oupiin.com/)
+* Board header: [2212-2X10G00D-2.8](http://www.oupiin.com/technology_ii.html?tit=2212-2&gID=73)
+* Debug probe connector: [2245-2X10G00DNU](http://www.oupiin.com/technology_ii.html?tit=2245-2&gID=84)
+
+Manufacturer: [Don Connex](http://www.donnex.com.tw/EN/index/)
+* Board header: [C07-20-B-G-1-G](http://www.donnex.com.tw/upload/20150429160912BtYRCMq.pdf)
+* Debug probe connector: [A07a-20-B-G-A-1-G](http://www.donnex.com.tw/upload/20150428155842R7gT79D.pdf)
+
+<!-- Removed 3M. Website is very difficult to navigate and has incomplete or incorrect information. 
+Manufacturer: [3M](https://www.3m.com)
+* Board header: [45220-600230](https://www.3m.com/3M/en_US/company-us/all-3m-products/~/3M-Shrouded-Boardmount-Header-1-27mm-0-050-Pitch-Latch-and-Eject-452-Series/?N=5002385+3293441208&rt=rud) (through hole, shrouded) and [45220-200230](https://www.3m.com/3M/en_US/company-us/all-3m-products/~/3M-Shrouded-Boardmount-Header-1-27mm-0-050-Pitch-Latch-and-Eject-452-Series/?N=5002385+3293441208&rt=rud)
+* Debug Probe connector: [82020-6006RB](https://www.3m.com/3M/en_US/company-us/all-3m-products/~/3M-Tripolarized-Wiremount-Socket-820-Series/?N=5002385+3293482244&rt=rud)
+-->
+
+## ARM Cortex 20-pin Header information 
+<b><font color="#0000C0">Features 2 rows of 10 pins each, 0.05" (1.27mm) pin and row pitch.</font></b>
+
+<font color="#ff0000"><b>IMPORTANT!</b></font> The part numbers below are based on the manufacturers' specifications, which can change without prior notice.
+
+Manufacturer: [Samtec](https://www.samtec.com/products)
+* Board header: [FTSH-110-01-L-DV-K](https://www.samtec.com/products/ftsh)
+* Debug probe connector: Samtec only has cable assemblies. [FFSD-10-S-04.00-01-N](https://www.samtec.com/products/ffsd)
+
+Manufacturer: [OUPIIN](http://www.oupiin.com/)
+* Board header: [2215-2X10G00DP-3.1B-H2.5](http://www.oupiin.com/technology_ii.html?tit=2215-2&gID=76)
+* Debug probe connector: [2242-2X10C00DT-A001](http://www.oupiin.com/technology_ii.html?tit=2242-2&gID=79)
+
+Manufacturer: [Don Connex](http://www.donnex.com.tw/EN/index/)
+* Board header: [C42-10-B-G-1-G](http://www.donnex.com.tw/upload/20150429134951IqS-yTB.pdf) (straight angle) or [C43-10-B-G-1-G](http://www.donnex.com.tw/upload/20150429135216P9TbvDU.pdf) (right angle)
+* Debug probe connector: [A32c-10-B-G-B-1-G](http://www.donnex.com.tw/upload/20150428154728sNWPEWq.pdf)
+
+Manufacturer: [Amphenol/FCI](https://www.amphenol-icc.com)
+* Board header: [20021121-00020C4LF](https://www.amphenol-icc.com/minitek127-2002112100020c4lf.html) (unshrouded) and [20021221-00020C4LF](https://www.amphenol-icc.com/minitek127-2002122100020c4lf.html) (shrouded, but no guide pin)
+* Debug probe connector: [20021321-00020C4LF](https://www.amphenol-icc.com/minitek127-2002132100020c4lf.html)
+
+## ARM Cortex 10-pin Header information 
+<b><font color="#0000C0">Features 2 rows of 5 pins each, 0.05" (1.27mm) pin and row pitch.</font></b>
+
+<font color="#ff0000"><b>IMPORTANT!</b></font> The part numbers below are based on the manufacturers' specifications, which can change without prior notice.
+
+Manufacturer: [Samtec](https://www.samtec.com/products)
+* Board header: [FTSH-105-01-L-DV-K](https://www.samtec.com/products/ftsh)
+* Debug probe connector: Samtec only has cable assemblies. [FFSD-05-S-04.00-01-N](https://www.samtec.com/products/ffsd)
+
+Manufacturer: [OUPIIN](http://www.oupiin.com/)
+* Board header: [2215-2X05G00DP-3.1B-H2.5](http://www.oupiin.com/technology_ii.html?tit=2215-2&gID=76)
+* Debug probe connector: [2242-2X05C00DT-A001](http://www.oupiin.com/technology_ii.html?tit=2242-2&gID=79)
+
+Manufacturer: [Don Connex](http://www.donnex.com.tw/EN/index/)
+* Board header: [C42-10-B-G-1-G](http://www.donnex.com.tw/upload/20150429134951IqS-yTB.pdf) (straight angle) or [C43-10-B-G-1-G](http://www.donnex.com.tw/upload/20150429135216P9TbvDU.pdf) (right angle)
+* Debug probe connector: [A32c-10-B-G-B-1-G](http://www.donnex.com.tw/upload/20150428154728sNWPEWq.pdf)
+
+Manufacturer: [Amphenol/FCI](https://www.amphenol-icc.com)
+* Board header: [20021121-00010C4LF](https://www.amphenol-icc.com/minitek127-2002112100010c4lf.html) (unshrouded) and [20021221-00010C4LF](https://www.amphenol-icc.com/minitek127-2002122100010c4lf.html) (shrouded, but no guide pin)
+* Debug probe connector: [2002132100010C4LF](https://www.amphenol-icc.com/minitek127-2002132100010c4lf.html) (SMT - surface mount)
+
+## ARM 20-pin Header Information 
+<b><font color="#0000C0">Features 2 rows of 10 pins each, 0.10" (2.54mm) pin and row pitch.</font></b>
+
+<font color="#ff0000"><b>IMPORTANT!</b></font> The part numbers below are based on the manufacturers' specifications, which can change without prior notice.
+
+Manufacturer: [Samtec](https://www.samtec.com/products)
+* Board header: [TSM-110-01-L-DV-006](https://www.samtec.com/products/tsm)
+* Debug probe connector: Samtec only has cable assemblies. [HCSD-10-S-04.00-01-S-G](https://www.samtec.com/products/hcsd)
+
+Manufacturer: [Don Connex](http://www.donnex.com.tw/EN/index/)
+* Board header: [C03-20-A-G-1-G](http://www.donnex.com.tw/upload/20150430160222xa5xXYP.pdf)
+* Debug probe connector: [A01-20-B-G-A-1-G](http://www.donnex.com.tw/upload/20150429085157tHYsrZE.pdf) (with strain relief) [A01c-20-B-G-B-1-G](http://www.donnex.com.tw/upload/20150429085218hIG3PKs.pdf) (without strain relief)
+
+Manufacturer: [Amphenol/FCI](https://www.amphenol-icc.com)
+* Board header: [98401-101-20LF](https://www.amphenol-icc.com/bergstik-9840110120lf.html) (SMT - surface mount) and [77313-101-20LF](https://www.amphenol-icc.com/bergstik-7731310120lf.html) (TH - through hole)
+* Debug probe connector: [66900-214](https://www.amphenol-icc.com/quickie-66900214.html) (with strain relief) and [66900-314](https://www.amphenol-icc.com/quickie-66900314.html) (without strain relief)
+
+## XDS110 information
+<b>XDS110 is the first Debug Probe that features two ports and the cables can be completely detached.</b>
+
+### Aux port:
+<b><font color="#0000C0">Features 2 rows of 7 pins each, 0.05" (1.27mm) pin and row pitch.</font></b>
+
+<font color="#ff0000"><b>IMPORTANT!</b></font> The part numbers below are based on the manufacturers' specifications, which can change without prior notice.
+
+Manufacturer: [Samtec](https://www.samtec.com/products)
+* Board header: [SHF-107-01-L-D-SM](https://www.samtec.com/products/shf) (surface mount) or [SHF-107-01-L-D-RA](https://www.samtec.com/products/shf) (right angle)
+* Debug probe connector. Samtec has a complete cable assembly. [FFSD-07-D-04.00-01-N](https://www.samtec.com/products/ffsd)
+
+Manufacturer: [Don Connex](http://www.donnex.com.tw/EN/index/)
+* Board header: [C42-14-B-G-1-G](http://www.donnex.com.tw/upload/20150429134951IqS-yTB.pdf) (straight angle) or [C43-14-B-G-1-G](http://www.donnex.com.tw/upload/20150429135216P9TbvDU.pdf) (right angle)
+* Debug probe connector: [A32c-14-B-G-B-1-G](http://www.donnex.com.tw/upload/20150428154728sNWPEWq.pdf)
+
+### Debug port:
+<b><font color="#0000C0">On the pod it features 2 rows of 10 pins each, 0.05" (1.27mm) pin and row pitch.</font></b>
+* Specifications are the same for [ARM Cortex 20-pin Header information above](#arm-cortex-20-pin-header-information)
+
+<b><font color="#0000C0">On the target end it features 2 rows of 10 pins each, 0.05" (1.27mm) pin and 0.10" (2.54mm) row pitch.</font></b>
+* Specifications are the same for [cTI 20-pin Header Information above](#cti-20-pin-header-information)
+
+<b><font color="#0000C0">Part numbers for assembly:</font></b>
+
+The Debug Port cable is custom and does not have a direct part number for ordering, thus it requires to be assembled. 
+   
+Cable Assemblies with Debug Port connector + cable:
+
+* Samtec: [FFSD-05-S-04.00-01-N](https://www.samtec.com/products/ffsd)
+
+<!-- Removed 3M. The cable is mechanically bad and their website is very scant of information
+* 3M (Digikey P/N): [45120-010030-3749/20-S-6](https://www.digikey.com/product-detail/en/3m/45120-010030-3749-20-S-6/3M15517-3M155953-X-6-ND/5964958)
+
+   <b>Note:</b> the assemblies have bare wires on the other side, thus requiring a [cTI 20-pin debug probe connector](#cti-20-pin-header-information) to complete the cable. 
+-->
+
+Separate parts to build the cable: 
+
+* Target side cable receptacle cTI 20-pin: Don Connex [A07a-20-B-G-A-1-G](http://www.donnex.com.tw/upload/20150428155842R7gT79D.pdf) or Adam Tech [HFCS-20-SG](http://adam-tech.com/downloader.php?p=HFCS-XX-SG.pdf)
+* Debug Probe cable receptacle: Don Connex [A32c-10-B-G-B-1-G](http://www.donnex.com.tw/upload/20150428154728sNWPEWq.pdf) or Adam Tech [HFCS-A-20-SG](http://adam-tech.com/downloader.php?p=HFCS-A-XX-SG.pdf)
+* Cable: 3M [3749 series](https://www.3m.com/3M/en_US/company-us/all-3m-products/~/3M-Round-Conductor-Flat-Cable-3749-Series/?N=5002385+3290317246&rt=rud)
+
+<!--
+Removed the 3M receptacle suggestions above
+3M [82020-6006RB](https://www.3m.com/3M/en_US/company-us/all-3m-products/~/3M-Tripolarized-Wiremount-Socket-820-Series/?N=5002385+3293482244&rt=rud)
+3M [45120-010030](https://www.3m.com/3M/en_US/company-us/all-3m-products/~/3M-Ribbon-Cable-Wiremount-Socket-Assembly-1-27-mm-0-050-Pitch-451-Series/?N=5002385+3293441536&rt=rud)
+-->
+
+## Additional high density connectors 
+
+* Various standards organizations have tried to standardize on connectors. TI has several standards already in use. One particular area where significant work has been done is the high speed tracing connectors. This is being driven by technology changes and the changing needs for debug.
+* MIPI has a recommendation for a high speed 60 pin trace connector which can provide the flexibility needed for future tracing needs. The recommended connector is the Samtec [QSH-030-01](https://www.samtec.com/technical_specifications/overview.aspx?series=QSH) (PCB/Target) and [QTH-030-01](https://www.samtec.com/technical_specifications/overview.aspx?series=QTH)  (Cable/Emulator).
+* Pin mapping for the 60 pin MIPI connector is in the [MIPI Connector recommendation](https://mipi.org/docs/MIPI_TD_connectors_recommendation_v01-00-00.pdf) document. 
+* The IEEE1149.7 does not require a specific connector. Instead, it will simply have the TMS pin become TMSC. When it becomes TMSC, the pin will be bi-directional instead of uni-directional.
+
+# Adapters  
+
+Please check the [JTAG Adapters](emu_jtag_adapters.html) page for details and models available
+
+# FAQ  
+
+### Q: What are the EMU0/1 pins used for? 
+
+* A: The EMU0/1 pins can be used for cross-core triggering (ex: one device halts and signals the others to halt, see [Advanced Event Triggering](./files/Advanced_Event_Triggering_legacy.pdf) or, in some selected devices, these pins are used for [Wait in Reset](emu_wait_in_reset.html) and transfer instrumentation and trace information. Please see the device datasheet/TRM for details.
+
+### Q: What are the EMU2-x pins used for?  
+
+* A: These are reserved for high speed instrumentation information and trace information.
+
+### Q: What is the difference between the TI 20 pin connector and the ARM 20 pin connector?  
+
+* A: The TI 20 pin connector is physically smaller than the ARM 20 pin connector. Becuase it uses a simple "stake" connector, it should also be inexpensive. The TI 20 pin connector has additional EMU2, EMU3, and EMU4 pins, which allow it to carry instrumentation data that are available on selected devices. The TI 20 pin connector also features a [System Reset (Emulation)](emu_resets.html) pin.
+
+### Q: Do I have to use the ARM 20 pin connector to be able to use Adaptive Clocking? 
+
+* A: No. Adaptive clocking has to do with the generation of of the clock signal based on the return clock. Your debug probe needs to support this feature, or an adapter is needed. See the section solutions of the [Adaptive Clocking](emu_adaptive_clocking.html) page. The header just needs to have a RTCK and TCK signal.
+
+### Q: Which connector should I use?  
+
+* A: Check the section on types of JTAG headers per device family on the [XDS Target Connection Guide](emu_xds_target_connection_guide.html#types-of-jtag-headers-per-device-family).
+
+### Q: What do I need to do if I have a device with an ARM 9 or ARM 11?  
+
+* A: These ARM devices require adaptive clocking. Please check the Adaptive Clocking section on the [XDS Target Connection Guide](emu_xds_target_connection_guide.html#adaptive-clocking)
+
+### Q: What is a Scan Path Linker?  
+
+* A: The Scan Path Linker (SPL) is a TI device that is used to configure JTAG scan paths, most often those that connect a motherboard to multiple daughter cards. (This is not the same as the ACT8990 Test-Bus Controller (TBC) device). The scan path linker is used to handle plug-in cards dynamically without breaking the scan path, by reconfiguring the scan path as needed. In general, it is useful whenever your board is in a situation where the scan path can be dynamic, such as during development, when, perhaps not all of the devices on the scan path are populated yet.
+
+The Scan Path Linkers <b>ACT8997</b>, are members of the Texas Instruments SCOPE<sup>TM</sup> testability integrated-circuit family. This family of components facilitates testing of complex circuit-board assemblies. These devices also provide buffering of test signals to reduce the need for external logic. For additional information on these SPL devices, please refer to their product pages: [SN74ACT8997](https://www.ti.com/product/sn74act8997) and [SN54ACT8997]([https://www.ti.com/product/sn54act8997).
+
+### Q: Does the TMDSADPEMU-20T map the reset line from the ARM connector to the compact 20 pin TI target connector? Also, what pins are buffered?
+
+* A: This adapter translates from ARM 20 pin and TI 14 pin debug probes to compact 20 pin TI target cards. (nRESET) Pin 15 on the compact 20 pin TI target connector is connected to pin 15 of the 20 pin ARM target connector. TCK and TCKRET are buffered. 
+
+### Q: Where can I learn about termination and buffering? 
+
+* A: Please check chapter 11 and appendix B of [Emulation and Trace Headers TRM](https://www.ti.com/lit/ug/spru655i/spru655i.pdf)
+
+### Q: I am using MSP430, where do I look? 
+
+* A: Please check: [MSP430 JTAG](./files/JTAG_MSP430_legacy.pdf)
+
+# Troubleshooting  
+
+See the information on troubleshooting JTAG Connectivity Problems at: [Debugging JTAG Connectivity Problems](../ccsv7_debugging_jtag_connectivity_issues.html).
+
+<hr> 
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

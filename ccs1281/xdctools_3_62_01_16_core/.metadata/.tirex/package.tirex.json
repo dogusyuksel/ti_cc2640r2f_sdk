@@ -1,0 +1,14 @@
+[
+    {
+        "metadataVersion": "3.0.0",
+
+        "id"      : "xdctools",
+        "name"    : "XDCTools",
+        "version" : "3.62.01.16",
+        "image"   : "./logo.png",
+        "type"    : "software",
+        "description": "Tools for developing and using embedded target content that extends or depends on <a href:\"http:\/\/www.eclipse.org\/rtsc\">RTSC</a> components",
+        "allowPartialDownload": "false",
+        "tags": ["ROV", "RTA", "XDCtools", "XDC", "RTSC", "SYS/BIOS", "TI-RTOS"]
+    }
+]

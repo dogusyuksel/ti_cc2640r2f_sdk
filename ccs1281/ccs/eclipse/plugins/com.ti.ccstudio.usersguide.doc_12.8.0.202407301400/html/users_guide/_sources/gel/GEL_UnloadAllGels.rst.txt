@@ -1,0 +1,26 @@
+GEL_UnloadAllGELs()
+-------------------
+
+Unloads all GEL files.
+
+**Syntax**
+
+**GEL_UnloadAllGels();**
+
+**Parameters**
+
+**Description**
+
+This function unloads the functions defined in all the loaded GEL files.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: Yes
+
+**Related Topics**
+
+`GEL_LoadGel <GEL_LoadGel.html>`__
+
+`GEL_UnloadGel <GEL_UnloadGel.html>`__

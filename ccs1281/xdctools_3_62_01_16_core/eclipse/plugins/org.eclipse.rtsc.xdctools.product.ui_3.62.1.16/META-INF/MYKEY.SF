@@ -1,0 +1,18 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: BBhUztHyuB9yp9ZIhXLt4fKuw4pXP
+ SZL/UlpXDWiN08=
+SHA-256-Digest-Manifest: 62/jHffQ0pCMkO0Op1qjOm+aBjLXZaZBXeqU5EwGEnw=
+Created-By: 1.7.0_60 (Oracle Corporation)
+
+Name: plugin.xml
+SHA-256-Digest: GYwB4VgQ+x6POva41+cXGwXPOBaGDXb2Q4LN+dtq4mU=
+
+Name: templates/filetemplates.xml
+SHA-256-Digest: fG9sNUhVJdyPfIbW5R3rXytM1v7rTnkyZwBRlFfBjcA=
+
+Name: rtsc.png
+SHA-256-Digest: RID/OaJ8BD0A9ujINLCaDTMmameT50qvO3D+3/SgzmU=
+
+Name: about.ini
+SHA-256-Digest: vFXpmgwk0+oC0miW3Upza0VIdkYLzkEkgmPrb3vqqeE=
+

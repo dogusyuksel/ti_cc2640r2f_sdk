@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset="utf-8" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>11 Object File Utilities</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../Resources/Stylesheets/headerfooter.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="content">
+            <div id="contentBody">
+                <div class="row collapse">
+                    <div class="sideContent">
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                    <div id="loadContentArea">
+                        <div class="c12 docHeader">
+                            <div class="c4 docTitle">
+                                <p>
+                                    <strong>ARM Assembly
+							Language Tools
+			v18.1.0.LTS User's Guide</strong>
+                                    <br />
+                                    <span id="litnumber">SPNU118U</span> - REVISED JANUARY 2018</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="odsHeader">
+                        <p class="pdf">
+                            <a class="downloadPDF" href="http://www.ti.com/litv/SPNU118U" target="_new">Download PDF</a>
+                        </p>
+                    </div>
+                    <div id="loadContentArea1">
+                        <div class="subsection">
+                            <h2 id="STDZ0780726">
+                                <a MadCap:generatedBookmark="TOC" name="11_Object_File_Utilities">
+                                </a>
+                                <span class="section-label">11 </span>Object File Utilities</h2>
+                            <div class="subsection">
+                                <p>This chapter describes how to invoke the following utilities: </p>
+                                <ul>
+                                    <li value="1">The <b>object file display utility</b> prints the contents of object files, executable files, and/or archive libraries in both text and XML formats.</li>
+                                    <li value="2"> The <b>disassembler</b> accepts object files and executable files as input and produces an assembly listing as output. This listing shows assembly instructions, their opcodes, and the section program counter values.</li>
+                                    <li value="3">The <b>name utility</b> prints a list of names defined and referenced in an object file, executable files, and/or archive libraries.</li>
+                                    <li value="4">The <b>strip utility</b> removes symbol table and debugging information from object and executable files.</li>
+                                </ul>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0788060">
+                                    <a MadCap:generatedBookmark="TOC" name="11.1_Invoking_the_Object_File_Display_Utility">
+                                    </a>
+                                    <span class="section-label">11.1 </span>Invoking the Object File Display Utility</h3>
+                                <p>The object file display utility, <i><span>armofd</span></i>, prints the contents of object files (.obj), executable files (.out), and/or archive libraries (.lib) in both text and XML formats. Hidden symbols are listed as <i>no name</i>, while localized symbols are listed like any other local symbol.</p>
+                                <p> To invoke the object file display utility, enter the following:</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td> <b> <span>armofd</span></b> [<i>options</i>] <i>input filename</i> [<i>input filename</i>]</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col align="left" />
+                                            <col align="left" />
+                                            <col align="left" />
+                                            <col />
+                                        </colgroup>
+                                        <tbody align="left">
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b> <span>armofd</span></b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="3" valign="top">is the command that invokes the object file display utility.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>input filename</i></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="3" valign="top">names the object file (.obj), executable file (.out), or archive library (.lib) source file. The filename must contain an extension.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>options</i></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="3" valign="top">identify the object file display utility options that you want to use. Options are not case sensitive and can appear anywhere on the command line following the command. Precede each option with a hyphen.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-cg</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">Prints function stack usage and callee information in XML format. While the XML output may be accessed by a developer, this option was primarily designed to be used by tools such as Code Composer Studio to display an application’s worst case stack usage.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" rowspan="3" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" rowspan="3" valign="top"> <b>--dwarf_display</b>=<i>attributes</i></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">Controls the DWARF display filter settings by specifying a comma-delimited list of <i>attributes</i>. When prefixed with no, an attribute is disabled instead of enabled. </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Examples:</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">--dwarf_display=nodabbrev,nodline<br /> --dwarf_display=all,nodabbrev<br /> --dwarf_display=none,dinfo,types</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">The ordering of attributes is important (see --obj_display). The list of available display attributes can be obtained by invoking <span>armofd</span> --dwarf_display=help. </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>--dynamic_info</b></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">Outputs dynamic linking information.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>-g</b></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">Appends DWARF debug information to program output.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>-h</b></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">Displays help</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>-o</b>=<i>filename</i></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">Sends program output to <i>filename</i> rather than to the screen.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" rowspan="3" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" rowspan="3" valign="top"> <b>--obj_display</b><i>attributes</i></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">Controls the object file display filter settings by specifying a comma-delimited list of <i>attributes</i>. When prefixed with no, an attribute is disabled instead of enabled.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">Examples:</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">--obj_display=rawdata,nostrings<br /> --obj_display=all,norawdata<br /> --obj_display=none,header</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">The ordering of attributes is important. For instance, in "--obj_display=none,header", <span>armofd</span> disables all output, then re-enables file header information. If the attributes are specified in the reverse order, (header,none), the file header is enabled, the all output is disabled, including the file header. Thus, nothing is printed to the screen for the given files. The list of available display attributes can be obtained by invoking <span>armofd</span> --obj_display=help.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>-v</b></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">Prints verbose text output.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>-x</b></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">Displays output in XML format.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>--xml_indent</b>=<i>num</i></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">Sets the number of spaces to indent nested XML tags.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>If an archive file is given as input to the object file display utility, each object file member of the archive is processed as if it was passed on the command line. The object file members are processed in the order in which they appear in the archive file.</p>
+                                <p>If the object file display utility is invoked without any options, it displays information about the contents of the input files on the console screen.</p>
+                                <span class="note">
+                                    <p class="note_title">NOTE</p>
+                                    <b>Object File Display Format</b>
+                                    <p>The object file display utility produces data in a text format by default. This data is not intended to be used as input to programs for further processing of the information. XML format should be used for mechanical processing.</p>
+                                </span>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0783966">
+                                    <a MadCap:generatedBookmark="TOC" name="11.2_Invoking_the_Disassembler">
+                                    </a>
+                                    <span class="section-label">11.2 </span>Invoking the Disassembler</h3>
+                                <p>The disassembler, <i><span>armdis</span></i>, examines the output of the assembler or linker. This utility accepts an object file or executable file as input and writes the disassembled object code to standard output or a specified file.</p>
+                                <p>To invoke the disassembler, enter the following:</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td> <b> <span>armdis</span></b><span>[<i>options</i>] </span><i>input filename</i>[.] [<i>output filename</i>]</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col align="left" />
+                                            <col align="left" />
+                                            <col align="left" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b> armdis</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">is the command that invokes the disassembler.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>options</i></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">identifies the name utility options you want to use. Options are not case sensitive and can appear anywhere on the command line following the invocation. Precede each option with a hyphen (-). The name utility options are as follows:</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-a</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">disables printing of address along with label names within instructions.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-b</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">displays data as bytes instead of words.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-be8</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">disassembles in BE-8 mode.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-c</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">dumps the object file information.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>--copy_tables</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">(aliased as -y, or -Y) displays copy tables and the sections copied. The table information is dumped first, then each record followed by its load and run data. See <span class="crossreference"><a href="#SPNU1186094">Example 11-3</a></span>.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-d</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">disables display of data sections.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-e</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">displays integer values in hexadecimal.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-h</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">shows the current help screen.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-i</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">disassembles data sections as text.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <code><b>-I</b></code> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">disassembles text as data.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-n</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">dumps the symbol table.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-q</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">(quiet mode) suppresses the banner and all progress information.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-qq</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">(super quiet mode) suppresses all headers.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-r</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">uses raw register IDs (R0, R1, etc.).</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-R</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">shows run-time address if different from load-time address.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-s</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">suppresses printing of address and data words.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>input filename</i>[.<i>ext</i>]</td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top"> is the name of the input file. If the optional extension is not specified, the file is searched for in this order: <p /><ol><li value="1"><i>infile</i></li><li value="2"><i>infile</i>.out, an executable file</li><li value="3"><i>infile</i>.obj, an object file</li></ol></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>output filename</i> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">is the name of the optional output file to which the disassembly will be written. If an output filename is not specified, the disassembly is written to standard output.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>When the example file in <span class="crossreference"><a href="#SPNU1187476">Example 11-1</a></span> is compiled, the assembler produces an object file, memcpy32.obj.</p>
+                                <div class="example">
+                                    <h4 id="SPNU1187476">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_11-1_Object_File_memcpy32.asm">
+                                        </a>
+                                        <span class="example-label">Example 11-1 </span>Object File memcpy32.asm</h4>
+                                    <code>            .global C_MEMCPY 
+C_MEMCPY: .asmfunc stack_usage(12)
+
+ CMP r2, #0 ; CHECK FOR n == 0
+ BXEQ lr ;
+ STMFD sp!, {r0, lr} ; SAVE RETURN VALUE AND ADDRESS
+ TST r1, #0x3 ; CHECK ADDRESS ALIGNMENT
+ BNE _unaln ; IF NOT WORD ALIGNED, HANDLE SPECIALLY
+ TST r0, #0x3 ;
+ BNE _saln ;
+
+_aln: CMP r2, #16 ; CHECK FOR n &gt;= 16
+ BCC _l16 ;
+ STMFD sp!, {r4} ;
+ SUB r2, r2, #16 ;</code>
+                                </div>
+                                <p>As shown in <span class="crossreference"><a href="#SPNU1188916">Example 11-2</a></span>, the disassembler can produce disassembly from the object file, memcpy32.obj. The first two lines are entered on the command line.</p>
+                                <div class="example">
+                                    <h4 id="SPNU1188916">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_11-2_Disassembly_From_memcpy32.asm">
+                                        </a>
+                                        <span class="example-label">Example 11-2 </span>Disassembly From memcpy32.asm</h4>
+                                    <code>TEXT Section .text, 0x180 bytes at 0x0
+
+000000: C_MEMCPY:
+
+000000: .state32
+
+000000: E3520000 CMP R2, #0
+
+000004: 012FFF1E BXEQ R14
+
+000008: E92D4001 STMFD R13!, {R0, R14}
+
+00000c: E3110003 TST R1, #3
+
+000010: 1A00002B BNE 0x000000C4
+
+000014: E3100003 TST R0, #3
+
+000018: 1A00002F BNE 0x000000DC
+
+00001c: E3520010 CMP R2, #16
+
+000020: 3A000008 BCC 0x00000048
+
+000024: E92D0010 STMFD R13!, {R4}
+
+000028: E2422010 SUB R2, R2, #16</code>
+                                </div>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="#SPNU1186094">Example 11-3</a>
+                                    </span> provides an example of how the output would appear if a copy record refers to different load and run sections and the --copy_table option is used.</p>
+                                <div class="example">
+                                    <h4 id="SPNU1186094">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_11-3_Partial_Copy_Record_Output_With_Different_Load_and_Run_Address">
+                                        </a>
+                                        <span class="example-label">Example 11-3 </span>Partial Copy Record Output With Different Load and Run Address</h4>
+                                    <code>     COPY TABLE: _data2_ctbl, 0x30 at 0x5E10, 1 record(s)
+
+ _data2_ctbl[0]: load addr=0x200158, size=0x12B, encoding=lzss
+
+ DATA Section .data2_scn.load, 0x12B bytes at 0x200158
+ 200158: $d:
+ 200158: 020f0000 .word 0x020f0000
+ 20015c: beef0003 .word 0xbeef0003
+ .
+ .
+
+ _data2_ctbl[0]: run addr=0x52A0, size=0x960
+
+ DATA Section .data1_scn, 0x960 bytes at 0x52A0
+ 0052a0: data1:
+ 0052a0: $d:
+ 0052a0: .data1_scn:
+ 0052a0: 0000beef .word 0x0000beef
+ 0052a4: 0000beef .word 0x0000beef
+ .
+ .</code>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0781012">
+                                    <a MadCap:generatedBookmark="TOC" name="11.3_Invoking_the_Name_Utility">
+                                    </a>
+                                    <span class="section-label">11.3 </span>Invoking the Name Utility</h3>
+                                <p> The name utility, <i><span>armnm</span></i>, prints the list of names defined and referenced in an object file, executable file, or archive library. It also prints the symbol value and an indication of the kind of symbol. Hidden symbols are listed as <span class="code">""</span>.</p>
+                                <p>To invoke the name utility, enter the following:</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td> <b> <span>armnm</span></b> [-<i>options</i>] [<i>input filenames</i>]</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col align="left" />
+                                            <col align="left" />
+                                            <col align="left" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b> <span>armnm</span></b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">is the command that invokes the name utility.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>input filename</i></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">is an object file (.obj), executable file (.out), or archive library (.lib).</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>options</i></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">identifies the name utility options you want to use. Options are not case sensitive and can appear anywhere on the command line following the invocation. Precede each option with a hyphen (-). The name utility options are as follows:</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-a</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">prints all symbols.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-f</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">prepends file name to each symbol.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-g</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">prints only global symbols.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-h</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">shows the current help screen.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-l</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">produces a detailed listing of the symbol information.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-n</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">sorts symbols numerically rather than alphabetically.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-o</b>
+                                                    <i>file</i>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">outputs to the given file. </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-p</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">causes the name utility to not sort any symbols.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-q</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">(quiet mode) suppresses the banner and all progress information.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-r</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">sorts symbols in reverse order.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-s</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">lists symbols in the dynamic symbol table for an ELF object module.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-u</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">only prints undefined symbols.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0782175">
+                                    <a MadCap:generatedBookmark="TOC" name="11.4_Invoking_the_Strip_Utility">
+                                    </a>
+                                    <span class="section-label">11.4 </span>Invoking the Strip Utility</h3>
+                                <p> The strip utility, <i><span>armstrip</span></i>, removes symbol table and debugging information from object and executable files.</p>
+                                <p>To invoke the strip utility, enter the following:</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td> <b> <span>armstrip</span></b> [<b>-p</b>] <i>input filename</i> [<i>input filename</i>]</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col align="left" />
+                                            <col align="left" />
+                                            <col align="left" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b> <span>armstrip</span></b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">is the command that invokes the strip utility.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>input filename</i></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">is an object file (.obj) or an executable file (.out).</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>options</i></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">identifies the strip utility options you want to use. Options are not case sensitive and can appear anywhere on the command line following the invocation. Precede each option with a hyphen (-). The strip utility option is as follows:</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-o</b>
+                                                    <i>filename</i> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">writes the stripped output to filename.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                    <b>-p</b>
+                                                </td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">removes all information not required for execution. This option causes more information to be removed than the default behavior, but the object file is left in a state that cannot be linked. This option should be used only with <span>executable (.out)</span> files.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="3" valign="top">When the strip utility is invoked without the -o option, the input object files are replaced with the stripped version.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="../Resources/MasterPages/..SPNU118U_HTML/abstract.html">Back to Top</a>
+                    <p />
+                    <a href="http://www.go-dsp.com/forms/techdoc/doc_feedback.htm?litnum=SPNU118U&amp;partnum=ARM">Submit Documentation Feedback</a>
+                    <p>Copyright© 2018, Texas Instruments Incorporated. An <a href="includes/important_notice.html">IMPORTANT NOTICE</a> for this document addresses availability, warranty, changes, use in safety-critical applications, intellectual property matters and other important disclaimers.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

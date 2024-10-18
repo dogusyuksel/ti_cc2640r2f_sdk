@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset="utf-8" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>1 Introduction to the Software Development Tools</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../Resources/Stylesheets/headerfooter.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="content">
+            <div id="contentBody">
+                <div class="row collapse">
+                    <div class="sideContent">
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                    <div id="loadContentArea">
+                        <div class="c12 docHeader">
+                            <div class="c4 docTitle">
+                                <p>
+                                    <strong>ARM Assembly
+							Language Tools
+			v18.1.0.LTS User's Guide</strong>
+                                    <br />
+                                    <span id="litnumber">SPNU118U</span> - REVISED JANUARY 2018</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="odsHeader">
+                        <p class="pdf">
+                            <a class="downloadPDF" href="http://www.ti.com/litv/SPNU118U" target="_new">Download PDF</a>
+                        </p>
+                    </div>
+                    <div id="loadContentArea1">
+                        <div class="subsection">
+                            <h2 id="STDZ0700622">
+                                <a MadCap:generatedBookmark="TOC" name="1_Introduction_to_the_Software_Development_Tools">
+                                </a>
+                                <span class="section-label">1 </span>Introduction to the Software Development Tools</h2>
+                            <div class="subsection">
+                                <p>The <span>ARM®</span> is supported by a set of software development tools, which includes an optimizing C/C++ compiler, an assembler, a linker, and assorted utilities. This chapter provides an overview of these tools.</p>
+                                <p>The <span>ARM device</span> is supported by the following assembly language development tools:</p>
+                                <ul>
+                                    <li value="1">Assembler</li>
+                                    <li value="2">Archiver</li>
+                                    <li value="3">Linker</li>
+                                    <li value="4">Library information archiver</li>
+                                    <li value="5">Absolute lister</li>
+                                    <li value="6">Cross-reference lister</li>
+                                    <li value="7">Object file display utility</li>
+                                    <li value="8">Disassembler</li>
+                                    <li value="9">Name utility</li>
+                                    <li value="10">Strip utility</li>
+                                    <li value="11">Hex conversion utility</li>
+                                </ul>
+                                <p>This chapter shows how these tools fit into the general software tools development flow and gives a brief description of each tool. For convenience, it also summarizes the C/C++ compiler and debugging tools. For detailed information on the compiler and debugger, and for complete descriptions of the <span>ARM device</span>, refer to the books listed in <i>Related Documentation From Texas Instruments</i>.</p>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ070431">
+                                    <a MadCap:generatedBookmark="TOC" name="1.1_Software_Development_Tools_Overview">
+                                    </a>
+                                    <span class="section-label">1.1 </span>Software Development Tools Overview</h3>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="#STDZ0703392">Figure 1-1</a>
+                                    </span> shows the <span>ARM device</span> software development flow. The shaded portion highlights the most common development path; the other portions are optional. The other portions are peripheral functions that enhance the development process.</p>
+                                <div class="figure">
+                                    <span class="caption" id="STDZ0703392">
+                                        <span class="figure-label">Figure 1-1 </span>
+                                        <span>ARM Device</span> Software Development Flow </span> <img alt="swflow_pnu118.gif" itemprop="image" src="ods/images/SPNU118U/swflow_pnu118.gif" title="ARM&#xA;    Device Software&#xA;    Development Flow" /> </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0703149">
+                                    <a MadCap:generatedBookmark="TOC" name="1.2_Tools_Descriptions">
+                                    </a>
+                                    <span class="section-label">1.2 </span>Tools Descriptions</h3>
+                                <p>The following list describes the tools that are shown in <span class="crossreference"><a href="#STDZ0703392">Figure 1-1</a></span>:</p>
+                                <ul>
+                                    <li value="1">The <b>C/C++ compiler</b> accepts C/C++ source code and produces <span>ARM</span> machine code object modules. See the <i><span>ARM Optimizing C/C++ Compiler User's Guide </span></i>for more information.<span> A <b>shell program</b>, an <b>optimizer</b>, and an <b>interlist utility</b> are included in the installation:</span><ul><li value="1">The shell program enables you to compile, assemble, and link source modules in one step.</li><li value="2">The optimizer modifies code to improve the efficiency of C/C++ programs.</li><li value="3">The interlist utility interlists C/C++ source statements with assembly language output to correlate code produced by the compiler with your source code.</li></ul></li>
+                                    <li value="2">The <b>assembler</b> translates assembly language source files into machine language object modules. Source files can contain instructions, assembler directives, and macro directives. You can use assembler directives to control the assembly process, including the source listing format, data alignment, and section content. See <span class="crossreference"><a href="assembler-description.html#STDZ0710625">Section 4</a></span> through <span class="crossreference"><a href="macro-language-description.html#STDZ0730691">Section 6</a></span>. <span>See the <span><i>TMS470R1x User's Guide</i> <![CDATA[ ]]></span>for detailed information on the assembly language instruction set.</span></li>
+                                    <li value="3">The <b>linker</b> combines object files into a single <span>executable</span> object module. It performs symbolic relocation and resolves external references. The linker accepts relocatable object modules (created by the assembler) as input. It also accepts archiver library members and output modules created by a previous linker run. Link directives allow you to combine object file sections, bind sections or symbols to addresses or within memory ranges, and define global symbols. See <span class="crossreference"><a href="linker-description.html#STDZ0750697">Section 8</a></span>.</li>
+                                    <li value="4">The <b>archiver</b> allows you to collect a group of files into a single archive file, called a library. The most common use of the archiver is to collect a group of object files into an object library. The linker extracts object library members to resolve external references during the link. You can also use the archiver to collect several macros into a macro library. The assembler searches the library and uses the members that are called as macros by the source file. The archiver allows you to modify a library by deleting, replacing, extracting, or adding members. See <span class="crossreference"><a href="archiver-description.html#STDZ0740696">Section 7.1</a></span>.</li>
+                                    <li value="5">The <b>library information archiver</b> allows you to create an index library of several object file library variants, which is useful when several variants of a library with different options are available. Rather than refer to a specific library, you can link against the index library, and the linker will choose the best match from the indexed libraries. See <span class="crossreference"><a href="archiver-description.html#STDZ074226">Section 7.5</a></span> for more information about using the archiver to manage the content of a library.</li>
+                                    <li value="6">You can use the <b>library-build utility</b> to build your own customized run-time-support library. See the <i> <span>ARM Optimizing C/C++ Compiler User's Guide</span></i> for more information.</li>
+                                    <li value="7"> The <b>hex conversion utility</b> converts object files to TI-Tagged, ASCII-Hex, Intel, Motorola-S, or Tektronix object format. Converted files can be downloaded to an EPROM programmer. See <span class="crossreference"><a href="hex-conversion-utility-description.html#STDZ0790730">Section 12</a></span>.</li>
+                                    <li value="8">The <b>absolute lister</b> uses linked object files to create .abs files. These files can be assembled to produce a listing of the absolute addresses of object code. See <span class="crossreference"><a href="absolute-lister-description.html#STDZ0760723">Section 9</a></span>.</li>
+                                    <li value="9">The <b>cross-reference lister</b> uses object files to produce a cross-reference listing showing symbols, their definition, and their references in the linked source files. See <span class="crossreference"><a href="cross-reference-lister-description.html#STDZ0770724">Section 10</a></span>.</li>
+                                    <li value="10">The main product of this development process is a executable object file that can be executed on a <b><span>ARM </span></b>device. <span>You can use one of several debugging tools to refine and correct your code. Available products include:</span><ul><li value="1">An instruction-accurate and clock-accurate software simulator</li><li value="2">An XDS emulator</li></ul></li>
+                                </ul>
+                                <p>In addition, the following utilities are provided to help examine or manage the content of a given object file:</p>
+                                <ul>
+                                    <li value="1">The <b>object file display utility</b> prints the contents of object files and object libraries in either human readable or XML formats. See <span class="crossreference"><a href="object-file-utilities.html#STDZ0788060">Section 11.1</a></span>.</li>
+                                    <li value="2">The <b>disassembler</b> decodes the machine code from object modules to show the assembly instructions that it represents. See <span class="crossreference"><a href="object-file-utilities.html#STDZ0783966">Section 11.2</a></span>.</li>
+                                    <li value="3">The <b>name utility</b> prints a list of symbol names for objects and functions defined or referenced in an object file or object archive. See <span class="crossreference"><a href="object-file-utilities.html#STDZ0781012">Section 11.3</a></span>.</li>
+                                    <li value="4">The <b>strip utility</b> removes symbol table and debugging information from object files and object libraries. See <span class="crossreference"><a href="object-file-utilities.html#STDZ0782175">Section 11.4</a></span>.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="../Resources/MasterPages/..SPNU118U_HTML/abstract.html">Back to Top</a>
+                    <p />
+                    <a href="http://www.go-dsp.com/forms/techdoc/doc_feedback.htm?litnum=SPNU118U&amp;partnum=ARM">Submit Documentation Feedback</a>
+                    <p>Copyright© 2018, Texas Instruments Incorporated. An <a href="includes/important_notice.html">IMPORTANT NOTICE</a> for this document addresses availability, warranty, changes, use in safety-critical applications, intellectual property matters and other important disclaimers.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

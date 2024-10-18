@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="XDS560 debug probe for TI embedded devices">
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="XDS560">
+<meta name="product-link" content="https://www.ti.com/tool/TMDSEMU560V2STM-U">
+
+<!-- Change the title text for your page -->
+
+<title>XDS560 Debug Probe</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+#Overview
+The XDS560 debug probe is a high speed JTAG connection between Code Composer Studio and the target device. 
+
+XDS560v1 debug probes are obsolete and no longer supported.  Instead it is recommended to use an XDS560v2 class debug probe.
+* [XDS560v2 System Trace USB](https://www.ti.com/tool/tmdsemu560v2stm-u)
+* [XDS560v2 System Trace USB &amp; Ethernet](https://www.ti.com/tool/tmdsemu560v2stm-ue)
+
+The rest of the information on this page is for reference purposes.
+
+#Legacy information
+
+##XDS560 Rev D Cable
+
+In addition to the standard XDS560 features, the XDS560 Rev D cable also supports:
+* Compact TI 20-pin target card connector
+* Adaptive clocking for TI devices with ARM processors
+* EMU pin boot modes
+* Remote system reset 
+* RTCK/TCK looback
+
+Rev D cables can be identified by their "00D" at the end of the cable serial number. 
+
+The TI 20-pin target card connector reduces the PWB foot print over the traditional TI 14-pin target connector while expanding the number of EMU pins supported. [XDS560v1 Technical Reference Manual](https://focus.ti.com/lit/ug/spru589a/spru589a.pdf) The additional EMU pins are treated electrically identical to EMU0 and EMU1. See below for SYSRST board requirment.
+
+Adaptive clocking for ARM devices can be enabled through CCSetup's Connection Properties page (see JTAG TCKL Frequency (MHz) selection options). Generally, in CCS 3.3 Setup, you may need to select the create board option to enable the rev D capabilities.  
+
+
+
+Once this is done, in the connnection properties, it is possible to select the "Adaptive Clocking" options. 
+
+
+For devices that support EMU Boot modes the XDS560 Rev D cable drives the selected EMU pin polarity on the rising edge of nTRST or TVD. The EMU pin polarity selection is enabled through CCSetup's Connection Properties page (see JTAG nTRST Boot Mode or Power on-Reset Boot Mode selection options).To determine if your device supports boot modes, which modes are supported and the proper polarity for each boot mode see your device's data sheet. 
+
+The XDS560 Rev D cable supports a remote system reset capability. The SYSRST signal from the 20-pin Emulator header on your board must be pulled up (we suggest a 4.7 ohm pull-up) to the target voltage level required by your board's power-up-reset circuit. You can then remotely through CCS apply a reset your target system from the Debug->Advance Reset->System Reset menu. The STSRST signal will be active for ~1 millisecond.
+
+##Adapters
+
+###Frequently Asked Questions
+
+####Q: I have an XDS560 right now, but it is an older one (ex: XDS560 v1 but not revision D). How do I upgrade my XDS560 cable to gain the additional features such as wait in reset, additional connection types, etc. (i.e. revison D)
+A: You can order from TI distributors the part number: TMDSCBL560 (6/18/2010: This product is no longer available. You may be able to order one from Blackhawk)
+A: Recommend you contact your XDS560 manufacturer and determine what upgrade options are available.
+
+####Q: What if I want to use the XDS560 Trace capability to collect trace from the pins?
+A: You will need the XDS560 Trace unit. 
+
+####Q: Do any XDS560-class Emulators support Linux Operating Systems?
+A: Yes.  Starting with CCS v5, the following Blackhawk models support operation on Linux:
+* LAN560 (BH-LAN-560)
+* USB560-M (BH-USB-560m)
+* USB560-BP (BH-USB-560bp)
+* USB560 (BH-USB-560)
+
+####Q: Does the XDS560 support ARM Adaptive clocking?
+A: Yes, any XDS560 which is Revision D and above supports adaptive clocking. 
+
+####Q: What is the difference between XDS510 and XDS560?
+A: XDS560 is capable of [[High Speed RTDX (HSRTDX)]], essentially it has the same functionality of an [[XDS510]] class emulator but is significantly faster, with data rates of over 2MBps. 
+
+####Q: Where to get an XDS560v1?
+A: XDS560v1 products are no longer available for purchase
+
+####Q: Problems with XDS560.sys Loading
+A: While working with CCS emulation (Blackhawk) setup, receives error stating TMS320C62XX" is not supported. It is because "XDS560.SYS" was not loading correctly. 
+
+There are two versions of xds560.sys in the system. Version A and Version B
+
+Version A: c:\winnt\system32\xds560.sys 
+Version B: c:\winnt\system32\drivers\xds560.sys 
+
+The system actually looks in the second location for the driver, but this version (B) can hang at boot time. Sometimes the xds560.inf file may not copy the correct files from/to the appropriate directories. Rather than edit xds560.inf, the workaround is to create a dummy directory c:\winnt\system32\drivers\Win2000_XP and put the working (A) version of the file in it. Then the New Hardware Found dialogue runs to completion and copies the correct file to the correct directory.
+
+####Q: I have a Blackhawk XDS560 USB/Lan560. What does the LED indicate?
+A: On the USB560m/LAN560, the USB LED is bi-color (red and green).  This is the same for the USB560bp LED on the end panel.
+ 
+Start-up:
+Power-up: RED
+Enumeration Complete: GREEN
+
+
+In operation, USB status:
+Ready: GREEN
+Busy: RED
+
+####Q: My JTAG is not working with CCS
+*A: Please check: [Debugging JTAG](../ccs_debugging_jtag_connectivity_issues.html)
+
+####Q: Are there lower cost options? 
+A: Yes, XDS200, XDS110 and XDS100 are lower cost options.
+
+####Q: Why does my Windows Device Manager show a warning for the TI XDS560 PCI Emulator? 
+A: The Windows Device Manager is showing this error because a TI XDS560 PCI emulator is not installed. Windows cannot start the driver because the hardware is not installed in the PC. If you are NOT using this hardware emulator, then there is no issue and other emulators are not affected. 
+
+####Q: I am a TI 3rd party, and I want to create my own XDS560. What do I do?
+A: This option is no longer available
+
+####Q: How do I get loopback in a TI XDS560 Rev D cable to work? 
+A: You will need to fix the connection XML file or as an extra board config file. You will need to insert one of the following combinations depending on what you are doing. (Note, this is not tested extensively.) 
+
+This combination loops the TCLKO/TCKI signals in the pod, the timing between return data and clock is modified.
+DBGJTAG handles this OK if the target provides compatible return data timing.
+CCS drivers won't will handle this OK if the target provides compatible return data timing.
+The XDS560 Trace pod also comprehends this combination and uses it with specific targets.
+loopback_mode=enable
+loopback_value=clock
+
+this combination loops the TDI/TDO signals in the pod, the IR/DR scan-paths become 0-bits long
+DBGJTAG handles this OK.
+CCS drivers fail, they won't find the target DSP/ARM/icepick
+loopback_mode=enable
+loopback_value=data
+
+This combination loops the TDI/TDO and TCLKO/TCKI signals in the pod and disables the cable-break/power-loss detection.
+The intention is to allow DBGJTAG to run emulator and cable tests even when the cable is not connected to any target al all.
+DBGJTAG handles this OK.
+CCS drivers fail, they won't find the target DSP/ARM/icepick
+loopback_mode=enable
+loopback_value=total
+
+this combination does nothing
+loopback_mode=disable
+loopback_value=disable
+
+####Q: How do I get loopback in a Blackhawk XDS560 with a 20 pin cable (Rev D) cable to work? 
+A: In CCS v4.x, you need to select the loopback option. 
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

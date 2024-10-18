@@ -1,0 +1,58 @@
+GEL_SetBoolDebugProperty
+-------------------------
+
+Set the value of a boolean debug property
+
+**Format**
+
+**GEL_SetBoolDebugProperty(**\ propertyName \**, ** value **);**
+
+**Parameters**
+
+propertyName specifies the property name
+
+value specifies the value
+
+**Description**
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: Yes
+
+**Example**
+
+| int autoResetOnConnect = GEL_GetBoolDebugProperty("AutoResetOnConnect");
+| string flashFiles = GEL_GetStringDebugProperty("FlashFiles");
+| int flashTimeout = GEL_GetNumericDebugProperty("FlashTimeoutValue");
+|
+| GEL_SetBoolDebugProperty("AutoResetOnConnect", 1);
+| GEL_SetStringDebugProperty("FlashFiles", "a.out");
+| GEL_SetNumericDebugProperty("FlashTimeoutValue", 100);
+
+
+
+**Related Topics**
+
+`GEL_SetNumericDebugProperty <GEL_SetNumericDebugProperty.html>`__
+
+`GEL_SetStringDebugProperty <GEL_SetStringDebugProperty.html>`__
+
+`GEL_GetBoolDebugProperty <GEL_GetBoolDebugProperty.html>`__
+
+`GEL_GetNumericDebugProperty <GEL_GetNumericDebugProperty.html>`__
+
+`GEL_GetStringDebugProperty <GEL_GetStringDebugProperty.html>`__
+
+`GEL_GetBoolDriverProperty <GEL_GetBoolDriverProperty.html>`__
+
+`GEL_GetNumericDriverProperty <GEL_GetNumericDriverProperty.html>`__
+
+`GEL_GetStringDriverProperty <GEL_GetStringDriverProperty.html>`__
+
+`GEL_GetBoolTargetDbProperty <GEL_GetBoolTargetDbProperty.html>`__
+
+`GEL_GetNumericTargetDbProperty <GEL_GetNumericTargetDbProperty.html>`__
+
+`GEL_GetStringTargetDbProperty <GEL_GetStringTargetDbProperty.html>`__

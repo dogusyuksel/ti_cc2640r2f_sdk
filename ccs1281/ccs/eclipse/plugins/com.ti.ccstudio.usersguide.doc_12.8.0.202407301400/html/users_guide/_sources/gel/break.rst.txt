@@ -1,0 +1,26 @@
+GEL break Statement
+-------------------
+
+GEL supports the standard C break statement within the iteration statements: **for**, **while**, and **do-while**. The general form is:
+
+**break;**
+
+A break statement terminates execution of the enclosing statement. Execution resumes at the statement following the terminated statement.
+
+___
+
+**Example:**
+
+.. code:: cpp
+
+   for (j=0; j<i; j++)
+   {
+      if (j == k)
+      break;
+   }
+
+___
+
+**See also:**
+
+`GEL Functions: Alphabetical List <functions_list.html>`__

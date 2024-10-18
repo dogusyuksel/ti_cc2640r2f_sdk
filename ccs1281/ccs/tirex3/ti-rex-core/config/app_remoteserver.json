@@ -1,0 +1,15 @@
+{
+    "//": "NOTE: The properties below override the ones in app_default.json",
+    "preset": "content-developer",
+    "mode": "remoteserver",
+    "myHttpPort": "4000",
+    "contentPath": "~/ccs-cloud-storage/ti-rex/git/ti-rex-content",
+    "dbPath": "~/tirex-remoteserver-3.1.3/.db",
+    "downloadsCache": "~/tirex-remoteserver-3.1.3/.downloads",
+    "logsDir": "~/tirex-remoteserver-3.1.3/.logs",
+    "contentPackagesConfig": "~/ccs-cloud-storage/ti-rex/git/config/default.json",
+    "remoteBundleZips": "",
+    "localBundleZips": "~/ccs-cloud-storage/ti-rex/git/zips/",
+    "myRole": "",
+    "no_proxy": "localhost,127.0.0.0,.ti.com,.toro.design.ti.com"
+}

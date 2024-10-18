@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="Using Java for automation with TI's Debug Server Scripting (DSS) which is part of Code Composer Studio."> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="Code Composer Studio">
+<meta name="product-link" content="https://www.ti.com/tool/CCSTUDIO">
+
+<!-- Change the title text for your page -->
+<title>Java Scripting with DSS</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+Overview
+---
+JavaScript is the default scripting language supported by [DSS](https://software-dl.ti.com/ccs/esd/documents/users_guide/sdto_dss_handbook.html). But because DSS is implemented as a set of Java APIs, it works quite nicely out of the box with Java. While the provided DSS examples are mostly for JavaScript, the DSS Java API documentation shows examples of API calls with Java code.
+
+
+Prerequisites
+---
+At a minimum, a Java compiler (javac) and a Java Runtime Environment (JRE) are needed to build and run the DSS Java application. While CCS comes with a JRE, it does not come with a JDK (which provides a Java compiler). A JDK can be downloaded from the [Sun Java SE download site](https://java.sun.com/javase/downloads/index.jsp). If a Java IDE (such as [Eclipse](https://www.eclipse.org/)) is being used to develop the DSS Java application, then a Java compiler is already available.
+
+[[b Note:
+    You must ensure that your JDK is compatible with the version of CCS you have installed. Consult the table below to determine if you need a 32-bit or 64-bit JDK. A compatible JDK or JRE will also be required to run compiled programs.
+    <!-- Use an html table since markdown tables don't work with indentation (it probably doesn't matter here, but I copied it from another markdown file) -->
+    <table>
+        <tbody>
+            <tr>
+                <th>OS</th>
+                <th>Requires 32-bit JDK</th>
+                <th>Requires 64-bit JDK</th>
+            </tr>
+            <tr>
+                <td>Windows</td>
+                <td>Up to CCS v8.x</td>
+                <td>CCS v9 and above</td>
+            </tr>
+            <tr>
+                <td>MacOS</td>
+                <td>None</td>
+                <td>All</td>
+            </tr>
+            <tr>
+                <td>Linux</td>
+                <td>Up to CCS v6.1.3</td>
+                <td>CCS v6.2.0 and above</td>
+            </tr>
+        </tbody>
+    </table>
+]]
+
+
+Creating and Running a DSS Java Program
+---
+Create a new Java source file in an editor. If a Java IDE is being used, create a new Java project and add your new Java source file to the project. Refer to the [documentation](https://software-dl.ti.com/ccs/esd/documents/users_guide/sdto_dss_handbook.html#dss-api) for the available APIs.
+
+### Example source
+
+The following example code snippets are from a straight port of the 'Breakpoints.js' example which is [included with DSS](https://software-dl.ti.com/ccs/esd/documents/users_guide/sdto_dss_handbook.html#examples).
+
+First, you must import the all necessary DSS packages.
+```java
+// Import all DSS packages for the Debug Server
+import com.ti.ccstudio.scripting.environment.*;
+import com.ti.debug.engine.scripting.*;
+```
+
+The first action done by the `main()` method is to create a scripting instance:
+```java
+...
+
+public class DssBreakpointsExample {
+
+    public static void main(String[] args)
+    {
+        // Create our scripting environment object - which is the main entry point into any script and
+        // the factory for creating other Scriptable servers and Sessions
+        ScriptingEnvironment scriptEnv = ScriptingEnvironment.instance();
+
+...
+```
+
+Next, the debug server instance is created and a debug session is started. The calls are wrapped in a 'try-catch' block since most DSS APIs can throw exceptions.
+```java
+...
+
+    DebugServer debugServer = null;
+    DebugSession debugSession = null;
+
+    try {
+        // Get the Debug Server and start a Debug Session
+        debugServer = (DebugServer) env.getServer("DebugServer.1");
+        debugServer.setConfig("../msp430f5529/msp430f5529.ccxml");
+        debugSession = debugServer.openSession(".*");
+    } catch (ScriptingException e) {
+        scriptEnv.traceWrite("ERROR");
+        e.printStackTrace();
+    }
+
+...
+```
+
+Finally, let's look at a snippet in which a breakpoint is set and the program is run.
+```java
+...
+
+    try {
+        rnd = debugSession.symbol.getAddress("ReadNextData");
+        rndBP = debugSession.breakpoint.add(rnd);
+
+        // Run the program until execution is halted (should hit the breakpoint)
+        debugSession.target.run();
+
+...
+```
+
+To see what the rest of the functionality of the example is, refer to the <tt>Breakpoints.js</tt> JavaScript example that ships with DSS. As an exercise, try to do a complete port of it yourself! The file should be saved as <tt>DssBreakpointsExample.java</tt>.
+
+
+### Compiling the Source Code
+To build your code using the Java compiler, the <tt>dss.jar</tt> file must be in the classpath. You can do this either by placing it in your `CLASSPATH` environment variable, or by using the **-classpath** (or **-cp**) option. The JAR file can be found in the following location:
+
+<tt>&lt;CCS_DIR&gt;/ccs_base/DebugServer/packages/ti/dss/java/dss.jar</tt>
+
+where &lt;CCS_DIR&gt; is the location of the CCS installation on your machine (for CCS 8 on Windows it might be <tt>C:/ti/ccsv8/</tt>).
+
+For example, the following command will build the <tt>DssBreakpointsExample.java</tt> from the command line (using CCS 8 on Windows)
+```diff
+javac -cp "C:/ti/ccsv8/ccs_base/DebugServer/ti/dss/java/dss.jar" DssBreakpointsExample.java
+```
+
+This will generate the <tt>DssBreakpointsExample.class</tt> file. Note that the example above assumes that the <tt>bin</tt> subfolder of the JDK installation is in the system `PATH`, so that `javac` can be called from anywhere.
+
+
+### Running the Program
+
+Once the class file has been generated, the application can be run. Before running, you must ensure that the <tt>dss.jar</tt> is in the classpath. As when compiling, you can either add it to your `CLASSPATH` environment variable or use the **-classpath** (or **-cp**) option. For example, to run the 'DssBreakpointsExample' compiled above, (with CCS 8 on Windows):
+
+```diff
+java -cp ".;C:/ti/ccsv8/ccs_base/DebugServer/ti/dss/java/dss.jar" DssBreakpointsExample
+```
+
+Make sure the instance of Java running your program is from a JDK or JRE that is compatible with your version of CCS.
+
+
+### Creating a JAR file from Eclipse
+
+{{b This section assumes you are using [standard Eclipse](https://www.eclipse.org/). }}
+
+In your project's properties, add the <tt>dss.jar</tt> file to the build path. This is also a good time to check that your project is using the correct JDK.
+
+To export your project as a JAR file, the dependent JAR files must be referenced from their original location. For this reason, Eclipse's option to export as a 'Runable Jar File' will not work. Instead you should choose to export as a 'JAR file' and provide your own <tt>MANIFEST.MF</tt> file. A basic manifest file for our `DssBreakpointsExample` project might look like this (the location of your CCS installation might differ):
+
+```diff
+Manifest-Version: 1.0
+Class-Path: . file:///C:/ti/ccsv8/ccs_base/DebugServer/packages/ti/dss/java/dss.jar
+Main-Class: DssBreakpointsExample
+```
+
+When exporting as a JAR file, choose the option to **use existing manifest from workspace** and select your manifest file.
+
+![The option to 'use existing manifest from workspace' is chosen and the manifest file is chosen](images/java_dss_eclipse_select_manifest.PNG)
+
+Now you should be able to run your JAR file:
+```diff
+java -jar DssBreakpointsExample.jar
+```
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

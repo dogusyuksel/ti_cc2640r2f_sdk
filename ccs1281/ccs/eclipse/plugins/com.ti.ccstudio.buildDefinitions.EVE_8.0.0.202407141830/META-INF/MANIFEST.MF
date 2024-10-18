@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CCS EVE Build Definitions
+Bundle-SymbolicName: com.ti.ccstudio.buildDefinitions.EVE;singleton:=tru
+ e
+Bundle-Version: 8.0.0.202407141830
+Bundle-Vendor: Texas Instruments
+Require-Bundle: com.ti.ccstudio.project.core
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Eclipse-BundleShape: dir
+
+

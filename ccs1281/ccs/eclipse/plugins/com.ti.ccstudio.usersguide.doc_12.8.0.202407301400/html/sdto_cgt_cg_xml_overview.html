@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="Code Generation Tools XML Processing Utilities"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Generation Tools">
+<meta name="product-link" content="https://www.ti.com/tool/TI-CGT">
+
+<!-- Change the title text for your page -->
+<title>Code Generation Tools XML Processing Utilities</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+# Introduction
+
+This is a package of command line utilities used to process the XML files that
+come from the TI code generation tools.  Use it to do things like build a
+spreadsheet that details the size of all the sections, or figure out how much
+of the memory map is taken up by specific libraries.
+
+Learn all the details by viewing
+[this presentation](./images/cg_xml_overview.pdf).
+
+# Download and Install
+
+Support is available for Windows, Linux, and Mac systems.  Download the install
+image from
+[this page](https://software-dl.ti.com/ccs/non-esd/releases/other/applications_packages/cg_xml/index.htm).
+Run it to launch the installer.  
+
+# Documentation
+
+After installation, view the documentation by loading the file
+$install_root/index.htm into your web browser.
+
+# Sample Output
+
+### Categorize memory usage
+
+```
+C:\dir>ofd6x -x app.out | sectti
+Reading from stdin ...
+
+************************************************************
+REPORT FOR FILE: app.out
+************************************************************
+                Name : Size (dec)  Size (hex)  Type   Load Addr
+-------------------- : ----------  ----------  ----   ----------
+                .clk :         12  0x0000000c  UDATA  0x0000f0b4
+            .hwi_vec :        512  0x00000200  CODE   0x00000000
+                .swi :        220  0x000000dc  UDATA  0x0000ecd0
+                .idl :         32  0x00000020  UDATA  0x0000dee0
+                .bss :        896  0x00000380  UDATA  0x0000d800
+                .far :       2124  0x0000084c  UDATA  0x0000c340                                        
+<snip ...>
+
+------------------------------------------------------------
+Totals by section type
+------------------------------------------------------------
+  Uninitialized Data :       7604  0x00001db4
+    Initialized Data :       9478  0x00002506
+                Code :      48800  0x0000bea0
+```
+
+### See Stack Usage and Call Graph
+
+```
+C:\dir> call_graph arm_hello.xml | more
+Call Graph for arm_hello.out
+**********************************************************************
+_c_int00 : wcs = 668
+|  __args_main : wcs = 668
+|  |  _main : wcs = 668
+|  |  |  _printf : wcs = 664
+|  |  |  |  __printfi : wcs = 632
+|  |  |  |  |  __pproc_fflags : wcs = 0
+|  |  |  |  |  __pproc_fwp : wcs = 36
+|  |  |  |  |  |  _atoi : wcs = 4
+|  |  |  |  |  |  _memset : wcs = 8
+|  |  |  |  |  __pproc_str : wcs = 56
+|  |  |  |  |  |  _free : wcs = 20
+|  |  |  |  |  |  |  _minit : wcs = 8
+|  |  |  |  |  |  |  _minsert : wcs = 8
+|  |  |  |  |  |  |  _mremove : wcs = 0
+|  |  |  |  |  |  _malloc : wcs = 20
+|  |  |  |  |  |  |  _minit : wcs = 8
+|  |  |  |  |  |  |  _minsert : wcs = 8
+|  |  |  |  |  |  |  _mremove : wcs = 0
+...
+```
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

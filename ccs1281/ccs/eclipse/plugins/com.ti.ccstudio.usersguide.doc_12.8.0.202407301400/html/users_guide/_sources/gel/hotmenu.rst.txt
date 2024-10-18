@@ -1,0 +1,37 @@
+The hotmenu Keyword
+-------------------
+
+Use the hotmenu keyword to add a GEL function to the GEL menu that is
+executed immediately when selected. The syntax is as follows:
+
+.. code:: cpp
+
+   hotmenu funcName()
+   {
+      statements
+   }
+
+This keyword is used for GEL functions that have no Parameters to be passed.
+
+___
+
+**Example:**
+
+.. code:: cpp
+
+   menuitem "My Functions";
+   hotmenu InitTarget()
+   {
+      *waitState = 0x11;
+   }
+   hotmenu LoadMyProg()
+   {
+      GEL_Load("c:\\mydir\\myfile.out");
+   }
+
+This example adds the following sub-selections under the Scripts menu.
+
+.. image:: ./images/gel_hotmenu.png
+
+When you choose the InitTarget command, it is immediately executed. To call GEL functions that require Parameters to be passed, use the dialog keyword.
+

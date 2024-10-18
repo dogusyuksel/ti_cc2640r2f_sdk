@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="This page contains drivers and utilities to support TI XDS class Debug Probes.."> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="XDS110">
+<meta name="product-link" content="https://www.ti.com/tool/TMDSEMU110-U">
+
+<!-- Change the title text for your page -->
+
+<title>XDS Emulation Software (EMUPack) Download</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+#Overview
+
+<big><strong>Deprecation notice:</strong> Please be aware this page is no longer being updated. New versions of the EMUPack downloads are being released through the update mechanism associated with your development tools. For Code Composer Studio, please use the <i>Check For Updates</i> menu item.</big></br>
+
+This page contains drivers and utilities to support TI XDS class Debug Probes. This also includes support for various processor cores present on the TI device portfolio, such as C64x, C64x+, C66x, C674x, C7x, C28x, Arm7&trade;, Arm9&trade; and Cortex&reg;. This package also includes the [XDS GDB agent](./emu_xds_gdb_agent.html) that allows connecting to a XDS class Debug Probe via the opensource GDB.
+
+Users are required to accept TI licensing terms and conditions before this software can be installed and used.
+
+Redistributions in any form must preserve existing copyright notice/license included in the installer and be compliant with the terms and condition listed in the license. 
+
+The software is supported in Windows (32 and 64 bits), Linux (32 and 64 bits), and macOS (64 bits).
+
+#XDS Emulation Software (EMUPack) Download
+
+<table>
+<tbody>
+<tr class="even">
+<td><strong>Release</strong></td>
+<td><strong>Date</strong></td>
+<td><strong>Release Notes</strong></td>
+<td><strong>Download</strong> 
+</td>
+</tr>
+<tr class="odd">
+<td>9.2.0.00002</td>
+<td>May 26, 2020</td>
+<td><strong>Delta from last release:</strong>
+<br> 
+<strong>New Features and Improvements</strong>
+<ul> 
+<li>J721E: Enable CTSET cross-triggering feature for VPAC and DMPAC (DBGTRC-5411)</li>
+<li>J721E: N-STEP support for VPAC and DMPAC (DBGTRC-5284)</li>
+<li>J721E/AM65x: DMA Ring Accelerator Trace should be available from any core context (DBGTRC-5479)</li>
+<li>TVT tooling enhancement to have common look and feel (DBGTRC-5510, DBGTRC-5509, DBGTRC-5508, DBGTRC-5507, DBGTRC-5506, DBGTRC-5505)  </li>
+<li>TVT: Trace display improvement for CPTracer2 Transaction Trace (DBGTRC-4903)</li>
+<li>Tenor: Enable SWO Trace with TVT tooling in CCS (DBGTRC-4566)</li>
+<li>C2000 Topolino disassembly support for fast division instructions and NLPID (DBGTRC-3933)</li>
+</ul>
+<br>
+<strong>Bug-fixes</strong>
+<ul> 
+<li>J721E: Full verification fails with some binaries on C71x and A72 cores on J721E with xds2xx probe (DBGTRC-5491)</li>
+<li>J721E: C71x Driver does not respond to halt request (DBGTRC-5483)</li>
+<li>J721E: C66x TPIU trace is not collected if ETB trace was collected immediately prior (DBGTRC-5472)</li>
+<li>J721E: C66x in bad state after Cache Tag RAM view window is open (DBGTRC-5382)</li>
+<li>C66x TAG View crashes when L2 is configured as all cache (L2CFG = 0x7) (DBGTRC-5528)</li>
+<li>XDS110: UART data from target after reset is missing or corrupted (DBGTRC-5521)</li>
+<li>XDS110: CMSIS-DAP 2.0 endpoint order doesn&apos;t match spec (DBGTRC-5519)</li>
+<li>XDS110: Configuration 4 (CMSIS-DAP 2.0) not recognized on Linux (DBGTRC-5516)</li>
+<li>XDS110: USB interface descriptor strings missing for CMSIS-DAP (DBGTRC-5499)</li>
+<li>XDS110: UART transfers corrupted in some versions (DBGTRC-5418)</li>
+<li>C2000 CLA Debugger issue : CLA Global variables do not get updated in expression window from CLA scope (DBGTRC-5518)</li>
+<li>C2000 CLA : Execution stops at MSTOP when CLA Debugger is connected (DBGTRC-5419)</li>
+<li>Potenza: CLA2 debugger halts at intermediate points for a task that is running continuously (DBGTRC-4817)</li>
+<li>dbgauth mode 3 (k3): &quot;test&quot; operation is behaving incorrectly (DBGTRC-5587)</li>
+<li>XDS200 fails to work on macOS Catalina (DBGTRC-5531)</li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_9.2.0.00002_win_32.exe">32-bit Windows</a></li>(up to CCSv8.3.x)
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_9.2.0.00002_win_64.exe">64-bit Windows</a></li>(CCSv9.0.x and up)
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_9.2.0.00002_linux_x86_64.bin">64-bit Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_9.2.0.00002_osx_x86_64.dmg">macOS</a></li>
+</td>
+</tr>
+<tr class="even">
+<td>9.1.0.00001</td>
+<td>February 27, 2020</td>
+<td><strong>Delta from last release:</strong>
+<br> 
+<strong>New Features and Improvements</strong>
+<ul> 
+<li>Support CC322x and CC323x SWO Trace (DBGTRC-5349)</li>
+<li>J721E: Enable CTSET counter/Timer feature for VPAC and DMPAC (DBGTRC-5286)</li>
+<li>J721E: Enable Global BP and Sync Run for VPAC and DMPAC (DBGTRC-5283)</li>
+<li>J721E: VPAC/DMPAC: Enable Shared L2 (SL2) memory view through CCS (DBGTRC-5282)</li>
+<li>The user feedback for XDS110 FW update on OS X shall be improved (DBGTRC-5264)</li>
+<li>XDS110 ET: Measure current consumption without powering off the DUT (DBGTRC-4598)</li>
+<li>Support CMSIS-DAP 2.0 over BULK interface in XDS110 firmware to improve performance for 3rd Party tools (IAR, Keil) (DBGTRC-4227)</li>
+</ul>
+<br>
+<strong>Bug-fixes</strong>
+<ul> 
+<li>Revert to legacy behavior of putting target back to JTAG mode on disconnect instead of maintaining the current mode (SWD/cJTAG etc.) (DBGTRC-5434)</li>
+<li>Add the current version to the XDS110 firmware update message (DBGTRC-3779)</li>
+<li>C71x: Register renames to match with Compiler changes (DBGTRC-5430)</li>
+<li>dbgauth tool: better error handling and documentation (DBGTRC-5456)</li>
+<li>XDS110 sends corrupted UART data (DBGTRC-5446)</li>
+<li>Implement EnergyTrace warning messages when debug probe is in wrong configuration (DBGTRC-5417)</li>
+<li>AM65x PG2: Cache Analysis webapp display does not work (DBGTRC-5404)</li>
+<li>TVT: Device id mask not applied in tdf usecase lookup impacting devices with multiple revisions (AM65x etc.) (DBGTRC-5403)</li>
+<li>XDS220 LAN: CCS Hang on call to function WSPRecv() by xds2xxe\_io (DBGTRC-5398)</li>
+<li>Small captures of SWO data is not propogated by the XDS2xx on Windows (DBGTRC-5379)</li>
+<li>DATA page differs from PROGRAM page on J721E C71x core (DBGTRC-5368)</li>
+<li>Watchpoint/Breakpoint SkipCount does not skip breakpoint/watchpoint on J721E Cortex A72 core (DBGTRC-5363)</li>
+<li>Watchpoint does not always execute GEL expression on J721E C71 core (DBGTRC-5359)</li>
+<li>C71 UTLB Registers are indexed (16 entry deep). Only first entry is visible currently (DBGTRC-5358)</li>
+<li>Implement warning message from GTI into IDEs (CCS, IAR) in case XDS110 (LaunchPad) is configures in MSC mode (DBGTRC-5356)</li>
+<li>f280049c execution is different when hardware breakpoint is set (DBGTRC-5350)</li>
+<li>Add version info to XDS110 firmware.bin file (DBGTRC-5347)</li>
+<li>GDB Agent: Watchpoints for MSP430 do not work (DBGTRC-5335)</li>
+<li>C64plus 560 driver fails when GTIBPTEST/GTIBPTEST\_64 is called (DBGTRC-5325)</li>
+<li>J721E: Pin trace on c66x does not produce trace data (DBGTRC-5324)</li>
+<li>XDS110: Serial data intermittently hangs when XDS110 re-enumerates with host (DBGTRC-5313)</li>
+<li>J721E: C71 steps two NOP instructions in one sync step (DBGTRC-5281)</li>
+<li>TVT: Target Adapter event notification list is cleared by TDF session even though a live session exists (DBGTRC-5133)</li>
+<li>Add support for FT4232H to XDS100 Linux build (DBGTRC-5128)</li>
+<li>TVT: CSV export is missing column header (DBGTRC-5114)</li>
+<li>AM65x Traffic Profiling: Changing Probe Domain resets probe values to defaults (DBGTRC-5074)</li>
+<li>J721E: C66 trace over TPIU not working (DBGTRC-5038)</li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_9.1.0.00001_win_32.exe">32-bit Windows</a></li>(up to CCSv8.3.x)
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_9.1.0.00001_win_64.exe">64-bit Windows</a></li>(CCSv9.0.x and up)
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_9.1.0.00001_linux_x86_64.bin">64-bit Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_9.1.0.00001_osx_x86_64.dmg">macOS</a></li>
+</td>
+</tr>
+<tr class="odd">
+<td>8.4.0.00006</td>
+<td>December 13, 2019</td>
+<td><strong>Delta from last release:</strong>
+<br> 
+<strong>New Features and Improvements</strong>
+<ul> 
+<li>Reducing the XDS110 default TCLK speed to improve JTAG stability (DBGTRC-5141)</li>
+<li>HTML5 Trace Visualization Toolkit: The SWO Trace configuration UI should show application pinmux note for CC13xx/26xx targets (DBGTRC-5011)</li>
+<li>Map F2838x ( Tenor ) CCS "System Reset" to not go to the Icepick but instead use the AIRCR register (DBGTRC-5003)</li>
+<li>Add option to dbgjtag to enable and disable power supply using XDS110 Pod (DBGTRC-4973)</li>
+<li>XDS110: Expand capabilities of Drag-n-Drop feature (DBGTRC-4932)</li>
+<li>ITM/DWT: MSP432Ex - Add HTML5 Trace Visualization Toolkit tooling for SWO Trace (DBGTRC-4768)</li>
+<li>ITM/DWT: CC13x0/26x0 - Add HTML5 Trace Visualization Toolkit tooling for SWO Trace (DBGTRC-4677)</li>
+<li>ITM/DWT: MSP432Px - Add HTML5 Trace Visualization Toolkit tooling for SWO Trace (DBGTRC-4676)</li>
+<li>HTML5 Trace Visualization Toolkit: Create reusable graphing widget for webapps (DBGTRC-4697)</li>
+</ul>
+<br>
+<strong>Bug-fixes</strong>
+<ul> 
+<li>XDS110 Probe has incorrect LED (DBGTRC-5336)</li>
+<li>XDS110: Agama targets fail to enter HIB mode (DBGTRC-5315)</li>
+<li>When using ROV with XDS200 it blocks launching a second debug session (DBGTRC-5293)</li>
+<li>AM65x: SEC AP driver does not check the data ready before checking remaining data length (DBGTRC-5292)</li>
+<li>Can't connect to MSP432 launchpad using XDS200 probe in JTAG mode (DBGTRC-5289)</li>
+<li>Sync step for Armv8 results in a run when stepping off of HW/SW breakpoints (DBGTRC-5287)</li>
+<li>Stune: CSV file has wrong units for energy in the file header and ETHDR energy values do not match up to raw calculations using average current (DBGTRC-5269)</li>
+<li>Unhandled exception in cloud trace (DBGTRC-5230)</li>
+<li>The JLM Scan in feature on C2000 device(Tenor - TMS320F28388D) does not work as expected upon a Power cycle on Board (DBGTRC-5195)</li>
+<li>C28x: Profile clock does not always increment when single source stepping (DBGTRC-5183)</li>
+<li>XDS110 doesn't always accept new UART settings (DBGTRC-5175)</li>
+<li>AM65x: Traffic Profiling Use-case selection should be a radio button (DBGTRC-5172)</li>
+<li>CPU Reset on F28x devices is disabled when the core is running (DBGTRC-5158)</li>
+<li>XDS200 probe doesn't propagate all SWO data and CCS becomes unresponsive on Linux (DBGTRC-5155)</li>
+<li>AM65x Traffic Profiling: Graph empty when restoring TDF captured with Pro Trace (DBGTRC-5150)</li>
+<li>Search function reports "error" when nothing is found when using Trace Visualization Toolkit for Cortex A53 (DBGTRC-5138)</li>
+<li>F280049C watchpoint not executing gel expression (DBGTRC-5032)</li>
+<li>XDS200 fails to be acknowledged (Error -250) on Linux (DBGTRC-5021)</li>
+<li>When C64+ simulator is launched, ctools seems to start. This causes issues in our automated testing. (DBGTRC-4927)</li>
+<li>CCS Crashes if xdsboard.dll isn't present (DBGTRC-4889)</li>
+<li>Missing parallel indicator in CCS Disassembly window for C66x (DBGTRC-4852)</li>
+<li>CC13x2/CC26x2 trying to boot during ET calibration (DBGTRC-4401)</li>
+<li>XDS220 "Configuring Debugger" hangs on slow Ethernet connections (DBGTRC-3595)</li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_8.4.0.00006_win_32.exe">32-bit Windows</a></li>(up to CCSv8.3.x)
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_8.4.0.00006_win_64.exe">64-bit Windows</a></li>(CCSv9.0.x and up)
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_8.4.0.00006_linux_x86_64.bin">64-bit Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_8.4.0.00006_osx_x86_64.dmg">macOS</a></li>
+</td>
+</tr>
+<tr class="even">
+<td>8.3.0.00003</td>
+<td>September 4, 2019</td>
+<td><strong>Delta from last release:</strong>
+<br> 
+<strong>New Features and Improvements</strong>
+<ul> 
+<li>Have TCK frequency more granular (DBGTRC-4969) </li>
+<li>installer reliability improvements (DBGTRC-5072) </li>
+<li>AM65x: add support for Cortex A53 Wait-in-Reset and Halt-on-Reset (DBGTRC-4440) </li>
+<li>Improve trace table usability for CoreTrace in Trace Visualization Toolkit (DBGTRC-4993)</li>
+</ul>
+<br>
+<strong>Bug-fixes</strong>
+<ul> 
+<li>Installer: Download and use latest Installbuilder version to fix windows security issue (DBGTRC-5126) </li>
+<li>Installer: Permissions on files in common/targetdb are incorrect (DBGTRC-5124) </li>
+<li>AM65x: AET property tree not being logged correctly (DBGTRC-5025) </li>
+<li>Unable to step over an ARM embedded BKPT instruction for Cortex M (DBGTRC-4992) </li>
+<li>AM65x: The programming of multiple trace filters on A53 is not working (DBGTRC-4960) </li>
+<li>AM57x: PTM decode (A15) skips over executed code (DBGTRC-4956) </li>
+<li>ETB Trace on ARM9 fails to decode (DBGTRC-4943) </li>
+<li>XDS100v3 sends 32 TCK clock pulses after reset (DBGTRC-4933) </li>
+<li>XDS110: Connection problems with LPRF targets in Drag-n-Drop mode (DBGTRC-4931) </li>
+<li>macOS: remove the XDS100v1 connection (DBGTRC-4873) </li>
+<li>In dual Debug Probe configurations, SWO Trace interface only selects the first COM port (DBGTRC-4845) </li>
+<li>Flushing XDS2xx DMA in SWO Receiver not working (DBGTRC-4830) </li>
+<li>AM65x: CPTracer2 and ETB library file write is slow for block data writes (DBGTRC-4820) </li>
+<li>XDS110 ET: stune CLI, device connection error after several measurements (DBGTRC-4600) </li>
+<li>AM65x: R5 Trace GUI allows filters with both include and exclude set (DBGTRC-4437) </li>
+<li>ti\_permissions\_install.sh may have a bug in the script (DBGTRC-4287) </li>
+<li>Ability to select XDS2xx probe by serial number (DBGTRC-4278) </li>
+<li>AM65x: Cortex R5 PC Trace missing Start of trace for single steps (DBGTRC-3999)</li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_8.3.0.00003_win_32.exe">32-bit Windows</a></li> (up to CCSv8.3.x)
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_8.3.0.00003_win_64.exe">64-bit Windows</a></li> (CCSv9.0.x and up)
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_8.3.0.00003_linux_x86_64.bin">64-bit Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_8.3.0.00003_osx_x86_64.app.zip">macOS</a></li>
+</td>
+</tr>
+<tr class="odd">
+<td>8.2.0.00004</td>
+<td>June 26, 2019</td>
+<td><u>Delta from last release</u>: 
+<br> 
+<strong>New Features and Improvements</strong>
+<ul> 
+<li>Support non-intrusive connect on Cortex M3/4 (DBGTRC-3610) </li>
+<li>AM65x: Add options to sync system trace capture to any debuggable core using cross triggering (DBGTRC-4284) </li>
+<li>XDS110: Expand capabilities of Drag-n-Drop feature (DBGTRC-4296) </li>
+<li>Uniquely identifying Radar boards with XDS110 device using EEPROM (DBGTRC-4329) </li>
+<li>AM654x: Add search and filter capability for HTML5 Trace Visualization tool for Cortex-A53 and Cortex-R5 (DBGTRC-4388) </li>
+<li>AM65x: Provide HTML5 Trace Visualization for exception trace capability for Cortex-M ITM Trace (DBGTRC-4407) </li>
+<li>Update Agama (CC26x2) ITM Trace with Exception Profiling and Runtime Trace display support (DBGTRC-4581) </li>
+<li>Improve XDS110 flash programming performance (DBGTRC-4602) </li>
+<li>ERAD Name changes for Tenor and Potenza (DBGTRC-4708) </li>
+<li>AM65x: Split Traffic Profiling data by CPTracer2 probes (DBGTRC-4770) </li>
+<li>AM65x : provide SW workaround for global time issue found on silicon impacting CPTracer2 system trace (DBGTRC-4799) </li>
+<li>XDS110 Pod must provide an option to continue supplying power after a debug/flash session is terminated (DBGTRC-4833) </li>
+<li>SWO Trace: Add Runtime Trace Display support with HTML5 visualization (DBGTRC-4857) </li>
+</ul>
+<br>
+<strong>Bug-fixes</strong>
+<ul> 
+</li><li>Link Register (LR) should not be defined in cortexA8\_NotVisible.xml file (DBGTRC-3891) 
+</li><li>SWO Trace and TM4C129/MSP432E: lower Sample Intervals cause JTAG instability (DBGTRC-3897) 
+</li><li>XDS110 pod fails to provide power to CC32xx devices during test connection (DBGTRC-3998) 
+</li><li>AM65x: Pro trace not working with multiple trace sources (DBGTRC-4371) 
+</li><li>AM5728: C66 count events for CPU cycles not working correctly (DBGTRC-4411) 
+</li><li>AM65x: R5 trace-in-range does not work when combined with triggers (start trace) (DBGTRC-4436) 
+</li><li>AM65x: A53 trace is on from start even when Trace-On is not specified (DBGTRC-4441) 
+</li><li>XDS220 Ethernet connection in SWD mode is broken (DBGTRC-4444) 
+</li><li>TMS192C2008 should not be in Target Configuration CPUs list (DBGTRC-4606) 
+</li><li>SWO Trace: Autodetection of the system clock frequency for MSP432P4111 does not work (DBGTRC-4617) 
+</li><li>Emupack does not inform user to run udev rules file install script (Linux only) (DBGTRC-4724) 
+</li><li>XDSDFU missed option for serial number (DBGTRC-4725) 
+</li><li>AM65x: Imprecise HWBP do not work consistently (DBGTRC-4742) 
+</li><li>AM65x: Switching from Raw Data view to Graph view on Traffic Profiling results in incorrect graph (DBGTRC-4771) 
+</li><li>AM65x: ETB stop on full does not work for CPTracer2 Traffic Profiling tool (DBGTRC-4773) 
+</li><li>Cortex M driver can issue wrong error message (DBGTRC-4797) 
+</li><li>AM65x: STP timestamp incorrect for standalone decoder (DBGTRC-4813) 
+</li><li>XDS110 does not acknowledge the Device ID of MSP432E411Y (DBGTRC-4841) 
+</li><li>AWR1843: Sync(Group) &rarr; Halt does not stop both cores (DBGTRC-4846) 
+</li><li>AM65x: Traffic Profiling - Address Range High Extension bits always defaulting to 0xFFFF (DBGTRC-4877) 
+</li><li>XDS110 pod throws exception on disconnect (DBGTRC-4880) 
+</li><li>[Device F2838x] Unable to load EABI .out symbols on the CLA core (DBGTRC-4882) 
+</li><li>AM65x: SoC Analysis &rarr; Open TDF not populating all fields for transaction logging (DBGTRC-4906) 
+</li><li>Failures when loading application on Agama (CC13/26xx) with Clock enabled in CCS (DBGTRC-4924)
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_8.2.0.00004_win_32.exe">32-bit Windows</a></li> (up to CCSv8.3.x)
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_8.2.0.00004_win_64.exe">64-bit Windows</a></li> (CCSv9.0.x and up)
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_8.2.0.00004_linux_x86_64.bin">64-bit Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation/exports/ti_emupack_setup_8.2.0.00004_osx_x86_64.app.zip">macOS</a></li>
+</td>
+</tr>
+<tr class="even">
+<td>8.1.0.00005</td>
+<td>March 21, 2019</td>
+<td><u>Delta from last release</u>: 
+<br> 
+<strong>New Features and Improvements</strong>
+<ul> 
+<li>Add CPU Subsystem Reset support to Cortex-M0 driver (DBGTRC-4620) </li>
+<li>Provide HTML5 Trace Visualization for ITM trace support for CC13/26x2 (Agama) device family (DBGTRC-4572) </li>
+<li>Add TPIU pin trace support for STM and CPTracer2 trace for AM65x device (DBGTRC-4344) </li>
+<li>Add support for identifying XDS emulators by blinking emulator LED (DBGTRC-3924) </li>
+<li>Add LAN XDS220 support to 64-bit Linux and Mac (DBGTRC-3645) </li>
+</ul>
+<br>
+<strong>Bug-fixes</strong>
+<ul> 
+<li>Trace decoder does not recognize PC change after "pop {pc}" instruction for Cortex-A15 and Cortex-A9 PTM trace (DBGTRC-4769) </li>
+<li>J6PLUS : C66x trace is broken (DBGTRC-4730) </li>
+<li>C28x: CCS variables view displays only lower 16 bits of 32 bit variable allocated to XAR register (DBGTRC-4713) </li>
+<li>XDS110 CMCU launchpads can no longer stream ITM data without debug connection (DBGTRC-4593) </li>
+<li>C66x Cache Analysis and Stall Profiling is showing zero-counts (DBGTRC-4592) </li>
+<li>Global Breakpoints not working consistently on Radar device (DBGTRC-4553) </li>
+<li>A15 PC Trace erroneously profiling code run outside of trace collection points (DBGTRC-4546) </li>
+<li>System reset failure on AM572x GPEVM (DBGTRC-4542) </li>
+<li>cJTAG connection is broken on Potenza EVMs (DBGTRC-4539) </li>
+<li>AM65x: switching between Throughput, Latency, and Transaction Logging use-cases doesn't work reliably and wrong use-case data may be displayed (DBGTRC-4494) </li>
+<li>Step Into on the PRU causes CCS to hang (DBGTRC-4490) </li>
+<li>Improve RAM download performance to improve flash times with XDS110 and XDS200 emulators (DBGTRC-4470) </li>
+<li>AM65x: Cortex-A53 and Cortex-R5 Profile/Coverage results in database are not tied to executable version, causing inconsistencies when executable is updated (DBGTRC-4438) </li>
+<li>Incorrect timestamp decode for CPTracer2 data with standalone decoder for AM65x device (DBGTRC-4379) </li>
+<li>The stop-on-full option not working for TBR on AM65x device (DBGTRC-4376) </li>
+<li>Cannot run past a hardware breakpoint when using SMP Debug on Vayu EVM (DBGTRC-4331) </li>
+<li>MSP DCDC Current profile has prolonged higher than expected current level for high to low current transitions (DBGTRC-4274) </li>
+<li>Add new TPI\_GEN commands to report back current instruction mode for ARM Cortex cores (DBGTRC-4260) </li>
+<li>Step Into on Keystone 2 PRU causes CCS to hang (DBGTRC-4166) </li>
+<li>Connecting to running PRU appears to hang (DBGTRC-4146) </li>
+<li>C2000: FPU registers undefined in Expressions view (DBGTRC-4145) </li>
+<li>Disable caching of ICEPICK:USERCODE register for devices with ICEPICK-C and ICEPICK-D (DBGTRC-4012) </li>
+<li>Group core fails to properly control the ARM/DSP cores of an OMAPL device (DBGTRC-3954) </li>
+<li>Emupack installer fails if installation directory has spaces in it (DBGTRC-3692) </li>
+<li>ETB PC trace does not produce expected results for 66AK2Hxx with NDK examples (DBGTRC-3593)</li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_8.1.0.00005_win_32.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">32-bit Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_8.1.0.00005_linux_x86_64.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">64-bit Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_8.1.0.00005_osx_x86_64.app.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">macOS</a></li>
+</td>
+</tr>
+<tr class="odd">
+<td>8.0.903.4</td>
+<td>November 30, 2018</td>
+<td><u>Delta from last release</u>: 
+<br> 
+<strong>New Features and Improvements</strong>
+<ul>  
+<li>Linux host support Cortex-A53 and Cortex-R5F ETM trace for AM65x device (DBGTRC-4338) </li>
+<li>Linux host support for CoreSignt STM and CPTracer2 trace for AM65x device (DBGTRC-4340) </li>
+<li>Linux host support for cache analysis use cases for AM65x device (DBGTRC-3740) </li>
+<li>TPIU pin trace support for Cortex-A53 and Cortex-R5F ETM trace for AM65x device (DBGTRC-4342) </li>
+</ul>
+<br>
+<strong>Bug-fixes</strong>
+<ul> 
+<li>ET noise on Agama LPs with JTAG jumpers mounted (DBGTRC-4353) </li>
+<li>Crash in AET on connect to all MSP430s on 8.3.0.00001-emu-02 (DBGTRC-4349) </li>
+<li>Profile Clock is not available for ARM9 of OMAP L138 when using CCSv8.x (DBGTRC-4334) </li>
+<li>XDS200 fails to work on macOS Mojave (DBGTRC-4328) </li>
+<li>TWP data source hanging on 560V2 STM decode (DBGTRC-4318) </li>
+<li>Using control-c in GDB to stop a program executing on MSP430 causes gdb agent to crash (DBGTRC-4304) </li>
+<li>DRA74x (J6Plus) Trace does not have a proper device ID to enable trace (DBGTRC-3912) </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_8.0.903.4_win_32.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_8.0.903.4_linux_x86_64.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">64-bit Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_8.0.903.4_osx_x86_64.app.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">macOS</a></li>
+</td>
+</tr>
+<tr class="even">
+<td>8.0.803.0</td>
+<td>October 1, 2018</td>
+<td><u>Delta from last release</u>: 
+<br> 
+<strong>New Features and Improvements</strong>
+<ul>  
+<li>Add support for monitor exit command to GDB agent (DBGTRC-4159) </li>
+</ul>
+<br>
+<strong>Bug-fixes</strong>
+<ul> 
+<li>Flash download speed for MSP430F5338A much slower than MSP430 FRAM devices (DBGTRC-3942) </li>
+<li>Master name not being decoded correctly for OCPWP (DBGTRC-3980) </li>
+<li>Exception while single stepping blocking call when running SMP application on Cortex M cores (DBGTRC-4185) </li>
+<li>Calling xds110reset in a loop with MSP432E4 eventualy causes a flash erase (DBGTRC-4241) </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_8.0.803.0_win_32.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_8.0.803.0_linux_x86_64.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">64-bit Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_8.0.803.0_osx_x86_64.app.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">macOS</a></li>
+</td>
+</tr>
+<tr class="odd">
+<td>8.0.27.9</td>
+<td>June 7, 2018</td>
+<td><u>Delta from last release</u>: 
+<br> 
+<strong>New Features and Improvements</strong>
+<ul>  
+<li>Enable ITM for CC1352/2652 </li>
+</ul>
+<br>
+<strong>Bug-fixes</strong>
+<ul>
+<li>C66xx cache analysis event columns are incorrect for L1D cache analysis (DBGTRC-3930) </li>
+<li>Debug software may open COM port without any connected XDS200 (DBGTRC-3922) </li>
+<li>XDS200: Cache Tag Ram View displays incorrect information on C66x cores (DBGTRC-3881) </li>
+<li>XDS110: CMSIS-DAP connection fails on IAR and Keil debuggers (DBGTRC-3861) </li>
+<li>When SWO Custom Core Trace usecase is enabled, setting HWBPs fails with "Target Access Error" message (DBGTRC-3860) </li>
+<li>Cortex M: Connect fails on targets in bad state (e.g. lock-up) (DBGTRC-3853, DBGTRC-3790) </li>
+<li>XDS110: Noise on CC1350'sTCK may cause target to halt in boot after reset (DBGTRC-3848) </li>
+<li>XDS110: Improve CMSIS-DAP performance and migrate to CMSIS-DAP v2.0 (DBGTRC-3794) </li>
+<li>XDS110: Firmware update may hang on Mac OSX High Sierra (DBGTRC-3789) </li>
+<li>XDS110: Noise on CC2652's TCK may cause target to halt in boot after reset (DBGTRC-3728) </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_8.0.27.9_win_32.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_8.0.27.9_linux_x86_64.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">64-bit Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_8.0.27.9_osx_x86_64.app.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">macOS</a></li>
+</td>
+</tr>
+<tr class="even">
+<td>7.0.188.0</td>
+<td>February 26, 2018</td>
+<td><u>Delta from last release</u>: 
+<br> 
+<strong>New Features and Improvements</strong>
+<ul>  
+<li>DBGTRC-3763: Add documentations for GTI APIs and ET APIs to the emupack </li>
+<li>DBGTRC-3598: ITM/SWO Trace - Add standalone decoder capability to decode data capture started in the middle of a trace stream needed for data streaming off chip without debugger connected. </li>
+<li>DBGTRC-3597: ITM/SWO Trace - Add user configurable option to decode data on channels as character or data </li>
+<li>DBGTRC-3699: Add new Cortex-M4F CPU type and show FPU register </li>
+</ul>
+<br>
+<strong>Bug-fixes</strong>
+<ul>
+<li>DBGTRC-3788: Debug context switches incorrectly when stepping Cortex M cores in SMP mode </li>
+<li>DBGTRC-3780: AM437x STM and TPIU pin trace fails to properly initialize </li>
+<li>DBGTRC-3741: EnergyTrace gives Bad data error when using Semihosting applications. </li>
+<li>DBGTRC-3735: Emupack installer may hang on Ubuntu 17.10 </li>
+<li>DBGTRC-3709: SWO Trace inadvertently selects the wrong COM port when both XDS2xx and XDS110 debug probes are connected. </li>
+<li>DBGTRC-3696: XDS110 UART data duplication error observed at 921600 baud rates </li>
+<li>DBGTRC-3683: CC1310/CC2650: XDS110 -260 error during or after firmware auto-update </li>
+<li>DBGTRC-3640: STM Trace does not work if Cross triggering is enabled </li>
+<li>DBGTRC-3609: Profile Clock event name mapping is incorrect for ARM9 of OMAP-L138 </li>
+<li>DBGTRC-3607: AM43x Funnel GEL does not comprehend funnel in front of TPIU </li>
+<li>DBGTRC-3606: XDS110 CMSIS-DAP support is slow (RAM download speed has been improved from 1.5 kB/sec to 15 kB sec) </li>
+<li>DBGTRC-3518: 66AK2Gx : Memory Transaction Logging advanced properties defaults to statistics </li>
+<li>DBGTRC-3517: SWO Trace hangs on CC3220 </li>
+<li>DBGTRC-3415: GTI Memory Write/Read requests with access size 1 (byte) keep using the access size value from a previous request</li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_7.0.188.0_win_32.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_7.0.188.0_linux_x86_64.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">64-bit Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_7.0.188.0_osx_x86_64.app.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">macOS</a></li>
+</td>
+</tr>
+<tr class="odd">
+<td>7.0.100.1</td>
+<td>December 12, 2017</td>
+<td><u>Delta from last release</u>:
+<ul>
+<li>SWO support for MSP432E </li>
+<li>DBGJTAG support for MSP432E </li>
+<li>XDS110 ITM support on launchpads without debugger connection </li>
+<li>CC2538 reset fixes with XDS100v3 </li>
+<li>Improved CPTracers analysis for Keyston2 deices </li>
+<li>Sync group (for SMP) workig with PC Trace enabled </li>
+<li>XDS110 firmware update for OpenOCD support </li>
+<li>Other misc. bug fixes related to stability and usability </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_7.0.100.1_win_32.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_7.0.100.1_linux_x86_64.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">64-bit Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_7.0.100.1_osx_x86_64.app.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">macOS</a></li>
+</td>
+</tr>
+<tr class="even">
+<td>7.0.48.0</td>
+<td>July 24, 2017</td>
+<td><u>Delta from last release</u>:
+<ul>
+<li>Energy Trace production software </li>
+<li>Digital state sampling for the CC13xx/CC26xx Launchpads with XDS110 </li>
+<li>Automatic firmware update for XDS200 </li>
+<li>DBGJTAG support to add "repeat" option for SWD integrity tests </li>
+<li>Cortex R5 trace viewer fixes for endianness </li>
+<li>Fix for 6638K2K system trace for EDMA transactions </li>
+<li>Fix for DRA7xx devices for EMIF throughput analysis as part of system trace </li>
+<li>Other misc. bug fixes related to stability, usability, and memory leaks </li>
+<li>XDS100 serial driver for Mac OSX. See ReadMe.txt file in ccs\_base/emulation/macos </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_7.0.48.0_win_32.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_7.0.48.0_linux_x86_64.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">64-bit Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_7.0.48.0_osx_x86_64.app.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">macOS</a></li>
+</td>
+</tr>
+<tr class="odd">
+<td>6.0.628.3</td>
+<td>May 23, 2017</td>
+<td><u>Delta from last release</u>:
+<ul>
+<li>XDS110 serial number programming fixes </li>
+<li>XDS110 Energy Trace overcurrent limit updated to be 100mA </li>
+<li>Usability improvements for DRA7xxx device with XDS560v2 Pro Trace </li>
+<li>Fixes for MSP432 debug connection during low power LPM4.5 mode with XDS100v2 </li>
+<li>Fixes for loading floating point data using "Load Memory" from the Memory Browser for C2000 CLA </li>
+<li>Fix libusb installation for OSX/linux </li>
+<li>Other misc. bug fixes related to stability, usability, and installer </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.628.3_win_32.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.628.3_linux_x86_64.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">64-bit Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.628.3_osx_x86_64.app.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">macOS</a></li>
+</td>
+</tr>
+<tr class="even">
+<td>6.0.579.0</td>
+<td>March 1, 2017</td>
+<td><u>Delta from last release</u>:
+<ul>
+<li>Variable address range tracing for Cortex M SWO </li>
+<li>Stellaris driver fixes for Debug Port Unlock </li>
+<li>Usability improvements for XDS110 and XDS200 firmware update progress </li>
+<li>Stability fixes for XDS110 related to probe supplied power and system reset </li>
+<li>Global breakpoints fixes for Keystone2 devices </li>
+<li>Fixes to make system trace (STM) stable for 66AK2G02 devices </li>
+<li>The disassembly output fixes for C66x related to SPLOOP and 16b instructions </li>
+<li>Sync run fixes for DRA7xxx device </li>
+<li>XDS100 FTDI window drivers to current version </li>
+<li>Other misc. bug fixes related to stability and usability </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.579.0_win_32.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.579.0_linux_x86_64.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">64-bit Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.579.0_osx_x86_64.app.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">macOS</a></li>
+</td>
+</tr>
+<tr class="odd">
+<td>6.0.504.4</td>
+<td>January 26, 2017</td>
+<td><u>Delta from last release</u>:
+<br>
+This is a patch release to the previous 6.0.504.2 version and it contains the following bug fixes: 
+<ul>
+<li>Fix for CCS crash issue when launching a Debug session on Windows 10. </li>
+<li>Fix for TBR connect issue for DRA7xx, TDA3x, and DRA72x devices which was the root cause for ETB trace issue in previous release. </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.504.4_win_32.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.504.4_linux_i386.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">32-bit Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.504.4_linux_x86_64.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">64-bit Linux</a></li>
+</td>
+</tr>
+<tr class="even">
+<td>6.0.504.2</td>
+<td>December 16, 2016</td>
+<td><u>Delta from last release</u>:
+<br> 
+This update contains improvements and bug fixes, including
+<ul> 
+<li>Various bug fixes and improvements for XDS110 emulator including the fix for the issue with connecting to two or more XDS110s from the same process and performance improvement for DSPs (c28x and c6000) with XDS110 emulator. </li>
+<li>Bug fixes for XDS200 emulator including the issue with XDS200 toggling nSRST pin during target launch. </li>
+<li>Various fixes in GDB agent for MSP430/MSP432. </li>
+<li>Fixed an issue with XDS emulators toggling TCK after pin reset. </li>
+<li>Updated trace related files to enable trace support for TDA3x v2.0 device due to JTAG ID changes. </li>
+<li>Various improvements for XDS110 ET support including support for long captures. </li>
+<li>Migration to Microsoft Visual Studio 2015 for all debug and trace components. </li>
+<li>Fixed an installation issue on CentOS 7. </li>
+</ul> 
+<strong>Note:</strong>
+<br>
+The Power and voltage selection properties for the XDS110 Connection in CCS are applicable only to the XDS110 Standalone Probe which supports configurable power supply. These properties do not affect embedded XDS110 Probes.
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.504.2_win_32.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.504.2_linux_i386.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">32-bit Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.504.2_linux_x86_64.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">64-bit Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.504.2_osx_x86_64.app.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">macOS</a></li>
+ 
+</td>
+</tr>
+<tr class="odd">
+<td>6.0.407.6</td>
+<td>October 7, 2016</td>
+<td><u>Delta from last release</u>:
+<br> 
+This update contains improvements and bug fixes, including
+<ul>
+<li>Added support for all ISAs for XDS110 emulator to the same level as for XDS100v2 emulator on windows, 64-bit linux and macOS platform. </li>
+<li>Various bug fixes and enhancements for XDS110 emulator, including the fix for the performance issue on CC3220 device when in JTAG mode, memory window issues for CortexM0+ device, and XDS110 driver installation issue on Windows XP. </li>
+<li>Updated CPU reset functionality for AR12xx/AR14xx to workaround silicon issue. </li>
+<li>Fixed the issue regarding system reset being de-asserted unexpectedly when pat or dbgauth tools are used. </li>
+</ul>
+<br> 
+<strong>Note:</strong>
+<br> 
+The Power and voltage selection properties for the XDS110 Connection in CCS are applicable only to the XDS110 Standalone Probe which supports configurable power supply. These properties do not affect embedded XDS110 Probes.
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.407.6_win_32.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.407.6_linux_i386.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">32-bit Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.407.6_linux_x86_64.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">64-bit Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.407.6_osx_x86_64.app.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">macOS</a></li>
+</td>
+</tr>
+<tr class="even">
+<td>6.0.407.3</td>
+<td>August 4, 2016</td>
+<td><u>Delta from last release</u>:
+<ul> 
+<li>Various bug fixes and enhancements for MSP432 and MSP430 devices, including the fix for the master unlock issue, addition of XDS200 support in the GDB agent with Flash support for MSP432, exposure of board reset at the DAP Level to recover from the JTAG connection issue during initial power-up, performance improvement for Flash performance through MSP430 GDB Agent, and LP Run support for MSP432. </li>
+<li>Various bug fixes for CC3200 SensorTags, including the fix for connect issue observed with DevPack on version 1.2 of CC3200 SensorTag. </li>
+<li>Various bug fixes for CC1310, including the fix for the CCS connect issue, </li>
+<li>Fixed XDS100v3 virtual com port issut on Linux. </li>
+<li>Various bug fixes and enhancements for XDS110 emulator, including fix for the occasional CCS hang issue with XDS110 emulator, and fix for 2-pin debug modes. </li>
+<li>Fixed more SMP and Global Breakpoint related operations for Cortex-A15 in multi-core devices (such as DRA7xx). </li>
+<li>Various fixes for Cortex-M drivers. </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.407.3_win_32.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.407.3_linux_i386.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.407.3_osx_x86_64.app.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">macOS</a></li>
+</td>
+</tr>
+<tr class="odd">
+<td>6.0.228.0</td>
+<td>April 29, 2016</td>
+<td><u>Delta from last release</u>:
+<ul> 
+<li>Updated XDS200 firmware to v1.0.0.8. </li>
+<li>Various bug fixes and enhancements for XDS110 emulator, including more fixes for XDS110 firmare auto-update feature and addition of the JTAG pin isolation feature etc. </li>
+<li>Various bug fixes and enhancements for CC3200, including bug fix for connect issues and improvement to error messages for system reset function in SWD mode etc. </li>
+<li>Various bug fixes and enhancements for c2000 devices, including adding the capability to wake the device up on connect for C28x devices, error message improvement for c2000 devices, and CCS disassembly view fix for c28x etc. </li>
+<li>Various bug fixes for Cortex-M drivers, including fix for CIO issue on Cortex-M4 in TDA2x and TDA3x devices. </li>
+<li>Various bug fixes for c6000 drivers. </li>
+<li>Various bug fixes related to trace, including Cortex-A15 trace issue on AM57x device, trace issue seen on Hercules devices, and ARM PTM trace issue with xds560 class emulator etc. </li>
+<li>Fixed SMP and Global Breakpoint related operations for Cortex-A15 in multi-core devices (such as TDA2x). </li>
+<li>Various bug fixes and enhancements for the installers. </li>
+<li>Added GDB support for MSP432/XDS110 configuration. </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.228.0_win_32.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.228.0_linux_i386.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.228.0_osx_x86_64.app.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">macOS</a></li>
+</td>
+</tr>
+<tr class="even">
+<td>6.0.83.1</td>
+<td>December 12, 2015</td>
+<td><u>This is only a patch release to the previous release with the following bug fixes:</u>:
+<ul> 
+<li>Bug fix for XDS200 emulator to enable SWO data over TDO pins for any 2-pin mode. </li>
+<li>Bug fix for Cortex-A15 SMP debug issue. </li>
+<li>Bug fix for the board reset hib failures on CC1350LP device </li>
+<li>Bug fix for XDS220 emulator regarding the warnings CCS reported for firmware update. </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.83.1_win_32.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.83.1_linux_i386.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li>
+</td>
+</tr>
+<tr class="odd">
+<td>6.0.83.0</td>
+<td>November 20, 2015</td>
+<td><u>Delta from last release</u>:
+<ul> 
+<li>Various bug fixes for devices containing c2000 and CLA. </li>
+<li>Various bug fixes and enhancements for Tiva devices on Mac OSx. Also added support for Tiva unlock to XDS debug probes. </li>
+<li>Various bug fixes and enhancements for devices containing Cortex-M and Cortex-R including the breakpoint issues on Mac OSx, enhancement to allow software breakpoint to be set/cleared during run-time for Cortex-M. </li>
+<li>Various bug fixes for issues seen on Mac OSx El Capitan (v10.11). </li>
+<li>Various bug fixes for SWO trace, added support for SWO trace for CC26xx and CC32xx devices. </li>
+<li>Various enhancements for XDS110 debug probe including cjtag support, GPIO configuration via debug software, performance improvement on Linux and Mac OSx and improvement to SWD mode to work with slower TCLK. </li>
+<li>Various enhancements to XDS2xx debug probe including the support for xds2xx\_conf utility on Mac OSx and the support to auto-detect the firmware version of XDS2xx debug probe and notify user if an update is available. </li>
+<li>Enhancement to give better error messages when there is issue with XDS debug probe connection. </li>
+<li>Bug fixes for various trace issues including c66xx trace,AM3359 statistics collector trace, DRA7x trace. </li>
+<li>Fixed target configuration issue for UCD3138 target (ARM7). </li>
+<li>Bug fix for compatibility issues with Blackhawk 510 products. </li>
+<li>Bug fix for the installation issue on Windows-XP. </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.83.0_win_32.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.83.0_linux_i386.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li>
+</td>
+</tr>
+<tr class="even">
+<td>6.0.14.5</td>
+<td>September 11, 2015</td>
+<td><u>Delta from last release</u>:
+<br> 
+This is a patch release to the 6.0.14.0 release. It includes the following bug fixes. 
+<ul>
+<li>System reset issue for Cortex-R targets. </li>
+<li>Program load issue for CC3200-ICDI on Linux. </li>
+<li>Performance degradation issue for XDS100v1 emulator on Win/Linux. </li>
+<li>Target connection failure with Tiva-ICDI on Linux. </li>
+<li>Cortex-M0+ Stack pointer corruption issue with xds2xx and xds560 debug probes. </li>
+<li>Bug fixes for OSx platform related to CC26xx, XDS110 firmware auto-update, XDS200 debug probe connection, </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.14.5_win_32.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.14.5_linux_i386.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li>
+</td>
+</tr>
+<tr class="odd">
+<td>6.0.14.0</td>
+<td>July 14, 2015</td>
+<td><u>Delta from last release</u>:
+<ul> 
+<li>Added debug support on OSx platform for devices containing c2000/CLA/Cortex-M/Cortex-R cores with XDS100v2/XDS100v3/XDS200/XDS110 emulators </li>
+<li>Added debug support for Tiva-ICDI on OSx platform </li>
+<li>Added debug support for CC3200-ICDI on Linux and OSx platforms </li>
+<li>Added automatic firmware update for XDS110 emulator </li>
+<li>Various bug fixes/enhancements for MSP432 including reconnect issue after system reset and disconnect,XDS110 COM port open issue, XDS110 UART performance improvement, enhancements to support better debug for low-power mode, enhancement to support DCO frequency tuning </li>
+<li>Various bug fixes/enhancements for MSP432 ET including disconnect JTAG when performing ET with Freerun, more accurate report on debug active/sleep mode when in an active ET debug session. </li>
+<li>Various bug fixes for CC26xx including board reset issue, UniFlash exceptions on linux, CCS crash issue while connecting with XDS110 in DFU mode </li>
+<li>Enhancements for CC3200 to support UART\_LOAD for SensorTag </li>
+<li>Various bug fixes/enhancements for Hercules including CCS configuration issue for RM46L852, data trace and variable trace issue, enhancement to expose additional pseudo registers for Cortex-R, enhancement to enable run time memory access for Cortex-R cores. </li>
+<li>Various bug fixes/enhancements for XDS GDB agent including program load issue on Cortex A8, enhancement to support multiple JTAG debuggers connected to the same PC. </li>
+<li>Fixed DM8148 STM pin trace initialization issue </li>
+</ul>
+<strong>Note:</strong>
+<br>
+Trace issue involving ARM A15 cores on Keystone2 devices. On some systems, attempting to perform a hardware trace operation on an ARM A15 core, when not all the ARM cores are powered up, may lead to a TPIU flushing error. In this case, please follow the following procedure.
+<ul> 
+<li>Connect to a DSP </li>
+<li>Load the gel file {installation_ directory}\ccsv6\ccs\_base\emulation\boards\xtcievmk2x\gel\xtcievmk2x.gel </li>
+<li>Select Scripts menu and Run any one of the TCI66x functions named TETRIS_POWER_UP_AND_PLL_INIT </li>
+<li>Connect to the A15 core in question </li>
+<li>Trace as normal </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.14.0_win_32.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_6.0.14.0_linux_i386.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li> 
+</td>
+</tr>
+<tr class="even">
+<td>5.1.642.0 <strong>(GDB Agent)</strong></td>
+<td>April 29, 2015</td>
+<td><u>Delta from last release</u>:
+<br>
+This is just a patch release to the last 5.1.641.0 build to include the following enhancements and bug fixes.
+<ul>
+<li>Added support for following GDB monitor commands. </li>
+<ul>
+<li><code>  'monitor reset' - reset the CPU</code> </li>
+<li><code>  'monitor halt'  - halt the CPU</code> </li>
+</ul>
+<li>Fixed issue where zero length memory write was generating an error. </li>
+<br>
+<strong>GDB Agent Patch install instructions</strong>
+<br>
+Unzip the files from the patch and copy to the directory ccsv6/ccs\_base/common/uscif
+</td>
+<td>
+<li><a href="./files/Gdb_agent_Windows_04292015.zip">Windows</a></li>
+<li><a href="./files/Gdb_agent_Linux_04292015.zip">Linux</a></li>
+</td>
+</tr>
+<tr class="odd">
+<td>5.1.641.0</td>
+<td>February 26, 2014</td>
+<td><u>Delta from last release</u>:
+<br>
+This is just a patch release to the last 5.1.636.0 build to include the following bug fixes.
+<ul>
+<li>Bug fix for some potential calibration issue with trace features in CCS. </li>
+<li>Bug fix for the flash erase issue with CC13xx/CC26xx devices when using XDS110 emulator in CCS. </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.641.0.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.641.0.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li> 
+</td>
+</tr>
+<tr class="even">
+<td>5.1.636.0</td>
+<td>December 18, 2014</td>
+<td><u>Delta from last release</u>:
+<ul>
+<li>Bug fix for DRA74x related to CCS connection issue for EVE</li>
+<li>Bug fix for DRA72x related to Device_ID read issue</li>
+<li>Bug fix for c64x related to profiling clock issue</li>
+<li>Various CCS bug fixes and improvements including CCS trace initialization time reduction, and CCS start-up issues, and CCS crash issues in multiple debug session environment</li>
+<li>Updated XDS560 Pro trace FPGA to resolve some intermittent data corruption issue during TPIU calibration</li>
+<li>JTAG and SWD debug support via XDS110 (previously known as XDS ICDI) emulator</li>
+<li>Various XDS200 bug fixes related to C28x flashing, very slow TCLK support, and Cortex-M SWO stability </li>
+</ul>
+<br>
+<strong>Notes:</strong>
+<ul>
+<li>Please check with debug probe vendor for XDS200 firmware updates for the most recent bug fixes!</li>
+<li><b><font color="#ff0000"> Compatibility break issue resolved.</font></b> This version of the emulation software package contains the fix for the compatibility break issue with XDS200 JTAG debugger on Windows in the last release. Side by side CCS installs which use different versions of XDS Emulation Software Package should work. There is no longer a requirement to update all CCS installs to this same version of the XDS Emulation Software Package in order to get XDS200 JTAG debugger on windows to work (which was required in the last release). </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.636.0.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.636.0.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li> 
+</td>
+</tr>
+<tr class="odd">
+<td>5.1.600.0</td>
+<td>October 21, 2014</td>
+<td><u>Delta from last release</u>:
+<ul>
+<li>Complete debug and trace (DSP, Cortex A15, Cortex M4, IVAHD and STM) support for DRA72x</li>
+<li>Complete debug and trace (DSP, Cortex M4, EVE, ISS/CTSET and STM) support for DRA73x</li>
+<li>Various bug fixes/enhancements and Reset enhancement for CC2538 device</li>
+<li>Various debug and trace related bug fixes (for Keystone II devices, TIVA launchpad, DRA7xx, CC32xx, Hercules devices etc.)</li>
+<li>Various debug driver fixes for Cortex M0+, Cortex-R, Cortex-A, Cortex M3, C28xx </li>
+</ul>
+<b><font color="#ff0000">Compatibility break.</font></b> This version of the emulation software package breaks compatibility with XDS200 JTAG debugger on Windows. If there are other CCS installs that use previous releases of the XDS Emulation Software Package, this update will turn XDS200 inoperative on them. Updating all CCS installs to this same version of the XDS Emulation Software Package will correct this issue (v5 and v6 are supported).
+<br>
+<strong>GDB Agent Patch install instructions</strong>
+<br>
+Unzip the files from the patch and copy to the directory ccsv6/ccs\_base/common/uscif 
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.600.0.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.600.0.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li> 
+<li><a href="./files/Gdb_agent_patch_10292014.zip">GDB Agent patch</a></li> 
+</td>
+</tr>
+<tr class="even">
+<td>5.1.507.1</td>
+<td>June 24, 2014</td>
+<td><u>Delta from last release</u>:
+<ul>
+<li>Fixed the issues in 5.1.507.0 release for C2000 devices for Windows.</li>
+</ul>
+</td>
+<td><li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.507.1.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li></td>
+</tr>
+<tr class="odd">
+<td>5.1.507.0</td>
+<td>May 22, 2014</td>
+<td><u>Delta from last release</u>:
+<ul>
+<li>Various debug and trace related stability fixes</li>
+<li>Added debug and ETM trace support for Hercules TMS570LC/RM57Lx devices</li>
+<li>Drivers updates for the latest Keystone II devices</li>
+<li>Complete debug and trace (DSP, Cortex, and STM) support for DRA7xx</li>
+<li>Updated Cortex M0+ debug drivers</li>
+<li>Fixed the stability issue (-261 error) for XDSICDIv1 </li>
+</ul>
+<strong>Note:</strong>
+<br>
+Please do not use the Windows version for C2000 devices.
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.507.0.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.507.0.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li>
+</td>
+</tr>
+<tr class="even">
+<td>5.1.450.0</td>
+<td>Mar 18, 2014</td>
+<td><u>Delta from last release</u>:
+<ul>
+</li><li>Improve initiation performance of 560v2 emulators</li>
+<li>Improve the performance on Cortex R/M memory block read and write</li>
+<li>Fix an issue that causes CCS to terminate when trying to configure SWO/ITM use cases with XDS560v2 emulator</li>
+<li>Address an issue in PRU Disassembly and Memory views that show inconsistent data in the 0x1000 address boundary</li>
+<li>Enable access to board level reset from inside CCS</li>
+<li>Solve a problem on PRU source steps to not skip JAL instruction </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.450.0.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.450.0.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li>
+</td>
+</tr>
+<tr class="odd">
+<td>5.1.402.0</td>
+<td>Jan 22, 2014</td>
+<td><u>Delta from last release</u>:
+<ul>
+<li>Add the ability to save memory in floating point format on 66x</li>
+<li>Address an issue to enable event counter on Cortex-Mx</li>
+<li>Resolve an issue to allow sync run and global breakpoints for Cortex-A15s on Keystone2 devices</li>
+<li>Fix a bug such that CP Tracer Property names in UBM now match the corresponding Decoder class names used in Trace Viewer</li>
+<li>Fix an issue in PRU disassembly view that branch instructions are decoded with word mode label addresses - Solve a problem on PRU source steps to not skip JAL instruction </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.402.0.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.402.0.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li>
+</td>
+</tr>
+<tr class="even">
+<td>5.1.340.0</td>
+<td>November 25, 2013</td>
+<td><u>Delta from last release</u>: 
+<ul>
+</li>Cortex-M0+ debug support on Windows and Linux </li>
+</li>Trace support (ETM) for Cortex-R4/ R5 </li>
+</li>Addresses an issue on ARM9 that causes JVM failure during connection </li>
+</li>Fixes a bug that causes errors when setting hardware breakpoint on Cortex-M3/4 based devices </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.340.0.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.340.0.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li></td>
+</tr>
+<tr class="odd">
+<td>5.1.320.0</td>
+<td>November 8, 2013</td>
+<td><u>Delta from last release</u>:
+<ul>
+<li>Add the ability to collect trace while CPU is running or a CPU hang condition for Cortex-A8, Cortex-A9 and Cortex-A15 based devices</li>
+<li>Improve program download speed up to 5x on Cortex-A8, Cortex-A9 and Cortex-A15 based devices for XDS200 and XDS560 class emulators - Semi-hosting support for Cortex-Mx based devices</li>
+<li>Address a C6000 DSP decoder issue that causes corrupted trace data in SPLOOP</li>
+<li>C6000 DSP decoder now decodes correctly SPLOOP with SPMASK instructions</li>
+<li>Fix a problem with Cortex-A8 generated STM software message </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.320.0.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.320.0.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li></td>
+</tr>
+<tr class="even">
+<td>5.1.275.0</td>
+<td>September 28, 2013</td>
+<td><u>Delta from last release</u>:
+<ul>
+<li>Cortex-A15 processor trace capture via XDS Pro Trace emulator.</li>
+<li>Provide the ability to show the floating point registers in the CPU register window on Stellaris devices</li>
+<li>Addresses the issue where installers will crash on exit when run on laptops which contain an NVidia Optimus-enabled display adapter.</li>
+<li>Address an issue in DSP trace decoder to display absolute branches properly.</li>
+<li>A Fix for issue that incorrectly display HWBP options for PRU </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.275.0.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.275.0.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li></td>
+</tr>
+<tr class="odd">
+<td>5.1.207.0</td>
+<td>August 9, 2013</td>
+<td><u>Delta from last release</u>:
+<ul>
+<li>Installation is migrated from InstallJammer to Install Builder </li>
+<li>Various bug fixes </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.207.0.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.207.0.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li></td>
+</tr>
+<tr class="even">
+<td>5.1.180.0 
+</td>
+<td>July 11, 2013</td>
+<td><u>Delta from last release:</u>
+<ul>
+<li>Serial Wire Viewer (SWV) real-time trace support for Cortex-M based devices with XDS200 (requires CCSv5.5)</li>
+<li>DRA7xx SoC system instrumentation and analysis: -Enable trace based statistical profiling and code coverage</li>
+<li>PRU: add ability to display byte registers -Address an issue with C28x TPI that causes initial connection problem</li>
+<li>A fix for a disassembly display error related to C28x parallel instructions</li>
+<li>A Fix for issue that may prevent connection to Cortex-M devices with IAR emulator</li>
+<li>Resolve an issue of ETB initialization on C6457 device</li>
+<li>A fix for sync run for Keystone II devices </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.180.0.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.180.0.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li></td>
+</tr>
+<tr class="odd">
+<td>5.1.114.0 
+</td>
+<td>May 7, 2013</td>
+<td><u>Delta from last release</u>
+<ul>
+<li>IPU SMP debug improvement </li>
+<li>Address issues with DSP even trace </li>
+<li>Cortex-M3 Breakpoint fixes </li>
+<li>C2000 disassembly support for VCU and TMU </li>
+<li>PRU debug enhancement for XDS200 class emulator </li>
+<li>XDS200 USB connection stability fixes </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.114.0.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.114.0.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li></td>
+</tr>
+<tr class="even">
+<td>5.1.92.0 </td>
+<td>April 17, 2013 </td>
+<td><u>Delta from last release</u>
+<ul>
+<li>SWD debug support for Cortex-M0, M3 and M4 based device with XDS200 </li>
+<li>Cortex-M0 JTAG based debug support </li>
+<li>SWO support with XDS200 (beta) </li>
+<li>CC2538 Mass Erase support </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.92.0.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.92.0.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li> 
+</td>
+</tr>
+<tr class="odd">
+<td>5.1.45.0</td>
+<td>March 8, 2013</td>
+<td><u>Delta from last release</u>
+<ul>
+<li>OMAP5 System trace support via XDS560v2 STM and ETB </li>
+<li>Cortex-A15 PTM trace to Trace Buffer (TBR) </li>
+<li>PRU debug enhancement and robustness improvement </li>
+<li>Few minor bug fixes related to PRU OMAP5 debug </li>
+</ul>
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.45.0.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_emupack_setup_5.1.45.0.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux</a></li>
+</td>
+</tr>
+<tr class="even">
+<td> Older versions</td>
+<td> </td>
+<td> Please contact <a href="mailto:emupackage@list.ti.com">XDS Emulation Package Support</a> or the [TI e2e forums](https://e2e.ti.com) for older releases.</td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+
+#XDS110 Support Utilities
+
+The XDS110 Support Utilities package provides drivers, tools, and firmware to ensure your XDS110 is up-to-date with the latest features and bug fixes. This package is a subset of the XDS Emulation Software package and only needed for users that do not have that package already installed. 
+The XDS110 Support Utilities package includes the following: the latest XDS110 firmware, the xdsdfu firmware update utility, the xds110reset utility, and OS support to enable the XDS110 on your system. 
+<table>
+<tbody>
+<tr class="odd">
+<td><strong>Release</strong></td>
+<td><strong>Date</strong></td>
+<td><strong>Release Notes</strong></td>
+<td><strong>Download</strong>
+ 
+</td>
+</tr>
+<tr class="even">
+<td>7.0.100.1</td>
+<td>December 12, 2017</td>
+<td><u>Initial release</u> 
+<br>
+Includes firmware version 2.3.0.11 for improved OpenOCD support.
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_xds110_setup_7.0.100.1_windows.exe&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_xds110_setup_7.0.100.1_linux_i386.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux 32-bit</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_xds110_setup_7.0.100.1_linux_x86_64.bin&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux 64-bit</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=ti_xds110_setup_7.0.100.1_osx_x86_64.app.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">macOS</a></li></td>
+</tr>
+</tbody>
+</table>
+
+#XDS110 Reset Download
+
+The XDS110 Reset utility provides board level reset (via nSRST pin) for the XDS110 debug probe. 
+<table>
+<tbody>
+<tr class="odd">
+<td><strong>Release</strong></td>
+<td><strong>Date</strong></td>
+<td><strong>Release Notes</strong></td>
+<td><strong>Download</strong>
+ 
+</td>
+</tr>
+<tr class="even">
+<td>6.0.228.0</td>
+<td>April 29, 2016</td>
+<td><u>Delta from last release</u>: 
+<br>
+Various bug fixes and enhancements for XDS110 emulator.
+</td>
+<td>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=xds110reset_6.0.228.0_win_32.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=xds110reset_6.0.228.0_linux_i386.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux 32-bit</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=xds110reset_6.0.228.0_linux_x86_64.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux 64-bit</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=xds110reset_6.0.228.0_mac_x86_64.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">macOS</a></li>
+</td>
+</tr>
+<tr class="odd">
+<td>6.0.142.0</td>
+<td>January 21, 2016</td>
+<td>Initial release</td>
+<td><li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=xds110reset_6.0.142.0_win_32.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Windows</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=xds110reset_6.0.142.0_linux_i386.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux 32-bit</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=xds110reset_6.0.142.0_linux_x86_64.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">Linux 64-bit</a></li>
+<li><a href="http://software-dl.ti.com/dsps/forms/self_cert_export.html?prod_no=xds110reset_6.0.142.0_mac_x86_64.zip&amp;ref_url=http://software-dl.ti.com/dsps/dsps_public_sw/sdo_ccstudio/emulation">macOS</a></li></td>
+</tr>
+</tbody>
+</table>
+
+#Manual CCS Installation
+
+If possible please install the emulation package into CCS using the procedure described at the [Updating CCS page](../ccs_updates.html) from within CCS. If you need to install an emulation package that is not available through that mechanism then this procedure will guide you through the steps to manually install an emulation package that has been downloaded (see prior section). Please be aware that when installing an emulation package manually the CCS <I>Help</I> &rarr; <I>About Code Composer Studio</I> &rarr; <I>Installation Details</I> dialog will not display the correct version of the emupack. 
+<br>
+<strong>Exit all CCS instances before proceeding</strong>
+<ol>
+<li>Run the installer as administrator (Windows) or root (Linux)
+<dl>
+<dt></dt>
+<dd>On Windows, right click on the downloaded file and select <I>Run as Administrator</I>
+</dd>
+<dd>On Linux, open a terminal, change to the directory where the file was downloaded and run
+<dl>
+<dt></dt>
+<dd><b>host$/:</b> <code>sudo &lt;ti_emupack_setup_M.m.mmm.m.bin&gt;</code>
+</dd>
+</dl>
+</dd>
+</dl></li>
+<li>Accept the license agreement</li>
+<li>For the destination folder use the full path up to either <I>ccsvX</I> or <I>ccs</I> directory (where ccs\_base is located)
+<dl>
+<dt></dt>
+<dd>For example, if the install directory is <strong>C:\ti\ccs1000</strong>, the directory chosen should be <strong>C:\ti\ccs1000\ccs</strong>
+</dd>
+</dl></li>
+<li>Select <I>Typical</I> installation</li>
+<li>Wait for the installation to complete and click <I>Finish</I></li>
+</ol>
+ 
+#Installation Independent of CCS
+In very special cases where you intend to install this software independently of CCS, follow all the steps above but, in step 4 above, choose a directory where CCS is <b>not</b> installed. 
+ 
+#Questions
+If you have questions, you may contact us at <a href="mailto:emupackage@list.ti.com">XDS Emulation Package Support</a> or the [TI e2e forums](https://e2e.ti.com).
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

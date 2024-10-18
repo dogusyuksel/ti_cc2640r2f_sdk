@@ -1,0 +1,55 @@
+General Options:
+  --ascii,-a                   Output ASCII hex format
+  --binary,-b                  Binary output format (for DSKs)
+  --boot,-boot                 Select boot mode
+  --bootorg,-bootorg=addr      Specify origin address or symbol of boot table ROM
+  --byte,-byte                 Output as bytes rather than target addressing
+  --divsel,-divsel=value       Specify the initial value for the DIVSEL register
+  --entrypoint,-e=addr         Specify entrypoint address or symbol name
+  --exclude,-exclude=section   Exclude section from hex conversion
+  --fill,-fill=val             Specify fill value
+  --gpio16,-gpio16             Specify table source as the GP I/O port, 16-bit mode
+  --gpio8,-gpio8,-can8         Specify table source as the GP I/O port, 8-bit mode
+  --help,-options,-h           Display help
+  --i2c8,-i2c8                 Specify I2C port as source of boot table loader
+  --i2cclkh,-i2cclkh=value     Specify the initial value for I2CCLKH register
+  --i2cclkl,-i2cclkl=value     Specify the initial value for the I2CCLKL register
+  --i2cpsc,-i2cpsc=value       Specify the initial value for I2CPSC register
+  --image,-image               Select image mode
+  --intel,-i                   Output Intel hex format
+  --linkerfill,-linkerfill     Include linker fill sections in images
+  --load_image                 Output Load Image Object format
+  --lospcp,-lospcp=value       Specify the initial value for the LOSPCP register
+  --map,-map=file              Specify map file name
+  --memwidth,-memwidth=width   Specify memory width
+  --motorola,-m[=1,2,3]        Output Motorola S hex format
+  --olength,-olength=num       Number of data items per line of hex output
+  --order,-order=LS,MS         Specify data ordering (endianness)
+  --outfile,-o=file            Specify output file names
+  --pllcr,-pllcr=value         Specify the initial value for the PLLCR register
+  --quiet,-quiet,-q            Quiet Operation
+  --romwidth,-romwidth=width   Specify rom width
+  --sci8,-sci8                 Specify table source as the SCI-A port, 8-bit mode
+  --section_name_prefix=string Prefix for load image object sections
+  --spi8,-spi8                 Specify table source as the SPI-A port, 8-bit mode
+  --spibrr,-spibrr=value       Specify the initial value for the SPIBRR register
+  --swapbytes,--sb             Swap output bytes for 16byte memwidth
+  --tektronix,-x               Output Extended Tektronix hex format
+  --ti_tagged,-t               Output TI-Tagged hex format
+  --ti_txt                     Output TI-TXT hex format
+  --xintcnf2,-xintcnf2=value   Specify the initial value for the XINTCNF2 register
+  --xintf16,-xintf16           Specify parallel XINTF stream, 16-bit mode
+  --xintf8,-xintf8             Specify parallel XINTF stream, 8-bit mode
+  --xtiming,-xtiming=value     Specify the initial value for the XTIMING register
+  --zero,-zero,-z              Zero based addressing
+
+Diagnostics Options:
+  --diag_error=id              Treat diagnostic <id> as error
+  --diag_remark=id             Treat diagnostic <id> as remark
+  --diag_suppress=id           Suppress diagnostic <id>
+  --diag_warning=id            Treat diagnostic <id> as warning
+  --display_error_number       Emit diagnostic identifier numbers
+  --issue_remarks              Issue remarks
+  --no_warnings                Suppress warnings
+  --set_error_limit=count      Set error limit to <count>
+

@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;
+      charset=windows-1252">
+    <title>Linker cmd file missing type=VECT_INIT entries</title>
+  </head>
+  <body>
+    <h2><span class="mw-headline" id="Typical_message">Typical message</span><span
+        class="mw-editsection"><span class="mw-editsection-bracket"></span></span></h2>
+    <p>"../lnk_msp430fr5969.cmd", line 182: error #10424-D: Linker
+      command file has no sections of type=VECT_INIT. Generating
+      interrupt pointers for all .intXX output sections. Recommend
+      updating your linker command file to the latest. </p>
+    <h2><span class="mw-headline" id="What_it_means">What it means</span><span
+        class="mw-editsection"><span class="mw-editsection-bracket"></span></span></h2>
+    <p>MSP linker 4.2.0 or later has been supplied with an older style
+      linker command file for MSP compiler version 4.1 or earlier. </p>
+    <h2><span class="mw-headline" id="Why_is_it_happening">Why is it
+        happening</span><span class="mw-editsection"><span
+          class="mw-editsection-bracket"></span></span></h2>
+    <p>The new MSP 4.2.0 linker feature for automatically plugging
+      unhandled interrupts with an ISR TRAP from the RTS requires
+      updated linker command files. Also, without the updated linker
+      command files, interrupt service routines provided by the user
+      will not get included in the file executable out file. </p>
+    <h2><span class="mw-headline" id="Remedy">Remedy</span><span
+        class="mw-editsection"><span class="mw-editsection-bracket"></span></span></h2>
+    <p>Upgrade your linker command files to the latest. Typically once
+      your CCS has the latest updates, the latest linker command files
+      can be found in the following folder path:
+      &lt;CCS_INSTALLATION_ROOT&gt;\ccs_base\msp430\include </p>
+    <p>Older style linker command file entries for interrupt vectors:
+      MSP 4.1 and earlier. </p>
+    <pre>   .int00  &nbsp;: {} &gt; INT00                /* MSP430 INTERRUPT VECTORS          */
+   .int01  &nbsp;: {} &gt; INT01
+   .int02  &nbsp;: {} &gt; INT02
+   etc int03 through int59
+   .int60  &nbsp;: {} &gt; INT60
+   .int61  &nbsp;: {} &gt; INT61
+   .int62  &nbsp;: {} &gt; INT62
+   .reset  &nbsp;: {} &gt; RESET              /* MSP430 RESET VECTOR               */
+</pre>
+    <p>Newer style linker command file entries for interrupt vectors:
+      MSP 4.2 and later. </p>
+    <pre>   /* MSP430 INTERRUPT VECTORS          */
+   .int00      &nbsp;: {}               &gt; INT00
+   etc .int01 through .int39
+   .int40      &nbsp;: {}               &gt; INT40
+   RTC         &nbsp;: { * ( .int41 ) } &gt; INT41 type = VECT_INIT
+   PORT2       &nbsp;: { * ( .int42 ) } &gt; INT42 type = VECT_INIT
+   USCI_B3     &nbsp;: { * ( .int43 ) } &gt; INT43 type = VECT_INIT
+   USCI_A3     &nbsp;: { * ( .int44 ) } &gt; INT44 type = VECT_INIT
+   USCI_B1     &nbsp;: { * ( .int45 ) } &gt; INT45 type = VECT_INIT
+   USCI_A1     &nbsp;: { * ( .int46 ) } &gt; INT46 type = VECT_INIT
+   PORT1       &nbsp;: { * ( .int47 ) } &gt; INT47 type = VECT_INIT
+   TIMER1_A1   &nbsp;: { * ( .int48 ) } &gt; INT48 type = VECT_INIT
+   TIMER1_A0   &nbsp;: { * ( .int49 ) } &gt; INT49 type = VECT_INIT
+   DMA         &nbsp;: { * ( .int50 ) } &gt; INT50 type = VECT_INIT
+   USCI_B2     &nbsp;: { * ( .int51 ) } &gt; INT51 type = VECT_INIT
+   USCI_A2     &nbsp;: { * ( .int52 ) } &gt; INT52 type = VECT_INIT
+   TIMER0_A1   &nbsp;: { * ( .int53 ) } &gt; INT53 type = VECT_INIT
+   TIMER0_A0   &nbsp;: { * ( .int54 ) } &gt; INT54 type = VECT_INIT
+   ADC12       &nbsp;: { * ( .int55 ) } &gt; INT55 type = VECT_INIT
+   USCI_B0     &nbsp;: { * ( .int56 ) } &gt; INT56 type = VECT_INIT
+   USCI_A0     &nbsp;: { * ( .int57 ) } &gt; INT57 type = VECT_INIT
+   WDT         &nbsp;: { * ( .int58 ) } &gt; INT58 type = VECT_INIT
+   TIMER0_B1   &nbsp;: { * ( .int59 ) } &gt; INT59 type = VECT_INIT
+   TIMER0_B0   &nbsp;: { * ( .int60 ) } &gt; INT60 type = VECT_INIT
+   UNMI        &nbsp;: { * ( .int61 ) } &gt; INT61 type = VECT_INIT
+   SYSNMI      &nbsp;: { * ( .int62 ) } &gt; INT62 type = VECT_INIT
+   .reset      &nbsp;: {}               &gt; RESET  /* MSP430 RESET VECTOR         */
+</pre>
+    <p>} </p>
+    <h2><span class="mw-headline" id="Risks.2C_Severity">Risks, Severity</span><span
+        class="mw-editsection"><span class="mw-editsection-bracket"></span></span></h2>
+    <p>User defined interrupt service routines will not be included in
+      the executable out file when using older style linker command
+      files with MSP compiler versions 4.2.x and later. </p>
+    <div class="mw-content-ltr" id="mw-content-text" dir="ltr" lang="en"><!-- 
+NewPP limit report
+CPU time usage: 0.008 seconds
+Real time usage: 0.010 seconds
+Preprocessor visited node count: 19/1000000
+Preprocessor generated node count: 24/1000000
+Post&#8208;expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+      <!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+      <!-- Saved in parser cache with key davincid_wikidb:pcache:idhash:33816-0!*!*!!*!*!* and timestamp 20160322222317 and revision id 173437
+ -->
+      <div class="hf-nsfooter">
+        <table style="background: white; border-width: 1px;
+          border-style: solid; width: 100%; text-align: left;
+          border-right-color: currentColor; border-bottom-color:
+          currentColor; border-left-color: currentColor;">
+          <tbody>
+            <tr>
+              <td width="305"><a class="image"
+                  href="http://processors.wiki.ti.com/index.php/File:E2e.jpg"><img
+                    alt="E2e.jpg"
+                    src="http://processors.wiki.ti.com/images/8/82/E2e.jpg"
+                    height="63" width="305"></a> </td>
+              <td><i>For technical support please post your questions at
+                  <a class="external free" href="http://e2e.ti.com/"
+                    rel="nofollow">http://e2e.ti.com</a>. Please post
+                  only comments about the article <b>Compiler/diagnostic
+
+                    messages/MSP430/10424</b> here.</i> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

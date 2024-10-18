@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="This page contains details about import a CCS 3.3 pjt file into CCS Eclipse"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Composer Studio Product Page">
+<meta name="product-link" content="https://www.ti.com/tool/CCStudio">
+
+<!-- Change the title text for your page -->
+<title>Importing CCSv3.3 Project to CCS Eclipse</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+[Chinese (中文)](https://software-dl.ti.com/ccs/esd/documents/ccs_legacy-project-import_cn.html)
+
+## Overview
+
+The **Import Legacy CCS Project Wizard** is a tool to help migrate a CCSv3.3 project to a CCS Eclipse project. The user simply specifies a CCSv3.3 pjt to import and the wizard will guide the user through the migration to generate a CCS Eclipse project and import it to the workspace. The migration is not always perfect and there is often some manual tweaking needed to the generated project afterward to fix any migration issues.
+
+## Requirements
+
+Since the generation of the CCS Eclipse project is often imperfect, it is common to have to fix various issues with the generated project to get it to build successfully. Having good expertise with the original CCSv3.3 project, and some knowledge of the [CCS Eclipse project management system](https://software-dl.ti.com/ccs/esd/documents/users_guide/index_project-management.html) will go a long way is quickly resolving these issues.
+
+## Example
+
+Let's walkthrough a step-by-step example of using the wizard to import an example CCSv3.3 project and show some of the manual tweaking needed afterward to fix some migration issues.
+
+First, launch the wizard by selecting *Project &rarr; Import Legacy CCSv3.3 Project*.
+
+**Select Legacy CCS Project**: In the wizard dialog box that appears, specify the CCSv3 pjt file to import. A project can be explicitly specified by either using the **Browse...** button with the **Select project** option, or using the **Select search-directory** option to select a folder to recursively search for CCSv3 projects to import. If the latter option is used, any eligible projects that can be imported will appear in the **Discovered legacy projects** list. After the project(s) is/are selected, there is an option to either **Copy projects into workspace** (which will import the project and associated files into the CCS Eclipse workspace) or to **Keep original location** for each project (which will import the project to the same directory as the original pjt file). It is up to the user to determine which option is best. For the first import attempt, it is likely better to choose the latter option. This is because many CCS 3.3 pjt projects are designed to reside in a certain location in the existing directory structure. Moving it outside this directory structure can cause more issues with various search paths. If the latter option is indeed chosen, it is recommended to select the option to **Create a subfolder for each Eclipse project (recommended)**. This is to cleanly separate the new generated CCS Eclipse project from the existing legacy files in the directory.
+
+In the example below, the **gsmhrc64_enc.pjt** example project will be explicitly selected and the CCS Eclipse project files will be created in a subfolder of the original location:
+
+![](./images/ccs3pjtimport01.png)
+
+**Select Compiler**: The next step is to specify the compiler version to use. The default version selected to be will closest matching version that is currently discovered by the CCS Eclipse installation. Selecting on the project in the list and hitting the **Edit...** button will launch another dialog to have CCS Eclipse discover another compiler version. In the example below, the default version is used:
+
+![](./images/ccs3pjtimport02.png)
+
+[[y Which compiler version to use?
+It is likely that the original *.pjt is using a version of the compiler older than what is initially available with CCS Eclipse. It is up to the user to determine if this newer version of the compiler will be compatible or not with the imported project. A newer version of the compiler can have valuable bug fixes and performance improvements. 
+]]
+
+**Enable DSP/BIOS Tools Support**: By default, the wizard will next scan the project to determine if the pjt is a DSP/BIOS project. If it is, then DSP/BIOS support will be enabled for it in CCS Eclipse. There is also an option to enable DSP/BIOS support for all projects, regardless of if the original pjt file used DSP/BIOS or not. The default option is usually the recommended option here.
+
+![](./images/ccs3pjtimport03.png)
+
+[[y Current versions of CCS does not come with DSP/BIOS!
+It can be accessed from the [App Center](./ccs_app_center.html). 
+]]
+
+**Set Advanced Options**: The next step will allow the option to specify a custom **Common root** [project variable](./ccs_portable-projects.html#variables). If one is not specified here, then a default one will be created and used.
+
+![](./images/ccs3pjtimport04.png)
+
+Once all the steps for the wizerd are completed, pressing the **Finish** button will complete the import and the newly generated CCS Eclipse project will appear in the **Project Explorer** view. Any migration issues encountered will be logged in a file called **migration.log** in the project location.
+
+![](./images/ccs3pjtimport05.png)
+
+It is recommended to open this log to check for any issues. For the example below, we can see two potential issues:
+
+![](./images/ccs3pjtimport06.png)
+
+The first issue is: 
+
+<pre>
+!WARNING: Source file 'rts64pluse.lib' has been linked into the project relative to variable 'CG_TOOL_ROOT'.  It is recommended, however, that you avoid linking resources from the build-tool directory - consider using build-options to reference include-files and libraries.
+
+</pre>
+
+This is actually sound advice. Libraries should be referenced in the linker options, instead of being explicitly added to the project. This goes for not just **rts64pluse.lib**, but also for the other library in the example project - **gsmhrenc_tii.l64Pe**.
+
+The resolution is to remove the links to them from the **Project Explorer** view by selecting them and deleting them (*right click &rarr; Delete*). Then open the project properties (*Project &rarr; Properties*),  go to the **File Search Path** linker options, and add the libraries in the **–-library** field. 
+
+![](./images/ccs3pjtimport07.png)
+
+Note that for **rts64pluse.lib**, the full path to it was not needed. That is because the location of the library is already in the **-–search_path** field below it (**{$CG_TOOL_ROOT}/lib**).
+
+The second issue in the log is regarding a deprecation option in the newer compiler version. Depending on the option, this may need to be addressed or ignored. In this case, it can be ignored.
+
+Next step is to build the project. There may still be some unresolved issues. However, it best to try building the project first to expose them.
+
+For the example, the build fails immediately with the below error:
+
+<pre>
+Buildfile generation error occurred..
+Product XDAIS v1.0.0 is not currently installed and no compatible version is available. Please install this product or a compatible version.
+Build stopped..
+
+</pre>
+
+The original pjt referenced an old XDAIS version not supported in current CCS version. This unsupported product can be removed from the project:
+
+![](./images/ccs3pjtimport08.png)
+
+After applying the changes and rebuilding the project, the XDAIS error will disappear. However, it is replaced by two new ones regarding the inability to find the **xdas.h** and **std.h** header files:
+
+<pre>
+fatal error #5: could not open source file "xdas.h"
+
+</pre>
+
+<pre>
+fatal error #5: could not open source file "std.h"
+
+</pre>
+
+**xdas.h** is part of the XDAIS package. This package does not come with CCS Eclipse. One option is to use the one from CCSv3 in <tt>[CCS3 INSTALL DIR]\C6000\xdais\include</tt>
+
+std.h can be found as part of the DSP/BIOS package. Again, one option is to use the one from CCSv3 in <tt>[CCS3 INSTALL DIR]\bios_[version]\packages\ti\bios\include</tt>
+
+The example below adds both paths to the **-–include_path** field in the **Include Options** for the project.
+
+![](./images/ccs3pjtimport09.png)
+
+After applying the changes and rebuilding the project, the error will disappear. However, linker warning #16002-D will repeatedly appear. Something along the lines of:
+
+<pre>
+warning #16002-D: build attribute vendor section TI missing in "C:/Temp/ccs3pjtimport/C64x+/GSMHR_1x/GSMHR_1x_ROOTDIR/gsm_hr/c64x/make/gsmhrenc_tii.l64Pe<GSMHR_TII_fnBest_CG_2.ol>": compatibility cannot be determined
+
+</pre>
+
+Note that the build will be successful since the above is only a warning and not an error. The question is if the warning can be ignored. This particular warning is documented [here](./c2000_c28x-compiler-error-and-warning-messages.html#warning-build-attribute-vendor-section-ti-missing-in-library-or-object-compatibility-cannot-be-determined). It is up to the user to decide what to do with this warning.
+
+With the successful build, the project appears to be successfully migrated and imported into CCS Eclipse. There is still some things that can be done to improve the project (such as eliminating absolute paths in the project properties, fixing other broken links and build variables, etc), but at least the initial “first pass” is complete.
+
+## Summary
+
+As shown in the example above, the legacy import wizard is far from perfect. In some cases, it is actually easier to create a new CCS Eclipse project from scratch instead of having to manually try cleaning up the result of the attempted migration by the import wizard. In either case, *it is strongly recommended that the person doing the migration has both good expertise about the original project, and good knowledge on both CCSv3.3 and the new CCS Eclipse environments*. A person with all this expertise will be able to ensure a successfully migrated project with the least headache/effort.
+
+   
+<!-- End of markdown source -->
+ 
+<div id="footer"></div>
+</xmp>
+</html>

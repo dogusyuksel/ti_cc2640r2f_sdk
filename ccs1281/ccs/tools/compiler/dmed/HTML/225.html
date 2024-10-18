@@ -1,0 +1,23 @@
+<html><body>
+<h2> Typical message </h2>
+
+<pre>
+ "example.c", line 6: warning #225-D: function declared implicitly
+</pre>
+
+<h2> What it means </h2>
+
+<p>A function call at the specified line number is to a function that was not previously declared.  This is dangerous because the compiler is forced to make assumptions about the function's arguments and the return value, which may not match the actual function definition.</p>
+
+<h2> Why is it happening </h2>
+
+<p>There was no function declaration or definition seen before the function was used.  If the function is declared in a header file, the header file was not included before the function was used.  Another possibility is that the function is defined later in the file, after the use is seen.</p>
+
+<h2> Remedy </h2>
+
+<p>If a declaration of the function exists in a header file (the common case for library functions) make sure that the header file is included at the beginning of the file before the function is used.  Otherwise, add a declaration of the function prior to its use.</p>
+
+<h2> Risks, Severity </h2>
+
+<p>This is a dangerous warning, because if the compiler's guess does not match the actual function definition, the program will most likely have a difficult to diagnose run-time error.</p>
+</body></html>

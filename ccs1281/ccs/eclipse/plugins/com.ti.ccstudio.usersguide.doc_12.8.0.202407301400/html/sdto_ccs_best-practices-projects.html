@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="Best practies for creating Code Composer Studio projects to enable sharing amongst teams."> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="Code Composer Studio">
+<meta name="product-link" content="https://www.ti.com/tool/CCSTUDIO">
+
+<!-- Change the title text for your page -->
+<title>Best Practices for Creating and Sharing projects</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+There are many different ways to create, maintain and share CCS projects among teams. While best procedures will depend largely on the size and scope of projects and local build environment, this document captures a few general guidelines and best practices to consider when creating and sharing projects.
+
+More details on each of the below topics is available in the linked documents.
+
+##Portability
+
+When creating projects, make sure they are portable so they can be easily shared among multiple users. The key to portable projects is to avoid absolute paths. 
+
+Refer to this [Portable Projects](ccs_portable-projects.html) page for more details. 
+
+In addition, if the project needs to be portable across different operating systems:
+- Use forward slashes in all settings and options
+- Use lower-case characters for file/directory names
+
+
+##Build Configurations
+
+Use a single project with multiple build configurations (wherever applicable) to manage builds that have the same code base but need to built for different device variants, build options, etc.
+
+Refer to this [Build Configurations](./users_guide/ccs_project-management.html#build-configurations) page for more details on when this is applicable and how to use it.
+
+##Debug considerations
+
+Keep files (source, include, libraries) that will be shared among multiple projects in a common folder and link that folder to the multiple projects, rather than keeping the folder physically within one project and linking to other projects. The latter method may cause confusion with source code correlation when debugging using breakpoints. 
+
+## Source Control
+
+When working in teams, it is quite common to use source control software/plug-ins for organizing and sharing projects. 
+
+Refer to these documents for more details on source control integration with CCS, which CCS project files to check into source control, etc.
+
+[Source Control with CCS](sdto_ccs_source-control.html)<br>
+[Using Git with CCS](sdto_ccs_git-with-ccs.html)
+
+[[b Tip:
+Do not share workspaces to source control. Workspaces are used to store user settings and preferences which is typically not shared with other users. If you are new to CCS/Eclipse concepts, [this page](users_guide/ccs_overview.html#eclipse) provides an overview of Eclipse concepts, including workspaces and projects.
+]]
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

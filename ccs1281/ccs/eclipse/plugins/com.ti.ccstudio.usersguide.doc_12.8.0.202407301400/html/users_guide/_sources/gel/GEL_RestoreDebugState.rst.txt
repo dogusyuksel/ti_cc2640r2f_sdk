@@ -1,0 +1,35 @@
+GEL_RestoreDebugState
+---------------------
+
+Restores the debug state that was most recently removed from the target.
+
+**Format**
+
+**GEL_RestoreDebugState();**
+
+**Parameters**
+
+None
+
+**Description**
+
+This function has the same behavior as the Restore Debug State option in
+the Debug menu. Both restore the debug state to the target that was most
+recently removed due to a target being disconnected, or by
+GEL_RemoveDebugState(). The debug state includes hardware and software
+breakpoints, global breakpoints, profiling state, and anything else that
+might effect target execution.
+
+**Synchronous**
+
+Synchronous from GEL: No
+
+Completely synchronous: No
+
+**Example**
+
+GEL_RestoreDebugState();
+
+**Related Topics**
+
+`GEL_RemoveDebugState <GEL_RemoveDebugState.html>`__

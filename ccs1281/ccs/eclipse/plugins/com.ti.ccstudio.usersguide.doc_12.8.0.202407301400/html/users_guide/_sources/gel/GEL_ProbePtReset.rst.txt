@@ -1,0 +1,32 @@
+GEL_ProbePtReset()
+------------------
+
+Deletes all breakpoints.
+
+**Syntax**
+
+**GEL_ProbePtReset();**
+
+**Parameters**
+
+None.
+
+**Description**
+
+This function can be used to remove all currently set breakpoints.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: No
+
+**Example**
+
+GEL_ProbePtReset();
+
+**Related Topics**
+
+`GEL_ProbePtAdd <GEL_ProbePtAdd.html>`__
+
+`GEL_ProbePtDel <GEL_ProbePtDel.html>`__

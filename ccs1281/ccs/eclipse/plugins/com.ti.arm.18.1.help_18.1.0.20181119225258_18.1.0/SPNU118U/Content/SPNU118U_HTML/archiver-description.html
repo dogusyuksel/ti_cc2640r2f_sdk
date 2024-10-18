@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset="utf-8" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>7 Archiver Description</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../Resources/Stylesheets/headerfooter.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="content">
+            <div id="contentBody">
+                <div class="row collapse">
+                    <div class="sideContent">
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                    <div id="loadContentArea">
+                        <div class="c12 docHeader">
+                            <div class="c4 docTitle">
+                                <p>
+                                    <strong>ARM Assembly
+							Language Tools
+			v18.1.0.LTS User's Guide</strong>
+                                    <br />
+                                    <span id="litnumber">SPNU118U</span> - REVISED JANUARY 2018</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="odsHeader">
+                        <p class="pdf">
+                            <a class="downloadPDF" href="http://www.ti.com/litv/SPNU118U" target="_new">Download PDF</a>
+                        </p>
+                    </div>
+                    <div id="loadContentArea1">
+                        <div class="subsection">
+                            <h2 id="STDZ0740697">
+                                <a MadCap:generatedBookmark="TOC" name="7_Archiver_Description">
+                                </a>
+                                <span class="section-label">7 </span>Archiver Description</h2>
+                            <div class="subsection">
+                                <p> The <span>ARM </span> archiver lets you combine several individual files into a single archive file. For example, you can collect several macros into a macro library. The assembler searches the library and uses the members that are called as macros by the source file. You can also use the archiver to collect a group of object files into an object library. The linker includes in the library the members that resolve external references during the link. The archiver allows you to modify a library by deleting, replacing, extracting, or adding members.</p>
+                                <p>On architectures like ARM, it is often desirable to have multiple versions of the same object file libraries, each built with different sets of build options. When several versions of a single library are available, the library information archiver can be used to create an index library of all the object file library versions. This index library is the used in the link step in place of a particular version of your object file library.</p>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0740696">
+                                    <a MadCap:generatedBookmark="TOC" name="7.1_Archiver_Overview">
+                                    </a>
+                                    <span class="section-label">7.1 </span>Archiver Overview</h3>
+                                <p>You can build libraries from any type of files. Both the assembler and the linker accept archive libraries as input; the assembler can use libraries that contain individual source files, and the linker can use libraries that contain individual object files. </p>
+                                <p>One of the most useful applications of the archiver is building libraries of object modules. For example, you can write several arithmetic routines, assemble them, and use the archiver to collect the object files into a single, logical group. You can then specify the object library as linker input. The linker searches the library and includes members that resolve external references. </p>
+                                <p>You can also use the archiver to build macro libraries. You can create several source files, each of which contains a single macro, and use the archiver to collect these macros into a single, functional group. You can use the .mlib directive during assembly to specify that macro library to be searched for the macros that you call. <span class="crossreference"><a href="macro-language-description.html#STDZ0730691">Section 6</a></span> discusses macros and macro libraries in detail, while this chapter explains how to use the archiver to build libraries.</p>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ07491">
+                                    <a MadCap:generatedBookmark="TOC" name="7.2_The_Archiver's_Role_in_the_Software_Development_Flow">
+                                    </a>
+                                    <span class="section-label">7.2 </span>The Archiver's Role in the Software Development Flow</h3>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="#STDZ0742414">Figure 7-1</a>
+                                    </span> shows the archiver's role in the software development process. The shaded portion highlights the most common archiver development path. Both the assembler and the linker accept libraries as input.</p>
+                                <div class="figure">
+                                    <span class="caption" id="STDZ0742414">
+                                        <span class="figure-label">Figure 7-1 </span>The Archiver in the <span>ARM</span> Software Development Flow</span> <img alt="archflow_pnu118.gif" itemprop="image" src="ods/images/SPNU118U/archflow_pnu118.gif" title="The Archiver in the&#xA;    ARM&#xA;    Software Development Flow" /> </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0743087">
+                                    <a MadCap:generatedBookmark="TOC" name="7.3_Invoking_the_Archiver">
+                                    </a>
+                                    <span class="section-label">7.3 </span>Invoking the Archiver</h3>
+                                <p> To invoke the archiver, enter:</p>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col align="left" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left"> <b> <span>armar</span></b>[-]<i>command</i> [<i>options</i>] <i>libname</i> [<i>filename<sub>1</sub> <![CDATA[ ]]></i> ... <i>filename<sub>n</sub> <![CDATA[ ]]></i>]</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="subsection">
+                                    <table class="tabbedtext">
+                                        <colgroup>
+                                            <col align="left" />
+                                            <col align="left" />
+                                            <col align="left" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b> <span>armar</span></b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">is the command that invokes the archiver.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top">[-]<i>command</i></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top"> tells the archiver how to manipulate the existing library members and any specified. A command can be preceded by an optional hyphen. You must use one of the following commands when you invoke the archiver, but you can use only one command per invocation. The archiver commands are as follows:</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>@</b></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> uses the contents of the specified file instead of command line entries. You can use this command to avoid limitations on command line length imposed by the host operating system. Use a ; at the beginning of a line in the command file to include comments. (See <span class="crossreference"><a href="#STDZ0742731">Example 7-1</a></span> for an example using an archiver command file.)</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>a</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> adds the specified files to the library. This command does not replace an existing member that has the same name as an added file; it simply<i> appends</i> new members to the end of the archive.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>d</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> deletes the specified members from the library. </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>r</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> replaces the specified members in the library. If you do not specify filenames, the archiver replaces the library members with files of the same name in the current directory. If the specified file is not found in the library, the archiver adds it instead of replacing it.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>t</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> prints a table of contents of the library. If you specify filenames, only those files are listed. If you do not specify any filenames, the archiver lists all the members in the specified library. </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>x</b></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> extracts the specified files. If you do not specify member names, the archiver extracts all library members. When the archiver extracts a member, it simply copies the member into the current directory; it<i> does not </i>remove it from the library. </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>options</i> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">In addition to one of the<i> commands,</i> you can specify options. To use options, combine them with a command; for example, to use the a command and the s option, enter -as or as. The hyphen is optional for archiver options only. These are the archiver options:</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>-q</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> (quiet) suppresses the banner and status messages. </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>-s</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> prints a list of the global symbols that are defined in the library. (This option is valid only with the a, r, and d commands.) </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>-u</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> replaces library members only if the replacement has a more recent modification date. You must use the r command with the -u option to specify which members to replace. </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>-v</b> <![CDATA[ ]]></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> (verbose) provides a file-by-file description of the creation of a new library from an old library and its members. </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>libname</i></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">names the archive library to be built or modified. If you do not specify an extension for<i> libname,</i> the archiver uses the default extension <i>.lib</i>.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>filenames</i></td>
+                                                <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">names individual files to be manipulated. These files can be existing library members or new files to be added to the library. When you enter a filename, you must enter a complete filename including extension, if applicable.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <span class="note">
+                                    <p class="note_title">NOTE</p>
+                                    <b>Naming Library Members</b>
+                                    <p> It is possible (but not desirable) for a library to contain several members with the same name. If you attempt to delete, replace, or extract a member whose name is the same as another library member, the archiver deletes, replaces, or extracts the first library member with that name.</p>
+                                </span>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0748230">
+                                    <a MadCap:generatedBookmark="TOC" name="7.4_Archiver_Examples">
+                                    </a>
+                                    <span class="section-label">7.4 </span>Archiver Examples</h3>
+                                <p> The following are examples of typical archiver operations:</p>
+                                <ul>
+                                    <li value="1">If you want to create a library called function.lib that contains the files sine.obj, cos.obj, and flt.obj, enter:</li>
+                                    <code>
+                                        <b> armar -a function sine.obj cos.obj flt.obj</b>
+                                    </code>
+                                    <p>The archiver responds as follows:</p>
+                                    <code>    ==&gt; new archive 'function.lib' ==&gt; building new archive 'function.lib'</code>
+                                    <li value="2">You can print a table of contents of function.lib with the -t command, enter:</li>
+                                    <code>
+                                        <b> armar -t function</b>
+                                    </code>
+                                    <p>The archiver responds as follows:</p>
+                                    <code>             FILE NAME SIZE DATE
+ ---------------- ----- ------------------------
+ sine.obj 300 Wed Jun 15 10:00:24 2011
+ cos.obj 300 Wed Jun 15 10:00:30 2011
+ flt.obj 300 Wed Jun 15 09:59:56 2011</code>
+                                    <li value="3">If you want to add new members to the library, enter:</li>
+                                    <code>
+                                        <b> armar -as function atan.obj</b>
+                                    </code>
+                                    <p>The archiver responds as follows:</p>
+                                    <code>      ==&gt; symbol defined: '_sin'
+ ==&gt; symbol defined: '$sin'
+ ==&gt; symbol defined: '_cos'
+ ==&gt; symbol defined: '$cos'
+ ==&gt; symbol defined: '_tan'
+ ==&gt; symbol defined: '$tan'
+ ==&gt; symbol defined: '_atan
+ ==&gt; symbol defined: '$atan'
+ ==&gt; building archive 'function.lib'</code>
+                                    <p>Because this example does not specify an extension for the libname, the archiver adds the files to the library called function.lib. If function.lib does not exist, the archiver creates it. (The -s option tells the archiver to list the global symbols that are defined in the library.)</p>
+                                    <li value="4">If you want to modify a library member, you can extract it, edit it, and replace it. In this example, assume there is a library named macros.lib that contains the members push.asm, pop.asm, and swap.asm.</li>
+                                    <code>
+                                        <b>armar -x macros push.asm</b>
+                                    </code>
+                                    <p>The archiver makes a copy of push.asm and places it in the current directory; it does not remove push.asm from the library. Now you can edit the extracted file. To replace the copy of push.asm in the library with the edited copy, enter:</p>
+                                    <code>
+                                        <b>armar -r macros push.asm</b>
+                                    </code>
+                                    <li id="ID-command" value="5">If you want to use a command file, specify the command filename after the -@ command. For example:</li>
+                                    <code>
+                                        <b>armar -@modules.cmd</b>
+                                    </code>
+                                    <p>The archiver responds as follows:</p>
+                                    <code>      ==&gt; building archive 'modules.lib'</code>
+                                    <p>
+                                        <span class="crossreference">
+                                            <a href="#STDZ0742731">Example 7-1</a>
+                                        </span> is the modules.cmd command file. The r command specifies that the filenames given in the command file replace files of the same name in the modules.lib library. The -u option specifies that these files are replaced only when the current file has a more recent revision date than the file that is in the library.</p>
+                                </ul>
+                                <div class="example">
+                                    <h4 id="STDZ0742731">
+                                        <a MadCap:generatedBookmark="TOC" name="Example_7-1_Archiver_Command_File">
+                                        </a>
+                                        <span class="example-label">Example 7-1 </span>Archiver Command File</h4>
+                                    <code>; Command file to replace members of the
+; modules library with updated files
+; Use r command and u option:
+ru
+; Specify library name:
+modules.lib
+; List filenames to be replaced if updated:
+align.asm
+bss.asm
+data.asm
+text.asm
+sect.asm
+clink.asm
+copy.asm
+double.asm
+drnolist.asm
+emsg.asm
+end.asm</code>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ074226">
+                                    <a MadCap:generatedBookmark="TOC" name="7.5_Library_Information_Archiver_Description">
+                                    </a>
+                                    <span class="section-label">7.5 </span>Library Information Archiver Description</h3>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="#STDZ0740696">Section 7.1</a>
+                                    </span> explains how to use the archiver to create libraries of object files for use in the linker of one or more applications. You can have multiple versions of the same object file libraries, each built with different sets of build options. For example, you might have different versions of your object file library for <span>big and little endian, for different architecture revisions, or for different ABIs depending on the typical build environments of client applications.</span> However, if you have several versions of a library, it can be cumbersome to keep track of which version of the library needs to be linked in for a particular application.</p>
+                                <p>When several versions of a single library are available, the library information archiver can be used to create an index library of all of the object file library versions. This index library is used in the linker in place of a particular version of your object file library. The linker looks at the build options of the application being linked, and uses the specified index library to determine which version of your object file library to include in the linker. If one or more compatible libraries were found in the index library, the most suitable compatible library is linked in for your application. </p>
+                                <div class="subsection">
+                                    <h4 id="STDZ0748971">
+                                        <a MadCap:generatedBookmark="TOC" name="7.5.1_Invoking_the_Library_Information_Archiver">
+                                        </a>
+                                        <span class="section-label">7.5.1 </span>Invoking the Library Information Archiver</h4>
+                                    <p> To invoke the library information archiver, enter: </p>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col align="left" />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left"> <b> <span>armlibinfo</span></b> [<i>options</i>] <b>-o</b>=<i>libname</i><i> libname<sub>1</sub> <![CDATA[ ]]></i> [<i>libname<sub>2</sub> <![CDATA[ ]]></i> ... <i>libname<sub>n</sub> <![CDATA[ ]]></i>]</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="subsection">
+                                        <table class="tabbedtext">
+                                            <colgroup>
+                                                <col align="left" />
+                                                <col align="left" />
+                                                <col align="left" />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top">
+                                                        <p>
+                                                            <b> <span>armlibinfo</span></b>
+                                                        </p>
+                                                    </td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">is the command that invokes the library information archiver.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>options</i> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top"> changes the default behavior of the library information archiver. These options are: </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>-o</b><i>libname</i> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> specifies the name of the index library to create or update. This option is required.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top" />
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <b>-u</b> <![CDATA[ ]]></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> updates any existing information in the index library specified with the -o option instead of creating a new index.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="noBorderRight noBorderBottom" valign="top"> <i>libnames</i></td>
+                                                    <td align="left" class="noBorderRight noBorderBottom" colspan="2" valign="top">names individual object file libraries to be manipulated. When you enter a libname, you must enter a complete filename including extension, if applicable.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0746779">
+                                        <a MadCap:generatedBookmark="TOC" name="7.5.2_Library_Information_Archiver_Example">
+                                        </a>
+                                        <span class="section-label">7.5.2 </span>Library Information Archiver Example</h4>
+                                    <p> Consider these object file libraries that all have the same members, but are built with different build options:</p>
+                                    <div class="subsection">
+                                        <table class="gentable">
+                                            <colgroup>
+                                                <col />
+                                                <col />
+                                            </colgroup>
+                                            <thead class="tbl_hdr_gray">
+                                                <tr>
+                                                    <th>Object File Library Name</th>
+                                                    <th>Build Options</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>mylib_ARMv4_be.lib</td>
+                                                    <td>--code_state=32 --silicon_version=4 --endian=big</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>mylib_ARMv4_le.lib</td>
+                                                    <td>--code_state=32 --silicon_version=4 --endian=little</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>mylib_THUMBv4_be.lib</td>
+                                                    <td>--code_state=16 --silicon_version=4 --endian=big</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>mylib_THUMBv4_le.lib</td>
+                                                    <td>--code_state=16 --silicon_version=4 --endian=little</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>mylib_THUMBv7A8_le.lib</td>
+                                                    <td>--code_state=16 --silicon_version=7A8 --endian=little</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>Using the library information archiver, you can create an index library called mylib.lib from the above libraries:</p>
+                                    <code>armlibinfo -o mylib.lib mylib_ARMv4_be.lib mylib_THUMBv4_be.lib
+ mylib_THUMBv7A8_le.lib mylib_ARMv4_le.lib mylib_THUMBv4_le.lib</code>
+                                    <p>You can now specify mylib.lib as a library for the linker of an application. The linker uses the index library to choose the appropriate version of the library to use. If the --issue_remarks option is specified before the --run_linker option, the linker reports which library was chosen.</p>
+                                    <ul>
+                                        <li value="1">
+                                            <b>Example 1</b> (ISA v7A8, little endian):</li>
+                                        <code>   armcl-mv7A8 -me --mylib_pruv3_be main.c -z -l lnk.cmd ./mylib.lib
+ &lt;Linking&gt; remark: linking in "mylib_THUMBv7A8_le.lib" in place of "mylib.lib"</code>
+                                        <li value="2">
+                                            <b>Example 2</b> (ISAv5, big endian):</li>
+                                        <code>   armcl -mv5e --issue_remarks main.c -z -l lnk.cmd ./mylib.lib
+ &lt;Linking&gt; remark: linking in "mylib_ARMv4_be.lib" in place of "mylib.lib"</code>
+                                        <p>In Example 2, there was no version of the library for ISAv5, but an ISAv4 library was available and is compatible, so it was used.</p>
+                                    </ul>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0748277">
+                                        <a MadCap:generatedBookmark="TOC" name="7.5.3_Listing_the_Contents_of_an_Index_Library">
+                                        </a>
+                                        <span class="section-label">7.5.3 </span>Listing the Contents of an Index Library</h4>
+                                    <p>The archiver’s -t option can be used on an index library to list the archives indexed by an index library: </p>
+                                    <code>armar t mylib.lib
+
+ SIZE DATE FILE NAME
+ -------- ------------------------ -----------------
+ 119 Mon Apr 23 12:45:22 2007 mylib_ARMv4_be.lib.libinfo
+ 119 Mon Apr 23 12:45:22 2007 mylib_ARMv4_le.lib.libinfo
+ 119 Mon Apr 23 12:45:22 2007 mylib_THUMBv4_be.lib.libinfo
+ 119 Mon Apr 23 12:45:22 2007 mylib_THUMBv4_le.lib.libinfo
+ 119 Mon Apr 23 12:45:22 2007 mylib_THUMBv7A8_le.lib.libinfo
+ 0 Mon Apr 23 12:45:22 2007 __TI_$$LIBINFO</code>
+                                    <p>The indexed object file libraries have an additional .libinfo extension in the archiver listing. The __TI_$$LIBINFO member is a special member that designates <i>mylib.lib</i> as an index library, rather than a regular library.</p>
+                                    <p>If the archiver’s -d command is used on an index library to delete a .libinfo member, the linker will no longer choose the corresponding library when the index library is specified.</p>
+                                    <p>Using any other archiver option with an index library, or using -d to remove the __TI_$$LIBINFO member, results in undefined behavior, and is not supported.</p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="STDZ0745093">
+                                        <a MadCap:generatedBookmark="TOC" name="7.5.4_Requirements">
+                                        </a>
+                                        <span class="section-label">7.5.4 </span>Requirements</h4>
+                                    <p>You must follow these requirements to use library index files:</p>
+                                    <ul>
+                                        <li value="1">At least one application object file must appear on the linker command line before the index library.</li>
+                                        <li value="2">Each object file library specified as input to the library information archiver must only contain object file members that are built with the same build options.</li>
+                                        <li value="3">The linker expects the index library and all of the libraries it indexes to be in a single directory.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="../Resources/MasterPages/..SPNU118U_HTML/abstract.html">Back to Top</a>
+                    <p />
+                    <a href="http://www.go-dsp.com/forms/techdoc/doc_feedback.htm?litnum=SPNU118U&amp;partnum=ARM">Submit Documentation Feedback</a>
+                    <p>Copyright© 2018, Texas Instruments Incorporated. An <a href="includes/important_notice.html">IMPORTANT NOTICE</a> for this document addresses availability, warranty, changes, use in safety-critical applications, intellectual property matters and other important disclaimers.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

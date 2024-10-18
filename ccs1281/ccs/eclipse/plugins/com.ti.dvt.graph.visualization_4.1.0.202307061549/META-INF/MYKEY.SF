@@ -1,0 +1,30 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: emuNnj3WXK7pbsuETMoeC46gbkCxd
+ H9L1lU8QVAcvKE=
+SHA-256-Digest-Manifest: N4ENtKRgWPgbDt6RS7sztfaN9mTYlpuHkgrsdXtE/bo=
+Created-By: 1.8.0_102 (Oracle Corporation)
+
+Name: plugin.xml
+SHA-256-Digest: ZW6WmYxrSUSt2lsTXEJK0s33Ksh7T6dFiNjFFKS38kA=
+
+Name: dvt.zip
+SHA-256-Digest: CkW3GCpozA9B4oc4gqCpJO5PUPc4hlWhFxjAjvyZKU0=
+
+Name: META-INF/p2.inf
+SHA-256-Digest: wdv30PpJm7QHOXAOFw+3lAwCfQRlBtUASjXjPSU91p4=
+
+Name: uninstall.xml
+SHA-256-Digest: LwbtaUil3lgbCF8Vy13tmuJLBL+K5Str83njxSghLs0=
+
+Name: install.xml
+SHA-256-Digest: lL8aP15852fSrfHsE74RHzi+m+SzF4MDfFdPfLFqCy0=
+
+Name: com.ti.dvt.graph.visualization.jar
+SHA-256-Digest: 6JQLLDiVFgHisEwiNprCmSBS8nDi10HoXkADzCIhL0I=
+
+Name: icons/line.gif
+SHA-256-Digest: pZz0ayG2Cr3dG/0QZgvrDG1u/tDUYPKutsWsMuXgnbA=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: ak2bzOGDjLurhLXRsFA/N7TRhvaP+YA1QdnivLjcXtk=
+

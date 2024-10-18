@@ -1,0 +1,27 @@
+********************************************
+Code Composer Studio User's Guide
+********************************************
+
+Code Composer Studio (CCS) is an integrated development environment (IDE) that supports TI’s Microcontroller and Embedded Processors portfolio. Code Composer Studio comprises a suite of tools used to develop and debug embedded applications. This User's Guide explains the features and capabilities of the Code Composer Studio IDE.	
+
+`Chinese (中文) <https://software-dl.ti.com/ccs/esd/documents/users_guide_zh/index.html>`__
+
+.. toctree::
+   :maxdepth: 2
+   :numbered:
+
+   ccs_glossary
+   index_overview
+   index_installation
+   index_updates
+   index_getting-started
+   index_project-management 
+   index_debug
+   index_faqs
+   index_troubleshooting
+   ccs_legal
+
+
++--------------------------------+--------------------------------------------------------------------------------------------------+
+| .. Image:: ./images/E2e.jpg    | For technical support please post your questions at `https://e2e.ti.com <https://e2e.ti.com/>`__.|
++--------------------------------+--------------------------------------------------------------------------------------------------+

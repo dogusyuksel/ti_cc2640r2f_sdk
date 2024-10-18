@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <!-- extension
+         point="org.eclipse.ui.views">
+      <category
+           id="com.ti.uia"
+           name="UIA">
+      </category>
+      <view
+            allowMultiple="true"
+            category="com.ti.uia"
+            icon="icons/view16/sessionmgrview.gif"
+            class="com.ti.uia.sessionmgr.view.ui.SmvView"
+            id="com.ti.uia.sessionmgr.view.ui.SmvView"
+            name="%SmvName.label">
+      </view>
+   </extension -->
+   <extension
+         point="org.eclipse.ui.themes">
+      <fontDefinition
+            categoryId="org.eclipse.debug.ui.presentation"
+            id="com.ti.uia.sessionmgr.view.SmvFont"
+            label="%SmvFontDefinition.label"
+            value="Tahoma-regular-8">
+         <description>
+          		 %SmvFontDefinition.description
+         </description>               
+      </fontDefinition>
+   </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup class="com.ti.uia.sessionmgr.view.SmvPlugin"/>
+   </extension>
+   <extension
+         point="org.eclipse.ant.core.extraClasspathEntries">
+      <extraClasspathEntry
+            library=".">
+      </extraClasspathEntry>
+   </extension>
+</plugin>

@@ -1,0 +1,7 @@
+instructions.configure=\
+org.eclipse.equinox.p2.touchpoint.eclipse.removeRepository(type:0,location:https${#58}//download.eclipse.org/releases/2022-03,name:2022-03,enabled:false);\
+org.eclipse.equinox.p2.touchpoint.eclipse.removeRepository(type:1,location:https${#58}//download.eclipse.org/releases/2022-03,name:2022-03,enabled:false);\
+org.eclipse.equinox.p2.touchpoint.eclipse.removeRepository(type:0,location:https${#58}//download.eclipse.org/eclipse/updates/4.23,name:The Eclipse Project Updates,enabled:false);\
+org.eclipse.equinox.p2.touchpoint.eclipse.removeRepository(type:1,location:https${#58}//download.eclipse.org/eclipse/updates/4.23,name:The Eclipse Project Updates,enabled:false);\
+org.eclipse.equinox.p2.touchpoint.eclipse.removeRepository(type:0,location:https${#58}//download.eclipse.org/tools/cdt/releases/latest,name:CDT,enabled:false);\
+org.eclipse.equinox.p2.touchpoint.eclipse.removeRepository(type:1,location:https${#58}//download.eclipse.org/tools/cdt/releases/latest,name:CDT,enabled:false);

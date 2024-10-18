@@ -1,0 +1,21 @@
+Register access
+---------------
+Accessing registers from GEL can be done either via a direct definition using preprocessing statements such as ``#define`` (details at the online CCS Help) or using any register name shown in the Registers view of CCS.
+
+Both methods have global scope - i.e., can be used by any function of the GEL file.
+
+Registers defined via macro:
+
+.. image:: ./images/gel_registers_macro.png
+
+Registers globally accessible:
+
+.. image:: ./images/gel_registers_global.png
+
+.. note:: the global registers are defined by the CCS Module XML files. Details about this proces are shown in the section :ref:`debug-overview`.
+
+___
+
+**See also:**
+
+`GEL Functions: Alphabetical List <functions_list.html>`__

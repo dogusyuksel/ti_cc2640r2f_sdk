@@ -1,0 +1,19 @@
+Adding GEL Functions to the GEL Menu Using Keywords
+---------------------------------------------------
+
+You can add GEL functions that you access frequently to the GEL menu of
+the Code Composer Studio menu bar. To do this, use the menuitem keyword
+to create a new drop-down list of menu items under the GEL menu. You can
+then use the keywords hotmenu, dialog, or slider to add new menu items
+in the most recent drop-down list. When you select the user defined menu
+item (under the GEL menu), a dialog box or slider object appears.
+
+**Note**: There is no limit to the number of GEL functions that can be
+defined. However, the number of GEL functions that appear on the GEL
+menu may be limited by the size of your screen and the resolution.
+
+.. toctree::
+
+   hotmenu.rst
+   dialog.rst
+   slider.rst

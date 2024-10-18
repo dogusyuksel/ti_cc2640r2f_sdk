@@ -1,0 +1,36 @@
+GEL_Go()
+--------
+
+Runs to specified address.
+
+**Syntax**
+
+**GEL_Go(** [address] **);**
+
+**Parameters**
+
+address(optional) is the stop address.
+
+**Description**
+
+The GEL_Go function executes code up to a specific point in the program.
+The address Parameters is treated as a program-memory address. If you do
+not supply an address, then GEL_Go becomes equivalent to the GEL_Run GEL
+function.
+
+**Synchronous**
+
+Synchronous from GEL: Yes, only if location is given
+
+Completely synchronous: Yes, only if location is given
+
+**Example**
+
+| GEL_Go();
+| GEL_Go(main);
+
+**Related Topics**
+
+`GEL_Run <GEL_Run.html>`__
+
+`GEL_Halt <GEL_Halt.html>`__

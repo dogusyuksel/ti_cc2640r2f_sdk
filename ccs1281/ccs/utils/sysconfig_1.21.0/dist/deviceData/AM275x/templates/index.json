@@ -1,0 +1,9 @@
+{
+  "csv": [
+    "csv/PinmuxConfigSummary.csv.xdt"
+  ],
+  "Platform Development Kit (PDK)": [
+    "Platform Development Kit (PDK)/AM275x_pinmux_data.c.xdt",
+    "Platform Development Kit (PDK)/AM275x_pinmux.h.xdt"
+  ]
+}

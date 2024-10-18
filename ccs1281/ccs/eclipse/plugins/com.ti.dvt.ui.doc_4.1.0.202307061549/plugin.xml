@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension  point="org.eclipse.help.toc">
+      <toc file="dvt_toc.xml" primary="false" />
+   </extension>
+   
+   <extension point="org.eclipse.help.contexts">
+	   <contexts file="dvt_context.xml" plugin="com.ti.dvt.ui" />
+   </extension>
+   <extension
+         point="com.ti.ccstudio.branding.highlightsProvider2">
+      <hightlightsProvider2
+            bundle="com.ti.dvt.ui.doc"
+            description="System Analyzer Getting Started"
+            href="html/sa_welcome.html"
+            label="System Analyzer">
+      </hightlightsProvider2>
+      <hightlightsProvider2
+            bundle="com.ti.dvt.ui.doc"
+            description="Trace Analyzer Getting Started"
+            href="html/ta_welcome.html"
+            label="Trace Analyzer">
+      </hightlightsProvider2>      
+   </extension>
+</plugin>

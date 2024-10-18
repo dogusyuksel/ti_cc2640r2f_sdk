@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module id="SIG" HW_revision="1.0">
+    <register id="SIG_STIR" width="32" offset="0xE000EF00" description="Provides a mechanism for software to generate an interrupt">
+        <bitfield id="RES0" description="Reserved, RES0" begin="31" end="9" width="23" rwaccess="R/W">
+        </bitfield>
+        <bitfield id="INTID" description="Indicates the interrupt to be pended. The value written is (ExceptionNumber - 16)" begin="8" end="0" width="9" rwaccess="R/W">
+        </bitfield>
+    </register>
+</module>

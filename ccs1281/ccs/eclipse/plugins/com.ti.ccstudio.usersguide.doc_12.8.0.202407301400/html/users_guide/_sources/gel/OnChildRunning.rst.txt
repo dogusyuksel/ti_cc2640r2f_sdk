@@ -1,0 +1,16 @@
+OnChildRunning()
+----------------
+
+GEL callback function called on the parent processor when one of its
+child is running.
+
+**Syntax**
+
+**OnChildRunning();**
+
+**Parameters**
+
+**Description**
+
+If defined in a loaded GEL file on the parent processor,
+OnChildRunning() is called when one of its child is running.

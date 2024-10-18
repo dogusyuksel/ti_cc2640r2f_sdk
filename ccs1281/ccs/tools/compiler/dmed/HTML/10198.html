@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;
+      charset=ISO-8859-1">
+  </head>
+  <body>
+    <h2> <span class="mw-headline" id="Typical_message"> Typical
+        message </span></h2>
+    <pre> &lt;Linking&gt;
+ error #10198-D: no input section is linked in
+</pre>
+    <h2> <span class="mw-headline" id="What_it_means"> What it means </span></h2>
+    <p>The linker has not found any &#8220;referenced&#8221; input sections to
+      retain for the output file. </p>
+    <h2> <span class="mw-headline" id="Why_is_it_happening"> Why is it
+        happening </span></h2>
+    <p>A likely scenario for this message to appear is if you are
+      building an ELF project with only assembly source files that do
+      not have any "referenced" sections. This is a fundamental
+      difference between COFF and ELF. COFF retains all sections by
+      default. The opposite is true for ELF. In ELF, all sections are
+      eligible for removal via conditional linking meaning that they
+      will be removed if they are not referenced. If a section needs to
+      be retained, the user must make sure that they are explicitly
+      retained.
+    </p>
+    <p>This would not be an issue with most C projects, as there is an
+      entry point (defined by the C runtime library) which in turn calls
+      main, and so sections will be pulled into the link. In the case of
+      a single assembly source file, this is not the case.
+    </p>
+    <p>Some background info on this is available here: <a
+href="http://processors.wiki.ti.com/index.php/C6000_EABI_Migration#Conditional_Linking_Feature"
+        class="external free" rel="nofollow" target="_blank">http://processors.wiki.ti.com/index.php/C6000_EABI_Migration#Conditional_Linking_Feature</a>
+      This page was written for the C6000 tools but how the ELF/EABI
+      feature works is the same for other devices as well.
+    </p>
+    <h2> <span class="mw-headline" id="Remedy"> Remedy </span></h2>
+    <p>To work around this bug, add <span style="color: red">below two
+        directives</span> to the assembly source file.<br>
+      - .retain tells the linker to keep this section (.text)<br>
+      - .retainrefs additionally tells the linker to retain sections
+      that reference this.<br>
+    </p>
+    <pre> .cdecls C,LIST,  "device.h"
+;------------------------------------------------------------------------------
+            .text                          &nbsp;; Program Start
+            <span style="color: red">.retain</span> 
+            <span style="color: red">.retainrefs</span>  
+;------------------------------------------------------------------------------
+</pre>
+    <p>Additionally, if you are seeing diagnostic 10202 for missing
+      entry point, <a
+href="http://processors.wiki.ti.com/index.php/Compiler/diagnostic_messages/10202"
+        class="external text" rel="nofollow" target="_blank">see here</a>
+      for more details. </p>
+    <p><br>
+    </p>
+    <h2> <span class="mw-headline" id="Risks.2C_Severity"> Risks,
+        Severity </span></h2>
+    <p>An executable will not be created until this error is resolved.
+    </p>
+    <table style="text-align:center; background:white; width:100%;
+      text-align:left; height: 65px border-top: 1px solid;
+      border-bottom: 1px solid; border-left: 1px solid; border-right:
+      1px solid; border-width: 1px; border-style: solid;">
+      <tbody>
+        <tr>
+          <td width="305px"><a
+              href="http://processors.wiki.ti.com/index.php/File:E2e.jpg"
+              class="image"><img alt="E2e.jpg"
+                src="http://processors.wiki.ti.com/images/8/82/E2e.jpg"
+                height="63" width="305"></a>
+          </td>
+          <td><i>For technical support please post your questions at <a
+                href="http://e2e.ti.com" class="external free"
+                rel="nofollow" target="_blank">http://e2e.ti.com</a>.
+              Please post only comments about the article <b>Compiler/diagnostic
+                messages/10198</b> here.</i></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

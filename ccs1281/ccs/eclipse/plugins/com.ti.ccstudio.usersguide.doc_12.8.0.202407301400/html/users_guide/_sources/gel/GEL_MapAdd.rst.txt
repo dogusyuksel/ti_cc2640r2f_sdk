@@ -1,0 +1,61 @@
+.. _gel-mapadd:
+
+GEL_MapAdd()
+------------
+
+Adds to the memory map.
+
+**Syntax**
+
+**GEL_MapAdd(**\ address\ **,** page\ **,** length\ **,**
+readable\ **,** writeable\ **);**
+
+**Parameters**
+
+addressis the starting address of a range in memory. This Parameters can
+be an absolute address, any C expression, the name of a C function, or
+an assembly language label.
+
+pageidentifies the type of memory to fill: 0 (Program memory), 1 (Data
+memory) or 2 (I/0 space).
+
+For processors which do not have more than one type of memory, use 0 for
+this Parameters. For simulated targets, I/O Space Parameters is not
+supported.
+
+lengthdefines the length of the range. This Parameters can be any C
+expression.
+
+readabledefines whether the memory range is readable: 0 (Not readable)
+or 1 (Readable)
+
+writeabledefines whether the memory range is writeable: 0 (Not
+writeable) or 1 (Writeable)
+
+**Description**
+
+This function adds read/write permission for a range of target memory to
+the memory map. If the range overlaps an existing entry, the attributes
+of the new range take precedence in the memory map.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: Yes
+
+**Example**
+
+GEL_MapAdd(0x1000, 0, 0x300, 1, 1);
+
+**Related Topics**
+
+`GEL_MapAddStr <GEL_MapAddStr.html>`__
+
+`GEL_MapDelete <GEL_MapDelete.html>`__
+
+`GEL_MapOn <GEL_MapOn.html>`__
+
+`GEL_MapOff <GEL_MapOff.html>`__
+
+`GEL_MapReset <GEL_MapReset.html>`__

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <title>ti-service-backplane test</title>
+
+    <script src="../../../test/environment.js"></script>
+</head>
+
+<body>
+    <script type="module">
+        import { ServicesRegistry } from '../../ti-core-services/lib/ServicesRegistry';
+        import '../lib/BackplaneService';
+        import { backplaneServiceType } from '../lib/IBackplaneService';
+
+        window.runTest = () => {
+            suite('ti-backplane-service', () => {
+                test('init', async () => {
+                    const backplane = ServicesRegistry.getService(backplaneServiceType);
+                    await backplane.init();
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

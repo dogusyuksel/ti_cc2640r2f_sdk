@@ -1,0 +1,55 @@
+GEL_StepOver
+------------
+
+Executes a function or the next statement.
+
+**Format**
+
+GEL_StepOver();
+
+**Parameters**
+
+None
+
+**Description**
+
+The debugger executes the function and then halts after the function
+returns. If a breakpoint is encountered within the function, execution
+halts at the breakpoint.
+
+The Step Over command can also be used to execute statements that are
+not function calls. In this case, the debugger executes the next
+statement then halts.
+
+If you are in C source mode, this command steps over an entire C
+instruction; otherwise, it steps over a single assembly instruction.
+However, to protect the processor's pipeline, several instructions
+following a delayed branch or call may be considered part of the same
+statement. In this case, the Step Over command may execute more than one
+instruction at a time.
+
+**Synchronous**
+
+Synchronous from GEL: No
+
+Completely synchronous: No
+
+**Example**
+
+GEL_StepOver();
+
+**Related Topics**
+
+`GEL_ClearProfileConfiguration <GEL_ClearProfileConfiguration.html>`__
+
+`GEL_StepInto <GEL_StepInto.html>`__
+
+`GEL_StepOut <GEL_StepOut.html>`__
+
+`GEL_SyncHalt <GEL_SyncHalt.html>`__
+
+`GEL_SyncStepInto <GEL_SyncStepInto.html>`__
+
+`GEL_SyncStepOut <GEL_SyncStepOut.html>`__
+
+`GEL_SyncStepOver <GEL_SyncStepOver.html>`__

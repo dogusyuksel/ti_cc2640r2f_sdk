@@ -1,0 +1,114 @@
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+
+<html>
+
+<head>
+
+<title>DVT graph</title>
+
+
+<link rel=StyleSheet href="..\..\styles\styles.css">
+
+
+
+</head>
+
+<!--(Body)==========================================================-->
+
+
+<body>
+
+<h1>DVT Graph</h1>
+
+<p class=para><img src="../../images/dvtgraph_icon.png"
+					x-maintain-ratio=TRUE
+					style="border: none;
+							width: 22px;
+							height: 22px;
+							float: none;
+							border-style: none;
+							border-style: none;"
+					width="22"
+					height="22"
+					border="0" />
+					
+					This kind of graph depicts state transitions, events and messages against time or some other sequence and historically replaces the original state and discrete graph. It can show groups of states/events/messages each forming a channel line with a common key value on the Y-axis. Data values that share that same are plotted on the same horizontal bar. Different data values are mainly distinguished by assignment of different colors and tooltips on mouse over reveal their value. Below is an example of such a graph </p>
+
+<p class=para><img src="../../images/DVTGraph.png"
+					alt="Example of a DVT graph"
+					x-maintain-ratio=TRUE
+					border=0></p>
+
+<br/>
+<h2>Presentation Types</h2>
+<hr/>
+<p>Data values can be presented on the Y-Axis in any of the following forms: 
+
+<ul>
+<li><b>State:</b> Where data in the channel are drawn same way as our original "State Graph", basically each data value is assigned a color and a colored bar gets plotted using that color until a different state/data value is identified for the x-axis value.
+</li><li><b>Shape:</b> It is good for event visualization, where data points in channels are drawn as Circle/Line/Triangle/Square/... color assignment logic is the same as State presentation.
+</li><li><b>Icon:</b> Same as Shape this is good for event visualization, however unlike Shape presentation type, the data values don't dictate a color, they only dictate the icon to be used for plotting.
+</li><li><b>Message:</b> It is good for presentation of long string messages where an "M" icon is drawn and text of message is shown as a tooltip on mouse-over. (default presentation type) 
+</li><li><b>Value:</b> Similar to VCD where for each value change, a new hexagonal is drawn and the value is presented inside the hexagonal. 
+</li><li><b>Waveform:</b> Plotted as a a 0/1 digital step waveform.</li>
+</ul>
+
+For State, Shape and Icon display formats, clicking on the channel name on Y-Axis, would expand the channel into possible states/events on separate lines, similar to to our original Discrete Graph 
+</p>
+<br/>
+<h2>Tree Mode vs. Flat Mode</h2>
+<hr/>
+<p>
+DVT Graph also offers a hierarchical grouping using a tree representation on Y-Axis where parent nodes can be expanded/collapsed to enable hiding/showing only a subset of leaf channels. User can easily configure how to form the hierarchy by choosing a separator for this purpose. The default separator is '.' for breaking down the key value strings into a hierarchy. Things get plotted inside the graph same way as before but only for the leaf nodes of the tree. Switching between flat mode and tree mode is achieved using the right most action button on the toolbar.
+</p>
+<br/>
+<h2>Sorting on Y-axis</h2>
+<hr/>
+<p>
+Using the small triangle on the top left corner of the graph, y-axis channel names can be sorted in an alphabetical order. Clicking on the triangle, sorting is switched from un-sorted to ascending and descending sorts. Sorting feature also works in tree mode where everything up to leaf nodes get sorted.
+</p>
+<br/>
+
+<h2>Other features</h2>
+<hr/>
+<p>
+<ul>
+<li>Y-Axis separator can be dragged to make more room for data plotting. Mouse over channel names show the complete tooltip.</li>
+<li>Mouse-Wheel scroll anywhere in the bottom x-axis area, triggers zooming while anywhere else causes vertical scroll.</li>
+<li>Dragging of mouse in a x-axis region, zooms to the selected region. Alt+drag, zooms inside the graph</li>
+<li>View also offers a region at the bottom that can be populated with status and progress information</li>
+<li>State transitions can be shown as a longer than normal black separators, this can be optionally on or off</li>
+<li>Error conditions for state presentation type can be configured to be displayed as a dashed line, instead of a bar</li>
+<li>Measurement marker values and deltas will be displayed in a reserved region at the top which again is draggable when more room is needed.</li>
+</ul>
+</p>
+<br/>
+
+<h2>Technical Notes / Advanced</h2>
+<hr/>
+<p>
+To present Y-Axis, DVT Graph can be configured to autodiscover in three dimensions based on data in the connected buffer: 
+<ul>
+<li>Channel Names 
+</li><li>States/Events in the Channel 
+</li><li>Channel Presentation types
+</li>
+</ul>
+
+<br/><b>Tooltip</b>s are supported on mouse over on states/events by default but user may also add any additional tooltips they'd like to be displayed along with the defaults as well. 
+
+<br/><b>Annotation</b> can also be added to the states/events drawn on DVT Graph globally or per channel.
+
+<br/><b>Aliase</b>s can be used to present Y-Axis keys differently or move certain channels to subtrees using '.' notation
+
+</p>
+
+<p class=para>To change the dvt graph display you can Right-click on the graph and select <a href="../../dvtgraph_displayproperties_overview.html">Display Properties</a></p>
+
+<p class=FeedbackTIS><a title="Send documentation comments to Texas Instruments"
+	href="http://www.go-dsp.com/forms/techdoc/doc_feedback.htm?litnum=SPRH222"
+	target=_blank>Submit Code Composer Documentation Feedback</a></p>
+
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.dvt2.via.ccs"
+      label="%featureName"
+      version="4.1.0.202307061549"
+      provider-name="%providerName"
+      >
+
+   <description>
+      %description
+   </description>
+
+   <copyright url="%licenseURL">
+      %license
+   </copyright>
+
+   <license>
+      Provided under the terms of the original DVT or Code Composer Studio License Agreement.
+   </license>
+
+   <includes
+         id="com.ti.dvt2.scripting.ui"
+         version="4.1.0.202307061549"
+         optional="true"/>
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.ui.views"/>
+      <import plugin="com.ti.dvt.ui"/>
+      <import plugin="com.ti.dvt.datamodel"/>
+      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="com.ti.dvt.ideadapter"/>
+      <import plugin="com.ti.util.ui"/>
+      <import feature="com.ti.dvt2.scripting.ui" version="4.1.0.202307061549" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="com.ti.dvt.via.imvr"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"/>
+
+   <plugin
+         id="com.ti.dvt.via.plugin.ccs"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.dvt.via.plugin"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.dvt.via.doc"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"/>
+
+   <plugin
+         id="com.ti.dvt.scripting.ui.via"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+</feature>

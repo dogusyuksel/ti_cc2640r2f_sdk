@@ -1,0 +1,119 @@
+  --add-gnu-debuglink=debug-file
+                          Add a .gnu_debuglink for <debug-file>
+  --add-section=section=file
+                          Make a section named <section> with the contents of <file>.
+  --add-symbol=name=[section:]value[,flags]
+                          Add new symbol <name> to .symtab. Accepted flags: global, local, weak, default, hidden, protected, file, section, object, function, indirect-function. Accepted but ignored for compatibility: debug, constructor, warning, indirect, synthetic, unique-object, before.
+  --adjust-start <value>  Alias for --change-start
+  --allow-broken-links    Allow the tool to remove sections even if it would leave invalid section references. The appropriate sh_link fields will be set to zero.
+  --binary-architecture=<value>
+                          Ignored for compatibility
+  -B <value>              Alias for --binary-architecture
+  --change-start=incr     Add <incr> to the start address. Can be specified multiple times, all values will be applied cumulatively.
+  --compress-debug-sections=format
+                          Compress DWARF debug sections using specified format. Supported formats: zlib
+  --decompress-debug-sections
+                          Decompress DWARF debug sections.
+  --disable-deterministic-archives
+                          Disable deterministic mode when operating on archives (use real values for UIDs, GIDs, and timestamps).
+  --discard-all           Remove all local symbols except file and section symbols. Also remove all debug sections
+  --discard-locals        Remove compiler-generated local symbols, (e.g. symbols starting with .L)
+  --dump-section=section=file
+                          Dump contents of section named <section> into file <file>
+  -D                      Alias for --enable-deterministic-archives
+  --enable-deterministic-archives
+                          Enable deterministic mode when operating on archives (use zero for UIDs, GIDs, and timestamps).
+  --extract-dwo           Remove all sections that are not DWARF .dwo sections from file
+  --extract-main-partition
+                          Extract main partition from the input file
+  --extract-partition=name
+                          Extract named partition from input file
+  -F <value>              Alias for --target
+  --globalize-symbol=symbol
+                          Mark <symbol> as global
+  --globalize-symbols=filename
+                          Reads a list of symbols from <filename> and marks them global.
+  -G <value>              Alias for --keep-global-symbol
+  -g                      Alias for --strip-debug
+  --input-target=<value>  Format of the input file
+  -I <value>              Alias for --input-target
+  -j <value>              Alias for --only-section
+  --keep-file-symbols     Do not remove file symbols
+  --keep-global-symbol=symbol
+                          Convert all symbols except <symbol> to local. May be repeated to convert all except a set of symbols to local.
+  --keep-global-symbols=filename
+                          Reads a list of symbols from <filename> and runs as if --keep-global-symbol=<symbol> is set for each one. <filename> contains one symbol per line and may contain comments beginning with '#'. Leading and trailing whitespace is stripped from each line. May be repeated to read symbols from many files.
+  --keep-section=section  Keep <section>
+  --keep-symbol=symbol    Do not remove symbol <symbol>
+  --keep-symbols=filename Reads a list of symbols from <filename> and runs as if --keep-symbol=<symbol> is set for each one. <filename> contains one symbol per line and may contain comments beginning with '#'. Leading and trailing whitespace is stripped from each line. May be repeated to read symbols from many files.
+  --keep-undefined        Do not remove undefined symbols
+  -K <value>              Alias for --keep-symbol
+  --localize-hidden       Mark all symbols that have hidden or internal visibility as local
+  --localize-symbol=symbol
+                          Mark <symbol> as local
+  --localize-symbols=filename
+                          Reads a list of symbols from <filename> and marks them local.
+  -L <value>              Alias for --localize-symbol
+  --new-symbol-visibility=<value>
+                          Visibility of symbols generated for binary input or added with --add-symbol unless otherwise specified. The default value is 'default'.
+  -N <value>              Alias for --strip-symbol
+  --only-keep-debug       Produce a debug file as the output that only preserves contents of sections useful for debugging purposes
+  --only-section=section  Remove all but <section>
+  --output-target=<value> Format of the output file
+  -O <value>              Alias for --output-target
+  --prefix-alloc-sections=prefix
+                          Add <prefix> to the start of every allocated section name
+  --prefix-symbols=prefix Add <prefix> to the start of every symbol name
+  --preserve-dates        Preserve access and modification timestamps
+  -p                      Alias for --preserve-dates
+  --redefine-sym=old=new  Change the name of a symbol old to new
+  --redefine-syms=filename
+                          Reads a list of symbol pairs from <filename> and runs as if --redefine-sym=<old>=<new> is set for each one. <filename> contains two symbols per line separated with whitespace and may contain comments beginning with '#'. Leading and trailing whitespace is stripped from each line. May be repeated to read symbols from many files.
+  --regex                 Permit regular expressions in name comparison
+  --remove-section=section
+                          Remove <section>
+  --rename-section=old=new[,flag1,...]
+                          Renames a section from old to new, optionally with specified flags. Flags supported for GNU compatibility: alloc, load, noload, readonly, exclude, debug, code, data, rom, share, contents, merge, strings.
+  -R <value>              Alias for --remove-section
+  --set-section-alignment=section=align
+                          Set alignment for a given section.
+  --set-section-flags=section=flag1[,flag2,...]
+                          Set section flags for a given section. Flags supported for GNU compatibility: alloc, load, noload, readonly, exclude, debug, code, data, rom, share, contents, merge, strings.
+  --set-section-type=section=type
+                          Set the type of section <section> to the integer <type>
+  --set-start=addr        Set the start address to <addr>. Overrides any previous --change-start or --adjust-start values.
+  --split-dwo=dwo-file    Equivalent to extract-dwo on the input file to <dwo-file>, then strip-dwo on the input file
+  --strip-all-gnu         Compatible with GNU's --strip-all
+  --strip-all             Remove non-allocated sections outside segments. .gnu.warning* and .ARM.attribute sections are not removed
+  --strip-debug           Remove all debug sections
+  --strip-dwo             Remove all DWARF .dwo sections from file
+  --strip-non-alloc       Remove all non-allocated sections outside segments
+  --strip-sections        Remove all section headers and all sections not in segments
+  --strip-symbol=symbol   Strip <symbol>
+  --strip-symbols=filename
+                          Reads a list of symbols from <filename> and removes them.
+  --strip-unneeded-symbol=symbol
+                          Remove symbol <symbol> if it is not needed by relocations
+  --strip-unneeded-symbols=filename
+                          Reads a list of symbols from <filename> and removes them if they are not needed by relocations
+  --strip-unneeded        Remove all symbols not needed by relocations
+  --subsystem=name[:version]
+                          Set PE subsystem and version
+  -S                      Alias for --strip-all
+  --target=<value>        Format of the input and output file
+  --update-section=name=file
+                          Replace the contents of section <name> with contents from a file <file>.
+  -U                      Alias for --disable-deterministic-archives
+  --version               Print the version and exit.
+  -V                      Alias for --version
+  --weaken-symbol=symbol  Mark <symbol> as weak
+  --weaken-symbols=filename
+                          Reads a list of symbols from <filename> and marks them weak.
+  --weaken                Mark all global symbols as weak
+  --wildcard              Allow wildcard syntax for symbol-related flags. Incompatible with --regex. Allows using '*' to match any number of characters, '?' to match any single character, '' to escape special characters, and '[]' to define character classes. Wildcards beginning with '!' will prevent a match, for example "-N '*' -N '!x'" will strip all symbols except for "x".
+  -W <value>              Alias for --weaken-symbol
+  -w                      Alias for --wildcard
+  -X                      Alias for --discard-locals
+  -x                      Alias for --discard-all
+
+Pass @FILE as argument to read options from FILE.

@@ -1,0 +1,29 @@
+GEL if and if-else Statements
+-----------------------------
+
+GEL supports the standard C if and if-else statements. The general form
+is:
+
+ if (expression) statement1;
+
+| **if (** expression **)**
+| statement1\ **;**
+| **else**
+| statement2\ **;**
+
+In the first form, the expression is evaluated. If the expression is
+true (unequal to 0), statement1 is executed. In the second form,
+statement2 is executed if the value of the expression is 0 (zero). Each
+statement can be a single statement or several statements in braces.
+
+| if (a == 25)
+| b = 30;
+| if (b == 20)
+| {
+| a = 30;
+| c = 30;
+| }
+| else
+| {
+| d = 20;
+| }

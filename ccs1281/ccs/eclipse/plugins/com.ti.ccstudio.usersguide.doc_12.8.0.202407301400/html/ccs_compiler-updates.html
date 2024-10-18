@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="This article describes how to get compiler updates (both bug fix updates and feature updates) from within CCS"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Composer Studio Product Page">
+<meta name="product-link" content="https://www.ti.com/tool/CCStudio">
+
+<!-- Change the title text for your page -->
+<title>Compiler Updates</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown souce -->
+
+#Overview
+
+The compiler tools can be updated from within the Code Composer Studio (CCS) environment as well as outside the CCS environment. This article describes how to get compiler updates (both bug fix updates and feature updates) from within CCS.
+
+For details on installing a compiler outside of CCS and then selecting it within CCS, please see the following article: <br>[Compiler Installation and Selection](ccs_compiler-installation-selection.html).
+
+To better understand compiler versioning and releases, please see the article [Compiler Version Numbers and What They Mean](http://processors.wiki.ti.com/index.php/Compiler_Version_Numbers_and_What_They_Mean).
+
+CCS allows you to install multiple versions of the compiler and have different projects build with different versions of the compiler. Thus it is necessary to be able to deliver updates to different versions.
+
+For example, let's say you have a project using the 18.1.0 compiler in maintenance mode. You would likely not want to make a significant change to the compiler used for this project, but if there was a bug fix release (say 18.1.1) that addressed a specific issue then you may want to update the that version. You may also have a newer project that is under active development for which you want to use the latest available compiler that can deliver the best performance and code size (say 19.1.0). For these reasons, it is necessary to allow updates on both the current compiler stream and the latest compiler stream. The next sections describe the way these updates work in CCS.
+
+#Compilers are Features
+
+CCS is based on the Eclipse software framework and in Eclipse any item that needs to be updated via the update mechanism has to be a feature.
+
+Compiler features are structured in a way that supports updates to different versions of the compiler.
+
+Features have a name and a version: <tt>&lt;feature&gt;_&lt;version&gt;</tt>.
+
+To be able to update the 18.1.x compiler stream and another stream like 19.1.x they have to be seen as different features to Eclipse. Thus we name our features such that there is a portion of the version in the feature name.
+
+#Checking for Updates
+
+##Update Existing Features
+
+When the automatic update check runs in CCS it will find updates to existing features. You can also manually initiate an update check from menu **Help &rarr; Check for Updates**.
+
+For our microcontroller products where we have both Long Term Support (LTS) and Short Term Support (STS) releases it is important to understand what will be displayed as an update.
+
+If you have the 18.1.0 LTS compiler for ARM installed, you will see the 18.1.1 LTS release as this is an update to the 18.1 LTS compiler stream.  However you will not see the 18.6.0 STS compiler as an update.  This is because it is a new compiler stream and not an update to the existing 18.1 compiler.
+
+If you have the 18.6.0 STS compiler installed and the 18.9.0 STS compiler is released, you will see this as an update.  This clearly works differently than the LTS compilers and is done this way as STS compilers are for short term support and the next update is the next STS release as there are no maintenance releases.
+
+Note that after a new compiler version is installed it is not automatically selected as the version to use for a project build. It is still up to the user to set the project to use a specific version of the compiler.
+
+
+##Install New Features
+
+The update check does not find "new" features. Because of the way features are named, some of them are considered updates and some of them are considered new features.
+
+For example, if you have the 18.1.0 LTS compiler installed, when 19.1.0 LTS comes out it would not show up as an update to 18.1.0 as it is considered a new feature.
+
+
+To find and install a new feature release:
+1. Select the menu **Help &rarr; Install Code Generation Compiler Tools**.
+ (Note: An alternate way is to select the menu **Help &rarr; Install New Software**, and in the **Work with:** field, select **Code Generation Tools Updates** from the drop-down list.)
+<br>This will display the updates available on the site.
+2. Expand **TI Compiler Updates**. <br>
+ By default only the latest version of a feature will be shown.
+3. If you need a specific version (older than the latest) uncheck the box **Show only the latest versions of available software**.
+4. Select the version of Compiler tools you wish to install.
+5. Click **Next** and follow the steps to install.
+
+Check [this document](./users_guide/ccs_updates.html#installing-new-software) for more details on the fields and options available in the Install dialog.
+
+Once you have installed a new version, the next **Check for Updates**  will show updates to both compiler streams.
+
+The video [here](https://www.youtube.com/embed/HyDJwKFu6EQ) has a short demo of using the **Install New Software** feature.
+
+
+##CCS App Center
+
+In CCSv6 or greater, you can also use the **CCS App Center** to check for compiler updates. The App Center can be opened from the **View** or **Help** menus. The CCS App Center will install the latest compiler version available (the latest version in the latest release stream). It is equivalent to going to **Help &rarr; Install New Software** and choosing the latest version available. There isn't a way to select and install a specific older version using the CCS App Center.
+
+The video [here](https://www.youtube.com/embed/yDww7QhXdqI) has a short demo of using **CCS App Center** to install compiler updates.
+
+#Installing Older Versions
+
+Eclipse allows updates only to the latest version of a feature that is currently installed. For example, if compiler version 16.9.6 was installed with CCS, you will not be able to install an older version with the same feature ID (16.9.0 through 16.9.5).
+
+To work around this, you could uninstall the 16.9.6 version and then install the 16.9.4 version. <br>To uninstall, go to **Help &rarr; About &rarr; Installation Details**, select the desired version of Compiler Tools and click **Uninstall**. <br>Note that this will just remove the eclipse feature and not the actual binary files so the physical compiler installation will still be there. It is simply a way to trick Eclipse into allowing you to install the older version. After the feature is uninstalled, find and install the desired older version as described in the [Install New Features](#install-new-features) section.
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL: Change the meta description for your page. This should inform users what the page is about in 1-2 sentences (within 160 chars). This appears in the search results below the Title and can have a huge effect on click-through rate  -->
+<meta name="description" content="Customize Code Composer Studio's editor and GUI settings.  Includes color, themes, keyboard shortcuts and others.">
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="Code Composer Studio">
+<meta name="product-link" content="https://www.ti.com/tool/CCSTUDIO">
+
+<!-- Change the title text for your page -->
+<title>Customizing the Code Composer Studio Editor and GUI</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+##Introduction
+
+Code Composer Studio (CCS) allows for customization of several settings related to the editor and GUI. These settings can be found under menu **Window->Preferences**. Be sure to click on **Show advanced settings** at the bottom of the pane to see all available settings. The search box at the top can be used to further filter down the available settings.
+
+![](./images/preferences.png)
+
+This article describes where you can find and customize some of the more commonly used settings. It assumes you have already clicked on **Show advanced settings** to expose all settings. If you are looking for something that is not explicitly mentioned in this page, it is still likely available somewhere in the Preferences page.
+
+
+##Editor 
+
+Some editor settings can be found under **General** and some under **C/C++**.
+
+
+###Insert tabs instead of spaces
+
+The tab policy for C/C++ source files and plain text files can be changed, but from different settings.
+
+The tab policy for **C/C++ source files** can be changed from **Window->Preferences->C/C++->Code Style->Formatter**. <br>
+From here you can either click Edit... to edit the existing CCS Profile, or click New... to create a new profile based on the CCS profile (probably the better way to go so you can always revert back to defaults if needed).
+
+![](./images/tabs1.png)
+
+Edit the new profile to make changes to the tab policy. 
+![](./images/tabs2.png)
+<br><br>
+The tab policy for **text files** can be changed from **Window->Preferences->General->Editors->Text Editors**. <br>
+
+![](./images/tab_policy_text.png)
+
+
+###Typing preferences
+
+Auto-closure of double-quotes, brackets, etc. during typing can be enabled/disabled from **Window->Preferences->C/C++->Editor->Typing**. The "Strings" checkbox is for auto-closing double-quotes.
+
+![](./images/typing_quotes.png)
+
+
+###Color
+
+Color preferences and themes can be customized in a few different places depending on what is required. Settings can be found under:
+
+
+- Window->Preferences->General->Editors->Text Editors
+- Window->Preferences->General->Appearance->Colors and Fonts
+- Window->Preferences->General->Editors->Text Editors->Annotations
+- Window->Preferences->C/C++->Editor
+- Window->Preferences->C/C++->Editor->Syntax Coloring
+
+To choose a theme different from the default, such as Dark or Light theme, go to Window->Preferences->General->Appearance and select from one of the available themes.
+
+###Code Folding
+
+Code folding can be set from **Window->Preferences->C/C++->Editor->Folding**. Enable the desired settings and then check the box "Enable folding when opening a new editor". Close and reopen the editor for the settings to take effect.
+
+<!-- <a href="https://www.youtube.com/watch?v=EPhjYm6sotw" target="_blank">This video</a> shows a demo. -->
+
+[This video](https://www.youtube.com/embed/EPhjYm6sotw) shows a demo.
+
+###Viewing source files side by side
+
+<!-- <a href="https://www.youtube.com/watch?v=MFK21VEnTe0" target="_blank">This video</a> shows how you can view source files side by side in the editor. -->
+
+[This video](https://www.youtube.com/embed/MFK21VEnTe0) shows how you can view source files side by side in the editor.
+
+
+##Other Customizations
+
+
+###File associations
+If you have source files or linker command files with extensions that are not recognized by default, you can add them under **Window->Preferences->General->Editors->File Associations** as described in this 
+<a href="https://e2e.ti.com/support/development_tools/code_composer_studio/f/81/t/579176" target="_blank">forum post</a>.
+
+
+###Console view
+The console view settings can be customized from **Window->Preferences->C/C++->Build->Console** (for build console) and **Window->Preferences->Run/Debug->Console** (for debug console). Here you can modify things such as size of console output, output text color etc.
+
+
+###Shortcuts/Key Bindings
+Some menu options have keyboard shortcuts assigned by default. You can change these or add your own from **Window->Preferences->General->Keys**.
+
+Any customized keyboard bindings will be applicable to all projects in current workspace. To export keyboard settings and import them into another workspace, you can use the File->Export->General->Preferences and File->Import->General->Preferences menus in CCS as mentioned in [this link](https://stackoverflow.com/questions/11528031/how-do-i-import-and-export-keyboard-bindings-in-eclipse).
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

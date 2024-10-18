@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="C28x Pipeline Conflicts"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Generation Tools">
+<meta name="product-link" content="https://www.ti.com/tool/TI-CGT">
+
+<!-- Change the title text for your page -->
+<title>C28x Pipeline Conflicts</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+<!-- Add your markdown source here! -->
+#Introduction
+
+Conflicts cause dead cycles and hence affect the performance of C28x code. 
+These can occur due to any one of the following conditions:
+
+1. Register Conflict
+2. Write followed by read: same location, or W-then-read protected region
+3. Wait stated memory or peripheral
+4. Multiple accesses to a single access memory (e.x. SARAM)
+
+This wiki article discuss how some conflicts arise and some suggested guidelines for avoiding them.
+
+#Other Resources
+
+The C28x pipeline is described in [TMS320C28x CPU and Instruction Set Reference Guide (spru430)](https://www.ti.com/lit/pdf/spru430)
+
+#Register Conflicts
+
+Register conflicts occur when the current instruction modifies a register and that 
+register is then used in following instruction. The current instruction can effect 
+up to the next 3 instructions (regardless of size). The impact decreases as the 
+distance from the instruction increases.
+
+##General Guidelines
+
+How do you determine register conflicts? This is a little complicated because some 
+instructions modify a register in the D2 phase and some in the E phase. Also, 
+the loc16/loc32 field has addressing modes which generate an address in the D2 
+phase and modes which operate in the E phase.
+
+In general, registers are modified either in the D2 or E phase.
+* @ARn, @XARn and @SP addressing modes generally use the register in the D2 phase
+* @AH, @AL, @ACC, @PH, @PL, @PX, and @T addressing mode generally use the register in the Exe phase
+* Direct addressing using DP: generate an address in the D2 phase
+* Indirect addressing such as \*--SP[], \*XARn++ etc, generate an address in the D2 phase
+
+The following table shows some of the most common register operations. 
+This list is not exhaustive.
+
+
+Case | Destination Operand                                         | Source Operand                       | Pipeline Phase | Notes
+-----|-------------------------------------------------------------|--------------------------------------|----------------|----------------------------
+1.1  | REG = ARx, XARx, DP                                         | #immediate                           | D2             | Register updated by immediate
+1.2  | REG = SP                                                    | #immediate                           | Exe            | Register updated by immediate
+1.3  | REG = ARx, XARx, DP, SP                                     | loc16/loc32                          | Exe            | Register updated by loc16/loc32
+2.1  |                                                             | REG=ARx, XARx                        | D2             | Registers are read in D2
+3.1  | REG = AH, AL, ACC, PH, PL, P, T                             | #immediate                           | Exe            | Registers updated by immediate
+3.2  | REG = AH, AL, ACC, PH, PL, P, T                             | loc16/loc32                          | Exe            | Registers updated by loc16/loc32                                 
+4.1  |                                                             | REG = AH, AL, ACC, PH, PL, P, T      | Exe            | Registers are read in Exe
+5.1  |                                                             | loc16/loc32 = @AL, @AH, @PH, @PL, @T | Exe            | Registers are read in Exe
+5.2  |                                                             | loc16/loc32 = @ARx, @XARx, @SP       | D2             | Registers are read in D2
+5.3  |                                                             | Indirect addressing or DP addressing | D2             | Registers are read in D2
+6.1  | loc16/loc32 = @ARn, @XARn, @SP, @AL, @AH, @PL, @PH, @PX, @T |                                      | Exe            | Registers are read in Exe
+6.2  | Indirect addressing or DP addressing                        |                                      | D2             | Registers are read in D2
+
+##Examples
+
+Once we know in which phase a register is modified, look for combination of 
+instructions where the register is modified in the E phase by the current 
+instruction and the register is modified in the D2 phase of the next instruction. 
+The examples below show combination of instruction which cause conflicts. 
+
+[[y Note:
+Not every example makes sense. These are not exhaustive examples, but 
+demonstrate the general ideas.
+]]
+
+```c
+MOV     AR0,*XAR7       ; AR0 written in Exe  (1.3)
+MOVB    AR0,#8bit       ; AR0 written in D2   (1.1) (conflict)
+```
+
+```c
+MOV     AR0,*XAR7       ; AR0 written in Exe  (1.3)
+MOV     *--SP[2],AR0    ; AR0 read in D2      (2.1) (conflict)
+```
+
+```c
+MOV     @AR0,AR1        ; AR0 written in Exe  (6.1)
+MOV     AR0,#8bit       ; AR0 written in D2   (1.1) (conflict)
+```
+
+```c
+MOV     @AR0,AR1        ; AR0 written in Exe  (6.1)
+MOV     AR2,*AR0        ; Address (from AR0) generated in D2 (5.3) (conflict)
+```
+
+```c
+MOV     @AR0,AL         ; AR0 written in Exe  (6.1)
+MOV     AH,*AR0         ; Address (from AR0) generated in D2 (5.3) (conflict)
+```
+
+
+##Removing Register Conflicts
+
+The trick is to identify the conflicts and move or re-arrange the order of 
+instructions such as to place as much distance between the offending instructions. 
+It should be noted that the compiler can perform this automatically. It is 
+recommended that assembly language programmers write their code and ignore pipeline 
+conflicts (unless they are obvious) and then optimize the code at a later stage.
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

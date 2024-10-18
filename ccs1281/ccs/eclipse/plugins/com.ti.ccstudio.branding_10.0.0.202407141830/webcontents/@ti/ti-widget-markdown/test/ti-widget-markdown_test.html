@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <title>ti-widget-markdown test</title>
+
+    <script src="../../../test/environment.js"></script>
+    <script type="module" src="../ti-widget-markdown"></script>
+</head>
+
+<body>
+    <!-- fixture resets DOM state between test runs -->
+    <test-fixture id="BasicTestFixture">
+        <template>
+            <ti-widget-markdown id="demo-element"></ti-widget-markdown>
+        </template>
+    </test-fixture>
+
+    <script type="module">
+        import { TIWidgetBaseTest } from '../../ti-widget-base/test/ti-widget-base_test';
+        window.runTest = () => {
+
+            // Widget tests
+            // suite('ti-widget-markdown', () => {
+
+            //     let element;
+            //     setup(() => {
+            //         element = fixture('BasicTestFixture');
+            //     });
+
+            // });
+        }
+    </script>
+</body>
+
+</html>

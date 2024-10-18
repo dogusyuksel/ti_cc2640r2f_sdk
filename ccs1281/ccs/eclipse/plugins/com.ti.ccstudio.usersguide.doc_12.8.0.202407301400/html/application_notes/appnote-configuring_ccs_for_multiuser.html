@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="Configuring Code Composer Studio for a multi-user environment."> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="Code Composer Studio">
+<meta name="product-link" content="https://www.ti.com/tool/CCSTUDIO">
+
+<!-- Change the title text for your page -->
+<title>How to configure CCS for a multi user host</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+# Overview
+This application note describes a method to perform post-setup actions that allow Code Composer Studio to be used in a multi-user host. 
+
+The goal is to provide tips for system administrators to configure Code Composer Studio in a manner that allows regular users to make the best use of its capabilities without risking corrupting the installation.
+
+This application note does not cover the steps to perform the Code Composer Studio install procedure. 
+
+# References
+
+* [Enterprise Distribution](http://processors.wiki.ti.com/index.php/Enterprise_distribution)
+* [Linux Host Support CCSv8](../ccsv8_linux_host_support.html)
+* [MacOS Host Support CCSv8](http://processors.wiki.ti.com/index.php/MacOS_Host_Support_CCSv8)
+* [Multi-user CCS Installs](http://processors.wiki.ti.com/index.php/Multi-User_CCS_Installs) - older page that talks about the different directories used by CCS. 
+* [How to set permissions in Windows](https://www.online-tech-tips.com/computer-tips/set-file-folder-permissions-windows/)
+
+# Procedure
+
+This procedure takes into consideration that regular users will be blocked from installing updates either via the Update Advisor or via the menu <i>Help</i> &rarr; <i>Install New Software</i> - this helps minimize the possibility of a corrupted install. 
+
+<!-- will be blocked installing CCS as superuser/administrator but running as a regular user will block the installation of updates. -->
+
+## Linux and macOS
+
+To allow customizations to CCS and build projects, a few files must have their permissions changed to <b>rw</b> and directories to <b>rwx</b>.
+
+<font color="f000f0"><b>1.</b></font> Open a terminal and do the following:
+<pre>
+	user@host:~/$ cd ti/CCSExternalReferences
+	user@host:~/ti/CCSExternalReferences$ sudo chown -Rf user:user *
+	user@host:~/ti/CCSExternalReferences$ cd /opt/ti/ccsv8/eclipse/configuration
+	user@host:/opt/ti/ccsv8/eclipse/configuration$ sudo chmod -R a+rwX org.eclipse.osgi/
+	user@host:/opt/ti/ccsv8/eclipse/configuration$ sudo chmod -R a+rwX .settings/
+	user@host:/opt/ti/ccsv8/eclipse/configuration$ sudo chmod a+rw ccs.properties
+</pre>
+<br>
+<font color="f000f0"><b>2.</b></font> If you have projects that use TI compilers, it is useful to change the permissions of the <b>lib</b> subdirectory of every TI compiler subdirectory. 
+<pre>
+	user@host:~/$ cd /opt/ti/ccsv8/tools/compiler
+	user@host:/opt/ti/ccsv8/tools/compiler$ sudo find -name lib -type d -exec chmod -R a+rwX {} \;
+</pre>
+<br>
+<font color="f000f0"><b>3.</b></font> Modify the TI Resource Explorer Preferences to set the installation directory to a common path: 
+<hr>
+<font color="0000f0">Select the three stripes menu at the top right of the TI Resource Explorer view</font>
+![](./images/appnote-multiuser_tirex_prefs_01.png)
+<hr>
+<font color="0000f0">Choose the install path and click Save</font>
+![](./images/appnote-multiuser_tirex_prefs_02.png)
+<hr>
+
+
+Full access to TI Resource Explorer online is possible, but installation of newer packages is not fully supported due to the fact certain packages require installing XDC tools different than the ones installed with CCS. Thus, it is recommended to install all the software packages needed beforehand, both using the Product Discovery (for RTSC/TI-RTOS products) and Resource Explorer (for all SDKs). To allow complete access and modification of the installed packages, simply do the following:  
+<pre>
+	user@host:~/$ sudo chmod -R a+rwX /opt/ti/<name of each SDK package and dependency>
+</pre>
+<!--	user@host:~/$ cd /opt/ti/ccsv8/eclipse
+	user@host:/opt/ti/ccsv8/eclipse$ sudo chmod -R a+rwX plugins
+	user@host:/opt/ti/ccsv8/eclipse$ cd configuration
+	user@host:/opt/ti/ccsv8/eclipse/plugins$ sudo chmod -R a+rX com.ti.cc2538_2.00.03.01/ -->
+<br>
+If the policy intends to allow users to install updates, most of the procedure above can be disregarded and the install directory can be configured with one of the two options:
+* Change the owner of the entire Code Composer Studio install directory to a guest or a specific group
+* Enable <b>rwx</b> permissions for all
+
+<font color="f000f0"><b>4.</b></font> If your network has internet access through a proxy server, it is recommended to add the proxy settings to the shell variables <tt>http_proxy</tt>, <tt>ftp_proxy</tt> and optionally <tt>https_proxy</tt> for all users (including the superuser). This will greatly help accessing the CCS Updates and the TI Resource Explorer. There are many ways to add these variables to the shell and the [Environment Variables article](https://help.ubuntu.com/community/EnvironmentVariables) on the Ubuntu wiki is a great resource. However, the important step is to use env_keep on the file /etc/sudoers to keep their values defined when sudo is invoked - details are shown at [this subsection](https://help.ubuntu.com/community/EnvironmentVariables#sudo_caveat) of the article.  
+
+## Windows
+
+The default category of regular users in Windows 10 is an <b>Authenticated User</b>, which allows Modify/Write permissions to CCS install directory.  
+
+If the policy requires to set the category to <b>Users</b>, the directory permissions will have to allow Read/Execute permissions to the CCS install directory. 
+* To do this, simply right-click on the installation directory C:\ti\ccsv8 and set the user and permissions according to the Windows version you are using (one reference is shown in the section [References](#references) above).
+
+The other step is to modify the file &lt;ccstudio.ini&gt; to set the temporary file to the user area: 
+<font color="f000f0"><b>1.</b></font> Browse to the directory <tt>C:\ti\ccsv8\eclipse</tt>
+<br>
+<font color="f000f0"><b>2.</b></font> Open the file &lt;ccstudio.ini&gt; in a text editor
+<br>
+<font color="f000f0"><b>3.</b></font> Change the option <tt>-XX:ErrorFile=C:\Users\user\AppData\...</tt> to <tt>-XX:ErrorFile=@user.home/AppData/...</tt>
+<br>
+<font color="f000f0"><b>4.</b></font> Save the file and close the editor
+<br>
+<font color="f000f0"><b>5.</b></font> Configure the TI Resource Explorer as shown in step 3 of the Linux/macOS procedure above.  
+<br>
+Similarly to the Linux/macOS scenario, the full access to TI Resource Explorer is possible but installation of newer packages is not supported as of today. Thus, it is recommended to install all the software packages needed beforehand, both using the Product Discovery (for RTSC/TI-RTOS products) and Resource Explorer (for all SDKs). 
+
+The device driver installation should not be a requirement for every user - during install, CCS performs the Administrator setup of the Windows drivers and, apart from some temporary files and some settings on ccstudio.ini, everything should work fine. 
+
+Also, when running CCS for the first time as a user, at startup it asks to set up a firewall exception to allow network access to &lt;ccstudio.exe&gt;, which requires Administrator privileges, but that is asked only once.
+
+<hr>
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

@@ -1,0 +1,42 @@
+GEL_MapOn()
+-----------
+
+Enables memory mapping.
+
+**Syntax**
+
+GEL_MapOn()
+
+**Parameters**
+
+None.
+
+**Description**
+
+This function enables memory mapping. The Code Composer Studio debugger
+does not attempt to read from a map segment that is not readable or
+attempt to write to a map segment that is not writeable. When mapping is
+first turned on, the entire memory range is assumed to have no reading
+or writing capabilities. You must add memory sections (using the
+GEL_MapAdd() function) to allow the debugger to access valid sections.
+On power up, memory mapping is turned off by default.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: Yes
+
+**Example**
+
+GEL_MapOn();
+
+**Related Topics**
+
+`GEL_MapAdd <GEL_MapAdd.html>`__
+
+`GEL_MapOff <GEL_MapOff.html>`__
+
+`GEL_MapDelete <GEL_MapDelete.html>`__
+
+`GEL_MapReset <GEL_MapReset.html>`__

@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="This page talks about how to properly debug JTAG connection issues with Texas Instruments XDS Debug Probes by providing a step-by-step method of narrowing the root cause."> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Composer Studio Product Page">
+<meta name="product-link" content="https://www.ti.com/tool/CCStudio">
+
+<!-- Change the title text for your page -->
+
+<title>Debugging JTAG</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+# Introduction
+This page talks about how to properly debug JTAG connection issues with Texas Instruments XDS Debug Probes by providing a step-by-step method of narrowing the root cause. 
+
+# References
+- [Troubleshooting CCS](./users_guide/ccs_troubleshooting.html) covers general Code Composer Studio troubleshooting.
+- [Troubleshooting CCS - Data Verification Errors](troubleshooting-data_verification_errors.html) covers general program loading problems.
+- [XDS Target Connection Guide](./xdsdebugprobes/emu_xds_target_connection_guide.html) covers general HW aspects.
+- [JTAG Connectors and Pinout](./xdsdebugprobes/emu_jtag_connectors.html) covers the various physical aspects of the connectors and headers.
+- [JTAG Adapters](./xdsdebugprobes/emu_jtag_adapters.html) covers the various pin adapters available. 
+- [Using TM4C12x Devices Over JTAG Interface (SPMA075)](https://www.ti.com/lit/an/spma075/spma075.pdf) covers aspects related to TM4C devices.
+- [Hardware design guidelines for TMS320F28xx and TMS320F28xxx DSCs](http://www.ti.com/lit/an/spraas1d/spraas1d.pdf) section 4.6 covers aspects related to F28x devices.
+- [C2000 MCU JTAG Connectivity Debug](http://www.ti.com/lit/an/spracf0/spracf0.pdf) covers aspects specific to F28x devices.
+- [Legacy page for CCSv3.3](./xdsdebugprobes/files/Debugging_JTAG_Connectivity_Problems_legacy.pdf) 
+
+Also see specific debug probe pages and documentation for debug probe specific information.
+
+- [XDS100](./xdsdebugprobes/emu_xds100.html)
+- [XDS110](./xdsdebugprobes/emu_xds110.html)
+- [XDS200](./xdsdebugprobes/emu_xds200.html)
+- [XDS560v2](./xdsdebugprobes/emu_xds560v2.html)
+- [XDS560v2 ProTrace](./xdsdebugprobes/emu_protrace.html)
+- Spectrum Digital troubleshooting guides:
+	- http://support.spectrumdigital.com/guides/JTAG_Emulator_guide/
+	- http://support.spectrumdigital.com/guides/troubleshooting_guide/
+- Blackhawk troubleshooting guides:
+	- https://www.blackhawk-dsp.com/support/get.aspx?name=EMULATOR&type=appnote&subtype=TROUBLESHOOT
+	- https://www.blackhawk-dsp.com/support/FAQ.aspx
+
+# Strategy for debugging JTAG connectivity problems
+When having trouble with a connection, follow the steps below to identify what could be the most probable root cause for the problem. 
+
+Sometimes the entire connection process fails due to multiple reasons, therefore fixing one step may require revisiting the list more than once.  
+
+## Was CCS device support installed?
+Check if Code Composer was installed with the support for the device, board and JTAG debug probe. Check section 3 of the [CCS Getting Started Guide](./users_guide/index.html) for install instructions.
+- In general this problem shows up when:
+	- Trying to find a specific JTAG debug probe brand (Spectrum Digital, Blackhawk) or type (XDS100, MSP-FET, etc.) in the <i>Connection</i> drop-down box
+	- Trying to find a specific device or device family on the <i>Board or Device</i> list
+- In case the support is not installed, it is possible that you have to:
+	- Update the TI Emulators component or the device support package of CCS (details at the [Updating CCS](./ccsv7_updates.html) page)
+	- Contact your debug probe vendor to make sure it supports the CCS version or the driver is installed properly
+	- Update CCS to the latest release. Support for certain devices require CCS to be updated to the correct level.
+	- Ultimately reinstall your copy of CCS in case of file corruption 
+
+## Is the Target Configuration File correct?
+Check if the target configuration file (.ccxml) accurately describes your JTAG debug probe (<i>Connection</i>) and target (<i>Device or Board</i>) and use the <i>Test Connection</i> button to determine whether your JTAG connection is working at the lowest level. 
+- The page [Common target configurations](./application_notes/appnote-common_target_configurations.html)
+- The youtube quick tip: [How to use the CCS Target Configuration View](https://youtu.be/NNQJWCWaypY)
+- The youtube quick tip: [How to test your JTAG connection with CCS](https://youtu.be/o_2iMqZ1EbU)
+
+An invalid configuration can spawn pretty much any of the errors shown at the section [Common errors](#common-errors) below, the most common being:
+- [Host connection error](#host-connection-error)
+- [Device register](#device-register)
+- [SWO/SWD and cJTAG](#swo-swd-and-cJTAG)
+
+## Is the issue happening when starting a debug session?
+To isolate the issue between a specific step when starting a debug session, launch the debugger manually instead of using the <i>Debug Active Project</i> button <img src="./images/ccsv5_debugging_green_bug_button.png">.
+- The youtube quick tip [Easily launch the debugger without a project](https://youtu.be/g2aaJV_DcZY)
+- The short clips [Launching a project target configuration manually](http://software-dl.ti.com/sdo/sdo_apps_public_sw/CCSv4/Demos/Manual_launch_of_target_configuration/Manual_launch_of_target_configuration.htm) or [Launching a shared target configuration manually](http://software-dl.ti.com/sdo/sdo_apps_public_sw/CCSv4/Demos/Manual_launch_of_target_configuration_shared/Manual_launch_of_target_configuration_shared.htm) (requires javascript enabled).
+
+By doing this step-by-step operation it is possible to precisely know where the issues are happening:
+- If the issue happens during the Debugger Launch phase, check sections 4 and 5 of the <b>Troubleshooting CCS</b> page at the [References](#references) above.
+- If the issue happens during connect phase, check the [Troubleshooting the connect phase](#troubleshooting-the-connect-phase) section below.
+
+	<b>Note:</b> If using SoC and multicore devices, it is always a good idea to manually launch the target configuration and connect to each core individually instead of clicking on the <i>Debug Active Project</i> button <img src="./images/ccsv5_debugging_green_bug_button.png">. For details please check item 8 of the next section
+- If the issue happens during loading code to the target, check the [Troubleshooting CCS - Data Verification Errors](./troubleshooting-data_verification_errors.html) page.
+- If the issue happens after the code loaded successfully but never reaches main(), the problem resides on the application code (bad initialization of the device, watchdog timers not being refreshed, invalid memory accesses, etc.) - in this case the application needs to be fixed.
+
+# Troubleshooting the connect phase
+
+The items below are useful to double check all aspects involved with a good connection. Also, each item is followed with some common scenarios described in the [Common errors](#common-errors) below.
+
+<font color="f000f0"><b>1.</b></font> Check that you are using high quality cables for connections and the connections are not loose. The [Hardware checklist](#hardware-checklist) section below contains important information to debug this. 
+	- In general this problem shows errors such as: [Host connection error](#host-connection-error) - valid for both Ethernet and USB.
+
+<font color="f000f0"><b>2.</b></font> Determine whether the debug probe is correctly setup in the Host by checking either the [Windows Device Manager](https://support.microsoft.com/en-us/help/4026149/windows-open-device-manager), [macOS System Information](https://support.apple.com/en-us/HT203001) or using [Linux lsusb](https://manpages.ubuntu.com/manpages/precise/man8/lsusb.8.html) and a [more comprehensive Linux guide](https://www.linuxnix.com/find-usb-device-details-in-linuxunix-using-lsusb-command/). Check the [Host Connection Error](#host-connection-error) below for troubleshooting information for each specific Debug Probe.
+
+	In case the drivers are not correctly installed, it is possible you have to update the TI Emulators component of CCS (details [here](./ccsv7_updates.html)), run the Linux install script at the end of the CCS setup (details [here](./ccsv8_linux_host_support.html#installation-instructions)), contact your debug probe vendor to make sure the driver is installed properly, or ultimately reinstall your copy of CCS. 
+
+	- In general this problem shows errors such as: 
+		- [Host connection error](#host-connection-error) - valid for both Ethernet and USB.
+		- [Library error](#library-error)
+		- [Invalid parameters or command](#invalid-parameters-or-command)
+
+<font color="f000f0"><b>3.</b></font> Check all hardware - details are shown in the section [Hardware checklist](#hardware-checklist) below. 
+	- In general this problem shows errors such as: 
+		- [Cable break](#cable-break)
+		- [Power loss](#power-loss)
+		- [Device register](#device-register)
+		- [Invalid data read back](#invalid-data-read-back)
+
+<font color="f000f0"><b>4.</b></font> Check if the target configuration file (.ccxml) accurately describes your JTAG debug probe (<i>Connection</i>) and target (<i>Device or Board</i>).
+	- Invalid configuration can spawn any errors shown previously, including also:
+		- [SWO/SWD and cJTAG](#swo-swd-and-cJTAG)
+
+<font color="f000f0"><b>5.</b></font> Check if the target configuration file (.ccxml) is running at a clock speed compatible with the board and device.
+	- The youtube quick tip [Experimenting with JTAG clock speed](https://youtu.be/mKxaztkCsYw) shows a strategy to determine a reliable TCLK speed. 
+	- If you are using a target with an ARM9 processor, you should review the section on [Adaptive Clocking](./xdsdebugprobes/emu_adaptive_clocking.html).
+	- If you are using a XDS560 or XDS560v2 emulator you can configure its clock settings. Check their pages at [XDS560](./xdsdebugprobes/emu_xds560.html) and [XDS560v2 System Trace](./xdsdebugprobes/emu_xds560v2.html).
+	- If you are using a TMS570 development board, please check the following two e2e forum threads:
+	
+		[How to properly set the speed when using a Spectrum Digital XDS510USB emulator](https://e2e.ti.com/support/microcontrollers/hercules/f/312/t/169975.aspx)
+		
+		[How to properly correct a bug on the Debug Access Port designator (all emulators)](https://e2e.ti.com/support/development_tools/code_composer_studio/f/81/p/161988/596913.aspx#596913)
+		
+	- In general this problem shows errors such as:
+		- [Device register](#device-register)
+		- [Invalid data read back](#invalid-data-read-back)
+
+<font color="f000f0"><b>6.</b></font> Check if you have the proper license to work with the JTAG debug probe (details [here](http://processors.wiki.ti.com/index.php/Licensing_-_CCSv6))
+	- In general this problem shows errors such as:
+		- [Invalid license](#invalid-license)
+
+<font color="f000f0"><b>7.</b></font> Sometimes the JTAG debugger is completely at fault - i.e., not working at all or partially working. In this case, it is absolutely unpredictable what types of messages can be shown. 
+	- A very rare error is shown below:
+		- [Generic FTDI failure](#generic-FTDI-failure)
+
+<font color="f000f0"><b>8.</b></font> If you are unable to connect to a specific core of an SoC device (IVAHD, EVE, IPUSS, PRUSS, etc.), you may need to release it from reset. 
+	- A good reference is the section [Connecting to slave cores in SoC devices](./users_guide/ccs_debug-main.html#connecting-to-slave-cores-of-soc-devices) of the Debug User's Guide.
+
+		<b>Note:</b> For some F2800, C6000 and SoC devices, you can inspect the status of each core individually by using the ICEPICK. Check the section [Core Status](./users_guide/ccs_debug-main.html#core-status) of the Debug User's Guide.
+
+<font color="f000f0"><b>9.</b></font> If you are unable to connect to a flash-based device, keep in mind that pre-loaded code may prevent it from properly connecting. Changing the boot mode of the device or performing a mass erase can recover from this situation, however, there are instances where the device is locked permanently and will require replacement. 
+	- A generic error is shown at: 
+		- [Lost control of device execution state](#lost-control-of-device-execution-state)
+	- For MSP432 check the remark at:
+		- [Invalid device ID](#invalid-device-id)
+	- For Wireless connectivity devices, check [this e2e forum thread](https://e2e.ti.com/support/development_tools/code_composer_studio/f/81/p/518464/1899027#1899027)
+	- For C2000 devices, check [this e2e forum thread](https://e2e.ti.com/support/microcontrollers/c2000/f/171/t/513463)
+	- For Tiva and Stellaris, check [this e2e forum thread](https://e2e.ti.com/support/microcontrollers/tiva_arm/f/908/t/512516)
+	- For Hercules devices, check [this e2e forum thread](https://e2e.ti.com/support/microcontrollers/hercules/f/312/p/514045/1866658#1866658)
+
+[[b Note:
+
+   To mass erase the various microcontrollers, please check the section [Configuring Flash Settings](./users_guide/ccs_debug-main.html#configuring-flash-settings) of the CCS User's Guide. 
+
+]]
+	
+## Hardware checklist
+The aspects below can trigger an unpredictable number of error messages, therefore making it very difficult to pinpoint the root cause.
+
+<font color="f000f0"><b>1.</b></font> Check if the connector is properly seated in the target board:
+	- For most of the TI connectors (14 and 20 pin) that have a guide pin (pin 6), it is impossible to connect them in reverse. However, keep in mind they still may be connected displaced - i.e., only one row of pins is connected to the board. 
+	- All the ARM connectors (10 and 20 pin) do not have the guide pin, therefore check both the placement of the pin 1 and the displacement of the connector by an entire row.
+
+<font color="f000f0"><b>2.</b></font> Double-check the USB cable you are using: either if it is broken, loose or is a charger-only cable (no data, only 5V power).
+	- Poor cable quality has resulted in failures during Windows/Linux device driver intialization or during a CCS debug startup/connect. Also, loose cable connections are more difficult to troubleshoot, as they may work fine at certain times.
+	- Pay special attention to "power only" cables. Although rare these days, there are many USB cables designed for chargers and battery packs that do not have the proper USB data wires on them.  
+
+<font color="f000f0"><b>3.</b></font> Check your schematic to see whether the JTAG header is correctly connected on the PCB and, in the case of System Trace, if all EMU pins are correctly connected. Details can be found on the [JTAG Connectors and Pinout](./xdsdebugprobes/emu_jtag_connectors.html) page.
+	- If you are using one of the newer boards that do not have the JTAG connector populated (BeagleBone, AM3359 ICE, AM3358 SK, etc.), keep in mind they usually need additional hardware changes other than simply populating the JTAG header. For example, check the instructions for the [Beaglebone White](https://elinux.org/Beagleboard:BeagleBone#Optional_JTAG_Header) and [BeagleBone Black](https://github.com/beagleboard/beaglebone-black/wiki/System-Reference-Manual#79_JTAG_Connector).
+	- If you want to use pin System Trace with a [XDS560v2](./xdsdebugprobes/emu_xds560v2.html), make sure the board has the EMU2 through EMU4 pins actually routed to the connector. This is a common scenario with AM57x boards. 
+
+<font color="f000f0"><b>4.</b></font> Does your emulator support the target I/O voltage? There are some older products which cannot handle newer targets with 1.8V I/O as they were designed to operate with 3.3V and 5V targets. Contact your emulator manufacturer for details.
+
+<font color="f000f0"><b>5.</b></font> Review the [Emulation FAQ](./xdsdebugprobes/files/Emulation_FAQ_legacy.pdf)
+
+<font color="f000f0"><b>6.</b></font> If experiencing sudden target disconnects, this can be caused by a few scenarios:
+	- The cable between the JTAG debugger and the board may be loose or intermittently broken
+	- The JTAG clock speed may be too high. Check the short clip [Experimenting with JTAG clock speed](https://youtu.be/mKxaztkCsYw) and section 7.2 of the [Code Composer Studio User's Guide](../users_guide/index.html).
+	- There may be ground loops or EMI interference (check items 7 and 8 below)
+
+A useful test to verify if the JTAG cable is broken is to issue a continuous low level data transfer. To do that, run the dbgjtag utility from the command line on a continuous mode and then move the cables to see if there are any data transfer failures:
+
+```bash
+   C:\ti\ccs1010\ccs\ccs_base\common\uscif\dbgjtag -f @xds110 -S givendata,repeat=0
+```
+The **-f @xds110** in the dbgjtag command above can also be replaced by other Debug Probe designators such as:
+
+- **-f @xds200** for XDS200-class Debug Probes
+- **-X emulator,driver=bh560v2u** for XDS560v2 USB from Blackhawk (use bh560v2e for Ethernet)
+- **-X emulator,driver=sd560v2u** for XDS560v2 USB from Spectrum Digital (use sd560v2e for Ethernet)
+
+
+<font color="f000f0"><b>7.</b></font> Check for Electro-Magnetic Interference (EMI). If you are working with electronics that are near motors or other electrical components that could induce currents, then shielding and isolation may be important. This typically manifests itself as the connection to CCS becoming unstable or intermittent.
+    - A simple method to verify if EMI is influencing the connection is to do the following test: launch the debugger, which will flash the code to the device and run to main(). After that, from the Debug View highlight the core and disconnect from it (Ctrl+Alt+D), which will make it run freely. After the system reaches a steady state, highlight the same core on the Debug view and re-connect to it (Ctrl+Alt+C), and see if a stable JTAG operation is obtained. This test helps isolate the source of the noise, which is most commonly caused by the transient state and its inrush currents.
+    - If a connect still can't perform reliably in steady state, then the problem is that the JTAG lines are being flooded with noise - either conducted (via GND or other paths) or irradiated (over the air, the PCB, etc.). Check the next step for conducted interference. For irradiated interference, some sort of shielding must be used. Also, [this e2e forum thread](https://e2e.ti.com/support/microcontrollers/c2000/f/171/t/21354) contains several additional hardware design details that may prove useful. 
+    - Check the section 4.6 of the document [Hardware design guidelines for TMS320F28xx and TMS320F28xxx DSCs](http://www.ti.com/lit/an/spraas1d/spraas1d.pdf).
+	- Check the document [C2000 MCU JTAG Connectivity Debug](http://www.ti.com/lit/an/spracf0/spracf0.pdf).
+   
+<font color="f000f0"><b>8.</b></font> Check for ground loops. If the host PC and the target board use non-isolated power supplies and are connected to outlets that are part of different electrical mains circuits, there is a very high probability that ground loops may exist. The effect these ground loops can cause on the system are quite unpredictable and can range from a simple failure in JTAG data communications to a severe short circuit. If left unchecked, these ground loops can cause stress in the hardware of both the board, the Debug Probe and the host PC.  
+    - In general using an isolated JTAG debugger or an adapter helps reduce the influence of ground loops. Check the [TI estore](https://estore.ti.com/Emulators-C22.aspx) or the third parties [Blackhawk](https://www.blackhawk-dsp.com/products/Adapters.aspx) and [Spectrum Digital](https://www.spectrumdigital.com/usb/).
+    - Check the section 4.6 of the document [Hardware design guidelines for TMS320F28xx and TMS320F28xxx DSCs](http://www.ti.com/lit/an/spraas1d/spraas1d.pdf).
+	- Check the document [C2000 MCU JTAG Connectivity Debug](http://www.ti.com/lit/an/spracf0/spracf0.pdf).
+
+<font color="f000f0"><b>9.</b></font> Try a different USB port or host PC. For unknown reasons, it was observed that sometimes a specific USB port or the entire USB subsystem of a particular host do not properly communicate with the Debug Probe. The easiest way to try and isolate the issue is testing the HW in a different port or host. Something that is also covered in the [Host connection error](#host-connection-error) below. 
+
+# Common errors
+
+##Error message format
+Error messages are usually shown in the following format:
+
+[[r Error format:
+ 
+<b><font color="#ff00ff">Core_&lt;core number&gt;</font> <font color="#00bf00">Error message title:</font> <font color="#7f0000">(Error code @ address)</font> <font color="#ff0000">Error message body.</font> <font color="#0000ff">(Emulation package version)</font></b>
+
+]]
+
+- <font color="#ff00ff">Core_&lt;core number&gt;</font>. As the name says, this is the element that triggered the error. It may be a processor core (Cortex_M4, Cortex_A8, C28xx) or a JTAG entity (ICEPICK, CS_DAP) followed by the position of the element in the JTAG tree. 
+- <font color="#00bf00">Error message title</font>. This is the main title of the error message.
+- <font color="#7f0000">Error code @ address</font>. The error code is a negative number that can be easily searchable. The address is only relevent if the error happens due to memory access error. 
+- <font color="#ff0000">Error message body</font>. This is the explanation of the error with some general suggestions to troubleshoot it. It is recommended to find additional information in this section. 
+- <font color="#0000ff">Emulation package version</font>. This is the version of the TI Emulators component installed with your IDE of choice. 
+
+[[b Note:
+
+Across the years, the error messages suffered slight variations to the format above. However, all elements are easily recognizable and can be searchable on this page.
+
+]]
+
+## Host connection error
+
+The error below is thrown by CCS when the device driver is unable to communicate with the JTAG debugger either via USB or Ethernet.<br>
+	Due to the nature of the different debug probes, the error messages vary according to the XDS family.
+This can have several sources:
+- First and foremost: <b>Hardware</b>. Many issues can be caused by the problems described in the previous section [Hardware checklist](#hardware-checklist) above. 
+- The Windows device drivers are not properly installed or failed to initialize. Check the [Windows Device Manager](https://support.microsoft.com/en-us/help/4026149/windows-open-device-manager), the [XDS100 troubleshooting](./xdsdebugprobes/files/XDS100.pdf), the [XDS110 troubleshooting](./xdsdebugprobes/emu_xds110.html#troubleshooting) or the [XDS200 troubleshooting](./xdsdebugprobes/emu_xds200.html#troubleshooting).
+- The Linux udev rules are not properly configured. Either check Linux lsusb and udev rules, run the <tt>install&#95;drivers.sh</tt> script as shown [here](./ccsv8_linux_host_support.html#installation-instructions) or check the [XDS200 known issues](./xdsdebugprobes/emu_xds200.html#what-are-the-known-issues-).
+- The JTAG debugger failed to boot properly (XDS200 and XDS560v2). For XDS560v2, check the manufacturer's debug probe manual or the [DTC_CONF](./xdsdebugprobes/emu_dtc_conf.html) page to see if it is in Safe Mode.
+- There is another user already connected to the JTAG debugger (XDS220 or XDS560v2 Ethernet-based Debug Probes). For XDS560v2, check the [DTC_CONF](./xdsdebugprobes/emu_dtc_conf.html) page to learn how to find which host is using the probe. 
+- The JTAG debugger is not powered (some variants of XDS560 and XDS560v2). Check the external power supply.
+- The USB cable has loose contacts or not connected at all. Replace the USB cable and retest. 
+- The USB is connected via an incompatible USB HUB or port. Connect the USB cable directly to the host PC or to a different port. 
+- The debug probe firmware is incompatible with the OS. This is mostly applicable to XDS110 and XDS200. To verify this you can check the steps shown in the Firmware update section for [XDS110](./xdsdebugprobes/emu_xds110.html#updating-the-xds110-firmware) and [XDS200](./xdsdebugprobes/emu_xds200.html#updating-the-xds200-firmware).
+
+<hr>
+<b>XDS200, XDS560 and XDS560v2:</b>
+This has two variants that may happen in alternate circumstances:
+	<pre>
+	Error initializing emulator:
+	(Error -2083 @ 0x0)
+	Unable to communicate with the debug probe. 
+	Confirm debug probe configuration and connections, reset the debug probe, and retry the operation.
+	</pre>
+
+	<pre>
+	Error connecting to the target: 
+	(Error -2172 @ 0xD) 
+	Unable to communicate with the emulator. 
+	Confirm emulator configuration and connections, reset the emulator, and retry the operation. 
+	</pre>
+
+The <i>Test Connection</i> button reports a different message, but it refers to the same problem: 
+
+	<pre>
+	E_RPCENV_IO_ERROR(-6) No connection: DTC_IO_Open::dtc_io
+	Failed to open i/o connection (xds2xxu:0)
+	
+	An error occurred while soft opening the controller.
+	
+	-----[An error has occurred and this utility has aborted]--------------------
+	
+	This error is generated by TI's USCIF driver or utilities.
+	
+	The value is '-250' (0xffffff06).
+	The title is 'SC_ERR_ECOM_EMUNAME'.
+	</pre>
+<hr>
+
+<b>XDS110:</b>
+	<pre>
+	This error is generated by TI's USCIF driver or utilities.
+	
+	The value is '-260' (0xfffffefc).
+	The title is 'SC_ERR_XDS110_OPEN'.
+	
+	The explanation is:
+	An attempt to connect to the XDS110 failed.
+	The cause may be one or more of: invalid firmware update, invalid 
+	XDS110 serial number, or faulty USB connection. The firmware and 
+	serial number may be updated using the xdsdfu utility found in 
+	the .../ccs_base/common/uscif/xds110 directory of your 
+	installation. View the ReadMe.txt file there for instructions.
+	</pre>
+<hr>
+
+<b>XDS100:</b>
+	<pre>
+	An error occurred while soft opening the controller.
+	
+	-----[An error has occurred and this utility has aborted]--------------------
+	
+	This error is generated by TI's USCIF driver or utilities.
+	
+	The value is '-151' (0xffffff69).
+	The title is 'SC_ERR_FTDI_OPEN'.
+	
+	The explanation is:
+	One of the FTDI driver functions used during
+	the connect returned bad status or an error.
+	The cause may be one or more of: invalid XDS100 serial number,
+	blank XDS100 EEPROM, missing FTDI drivers, faulty USB cable.
+	Use the xds100serial command-line utility in the 'common/uscif'
+	folder to verify the XDS100 can be located.
+	</pre>
+
+<hr>
+<b>XDS510 Spectrum Digital:</b>
+	<pre>
+	BoardFilePath: C:\Users\user\AppData\Local\TEXASI~1\CCS\CCSV6_~3\0\0\BrdDat\testBoard.dat
+	Resetting Emulator
+		ERROR -- XDS510-USB Emulator not connected/enumerated
+	</pre>
+
+<hr>
+<b>XDS510 (not Spectrum Digital):</b>
+	<pre>
+	An error occurred while soft opening the controller.
+	
+	-----[An error has occurred and this utility has aborted]--------------------
+	
+	This error is generated by TI's USCIF driver or utilities.
+	
+	The value is '-118' (0xffffff8a).
+	The title is 'SC_ERR_OCS_PORT'.
+	
+	The explanation is:
+	The hardware or software support only limited values of port addresses.
+	</pre>
+<hr>
+
+
+## Cable break
+This error means the JTAG debugger is sending data to the device via the TDI pin but is not receiving anything back on the TDO pin.
+
+This error can either have two variants: <b>near</b> or <b>far</b> from itself, which means the JTAG circuit is broken close to the JTAG debug probe or close to the board. 
+
+	<b>Note:</b> in the specific case of XDS100 debug probes, this error may happen also if the wrong variant is selected: for example, a XDS100v2 is configured but a XDS100v1 is present on the target. 
+Technically a cable break is detected by a pin that is grounded when the cable is plugged in. If the pin is on the connector that plugs into the target board, it is often called <b>Cable Break Far</b> or sometimes just <b>Cable Break</b>. If the pin is on the connector that plugs into the debug probe (e.g. the cable pod of an XDS560v2), that is called <b>Cable Break Near</b>. 
+
+<hr>
+	<pre>
+	Error connecting to the target:
+	(Error -183 @ 0x0)
+	The controller has detected a cable break far-from itself.
+	The user must connect the cable/pod to the target.
+	</pre>
+<hr>
+
+Another possible cause of a "cable break far-from itself" could be that the TVRef signal (pin 5) is pulled up to the IO voltage, or TDIS (pin 4) is pulled-down to ground.  TVRef should be connected to the IO voltage through a small current limiting resistor.  TDIS should be connected directly to ground.  See <b>XDS Target Connection Guide</b> in the section [References](#references) above for more information on the connection of these and other emulator signals.
+
+
+## Power loss
+This error means the JTAG debugger is unable to sense the presence of a power supply voltage on the target - the [TVRef pin](./xdsdebugprobes/emu_xds_target_connection_guide.html#tvref).
+
+<hr>
+	<pre>
+	Error connecting to the target:
+	(Error -180 @ 0x0)
+	The controller has detected a target power loss.
+	The user must turn-on or connect the power supply for the target.
+	</pre>
+<hr>
+
+The error below happens if a XDS110 is being used, the <i>Power Selection</i> setting is set to <i>Probe supplied power</i> but the hardware itself is not properly providing power to the target device. In this case, verify if all power connections or launchpad jumpers are correctly connected.  
+<hr>
+	<pre>
+	Error connecting to the target:
+	(Error -267 @ 0x0)
+	The controller could not detect valid target supply.
+	Check target JTAG connection and/or connection setting specifying voltage level.
+	</pre>
+<hr>
+
+## Device register
+This error means the JTAG debugger is unable to access the core or device on the board. 
+
+Technically speaking, this happens if the JTAG debugger fails to access an ICEPick register (exceptions are MSP430, Stellaris and some C2000 Wireless connectivity and Digital Power MCUs, which do not have an ICEPICK). If the ICEPick driver reports this error immediately upon connect, it's likely a hard fail with the JTAG connection itself (loose cables or connections, etc.). However, if the error happens later in the debug session the reasons are different (perhaps the reliability of the JTAG connection due to noise, or improper firmware that causes the device to power cycle or reset, etc.). 
+
+This issue can also manifest itself if the Debug Probe senses the scan path is broken. Some troubleshooting tips can be found at the section [Invalid data read back](#invalid-data-read-back) below. 
+
+In certain scenarios the loaded code may cause issues with the normal connection and/or execution. In this case, check the troubleshooting tips in the error [Invalid device ID](#invalid-device-id) below.  
+
+Additional tips to properly debug and correct this error are also in the section [Troubleshooting the connect phase](#troubleshooting-the-connect-phase) above. 
+
+<hr>
+	<pre>
+	Error connecting to the target:
+	(Error -2131 @ 0x0)
+	Unable to access device register. Reset the device, and retry the operation. If
+	error persists, confirm configuration, power-cycle the board, and/or try
+	more reliable JTAG settings (e.g. lower TCLK).
+	</pre>
+<hr>
+
+## SWO/SWD and cJTAG
+This error means the JTAG debugger is configured for SWD but is connected to a target that does not support it. Correct the target configuration file.
+
+- A special case is applicable to CC32xx devices: in the <i>Device or Board</i> selection of the <i>Target Configuration File</i>, it is required to select the device with the suffix <b>_SWD</b>: <tt>CC3200_SWD</tt>, <tt>CC3220_SWD</tt>, <tt>CC3220S_SWD</tt>, <tt>CC3220SF_SWD</tt> and so on.  
+
+   - Technically speaking, the CC32xx devices feature the JTAG router called ICEPICK, which is not supported by the SWD protocol. In this case, when the tool detects that the ICEPICK is present in the scan chain configuration, it automatically falls back to the JTAG protocol, thus throwing this error.  
+
+<hr>
+	<pre>
+	IcePick_C_0: Error connecting to the target: (Error -611 @ 0x0)
+	A request was received to control the JTAG state or to execute a
+	JTAG scan while the debug probe is in SWD mode. JTAG operations
+	over SWD are not supported.
+	</pre>
+<hr>
+
+## Invalid license
+This error means you are trying to connect to a JTAG debugger unsupported by the Free Evaluation License.
+
+The error message is pretty self-explainable. 
+
+<hr>
+	<pre>
+	License cannot be acquired.
+	
+	The Code Composer Studio license that you are using only allows the following
+	connection types:
+	- XDS100 class emulators
+	- MSP430 connections
+	- simulators
+	- EVMs/DSKs/eZdp kits with onboard emulation
+	
+	Examples of restricted connections includes:
+	- XDS200, XDS510 and XDS560 emulators
+	</pre>
+<hr>
+
+## Device hung
+This error means the JTAG debugger is unable to either put the core in debug mode (case of ARM cores) or the core did not acknowledge the JTAG debugger's requests.
+
+Technically, in certain circumstances the CPU may be hung waiting for a resource or a bus to become available, thus possibly preventing the JTAG debugger or the normal processing flow to occur. In this case it is possible that the application made some access that caused memory bus to hang (bus contention).
+
+Also, when the driver's attempt to HALT the core fails, it checks to see whether it is due to memory-hang condition. If so, it tries to clear that condition and returns a warning (a ready-hang condition) and proceeds. If it still can't access the core after that, then it means the bus stayed locked up as subsequent memory accesses continue to fail and it gives up. 
+
+Selected cores (C64x+, C674x, C66x) support a mechanism called **Emulation Force Ready**, which is a way for the Debug Probe to de-assert the RDY- signal and halt the CPU immediately. This preserves the entire state of the core/device except the core pipeline, which is flushed. Also, any memory access may cause the CPU to be hung again if it is misconfigured. Even still, halting the CPU allows to perform a deeper analysis of the root cause of the failure.
+
+In other circumstances the JTAG debugger could not precisely determine the cause of the memory bus error ("may be hung"), therefore it is very difficult to define where this issue is originated. Similarly as above, a bus may be hung range from either an invalid instruction that can misconfigure the memory interface; a bus locked by another core, a peripheral or DMA (bus contention) or even a power supply dip when a specific piece of hardware is accessed.
+
+Still in other circumstances, the device is either being held in reset due to an external factor (HW) or cannot recover from reset due to an internal factor (SW). Check the section [Device is held in reset](#device-is-held-in-reset) below.
+
+This error manifests itself in several messages:
+- These are unrecoverable errors during connection that prevent the JTAG debugger from gaining control over the core. They will require either issuing a System Reset, a board Hardware reset or power cycle.
+
+<hr>
+	<pre>
+	Error connecting to the target: (Error -1144 @ 0x0) Device core is hung.
+	The debugger attempted to recover debug control, but was unsuccessful. Power-cycle the board.
+	If error persists, confirm configuration and/or try more reliable JTAG settings (e.g. lower TCLK). 
+	</pre>
+<hr>
+	<pre>
+	Error connecting to the target: (Error -1060 @ 0x0) Device is not responding to the request.
+	Reset the device, and retry the operation.
+	If error persists, confirm configuration, power-cycle the board, 
+	and/or try more reliable JTAG settings (e.g. lower TCLK).
+	</pre>
+
+- These are variations of the above error that happen after a successful connection, where the code is put to run but any attempts to halt it are being blocked by a memory bus contention. This is an unrecoverable error that prevents the JTAG debugger from halting the core. It will require either issuing a System Reset, a board Hardware reset or power cycle.
+
+<hr>
+	<pre>
+	Trouble Halting Target CPU: (Error -1205 @ 0x80006FE8) Device memory bus has an error and may be hung.
+	</pre>
+<hr>
+	<pre>
+	Trouble Halting Target CPU: Error 0x80001820/-2062 Fatal Error during:
+	Execution, Timeout, Target, Cannot halt the processor
+	</pre>
+<hr>
+
+- This is an error that was recovered but the code integrity is unknown. At this point it may be possible to dump memory and try to find the source of the error.
+
+<hr>
+	<pre>
+	Error connecting to the target: (Error -1143 @ 0x0) Device core was hung. 
+	The debugger has forced the device to a ready state and recovered debug control, 
+	but your application's state is now corrupt.
+	You should have limited access to memory and registers,
+	but you may need to reset the device to debug further.
+	</pre>
+<hr>
+
+- This is a recoverable warning that indicates something is preventing the CPU from accessing memory. At this point the code integrity is ok and it gives the most chances to find the source of the error.
+
+<hr>
+	<pre>
+	Warning: Error 0x40000202/-1205
+	Warning during: Memory, OCS, The memory bus has encountered a 'ready-hang' condition.
+	</pre>
+<hr>
+
+## Lost control of device execution state
+This error means the device is free running and the JTAG debugger lost control of its core and status. Both a disconnect and power cycle will be required, but there is a possibility the running firmware on the device may be preventing the JTAG debugger from properly connecting (if the device has flash memory). In these cases, check <b><font color="ff00ff">step 9</font></b> of the section [Troubleshooting the connect phase](#troubleshooting-the-connect-phase) above. 
+
+<hr>
+	<pre>
+	Error: (Error -2134 @ 0x0)
+	Unable to control device execution state. Reset the device, and retry the operation. 
+	If error persists, confirm configuration, power-cycle the board,
+	and/or try more reliable JTAG settings (e.g. lower TCLK).
+	</pre>
+<hr>
+
+## Device blocked
+This error means the device is free running and the JTAG debugger lost control of its core and status. Both a disconnect and power cycle will be required, but there is a possibility the running firmware on the device may be preventing the JTAG debugger from properly connecting (if the device has flash memory). In these cases, consult the documentation of your device to find out how to unlock it. 
+<hr>
+	<pre>
+	Trouble Reading Register PC: (Error -1142 @ 0x0)
+	Device blocked debug access because it is currently executing non-debuggable code.
+	Choose 'Rude Retry' to disable polite mode and force the operation.
+	</pre>
+<hr>
+
+## Invalid device ID
+This error is caused by the inability of the JTAG debugger to read the unique device identifier code in one of its registers. This is usually caused by either a hardware failure on the board, severe interference or noise on the JTAG channel or, in flash-based devices, a faulty application that disrupts the device regular operation either by issuing continuous resets, hard faults, power outages, etc. In more unusual circumstances it may also be required to update the device support in CCS or the JTAG debugger device drivers.  
+	<b>Note:</b> a common error happens in MSP432 and it is caused by invalid example code. Please check [this e2e forum post](https://e2e.ti.com/support/microcontrollers/msp430/f/166/p/460430/1663082#1663082) for additional details and [this e2e forum post](https://e2e.ti.com/support/development_tools/code_composer_studio/f/81/p/414141/1471606#1471606) for a way to recover the development board.
+	
+	<b>Note:</b> for TM4C (Tiva) devices, this error was reported with board routing issues. Please check the document <i>Using TM4C12x Devices Over JTAG Interface - SPMA075</i> on the section [References](#references) above or [this post](https://e2e.ti.com/support/microcontrollers/tiva_arm/f/908/t/286517) if using the ICDI or Launchpad interface.
+<hr>
+	<pre>
+	Error connecting to the target: (Error -1063 @ 0x0)
+	Device ID is not recognized or is not supported by driver. 
+	Confirm device and emulator configuration is correct, or update device driver.
+	</pre>
+<hr>
+
+## Low power run mode
+These errors mean the device is in low power run mode. Depending on the severity of the condition, the JTAG debugger may or may not be able to bring it out of this mode.
+
+If there are no other external factors that are holding this device in low power, the JTAG debugger will most probably be able to successfully bring the device out of this mode:
+<hr>
+	<pre>
+	Error: (Error -1156 @ 0x0) Device may be operating in low-power mode. Do you want to bring it out of this mode?
+	</pre>
+<hr>
+However, if there is a more severe power outage on the device, the JTAG debugger is unable to bring it out of this mode:
+<hr>
+	<pre>
+	Error: (Error -1155 @ 0x0) Device may be operating in low-power mode. Reset the device, and retry the operation.
+	If error persists, confirm configuration, power-cycle the board, 
+	and/or try more reliable JTAG settings (e.g. lower TCLK). 
+	</pre>
+<hr>
+The solution to this error message is usually more involving. A good troubleshooting is shown in [this e2e forum thread](https://e2e.ti.com/support/microcontrollers/c2000/f/171/t/438138).
+
+
+## Library error
+This error means the software and device drivers are not properly installed. The following tips are relevant:
+
+- A reinstall of the TI Emulators component (details at this link or CCS may be required. 
+
+- This issue happens if the installation directory is not accessible (if CCS is installed in C:\Program Files or other protected area by Windows).
+
+- This error could also happen if the "Connection" and "Board" selected in the Target Configuration are not the correct selections for the target board.
+
+- [This e2e forum post](https://e2e.ti.com/support/development_tools/code_composer_studio/f/81/t/633163) reports that uninstalling/reinstalling the drivers directly from the Windows Control Panel can be an alternative to solve this issue.
+
+- [This e2e forum thread](https://e2e.ti.com/support/development_tools/code_composer_studio/f/81/t/634750) reports that HW issues can cause this issue when XDS100 Debug Probes are being used. 
+
+- [This e2e forum post](https://e2e.ti.com/support/development_tools/code_composer_studio/f/81/p/324781/1132193#1132193) shows additional troubleshooting tips for XDS100 Debug Probes (which can be extended to other models).
+
+<hr>
+	<pre>
+	This error is generated by TI's USCIF driver or utilities.
+	
+	The value is '-600' (0xfffffda8).
+	The title is 'SC_ERR_LIB_ANY_LOCATE'.
+	
+	The explanation is:
+	A required dynamic library could not be located.
+	The library isn't on the search path.
+	</pre>
+<hr>
+
+## Invalid data read back
+This error varies greatly depending on the type of fault and therefore both CCS and the Test Connection can return different results. 
+
+Common to all scenarios is when the integrity scan-test fails with invalid data - something mentioned in [this e2e forum thread](https://e2e.ti.com/support/development_tools/code_composer_studio/f/81/p/218938/788592#788592).
+
+One example is a typical stuck-at-ones or stuck-at-zero fault, that can manifest in two ways:
+
+<hr>
+	<pre>
+	Error connecting to the target:
+	(Error -233 @ 0x0)
+	The JTAG IR and DR scan-paths cannot circulate bits, they may be broken.
+	An attempt to scan the JTAG scan-path has failed.
+	The target's JTAG scan-path appears to be broken
+	with a stuck-at-ones or stuck-at-zero fault.
+	</pre>
+<hr>
+	<pre>
+	Error connecting to the target:
+	(Error -235 @ 0xffffff15)
+	The data scan-path cannot circulate bits, it may be broken.
+	An attempt to scan the JTAG data registers has failed.
+	The target's JTAG data path appears to be broken
+	with a stuck-at-ones or stuck-at-zero fault.
+	</pre>
+<hr>
+
+- If the data read back is all ones (0xFFFFFFFF), it is possible that one of the JTAG lines has a short to V<sub>CC</sub>. 
+- If the data read back is all zeros (0x00000000), it is possible there is a power failure on the circuit or one of the JTAG lines has a short to GND.
+- If using an isolated JTAG debug probe, it is possible that both scenarios may happen if the target board or device is powered down. In this case, make sure power is properly applied across the system.
+	- Most of the F28x development kits return 0xFFFFFFFF if the device section of the kit is powered down (if the kit has an isolated JTAG), if the jumper settings disable JTAG access or if the bootmode is set to anything other than JTAG. Please carefully review the documentation of your kit.
+- Certain devices such as F28x suggest a resistor to pull the TRST pin low. However, if the resistor is too small this error may manifest itself. This is reported in [this e2e forum post](https://e2e.ti.com/support/development_tools/code_composer_studio/f/81/p/628509/2333828#2333828).
+- If the data read is garbage such as in the example below, probably reflections on the JTAG line, loose target cables or connectors or problems on the PCB routing are most probably the root causes. Also, invalid configurations such as cJTAG/JTAG or a very high TCLK speed can cause garbled data to be read back. 
+
+<hr>
+	<pre>
+	-----[Perform the Integrity scan-test on the JTAG IR]------------------------
+	
+	This test will use blocks of 512 32-bit words.
+	This test will be applied just once.
+	
+	Do a test using 0xFFFFFFFF.
+	Test 1 Word 0: scanned out 0xFFFFFFFF and scanned in 0xFFFFFFC1.
+	Scan tests: 1, skipped: 0, failed: 1
+	Do a test using 0x00000000.
+	Test 2 Word 0: scanned out 0x00000000 and scanned in 0x0000003F.
+	Scan tests: 2, skipped: 0, failed: 2
+	Do a test using 0xFE03E0E2.
+	Test 3 Word 0: scanned out 0xFE03E0E2 and scanned in 0x80F83880.
+	Test 3 Word 1: scanned out 0xFE03E0E2 and scanned in 0x80F838BF.
+	Test 3 Word 2: scanned out 0xFE03E0E2 and scanned in 0x80F838BF.
+	Test 3 Word 3: scanned out 0xFE03E0E2 and scanned in 0x80F838BF.
+	Test 3 Word 4: scanned out 0xFE03E0E2 and scanned in 0x80F838BF.
+	Test 3 Word 5: scanned out 0xFE03E0E2 and scanned in 0x80F838BF.
+	The details of the first 8 errors have been provided.
+	The utility will now report only the count of failed tests.
+	Scan tests: 3, skipped: 0, failed: 3
+	Do a test using 0x01FC1F1D.
+	Scan tests: 4, skipped: 0, failed: 4
+	Do a test using 0x5533CCAA.
+	Scan tests: 5, skipped: 0, failed: 5
+	Do a test using 0xAACC3355.
+	Scan tests: 6, skipped: 0, failed: 6
+	Some of the values were corrupted - 66.7 percent.
+	
+	The JTAG IR Integrity scan-test has failed.
+	
+	-----[Perform the Integrity scan-test on the JTAG DR]------------------------
+	
+	This test will use blocks of 512 32-bit words.
+	This test will be applied just once.
+	
+	Do a test using 0xFFFFFFFF.
+	Scan tests: 1, skipped: 0, failed: 0
+	Do a test using 0x00000000.
+	Scan tests: 2, skipped: 0, failed: 0
+	Do a test using 0xFE03E0E2.
+	Test 3 Word 0: scanned out 0xFE03E0E2 and scanned in 0xFC07C1C5.
+	Test 3 Word 1: scanned out 0xFE03E0E2 and scanned in 0xFC07C1C5.
+	Test 3 Word 2: scanned out 0xFE03E0E2 and scanned in 0xFC07C1C5.
+	Test 3 Word 3: scanned out 0xFE03E0E2 and scanned in 0xFC07C1C5.
+	Test 3 Word 4: scanned out 0xFE03E0E2 and scanned in 0xFC07C1C5.
+	Test 3 Word 5: scanned out 0xFE03E0E2 and scanned in 0xFC07C1C5.
+	Test 3 Word 6: scanned out 0xFE03E0E2 and scanned in 0xFC07C1C5.
+	Test 3 Word 7: scanned out 0xFE03E0E2 and scanned in 0xFC07C1C5.
+	The details of the first 8 errors have been provided.
+	The utility will now report only the count of failed tests.
+	Scan tests: 3, skipped: 0, failed: 1
+	Do a test using 0x01FC1F1D.
+	Scan tests: 4, skipped: 0, failed: 2
+	Do a test using 0x5533CCAA.
+	Scan tests: 5, skipped: 0, failed: 3
+	Do a test using 0xAACC3355.
+	Scan tests: 6, skipped: 0, failed: 4
+	Some of the values were corrupted - 66.7 percent.
+	
+	The JTAG DR Integrity scan-test has failed.
+	</pre>
+<hr>
+
+## Pipeline stalled
+This error is shown when the JTAG debug probe tries to connect to a core that is locked pending a pipeline operation to complete. This is usually caused by a excessive number of interrupts or by a peripheral or bus contention - all these are caused by the running application.
+
+This situation cannot be easily recovered, but some useful tips are shown at [this e2e forum post](https://e2e.ti.com/support/tools/code-composer-studio-group/ccs/f/code-composer-studio-forum/464272/am5728-cpu-is-not-suspended-with-xds560-jtag-emulator/1670194#1670194). 
+
+<hr>
+	<pre>
+	Trouble Halting Target CPU: (Error -1323 @ 0xB10002C) Device failed to enter
+	debug/halt mode because pipeline is stalled. Power-cycle the board. If error persists,
+	confirm configuration and/or try more reliable JTAG settings (e.g. lower TCLK).
+	</pre>
+<hr>
+
+## Dead JTAG clock
+This error is shown when the JTAG debug probe does not receive a clock signal on the RTCK pin. It can have many reasons:
+- The speed of TCLK is configured for a rate too high for the board and device
+- The type of TCLK is configured for either fixed or adaptive but is unsupported by the device
+- The board PCB or device does not tie the TCK pin to the RTCK pin
+
+<hr>
+	<pre>
+	Error connecting to the target:
+	(Error -181 @ 0x0)
+	The controller has detected a dead JTAG clock. 
+	The user must turn-on or connect the JTAG clock for the target.
+	</pre>
+<hr>
+
+## C28x the debug probe reported an error
+This error is commonly associated with C28x devices and is usually associated with a range of hardware or firmware problems that prevent the JTAG debugger to connect to the core. 
+
+<hr>
+	<pre>
+	C28xx: Error connecting to the target:
+	(Error -1135 @ 0x0)
+	The debug probe reported an error.
+	Confirm debug probe configuration and connections, reset the debug probe, and retry the operation. 
+	</pre>
+<hr>
+
+The e2e forum threads below cover some possible root causes for this issue:
+	- https://e2e.ti.com/support/microcontrollers/c2000/f/171/t/270397
+	- https://e2e.ti.com/support/microcontrollers/c2000/f/171/p/180790/653247
+	- https://e2e.ti.com/support/development_tools/code_composer_studio/f/81/t/564965
+	- https://e2e.ti.com/support/tools/ccs/f/81/p/673446/2478244#2478244
+
+This error can also manifest when caused by the problems reported in the [Invalid data read back](#invalid-data-read-back) section above. 
+
+## Invalid parameters or command
+This is a very rare error and indicates the version of the JTAG debugger device drivers are incompatible with the version of CCS used.  
+
+In this case, it is necessary to contact the JTAG debugger manufacturer to provide updated device drivers.
+
+<hr>
+	<pre>
+	Error connecting to the target:
+	(Error -120 @ 0x0)
+	This error number is used when a command is invalid.
+	It is likely a problem with `SC_CMD' in SMG_call()
+	selecting a function that has not been implemented.
+	(Emulation package 5.1.450.0)
+	</pre>
+<hr>
+
+## Generic FTDI failure
+This is a very unusual error and its exact reason is not entirely characterized. It is reported on the following e2e forum threads:
+
+	- https://e2e.ti.com/support/development_tools/code_composer_studio/f/81/t/564965
+	- https://e2e.ti.com/support/microcontrollers/c2000/f/171/p/424273/1514372#1514372
+	- https://e2e.ti.com/support/microcontrollers/c2000/f/902/p/377612/1329835#1329835
+	- https://e2e.ti.com/support/microcontrollers/c2000/f/902/t/633709
+
+<hr>
+	<pre>
+	This error is generated by TI's USCIF driver or utilities.
+	
+	The value is '-150' (0xffffff6a).
+	The title is 'SC_ERR_FTDI_FAIL'.
+	
+	The explanation is:
+	One of the FTDI driver functions used during
+	configuration returned a invalid status or an error.
+	</pre>
+<hr>
+
+In this case, a procedure of resetting the JTAG debugger using dbgjtag was reported to being effective to restore communications.
+
+1. run the 'Test Connection' script in the CCSv7 target configuration tab &rarr; FAIL with log shown in previous post (error code -150)
+2. run dbgjtag tests WITH reset (integrity, broken, path length, given data) &rarr; all tests FAIL with same failure code (error code -150)
+3. run dbgjtag tests WITHOUT reset (integrity, broken, path length, given data) &rarr; all tests PASS
+4. run dbgjtag tests WITH reset (integrity, broken, path length, given data) &rarr; all tests PASS
+5. run the 'Test Connection' script in the CCSv7 target configuration tab &rarr; PASS
+
+If the above procedure does not resolve the problem, another solution that has been effective on Windows installations is to force an update of the FTDI drivers.  This can be accomplished by running the below command from a Windows Command Prompt and from the "ccs_base\emulation\windows" directory within the CCS installation location:  
+
+```bash
+   C:\ti\ccs1010\ccs\ccs_base\emulation\windows\DPInst64.exe /path .\ftdi_drivers
+```
+
+## The emulator reported an error
+This is an error common to C28x devices and XDS100v1 or XDS100v2 debug probes and usually manifests when the debug probe has trouble communicating with the target device (the USB connection is fine). 
+
+<hr>
+	<pre>
+	Error connecting to the target: (Error -1041 @ 0x0)
+	The emulator reported an error. Confirm emulator configuration and connections, reset the emulator, and retry the operation.
+	</pre>
+<hr>
+
+This can be caused by several sources of errors: a problem in the FTDI chip, bad I/O pins on the debug probe, issues on the circuit between the FTDI chip and the JTAG header, or a problem with the target device. 
+
+You can try to workaround or solve this issue by swapping the JTAG debug probe and/or target device or board. In rare cases the FTDI device on the XDS100 debug probe may be broken.
+
+
+## Cannot access the DAP
+This error is caused by the inability of the JTAG debugger to access the **DAP** or one of its ARM subcores. This is usually caused by either a hardware failure on the board or invalid code on the subcore that causes it to reset itself continuously. 
+
+If this error is originated in software, it can potentially be recovered by [accessing the DAP directly](https://youtu.be/-yGmq_VKvTQ) and trying to either reset the offending core, lock it or erase its flash memory via a GEL script (some microcontrollers have pre-loaded routines to allow that).
+
+<b>Notes:</b>
+- Some users reported this error also happens in conjunction with the [Invalid device ID](#invalid-device-id) error above.
+- For certain devices such as CC13xx and CC26xx, the GEL script is directly available on the menu Scripts &rarr; &lt;device name&gt; &rarr; MassErase.
+- A procedure to try and unlock a Hercules device is described in [this e2e forum thread](https://e2e.ti.com/support/microcontrollers/hercules/f/312/p/542615/2020352).
+- For CC3200/CC3220 devices, a few issues can cause this:
+   - If using a Launchpad, the SOP jumpers may be set to "Flash" and not JTAG or SWD. Check this [e2e thread](https://e2e.ti.com/support/wireless-connectivity/wifi/f/968/p/660417/2426122#2426122) for a more thorough procedure.
+   - The device may also be in production mode. Check this [e2e thread](https://e2e.ti.com/support/wireless-connectivity/wifi/f/968/p/613251/2258218#2258218) for details. 
+   - The device may be locked due to firmware problems, either the Service Pack or the Application firmware. Check the Launchpad and SDK documentation for details. 
+- For C6000 and SoC devices (Sitara, Keystone 2, etc.), check item 8 of the section [Troubleshooting the connect phase](#troubleshooting-the-connect-phase) above.
+- For all Launchpad boards that use the XDS110 Debug Probe, a recent change on the default TCLK speed may cause this issue. Please check the section <strong>JTAG clock speed considerations</strong> at the [XDS110 page](https://software-dl.ti.com/ccs/esd/documents/xdsdebugprobes/emu_xds110.html).
+
+<hr>
+	<pre>
+	Error: (Error -1170 @ 0x0)
+	Unable to access the DAP. Reset the device, and retry the operation.
+	If error persists, confirm configuration, power-cycle the board, and/or try more reliable JTAG settings (e.g. lower TCLK). 
+	</pre>
+<hr>
+
+## FTDI driver function error
+This error happens whenever the JTAG scan manager software has sent a command to the FTDI chip in the XDS100, and the FTDI driver returned either an error code or the wrong amount of data (usually an embedded error code in the data). This can be caused by either an unreliable USB connection (data is corrupted going to or from the FTDI chip), hardware problems (the FTDI chip in the XDS100 is not responding properly) or a software bug in the scan manager software.
+
+If the error happens continuously, this is very similar in nature as the [Host connection error](#host-connection-error) and similar workarounds mentioned there are applicable. 
+
+If the error happens suddenly, then noise or ground problems may be the root cause and the aspects mentioned in the [Hardware checklist](#hardware-checklist) are applicable. 
+
+<hr>
+	<pre>
+	IcePick: Error connecting to the target: (Error -154 @ 0xFFFFFF66)
+	One of the FTDI driver functions used to write data returned bad status or an error.
+	</pre>
+<hr>
+
+## Target timeout
+This error happens whenever the JTAG tries to read a target device but it does not respond to the requests after an arbitrary number of retries. This is usually caused by similar conditions as the [Lost control of the device execution state](#lost-control-of-device-execution-state) and the [Security Error](#security-error). For flash-based microcontrollers, check <b><font color="ff00ff">step 9</font></b> of the section [Troubleshooting the connect phase](#troubleshooting-the-connect-phase) above. 
+
+<hr>
+	<pre>
+	IcePick_C: Error connecting to the target: (Error -275 @ 0x0)
+	The attempt to poll a target device exceeded its timeout limit.
+	The utility or debugger has requested that a target device be repeatedly accessed for a specific data or status value. 
+	This has failed because the built-in limit for the maximum number of attempts when polling the JTAG scan-path has been exceeded. 
+	</pre>
+<hr>
+
+## Path measure
+This error happens whenever the JTAG cannot find a consistent number of bits when trying to determine the length of the JTAG scan chain. This error varies depending on the target device configured, its status (locked, halted, running without control) or if the configured TCLK is too high. 
+
+The message below is displayed when the TCLK is too high. This can be solved by reducing the TCLK speed as mentioned at [this section](./users_guide/ccs_debug-main.html#advanced-target-configuration-options). 
+
+[[r Warning:
+   The XDS110 TCLK Default speed will be increased from the current 2.5MHz to 8MHz in a future release. This may cause the connection to fail unexpectedly, especially if the TI Emulators component was updated. Use the technique mentioned in the paragraph above to workaround this issue. 
+]]
+
+<hr>
+	<pre>
+	This error is generated by TI's USCIF driver or utilities.
+	
+	The value is '-501' (0xfffffe0b).
+	The title is 'SC_ERR_TEST_MEASURE'.
+	
+	The explanation is:
+	The built-in scan-path length measurement failed.
+	The built-in scan-path reliability tests cannot be
+	performed without knowledge of the scan-path length.
+	Try specifying the scan-path lengths in the command-line
+	options or board configuration file of this utility or debugger.
+	</pre>
+<hr>
+
+The error below is reported in two scenarios:
+- If using CC13xx/CC26xx devices, they are possibly locked. This is usually solved by unlocking/unbricking the device as mentioned in [this FAQ](https://e2e.ti.com/support/wireless_connectivity/bluetooth_low_energy/f/538/t/404236). [This e2e forum thread](https://e2e.ti.com/support/embedded/tirtos/f/355/p/441476/1588263#1588263) also discusses this scenario.
+- If using a XDS510-class debug probe, this means the device configured in the target configuration file (.ccxml) is different than the one attached to the debug probe. This is solved by matching the device chosen in the target configuration editor to the device present in the board.
+
+<hr>
+	<pre>
+	This error is generated by TI's USCIF driver or utilities.
+	
+	The value is '-230' (0xffffff1a).
+	The title is 'SC_ERR_PATH_MEASURE'.
+	
+	The explanation is:
+	The measured lengths of the JTAG IR and DR scan-paths are invalid.
+	This indicates that an error exists in the link-delay or scan-path.
+	</pre>
+<hr>
+
+## A router subpath cannot be accessed
+This error is caused by the inability of the JTAG debugger to access any of the subpaths of either the [ICEPICK](./xdsdebugprobes/emu_icepick.html) or the DAP. This is usually caused by either a hardware failure on the board or invalid code on the subcore that causes it to reset itself continuously. This is very similar in nature to the error [Cannot access the DAP](#cannot-access-the-dap) above but at a higher level. 
+
+If this error is originated in hardware (custom hardware or faulty board or connections), please check [this e2e forum thread](https://e2e.ti.com/support/development_tools/code_composer_studio/f/81/t/444512). Also, power supply problems can lead to this issue as reported in [this e2e forum thread](https://e2e.ti.com/support/microcontrollers/hercules/f/312/p/440472/1585313).
+
+If this error is originated in software, it can be either due to a problem with the configuration file (as mentioned in [this e2e forum thread](https://e2e.ti.com/support/development_tools/code_composer_studio/f/81/t/103398) or potentially be recovered by [accessing the DAP directly](https://youtu.be/-yGmq_VKvTQ) and trying to either reset the offending core, lock it or mass erase its flash memory.
+
+If using a microcontroller, to mass erase its Flash memory please check <b><font color="ff00ff">step 9</font></b> of the section [Troubleshooting the connect phase](#troubleshooting-the-connect-phase) above. 
+
+<hr>
+	<pre>
+	Error connecting to the target:
+	(Error -242 @ 0x0)
+	A router subpath could not be accessed.
+	The board configuration file is probably incorrect.
+	</pre>
+<hr>
+
+## Incorrect SWD header
+This error is caused by the inability of the debug probe to communicate with the device that uses SWD as the protocol. This is usually caused by a hardware failure or unreliability of the board.  This error might also be caused by mis-configured jumpers on the target board.  This is very similar in nature to the errors [Cable break](#cable-break) or [Device register](#device-register). 
+
+- For Launchpads, check if the TMS and TCK jumpers are in place. 
+
+<hr>
+	<pre>
+	Error connecting to the target: 
+	(Error -615 @ 0x0)
+	The target failed to see a correctly formatted SWD header.
+	The connection to the target may be unreliable.
+	Try lowering the  TCLK setting before trying again. 
+	</pre>
+<hr>
+
+## Security Error
+This error is caused by the inability of the debug probe to communicate with the device or core, despite the physical connection is fine. This can be caused by a large number of sources, but the most common are:
+- The device being used is in secure mode and requires a specific procedure to unlock it. Certain devices have a security module that prevents any intrusive access to its core (including JTAG) and require a specific unlocking mechanism on the running code on the board (MLO, u-boot, etc.). A solution to this forcefully demands having this specific code. Contact your TI representative for details. 
+- The device or core is either powered down, incorrectly or does not have a valid clock. In these cases the JTAG debug probe can be fooled into thinking the device or core are secure but they are simply inaccessible. The solution to this is not unique but it requires thoroughly checking all clock and power signals on the target board. Some reported issues are:
+	- https://e2e.ti.com/support/development_tools/code_composer_studio/f/81/t/96318
+	- https://e2e.ti.com/support/development_tools/code_composer_studio/f/81/t/116769
+	- https://e2e.ti.com/support/microcontrollers/hercules/f/312/t/336940
+- The device is flashed with code that prevents JTAG access to the core. This is mostly common on microcontrollers (due to the presence of Flash memory). Check <b><font color="ff00ff">step 9</font></b> of the section [Troubleshooting the connect phase](#troubleshooting-the-connect-phase) above. 
+
+- For Launchpads, check if the TMS and TCK jumpers are in place. 
+
+<hr>
+	<pre>
+	Error connecting to the target: (Error -241 @ 0x0)
+	A router subpath could not be accessed.
+	A security error has probably occurred. 
+	</pre>
+<hr>
+
+## C28x Device Locked
+This error is caused by the inability of the debug probe to communicate with the device. This can be caused by a number of sources but the most common are:
+- The device is locked, which can be unlocked by trying one of the methods shown at [this e2e forum thread](https://e2e.ti.com/support/microcontrollers/c2000/f/171/p/489852/1768334) or using Uniflash. 
+- There are hardware problems, which can have multiple root causes discussed in the e2e forum threads below:
+	- https://e2e.ti.com/support/microcontrollers/c2000/f/171/t/438576
+	- https://e2e.ti.com/support/development_tools/code_composer_studio/f/81/t/318595
+	- https://e2e.ti.com/support/microcontrollers/c2000/f/171/p/350966/1229741
+
+<hr>
+	<pre>
+	Error connecting to the target: (Error -1015 @ 0x0)
+	Device is not responding to the request.  Device may be locked, or the emulator connection may be unreliable.
+	Unlock the device if possible (e.g. use wait in reset mode, and power-cycle the board). 
+	If error persists, confirm configuration and/or try more reliable JTAG settings (e.g. lower TCLK).
+	</pre>
+
+<hr>
+
+## Device is held in reset
+This error is caused by the inability of the debug probe to restore communications with the device or a core before or after a reset or power up was issued. 
+
+When the issue happens with corrupt pre-flashed code, the device or core may be continuously forced to reset itself before the Debug Probe is able to control it, in a similar scenario shown in the errors [Invalid Device ID](#invalid-device-id) and [Device Hung](#device-hung). 
+   - For CC32xx devices, this error is known to be caused also by an invalid or corrupt Service Pack. This requires re-flashing it via Uniflash.
+
+When using multi-core devices, the slave core may be intentionally held in reset and thus requiring a configuration script to release it from this state. Check <b><font color="ff00ff">step 8</font></b> of the section [Troubleshooting the connect phase](#troubleshooting-the-connect-phase) above. This is very similar in nature to the errors [Cannot access the DAP](#cannot-access-the-dap) and [A router subpath cannot be accessed](#a-router subpath-cannot-be-accessed) above but at a core level.
+
+Also, external hardware problems can influence this, including invalid or missing pull up resistors on reset lines, power glitches, etc. 
+   - For C28x devices, check the troubleshooting guide can be found at the following e2e thread:
+      - https://e2e.ti.com/support/microcontrollers/c2000/f/171/p/598399/2209506
+
+When the device has pre-flashed code that is faulty, the error messages below are usually shown: 
+
+<hr>
+	<pre>
+	Failed CPU Reset: (Error -2063 @ 0x0) Unable to reset device. Power-cycle the board.
+	If error persists, confirm configuration and/or try more reliable JTAG settings (e.g. lower TCLK). 
+	</pre>
+<hr>
+	<pre>
+	Trouble Halting Target CPU: (Error -2062 @ 0x0) Unable to halt device. Reset the device, and retry the operation.
+	If error persists, confirm configuration, power-cycle the board, and/or try more reliable JTAG settings (e.g. lower TCLK).
+	</pre>
+<hr>
+
+For C28x devices, the error message itself can manifest in various forms but the error code is common to all of them.
+
+<hr>
+	<pre>
+	Failed CPU Reset: (Error -1137 @ 0x6)
+	Device is held in reset. Take the device out of reset, and retry the operation
+	</pre>
+<hr>
+
+<hr>
+	<pre>
+	Trouble Reading Register PC: (Error -1137 @ 0x0)
+	Device is held in reset. Take the device out of reset, and retry the operation
+	</pre>
+<hr>
+
+<hr>
+	<pre>
+	Trouble Reading Register ST1: (Error -1137 @ 0x6)
+	Device is held in reset. Take the device out of reset, and retry the operation
+	</pre>
+<hr>
+
+For multi-core devices, the error can manifest itself with the following error codes:
+
+<hr>
+    <pre>
+    Error connecting to the target: (Error -1266 @ 0x0) Device is held in reset.
+	Take the device out of reset, and retry the operation.
+    </pre>
+<hr>
+
+<hr>
+    <pre>
+    Error connecting to the target: (Error -1180 @ 0x0) Device is held in reset.
+	Take the device out of reset, and retry the operation.
+    </pre>
+<hr>
+
+## Device status
+This error is caused by the inability of the debug probe to communicate with the device. 
+
+This can be caused by a number of hardware problems such as improper reset or power applied to the device, issues with clock (external crystal or oscillator). In this particular case, it is mandatory to verify all hardware details of your system.  
+
+This can also be caused by faulty software running on the device, which causes the core to be on an unstable state. For flash-based devices, you may need to unlock or mass erase the device. Check <b><font color="ff00ff">step 9</font></b> of the section [Troubleshooting the connect phase](#troubleshooting-the-connect-phase) above. 
+
+This error usually happens together with the [Cannot Access the DAP](#cannot-access-the-dap) error above.
+
+<hr>
+	<pre>
+	Trouble Halting Target CPU: (Error -2064 @ 0x0)
+	Unable to read device status. Reset the device and try the operation again.
+	If the error persists, check the configuration, power cycle the board, 
+	and try to make JTAG settings more stable (for example, lower TCLK).
+	</pre>
+<hr>
+
+## Device is locked 
+This error is caused by the inability of the debug probe to control the core if the loaded firmware causes it to throw a Hard Fault exception or if a NMI is being serviced but it never returns. The root cause for this issue is a runtime problem with the firmware or application loaded to the core. It can manifest either immediately after the program is loaded or after some time or some specific function is put to run. 
+
+The exact cause is entirely dependent on the application and no single root cause. A few articles and e2e threads can help:
+   - http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.faqs/ka12545.html
+   - https://www.ti.com/lit/an/spma043/spma043.pdf
+   - https://e2e.ti.com/support/microcontrollers/other/f/908/t/767898
+   - https://e2e.ti.com/support/microcontrollers/other/f/908/t/320427
+
+<hr>
+    <pre>
+    Can't Run Target CPU: (Error -1268 @ &lt;address&gt;)
+	Device is locked up in Hard Fault or in NMI. Reset the device, and retry the operation.
+	If error persists, confirm configuration, power-cycle the board, 
+	and/or try more reliable JTAG settings (e.g. lower TCLK).
+    </pre>
+<hr>
+
+## Frequency out of range
+The <b>Stellaris In-Circuit Debug Interface</b> (ICDI) is a legacy design currently used for Cortex M4 devices such as the TM4C and CC3200 devices and its diagnostics are very limited, thus leaving very little room for investigation of a root cause by means of error codes and messages, being the most common:
+
+<hr>
+   <pre> CORTEX_M4_0: Error connecting to the target </pre>   
+   <pre> CORTEX_M4_0: Error connecting to the target: Frequency is out of range. </pre>
+<hr>
+
+Diagnostic and correction procedures varies greatly and can be found in several e2e forum threads:
+
+   https://e2e.ti.com/support/wireless-connectivity/wifi/f/968/t/365430
+   https://e2e.ti.com/support/microcontrollers/other/f/908/t/310876
+   https://e2e.ti.com/support/microcontrollers/other/f/908/p/684957/2530350#2530350
+   https://e2e.ti.com/support/microcontrollers/other/f/908/t/368828
+
+## PRSC errors
+PRSC is a DLL that is loaded and used by the TI Emulation software and provides information about the status (power, clock, etc.) of a processor. In certain devices it requires to read some registers from the emulation circuitry inside the device. If it fails to read the registers or the registers contained unexpected values then this error can be triggered. 
+
+Historically all the PRSC reported errors are sourced in Hardware: either improper power applied to the device, or a device being held in reset or improper clock being routed to the device. Although this can happen with development kits and EVMs, it is mostly common in the initial prototypes of custom boards.
+
+For processors, several e2e threads discuss these scenarios, where the most common error is PRSC error -6305. A few are shown below: 
+
+   https://e2e.ti.com/support/tools/ccs/f/81/t/200342
+   https://e2e.ti.com/support/tools/ccs/f/81/t/509897
+   https://e2e.ti.com/support/tools/ccs/f/81/t/528629
+   https://e2e.ti.com/support/tools/ccs/f/81/t/692580
+
+For mmwave radar devices, there is a chance the device is in Flashing mode and not Functional mode, as reported in the following e2e thread:
+
+   https://e2e.ti.com/support/tools/ccs/f/81/t/817339
+
+For selected Simplelink microcontrollers that use cJTAG, the error below can manifest itself if the Debug Probe is mistakenly configured to use 4-wire JTAG.  
+
+<hr>
+   <pre>
+   Filed to retrieve the Wait in Reset Mode: (Error -6311) PRSC module failed to write to a register.
+   </pre>	
+<hr>
+
+##Required dynamic library jscserdes not found
+This error is caused when the target configuration file (.ccxml) is configured to use the XDS100 Debug Probe but the target board uses a XDS110 Debug Probe. The root cause is that, since these two debug probes have a great deal of common configuration files, the emulation software mistakenly assumes the correct probe is loaded but the file is missing. 
+
+To correct this error, simply change the target configuration file from XDS100 to XDS110. This is very common in the F280049C Launchpad boards and a misconfigured example code. 
+
+<hr>
+   <pre>
+   Error connecting to the target:
+   (Error -716 @ 0x0)
+   Required dynamic library jscserdes could not be located.
+   The library isn't on the search path.
+   </pre>
+<hr>
+
+## Invalid response was received from the XDS110
+As the name says, this error affects the XDS110 class of Debug Probes and reflects a sudden loss of communications between the Debug Probe and the host. Depending on conditions, this may be recoverable or not. 
+
+Unfortunately a clear root cause was never found, although it seems more common when more than one channel of the XDS110 is being used: either JTAG and UART, or JTAG and Trace, or JTAG and EnergyTrace. 
+
+This error manifests itself as: 
+
+<hr>
+   <pre>
+   CORTEX_M4_0: JTAG Communication Error: (Error -261 @ 0x0) Invalid response was received from the XDS110.
+   </pre>   
+<hr>
+
+A few threads that discuss this particular error can be found below:
+
+   https://e2e.ti.com/support/tools/ccs/f/81/t/674339
+   https://e2e.ti.com/support/tools/ccs/f/81/t/737649
+   https://e2e.ti.com/support/tools/ccs/f/81/t/735772
+
+##Invalid TCLK programming option
+As the error says, the configuration is trying to pass invalid parameters to the Debug Probe driver. Although there is not much action to be done in most cases, there is a special case that involves the MSP432P devices and XDS200 Debug Probes. 
+
+In this particular case, this is caused by a bug in the MSP432 Device support component that is part of CCS versions 10.0.0 and 10.1.0. The TCLK parameter set by default for these devices is clashing with the XDS200 Debug Probe settings (although it works well for the XDS110 Debug Probes).
+
+To fix this issue, open the Target Configuration File (.ccxml), select the tab **Advanced**, locate the setting **The JTAG TCLK Frequency (MHz)** and set this to **Adaptive with user specified limit**. Then, set this option back to **Fixed with user specified limit** and save the file. This is enough to override the bug. 
+
+<hr>
+   <pre>
+   Error connecting to the target:
+   (Error -300 @ 0x0)
+   The requested TCLK PLL programming option is invalid.
+   The utility or debugger has requested a selection of
+   the JTAG PLL frequency or clock source that is invalid.
+   The value of USCIF.TCLK_PROGRAM is probably bad.
+   </pre>
+<hr>
+
+##Device functional clock
+This error is caused by the inability of the debug probe to detect a stable clock on the device or core, either before or after a reset or power up was issued.
+
+This is very similar in nature to the error [Device is held in reset](#device-is-held-in-reset) above but where the clock itself is affected. Please check this error for troubleshooting tips. 
+
+<hr>
+   <pre>
+   Error connecting to the target:
+   (Error -2081 - (0:0:0))
+   Device functional clock appears to be off. Power-cycle the board.
+   If error persists, confirm configuration and/or try more reliable JTAG settings (e.g. lower TCLK).
+   </pre>
+<hr>
+
+
+<!-- End of markdown source -->
+ 
+<div id="footer"></div>
+</xmp>
+</html>

@@ -1,0 +1,114 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.ti.dvt.tidisassembly;singleton:=true
+Export-Package: com.ti.dvt.tidisassembly
+Bundle-Name: TIDisassembly Plug-in
+Bundle-Version: 4.1.0.202307061549
+Bundle-ClassPath: com.ti.dvt.tidisassembly.jar
+Require-Bundle: com.ti.dvt.symbolmanager,com.ti.dvt.ideadapter2
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: Texas Instruments
+Import-Package: com.ti.dvt.util.install
+
+Name: os/win32/x86_64/dvt_tpi55xx.dll
+SHA-256-Digest: ZjEEagSwURyWTZUPWLQQRmBPtMVagqdMVlWYZHbrNTc=
+
+Name: os/linux/x86/libdvt_ti_targetdb_parser.so
+SHA-256-Digest: BdSFBqigzjLFDew6SXcE8v3W9hGGbLXcxN9fF+V2Epg=
+
+Name: os/linux/x86/libdvt_tpic55xp.so
+SHA-256-Digest: XE22QrDWbGLYGFJk5qwG2ivrE8Y1eIGFSGa5AKtI3UM=
+
+Name: os/win32/x86/dvt_tpi55xx.dll
+SHA-256-Digest: HoKk9C9z1aKlfpOY9+Je3OabLVnSmUJ32an9xqoiOmg=
+
+Name: xml/proc_0x50019bf8.xml
+SHA-256-Digest: 6CNNcv8FRIMO0Tl+eBc0kcD97Wql00PTc1xQqfdhfnc=
+
+Name: os/win32/x86_64/TIDisassemblyCppJni.dll
+SHA-256-Digest: UOrh0brpnJKO8OkftQVCoTJmTxB0vZ6nB5xsyZgy9hE=
+
+Name: os/linux/x86_64/libdvt_tpic6x.so
+SHA-256-Digest: 1Rb7n+iCdVfsuQ+kP4TPH8vWS23WwmC9jN3wrAsESzI=
+
+Name: build.properties
+SHA-256-Digest: xYvkb2O1mlM37cHFtO6PDRVBVxVnSC5klu7W5z/jeNM=
+
+Name: os/win32/x86/TIDisassemblyCppJni.dll
+SHA-256-Digest: IdDhyJCmhFA0spTwZKVo4GMUdVLat6XxNkag3bclPaM=
+
+Name: os/linux/x86/libdvt_TIDisas.so
+SHA-256-Digest: JqdfjVvJqKJJtT0OG0aVZoytLpLDNDwEDv6WjRK8n+c=
+
+Name: os/linux/x86_64/libdvt_tpiarm_x.so
+SHA-256-Digest: NcemDaeW3NLe7GcCDa/4DKM+C767fR/KwKJbvZGv8eY=
+
+Name: os/macosx/libdvt_TIDisas.dylib
+SHA-256-Digest: ykV3bfbPsMb3RECodFuDLkcI8pWRQZZ/4IshboSNtvM=
+
+Name: os/linux/x86/libdvt_disassemble_c6x.so
+SHA-256-Digest: AsvK8wwkMhZomQ5hcRdbOjL4UL/ugHv9t0B6mMBLW/o=
+
+Name: os/win32/x86/dvt_TIDisas.dll
+SHA-256-Digest: tnR0TitsUBfuWmpL8qoSMAAwJF3mpUAg6DOk3fu64c0=
+
+Name: os/linux/x86_64/libdvt_tpiarm.so
+SHA-256-Digest: TZosFjBR7UjgoOwUTNXKkUXdw7/oJHbK63DIfT8g44Q=
+
+Name: os/linux/x86_64/libdvt_tpi55xx.so
+SHA-256-Digest: v94Fl7Tbf34ODP46r8Pyxdk6JWVtvLm7Zzeka5/YNcw=
+
+Name: os/linux/x86_64/libdvt_disassemble_c6x.so
+SHA-256-Digest: /p/2GwfkTmO4d6Bt5ZUJEomLHwV4Hcva/rE2Zrq8F18=
+
+Name: os/linux/x86/libdvt_tpiarm_x.so
+SHA-256-Digest: QRZW6h1EnQXF47+Q0P+zFXd0f3rKccMPT6elXi0WSfg=
+
+Name: com.ti.dvt.tidisassembly.jar
+SHA-256-Digest: Xxtx0k6dtKm6aBv5vFIOfVXrOOLZEe3fq3SWOJ8xbx4=
+
+Name: os/linux/x86/libTIDisassemblyCppJni.so
+SHA-256-Digest: NSthOXycs6mm93tVYPH9N6gT1HWips1ffchho7o2TTc=
+
+Name: os/linux/x86_64/libdvt_ti_targetdb_parser.so
+SHA-256-Digest: bIR4kaMexFZuh7qqcU5SOM+wahsVso73ElQ8+iKxrjQ=
+
+Name: os/macosx/libTIDisassemblyCppJni.dylib
+SHA-256-Digest: pJT+0BoXDH8a52BRtMYSyJozOAIZORECBCyfh1R9Mk0=
+
+Name: os/linux/x86/libdvt_tpiarm.so
+SHA-256-Digest: 1CQoaxYNzQzr2qo63Mo/Oig8B5+XvwypkRkAXHIm9V4=
+
+Name: os/linux/x86_64/libdvt_tpi.so
+SHA-256-Digest: RbwIYqbwnuj5tZZ/nhPp/X68psFhPsaYVnh5AczZW4Q=
+
+Name: os/linux/x86/libdvt_tpi.so
+SHA-256-Digest: PVR8AbXakaSiMkSIgFOOLkWqlt2C3PCFrda9TgkjTeY=
+
+Name: os/linux/x86/libxerces-c.so.28
+SHA-256-Digest: urjYRvGdpPGoh6Lqg7VlKshzyXVF7yNxF9CV8vhMp38=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: G2hFTVPngfh5NUf96Pyy87A7XIE083udjEBFy4pUc/M=
+
+Name: os/linux/x86/libxerces-c.so.25
+SHA-256-Digest: 24z3Rw0XirDKxpRXFcR9N8/TH7YxotYrq2R70zC3eB4=
+
+Name: os/linux/x86/libdvt_tpi55xx.so
+SHA-256-Digest: ieIrTWPQAUGGmtt3Rvyut9DhYr5uviPriIq7GZSdFxI=
+
+Name: os/win32/x86_64/dvt_TIDisas.dll
+SHA-256-Digest: hocbo0PdDAWYIa0/KNSLmaVg104TUqF6klo+LgAEbBE=
+
+Name: xml/proc_0x50019bf9.xml
+SHA-256-Digest: u4u8D8nIbt4mY6CjTPf5jTBo3Vmqpfw+dpya16eY6Pk=
+
+Name: os/linux/x86_64/libdvt_TIDisas.so
+SHA-256-Digest: gKponH8pmdUG+TGe2ydO8NXK0VPyrFZVUOVerJ67GVs=
+
+Name: os/linux/x86/libdvt_tpic6x.so
+SHA-256-Digest: aabRzV98EOua1S/bj4X9PqAZkxf1k2G3C3ztRZSREGQ=
+
+Name: os/linux/x86_64/libTIDisassemblyCppJni.so
+SHA-256-Digest: SzEaqM/ElZVI92mUke92wxrQtogaIvYg3/W3UTtndgA=
+

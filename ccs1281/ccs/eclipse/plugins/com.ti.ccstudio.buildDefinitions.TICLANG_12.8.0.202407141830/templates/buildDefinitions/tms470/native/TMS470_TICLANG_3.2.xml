@@ -1,0 +1,3123 @@
+<?xml version="1.0" ?>
+<TOOLSET>
+<OPTIONXML version='7' config='target=arm-llvm' original_file_name='tiarmclang_opt_desc_32xlts_15may24.xml' />
+<TOOL>
+    <TAG>COMPILER</TAG>
+    <TOOLNAME>C/C++ COMPILER</TOOLNAME>
+    <DEFINITIONS>
+        <OPTION tag='include'>
+            <TYPE>simple</TYPE>
+            <NAME>--include</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--preinclude</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>file</DESCRIPTION>
+            </ARG>
+            <TIP>Identify pre-include source file</TIP>
+            <HELP>Identify pre-include source file</HELP>
+        </OPTION>
+        
+        <OPTION tag='language'>
+            <TYPE>simple</TYPE>
+            <NAME>--language</NAME>
+            <HIDE_OPTION>true</HIDE_OPTION>
+            <DEPRECATE_OPTION>
+                <SEVERITY>3</SEVERITY>
+                <DIAGNOSTIC>the --language option is deprecated in favor of the functionally equivalent -x option</DIAGNOSTIC>
+            </DEPRECATE_OPTION>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>c,c++,assembler,assembler-with-cpp,ti-asm,none</DESCRIPTION>
+                <ONEOF>c</ONEOF>
+                <ONEOF>c++</ONEOF>
+                <ONEOF>assembler</ONEOF>
+                <ONEOF>assembler-with-cpp</ONEOF>
+                <ONEOF>ti-asm</ONEOF>
+                <ONEOF>none</ONEOF>
+                <DEFAULT>none</DEFAULT>
+            </ARG>
+            <TIP>Select assumed source file type</TIP>
+            <HELP>Select assumed source file type</HELP>
+        </OPTION>
+        
+        <OPTION tag='version'>
+            <TYPE>simple</TYPE>
+            <NAME>--version</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>-version</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Emit compiler version information</TIP>
+            <HELP>Emit compiler version information</HELP>
+        </OPTION>
+        
+        <OPTION tag='C'>
+            <TYPE>simple</TYPE>
+            <NAME>-C</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--preproc_with_comment</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Pre-process source file, keep comments</TIP>
+            <HELP>Pre-process source file, keep comments</HELP>
+        </OPTION>
+        
+        <OPTION tag='D'>
+            <TYPE>simple</TYPE>
+            <NAME>-D</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--define</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>NAME[=value]</DESCRIPTION>
+            </ARG>
+            <TIP>Pre-define NAME</TIP>
+            <HELP>Pre-define a symbol with the id &apos;NAME&apos;, optionally setting it&apos;s contents to &apos;value&apos;.</HELP>
+        </OPTION>
+        
+        <OPTION tag='E'>
+            <TYPE>simple</TYPE>
+            <NAME>-E</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--preproc_only</ONEOF>
+                        <ONEOF>--preproc_dependency</ONEOF>
+                        <ONEOF>--preproc_includes</ONEOF>
+                        <ONEOF>--preproc_macros</ONEOF>
+                        <ONEOF>--preproc_with_comment</ONEOF>
+                        <ONEOF>--preproc_with_line</ONEOF>
+                    </SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Preprocess only (output to stdout)</TIP>
+            <HELP>Preprocess only; do not compile, assemble, or link</HELP>
+        </OPTION>
+        
+        <OPTION tag='I'>
+            <TYPE>simple</TYPE>
+            <NAME>-I</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--include_path</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>dir</DESCRIPTION>
+            </ARG>
+            <TIP>Add dir to #include search path</TIP>
+            <HELP>Add the specified directory to the #include file search path list.</HELP>
+        </OPTION>
+        
+        <OPTION tag='M'>
+            <TYPE>simple</TYPE>
+            <NAME>-M</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--preproc_dependency</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Pre-process source file, emit dependency rules</TIP>
+            <HELP>Pre-process source file, emit dependency rules</HELP>
+        </OPTION>
+        
+        <OPTION tag='MM'>
+            <TYPE>simple</TYPE>
+            <NAME>-MM</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--preproc_includes</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Pre-process source file, emit header file dependencies</TIP>
+            <HELP>Pre-process source file, emit header file dependencies</HELP>
+        </OPTION>
+        
+        <OPTION tag='O'>
+            <TYPE>simple</TYPE>
+            <NAME>-O</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>optional</STATUS>
+                <DESCRIPTION>0,1,2,3,fast,s,z,g</DESCRIPTION>
+                <ONEOF>0</ONEOF>
+                <ONEOF>1</ONEOF>
+                <ONEOF>2</ONEOF>
+                <ONEOF>3</ONEOF>
+                <ONEOF>fast</ONEOF>
+                <ONEOF>s</ONEOF>
+                <ONEOF>z</ONEOF>
+                <ONEOF>g</ONEOF>
+                <DEFAULT>z</DEFAULT>
+            </ARG>
+            <IMPORT_ARGUMENT tag='0'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--opt_level=off</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang&apos;s -O0 option disables optimization</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='1'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--opt_level=0</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang&apos;s -O1 option enables basic performance optimizations</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='2'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--opt_level=1</SOURCE_OPTION>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--opt_for_speed=4</ONEOF>
+                        <ONEOF>--opt_for_speed=5</ONEOF>
+                    </SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang&apos;s -O2 option enables moderately aggressive performance optimizations while limiting compile time impact, but may impact code size</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='3'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--opt_level=2</ONEOF>
+                        <ONEOF>--opt_level=3</ONEOF>
+                        <ONEOF>--opt_level=4</ONEOF>
+                    </SOURCE_OPTION>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--opt_for_speed=4</ONEOF>
+                        <ONEOF>--opt_for_speed=5</ONEOF>
+                    </SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang&apos;s -O3 option enables aggressive performance optimizations that may impact code size and compile time</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--fp_mode=relaxed</SOURCE_OPTION>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--opt_level=2</ONEOF>
+                        <ONEOF>--opt_level=3</ONEOF>
+                        <ONEOF>--opt_level=4</ONEOF>
+                    </SOURCE_OPTION>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--opt_for_speed=4</ONEOF>
+                        <ONEOF>--opt_for_speed=5</ONEOF>
+                    </SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang&apos;s -O3 option enables aggressive performance optimizations that may impact code size and compile time; you might consider using -ffast-math as well, but be aware that it employs some optimizations that may not strictly conform to the IEEE floating-point standard</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='s'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--opt_level=1</ONEOF>
+                        <ONEOF>--opt_level=2</ONEOF>
+                        <ONEOF>--opt_level=3</ONEOF>
+                        <ONEOF>--opt_level=4</ONEOF>
+                    </SOURCE_OPTION>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--opt_for_speed=2</ONEOF>
+                        <ONEOF>--opt_for_speed=3</ONEOF>
+                    </SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang&apos;s -Os option enables moderately aggressive performance optimizations combined with additional code size optimizations</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='z'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--opt_level=1</ONEOF>
+                        <ONEOF>--opt_level=2</ONEOF>
+                        <ONEOF>--opt_level=3</ONEOF>
+                        <ONEOF>--opt_level=4</ONEOF>
+                    </SOURCE_OPTION>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--opt_for_speed=0</ONEOF>
+                        <ONEOF>--opt_for_speed=1</ONEOF>
+                    </SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang&apos;s -Oz option enables moderately aggressive performance optimizations combined with aggressive code size optimizations that may affect performance</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <TIP>Select optimization paradigm/level</TIP>
+            <HELP>Select compiler optimization level based on desired size/performance tradeoff:
+
+-O0 disables optimizations; -O1 enables a restricted set of optimizations, allowing for a better debug experience; -O2 enables all optimizations from -O1 plus inter-procedural and other optimizations with an eye towards preserving a reasonable compile-time; -O3 enables all optimizations at -O2 plus optimizations that take longer to perform, trading an increase in compile time for potential performance improvements
+
+-Oz enables all optimizations from -O2 plus additional optimizations to reduce code size with the risk of sacrificing performance; -Os enables all optimizations from -O2 plus additional optimizations intended to reduce code size while mitigating negative effects on performance
+
+-Og enables most optimizations from -O1, but may disable some to improvei debug experience</HELP>
+        </OPTION>
+        
+        <OPTION tag='Rpass'>
+            <TYPE>simple</TYPE>
+            <NAME>-Rpass</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>pass</DESCRIPTION>
+            </ARG>
+            <TIP>Report transformations performed by identified pass</TIP>
+            <HELP>Report transformations performed by identified pass</HELP>
+        </OPTION>
+        
+        <OPTION tag='Rpassdashanalysis'>
+            <TYPE>simple</TYPE>
+            <NAME>-Rpass-analysis</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>pass</DESCRIPTION>
+            </ARG>
+            <TIP>Explain transformations performed by identified pass</TIP>
+            <HELP>Explain transformations performed by identified pass</HELP>
+        </OPTION>
+        
+        <OPTION tag='Rpassdashmissed'>
+            <TYPE>simple</TYPE>
+            <NAME>-Rpass-missed</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>pass</DESCRIPTION>
+            </ARG>
+            <TIP>Report transformations missed by identified pass</TIP>
+            <HELP>Report transformations missed by identified pass</HELP>
+        </OPTION>
+        
+        <OPTION tag='S'>
+            <TYPE>cmdline</TYPE>
+            <NAME>-S</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl' action='ignoreAlways'>
+                    <SOURCE_OPTION>--skip_assembler</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Generate assembly; stop compilation</TIP>
+            <HELP>Stop compilation after generating assembly language output to &apos;.s&apos; file(s)</HELP>
+        </OPTION>
+        
+        <OPTION tag='U'>
+            <TYPE>simple</TYPE>
+            <NAME>-U</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--undefine</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>NAME</DESCRIPTION>
+            </ARG>
+            <TIP>Undefine NAME</TIP>
+            <HELP>Undefine the symbol with the id &apos;NAME&apos;.</HELP>
+        </OPTION>
+        
+        <OPTION tag='W'>
+            <TYPE>simple</TYPE>
+            <NAME>-W</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>category</DESCRIPTION>
+            </ARG>
+            <TIP>Enable specified category of warning diagnostics</TIP>
+            <HELP>Enable warning diagnostics for each of the specified categories. Please consult available online clang documentation for information about available warning diagnostic categories.
+
+(https://clang.llvm.org/docs/UsersManual.html)</HELP>
+        </OPTION>
+        
+        <OPTION tag='Wall'>
+            <TYPE>simple</TYPE>
+            <NAME>-Wall</NAME>
+            <TIP>Enable most warning messages</TIP>
+            <HELP>Enable most warning messages</HELP>
+        </OPTION>
+        
+        <OPTION tag='Werror'>
+            <TYPE>simple</TYPE>
+            <NAME>-Werror</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>optional</STATUS>
+                <DESCRIPTION>category</DESCRIPTION>
+            </ARG>
+            <IMPORT_ARGUMENT tag='ti-pragmas'>
+                <MAPSFROM tag='armcl' action='setAlways'>
+                    <OPTMAP_DIAG>use of legacy TI pragmas will be flagged as errors</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='ti-macros'>
+                <MAPSFROM tag='armcl' action='setAlways'>
+                    <OPTMAP_DIAG>use of legacy TI pre-defined macro symbols will be flagged as errors</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='ti-intrinsics'>
+                <MAPSFROM tag='armcl' action='setAlways'>
+                    <OPTMAP_DIAG>use of legacy TI intrinsics will be flagged as errors</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <TIP>Interpret warnings in specified category as errors</TIP>
+            <HELP>Interpret warnings in specified category as errors</HELP>
+        </OPTION>
+        
+        <OPTION tag='WerrorAll'>
+            <TYPE>simple</TYPE>
+            <NAME>-Werror</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--emit_warnings_as_errors</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Interpret all warnings as errors</TIP>
+            <HELP>Interpret all warnings as errors</HELP>
+        </OPTION>
+        
+        <OPTION tag='Wnodash'>
+            <TYPE>simple</TYPE>
+            <NAME>-Wno-</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>category</DESCRIPTION>
+            </ARG>
+            <TIP>Disable specified category of warning diagnostics</TIP>
+            <HELP>Disable warning diagnostice for each of the specified categories. Please consult available online clang documentation for information about available warning diagnostic categories.
+
+(https://clang.llvm.org/docs/UsersManual.html)</HELP>
+        </OPTION>
+        
+        <OPTION tag='Wnodasherror'>
+            <TYPE>simple</TYPE>
+            <NAME>-Wno-error</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>category</DESCRIPTION>
+            </ARG>
+            <TIP>Override -Werror option for specified category</TIP>
+            <HELP>Override -Werror option for specified category</HELP>
+        </OPTION>
+        
+        <OPTION tag='c'>
+            <TYPE>cmdline</TYPE>
+            <NAME>-c</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--compile_only</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Disable linking</TIP>
+            <HELP>Disable linking; compiler will stop after compilation</HELP>
+        </OPTION>
+        
+        <OPTION tag='dM'>
+            <TYPE>simple</TYPE>
+            <NAME>-dM</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--preproc_macros</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Pre-process source file, emit list of macros defined</TIP>
+            <HELP>Pre-process source file, emit list of macros defined</HELP>
+        </OPTION>
+        
+        <OPTION tag='fcommon'>
+            <TYPE>simple</TYPE>
+            <NAME>-fcommon</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--common=on</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Variables without initializers will get common linkage</TIP>
+            <HELP>Variables without initializers will get common linkage</HELP>
+            <CONFLICT>fnodashcommon</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='fcoveragedashmapping'>
+            <TYPE>simple</TYPE>
+            <NAME>-fcoverage-mapping</NAME>
+            <TIP>Generate coverage mapping to enable code coverage analysis</TIP>
+            <HELP>Generate coverage mapping to enable code coverage analysis</HELP>
+        </OPTION>
+        
+        <OPTION tag='fdatadashsections'>
+            <TYPE>simple</TYPE>
+            <NAME>-fdata-sections</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--gen_data_subsections=on</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Place each data object in its own section</TIP>
+            <HELP>Place each data object in its own section</HELP>
+            <CONFLICT>fnodashdatadashsections</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='fdiagnosticsdashshowdashoption'>
+            <TYPE>simple</TYPE>
+            <NAME>-fdiagnostics-show-option</NAME>
+            <TIP>Display category information with diagnostic messages</TIP>
+            <HELP>Display category information with diagnostic messages</HELP>
+            <CONFLICT>fnodashdiagnosticsdashshowdashoption</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='ferrordashlimit'>
+            <TYPE>simple</TYPE>
+            <NAME>-ferror-limit</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--set_error_limit</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <ARG>
+                <TYPE>NUMBER</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>num</DESCRIPTION>
+            </ARG>
+            <TIP>Number of errors that, when reached, will abort compilation</TIP>
+            <HELP>Number of errors that, when reached, will abort compilation</HELP>
+        </OPTION>
+        
+        <OPTION tag='fexceptions'>
+            <TYPE>simple</TYPE>
+            <NAME>-fexceptions</NAME>
+            <TIP>Enable C++ exception handling</TIP>
+            <HELP>Enable C++ exception handling</HELP>
+            <CHAIN>
+                <TAG>frtti</TAG>
+                <TEXT>-frtti</TEXT>
+            </CHAIN>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--exceptions</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <CONFLICT>fnodashexceptions</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='ffastdashmath'>
+            <TYPE>simple</TYPE>
+            <NAME>-ffast-math</NAME>
+            <TIP>Enable relaxed assumptions about floating-point math</TIP>
+            <HELP>Allow the compiler to make aggressive assumptions about floating-point math that may compromise strict accuracy for performance gains, including: 1) Floating-point math conforms to regular algebraic rules for real numbers (sddition and multiplication operators are associative) 2) Operands to floating-point operations cannot be NaN or Inf, and 3) Positive and negative zero are interchangeable</HELP>
+        </OPTION>
+        
+        <OPTION tag='ffixeddashr9'>
+            <TYPE>simple</TYPE>
+            <NAME>-ffixed-r9</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--global_register=r9</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Reserve the r9 register</TIP>
+            <HELP>Reserve the r9 register</HELP>
+        </OPTION>
+        
+        <OPTION tag='ffunctiondashcoveragedashonly'>
+            <TYPE>simple</TYPE>
+            <NAME>-ffunction-coverage-only</NAME>
+            <TIP>Limit generated code coverage instrumentation to functions</TIP>
+            <HELP>Limit generated code coverage instrumentation to functions</HELP>
+        </OPTION>
+        
+        <OPTION tag='ffunctiondashsections'>
+            <TYPE>simple</TYPE>
+            <NAME>-ffunction-sections</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--gen_func_subsections=on</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Place each function in its own section</TIP>
+            <HELP>Place each function in its own section</HELP>
+            <CONFLICT>fnodashfunctiondashsections</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='finlinedashfunctions'>
+            <TYPE>simple</TYPE>
+            <NAME>-finline-functions</NAME>
+            <TIP>Enable inlining of suitable functions</TIP>
+            <HELP>Enable inlining of suitable functions</HELP>
+            <CONFLICT>fnodashinlinedashfunctions</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='finstrumentdashfunctions'>
+            <TYPE>simple</TYPE>
+            <NAME>-finstrument-functions</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--entry_hook</ONEOF>
+                        <ONEOF>--exit_hook</ONEOF>
+                    </SOURCE_OPTION>
+                    <OPTMAP_DIAG>armcl --entry_hook/--exit_hook options replaced by tiarmclang -finstrument_functions option that will generate calls to __cyg_profile_func_enter() and __cyg_profile_func_exit(); definitions of these functions must be supplied by the user</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Use __cyg_profile_func_enter/exit() as entry/exit hooks</TIP>
+            <HELP>Use __cyg_profile_func_enter/exit() as entry/exit hooks</HELP>
+        </OPTION>
+        
+        <OPTION tag='flto'>
+            <TYPE>simple</TYPE>
+            <NAME>-flto</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--opt_level=4</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang&apos;s -flto option enables whole-program or inter-module optimizations that are performed at link-time; also known as Link-Time Optimization (LTO)</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Select Link-Time Optimization (LTO)</TIP>
+            <HELP>Enable Link-Time Optimization (LTO) in both the compile and link steps of an application build. The &apos;-flto&apos; option will instruct the compiler to embed an LLVM IR file in compiler-generated object files. For the linker, the &apos;-flto&apos; option instructs the linker to extract the embedded LLVM IR file from those object files that embedded LLVM IR content, then merge the incoming LLVM IR modules together and perform inter-module optimizations on the merged LLVM IR module.</HELP>
+        </OPTION>
+        
+        <OPTION tag='fmcdc'>
+            <TYPE>simple</TYPE>
+            <NAME>-fmcdc</NAME>
+            <TIP>Enable MC/DC when generating code coverage instrumentation</TIP>
+            <HELP>Enable MC/DC when generating code coverage instrumentation</HELP>
+        </OPTION>
+        
+        <OPTION tag='fnodashcommon'>
+            <TYPE>simple</TYPE>
+            <NAME>-fno-common</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--common=off</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Disable common linkage of uninitialized variables</TIP>
+            <HELP>Disable common linkage of uninitialized variables</HELP>
+            <CONFLICT>fcommon</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='fnodashdatadashsections'>
+            <TYPE>simple</TYPE>
+            <NAME>-fno-data-sections</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--gen_data_subsections=off</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Do not place each data object in its own section</TIP>
+            <HELP>Do not place each data object in its own section</HELP>
+            <CONFLICT>fdatadashsections</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='fnodashexceptions'>
+            <TYPE>simple</TYPE>
+            <NAME>-fno-exceptions</NAME>
+            <TIP>Disable C++ exception handling</TIP>
+            <HELP>Disable C++ exception handling</HELP>
+            <CONFLICT>fexceptions</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='fnodashfunctiondashsections'>
+            <TYPE>simple</TYPE>
+            <NAME>-fno-function-sections</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--gen_func_subsections=off</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Do not place each function in its own section</TIP>
+            <HELP>Do not place each function in its own section</HELP>
+            <CONFLICT>ffunctiondashsections</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='fnodashinlinedashfunctions'>
+            <TYPE>simple</TYPE>
+            <NAME>-fno-inline-functions</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--disable_inlining</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Disable function inlining</TIP>
+            <HELP>Disable function inlining</HELP>
+            <CONFLICT>finlinedashfunctions</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='fnodashrtti'>
+            <TYPE>simple</TYPE>
+            <NAME>-fno-rtti</NAME>
+            <TIP>Diable support for C++ run-time type information</TIP>
+            <HELP>Diable support for C++ run-time type information</HELP>
+            <CONFLICT>frtti</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='fnodashshortdashenums'>
+            <TYPE>simple</TYPE>
+            <NAME>-fno-short-enums</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--enum_type=int</SOURCE_OPTION>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--enum_type=unpacked</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Assume enum types are &apos;int&apos;</TIP>
+            <HELP>An enum_type of &apos;int&apos; means the compiler will assume at least 4 bytes (32-bits) to represent the full range of values specified in the enum</HELP>
+            <CONFLICT>fshortdashenums</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='fnodashshortdashwchar'>
+            <TYPE>simple</TYPE>
+            <NAME>-fno-short-wchar</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl' action='ignoreAlways'>
+                    <SOURCE_OPTION>--wchar_t=32</SOURCE_OPTION>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--wchar_t=16</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not support 16-bit wchar_t in its runtime libraries; the --wchar_t=16 option will map to tiarmclang&apos;s -fno-short-wchar option (32-bit wchar_t type assumed)</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Assume wchar_t types are 32-bits</TIP>
+            <HELP>Assume wchar_t types are 32-bits</HELP>
+        </OPTION>
+        
+        <OPTION tag='fnodashstackdashprotector'>
+            <TYPE>simple</TYPE>
+            <NAME>-fno-stack-protector</NAME>
+            <TIP>Disable stack protectors</TIP>
+            <HELP>Disable stack protectors</HELP>
+            <RESETS>fstackdashprotectordashall</RESETS>
+            <RESETS>fstackdashprotector</RESETS>
+        </OPTION>
+        
+        <OPTION tag='fnodashstackdashsizedashsection'>
+            <TYPE>simple</TYPE>
+            <NAME>-fno-stack-size-section</NAME>
+            <TIP>Disable emission of function stack size metadata</TIP>
+            <HELP>Disable emission of function stack size metadata</HELP>
+            <CONFLICT>fstackdashsizedashsection</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='fnodashuniquedashstringdashsectiondashnames'>
+            <TYPE>simple</TYPE>
+            <NAME>-fno-unique-string-section-names</NAME>
+            <TIP>Compiler does not define unique string constant sections</TIP>
+            <HELP>Compiler does not define unique string constant sections</HELP>
+            <CONFLICT>funiquedashstringdashsectiondashnames</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='foptimizationdashrecorddashfile'>
+            <TYPE>simple</TYPE>
+            <NAME>-foptimization-record-file</NAME>
+            <ARG>
+                <TYPE>STRING</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>filename</DESCRIPTION>
+            </ARG>
+            <TIP>YAML file written by -fsave-optimization-record</TIP>
+            <HELP>YAML file written by -fsave-optimization-record</HELP>
+        </OPTION>
+        
+        <OPTION tag='fprofiledashcounterdashsize'>
+            <TYPE>simple</TYPE>
+            <NAME>-fprofile-counter-size</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>32,64</DESCRIPTION>
+                <ONEOF>32</ONEOF>
+                <ONEOF>64</ONEOF>
+                <DEFAULT>64</DEFAULT>
+            </ARG>
+            <TIP>Set profile counter size to 32- or 64-bits (default:64)</TIP>
+            <HELP>Set profile counter size to 32- or 64-bits (default:64)</HELP>
+        </OPTION>
+        
+        <OPTION tag='fprofiledashinstrdashgenerate'>
+            <TYPE>simple</TYPE>
+            <NAME>-fprofile-instr-generate</NAME>
+            <TIP>Generate instrumented code to collect coverage info</TIP>
+            <HELP>Generate instrumented code to collect coverage info</HELP>
+        </OPTION>
+        
+        <OPTION tag='frtti'>
+            <TYPE>simple</TYPE>
+            <NAME>-frtti</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--rtti</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Enable support for C++ run-time type information</TIP>
+            <HELP>Enable support for C++ run-time type information</HELP>
+            <CONFLICT>fnodashrtti</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='fsavedashoptimizationdashrecord'>
+            <TYPE>simple</TYPE>
+            <NAME>-fsave-optimization-record</NAME>
+            <TIP>Write optimization remarks to YAML file</TIP>
+            <HELP>Write optimization remarks to YAML file</HELP>
+        </OPTION>
+        
+        <OPTION tag='fshortdashenums'>
+            <TYPE>simple</TYPE>
+            <NAME>-fshort-enums</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl' action='ignoreAlways'>
+                    <SOURCE_OPTION>--enum_type=packed</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Assume enum types are &apos;packed&apos;</TIP>
+            <HELP>An enum_type of &apos;packed&apos; means the compiler will assume the minimum number of bytes required to represent the full range of values specified in the enum</HELP>
+            <CONFLICT>fnodashshortdashenums</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='fsigneddashchar'>
+            <TYPE>simple</TYPE>
+            <NAME>-fsigned-char</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--plain_char=signed</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Assume char type is signed by default</TIP>
+            <HELP>Assume char type is signed by default</HELP>
+            <CONFLICT>funsigneddashchar</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='fstackdashprotector'>
+            <TYPE>simple</TYPE>
+            <NAME>-fstack-protector</NAME>
+            <TIP>Enable stack protectors for vulnerable functions</TIP>
+            <HELP>Enable stack protectors for vulnerable functions</HELP>
+            <RESETS>fnodashstackdashprotector</RESETS>
+            <RESETS>fstackdashprotectordashall</RESETS>
+        </OPTION>
+        
+        <OPTION tag='fstackdashprotectordashall'>
+            <TYPE>simple</TYPE>
+            <NAME>-fstack-protector-all</NAME>
+            <TIP>Force use of stack protectors for all functions</TIP>
+            <HELP>Force use of stack protectors for all functions</HELP>
+            <RESETS>fnodashstackdashprotector</RESETS>
+            <RESETS>fstackdashprotector</RESETS>
+        </OPTION>
+        
+        <OPTION tag='fstackdashsizedashsection'>
+            <TYPE>simple</TYPE>
+            <NAME>-fstack-size-section</NAME>
+            <TIP>Emit function stack size metadata to a section</TIP>
+            <HELP>Emit function stack size metadata to a section</HELP>
+            <CONFLICT>fnodashstackdashsizedashsection</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='fsyntaxdashonly'>
+            <TYPE>simple</TYPE>
+            <NAME>-fsyntax-only</NAME>
+            <TIP>Check for syntax errors, then stop</TIP>
+            <HELP>Check for syntax errors, then stop</HELP>
+        </OPTION>
+        
+        <OPTION tag='funiquedashstringdashsectiondashnames'>
+            <TYPE>simple</TYPE>
+            <NAME>-funique-string-section-names</NAME>
+            <TIP>Compiler defines unique string constant sections</TIP>
+            <HELP>Compiler defines unique string constant sections</HELP>
+            <CONFLICT>fnodashuniquedashstringdashsectiondashnames</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='funsigneddashchar'>
+            <TYPE>simple</TYPE>
+            <NAME>-funsigned-char</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl' action='ignoreAlways'>
+                    <SOURCE_OPTION>--plain_char=unsigned</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Assume char type is unsigned by default</TIP>
+            <HELP>Assume char type is unsigned by default</HELP>
+            <CONFLICT>fsigneddashchar</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='g'>
+            <TYPE>simple</TYPE>
+            <NAME>-g</NAME>
+            <HIDE_OPTION>true</HIDE_OPTION>
+            <DEPRECATE_OPTION>
+                <MAPSTO>
+                    <TAG>gdwarfdash3</TAG>
+                    <TEXT>-gdwarf-3</TEXT>
+                </MAPSTO>
+            </DEPRECATE_OPTION>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl' action='unset'>
+                    <SOURCE_OPTION>--symdebug:none</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Emit DWARF debug information</TIP>
+            <HELP>Emit DWARF debug information</HELP>
+            <RESETS>gdwarfdash4</RESETS>
+            <RESETS>gdwarfdash3</RESETS>
+            <RESETS>gdwarfdash2</RESETS>
+        </OPTION>
+        
+        <OPTION tag='gdwarfdash2'>
+            <TYPE>simple</TYPE>
+            <NAME>-gdwarf-2</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--symdebug:dwarf_version=2</SOURCE_OPTION>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl' action='unset'>
+                    <SOURCE_OPTION>--symdebug:none</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Emit DWARF v2 debug information</TIP>
+            <HELP>Emit DWARF v2 debug information</HELP>
+            <RESETS>gdwarfdash3</RESETS>
+            <RESETS>gdwarfdash4</RESETS>
+            <RESETS>g</RESETS>
+        </OPTION>
+        
+        <OPTION tag='gdwarfdash3'>
+            <TYPE>simple</TYPE>
+            <NAME>-gdwarf-3</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>-g</ONEOF>
+                        <ONEOF>--symdebug:dwarf</ONEOF>
+                        <ONEOF>--symdebug:dwarf_version=3</ONEOF>
+                    </SOURCE_OPTION>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl' action='unset'>
+                    <SOURCE_OPTION>--symdebug:none</SOURCE_OPTION>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--symdebug:dwarf_version=4</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not generate DWARF v4 debug information</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Emit DWARF v3 debug information</TIP>
+            <HELP>Emit DWARF v3 debug information</HELP>
+            <RESETS>g</RESETS>
+            <RESETS>gdwarfdash4</RESETS>
+            <RESETS>gdwarfdash2</RESETS>
+        </OPTION>
+        
+        <OPTION tag='gdwarfdash4'>
+            <TYPE>simple</TYPE>
+            <NAME>-gdwarf-4</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl' action='unset'>
+                    <SOURCE_OPTION>--symdebug:none</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Emit DWARF v4 debug information</TIP>
+            <HELP>Emit DWARF v4 debug information</HELP>
+            <RESETS>gdwarfdash2</RESETS>
+            <RESETS>g</RESETS>
+            <RESETS>gdwarfdash3</RESETS>
+        </OPTION>
+        
+        <OPTION tag='march'>
+            <TYPE>simple</TYPE>
+            <NAME>-march</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>thumbv6m,thumbv7m,thumbv7em,thumbv7r,armv7r</DESCRIPTION>
+                <ONEOF>thumbv6m</ONEOF>
+                <ONEOF>thumbv7m</ONEOF>
+                <ONEOF>thumbv7em</ONEOF>
+                <ONEOF>thumbv7r</ONEOF>
+                <ONEOF>armv7r</ONEOF>
+                <DEFAULT>thumbv7em</DEFAULT>
+            </ARG>
+            <IMPORT_ARGUMENT tag='thumbv6m'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--silicon_version=6M0</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='thumbv7m'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--silicon_version=7M3</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='thumbv7em'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--silicon_version=7M4</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='thumbv7r'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--silicon_version=7R4</ONEOF>
+                        <ONEOF>--silicon_version=7R5</ONEOF>
+                    </SOURCE_OPTION>
+                    <SOURCE_OPTION>--code_state=16</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='armv7r'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--silicon_version=7R4</ONEOF>
+                        <ONEOF>--silicon_version=7R5</ONEOF>
+                    </SOURCE_OPTION>
+                    <SOURCE_OPTION>--code_state=32</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <TIP>Select ARM architecture variant</TIP>
+            <HELP>Select ARM architecture variant</HELP>
+        </OPTION>
+        
+        <OPTION tag='marm'>
+            <TYPE>simple</TYPE>
+            <NAME>-marm</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--silicon_version=7R4</ONEOF>
+                        <ONEOF>--silicon_version=7R5</ONEOF>
+                    </SOURCE_OPTION>
+                    <SOURCE_OPTION>--code_state=32</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Compile for arm mode</TIP>
+            <HELP>Compile for arm mode</HELP>
+            <CONFLICT>mthumb</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='mbigdashendian'>
+            <TYPE>simple</TYPE>
+            <NAME>-mbig-endian</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--silicon_version=7R4</ONEOF>
+                        <ONEOF>--silicon_version=7R5</ONEOF>
+                    </SOURCE_OPTION>
+                    <SOURCE_OPTION>--endian=big</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Select big-endian byte order</TIP>
+            <HELP>Select big-endian byte order</HELP>
+            <CONFLICT>mlittledashendian</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='mcpu'>
+            <TYPE>simple</TYPE>
+            <NAME>-mcpu</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>cortex-m0,cortex-m0plus,cortex-m3,cortex-m4,cortex-m33,cortex-r4,cortex-r5</DESCRIPTION>
+                <ONEOF>cortex-m0</ONEOF>
+                <ONEOF>cortex-m0plus</ONEOF>
+                <ONEOF>cortex-m3</ONEOF>
+                <ONEOF>cortex-m4</ONEOF>
+                <ONEOF>cortex-m33</ONEOF>
+                <ONEOF>cortex-r4</ONEOF>
+                <ONEOF>cortex-r5</ONEOF>
+                <DEFAULT>cortex-m4</DEFAULT>
+            </ARG>
+            <IMPORT_ARGUMENT tag='cortex-m0'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--silicon_version=6M0</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='cortex-m3'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--silicon_version=7M3</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='cortex-m4'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--silicon_version=7M4</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='cortex-r4'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--silicon_version=7R4</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='cortex-r5'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--silicon_version=7R5</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <TIP>Select ARM processor variant</TIP>
+            <HELP>Select ARM processor variant</HELP>
+        </OPTION>
+        
+        <OPTION tag='mexecutedashonly'>
+            <TYPE>simple</TYPE>
+            <NAME>-mexecute-only</NAME>
+            <TIP>Disallow generation of data access to code sections</TIP>
+            <HELP>Disallow generation of data access to code sections</HELP>
+            <CONFLICT>mnodashexecutedashonly</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='mfloatdashabi'>
+            <TYPE>simple</TYPE>
+            <NAME>-mfloat-abi</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>hard,soft</DESCRIPTION>
+                <ONEOF>hard</ONEOF>
+                <ONEOF>soft</ONEOF>
+                <DEFAULT>soft</DEFAULT>
+            </ARG>
+            <IMPORT_ARGUMENT tag='hard'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--silicon_version=7M4</SOURCE_OPTION>
+                    <SOURCE_OPTION>--float_support=fpv4spd16</SOURCE_OPTION>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--silicon_version=7R4</ONEOF>
+                        <ONEOF>--silicon_version=7R5</ONEOF>
+                    </SOURCE_OPTION>
+                    <SOURCE_OPTION>--float_support=vfpv3d16</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='soft'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--float_support=none</SOURCE_OPTION>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--float_support=vfplib</SOURCE_OPTION>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--float_support=fpalib</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <TIP>Select assumed floating-point ABI</TIP>
+            <HELP>Select assumed floating-point ABI:
+
+hard - utilize available floating-point hardware and FPU calling conventions; soft - use calls to runtime library functions for floating-point operations</HELP>
+        </OPTION>
+        
+        <OPTION tag='mfpu'>
+            <TYPE>simple</TYPE>
+            <NAME>-mfpu</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>vfpv3-d16,fpv4-sp-d16,fpv5-sp-d16,none</DESCRIPTION>
+                <ONEOF>vfpv3-d16</ONEOF>
+                <ONEOF>fpv4-sp-d16</ONEOF>
+                <ONEOF>fpv5-sp-d16</ONEOF>
+                <ONEOF>none</ONEOF>
+                <DEFAULT>none</DEFAULT>
+            </ARG>
+            <IMPORT_ARGUMENT tag='vfpv3-d16'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--silicon_version=7R4</ONEOF>
+                        <ONEOF>--silicon_version=7R5</ONEOF>
+                    </SOURCE_OPTION>
+                    <SOURCE_OPTION>--float_support=vfpv3d16</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='fpv4-sp-d16'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--silicon_version=7M4</SOURCE_OPTION>
+                    <SOURCE_OPTION>--float_support=fpv4spd16</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <DEPRECATE_ARGUMENT tag='none'>
+                <MAPSTO>
+                    <TAG>mfloatdashabi</TAG>
+                    <TEXT>-mfloat-abi=soft</TEXT>
+                </MAPSTO>
+            </DEPRECATE_ARGUMENT>
+            <TIP>Select floating-point hardware processor</TIP>
+            <HELP>Select floating-point hardware processor</HELP>
+            <CHAIN>
+                <TAG>mfloatdashabi</TAG>
+                <TEXT>-mfloat-abi=hard</TEXT>
+            </CHAIN>
+        </OPTION>
+        
+        <OPTION tag='mlittledashendian'>
+            <TYPE>simple</TYPE>
+            <NAME>-mlittle-endian</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl' action='ignoreAlways'>
+                    <SOURCE_OPTION>--little_endian</SOURCE_OPTION>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--endian=little</SOURCE_OPTION>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--silicon_version=6M0</ONEOF>
+                        <ONEOF>--silicon_version=7M3</ONEOF>
+                        <ONEOF>--silicon_version=7M4</ONEOF>
+                    </SOURCE_OPTION>
+                    <SOURCE_OPTION>--endian=big</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not support big-endian mode on Cortex-M architectures; armcl&apos;s --endian-big option will be mapped to -mlittle-endian</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Select little-endian byte order</TIP>
+            <HELP>Select little-endian byte order</HELP>
+            <CONFLICT>mbigdashendian</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='mlongdashcalls'>
+            <TYPE>simple</TYPE>
+            <NAME>-mlong-calls</NAME>
+            <TIP>No direct calls; All calls are made via register</TIP>
+            <HELP>No direct calls; All calls are made via register</HELP>
+        </OPTION>
+        
+        <OPTION tag='mnodashexecutedashonly'>
+            <TYPE>simple</TYPE>
+            <NAME>-mno-execute-only</NAME>
+            <TIP>Allow generation of data access to code sections</TIP>
+            <HELP>Allow generation of data access to code sections</HELP>
+            <CONFLICT>mexecutedashonly</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='mnodashmovt'>
+            <TYPE>simple</TYPE>
+            <NAME>-mno-movt</NAME>
+            <TIP>Disallow use of MOVT/MOVW pairs</TIP>
+            <HELP>Disallow use of MOVT/MOVW pairs</HELP>
+        </OPTION>
+        
+        <OPTION tag='mnodashnegdashimmediates'>
+            <TYPE>simple</TYPE>
+            <NAME>-mno-neg-immediates</NAME>
+            <TIP>Disallow negating/inverting negative immediates</TIP>
+            <HELP>Disallow negating/inverting negative immediates</HELP>
+        </OPTION>
+        
+        <OPTION tag='mnodashoutline'>
+            <TYPE>simple</TYPE>
+            <NAME>-mno-outline</NAME>
+            <TIP>Disable function outlining</TIP>
+            <HELP>Disable function outlining</HELP>
+            <CONFLICT>moutline</CONFLICT>
+            <CONFLICT>moutlinedashinterdashfunction</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='mnodashunaligneddashaccess'>
+            <TYPE>simple</TYPE>
+            <NAME>-mno-unaligned-access</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--silicon_version=7M3</ONEOF>
+                        <ONEOF>--silicon_version=7M4</ONEOF>
+                        <ONEOF>--silicon_version=7R4</ONEOF>
+                        <ONEOF>--silicon_version=7R5</ONEOF>
+                    </SOURCE_OPTION>
+                    <SOURCE_OPTION>--unaligned_access=off</SOURCE_OPTION>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl' action='ignoreAlways'>
+                    <SOURCE_OPTION>--silicon_version=6M0</SOURCE_OPTION>
+                    <SOURCE_OPTION>--unaligned_access=off</SOURCE_OPTION>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--silicon_version=6M0</SOURCE_OPTION>
+                    <SOURCE_OPTION>--unaligned_access=on</SOURCE_OPTION>
+                    <OPTMAP_DIAG>unaligned accesses are not supported on the Cortex-M0 processor; armcl&apos;s --unaligned_access=on will be mapped to tiarmclang&apos;s -mno-unaligned-access</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Do not allow unaligned data accesses</TIP>
+            <HELP>Do not allow unaligned data accesses</HELP>
+            <CONFLICT>munaligneddashaccess</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='moutline'>
+            <TYPE>simple</TYPE>
+            <NAME>-moutline</NAME>
+            <TIP>Enable outlining within functions</TIP>
+            <HELP>Enable outlining within functions</HELP>
+            <CONFLICT>mnodashoutline</CONFLICT>
+            <CONFLICT>moutlinedashinterdashfunction</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='moutlinedashinterdashfunction'>
+            <TYPE>simple</TYPE>
+            <NAME>-moutline-inter-function</NAME>
+            <TIP>Enable inter-function outlining</TIP>
+            <HELP>Enable inter-function outlining</HELP>
+            <CONFLICT>mnodashoutline</CONFLICT>
+            <CONFLICT>moutline</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='mthumb'>
+            <TYPE>simple</TYPE>
+            <NAME>-mthumb</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--code_state=16</SOURCE_OPTION>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl' action='ignoreAlways'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--silicon_version=6M0</ONEOF>
+                        <ONEOF>--silicon_version=7M3</ONEOF>
+                        <ONEOF>--silicon_version=7M4</ONEOF>
+                    </SOURCE_OPTION>
+                    <SOURCE_OPTION>--code_state=16</SOURCE_OPTION>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--silicon_version=6M0</ONEOF>
+                        <ONEOF>--silicon_version=7M3</ONEOF>
+                        <ONEOF>--silicon_version=7M4</ONEOF>
+                    </SOURCE_OPTION>
+                    <SOURCE_OPTION>--code_state=32</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not support ARM mode instructions on Cortex-M architectures; armcl&apos;s --code_state=32 option will be mapped to -mthumb</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Compile for thumb mode</TIP>
+            <HELP>Compile for thumb mode</HELP>
+            <CONFLICT>marm</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='munaligneddashaccess'>
+            <TYPE>simple</TYPE>
+            <NAME>-munaligned-access</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl' action='ignoreAlways'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--silicon_version=7M3</ONEOF>
+                        <ONEOF>--silicon_version=7M4</ONEOF>
+                        <ONEOF>--silicon_version=7R4</ONEOF>
+                        <ONEOF>--silicon_version=7R5</ONEOF>
+                    </SOURCE_OPTION>
+                    <SOURCE_OPTION>--unaligned_access=on</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Allow unaligned data accesses</TIP>
+            <HELP>Allow unaligned data accesses</HELP>
+            <CONFLICT>mnodashunaligneddashaccess</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='o'>
+            <TYPE>simple</TYPE>
+            <NAME>-o</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--output_file</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <ARG>
+                <TYPE>STRING</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>file</DESCRIPTION>
+            </ARG>
+            <TIP>Identify output file name</TIP>
+            <HELP>Identify output file name</HELP>
+        </OPTION>
+        
+        <OPTION tag='pedantic'>
+            <TYPE>simple</TYPE>
+            <NAME>-pedantic</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--strict_ansi</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Emit warnings for conflicts with language standard</TIP>
+            <HELP>Emit warnings for conflicts with language standard</HELP>
+        </OPTION>
+        
+        <OPTION tag='pedanticdasherrors'>
+            <TYPE>simple</TYPE>
+            <NAME>-pedantic-errors</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--strict_ansi</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Emit errors for conflicts with language standard</TIP>
+            <HELP>Emit errors for conflicts with language standard</HELP>
+        </OPTION>
+        
+        <OPTION tag='savedashtemps'>
+            <TYPE>simple</TYPE>
+            <NAME>-save-temps</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--keep_asm</SOURCE_OPTION>
+                    <OPTMAP_DIAG>ALL temp files will be kept from compilation</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Keep all temporary files generated during compilation</TIP>
+            <HELP>Keep all temporary files generated during compilation</HELP>
+        </OPTION>
+        
+        <OPTION tag='stddashc'>
+            <TYPE>simple</TYPE>
+            <NAME>-std</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>optional</STATUS>
+                <DESCRIPTION>c89,c90,c99,c9x,c11,c1x,c17,c18,gnu89,gnu90,gnu99,gnu9x,gnu11,gnu1x,gnu17,gnu18</DESCRIPTION>
+                <ONEOF>c89</ONEOF>
+                <ONEOF>c90</ONEOF>
+                <ONEOF>c99</ONEOF>
+                <ONEOF>c9x</ONEOF>
+                <ONEOF>c11</ONEOF>
+                <ONEOF>c1x</ONEOF>
+                <ONEOF>c17</ONEOF>
+                <ONEOF>c18</ONEOF>
+                <ONEOF>gnu89</ONEOF>
+                <ONEOF>gnu90</ONEOF>
+                <ONEOF>gnu99</ONEOF>
+                <ONEOF>gnu9x</ONEOF>
+                <ONEOF>gnu11</ONEOF>
+                <ONEOF>gnu1x</ONEOF>
+                <ONEOF>gnu17</ONEOF>
+                <ONEOF>gnu18</ONEOF>
+                <DEFAULT>gnu17</DEFAULT>
+            </ARG>
+            <IMPORT_ARGUMENT tag='c89'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--c89</SOURCE_OPTION>
+                    <SOURCE_OPTION>--strict_ansi</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='c99'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--c99</SOURCE_OPTION>
+                    <SOURCE_OPTION>--strict_ansi</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='c11'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--c11</SOURCE_OPTION>
+                    <SOURCE_OPTION>--strict_ansi</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='gnu90'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--c89</SOURCE_OPTION>
+                    <SOURCE_OPTION>--relaxed_ansi</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='gnu9x'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--c99</SOURCE_OPTION>
+                    <SOURCE_OPTION>--relaxed_ansi</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='gnu11'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--c11</SOURCE_OPTION>
+                    <SOURCE_OPTION>--relaxed_ansi</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <TIP>Select assumed C language standard</TIP>
+            <HELP>Select assumed C language standard</HELP>
+        </OPTION>
+        
+        <OPTION tag='stddashcpp'>
+            <TYPE>simple</TYPE>
+            <NAME>-std</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>optional</STATUS>
+                <DESCRIPTION>c++98,c++03,gnu++98,gnu++03,c++11,gnu++11,c++14,gnu++14,c++17,gnu++17</DESCRIPTION>
+                <ONEOF>c++98</ONEOF>
+                <ONEOF>c++03</ONEOF>
+                <ONEOF>gnu++98</ONEOF>
+                <ONEOF>gnu++03</ONEOF>
+                <ONEOF>c++11</ONEOF>
+                <ONEOF>gnu++11</ONEOF>
+                <ONEOF>c++14</ONEOF>
+                <ONEOF>gnu++14</ONEOF>
+                <ONEOF>c++17</ONEOF>
+                <ONEOF>gnu++17</ONEOF>
+                <DEFAULT>c++17</DEFAULT>
+            </ARG>
+            <IMPORT_ARGUMENT tag='c++03'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--c++03</SOURCE_OPTION>
+                    <SOURCE_OPTION>--strict_ansi</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='gnu++03'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--c++03</SOURCE_OPTION>
+                    <SOURCE_OPTION>--relaxed_ansi</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='c++14'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--c++14</SOURCE_OPTION>
+                    <SOURCE_OPTION>--strict_ansi</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='gnu++14'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--c++14</SOURCE_OPTION>
+                    <SOURCE_OPTION>--relaxed_ansi</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <TIP>Select assumed C++ language standard</TIP>
+            <HELP>Select assumed C++ language standard</HELP>
+        </OPTION>
+        
+        <OPTION tag='v'>
+            <TYPE>simple</TYPE>
+            <NAME>-v</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--verbose</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Enable verbose output</TIP>
+            <HELP>Enable verbose output</HELP>
+        </OPTION>
+        
+        <OPTION tag='w'>
+            <TYPE>simple</TYPE>
+            <NAME>-w</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--no_warnings</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Suppress warnings</TIP>
+            <HELP>Suppress warnings</HELP>
+        </OPTION>
+        
+        <OPTION tag='x'>
+            <TYPE>simple</TYPE>
+            <NAME>-x</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>c,c++,assembler,assembler-with-cpp,ti-asm,none</DESCRIPTION>
+                <ONEOF>c</ONEOF>
+                <ONEOF>c++</ONEOF>
+                <ONEOF>assembler</ONEOF>
+                <ONEOF>assembler-with-cpp</ONEOF>
+                <ONEOF>ti-asm</ONEOF>
+                <ONEOF>none</ONEOF>
+                <DEFAULT>none</DEFAULT>
+            </ARG>
+            <IMPORT_ARGUMENT tag='c'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--c_file</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='c++'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--cpp_file</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <IMPORT_ARGUMENT tag='assembler'>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--asm_file</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_ARGUMENT>
+            <TIP>Select assumed source file type</TIP>
+            <HELP>The -x option instructs the compiler to interpret a source files in a specific manner, regardless of a given source file&apos;s extension. These are the available file types you can specify with the -x opton:
+
+c - C source file; c++ - C++ source file; assembler - GNU-syntax assembly source file; assembler-with-cpp - GNU-syntax assembly source file that can use C-syle pre-processing directives; ti-asm - TI-syntax assembly source file (to be processed by legacy TI assembler); none - use compiler default based on file extension;
+
+Within a Code Composer Studio project, if you need to apply a different interpretation to a specific file without affecting other source files, then you can edit that file&apos;s &apos;Properties&apos; to apply the -x option to the file when it is compiled.</HELP>
+        </OPTION>
+        
+        <OPTION tag='at'>
+            <TYPE>simple</TYPE>
+            <NAME>@</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--cmd_file</SOURCE_OPTION>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>filename</DESCRIPTION>
+            </ARG>
+            <TIP>Read options from specified file</TIP>
+            <HELP>Read additional compile options from the specified file</HELP>
+        </OPTION>
+        
+        <OPTION tag='UNMAPPED_ERROR'>
+            <TYPE>simple</TYPE>
+            <NAME>UNMAPPED_ERROR</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--silicon_version=4</ONEOF>
+                        <ONEOF>--silicon_version=5e</ONEOF>
+                        <ONEOF>--silicon_version=6</ONEOF>
+                        <ONEOF>--silicon_version=7A8</ONEOF>
+                    </SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not support specified processor (-mv4, -mv5e, -mv6, -mv7A8); tiarmclang does support cortex-m0, cortex-m3, cortex-m4, cortex-r4, cortex-r5, cortex-m33</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--float_support=VFPv2</ONEOF>
+                        <ONEOF>--float_support=VFPv3</ONEOF>
+                    </SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not support specified floating-point hardware (VFPv2, VFPv3)</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--silicon_version=6M0</ONEOF>
+                        <ONEOF>--silicon_version=7M3</ONEOF>
+                        <ONEOF>--silicon_version=7R4</ONEOF>
+                        <ONEOF>--silicon_version=7R5</ONEOF>
+                    </SOURCE_OPTION>
+                    <SOURCE_OPTION>--float_support=FPv4SPD16</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang only supports fpv4-sp-d16 FPU in combination with Cortex-M4 processor</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--silicon_version=6M0</ONEOF>
+                        <ONEOF>--silicon_version=7M3</ONEOF>
+                        <ONEOF>--silicon_version=7M4</ONEOF>
+                    </SOURCE_OPTION>
+                    <SOURCE_OPTION>--float_support=VFPv3D16</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang only supports vfpv3-d16 FPU in combination with Cortex-R4 or Cortex-R5 processor</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Emit error when unsupported source option is detected</TIP>
+            <HELP>Emit error when unsupported source option is detected</HELP>
+        </OPTION>
+        
+        <OPTION tag='UNMAPPED_REMARK'>
+            <TYPE>simple</TYPE>
+            <NAME>UNMAPPED_REMARK</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl' action='ignoreAlways'>
+                    <SOURCE_OPTION>--abi=eabi</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang only suppoprts EABI</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>-pm</ONEOF>
+                        <ONEOF>--program_level_compile</ONEOF>
+                    </SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not support whole program mode compilation; option ignored</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--call_assumptions</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not support an option that is functionally equivalent to armcl&apos;s --call_assumptions; option ignored</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--auto_inline</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not support an option that is functionally equivalent to armcl&apos;s --auto_inline; option ignored</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--symdebug:skeletal</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not support a functionally equivalent option for armcl&apos;s --sydebug:skeletal</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Emit remark when unsupported source option is detected</TIP>
+            <HELP>Emit remark when unsupported source option is detected</HELP>
+        </OPTION>
+        
+        <OPTION tag='UNMAPPED_WARNING'>
+            <TYPE>simple</TYPE>
+            <NAME>UNMAPPED_WARNING</NAME>
+            <IMPORT_OPTION>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--fp_mode=relaxed</SOURCE_OPTION>
+                    <OPTMAP_DIAG>armcl&apos;s --fp_mode=relaxed option ignored; --fp_mode=relaxed does not map directly to a tiarmclang option, however, tiarmclang&apos;s -ffast-math is its closest functionally equivalent option</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--float_operations_allowed=32</ONEOF>
+                        <ONEOF>--float_operations_allowed=64</ONEOF>
+                        <ONEOF>--float_operations_allowed=none</ONEOF>
+                    </SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not limit the precision of floating point operations; tiarmclang will accept 32- and 64-bit floating point precision operations</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--advice:power</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not support checking of ULP power rules; --advice:power option will not be migrated</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--advice:power_severity</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not support checking of ULP power rules; --advice:power_severity option will not be migrated</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--entry_parm</SOURCE_OPTION>
+                    <SOURCE_OPTION>--entry_hook</SOURCE_OPTION>
+                    <OPTMAP_DIAG>specified --entry_parm option ignored; the use of armcl&apos;s --entry_hook option will be replacd by tiarmclang&apos;s -finstrument-functions option, which generates calls to __cyg_profile_function_entry() and __cyg_profile_function_exit(); these functions are called with the address of the current function and the call site address</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--exit_parm</SOURCE_OPTION>
+                    <SOURCE_OPTION>--exit_hook</SOURCE_OPTION>
+                    <OPTMAP_DIAG>specified --exit_parm option ignored; the use of armcl&apos;s --exit_hook option will be replacd by tiarmclang&apos;s -finstrument-functions option, which generates calls to __cyg_profile_function_entry() and __cyg_profile_function_exit(); these functions are called with the address of the current function and the call site address</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--check_misra</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not support checking of MISRA-C:2004 rules; --check_misra option will not be migrated</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--misra_advisory</ONEOF>
+                        <ONEOF>--misra_required</ONEOF>
+                    </SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not support checking of MISRA-C:2004 rules; --misra_advisory and/or --misra_required options will not be migrated</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--gen_preprocessor_listing</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not support armcl&apos;s --gen_preprocessor_listing functionality; option will not be migrated</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--gen_cross_reference_listing</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not support armcl&apos;s --gen_cross_reference_listing functionality; option will not be migrated</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--gen_func_info_listing</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not support armcl&apos;s --gen_func_info_listing functionality; option will not be migrated</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--section_sizes</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not support emitting section size summary information; --section_size option will not be migrated</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION>--parallel</SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang does not support armcl&apos;s --parallel functionality; option will not be migrated</OPTMAP_DIAG>
+                </MAPSFROM>
+                <MAPSFROM tag='armcl'>
+                    <SOURCE_OPTION type='ONEOF'>
+                        <ONEOF>--symdebug:coff</ONEOF>
+                        <ONEOF>--symdebug:profile_coff</ONEOF>
+                    </SOURCE_OPTION>
+                    <OPTMAP_DIAG>tiarmclang only supports ELF object format with DWARF debug information</OPTMAP_DIAG>
+                </MAPSFROM>
+            </IMPORT_OPTION>
+            <TIP>Emit warning when unsupported source option is detected</TIP>
+            <HELP>Emit warning when unsupported source option is detected</HELP>
+        </OPTION>
+        
+        <OPTION tag='fnodashdiagnosticsdashshowdashoption'>
+            <TYPE>simple</TYPE>
+            <NAME>fno-diagnostics-show-option</NAME>
+            <TIP>Omit category information from diagnostic messages</TIP>
+            <HELP>Omit category information from diagnostic messages</HELP>
+            <CONFLICT>fdiagnosticsdashshowdashoption</CONFLICT>
+        </OPTION>
+        
+        <MUTEX tag='MUTEX_ENDIAN_NESS__BIG_LITTLE_'>
+            <NAME>Endian-ness (big/little)</NAME>
+            
+            <SEVERITY>CONFLICT</SEVERITY>
+            <STATUS>optional</STATUS>
+            <MEMBER>mbigdashendian</MEMBER>
+            <MEMBER>mlittledashendian</MEMBER>
+        </MUTEX>
+        <MUTEX tag='MUTEX_ENUM_TYPE_SIZE'>
+            <NAME>Enum type size</NAME>
+            
+            <SEVERITY>CONFLICT</SEVERITY>
+            <STATUS>optional</STATUS>
+            <MEMBER>fshortdashenums</MEMBER>
+            <MEMBER>fnodashshortdashenums</MEMBER>
+        </MUTEX>
+        <MUTEX tag='MUTEX_C___EXCEPTION_HANDLING'>
+            <NAME>C++ exception handling</NAME>
+            
+            <SEVERITY>CONFLICT</SEVERITY>
+            <STATUS>optional</STATUS>
+            <MEMBER>fnodashexceptions</MEMBER>
+            <MEMBER>fexceptions</MEMBER>
+        </MUTEX>
+        <MUTEX tag='MUTEX_C___RUN_TIME_TYPE_INFORMATION'>
+            <NAME>C++ run-time type information</NAME>
+            
+            <SEVERITY>CONFLICT</SEVERITY>
+            <STATUS>optional</STATUS>
+            <MEMBER>fnodashrtti</MEMBER>
+            <MEMBER>frtti</MEMBER>
+        </MUTEX>
+        <MUTEX tag='MUTEX_DEFAULT_CHAR_TYPE_SIGNED_NESS'>
+            <NAME>Default char type signed-ness</NAME>
+            
+            <SEVERITY>CONFLICT</SEVERITY>
+            <STATUS>optional</STATUS>
+            <MEMBER>funsigneddashchar</MEMBER>
+            <MEMBER>fsigneddashchar</MEMBER>
+        </MUTEX>
+        <MUTEX tag='MUTEX_ENABLE_DISABLE_FUNCTION_OUTLINING'>
+            <NAME>Enable/Disable function outlining</NAME>
+            
+            <SEVERITY>CONFLICT</SEVERITY>
+            <STATUS>optional</STATUS>
+            <MEMBER>moutlinedashinterdashfunction</MEMBER>
+            <MEMBER>moutline</MEMBER>
+            <MEMBER>mnodashoutline</MEMBER>
+        </MUTEX>
+        <MUTEX tag='MUTEX_ENABLE_DISABLE_FUNCTION_INLINING'>
+            <NAME>Enable/Disable function inlining</NAME>
+            
+            <SEVERITY>CONFLICT</SEVERITY>
+            <STATUS>optional</STATUS>
+            <MEMBER>finlinedashfunctions</MEMBER>
+            <MEMBER>fnodashinlinedashfunctions</MEMBER>
+        </MUTEX>
+        <MUTEX tag='MUTEX_COMMON_LINKAGE_FOR_VARIABLES'>
+            <NAME>Common linkage for variables</NAME>
+            
+            <SEVERITY>CONFLICT</SEVERITY>
+            <STATUS>optional</STATUS>
+            <MEMBER>fcommon</MEMBER>
+            <MEMBER>fnodashcommon</MEMBER>
+        </MUTEX>
+        <MUTEX tag='MUTEX_USE_UNIQUE_NAMES_FOR_STRING_CONSTANT_SECTIONS'>
+            <NAME>Use unique names for string constant sections</NAME>
+            
+            <SEVERITY>CONFLICT</SEVERITY>
+            <STATUS>optional</STATUS>
+            <MEMBER>funiquedashstringdashsectiondashnames</MEMBER>
+            <MEMBER>fnodashuniquedashstringdashsectiondashnames</MEMBER>
+        </MUTEX>
+        <MUTEX tag='MUTEX_DEFINE_FUNCTIONS_IN_THEIR_OWN_SECTIONS'>
+            <NAME>Define functions in their own sections</NAME>
+            
+            <SEVERITY>CONFLICT</SEVERITY>
+            <STATUS>optional</STATUS>
+            <MEMBER>ffunctiondashsections</MEMBER>
+            <MEMBER>fnodashfunctiondashsections</MEMBER>
+        </MUTEX>
+        <MUTEX tag='MUTEX_DEFINE_NON_LOCAL_VARIABLES_IN_THEIR_OWN_SECTIONS'>
+            <NAME>Define non-local variables in their own sections</NAME>
+            
+            <SEVERITY>CONFLICT</SEVERITY>
+            <STATUS>optional</STATUS>
+            <MEMBER>fdatadashsections</MEMBER>
+            <MEMBER>fnodashdatadashsections</MEMBER>
+        </MUTEX>
+        <MUTEX tag='MUTEX_ENABLE_USE_OF_STACK_PROTECTORS'>
+            <NAME>Enable use of stack protectors</NAME>
+            
+            <SEVERITY>RESET</SEVERITY>
+            <STATUS>optional</STATUS>
+            <MEMBER>fnodashstackdashprotector</MEMBER>
+            <MEMBER>fstackdashprotector</MEMBER>
+            <MEMBER>fstackdashprotectordashall</MEMBER>
+        </MUTEX>
+        <MUTEX tag='MUTEX_FUNCTION_STACK_SIZE_METADATA'>
+            <NAME>Function stack size metadata</NAME>
+            
+            <SEVERITY>CONFLICT</SEVERITY>
+            <STATUS>optional</STATUS>
+            <MEMBER>fnodashstackdashsizedashsection</MEMBER>
+            <MEMBER>fstackdashsizedashsection</MEMBER>
+        </MUTEX>
+        <MUTEX tag='MUTEX_UNALIGNED_MEMORY_ACCESSES'>
+            <NAME>Unaligned memory accesses</NAME>
+            
+            <SEVERITY>CONFLICT</SEVERITY>
+            <STATUS>optional</STATUS>
+            <MEMBER>munaligneddashaccess</MEMBER>
+            <MEMBER>mnodashunaligneddashaccess</MEMBER>
+        </MUTEX>
+        <MUTEX tag='MUTEX_GENERATE_DWARF_DEBUG'>
+            <NAME>Generate DWARF debug</NAME>
+            
+            <SEVERITY>RESET</SEVERITY>
+            <STATUS>optional</STATUS>
+            <MEMBER>gdwarfdash3</MEMBER>
+            <MEMBER>gdwarfdash2</MEMBER>
+            <MEMBER>gdwarfdash4</MEMBER>
+            <MEMBER>g</MEMBER>
+        </MUTEX>
+        <MUTEX tag='MUTEX_SHOW_DIAGNOSTIC_CATEGORY_WITH_DIAGNOSTIC_MESSAGES'>
+            <NAME>Show diagnostic category with diagnostic messages</NAME>
+            
+            <SEVERITY>CONFLICT</SEVERITY>
+            <STATUS>optional</STATUS>
+            <MEMBER>fdiagnosticsdashshowdashoption</MEMBER>
+            <MEMBER>fnodashdiagnosticsdashshowdashoption</MEMBER>
+        </MUTEX>
+        <MUTEX tag='MUTEX_SELECT_PROCESSOR_MODE__ARM_THUMB_'>
+            <NAME>Select processor mode (arm/thumb)</NAME>
+            
+            <SEVERITY>CONFLICT</SEVERITY>
+            <STATUS>optional</STATUS>
+            <MEMBER>mthumb</MEMBER>
+            <MEMBER>marm</MEMBER>
+        </MUTEX>
+        <MUTEX tag='MUTEX_DISALLOW_DATA_ACCESSES_IN_CODE_SECTIONS'>
+            <NAME>Disallow data accesses in code sections</NAME>
+            
+            <SEVERITY>CONFLICT</SEVERITY>
+            <STATUS>optional</STATUS>
+            <MEMBER>mexecutedashonly</MEMBER>
+            <MEMBER>mnodashexecutedashonly</MEMBER>
+        </MUTEX>
+    </DEFINITIONS>
+    <CATEGORY tag='PROCESSOR'>
+        <NAME>Processor Options:</NAME>
+        
+        <MEMBER>march</MEMBER>
+        <MEMBER>mcpu</MEMBER>
+        <MEMBER>mfloatdashabi</MEMBER>
+        <MEMBER>mfpu</MEMBER>
+        <MEMBER>MUTEX_ENDIAN_NESS__BIG_LITTLE_</MEMBER>
+        <MEMBER>MUTEX_SELECT_PROCESSOR_MODE__ARM_THUMB_</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='BASICOPT'>
+        <NAME>Optimization:</NAME>
+        
+        <MEMBER>O</MEMBER>
+        <MEMBER>ffastdashmath</MEMBER>
+        <MEMBER>flto</MEMBER>
+        <MEMBER>MUTEX_ENABLE_DISABLE_FUNCTION_INLINING</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='INCLUDES'>
+        <NAME>Include Options:</NAME>
+        
+        <MEMBER>I</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='DEFINES'>
+        <NAME>Predefined Symbols:</NAME>
+        
+        <MEMBER>D</MEMBER>
+        <MEMBER>U</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='ADVANCED'>
+        <NAME>Advanced Options:</NAME>
+        
+        <MEMBERCAT>CONTROL</MEMBERCAT>
+        <MEMBERCAT>SYMDEBUG</MEMBERCAT>
+        <MEMBERCAT>PARSER</MEMBERCAT>
+        <MEMBERCAT>PREPROC</MEMBERCAT>
+        <MEMBERCAT>PDIAG</MEMBERCAT>
+        <MEMBERCAT>MODEL</MEMBERCAT>
+        <MEMBERCAT>UMODEL</MEMBERCAT>
+        <MEMBERCAT>OPTINF</MEMBERCAT>
+        <MEMBERCAT>ASM</MEMBERCAT>
+        <MEMBERCAT>FILE</MEMBERCAT>
+        <MEMBERCAT>INTERNAL</MEMBERCAT>
+        <MEMBERCAT>INSTRUMENT</MEMBERCAT>
+        <MEMBERCAT>CMDFILES</MEMBERCAT>
+        <MEMBERCAT>AUX</MEMBERCAT>
+        <MEMBERCAT>MISC</MEMBERCAT>
+    </CATEGORY>
+    
+    <CATEGORY tag='CONTROL'>
+        <NAME>Control Options:</NAME>
+        
+        <MEMBER>S</MEMBER>
+        <MEMBER>c</MEMBER>
+        <MEMBER>o</MEMBER>
+        <MEMBER>savedashtemps</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='SYMDEBUG'>
+        <NAME>Advanced Debug Options:</NAME>
+        
+        <MEMBER>MUTEX_GENERATE_DWARF_DEBUG</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='PARSER'>
+        <NAME>Language Options:</NAME>
+        
+        <MEMBER>language</MEMBER>
+        <MEMBER>pedantic</MEMBER>
+        <MEMBER>pedanticdasherrors</MEMBER>
+        <MEMBER>stddashc</MEMBER>
+        <MEMBER>stddashcpp</MEMBER>
+        <MEMBER>x</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='PREPROC'>
+        <NAME>Parser Preprocessing Options:</NAME>
+        
+        <MEMBER>C</MEMBER>
+        <MEMBER>E</MEMBER>
+        <MEMBER>M</MEMBER>
+        <MEMBER>MM</MEMBER>
+        <MEMBER>dM</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='PDIAG'>
+        <NAME>Diagnostic Options:</NAME>
+        
+        <MEMBER>version</MEMBER>
+        <MEMBER>W</MEMBER>
+        <MEMBER>Wall</MEMBER>
+        <MEMBER>Werror</MEMBER>
+        <MEMBER>WerrorAll</MEMBER>
+        <MEMBER>Wnodash</MEMBER>
+        <MEMBER>Wnodasherror</MEMBER>
+        <MEMBER>ferrordashlimit</MEMBER>
+        <MEMBER>fsyntaxdashonly</MEMBER>
+        <MEMBER>v</MEMBER>
+        <MEMBER>w</MEMBER>
+        <MEMBER>MUTEX_SHOW_DIAGNOSTIC_CATEGORY_WITH_DIAGNOSTIC_MESSAGES</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='MODEL'>
+        <NAME>Runtime Model Options:</NAME>
+        
+        <MEMBER>fnodashshortdashwchar</MEMBER>
+        <MEMBER>MUTEX_ENUM_TYPE_SIZE</MEMBER>
+        <MEMBER>MUTEX_DEFINE_NON_LOCAL_VARIABLES_IN_THEIR_OWN_SECTIONS</MEMBER>
+        <MEMBER>MUTEX_UNALIGNED_MEMORY_ACCESSES</MEMBER>
+        <MEMBER>MUTEX_C___EXCEPTION_HANDLING</MEMBER>
+        <MEMBER>MUTEX_C___RUN_TIME_TYPE_INFORMATION</MEMBER>
+        <MEMBER>MUTEX_DEFAULT_CHAR_TYPE_SIGNED_NESS</MEMBER>
+        <MEMBER>MUTEX_ENABLE_DISABLE_FUNCTION_OUTLINING</MEMBER>
+        <MEMBER>MUTEX_COMMON_LINKAGE_FOR_VARIABLES</MEMBER>
+        <MEMBER>MUTEX_USE_UNIQUE_NAMES_FOR_STRING_CONSTANT_SECTIONS</MEMBER>
+        <MEMBER>MUTEX_DEFINE_FUNCTIONS_IN_THEIR_OWN_SECTIONS</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='UMODEL'>
+        <NAME>Unusual Runtime Model Options:</NAME>
+        
+        <MEMBER>include</MEMBER>
+        <MEMBER>ffixeddashr9</MEMBER>
+        <MEMBER>finstrumentdashfunctions</MEMBER>
+        <MEMBER>mlongdashcalls</MEMBER>
+        <MEMBER>mnodashmovt</MEMBER>
+        <MEMBER>mnodashnegdashimmediates</MEMBER>
+        <MEMBER>MUTEX_FUNCTION_STACK_SIZE_METADATA</MEMBER>
+        <MEMBER>MUTEX_DISALLOW_DATA_ACCESSES_IN_CODE_SECTIONS</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='OPTINF'>
+        <NAME>Optimization Information Options:</NAME>
+        
+        <MEMBER>Rpass</MEMBER>
+        <MEMBER>Rpassdashanalysis</MEMBER>
+        <MEMBER>Rpassdashmissed</MEMBER>
+        <MEMBER>foptimizationdashrecorddashfile</MEMBER>
+        <MEMBER>fsavedashoptimizationdashrecord</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='INSTRUMENT'>
+        <NAME>Instrumentation Options:</NAME>
+        
+        <MEMBER>fcoveragedashmapping</MEMBER>
+        <MEMBER>ffunctiondashcoveragedashonly</MEMBER>
+        <MEMBER>fmcdc</MEMBER>
+        <MEMBER>fprofiledashcounterdashsize</MEMBER>
+        <MEMBER>fprofiledashinstrdashgenerate</MEMBER>
+        <MEMBER>MUTEX_ENABLE_USE_OF_STACK_PROTECTORS</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='CMDFILES'>
+        <NAME>Command Files:</NAME>
+        
+        <MEMBER>at</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='UNMAPPED'>
+        <NAME>Unmapped option diagnostics</NAME>
+        
+        <MEMBER>UNMAPPED_ERROR</MEMBER>
+        <MEMBER>UNMAPPED_REMARK</MEMBER>
+        <MEMBER>UNMAPPED_WARNING</MEMBER>
+    </CATEGORY>
+    
+</TOOL>
+<TOOL>
+    <TAG>LINKER</TAG>
+    <TOOLNAME>C/C++ LINKER</TOOLNAME>
+    <DEFINITIONS>
+        <OPTION tag='absolute_exe'>
+            <TYPE>simple</TYPE>
+            <NAME>--absolute_exe</NAME>
+            <ALIAS>-a</ALIAS>
+            <TIP>Produce absolute executable object file (default)</TIP>
+            <HELP>Produce absolute executable object file (default)</HELP>
+        </OPTION>
+        
+        <OPTION tag='arg_size'>
+            <TYPE>simple</TYPE>
+            <NAME>--arg_size</NAME>
+            <ALIAS>--args</ALIAS>
+            <ARG>
+                <TYPE>HEXNUMBER</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>size</DESCRIPTION>
+            </ARG>
+            <TIP>Set C argc/argv memory size</TIP>
+            <HELP>Set C argc/argv memory size</HELP>
+        </OPTION>
+        
+        <OPTION tag='block_init_segments'>
+            <TYPE>simple</TYPE>
+            <NAME>--block_init_segments</NAME>
+            <ARG>
+                <TYPE>NUMBER</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>bytes</DESCRIPTION>
+            </ARG>
+            <TIP>Specify a power-of-two block size for initialized segments</TIP>
+            <HELP>Specify a power-of-two block size for initialized segments</HELP>
+        </OPTION>
+        
+        <OPTION tag='buffer_diagnostics'>
+            <TYPE>simple</TYPE>
+            <NAME>--buffer_diagnostics</NAME>
+            <ALIAS>-pdb</ALIAS>
+            <HIDE_OPTION>true</HIDE_OPTION>
+            <DEPRECATE_OPTION>
+            </DEPRECATE_OPTION>
+            <TIP>Line buffer diagnostic output</TIP>
+            <HELP>Line buffer diagnostic output to reduce message mixing when compiling in parallel.</HELP>
+        </OPTION>
+        
+        <OPTION tag='cinit_compression'>
+            <TYPE>simple</TYPE>
+            <NAME>--cinit_compression</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>optional</STATUS>
+                <DESCRIPTION>rle,lzss,off</DESCRIPTION>
+                <ONEOF>rle</ONEOF>
+                <ONEOF>lzss</ONEOF>
+                <ONEOF>off</ONEOF>
+                <DEFAULT>lzss</DEFAULT>
+            </ARG>
+            <TIP>Compress ELF C style auto initialization data</TIP>
+            <HELP>Specify the compression to apply to the c auto initialization data</HELP>
+        </OPTION>
+        
+        <OPTION tag='cinit_hold_wdt'>
+            <TYPE>simple</TYPE>
+            <NAME>--cinit_hold_wdt</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>optional</STATUS>
+                <DESCRIPTION>on,off</DESCRIPTION>
+                <ONEOF>on</ONEOF>
+                <ONEOF>off</ONEOF>
+                <DEFAULT>on</DEFAULT>
+            </ARG>
+            <TIP>Hold watchdog timer during cinit auto-initialization</TIP>
+            <HELP>Hold watchdog timer during cinit portion of auto-initialization.  Select off to leave watchdog enabled during cinit auto-initialization.</HELP>
+        </OPTION>
+        
+        <OPTION tag='compress_dwarf'>
+            <TYPE>simple</TYPE>
+            <NAME>--compress_dwarf</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>optional</STATUS>
+                <DESCRIPTION>on,off</DESCRIPTION>
+                <ONEOF>on</ONEOF>
+                <ONEOF>off</ONEOF>
+                <DEFAULT>on</DEFAULT>
+            </ARG>
+            <TIP>Aggressively reduce size of the DWARF information</TIP>
+            <HELP>Aggressively reduce the size of the DWARF information.  When this option used, the DWARF information is parsed and examined to look for and eliminate duplicate types, and builds a .debug_abbrev table for the whole program.</HELP>
+        </OPTION>
+        
+        <OPTION tag='copy_compression'>
+            <TYPE>simple</TYPE>
+            <NAME>--copy_compression</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>optional</STATUS>
+                <DESCRIPTION>rle,lzss,off</DESCRIPTION>
+                <ONEOF>rle</ONEOF>
+                <ONEOF>lzss</ONEOF>
+                <ONEOF>off</ONEOF>
+                <DEFAULT>lzss</DEFAULT>
+            </ARG>
+            <TIP>Compress ELF sections copied using copy tables</TIP>
+            <HELP>Overlays can be managed by using linker generated copy tables. To save ROM space, the linker can compress the data copied by copy tables. The compressed data is decompressed during copy.</HELP>
+        </OPTION>
+        
+        <OPTION tag='define'>
+            <TYPE>simple</TYPE>
+            <NAME>--define</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>name=value</DESCRIPTION>
+            </ARG>
+            <TIP>Pre-define preprocessor macro _name_ to _value_</TIP>
+            <HELP>Pre-define preprocessor macro _name_ to _value_</HELP>
+        </OPTION>
+        
+        <OPTION tag='diag_error'>
+            <TYPE>simple</TYPE>
+            <NAME>--diag_error</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>id</DESCRIPTION>
+            </ARG>
+            <TIP>Treat diagnostic &lt;id&gt; as error</TIP>
+            <HELP>Treat diagnostic &lt;id&gt; as error</HELP>
+        </OPTION>
+        
+        <OPTION tag='diag_remark'>
+            <TYPE>simple</TYPE>
+            <NAME>--diag_remark</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>id</DESCRIPTION>
+            </ARG>
+            <TIP>Treat diagnostic &lt;id&gt; as remark</TIP>
+            <HELP>Treat diagnostic &lt;id&gt; as remark</HELP>
+        </OPTION>
+        
+        <OPTION tag='diag_suppress'>
+            <TYPE>simple</TYPE>
+            <NAME>--diag_suppress</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>id</DESCRIPTION>
+            </ARG>
+            <TIP>Suppress diagnostic &lt;id&gt;</TIP>
+            <HELP>Suppress diagnostic &lt;id&gt;</HELP>
+        </OPTION>
+        
+        <OPTION tag='diag_warning'>
+            <TYPE>simple</TYPE>
+            <NAME>--diag_warning</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>id</DESCRIPTION>
+            </ARG>
+            <TIP>Treat diagnostic &lt;id&gt; as warning</TIP>
+            <HELP>Treat diagnostic &lt;id&gt; as warning</HELP>
+        </OPTION>
+        
+        <OPTION tag='diag_wrap'>
+            <TYPE>simple</TYPE>
+            <NAME>--diag_wrap</NAME>
+            <HIDE_OPTION>true</HIDE_OPTION>
+            <DEPRECATE_OPTION>
+            </DEPRECATE_OPTION>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>optional</STATUS>
+                <DESCRIPTION>on,off</DESCRIPTION>
+                <ONEOF>on</ONEOF>
+                <ONEOF>off</ONEOF>
+                <DEFAULT>on</DEFAULT>
+            </ARG>
+            <TIP>Wrap diagnostic messages</TIP>
+            <HELP>Set diagnostic messages to wrap at 79 columns (on) or not (off).</HELP>
+        </OPTION>
+        
+        <OPTION tag='disable_auto_rts'>
+            <TYPE>simple</TYPE>
+            <NAME>--disable_auto_rts</NAME>
+            <TIP>Disable automatic RTS selection</TIP>
+            <HELP>Do not attempt to automatically select and link a runtime library.</HELP>
+        </OPTION>
+        
+        <OPTION tag='disable_clink'>
+            <TYPE>simple</TYPE>
+            <NAME>--disable_clink</NAME>
+            <ALIAS>-j</ALIAS>
+            <TIP>Disable conditional linking and ignore .clink</TIP>
+            <HELP>Disable conditional linking; ignore all .clink directives.</HELP>
+        </OPTION>
+        
+        <OPTION tag='disable_pp'>
+            <TYPE>simple</TYPE>
+            <NAME>--disable_pp</NAME>
+            <TIP>Don&apos;t use C preprocessor for command files</TIP>
+            <HELP>This disables preprocessing of linker command files.</HELP>
+        </OPTION>
+        
+        <OPTION tag='display_error_number'>
+            <TYPE>simple</TYPE>
+            <NAME>--display_error_number</NAME>
+            <TIP>Emit diagnostic identifier numbers</TIP>
+            <HELP>Emit diagnostic identifier numbers</HELP>
+        </OPTION>
+        
+        <OPTION tag='ecc'>
+            <TYPE>simple</TYPE>
+            <NAME>--ecc</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>on,off</DESCRIPTION>
+                <ONEOF>on</ONEOF>
+                <ONEOF>off</ONEOF>
+                <DEFAULT>off</DEFAULT>
+            </ARG>
+            <TIP>Control whether ECC generation is on or off</TIP>
+            <HELP>Control whether ECC generation is on or off</HELP>
+        </OPTION>
+        
+        <OPTION tag='ecc__data_error'>
+            <TYPE>simple</TYPE>
+            <NAME>--ecc:data_error</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>(address|symbol+offset),[page,]bitmask</DESCRIPTION>
+            </ARG>
+            <TIP>Introduce bit errors</TIP>
+            <HELP>--ecc:data_error=(address|symbol+offset),[page,]bitmask - Introduce bit errors in the outfile. The bits to be flipped in the outfile are located in the unit at the specified offset. The offset is relative to either the origin of the page, or relative to the position of the base symbol, if specified. The default page is zero, and any page may be specified. The bits to be flipped at the specified location are indicated by set bits in the bitmask. In effect, the data in the outfile will be the bitwise-exclusive-or of the bitmask with original code or data. Bit errors can only be applied to initialized data, such as the contents of Flash memory. The effective address of the error must lie inside either the output memory range or the input memory range of an ECC specification.</HELP>
+        </OPTION>
+        
+        <OPTION tag='ecc__ecc_error'>
+            <TYPE>simple</TYPE>
+            <NAME>--ecc:ecc_error</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>(address|symbol+offset),[page,]bitmask</DESCRIPTION>
+            </ARG>
+            <TIP>Introduce bit errors in ECC memory</TIP>
+            <HELP>--ecc:ecc_error=(address|symbol+offset),[page,]bitmask - Introduce bit errors in corresponding ECC memory. This option behaves like the --ecc:data_error option, except that the bits are not flipped in the code/data memory at the specified location. Instead, the bits are flipped in the ECC memory area that corresponds to the specified location. The bitmask is 8 bits wide. In the presence of mirroring, bits will be flipped in all mirrored copies of the corresponding ECC byte. The effective address of the error must lie inside the input memory range of an ECC specification.</HELP>
+        </OPTION>
+        
+        <OPTION tag='emit_references__file'>
+            <TYPE>simple</TYPE>
+            <NAME>--emit_references:file</NAME>
+            <ARG>
+                <TYPE>STRING</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>file</DESCRIPTION>
+            </ARG>
+            <TIP>Specify the output path for section dependence information</TIP>
+            <HELP>When this option is set, the linker emits the following information: section size, symbols defined in the section, and references to symbols defined in the section from other sections. This information is sufficient to understand why each section has been included in the final link. The given file is used as a base name, and the format and file extension chosen by the --emit_references:format option.</HELP>
+        </OPTION>
+        
+        <OPTION tag='emit_references__format'>
+            <TYPE>simple</TYPE>
+            <NAME>--emit_references:format</NAME>
+            <ARG>
+                <TYPE>ONEOFLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>TEXT</DESCRIPTION>
+                <ONEOF>TEXT</ONEOF>
+            </ARG>
+            <TIP>Specify the format for section reference information</TIP>
+            <HELP>When --emit_references:file is set, this option determines the format and file extension for the generated reference information file. TEXT is reasonable for manual inspection, much like the output of the --map_file option. TEXT uses a .txt extension.</HELP>
+        </OPTION>
+        
+        <OPTION tag='emit_warnings_as_errors'>
+            <TYPE>simple</TYPE>
+            <NAME>--emit_warnings_as_errors</NAME>
+            <ALIAS>-pdew</ALIAS>
+            <TIP>Treat warnings as errors</TIP>
+            <HELP>Treat warnings as errors</HELP>
+            <CONFLICT>no_warnings</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='enddashgroup'>
+            <TYPE>simple</TYPE>
+            <NAME>--end-group</NAME>
+            <TIP>End reread library group</TIP>
+            <HELP>End reread library group</HELP>
+        </OPTION>
+        
+        <OPTION tag='entry_point'>
+            <TYPE>simple</TYPE>
+            <NAME>--entry_point</NAME>
+            <ALIAS>-e</ALIAS>
+            <ARG>
+                <TYPE>STRING</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>symbol</DESCRIPTION>
+            </ARG>
+            <TIP>Specify program entry point for the output module</TIP>
+            <HELP>Specify program entry point for the output module</HELP>
+            <CONFLICT>no_entry_point</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='fill_value'>
+            <TYPE>simple</TYPE>
+            <NAME>--fill_value</NAME>
+            <ALIAS>-f</ALIAS>
+            <ARG>
+                <TYPE>HEXNUMBER</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>value</DESCRIPTION>
+            </ARG>
+            <TIP>Default fill value for holes in output sections</TIP>
+            <HELP>Set the default fill value for filling holes in output sections.</HELP>
+        </OPTION>
+        
+        <OPTION tag='gen_xml_func_hash'>
+            <TYPE>simple</TYPE>
+            <NAME>--gen_xml_func_hash</NAME>
+            <TIP>Generate XML function hash values with mapped data sections</TIP>
+            <HELP>Generate XML function hash values with mapped data sections</HELP>
+        </OPTION>
+        
+        <OPTION tag='generate_dead_funcs_list'>
+            <TYPE>simple</TYPE>
+            <NAME>--generate_dead_funcs_list</NAME>
+            <HIDE_OPTION>true</HIDE_OPTION>
+            <DEPRECATE_OPTION>
+                <SEVERITY>5</SEVERITY>
+                <DIAGNOSTIC>The --generate_dead_funcs_list option is no longer supported.</DIAGNOSTIC>
+            </DEPRECATE_OPTION>
+            <ARG>
+                <TYPE>STRING</TYPE>
+                <STATUS>optional</STATUS>
+                <DESCRIPTION>fname</DESCRIPTION>
+            </ARG>
+            <TIP>List removed dead functions into file</TIP>
+            <HELP>Create a list, into the file &lt;fname&gt;, of the routines and sections that are dead (never referenced) and were removed by the linker.  The default &lt;fname&gt; is &apos;dead_funcs.txt&apos;.</HELP>
+        </OPTION>
+        
+        <OPTION tag='globalize'>
+            <TYPE>simple</TYPE>
+            <NAME>--globalize</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>pattern</DESCRIPTION>
+            </ARG>
+            <TIP>Do not localize symbols matching pattern</TIP>
+            <HELP>The option &apos;--localize=l_pattern&apos; makes the symbols matching the l_pattern hidden. The &apos;--globalilze=g_pattern&apos; option excludes symbols matching g_pattern from symbol localization provided g_pattern is more restrictive than l_pattern. </HELP>
+        </OPTION>
+        
+        <OPTION tag='heap_size'>
+            <TYPE>simple</TYPE>
+            <NAME>--heap_size</NAME>
+            <ALIAS>-heap</ALIAS>
+            <ALIAS>--heap</ALIAS>
+            <ARG>
+                <TYPE>HEXNUMBER</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>size</DESCRIPTION>
+            </ARG>
+            <TIP>Heap size for C/C++ dynamic memory allocation</TIP>
+            <HELP>Specify the maximum heap size for C/C++ dynamic memory allocation.</HELP>
+        </OPTION>
+        
+        <OPTION tag='hide'>
+            <TYPE>simple</TYPE>
+            <NAME>--hide</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>pattern</DESCRIPTION>
+            </ARG>
+            <TIP>Hide symbols matching pattern</TIP>
+            <HELP>Hide the symbols matching the pattern by changing the name to empty string</HELP>
+        </OPTION>
+        
+        <OPTION tag='honor_cmdfile_order'>
+            <TYPE>simple</TYPE>
+            <NAME>--honor_cmdfile_order</NAME>
+            <TIP>Order output sections as specified in linker command file</TIP>
+            <HELP>Order the placement of output sections according to the order in which they are specified in a linker command file while honoring other placement constraints, such as placement to a specific memory address</HELP>
+        </OPTION>
+        
+        <OPTION tag='import_cmse_lib_in'>
+            <TYPE>simple</TYPE>
+            <NAME>--import_cmse_lib_in</NAME>
+            <ARG>
+                <TYPE>STRING</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>file</DESCRIPTION>
+            </ARG>
+            <TIP>Input existing CMSE import library to be updated</TIP>
+            <HELP>Input existing CMSE import library to be updated</HELP>
+        </OPTION>
+        
+        <OPTION tag='import_cmse_lib_out'>
+            <TYPE>simple</TYPE>
+            <NAME>--import_cmse_lib_out</NAME>
+            <ARG>
+                <TYPE>STRING</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>file</DESCRIPTION>
+            </ARG>
+            <TIP>Create a CMSE output library file</TIP>
+            <HELP>Create a CMSE output library file</HELP>
+        </OPTION>
+        
+        <OPTION tag='import_sso'>
+            <TYPE>simple</TYPE>
+            <NAME>--import_sso</NAME>
+            <ARG>
+                <TYPE>STRING</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>file</DESCRIPTION>
+            </ARG>
+            <TIP>Specify a static shared object (SSO) file as input</TIP>
+            <HELP>Identify an SSO file as input to a core application link. Symbols defined in the SSO will take precedence over symbols defined in normal input object files.</HELP>
+        </OPTION>
+        
+        <OPTION tag='issue_remarks'>
+            <TYPE>simple</TYPE>
+            <NAME>--issue_remarks</NAME>
+            <TIP>Issue remarks</TIP>
+            <HELP>Issue remarks</HELP>
+        </OPTION>
+        
+        <OPTION tag='library'>
+            <TYPE>simple</TYPE>
+            <NAME>--library</NAME>
+            <PREFERREDALIAS>-l</PREFERREDALIAS>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>file</DESCRIPTION>
+            </ARG>
+            <TIP>Include library file or command file as input</TIP>
+            <HELP>Include library file or command file as input</HELP>
+        </OPTION>
+        
+        <OPTION tag='linker_help'>
+            <TYPE>cmdline</TYPE>
+            <NAME>--linker_help</NAME>
+            <ALIAS>-help</ALIAS>
+            <ALIAS>--help</ALIAS>
+            <TIP>Display usage information</TIP>
+            <HELP>Display usage information.  Followed by another option, will display detailed information on that option.</HELP>
+        </OPTION>
+        
+        <OPTION tag='localize'>
+            <TYPE>simple</TYPE>
+            <NAME>--localize</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>pattern</DESCRIPTION>
+            </ARG>
+            <TIP>Make the symbols matching pattern local</TIP>
+            <HELP>Given a symbol name pattern, make all the symbols matching this pattern local</HELP>
+        </OPTION>
+        
+        <OPTION tag='make_global'>
+            <TYPE>simple</TYPE>
+            <NAME>--make_global</NAME>
+            <ALIAS>-g</ALIAS>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>symbol</DESCRIPTION>
+            </ARG>
+            <TIP>Don&apos;t make global symbol static if -h is specified</TIP>
+            <HELP>Don&apos;t make global symbol static if -h is specified</HELP>
+        </OPTION>
+        
+        <OPTION tag='make_static'>
+            <TYPE>simple</TYPE>
+            <NAME>--make_static</NAME>
+            <ALIAS>-h</ALIAS>
+            <TIP>Make all global symbols static</TIP>
+            <HELP>Make all global symbols static</HELP>
+        </OPTION>
+        
+        <OPTION tag='map_file'>
+            <TYPE>simple</TYPE>
+            <NAME>--map_file</NAME>
+            <PREFERREDALIAS>-m</PREFERREDALIAS>
+            <ARG>
+                <TYPE>STRING</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>file</DESCRIPTION>
+            </ARG>
+            <TIP>Link information (map) listed into &lt;file&gt;</TIP>
+            <HELP>Produce a listing of all input and output sections into &lt;file&gt;.</HELP>
+        </OPTION>
+        
+        <OPTION tag='mapfile_contents'>
+            <TYPE>simple</TYPE>
+            <NAME>--mapfile_contents</NAME>
+            <ARG>
+                <TYPE>STRING</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>attribute</DESCRIPTION>
+            </ARG>
+            <TIP>Display attribute settings in map file</TIP>
+            <HELP>Enable the display of &lt;attribute&gt; or disable with no&lt;attribute&gt; in the linker generated map file.  Multiple attributes can be specified by separating them with commas (e.g. --mapfile_contents=sections,nosymbols).  Type --mapfile_contents=help for a list of attributes.</HELP>
+        </OPTION>
+        
+        <OPTION tag='minimize_trampolines'>
+            <TYPE>simple</TYPE>
+            <NAME>--minimize_trampolines</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>optional</STATUS>
+                <DESCRIPTION>postorder,off</DESCRIPTION>
+                <ONEOF>postorder</ONEOF>
+                <ONEOF>off</ONEOF>
+                <DEFAULT>postorder</DEFAULT>
+            </ARG>
+            <TIP>Select trampoline minimization algorithm</TIP>
+            <HELP>This option attempts to place sections so as to minimize the number of far call trampolines required, possibly at the expense of optimal memory packing. The argument selects a heuristic to use. The &apos;postorder&apos; heuristic attempts to place functions before their callers so that the PC-relative offset is known when the caller is placed.</HELP>
+        </OPTION>
+        
+        <OPTION tag='no_demangle'>
+            <TYPE>simple</TYPE>
+            <NAME>--no_demangle</NAME>
+            <TIP>Don&apos;t demangle symbol names in diagnostics</TIP>
+            <HELP>Don&apos;t demangle symbol names in diagnostics</HELP>
+        </OPTION>
+        
+        <OPTION tag='no_sym_merge'>
+            <TYPE>simple</TYPE>
+            <NAME>--no_sym_merge</NAME>
+            <ALIAS>-b</ALIAS>
+            <TIP>No type merging in symbolic debugging information</TIP>
+            <HELP>Disable type merging in symbolic debugging information.</HELP>
+        </OPTION>
+        
+        <OPTION tag='no_symtable'>
+            <TYPE>simple</TYPE>
+            <NAME>--no_symtable</NAME>
+            <ALIAS>-s</ALIAS>
+            <TIP>Strip symbol table and line number entries</TIP>
+            <HELP>Strip symbol table and line number entries</HELP>
+        </OPTION>
+        
+        <OPTION tag='no_warnings'>
+            <TYPE>simple</TYPE>
+            <NAME>--no_warnings</NAME>
+            <TIP>Suppress warnings</TIP>
+            <HELP>Suppress warnings</HELP>
+            <CONFLICT>emit_warnings_as_errors</CONFLICT>
+        </OPTION>
+        
+        <OPTION tag='output_file'>
+            <TYPE>simple</TYPE>
+            <NAME>--output_file</NAME>
+            <PREFERREDALIAS>-o</PREFERREDALIAS>
+            <ARG>
+                <TYPE>STRING</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>file</DESCRIPTION>
+            </ARG>
+            <TIP>Specify output file name</TIP>
+            <HELP>Full filename of the output file.</HELP>
+        </OPTION>
+        
+        <OPTION tag='preferred_order'>
+            <TYPE>simple</TYPE>
+            <NAME>--preferred_order</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>function</DESCRIPTION>
+            </ARG>
+            <TIP>Add &lt;function&gt; to preferred placement order list</TIP>
+            <HELP>Insert a function into the preferred function order list for placement.  Functions that are close to each other in the preferred function order list will tend to be placed close together (increase program locality between them).  Static functions of the same name can be distinguished from each other by prefixing the function name with the path and file in which the function is defined followed by a &apos;:&apos; character to delimit the beginning of the function name.</HELP>
+        </OPTION>
+        
+        <OPTION tag='priority'>
+            <TYPE>simple</TYPE>
+            <NAME>--priority</NAME>
+            <ALIAS>-priority</ALIAS>
+            <TIP>Search libraries in priority order</TIP>
+            <HELP>Search libraries in priority order</HELP>
+        </OPTION>
+        
+        <OPTION tag='ram_model'>
+            <TYPE>simple</TYPE>
+            <NAME>--ram_model</NAME>
+            <ALIAS>-cr</ALIAS>
+            <TIP>Link using RAM autoinitialization model</TIP>
+            <HELP>Link using RAM autoinitialization model</HELP>
+            <RESETS>rom_model</RESETS>
+        </OPTION>
+        
+        <OPTION tag='relocatable'>
+            <TYPE>simple</TYPE>
+            <NAME>--relocatable</NAME>
+            <ALIAS>-r</ALIAS>
+            <TIP>Produce a relocatable output module</TIP>
+            <HELP>Produce a relocatable output module</HELP>
+        </OPTION>
+        
+        <OPTION tag='reread_libs'>
+            <TYPE>simple</TYPE>
+            <NAME>--reread_libs</NAME>
+            <ALIAS>-x</ALIAS>
+            <TIP>Reread libraries; resolve backward references</TIP>
+            <HELP>Reread libraries; resolve backward references</HELP>
+        </OPTION>
+        
+        <OPTION tag='retain'>
+            <TYPE>simple</TYPE>
+            <NAME>--retain</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>sym_or_scn_spec</DESCRIPTION>
+            </ARG>
+            <TIP>Specify symbols/sections to be retained by linker</TIP>
+            <HELP>When --unused_section_elimination is enabled, the ELF linker does not include a section in the final link if it is not needed in the executable to resolve references. This option can be used to tell the linker to retain a list of sections that would otherwise be not retained. This option accepts the wild cards &apos;*&apos; and &apos;?&apos; and when wild cards are used, the argument should be in quotes. The following option parameters are accepted:
+
+--retain=symbol_spec retains sections that define symbol matching the argument. For ex, --retain=&apos;init*&apos; retains sections that define symbols that start with &apos;init&apos;. User may not specify --retain=&apos;*&apos;.
+
+--retain=file_spec(scn_spec [,scn_spec ...]) retains sections matching scn_spec(s) from files matching file_spec. For ex, the argument &apos;*(.initvec)&apos; causes the linker to retain .initvec sections from all input files.
+
+NOTE: User can specify --retain=&apos;*(*)&apos; to retain all the sections from all the input object files. Note that this does not prevent sections from library members from being optimized out. If you want to totally disable unused section elimination, please use --unused_section_elimination=off.
+
+--retain=ar_spec&lt;mem_spec, [mem_spec ...]&gt;(scn_spec, [scn_spec ...]) retains sections matching scn_spec(s) from members matching mem_spec(s) from archive files matching ar_spec. For ex, rts32eabi.lib&lt;printf.obj&gt;(.text) causes the linker to retain .text section from printf.obj in rts32eabi.lib. If the library is specified with -l option (-lrts32eabi.lib) the library search path is used to search the library. User may not specify &apos;*&lt;*&gt;(*)&apos;. </HELP>
+        </OPTION>
+        
+        <OPTION tag='rom_model'>
+            <TYPE>simple</TYPE>
+            <NAME>--rom_model</NAME>
+            <ALIAS>-c</ALIAS>
+            <TIP>Link using ROM autoinitialization model</TIP>
+            <HELP>Link using ROM autoinitialization model</HELP>
+            <RESETS>ram_model</RESETS>
+        </OPTION>
+        
+        <OPTION tag='run_abs'>
+            <TYPE>cmdline</TYPE>
+            <NAME>--run_abs</NAME>
+            <ALIAS>-abs</ALIAS>
+            <TIP>Produce absolute listing file</TIP>
+            <HELP>Produce absolute listing file</HELP>
+        </OPTION>
+        
+        <OPTION tag='scan_libraries'>
+            <TYPE>simple</TYPE>
+            <NAME>--scan_libraries</NAME>
+            <ALIAS>-scanlibs</ALIAS>
+            <TIP>Scan libraries for duplicate symbol definitions</TIP>
+            <HELP>Check whether symbol definitions that are pulled into the link are duplicated in any of the libraries included in the build.  This information is typically ignored as the linker will pull in the first definition it encounters.</HELP>
+        </OPTION>
+        
+        <OPTION tag='search_path'>
+            <TYPE>simple</TYPE>
+            <NAME>--search_path</NAME>
+            <PREFERREDALIAS>-i</PREFERREDALIAS>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>dir</DESCRIPTION>
+            </ARG>
+            <TIP>Add &lt;dir&gt; to library search path</TIP>
+            <HELP>Alter the library-search algorithm to look in dir before looking in the default location.  This option must appear before the -l option.</HELP>
+        </OPTION>
+        
+        <OPTION tag='set_error_limit'>
+            <TYPE>simple</TYPE>
+            <NAME>--set_error_limit</NAME>
+            <ARG>
+                <TYPE>NUMBER</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>count</DESCRIPTION>
+            </ARG>
+            <TIP>Set error limit to &lt;count&gt;</TIP>
+            <HELP>Set error limit to &lt;count&gt;</HELP>
+        </OPTION>
+        
+        <OPTION tag='smart_data_collect'>
+            <TYPE>simple</TYPE>
+            <NAME>--smart_data_collect</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>optional</STATUS>
+                <DESCRIPTION>on,off</DESCRIPTION>
+                <ONEOF>on</ONEOF>
+                <ONEOF>off</ONEOF>
+                <DEFAULT>on</DEFAULT>
+            </ARG>
+            <TIP>Include data sections in Smart Placement section collection</TIP>
+            <HELP>Include data sections in Smart Placement section collection</HELP>
+        </OPTION>
+        
+        <OPTION tag='stack_size'>
+            <TYPE>simple</TYPE>
+            <NAME>--stack_size</NAME>
+            <ALIAS>-stack</ALIAS>
+            <ALIAS>--stack</ALIAS>
+            <ARG>
+                <TYPE>HEXNUMBER</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>size</DESCRIPTION>
+            </ARG>
+            <TIP>Set C system stack size</TIP>
+            <HELP>Set C system stack size</HELP>
+        </OPTION>
+        
+        <OPTION tag='startdashgroup'>
+            <TYPE>simple</TYPE>
+            <NAME>--start-group</NAME>
+            <TIP>Begin reread library group; resolve backward references</TIP>
+            <HELP>Begin reread library group; resolve backward references</HELP>
+        </OPTION>
+        
+        <OPTION tag='static_shared_object'>
+            <TYPE>simple</TYPE>
+            <NAME>--static_shared_object</NAME>
+            <ALIAS>--sso</ALIAS>
+            <TIP>Produce static shared object file (SSO)</TIP>
+            <HELP>Produce static shared object file (SSO)</HELP>
+        </OPTION>
+        
+        <OPTION tag='strict_compatibility'>
+            <TYPE>simple</TYPE>
+            <NAME>--strict_compatibility</NAME>
+            <HIDE_OPTION>true</HIDE_OPTION>
+            <DEPRECATE_OPTION>
+                <SEVERITY>3</SEVERITY>
+                <DIAGNOSTIC>The --strict_compatibility option is no longer necessary, and will be removed in a subsequent release.</DIAGNOSTIC>
+            </DEPRECATE_OPTION>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>optional</STATUS>
+                <DESCRIPTION>on,off</DESCRIPTION>
+                <ONEOF>on</ONEOF>
+                <ONEOF>off</ONEOF>
+                <DEFAULT>on</DEFAULT>
+            </ARG>
+            <TIP>Strict compatibility checking</TIP>
+            <HELP>Strict compatibility checking</HELP>
+        </OPTION>
+        
+        <OPTION tag='symbol_map'>
+            <TYPE>simple</TYPE>
+            <NAME>--symbol_map</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>refname=defname</DESCRIPTION>
+            </ARG>
+            <TIP>Specify a symbol map, mapping refname to defname</TIP>
+            <HELP>Symbol mapping allows a symbol reference to be resolved by a symbol with different name. Symbol mapping allows functions to be overridden with alternate definitions. This feature can be used to patch in alternate implementations, which provide patches (bug fixes) or alternate functionality. For example, the option --symbol_map=&apos;foo=foo_patch&apos; makes the linker resolve any references to foo by the definition foo_patch.</HELP>
+        </OPTION>
+        
+        <OPTION tag='trampoline_min_spacing'>
+            <TYPE>simple</TYPE>
+            <NAME>--trampoline_min_spacing</NAME>
+            <ARG>
+                <TYPE>HEXNUMBER</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>size</DESCRIPTION>
+            </ARG>
+            <TIP>Minimum space between non-adjacent trampolines</TIP>
+            <HELP>When trampoline reservations are spaced more closely than this limit, try to make them adjacent.  A higher value minimizes fragmentation, but may result in more trampolines. A lower value may reduce trampolines, at the expense of fragmentation and linker running time.  Specifying 0 for this option disables coalescing.  The default is 16K.</HELP>
+        </OPTION>
+        
+        <OPTION tag='trampolines'>
+            <TYPE>simple</TYPE>
+            <NAME>--trampolines</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>optional</STATUS>
+                <DESCRIPTION>on,off</DESCRIPTION>
+                <ONEOF>on</ONEOF>
+                <ONEOF>off</ONEOF>
+                <DEFAULT>on</DEFAULT>
+            </ARG>
+            <TIP>Generate far call trampolines</TIP>
+            <HELP>Generate far call trampolines</HELP>
+        </OPTION>
+        
+        <OPTION tag='undef_sym'>
+            <TYPE>simple</TYPE>
+            <NAME>--undef_sym</NAME>
+            <ALIAS>-u</ALIAS>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>sym</DESCRIPTION>
+            </ARG>
+            <TIP>Add &lt;sym&gt; to symbol table as an unresolved symbol</TIP>
+            <HELP>Add &lt;sym&gt; to symbol table as an unresolved symbol</HELP>
+        </OPTION>
+        
+        <OPTION tag='undefine'>
+            <TYPE>simple</TYPE>
+            <NAME>--undefine</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>name</DESCRIPTION>
+            </ARG>
+            <TIP>Undefine preprocessor macro _name_</TIP>
+            <HELP>Undefine preprocessor macro _name_</HELP>
+        </OPTION>
+        
+        <OPTION tag='unhide'>
+            <TYPE>simple</TYPE>
+            <NAME>--unhide</NAME>
+            <ARG>
+                <TYPE>STRINGLIST</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>pattern</DESCRIPTION>
+            </ARG>
+            <TIP>Exclude symbols matching pattern from hiding</TIP>
+            <HELP>The option --hide=hide_pattern makes the symbols matching the hide_pattern hidden. The --unhide=unhide_pattern option excludes symbols matching unhide_pattern from symbol hiding provided unhide_pattern is more restrictive than hide_pattern. </HELP>
+        </OPTION>
+        
+        <OPTION tag='unused_section_elimination'>
+            <TYPE>simple</TYPE>
+            <NAME>--unused_section_elimination</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>optional</STATUS>
+                <DESCRIPTION>on,off</DESCRIPTION>
+                <ONEOF>on</ONEOF>
+                <ONEOF>off</ONEOF>
+                <DEFAULT>on</DEFAULT>
+            </ARG>
+            <TIP>Eliminate sections not needed in the executable</TIP>
+            <HELP>In order to minimize memory use, the linker does not include a section that is not needed to resolve any references in the final executable. --unused_section_elimination=off can be used to disable this optimization.</HELP>
+        </OPTION>
+        
+        <OPTION tag='use_hw_div'>
+            <TYPE>simple</TYPE>
+            <NAME>--use_hw_div</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>optional</STATUS>
+                <DESCRIPTION>on,off</DESCRIPTION>
+                <ONEOF>on</ONEOF>
+                <ONEOF>off</ONEOF>
+                <DEFAULT>on</DEFAULT>
+            </ARG>
+            <TIP>Use math accelerator division routines</TIP>
+            <HELP>Specify whether linker should leverage math accelerator division routines.</HELP>
+        </OPTION>
+        
+        <OPTION tag='use_memcpy'>
+            <TYPE>simple</TYPE>
+            <NAME>--use_memcpy</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>fast,small</DESCRIPTION>
+                <ONEOF>fast</ONEOF>
+                <ONEOF>small</ONEOF>
+            </ARG>
+            <TIP>Choose between fast and slow version of memcpy</TIP>
+            <HELP>Override the decision made by --cg_opt_level regarding whether to optimize memcpy for speed or code size.</HELP>
+        </OPTION>
+        
+        <OPTION tag='use_memset'>
+            <TYPE>simple</TYPE>
+            <NAME>--use_memset</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>fast,small</DESCRIPTION>
+                <ONEOF>fast</ONEOF>
+                <ONEOF>small</ONEOF>
+            </ARG>
+            <TIP>Choose between fast and slow version of memset</TIP>
+            <HELP>Override the decision made by --cg_opt_level regarding whether to optimize memset for speed or code size.</HELP>
+        </OPTION>
+        
+        <OPTION tag='verbose_diagnostics'>
+            <TYPE>simple</TYPE>
+            <NAME>--verbose_diagnostics</NAME>
+            <TIP>Verbose diagnostics</TIP>
+            <HELP>Verbose diagnostics</HELP>
+        </OPTION>
+        
+        <OPTION tag='warn_sections'>
+            <TYPE>simple</TYPE>
+            <NAME>--warn_sections</NAME>
+            <ALIAS>-w</ALIAS>
+            <TIP>Warn if an unspecified output section is created</TIP>
+            <HELP>Warn if an unspecified output section is created</HELP>
+        </OPTION>
+        
+        <OPTION tag='xml_link_info'>
+            <TYPE>simple</TYPE>
+            <NAME>--xml_link_info</NAME>
+            <ALIAS>-xml_link_info</ALIAS>
+            <ARG>
+                <TYPE>STRING</TYPE>
+                <STATUS>required</STATUS>
+                <DESCRIPTION>file</DESCRIPTION>
+            </ARG>
+            <TIP>Detailed link information data-base into &lt;file&gt;</TIP>
+            <HELP>Produce a detailed link information data-base into the file named &lt;file&gt;.</HELP>
+        </OPTION>
+        
+        <OPTION tag='zero_init'>
+            <TYPE>simple</TYPE>
+            <NAME>--zero_init</NAME>
+            <ARG>
+                <TYPE>ONEOF</TYPE>
+                <STATUS>optional</STATUS>
+                <DESCRIPTION>on,off</DESCRIPTION>
+                <ONEOF>on</ONEOF>
+                <ONEOF>off</ONEOF>
+                <DEFAULT>on</DEFAULT>
+            </ARG>
+            <TIP>Zero initialize ELF uninitialized sections</TIP>
+            <HELP>This option indicates that the linker should generate compressed cinit table records that zero initializes ELF uninitialized sections during boot. This option is ignored if --rom_model option is not specified.</HELP>
+        </OPTION>
+        
+        <MUTEX tag='MUTEX_INITIALIZATION_MODEL'>
+            <NAME>Initialization model</NAME>
+            
+            <SEVERITY>RESET</SEVERITY>
+            <STATUS>optional</STATUS>
+            <MEMBER>rom_model</MEMBER>
+            <MEMBER>ram_model</MEMBER>
+        </MUTEX>
+        <MUTEX tag='MUTEX_ARM_BIG_ENDIAN_MODES'>
+            <NAME>ARM big endian modes</NAME>
+            
+            <SEVERITY>CONFLICT</SEVERITY>
+            <STATUS>optional</STATUS>
+        </MUTEX>
+    </DEFINITIONS>
+    <CATEGORY tag='LNKBASIC'>
+        <NAME>Basic Options:</NAME>
+        
+        <MEMBER>emit_references__file</MEMBER>
+        <MEMBER>emit_references__format</MEMBER>
+        <MEMBER>map_file</MEMBER>
+        <MEMBER>output_file</MEMBER>
+        <MEMBER>heap_size</MEMBER>
+        <MEMBER>stack_size</MEMBER>
+        <MEMBER>cinit_hold_wdt</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='LNKDIR'>
+        <NAME>File Search Path:</NAME>
+        
+        <MEMBER>library</MEMBER>
+        <MEMBER>search_path</MEMBER>
+        <MEMBER>enddashgroup</MEMBER>
+        <MEMBER>priority</MEMBER>
+        <MEMBER>reread_libs</MEMBER>
+        <MEMBER>startdashgroup</MEMBER>
+        <MEMBER>disable_auto_rts</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='LNKADV'>
+        <NAME>Advanced Options:</NAME>
+        
+        <MEMBERCAT>LNKCPP</MEMBERCAT>
+        <MEMBERCAT>LNKDIAG</MEMBERCAT>
+        <MEMBERCAT>LNKOUTF</MEMBERCAT>
+        <MEMBERCAT>LNKSYM</MEMBERCAT>
+        <MEMBERCAT>LNKRTENV</MEMBERCAT>
+        <MEMBERCAT>LNKMISC</MEMBERCAT>
+        <MEMBERCAT>LNKINT</MEMBERCAT>
+        <MEMBERCAT>DYNAMIC</MEMBERCAT>
+        <MEMBERCAT>LNKULP</MEMBERCAT>
+        <MEMBERCAT>LNKADVICE</MEMBERCAT>
+        <MEMBERCAT>PLNK</MEMBERCAT>
+        <MEMBERCAT>LNKOPT</MEMBERCAT>
+    </CATEGORY>
+    
+    <CATEGORY tag='LNKCPP'>
+        <NAME>Command File Preprocessing:</NAME>
+        
+        <MEMBER>define</MEMBER>
+        <MEMBER>undefine</MEMBER>
+        <MEMBER>disable_pp</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='LNKDIAG'>
+        <NAME>Diagnostics:</NAME>
+        
+        <MEMBER>buffer_diagnostics</MEMBER>
+        <MEMBER>diag_error</MEMBER>
+        <MEMBER>diag_remark</MEMBER>
+        <MEMBER>diag_suppress</MEMBER>
+        <MEMBER>diag_warning</MEMBER>
+        <MEMBER>diag_wrap</MEMBER>
+        <MEMBER>display_error_number</MEMBER>
+        <MEMBER>emit_warnings_as_errors</MEMBER>
+        <MEMBER>issue_remarks</MEMBER>
+        <MEMBER>no_demangle</MEMBER>
+        <MEMBER>no_warnings</MEMBER>
+        <MEMBER>set_error_limit</MEMBER>
+        <MEMBER>verbose_diagnostics</MEMBER>
+        <MEMBER>warn_sections</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='LNKOUTF'>
+        <NAME>Linker Output:</NAME>
+        
+        <MEMBER>absolute_exe</MEMBER>
+        <MEMBER>ecc</MEMBER>
+        <MEMBER>ecc__data_error</MEMBER>
+        <MEMBER>ecc__ecc_error</MEMBER>
+        <MEMBER>gen_xml_func_hash</MEMBER>
+        <MEMBER>generate_dead_funcs_list</MEMBER>
+        <MEMBER>mapfile_contents</MEMBER>
+        <MEMBER>relocatable</MEMBER>
+        <MEMBER>run_abs</MEMBER>
+        <MEMBER>smart_data_collect</MEMBER>
+        <MEMBER>static_shared_object</MEMBER>
+        <MEMBER>xml_link_info</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='LNKSYM'>
+        <NAME>Symbol Management:</NAME>
+        
+        <MEMBER>entry_point</MEMBER>
+        <MEMBER>globalize</MEMBER>
+        <MEMBER>hide</MEMBER>
+        <MEMBER>localize</MEMBER>
+        <MEMBER>make_global</MEMBER>
+        <MEMBER>make_static</MEMBER>
+        <MEMBER>no_sym_merge</MEMBER>
+        <MEMBER>no_symtable</MEMBER>
+        <MEMBER>retain</MEMBER>
+        <MEMBER>scan_libraries</MEMBER>
+        <MEMBER>symbol_map</MEMBER>
+        <MEMBER>undef_sym</MEMBER>
+        <MEMBER>unhide</MEMBER>
+        <MEMBER>use_hw_div</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='LNKRTENV'>
+        <NAME>Runtime Environment:</NAME>
+        
+        <MEMBER>arg_size</MEMBER>
+        <MEMBER>cinit_compression</MEMBER>
+        <MEMBER>copy_compression</MEMBER>
+        <MEMBER>fill_value</MEMBER>
+        <MEMBER>import_cmse_lib_in</MEMBER>
+        <MEMBER>import_cmse_lib_out</MEMBER>
+        <MEMBER>trampolines</MEMBER>
+        <MEMBER>MUTEX_INITIALIZATION_MODEL</MEMBER>
+        <MEMBER>MUTEX_ARM_BIG_ENDIAN_MODES</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='LNKMISC'>
+        <NAME>Miscellaneous:</NAME>
+        
+        <MEMBER>compress_dwarf</MEMBER>
+        <MEMBER>disable_clink</MEMBER>
+        <MEMBER>honor_cmdfile_order</MEMBER>
+        <MEMBER>linker_help</MEMBER>
+        <MEMBER>minimize_trampolines</MEMBER>
+        <MEMBER>preferred_order</MEMBER>
+        <MEMBER>strict_compatibility</MEMBER>
+        <MEMBER>trampoline_min_spacing</MEMBER>
+        <MEMBER>unused_section_elimination</MEMBER>
+        <MEMBER>zero_init</MEMBER>
+    </CATEGORY>
+    
+    <CATEGORY tag='LNKOPT'>
+        <NAME>Linker optimization:</NAME>
+        
+        <MEMBER>block_init_segments</MEMBER>
+        <MEMBER>import_sso</MEMBER>
+        <MEMBER>use_memcpy</MEMBER>
+        <MEMBER>use_memset</MEMBER>
+    </CATEGORY>
+    
+</TOOL>
+</TOOLSET>

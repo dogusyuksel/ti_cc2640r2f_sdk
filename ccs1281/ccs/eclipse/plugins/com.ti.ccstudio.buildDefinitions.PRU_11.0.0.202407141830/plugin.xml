@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+	<extension point="com.ti.ccstudio.project.core.buildDefinitionContributions">
+		<xmlRepository 
+			isaFamily="PRU" 
+			location="resources/buildDefinitions"/>
+	</extension>
+	
+	<extension point="com.ti.ccstudio.project.core.deviceDefinitionContributions">
+		<xmlRepository 
+			isaFamily="PRU" 
+			location="resources/deviceDefinitions"/>
+	</extension>
+	
+	<extension point="com.ti.common.project.core.configurationInitializerDelegates">
+		<delegate 
+			class="com.ti.ccstudio.buildDefinitions.PRU.PRUConfigurationInitializerDelegate">
+			<projectType projectTypeID="com.ti.ccstudio.buildDefinitions.PRU.ProjectType"/>
+		</delegate>
+	</extension>
+	
+</plugin>

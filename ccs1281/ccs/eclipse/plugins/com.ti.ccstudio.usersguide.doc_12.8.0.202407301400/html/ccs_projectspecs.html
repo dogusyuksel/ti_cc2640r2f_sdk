@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="Projectspecs are templates for Code Composer Studio projects."> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="Code Composer Studio">
+<meta name="product-link" content="https://www.ti.com/tool/CCSTUDIO">
+
+<!-- Change the title text for your page -->
+<title>ProjectSpecs in Code Composer Studio</title>
+
+<!-- Load script for tempate -->
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+#Introduction 
+
+ProjectSpec is a feature available since CCS 5.3 that allows creation of new projects based on a project specification. The main purpose is to allow a mechanism to provide examples or projects that are somewhat CCS version agnostic. A CCS project created using the **New CCS Project** wizard typically embeds some version specific information such as compiler version, XDCtools version, etc. in the project files. With the projectSpec file, a project specification that defines some of the project properties can be provided but the actual project will be created on the fly when the projectSpec is imported.
+
+It is similar to creating a project "template" that defines several properties for the project, including things like device, build options, source files etc. but not tied to a specific version of compiler or RTSC tools. The projectSpec file can then be shared with other users so they can quickly create projects with those specifications.
+
+#Creating ProjectSpec Files 
+
+Many TI software packages like Simplelink SDKs and C2000Ware provide their examples as projectSpec files. Use these as a reference when creating your own projectSpec files. To locate these files, just search the \examples sub-directories inside the SDK for files with .projectspec extension. 
+
+For additional information on the structure of the projectSpec files and documentation on the attributes, refer to the XML schema file for projectspecs named projectSpec.xsd. The file can be found in the directory <br>
+&lt;ccs&lowbar;install_dir&gt;\ccsv&lt;x&gt;\eclipse\plugins\com.ti.ccstudio.project.templates&lowbar;&lt;version&gt;\schema<br>
+
+#Example ProjectSpec 
+
+Below is a simple example projectSpec file named **MSP_5xx_example.projectspec**. 
+
+It defines the device and some build options, creates two build configurations BuildConfig1 and BuildConfig2, and copies a source file and a custom linker command file into the project. If the atttribute **launchWizard** is set to **True**, then the New Project wizard will be launched during import, thereby allowing the user to further adjust the properties of the project. This attribute is not applicable in headless mode though, so will default to False when using headless mode.
+```
+<projectSpec>
+  <project 
+	title="Example MSP430F5529"
+	name="MSP_5xx_Example"
+	device="MSP430F5529"
+	configurations="BuildConfig1,BuildConfig2"
+	launchWizard="False" 
+	linkerCommandFile="custom_lnk.cmd"
+	compilerBuildOptions="--opt_level=off"
+	linkerBuildOptions="--heap_size=400" 
+	description="This example creates two build configurations, copies a custom source file and linker command file to the project and sets some compiler and linker options">
+    <file action="copy" path="MSP_empty.c" targetDirectory="." />
+  </project>
+</projectSpec>
+```
+<br><br>
+Here is an example projectSpec from C2000Ware:
+
+```
+<projectSpec>
+  <project
+        name="adc_ex1_soc_software"
+        device="TMS320F280049M"
+        cgtVersion="16.9.1.LTS"
+        launchWizard="False"
+        linkerCommandFile=""
+        >
+    <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --define=DEBUG   --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x400 --heap_size=0x200 --define RAM" />
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --define=DEBUG --define=_FLASH --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x400 --heap_size=0x200 " />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../driverlib/" scope="project" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/include/driverlib.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/source/device.c" targetDirectory="device" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/source/f28004x_codestartbranch.asm" targetDirectory="device" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/targetConfigs/TMS320F280049M.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/cmd/28004x_generic_ram_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/cmd/28004x_generic_flash_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH" />
+    <file action="copy" path="../../../driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="../../../driverlib/" targetDirectory="device" excludeFromBuild="True"/>
+    <file action="copy" path="../adc_ex1_soc_software.c" targetDirectory="" />
+  </project>
+</projectSpec>
+```
+<br><br>
+Here is a snippet of an example projectSpec from CC13xx SimpleLink SDK:
+
+```
+<projectSpec>
+    <import spec="ble5_project_zero_cc13x2r1lp_stack_library.projectspec"/>
+    <import spec="../../../../../../nortos/CC1352R1_LAUNCHXL/common/bim/bim_offchip/ccs/cc13x2r1lp_bim_offchip.projectspec"/>
+    <project
+        name="ble5_project_zero_cc13x2r1lp_app"
+        device="Cortex M.CC1352R1F3"
+        configurations ="FlashROM_Release, FlashROM_Debug"
+        connection="common/targetdb/connections/TIXDS110_Connection.xml"
+        toolChain="TI"
+        linkerCommandFile="cc26x2_app_oad_agama.cmd"
+        preBuildStep=""
+        postBuildStep="
+        ${CG_TOOL_HEX} -order MS --memwidth=8 --romwidth=8 --intel
+        -o ${ProjName}_${ConfigName}.hex ${ProjName}_${ConfigName}.out;
+        ${TOOLS_OAD_DIR}/oad/oad_image_tool --verbose
+        ccs ${PROJECT_LOC} 7
+        -hex1 ${ConfigName}/${ProjName}_${ConfigName}.hex
+        -k ${TOOLS_OAD_DIR}/oad/private.pem
+        -o ${ConfigName}/${ProjName}_${ConfigName}_oad
+        "
+        description=""
+        launchWizard="false"
+        references="ble5_project_zero_cc13x2r1lp_stack_library"
+    >
+
+        <!-- Project properties -->
+        <property name="type" value="rtsc"/>
+        <property name="products" value=""/>
+        <property name="xdcToolsVersion" value="3.51.02.21_core"/>
+        <property name="target" value="ti.targets.arm.elf.M4F"/>
+        <property name="platform" value="ti.platforms.simplelink:CC1352R1F3"/>
+        <property name="buildProfile" value="release"/>
+        <property name="isHybrid" value="true"/>
+        <property name="configuroOptions" value="--compileOptions ${COMPILER_FLAGS} --xdcpath ${SRC_BLE_DIR}/../../../source;${SRC_BLE_DIR}/../../../kernel/tirtos/packages;${SRC_BLE_DIR}"/>
+```
+<br>
+
+##Details
+
+In the above example, this line specifies the version of XDCtools to be used for the build.<br>
+```<property name="xdcToolsVersion" value="3.51.02.21_core"/> ```
+
+To pick up the latest version of a product release stream, use 999 <br>
+```<property name="xdcToolsVersion" value="3.51.999"/> <!-- use 999 to pickup latest 3.51 version -->```
+
+Similarly you can specify specific versions of products (SDK, SYS/BIOS) to be used by the project . <br>
+```<property name="products" value="com.ti.rtsc.SYSBIOS:6.46.05.55;com.ti.SIMPLELINK_CC13XX_CC26XX_SDK:3.10.01.11"/> ```
+
+To know what to specify for the ```value``` field, take a look at the "id" and "version" fields in the file package.tirex.json, which can be found inside the product installation. <br> For example for the SimpleLink CC13x2/26x2 SDK, the file C:\ti\simplelink_cc13x2_26x2_sdk_3_10_01_11\.metadata\.tirex\package.tirex.json contains this:
+```
+    "metadataVersion": "3.0.0",
+    "id": "com.ti.SIMPLELINK_CC13X2_26X2_SDK",
+    "name": "SimpleLink CC13x2 26x2 SDK",
+    "version": "3.10.01.11",
+```
+
+Note that for the desired product version to be picked up, it has to first be installed into CCS and should appear in CCS menu **Window &rarr; Preferences &rarr; CCS &rarr; Products** page before the projectspec is imported into CCS. If the exact product version is not installed on the user's machine, the closest compatible version will be used.
+
+<br>
+**Additional Details:**
+- If there is a build option in the projectSpec file that conflicts with the default option specified in the device XML file then the one from the projectSpec file will override. In the MSP430 example above, the optimization level is set to off (which overrides the default -o0 set in the device XML file) and heap size is set to 400 (which overrides the default 160).
+- There is a **ignoreDefaultDeviceSettings** attribute on the &lt;project&gt; element.  Setting this to **True** would ignore all the settings which are specified in the device XML file, and the projectSpec can fully dictate the initial settings for the project.
+
+
+#Creating/Importing Project using ProjectSpec 
+Once the projectSpec file has been created, it can be passed to the [projectCreate command](http://processors.wiki.ti.com/index.php/Projects_-_Command_Line_Build/Create#Create_a_CCS_Project) via command line, or can be imported using the CCS GUI.
+
+##Command Line 
+Here is an example command line that creates a new project using the MSP_5xx_example.projectspec: <br>
+<pre>
+eclipsec -noSplash -data c:\workspaces\test_workspace -application com.ti.ccstudio.apps.projectCreate -ccs.projectSpec MSP_5xx_example.projectspec 
+</pre>
+
+##CCS GUI 
+Go to menu **Project &rarr; Import CCS Projects** and browse to the directory containing the projectSpec file. The project should be detected just like a regular CCS project and can be selected for import. 
+
+#Making Project Appear in Resource Explorer Classic
+
+ProjectSpecs can be added to TI Resource Explorer Classic so they can be imported from there just like other examples. 
+
+This can be useful for creating training/workshop projects or baseline project to be used by a team of developers. Users can import the examples via Resource Explorer to have a baseline project that they can then proceed to customize as needed.
+
+Follow these steps to make the projectSpec example appear in Resource Explorer: <br>
+
+1. Create an xml file named **resource_explorer.xml** and place it anywhere locally, the preferred location is within the provided content directory. For this example, it is placed in the same directory that contains the MSP_5xx_example.projectspec file: C:\Work\ProjectSpec\MSP430
+
+2. Populate the **resource_explorer.xml** file with content similar to below. Refer to the resource&lowbar;explorer.xsd schema file in the CCS install directory under ccsv&lt;x&gt;\eclipse\plugins\com.ti.ccstudio.resource.explorer_&lt;version&gt;\schema directory for the complete specification. 
+
+ ``` 
+<?xml version="1.0" encoding="UTF-8"?>
+<resource.explorer version="1.95.00.32" name="Example Projects" desc="" dir="" href="https://www.ti.com">
+      <contents name="MSP430 Examples" desc="MSP430 ProjectSpec Example for MSP430F5529" dir=".">
+          <content name="MSP430F5xx Example 1" desc="Example project has two build configurations, custom source file and linker command file and some custom build options" href="MSP_5xx_example.projectspec" dir=".">
+            <type>projectSpec
+              <attributes>
+                <attribute key="project.name" value="MSP_5xx_example"/>
+              </attributes>
+	    </type>
+    	</content>
+    </contents>
+</resource.explorer>
+ ```
+
+3. Create a reference file to let CCS know where to look for this xml file. Create a file with name **ProductName_1_0_0_qualifier** and place it under **user.home\ti\CCSExternalReferences** directory. <br> For this example, the file is named **msp430projectspec_1_0_0_0**.
+
+4. Populate the reference file with these properties: 
+ - product=resource_explorer 
+ - path=fullpath to the directory that contains the resource_explorer.xml file 
+ - ccs.min.ver=6.1.0 [optional] 
+ - ccs.max.ver=7.4.0 [optional] <br>
+
+ Here is the content of msp430projectspec_1_0_0_0 
+ ```
+product=resource_explorer
+path=C:\Work\ProjectSpec\MSP430
+ ```
+
+5. Restart CCS and go to menu **View &rarr; Resource Explorer Classic**. The **MSP430F5xx Example 1** project should appear under **Example Projects**. <br> The project can now be imported and built directly from the Resource Explorer interface. 
+![](./images/msp_example_rex_classic.png)
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

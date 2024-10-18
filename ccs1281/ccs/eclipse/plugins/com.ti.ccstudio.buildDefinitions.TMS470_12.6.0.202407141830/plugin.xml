@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+	<extension point="com.ti.ccstudio.project.core.buildDefinitionContributions">
+		<xmlRepository 
+			isaFamily="TMS470" 
+			location="resources/buildDefinitions"/>
+	</extension>
+	
+	<extension point="com.ti.ccstudio.project.core.deviceDefinitionContributions">
+		<xmlRepository 
+			isaFamily="TMS470" 
+			location="resources/deviceDefinitions"/>
+		<device class="com.ti.ccstudio.deviceModel.TMS470.GenericARM7Device"/>
+		<device class="com.ti.ccstudio.deviceModel.TMS470.GenericARM9Device"/>
+		<device class="com.ti.ccstudio.deviceModel.TMS470.GenericARM11Device"/>
+	</extension>
+	
+	<extension point="com.ti.common.project.core.configurationInitializerDelegates">
+		<delegate 
+			class="com.ti.ccstudio.buildDefinitions.TMS470.TMS470ConfigurationInitializerDelegate">
+			<projectType projectTypeID="com.ti.ccstudio.buildDefinitions.TMS470.ProjectType"/>
+		</delegate>
+	</extension>
+	
+</plugin>

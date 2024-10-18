@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+    <title>ti-widget-checkbox test</title>
+
+    <script src="../../../test/environment.js"></script>
+    <script type="module" src="../ti-widget-checkbox"></script>
+</head>
+
+<body>
+    <test-fixture id="BasicTestFixture">
+        <template>
+            <ti-widget-checkbox checked></ti-widget-checkbox>
+        </template>
+    </test-fixture>
+
+    <test-fixture id="TestFixtureWithLabels">
+        <template>
+            <ti-widget-checkbox label="default" label-when-checked="checked"></ti-widget-checkbox>
+        </template>
+    </test-fixture>
+
+    <script type="module">
+        import { TIWidgetBaseTest } from '../../ti-widget-base/test/ti-widget-base_test';
+        import { TIWidgetBaseCheckTest } from '../../ti-widget-base/test/ti-widget-base-check_test';
+        window.runTest = () => {
+            // Base class tests
+            TIWidgetBaseTest('BasicTestFixture');
+            TIWidgetBaseCheckTest('TestFixtureWithLabels');
+
+            // Widget tests
+            suite('ti-widget-checkbox', () => {
+                test('setting default property works', () => {
+                    const element = fixture('BasicTestFixture');
+                    const paperElement = element.shadowRoot.querySelector('paper-checkbox');
+                    const checkbox = paperElement.shadowRoot.querySelector('#checkbox');
+
+                    assert.isTrue(checkbox.classList.contains('checked'));
+                });
+
+                test('clicking enabled element works', () => {
+                    const element = fixture('BasicTestFixture');
+                    const paperElement = element.shadowRoot.querySelector('paper-checkbox');
+                    const checkbox = paperElement.shadowRoot.querySelector('#checkbox');
+
+                    let clicked = false;
+                    element.addEventListener('click', () => {
+                        clicked = true;
+                    });
+
+                    return executeAndWait(paperElement.click.bind(paperElement)).then(() => {
+                        assert.isFalse(checkbox.classList.contains('checked'));
+                        assert.isTrue(clicked);
+                    });
+                });
+
+                test('clicking disabled element works', () => {
+                    const element = fixture('BasicTestFixture');
+                    const paperElement = element.shadowRoot.querySelector('paper-checkbox');
+                    const checkbox = paperElement.shadowRoot.querySelector('#checkbox');
+
+                    element.disabled = true;
+
+                    let clicked = false;
+                    element.addEventListener('click', () => {
+                        clicked = true;
+                    });
+
+                    return executeAndWait(paperElement.click.bind(paperElement)).then(() => {
+                        assert.isTrue(checkbox.classList.contains('checked'));
+                        assert.isFalse(clicked);
+                    });
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

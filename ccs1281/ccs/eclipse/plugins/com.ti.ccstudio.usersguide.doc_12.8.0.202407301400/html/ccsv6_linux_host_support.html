@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="This page contains details about running Code Compoer Studio version 6 on Linux, including installation details, device support and debug probe support"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Composer Studio Product Page">
+<meta name="product-link" content="https://www.ti.com/tool/CCStudio">
+
+<!-- Change the title text for your page -->
+<title>Linux Host Support CCSv6</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+<!-- Add your markdown source here! -->
+<img src="./images/tux.jpg" alt="Tux" width="100" length="100" align="right">
+# Overview #
+This page contains information regarding Code Composer Studio v6 running on Linux. It includes installation instructions, device support and debug probe support.
+
+Due to the wide variety of Linux distributions and versions available, it is impossible to support all of them. CCS is officially tested on a small subset ordered by popularity.
+
+# Devices  #
+
+## Supported  ##
+- <b>Microcontrollers</b>: MSP430, MSP432, C2000, TM4, Stellaris, Hercules
+- <b>Wireless Connectivity</b>: CC2538, CC264x, CC2650, CC13xx, CC3200 (requires TI emulation pack update)
+- <b>Processors</b>: Sitara (AMxxxx), Keystone / Keystone II, OMAPL
+- <b>DSP</b>: C64x+, C674x, C66x, C55x, C641x
+
+## Not Supported  ##
+- <b>Microcontrollers</b>: C/F24x
+- <b>DSP</b>: C3x/C4x/C5x/C8x, C54x, C62x, C670x/C671x/C672x
+
+# Debug Probes #
+
+## Supported  ##
+- MSP430: MSP-FET430UIF, MSP430F5529 LaunchPad, FR6989 LaunchPad, FR5969 LaunchPad
+- XDS110: MSP432 LaunchPad, Debug DevPack for SensorTag, newer Hercules LaunchPads
+- XDS100: v1, v2 and v3
+- XDS200: USB [TMDSEMU200-U](https://www.ti.com/tool/TMDSEMU200-U), LAN [XDS220](http://www.spectrumdigital.com/xds220-usb-ethernet-jtag-emulator/)
+- TM4C/Tiva/Stellaris ICDI as well as CC3200 LaunchPad
+- Spectrum Digital: XDS560v2 in all releases. 510USB, 510USB Plus, 510USB C2000 are only supported in 32-bit versions (pre 6.2.0)
+- Blackhawk: XDS560v2 (LAN/USB), USB560, USB560m, USB560bp,LAN560,USB510L, USB2000, USB510W
+- SEED: XDS560v2
+- Sauris: SAU100-USB (v.2), SAU510-USB ISO PLUS JTAG, SAU510-USB ISO PLUS v2
+
+## Not Supported ##
+- MSP430: MSP-FET430PIF (Parallel port), eZ430, Chronos, G2 LaunchPad, FR4133 LaunchPad and Experimenters boards with the ez430, eZ430 sticks
+- Stellaris ICDI based on FTDI
+- Blackhawk: USB2.0, XDS560 PCI, XDS560T
+- Spectrum Digital: onboard emulators on DSKs/EVMs/eZdsp kits not listed above, XDS560R, Parallel Port emulators
+- Texas Instruments: XDS560 PCI, XDS510 ISA
+- In general vendors are not supporting PCI, ISA or parallel port emulators on Linux
+
+For information on a specific debug probe please contact the manufacturer.
+
+# Installation Instructions  #
+
+<font color="#FF0000"><b>New in CCSv6.2.0</b></font>: Starting with this version of CCS, the application is natively 64-bit and only requires one 32-bit library installed.
+- From a terminal prompt, issue the following command to install it: <tt>sudo apt-get install libc6:i386</tt>
+- This is due to the fact Linux 64-bit versions of the TI compilers were not yet ready.
+
+<b>Kubuntu 16.10</b> additionally requires unzip and libusb. Thus run: <tt>sudo apt-get install libc6:i386 unzip libusb-0.1-4</tt>
+
+<b>Ubuntu 16.10</b> additionally requires libusb. Thus run: <tt>sudo apt-get install libc6:i386 libusb-0.1-4</tt>
+
+<b>Ubuntu 12.04</b> additionally requires libXss. Thus run: <tt>sudo apt-get install libXss1</tt>
+
+<font color="#FF0000"><b>IMPORTANT!</b></font> TI performs testing on Ubuntu LTS distributions <b>only</b> and provides instructions for other distributions as a reference - sometimes these instructions are kindly provided by other developers with the intention to help others. In this case, consider these releases as <b>unsupported</b> and <b>untested</b>.
+
+<font color="#FF0000"><b>IMPORTANT!</b></font> If CCS is installed with regular user privileges, a common mistake is to forget to <b>Install Drivers</b> (technically add udev rules) after the installer finishes(nothing needs to be done if the installer was run as sudo).
+- Open a terminal and go to the directory: <tt><CCS_INSTALL_DIR>/ccsv6/install_scripts</tt>
+- Run the following command as sudo:
+   - <b>host@user</b> sudo ./install_drivers.sh
+
+## Ubuntu 16.04 LTS (64-bit) ##
+
+### Resolve Dependencies ###
+
+- sudo apt-get update
+- sudo apt-get install libc6:i386 libx11-6:i386 libasound2:i386 libatk1.0-0:i386 libcairo2:i386 libcups2:i386 libdbus-glib-1-2:i386 libgconf-2-4:i386 libgcrypt20:i386 libgdk-pixbuf2.0-0:i386 libgtk-3-0:i386 libice6:i386 libncurses5:i386 libsm6:i386 liborbit2:i386 libudev1:i386 libusb-0.1-4:i386 libstdc++6:i386 libxt6:i386 libxtst6:i386 libgnomeui-0:i386 libusb-1.0-0-dev:i386 libcanberra-gtk-module:i386 gtk2-engines-murrine:i386 unzip
+
+<b>Note</b>: the libgcrypt11 library is not supplied with Ubuntu 16.04 anymore. In this case, please check [this blog post](http://www.webupd8.org/2015/04/fix-missing-libgcrypt11-causing-spotify.html) for details on how to install it in your system.
+
+### Install CCS ###
+
+- ./ccs_setup_6.x.x.xxxxx.bin (replace the x.x.xxxxx with the version number of your installer executable).
+   - If the installer does not even start, please make sure to install all the dependencies above before attempting to run it.
+   - If the install fails, you may need to unset the environment variable JAVA_TOOL_OPTIONS and try again, as mentioned in [this support thread](https://e2e.ti.com/support/development_tools/code_composer_studio/f/81/p/430825/1539732)
+   - Complains about libudev.so.0 missing
+      - One workaround is mentioned in [this blog post](http://www.ucsolutions.blogspot.com/2014/06/problems-during-installation-code.html)
+      - Another suggestion is to run this command: <tt>sudo ln -s /lib/i386-linux-gnu/libudev.so.1 /lib/libudev.so.0</tt>
+
+### Install Drivers ###
+
+- Go to the <tt>/ccsv6/install_scripts folder</tt>
+- <tt>sudo ./install_drivers.sh</tt>
+
+### Boards Tested ###
+
+- MSP430FR5969 LaunchPad
+
+### Known Issues ###
+
+XDS100v1 debug probes are not compatible with Ubuntu 16. We are working with FTDI to resolve this.     
+
+## Ubuntu 14.04 LTS (64-bit) ##
+
+### Resolve Dependencies ###
+
+- sudo apt-get update
+- sudo apt-get install libc6:i386 libx11-6:i386 libasound2:i386 libatk1.0-0:i386 libcairo2:i386 libcups2:i386 libdbus-glib-1-2:i386 libgconf-2-4:i386 libgdk-pixbuf2.0-0:i386 libgtk-3-0:i386 libice6:i386 libncurses5:i386 libsm6:i386 liborbit2:i386 libudev1:i386 libusb-0.1-4:i386 libstdc++6:i386 libxt6:i386 libxtst6:i386 libgnomeui-0:i386 libusb-1.0-0-dev:i386 libcanberra-gtk-module:i386 gtk2-engines-murrine:i386 unzip
+- If you will be using Grace, also install these:
+   - sudo apt-get install libnss3:i386 libnss3-1d:i386 libnss3-nssdb:i386
+
+### Install CCS ###
+
+- ./ccs_setup_6.x.x.xxxxx.bin (replace the x.x.xxxxx with the version number of your installer executable).
+   - Complains about libudev.so.0 missing
+      - One workaround is mentioned in [this blog post](http://www.ucsolutions.blogspot.com/2014/06/problems-during-installation-code.html)
+      - Another suggestion is to run this command: <tt>sudo ln -s /lib/i386-linux-gnu/libudev.so.1 /lib/libudev.so.0</tt>
+
+### Install Drivers ###
+
+- Go to the <tt>/ccsv6/install_scripts folder</tt>
+- <tt>sudo ./install_drivers.sh</tt>
+
+### Boards Tested ###
+
+- MSP430FR5969 LaunchPad, Tiva C TM4C129 LaunchPad, F28027 LaunchPad
+
+### Known Issues ###
+
+App Center and Getting Started views are blank. Resource Explorer examples and documentation can be selected, but nothing is displayed.
+This is usually related to missing libraries and could occur with different Linux distributions. There are some suggestions to resolve it in these threads:
+- https://e2e.ti.com/support/tools/ccs/f/81/p/349185/1782752
+- https://e2e.ti.com/support/tools/ccs/f/81/p/367275/1435371#1435371
+   
+## Ubuntu 12.04 LTS (64-bit) ##
+
+### Resolve Dependencies ###
+
+- sudo apt-get update
+- sudo apt-get install ia32-libs libgnomeui-0:i386 libusb-1.0-0-dev:i386
+
+<b>Note</b> if you are getting errors on the terminal that show <tt>undefined symbol: menu_proxy_module_load</tt>, this is caused by the absence of the appmenu-gtk component (reference [here](https://www.absolutelytech.com/2011/04/26/solved-undefined-symbol-menu_proxy_module_load-error-in-gnome-applications/)). Installing this component will also make the CCS menus to be displayed at the top screen toolbar instead of the top of the window (following the convention of the new Unity environment). You can install the appmenu-gtk component as:
+
+- sudo apt-get install appmenu-gtk:i386
+
+### Install CCS ###
+
+- ./ccs_setup_6.x.x.xxxxx.bin (replace the x.x.xxxxx with the version number of your installer executable).
+
+### Install Drivers ###
+
+- Go to the <tt>/ccsv6/install_scripts folder</tt>
+- <tt>sudo ./install_drivers.sh</tt>
+
+### Boards Tested ###
+
+- MSP430F5529 Launchpad, Tiva C TMC123G LaunchPad
+
+### Known Issues ###
+
+- Drop down boxes in the project wizard are slow.
+
+## Ubuntu 12.04 LTS (32-bit) ##
+
+### Resolve Dependencies ###
+
+- sudo apt-get update
+- sudo apt-get install libgnomeui-0 libusb-1.0-0-dev
+
+### Install CCS ###
+
+- ./ccs_setup_6.x.x.xxxxx.bin (replace the x.x.xxxxx with the version number of your installer executable).
+
+### Install Drivers ###
+
+- Go to the <tt>/ccsv6/install_scripts folder</tt>
+- <tt>sudo ./install_drivers.sh</tt>
+
+### Boards Tested ###
+
+- MSP430F5529 LaunchPad, Tiva TM4C129 EK (ICDI), Spectrum Digital XDS220 USB
+
+### Known Issues ###
+
+- Drop down boxes in the project wizard are slow.
+
+## Linux Mint 18 & 17 (64-bit) ##
+
+Note that this distribution is not officially supported but seems to be very close to Ubuntu 14.04
+
+### Resolve Dependencies ###
+
+- sudo apt-get update
+
+Upon specific experience with Mint 17 (Mate), the install procedure showed a dialog window that reports three libraries missing. It appears to be sufficient, to install only these:
+
+- sudo apt-get install libgnomevfs2-0:i386 liborbit-2.0:i386 libusb-0.1:i386
+
+The :i386 suffix is essential, the corresponding 64-bit libs are already present. When CCS install still complains about missing libs, you could try to execute:
+
+- sudo apt-get install libc6:i386 libx11-6:i386 libasound2:i386 libatk1.0-0:i386 libcairo2:i386 libcups2:i386 libdbus-glib-1-2:i386 libgconf-2-4:i386 libgdk-pixbuf2.0-0:i386 libgtk-3-0:i386 libice6:i386 libncurses5:i386 libsm6:i386 liborbit2:i386 libudev1:i386 libusb-0.1-4:i386 libstdc++6:i386 libxt6:i386 libxtst6:i386 libgnomeui-0:i386 libusb-1.0-0-dev:i386 libcanberra-gtk-module:i386
+
+### Install CCS ###
+
+./ccs_setup_6.x.x.xxxxx.bin (replace the x.x.xxxxx with the version number of your installer executable).
+- Complains about libudev.so.0 missing (working to resolve)
+- Fix with: <tt>sudo ln -s /lib/i386-linux-gnu/libudev.so.1 /lib/i386-linux-gnu/libudev.so.0</tt>
+
+### Install Drivers ###
+
+- Go to the <tt>/ccsv6/install_scripts folder</tt>
+- <tt>sudo ./install_drivers.sh</tt>
+
+### Boards Tested ###
+
+- Tiva C TM4C129 LaunchPad, MSP430FR5969 LaunchPad, MSP430F5529 LaunchPad
+
+## CentOS 7.0 (64-bit) ##
+
+These instructions are for CCSv6.2.0 and later
+
+### Resolve Dependencies ###
+
+- sudo yum install libXScrnSaver glibc.i686
+
+### Install CCS ###
+
+- chmod +x ./ccs_setup_6.x.x.xxxxx.bin (replace the x.x.xxxxx with the version number of your installer executable)
+- ./ccs_setup_6.x.x.xxxxx.bin
+
+### Install Drivers ###
+
+- Go to the <tt>/ccsv6/install_scripts folder</tt>
+- <tt>sudo ./install_drivers.sh</tt>
+- <tt>sudo /bin/systemctl restart systemd-udevd.service</tt>
+
+### Tested Combinations ###
+
+- XDS100v2 : TMS320F28335 TMS320VC5505
+- Blackhawk USB560-M 20-pin JTAG cable : AM4378 (A9 core) AM3352 (A8 core)
+- XDS200 USB Onboard Debug Probe : 66AK2H14 (DSP and A15 cores)
+- MSP-FET : MSP430F6659
+- MSP-FET430UIF : MSP430F6659
+- Stellaris In-Circuit Debug Interface : TM4C123GH6PM
+- eZ-Fet Rev 1.2 : MSP430FR5969
+- Blackhawk XDS560v2-USB Mezzanine Emulator : TMS320C6678
+
+## CentOS 6.5 (64-bit) ##
+
+### Resolve Dependencies ###
+
+- sudo yum upgrade (Note that this may take a while to complete, you could try proceeding with the next step first)
+- sudo yum install redhat-lsb.i686 libusb.i686 ORBit2.i686 GConf2.i686 gnome-vfs2.i686 libcanberra-gtk2.i686 libusb1.i686
+   - redhat-lsb.i686 is needed to run the installer as it installs the 32bit support libraries
+- sudo ln -s /usr/lib/libusb-1.0.so.0 /usr/lib/libusb-1.0.so
+   - this is needed for Tiva LaunchPads otherwise it cannot find libusb
+
+### Install CCS ###
+
+- chmod +x ./ccs_setup_6.x.x.xxxxx.bin (replace the x.x.xxxxx with the version number of your installer executable)
+- ./ccs_setup_6.x.x.xxxxx.bin
+
+### Install Drivers ###
+
+- Go to the <tt>/ccsv6/install_scripts folder</tt>
+- <tt>sudo ./install_drivers.sh</tt>
+
+## Debian (64-bit) ##
+
+### Resolve Dependencies ###
+
+- (as root) aptitude install libgtk2.0-0:i386 libcanberra-gtk0:i386 libdbus-glib-1-2:i386 libgconf-2-4:i386 liborbit-2-0:i386 libusb-0.1-4:i386 libgnomevfs2-0:i386 libice6:i386 libncurses5:i386 libsm6:i386 libxtst6:i386 libxt6:i386 libasound2:i386 libgcrypt11:i386 libudev0:i386
+   - If this step returns packages not found, you may need to add the i386 architecture via dpkg --add-architecture i386 See https://wiki.debian.org/Multiarch/HOWTO for more details.
+- In recent debian versions (since jessie) libudev0 has been obsoleted and removed. You can install libudev1:i386 instead and make CCS (and other applications that still depend on libudev0) use it by creating a symlink: <tt>ln -siT libudev.so.1 /lib/i386-linux-gnu/libudev.so.0</tt> -- This appears to work fine.
+- Alternatively, you can manually download the latest libudev0:i386 package from wheezy and install it using (e.g.): <tt>dpkg -i libudev0_175-7.2_i386.deb</tt>
+- If you cannot install libgcrypt11:i386 then add deb http://security.debian.org/debian-security wheezy/updates main to your /etc/apt/sources.list and try again. This appears to work.
+
+### Install CCS ###
+
+- ./ccs_setup_6.x.x.xxxxx.bin
+
+### Install Drivers ###
+
+- Go to the <tt>/ccsv6/install_scripts folder</tt>
+- <tt>sudo ./install_drivers.sh</tt>
+
+## OpenSUSE 13.2 (64-bit) ##
+
+### Resolve Dependencies ###
+
+- Running on Gnome. It was [also reported](http://e2e.ti.com/support/development_tools/code_composer_studio/f/81/p/392849/1398388#1398388) the same procedure works in KDE.
+- Before running the CCS installer, install the following libraries:
+   - libgtk-2_0-0-32bit
+   - libgtk-3-0-32bit
+- After the libraries above are installed, the installer is able to run and point to the missing dependencies.
+   - For openSUSE 13.2 and CCSv6.x, the following libraries are missing:
+      - libdbus-c++-glib-1-0-32bit
+      - libgconfmm-2_6-1
+      - libgcrypt20-32bit
+      - libgnome-32bit
+      - libgthread-2_0-0-32bit
+      - libICE6-32bit
+      - orbit2-32bit
+      - libSM6-32bit
+      - libusb-0_1-4-32bit
+      - libXt6-32bit
+      - libXtst6-32bit
+- After installing the dependencies, run the command below to create a link to the missing libgcrypt:
+   - <b>user@host:~/></b> sudo ln -s /usr/lib/libgcrypt.so.20 /usr/lib/libgcrypt.so.11
+- If there are issues with the Getting Started Page and App Center views, there may be some additional dependency issues. For more details, see [this post](https://e2e.ti.com/support/development_tools/code_composer_studio/f/81/t/542772) on the E2E forums.
+
+### Install CCS ###
+
+- ./ccs_setup_6.x.x.xxxxx.bin
+
+### Install Drivers ###
+
+- Go to the <tt>/ccsv6/install_scripts folder</tt>
+- <tt>sudo ./install_drivers.sh</tt>
+
+## OpenSUSE Leap 42.1 (64-bit) ##
+
+### Resolve Dependencies ###
+
+- The installer complains about missing libraries. All of them are 32-Bit libraries. To resolv this, run e.g. zypper as root using the following command:
+   - su -c "zypper in libdbus-c++-glib-1-0-32bit libgconfmm-2_6-1  libgcrypt20-32bit libgnome-32bit libgthread-2_0-0-32bit libICE6-32bit orbit2-32bit libSM6-32bit libusb-0_1-4-32bit libXt6-32bit libXtst6-32bit libgtk-2_0-0-32bit libgdk_pixbuf-2_0-0-32bit libatk-1_0-0-32bit libpango-1_0-0-32bit libpango-1_0-0-32bit libXcomposite1-32bit libXfixes3-32bit libXdamage1-32bit libXi6-32bit libXrandr2-32bit libXrender1-32bit"
+
+- missing libgcrypt.so.11
+   - openSuSE provides libgcrypt.so.20, a clean install of the older libgcrypt from http://rpmfind.net/linux/rpm2html/search.php?query=libgcrypt.so.11 will solve this
+
+### Install CCS ###
+
+- extract the tarball
+- change dir and run ./ccs_setup_6.x.x.xxxxx.bin as user (for installation on ~/ti/...) or as root (for installation on /opt/ti...)
+
+### add Main Menu Item (Gnome) ###
+
+- start alacarte (possibly it has be installed, too)
+- add new Item in the "Programming" tree
+   - Name: Code Composer Studio 6.1.1
+   - Command: <ti dir>/ccsv6/eclipse/ccstudio , e.g. /home/tomcat/ti/ccsv6/eclipse/ccstudio
+   - Comment: Code Composer Studio 6.1.1
+   - Icon: e.g. /home/tomcat/ti/ccsv6/doc/eclipse-css-2.ico
+
+now CCS can be started by ALT-F1 and "typing code..."
+
+# Uninstalling #
+
+Run <installdir>/ccsv6/uninstall_ccs.bin. If the uninstaller does not complete successfully, it’s safe to delete everything under the <installdir>/ccsv6 directory to complete the uninstall.
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

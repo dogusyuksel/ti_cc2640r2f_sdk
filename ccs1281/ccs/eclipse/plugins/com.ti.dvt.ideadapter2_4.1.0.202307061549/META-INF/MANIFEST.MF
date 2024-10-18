@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.ti.dvt.ideadapter2;singleton:=true
+Export-Package: com.ti.dvt.ideadapter
+Bundle-Name: IDEAdapter Binary
+Bundle-Version: 4.1.0.202307061549
+Bundle-ClassPath: com.ti.dvt.ideadapter2.jar,external:$dvt.dir$_4.1.0.
+ 202307061549/bin/../bin/com.ti.dvt.ideadapter2_4.1.0.202307061549.jar
+ ,external:$ccs.debugServerDir$/../dvt_4.1.0.202307061549/bin/../bin/c
+ om.ti.dvt.ideadapter2_4.1.0.202307061549.jar
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: Texas Instruments
+
+Name: dvt.zip
+SHA-256-Digest: HsDSuDMuWKEYI+Y0uLIlNDKa7RF+JQoEqeVEwIUvV/k=
+
+Name: META-INF/p2.inf
+SHA-256-Digest: Y+Imfgwloy3mfnL8bIVurjHwOcFtZtnPczxa8On75Kw=
+
+Name: uninstall.xml
+SHA-256-Digest: /atpnQiP2N14WV3aiPvub2gXQr4kG+2pAXhnzNMkoLs=
+
+Name: install.xml
+SHA-256-Digest: KxPYHaID4pkHVIS5GeI2A2Om24zGraZ46vkRrapRaQ4=
+
+Name: com.ti.dvt.ideadapter2.jar
+SHA-256-Digest: PRBzEipoCXnZtEDH3du4KB9789Rfq6Xjamhu1CG8waw=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: G2hFTVPngfh5NUf96Pyy87A7XIE083udjEBFy4pUc/M=
+

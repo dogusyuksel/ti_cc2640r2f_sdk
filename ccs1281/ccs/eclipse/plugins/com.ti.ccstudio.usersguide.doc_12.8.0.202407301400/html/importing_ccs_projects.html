@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="How to import existing projects into Code Composer Studio."> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="Code Composer Studio">
+<meta name="product-link" content="https://www.ti.com/tool/CCSTUDIO">
+
+
+<!-- Change the title text for your page -->
+<title>Importing Code Composer Studio Projects</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+##Introduction
+
+Importing a project into Code Composer Studio (CCS) may sometimes fail with the error: 
+
+{{r Error: Import failed for project 'abc' because its compiler definition is not available. Please install the X.Y.Z compiler before importing this project
+}}
+
+This article explains when and why this error appears, and how it can be fixed.
+
+##Background 
+
+Compiler releases included with CCS follow a certain version numbering scheme. It is recommended to read through [this page](http://processors.wiki.ti.com/index.php/Compiler_Version_Numbers_and_What_They_Mean) first to understand the compiler version numbers that are referenced in this article. This article uses X.Y.Z numbering to refer to both older and newer (STS/LTS) compiler version numbers.
+
+For the purpose of this article we use the following acronyms:
+
+
+
+- **Project Compiler version (PCV)** - refers to compiler version used to create the project that is being imported
+- **Known Compiler Version (KCV)** - refers to compiler version(s) that are "known" to the user's CCS installation
+
+**KCV:** Every installation of CCS has a list of compiler versions "known" to it. The list comprises of versions included with that CCS as well as versions that have historically shipped with CCS. Usually the latest version in the "known" list is the version shipped with that CCS. Note that the list of KCVs is specific to a installation of CCS. For these KCVs, CCS has the built-in model that is required to parse a project. As long as PCV is in the list of KCVs, CCS is able to successfully import the project.
+
+A "new" compiler version is one that differs from KCV in either X or Y digit. For example, if 15.12.0.LTS compiler is the latest version in KCV, then 16.3.x.STS or 16.6.x.STS compiler is considered a "new" version. If PCV is a "new" version, CCS does not have the built-in model required to parse the project, hence is not be able to import the project.
+
+In summary, for a project created with compiler version X.Y.Z (where X.Y.Z is not a KCV)
+
+- if the version differs from KCV in only Z digit, then the project still imports
+- if the version differs from KCV in either X or Y digit, then the project does not import and the above error message is generated
+
+For example, if the latest version CCS ships with is 15.12.0, it can import projects created with 15.12.1, 15.12.9, etc. but not projects created with 16.12.0 or 17.3.0 (until that exact compiler version is installed and discovered by CCS).
+
+
+##Solution
+
+To allow the project to import, install the **exact** compiler version with which the project was created. The required version will be mentioned in the error message.
+
+For details on installing a specific compiler version, please see [this page](ccs_compiler-updates.html#install-new-features). 
+<br>If you already have a compiler installed that is newer than the required version, then see [this page](ccs_compiler-updates.html#installing-older-versions) for details.
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

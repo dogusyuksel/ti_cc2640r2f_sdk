@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="Connect multiple LaunchPads with a single debug probe."> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="Code Composer Studio">
+<meta name="product-link" content="https://www.ti.com/tool/CCSTUDIO">
+
+<!-- Change the title text for your page -->
+<title>Connecting LaunchPads with a single Debug Probe</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+# Overview
+When working with Simplelink connected MCU Launchpads, it is common to need to connect multiple boards to the same host in order to perform wireless communications among them. 
+
+This application note describes the necessary hardware modifications to connect these boards to the same JTAG scan chain and the necessary configurations in Code Composer Studio to properly acknowledge this mixed setup.
+
+# References
+
+* [XDS Target Connection Guide - Multiple Devices](../emu_xds_target_connection_guide.html#multiple-devices)
+* [Target Configuration - Custom Configurations](http://processors.wiki.ti.com/index.php/Target_Configuration_-_Custom_Configurations)
+* [Multi-core debug with CCS](http://processors.wiki.ti.com/index.php/Multi-Core_Debug_with_CCS)
+* [Debugging with Multiple Debug Probes](../sdto_ccs_multi-probe-debug.html)
+
+# The procedure
+In order to aggregate two or more boards, a few customizations to both hardware and software must be made.  
+
+##Hardware
+The Hardware modification is needed to chain the devices according to the schematics shown in the <i>Multiple Devices</i> section of the <i>XDS Target Connection Guide</i> - check the section [References](#references) above. 
+
+###Isolation jumpers
+As shown in the photograph below, the Simplelink Connected MCU Launchpads have jumpers that isolate several connections and conveniently expose the four JTAG signals: TDI, TDO, TCK and TMS. In addition, the Reset signal is also exposed and is useful for flash programming operations.
+
+<figure>
+![LAUNCHXL-CC2640R2 Isolation jumpers](./images/appnote-chaining_launchpads_01.png)
+<figcaption>LAUNCHXL-CC2640R2 Isolation jumpers</figcaption>
+</figure>
+
+One additional convenience feature of the latest Launchpad models is that these signals can also be exposed via the boosterpack connector. In order to do that, some soldering skills and jumpers or 0&Omega; SMD resistors are required. 
+- As shown in the first photograph below, the jumper pads are designed for 0603 resistors (Vishay P/N <font color="0000F0">CRCW06030000Z0EB</font>), but they can also be fitted with 0805 resistors (Vishay P/N <font color="0000F0">CRCW08050000Z0EB</font>) as shown in the second photograph below.
+
+<figure>
+![LAUNCHXL-CC1350 Boosterpack JTAG jumper pads](./images/appnote-chaining_launchpads_02.png)
+<figcaption>LAUNCHXL-CC1350 Boosterpack JTAG jumper pads</figcaption>
+</figure>
+
+<figure>
+![LAUNCHXL-CC2650 with fitted Boosterpack JTAG jumpers](./images/appnote-chaining_launchpads_03.png)
+<figcaption>LAUNCHXL-CC2650 with fitted Boosterpack JTAG jumpers</figcaption>
+</figure>
+
+###Interconnections
+All interconnections must be done with the wires as short as possible to prevent delays, crosstalk and noise.
+
+- Remove the TDO JTAG isolation jumper of the first Launchpad.
+   - If an external Debug Probe will be used, remove all JTAG isolation jumpers of this Launchpad.
+- Remove all the JTAG isolation jumpers of the second Launchpad.
+- Interconnect the signals TMS, TCK and Reset across all Launchpads.
+- Connect a wire between the lower TDO pin (closer to the device) to the lower TDI pin (closer to the device) of the second Launchpad.
+- Connect a wire between the upper TDO pin (closer to the XDS110) to the lower TDO pin (closer to the device) of the second Launchpad. 
+
+The following table summarizes the connections: 
+<table id="stl01">
+<tr> <th colspan="3"><font color="#F00070">Two Launchpads</font></th> </tr>
+<tr>
+<th> <font color="#0000f0"> <b>XDS JTAG pin</b> </font> </th>
+<th> <font color="#0000f0"> <b>1st Launchpad</b> </font> </th>
+<th> <font color="#0000f0"> <b>2nd Launchpad</b> </font> </th>
+</tr>
+<tr> <th>TMS</th> <th>TMS</th> <th>TMS</th> </tr>
+<tr> <th>TCK</th> <th>TCK</th> <th>TCK</th> </tr>
+<tr> <th>TDO</th> <th>-</th> <th>TDO or DIO16</th> </tr>
+<tr> <th>TDI</th> <th>TDI</th> <th>-</th> </tr>
+<tr> <th>-</th> <th>TDO or DIO16</th> <th>TDI or DIO17</th> </tr>
+<tr> <th>Reset</th> <th>Reset or BPReset</th> <th>Reset or BPReset</th> </tr>
+<tr>
+</table>
+
+<figure>
+![Connections diagram between two Launchpads](./images/appnote-chaining_launchpads_04.png)
+<figcaption>Connections diagram between two Launchpads</figcaption>
+</figure>
+
+If three or more Launchpads are needed, simply extend the connections between TDO &rarr; TDI and, at the last Launchpad, connect its TDO &rarr; TDO of the XDS110.
+
+<table id="stl01">
+<th colspan="4"><font color="#F00070">Three or more Launchpads</font></th> </tr>
+<tr>
+<th> <font color="#0000f0"> <b>XDS JTAG pin</b> </font> </th>
+<th> <font color="#0000f0"> <b>1st Launchpad</b> </font> </th>
+<th> <font color="#0000f0"> <b>2nd Launchpad</b> </font> </th>
+<th> <font color="#0000f0"> <b>3rd Launchpad</b> </font> </th>
+</tr>
+<tr> <th>TMS</th> <th>TMS</th> <th>TMS</th> <th>TMS</th> </tr>
+<tr> <th>TCK</th> <th>TCK</th> <th>TCK</th> <th>TCK</th> </tr>
+<tr> <th>TDO</th> <th>-</th> <th>-</th> <th>TDO</th> </tr>
+<tr> <th>TDI</th> <th>TDI</th> <th>-</th> <th>-</th> </tr>
+<tr> <th>-</th> <th>TDO</th> <th>TDI</th> <th>-</th> </tr>
+<tr> <th>-</th> <th>-</th> <th>TDO</th> <th>TDI</th> </tr>
+</table>
+
+##Software
+The only software aspect that is required to configure the multi-device system is the Target Configuration File (.ccxml), which is configured following the steps shown in the <b>Target Configurations - Custom Configurations</b> page - check the section [References](#references) above. This file must describe how the connections and the order of devices is arranged in hardware.
+
+Create a new target configuration file, add the first device on the scan chain and click on the tab <b>Advanced</b> to add the other device(s).
+
+<figure>
+![Selecting the LAUNCHXL-CC2640R2](./images/appnote-chaining_launchpads_05.png)
+<figcaption>Selecting the LAUNCHXL-CC2640R2</figcaption>
+</figure>
+
+Once there, click on the button <b>Add</b> to add the second device.
+
+<figure>
+![Adding the second device](./images/appnote-chaining_launchpads_06.png)
+<figcaption>Adding the second device</figcaption>
+</figure>
+
+On the <b>Devices</b> tab, use the <b>Filter selection by</b> to reduce the number of options and select the second device. 
+
+<figure>
+![Adding the LAUNCHXL-CC2650](./images/appnote-chaining_launchpads_07.png)
+<figcaption>Adding the LAUNCHXL-CC2650</figcaption>
+</figure>
+
+Once all the other devices are added, highlight the Debug Probe entry at the top of the tree and make sure the configuration options are compatible with all devices in the scan chain. Click <b>Save</b> to keep all changes. 
+
+<figure>
+![Debug Probe settings](./images/appnote-chaining_launchpads_08.png)
+<figcaption>Debug Probe settings</figcaption>
+</figure>
+
+Once the Debugger is launched, it should show all the devices in the <b>Debug</b> view. 
+
+<figure>
+![Multi-core debugger](./images/appnote-chaining_launchpads_09.png)
+<figcaption>Multi-core debugger</figcaption>
+</figure>
+
+<br>
+<br>
+<hr>
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

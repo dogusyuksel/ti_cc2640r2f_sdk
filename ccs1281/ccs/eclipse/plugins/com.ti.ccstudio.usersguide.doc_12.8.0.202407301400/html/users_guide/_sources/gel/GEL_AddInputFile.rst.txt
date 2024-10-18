@@ -1,0 +1,103 @@
+GEL_AddInputFile()
+------------------
+
+To create a breakpoint at a specified address for use with File I/O
+input, use this syntax:
+
+**Syntax**
+
+**GEL_AddInputFile(**\ programAddr\ **, "**\ connectFileName\ **",**
+Format\ **, "**\ dataAddr\ **" [, "**\ length\ **"] [,** page\ **] [,**
+wraparound\ **] [, "**\ condition\ **"]);**
+
+To create a breakpoint at a specified line in a specified file for use
+with File I/O input, use this syntax:
+
+**Syntax**
+
+**GEL_AddInputFile("**\ SrcFileName\ **",** lineNumber\ **,
+"**\ connectFileName\ **",** Format\ **, "**\ dataAddr\ **" [,
+"**\ length\ **"] [,** page\ **] [,** wraparound\ **] [,
+"**\ condition\ **"]);**
+
+**Parameters:**
+
+programAddr is a value specifying an expression that evaluates to the
+location of the breakpoint. This expression should **not** be enclosed
+in quotation marks. If programAddr is not specified, the current address
+is used.
+
+SrcFileName is a string value specifying the filename of the source file
+to place the breakpoint in. The file path need not be provided. The file
+must have been compiled as part of the current set of loaded symbols in
+order to be properly resolved.
+
+LineNumber is a long integer value specifying the line in srcFileName at
+which to place the breakpoint.
+
+ConnectFileName is a string value specifying the path and filename of
+the data input file to connect the breakpoint to. A double backslash
+escape sequence is required to ensure that a backslash is inserted into
+the filename; for example: "c:\\ti\\myprojects\\sine.dat".
+
+Format is an integer value representing the file format. The following
+choices are available:
+
++-----------------------+-----------------------+-----------------------+
+| 1                     | \*.dat                | Hex                   |
+|                       |                       |                       |
+| 2                     | \*.dat                | Integer               |
+|                       |                       |                       |
+| 3                     | \*.dat                | Long                  |
+|                       |                       |                       |
+| 4                     | \*.dat                | Float                 |
+|                       |                       |                       |
+| 5                     | \*.out                | COFF                  |
++-----------------------+-----------------------+-----------------------+
+
+| 
+
+dataAddr is a string value specifying an expression that evaluates to an
+address; this is the address that data from the file will be written to.
+
+length(optional) is a string value that specifies an expression
+evaluating to the number of words to be written to the target, starting
+at dataAddr, each time the breakpoint is hit. The default value is 1.
+
+pagean integer value that specifies the page on which dateAddr is
+located, where the File I/O transfers will read/write to. On targets
+that do not support paged memory, specify 0. Otherwise, the following
+choices are available: 0 (Program memory), 1 (Data memory) or 2 (I/O
+space)
+
+wraparound(optional ) is a numeric value specifying whether or not
+reading should continue from the beginning of the input file once the
+end is hit. The default value is 0.
+
+condition(optional ) is a string value specifying the condition under
+which the breakpoint should be executed (that is, the FileI/O transfer
+should take place). The default value is "".
+
+**Description**
+
+This function has two uses. The first format listed creates a breakpoint
+at the specified address, opens the specified input file, connects it to
+the breakpoint, and places the resulting input FileI/O item in the
+Playing state.
+
+The second format listed creates a breakpoint at the specified line in
+the specified source file, opens the specified input file, connects it
+to the breakpoint, and places the resulting input FileI/O item in the
+Playing state.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: No
+
+**Related Topics**
+
+`GEL_AddOutputFile <GEL_AddOutputFile.html>`__
+
+`GEL_RemoveInputFile <GEL_RemoveInputFile.html>`__

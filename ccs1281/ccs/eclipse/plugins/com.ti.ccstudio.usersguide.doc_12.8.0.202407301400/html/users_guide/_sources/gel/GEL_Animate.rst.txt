@@ -1,0 +1,30 @@
+GEL_Animate()
+-------------
+
+Animates the target application.
+
+**Syntax**
+
+**GEL_Animate();**
+
+**Parameters**
+
+None.
+
+**Description**
+
+This function starts animating the target application.
+
+**Synchronous**
+
+Synchronous from GEL: No
+
+Completely synchronous: No
+
+Related Topics
+
+`GEL_Go <GEL_Go.html>`__
+
+`GEL_Halt <GEL_Halt.html>`__
+
+`GEL_Run <GEL_Run.html>`__

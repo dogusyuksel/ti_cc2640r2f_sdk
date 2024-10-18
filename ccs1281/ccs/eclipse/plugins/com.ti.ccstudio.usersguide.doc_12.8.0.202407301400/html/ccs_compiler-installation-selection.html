@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="This article describes how to obtain and install various versions of the compiler"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Composer Studio Product Page">
+<meta name="product-link" content="https://www.ti.com/tool/CCStudio">
+
+<!-- Change the title text for your page -->
+<title>Compiler Installation and Selection</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+#Overview
+
+Code Composer Studio (CCS) comes bundled with specific version(s) of compiler tools. When building a project, the default configuration is to use the compiler version that comes bundled with CCS. However, there are instances when you may want to use a different version of compiler. For example, you may want to avail of bug fixes and new features in newer versions of compilers, or you may want to stay with a "tried and true" older version. In some cases, CCS may require the exact version of compiler tools with which the original project was created before it can import and build it successfully. In these cases, CCS can be configured to use a specific version of compiler tools.
+
+#Compiler Installation
+
+The first step is to install the desired version of compiler tools. This can be done from within the CCS environment or from outside the CCS environment. 
+
+##Within CCS
+
+The recommended method is to install from within the CCS environment. The steps are briefly described below. <br> For more details on why only specific versions are shown under certain menus, please see the [Compiler Updates](ccs_compiler-updates.html) article.
+
+Install compiler tools using CCS menu:
+	- **Help->Check for Updates** (only finds versions newer than the one currently installed). <br> OR <br>
+	- **Help->Install Code Generation Compiler Tools** (finds older and newer versions - this menu is available in CCS 7.4 and higher). 
+	
+When using the second method all of the compiler releases and updates available will be displayed.
+
+The filter box above the list can be used to narrow down the search to a specific device family. 
+
+By default only the latest version of a feature will be shown. If you need a specific version (older than the latest) uncheck the box **Show only the latest versions of available software**.
+![](./images/install_new_software_compilers.png)
+<br>
+
+[[b Video demo:
+The video demo [here](https://www.youtube.com/embed/HyDJwKFu6EQ) shows the compiler update process.]]
+
+##Outside CCS
+
+If the above method does not work or the desired version is not available as a CCS update, for some reason, the stand-alone compiler installer can be downloaded from [here](https://www.ti.com/tools-software/compilers/download.html).
+
+#Compiler Discovery
+
+After compiler tools are installed, the next step is for CCS to discover the newly installed compiler tools. 
+
+CCS determines the list of compiler versions available to it by searching the **Tool discovery path**. To see which versions of compiler tools are discovered/known to CCS, go to menu **Window &rarr; Preferences &rarr; Code Composer Studio &rarr; Build &rarr; Compilers**. For the compilers that come bundled with CCS, the paths to these compilers are added to the **Tool discovery path** by default, and the compiler versions are listed under **Discovered tools**.
+![](./images/compiler_discovery_1.png)
+
+If new versions are updated/installed from within CCS, they will be automatically discovered by CCS. 
+
+If new versions are installed outside CCS, you can configure CCS to discover it using the steps below.  
+
+If compiler is installed within one of the paths already listed in the **Tool discovery path** it will be automatically discovered.
+
+If compiler is installed in a different location, you can add the root location of the compiler installation to the list of discovery paths:
+
+- Go to menu **Window &rarr; Preferences &rarr; Code Composer Studio &rarr; Build &rarr; Compilers**.
+- Click the **Add** button next to **Tool discovery path** and browse to the location where the compiler is installed. <br>The location can be either the root folder of the installation or one parent higher. The root folder would have subfolders of 'bin', 'include', and 'lib'.
+![](./images/compiler_discovery_path_1.png)
+
+Once the new path has been added, CCS will rescan the discovery paths and refresh the **Tool discovery path** dialog. <br>The new compiler tools version will now appear in the list of **Discovered tools**.
+![](./images/compiler_discovery_path_2.png)
+
+#Compiler Selection
+
+Any compiler tools version that is discovered by CCS can be selected as the version to use when building a project.
+
+To select the compiler version:
+
+- Right-click on the project in **Project Explorer** view and select **Properties**.
+- Click on **General** in left pane.
+- In the **Compiler version** field select the desired version. <br> Note that the different versions of compiler tools discovered by CCS appear in the drop-down menu. The version selected here will be used during project build.
+![](./images/compiler_version_selection_1.png)
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

@@ -1,0 +1,26 @@
+GEL_LowPowerRun()
+-----------------
+
+Runs target in a low power mode.
+
+**Syntax**
+
+**GEL_LowPowerRun();**
+
+**Parameters**
+
+None
+
+**Description**
+
+This GEL function allows the target to run in low power mode.
+
+**Synchronous**
+
+Synchronous from GEL: No
+
+Completely Synchronous: No
+
+**Related Topics**
+
+`GEL_Run <GEL_Run.html>`__

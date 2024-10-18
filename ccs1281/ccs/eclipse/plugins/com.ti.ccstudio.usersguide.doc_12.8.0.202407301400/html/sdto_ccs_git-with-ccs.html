@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL: Change the meta description for your page. This should inform users what the page is about in 1-2 sentences (within 160 chars). This appears in the search results below the Title and can have a huge effect on click-through rate  -->
+<meta name="description" content="Describes how to use Git version control and perform Git operations directly from Code Composer Studio (CCS) GUI.">
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="Code Composer Studio">
+<meta name="product-link" content="https://www.ti.com/tool/CCSTUDIO">
+
+<!-- Change the title text for your page -->
+<title>Using GIT with Code Composer Studio</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+##Introduction
+
+Code Composer Studio (CCS) v7 and higher come with built-in EGit (GIT integration for Eclipse) that allows you to browse repositories, check in/out files, get history, etc. all from within the GUI. This document describes how to share your CCS project to a repository and perform some of the basic Git operations using the CCS GUI. It does not cover details about the Git processes/commands and assumes the user already has knowledge of that topic. Several other references for using Git with Eclipse are in the [References](#references) section at the end of the document.
+ 
+##Configuration
+
+Every commit in Git will include the user's name and email-address. <br>
+These attributes can be set under CCS menu *Window->Preferences->Team->Git->Configuration*. <br>
+Click the *Add Entry* button. <br>
+For **Key** enter user.name and for **Value** enter your name. <br> Repeat this procedure with user.email and your email address and click OK.<br>
+The username and email should be the same ones used for your GitHub/Bitbucket account.
+<br><br>
+When cloning or creating new Git repositories, the directory defaults to ```C:\Users\<username>\git```. This default can be changed from CCS menu *Window->Preferences->Team->Git*. 
+
+
+##CCS Git views and Git Perspective
+
+The different Git views can be opened from CCS menu *View->Other->Git*. <br>
+![](./images/git_views.png)
+
+So you can be in the CCS Edit perspective and open the necessary Git views in it. Or you can open the Git perspective which is a perspective customized for working with Git. It can be opened from CCS menu *Window->Perspective->Open Perspective->Other*. <br>
+![](./images/git_perspective.png)
+
+
+##Local Repositories
+
+The steps here describe how you can create local repositories and version your CCS projects locally before you are ready to share them with other people. 
+
+The sub-sections below show a couple of different ways to create a local repository and add your CCS project to it, you can use the one of your preference. 
+
+###Starting with CCS Project
+
+- In the CCS *Project Explorer* view, select the CCS project and use the context menu to select *Team->Share Project...* 
+- Click on *Create...* <br>
+![](./images/create_repo_1.png)
+{{r Although the dialog allows creating the repository in the parent folder of project(via the checkbox "Use or create repository in parent folder of project"), Eclipse does not recommended it. It is best to create repository in a different directory.}}
+- Specify a directory for the repository. This can be a sub-directory within the default directory ```C:\Users\<username>\git```, or some other directory . In this example, the directory selected is c:\git\ccs_msp_projects<br>
+![](./images/create_repo_2.png)<br>
+This will be the location of the local repository. You can also create the repository at the main default directory, but it is probably better to create it in a sub-directory so you can manage multiple repositories each within their own directories <br>
+- Click Finish in the Create dialog
+- Click Finish in the Configure dialog
+
+###Starting with Git Repositories view
+- Go to CCS menu *View->Other->Git->Git Repositories*
+- Click on **Create a new local Git repository** (if it is an empty view) ![](./images/create_repo_4.png) or on the icon *Create a new Git Repository and add it to this view* 
+![](./images/create_repo_3.png)
+- Specify a directory within the default directory ```C:\Users\<username>\git``` or a different directory. In this example, the directory selected is c:\git\CCSProject<br>
+![](./images/create_repo_5.png)
+- Click Finish 
+- In the CCS *Project Explorer* view, select the CCS project and use the context menu to select *Team->Share Project...*
+- In the Repository drop-down list, select the repository created in the previous step <br>
+![](./images/create_repo_6.png)
+- Click Finish
+
+
+The project is now known to the repository. The project will be shown in the repository's Working Tree in the *Git Repositories* view in CCS.<br>
+![](./images/repo_project.png)
+
+Note the special icons displayed for the project/files in the *Project Explorer* view. These icons will change based on the state of the files. More information about the icons can be found in [this page](https://wiki.eclipse.org/EGit/User_Guide#Icon_Decorations).
+
+The next step is to add/commit/track files, described in the section [Adding and Committing files/project](#adding-and-committing-files-project).
+
+###Adding and Committing files/project
+
+One of the first questions that come up when working with source control and CCS is which CCS project files need to be checked in to source control. Please see the [Source control with CCS](sdto_ccs_source-control.html) document for more information on this. 
+
+Files that do not need to be under source control can be set to be ignored.  
+There are a few different ways to specify which resources to ignore:
+- Add it to .gitignore file <br> (If you select a file/directory in Project Explorer and use the context menu *Team->Ignore*, that will automatically add the file/directory to .gitignore) 
+- Specify under CCS menu *Window->Preferences->Team->Ignored Resources*
+ 
+Once you have decided on the files to commit to Git, follow these steps:
+- In the CCS *Project Explorer* view, select the CCS project and use the context menu to select *Team->Add to Index* 
+- In the CCS *Project Explorer* view, select the CCS project and use the context menu to select *Team->Commit* <br>
+ This should automatically open the *Git Staging* view
+- In the *Git Staging* view, add your Commit Message, then click **Commit** (to keep in local repository) or **Commit and Push** (to commit and push to remote repository).
+
+If any new files are later added to the project, follow the above steps to add and then commit those files. <br>
+
+Note that the project and files in the *Project Explorer* view will now have icons to denote that they are tracked by the repository.<br>
+![](./images/project1.png)
+More information about the icons can be found in [this page](https://eclipsesource.com/blogs/tutorials/egit-tutorial/) under the section "Additional Information".
+
+Any changes made to source files are tracked (their icons will change in *Project Explorer* view) and the files will appear in *Unstaged Changes* window in *Git Staging* view.<br>
+![](./images/track_change_1.png)
+
+Those files need to be staged first before they can be committed. To move to *Staged Changes*, you can right-click on the file in *Unstaged Changes* and select *Add to Index*, or you can drag the file to *Staged Changes* window. After that you should be able to Commit.
+
+All Git commands such as Commit, Pull, Push, Merge etc. are available from the *Team* context menu of the project.
+
+##Clone Git Repository
+
+To work with code/project that is stored in a remote Git repository, the first step is to clone the repository before you can check out a project from it, or push a project to it. This section describes how to clone a remote Git repository. It assumes you already have a Git repository in some place like [Github](https://github.com/) or [Bitbucket](https://bitbucket.org/). The steps below use Bitbucket as an example, but should be similar with Github. 
+
+Also take a look at the [References](#references) section for additional information. 
+
+- Open CCS, in *Git Repositories* view, click on the icon *Clone a Git repository and add the clone to this view*<br>
+![](./images/clone_icon.png)
+- Enter the location of the repository. To get the clone URI, you can click on the **Clone** link in Bitbucket repository and copy/paste the URI into this box. Enter Password and click Next<br>
+![](./images/clone1.png)
+- Enter the local storage location (specify a directory within the default Git directory ```C:\Users\<username>\git``` or some other directory)
+- Click Finish <br><br>
+The repository will now be visible in the CCS *Git Repositories* view.<br>
+Now that you have created a local clone of the repository, you can share the CCS project to this repository.<br><br>
+- Select the CCS project in the *Project Explorer* view and use the context menu to select *Team->Share Project...*
+- Select the repository you cloned in the previous step and click Finish
+- Follow steps in the [Adding and Committing files](#adding-and-committing-files-project) section to Add files and then **Commit and Push** to commit and then push them to the Bitbucket repository <br><br>
+Once the project has been Pushed, it will appear in the Bitbucket repository.
+
+##Import a version controlled CCS project
+
+If you need to import a version controlled CCS project that someone else has shared to a repository on Bitbucket, follow the steps in this section. Similar steps may be used for importing from a local repository.
+
+- Go to CCS menu *File->Import->Git->Projects from Git*. Click Next <br>
+![](./images/import1.png)
+- Here you can choose to import from Existing local repository or Clone a remote repository. This example selects *Clone URI* to get the project from Bitbucket. Click Next <br>
+![](./images/import8.png)
+- Enter the location of the repository. To get the clone URI, you can click on the **Clone** link in bitbucket and copy/paste the URI into the URI box. Click Next<br>
+![](./images/import2.png)
+- Select master branch. Click Next<br>
+![](./images/import3.png)
+- Enter the local storage location (specify a directory within the default Git directory ```C:\Users\<username>\git``` or some other directory). Click Next<br>
+![](./images/import4.png)
+- Select the wizard to use for importing project - *Import existing Eclipse projects*. Click Next<br>
+![](./images/import5.png)
+- Select the projects to import. Click Finish<br>
+![](./images/import6.png)
+- The version controlled project will now be visible in the *Project Explorer* view and any changes to it will be tracked<br>
+![](./images/import7.png)
+
+
+## Notes/Caveats
+
+- When a project (that is physically inside a workspace directory) is shared to a repository, the project location (variables PROJECT_LOC, PROJECT_ROOT etc.) will change from the original directory within the workspace to the Git repository directory. The variable WORKSPACE_LOC will still point to the workspace directory, however the projects are no longer inside that directory. Since the project is no longer within WORKSPACE_LOC, in order for the project to be portable, you should avoid using references to WORKSPACE_LOC in the project's build options or build steps.<br><br>
+- When importing Git projects into CCS (assuming the Git repository directory is different from CCS workspace directory):
+	- if you wish to work with the version controlled project, use the menu *File->Import->Git->Projects from Git*
+	- if you do not wish to work with the version controlled project, use the menu *Project->Import CCS Projects* and check the box to "Copy projects into workspace"
+<br><br>
+- Projectspecs cannot be directly imported in the same way as [importing a CCS project](#import-a-version-controlled-ccs-project). This is because Projectspecs are specific to CCS projects and not generic Eclipse, hence the Egit wizard for importing Git projects is not aware of Projectspecs. There are couple of alternate solutions:
+	- import the projectspec into CCS so the Eclipse project metadata is generated, then check the CCS project into Git.
+	- if the projectspec is already in Git (for example if it was checked in via command line or other means), then when starting up CCS, select the CCS workspace to be the Git repository that contains the projectspec. Then use CCS menu *Project->Import CCS Projects* to import the project, and uncheck the box for "Copy to workspace". 
+	{{r Note: Although this can be done, Eclipse does not recommend placing Git repositories in the Eclipse workspace, so this is not the preferred option.}}
+- Linked Resources in projects are not tracked by the repository. This is the default behavior for EGit. 
+
+
+
+##References
+
+https://wiki.eclipse.org/EGit/User_Guide
+
+https://eclipsesource.com/blogs/tutorials/egit-tutorial/
+
+https://maxrohde.com/2012/05/25/eclipse-and-github-tutorial/
+
+https://www.vogella.com/tutorials/EclipseGit/article.html
+
+http://processors.wiki.ti.com/index.php?title=Using_GIT_in_CCS_with_SDK
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

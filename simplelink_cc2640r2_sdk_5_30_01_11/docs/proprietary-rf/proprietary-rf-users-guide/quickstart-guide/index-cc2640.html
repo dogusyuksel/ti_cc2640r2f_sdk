@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Start Guide for SimpleLink™ CC2640R2 SDK &mdash; 
+SimpleLink™ CC2640R2 SDK
+Proprietary RF User&#39;s Guide
+ 2.70.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <script language="JavaScript">
+        var tiPageName;
+        tiPageName = "sug quickstart-guide index-cc2640";
+
+        if (location.protocol == "file:"){
+            var ci_analytics_poc_load = true;
+        }
+    </script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../proprietary-rf-guide/index-cc2640.html" class="icon icon-home"> 
+SimpleLink™ CC2640R2 SDK
+Proprietary RF User's Guide
+
+          </a>
+              <div class="version">
+                2.70.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../proprietary-rf-guide/quickstart-cc2640.html">Proprietary RF Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proprietary-rf-guide/index-platform-cc2640.html">The SimpleLink CC2640R2 SDK Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proprietary-rf-guide/examples-cc2640.html">Examples User’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proprietary-rf-guide/custom-hardware.html">Custom Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proprietary-rf-guide/tirtos-index.html">TI-RTOS (RTOS Kernel) Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proprietary-rf-guide/nortos-index.html">noRTOS Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proprietary-rf-guide/rf-core-index.html">RF Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proprietary-rf-guide/proprietary-rf-index-cc2640.html">Proprietary Physical Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proprietary-rf-guide/easylink-index.html">EasyLink Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proprietary-rf-guide/debugging-index.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proprietary-rf-guide/memory-index.html">Memory overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cc2640/oad-easylink/oad.html">Over the Air Download (OAD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proprietary-rf-guide/migration-cc2640.html">Migration Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proprietary-rf-guide/reference-cc2640.html">API References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proprietary-rf-guide/glossary-cc2640.html">Terms and acronyms</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../proprietary-rf-guide/index-cc2640.html">
+SimpleLink™ CC2640R2 SDK
+Proprietary RF User's Guide
+</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../proprietary-rf-guide/index-cc2640.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Quick Start Guide for SimpleLink™ CC2640R2 SDK</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="quick-start-guide-for-simplelinktrade-device-sdk">
+<h1>Quick Start Guide for SimpleLink™ CC2640R2 SDK<a class="headerlink" href="#quick-start-guide-for-simplelinktrade-device-sdk" title="Permalink to this headline">¶</a></h1>
+<p>This guide serves as a road map for users developing applications
+and products using the TI SimpleLink CC2640R2
+wireless MCU platform. Whether a seasoned developer or just getting
+started, TI has created a variety of resources to simplify
+development on the CC2640R2 platform. These resources will enhance
+your experience with the TI SimpleLink CC2640R2 2.70.0 Software
+Development Kit (SDK) from the out-of-the-box demo to production.</p>
+<p>This guide will walk you through the initial setup and demonstration of
+running your first sample application. The guide explains how to install the
+<a class="reference external" href="http://www.ti.com/tool/SIMPLELINK-CC2640R2-SDK">SimpleLink CC2640R2 SDK</a> and lists the various other tools required to get started
+with your first application. It will also suggest further resources to explore.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="proprietary-rf-quick-start.html">TI Proprietary RF Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="proprietary-rf-quick-start.html#using-proprietary-rf-example-projects">Using Proprietary RF Example Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proprietary-rf-quick-start.html#running-the-demo">Running the Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proprietary-rf-quick-start.html#learning-more-about-proprietary-rf">Learning More about Proprietary RF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proprietary-rf-quick-start.html#developing-a-new-proprietary-rf-application">Developing a New Proprietary RF Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proprietary-rf-quick-start.html#getting-support">Getting Support</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="terms-and-definitions">
+<h2>Terms and Definitions<a class="headerlink" href="#terms-and-definitions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="general-terms-and-acronyms">
+<h3>General Terms and Acronyms<a class="headerlink" href="#general-terms-and-acronyms" title="Permalink to this headline">¶</a></h3>
+<dl class="glossary simple">
+<dt id="term-CCFG">CCFG<a class="headerlink" href="#term-CCFG" title="Permalink to this term">¶</a></dt><dt id="term-Customer-Configuration">Customer Configuration<a class="headerlink" href="#term-Customer-Configuration" title="Permalink to this term">¶</a></dt><dd><p>Customer Configuration is set by the application and contains
+configuration parameters for the ROM boot code, device hardware, and
+device firmware. It contains lock-bits on the last page of flash. You
+can read more in the Customer Configuration section in the <a class="reference external" href="http://www.ti.com/lit/pdf/swcu117">CC13x0 CC26x0 SimpleLink Wireless MCU Technical Reference Manual</a>.</p>
+</dd>
+<dt id="term-CCS">CCS<a class="headerlink" href="#term-CCS" title="Permalink to this term">¶</a></dt><dt id="term-Code-Composer-Studio">Code Composer Studio<a class="headerlink" href="#term-Code-Composer-Studio" title="Permalink to this term">¶</a></dt><dd><p>An integrated development environment to develop applications for
+Texas Instruments embedded processors. Download: <a class="reference external" href="http://www.ti.com/tool/ccstudio">Code Composer
+Studio</a></p>
+</dd>
+<dt id="term-cJTAG">cJTAG<a class="headerlink" href="#term-cJTAG" title="Permalink to this term">¶</a></dt><dt id="term-compact-JTAG">compact JTAG<a class="headerlink" href="#term-compact-JTAG" title="Permalink to this term">¶</a></dt><dd><p>Class 4 IEEE 1149.7: Standard for Reduced-pin and
+Enhanced-functionality Test Access Port and Boundary-scan
+Architecture. This is known by acronym cJTAG.</p>
+</dd>
+<dt id="term-GCC">GCC<a class="headerlink" href="#term-GCC" title="Permalink to this term">¶</a></dt><dt id="term-GNU-Compiler-Collection">GNU Compiler Collection<a class="headerlink" href="#term-GNU-Compiler-Collection" title="Permalink to this term">¶</a></dt><dd><p>A compiler system produced by the GNU Project, which support various
+programming languages such as C and C++.</p>
+</dd>
+<dt id="term-HIB">HIB<a class="headerlink" href="#term-HIB" title="Permalink to this term">¶</a></dt><dt id="term-Halt-In-Boot">Halt In Boot<a class="headerlink" href="#term-Halt-In-Boot" title="Permalink to this term">¶</a></dt><dd><p>A mechanism in CC2640R2 to ensure that the external
+emulator can take control of the device before it executes any
+application code.</p>
+</dd>
+<dt id="term-IAR">IAR<a class="headerlink" href="#term-IAR" title="Permalink to this term">¶</a></dt><dd><p>Refers to IAR Systems’ IAR Embedded Workbench, which is an integrated
+development environment used for building and debugging embedded
+applications.</p>
+</dd>
+<dt id="term-JTAG">JTAG<a class="headerlink" href="#term-JTAG" title="Permalink to this term">¶</a></dt><dt id="term-Joint-Test-Action-Group">Joint Test Action Group<a class="headerlink" href="#term-Joint-Test-Action-Group" title="Permalink to this term">¶</a></dt><dd><p>IEEE standard 1149.1: Standard Test Access Port and Boundary Scan
+Architecture Test Access Port (TAP). This standard is known by the
+acronym JTAG.</p>
+</dd>
+<dt id="term-MCU">MCU<a class="headerlink" href="#term-MCU" title="Permalink to this term">¶</a></dt><dt id="term-Microcontroller-Unit">Microcontroller Unit<a class="headerlink" href="#term-Microcontroller-Unit" title="Permalink to this term">¶</a></dt><dd><p>A small computer on a single integrated circuit.</p>
+</dd>
+<dt id="term-OAD">OAD<a class="headerlink" href="#term-OAD" title="Permalink to this term">¶</a></dt><dt id="term-Over-the-Air-Download">Over the Air Download<a class="headerlink" href="#term-Over-the-Air-Download" title="Permalink to this term">¶</a></dt><dd><p>The process of performing a device firmware update over the air.</p>
+</dd>
+<dt id="term-ROM">ROM<a class="headerlink" href="#term-ROM" title="Permalink to this term">¶</a></dt><dt id="term-Read-only-Memory">Read-only Memory<a class="headerlink" href="#term-Read-only-Memory" title="Permalink to this term">¶</a></dt><dd><p>Type of non-volatile memory used in computers. Once data is written to
+ROM, the data cannot be removed and can only be read.</p>
+</dd>
+<dt id="term-VIMS">VIMS<a class="headerlink" href="#term-VIMS" title="Permalink to this term">¶</a></dt><dt id="term-Versatile-Instruction-Memory-System">Versatile Instruction Memory System<a class="headerlink" href="#term-Versatile-Instruction-Memory-System" title="Permalink to this term">¶</a></dt><dd><p>A system control module that handles access to the device memory areas
+from the CPU and system bus. You can read more in the <a class="reference external" href="http://www.ti.com/lit/pdf/swcu117">CC13x0 CC26x0 SimpleLink Wireless MCU Technical Reference Manual</a>.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2024, Texas Instruments.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

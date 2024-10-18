@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview &mdash; 
+SimpleLink™ CC2640R2 SDK
+Proprietary RF User&#39;s Guide
+ 2.70.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Firmware update process" href="oad_process.html" />
+    <link rel="prev" title="Over the Air Download (OAD)" href="oad.html" />
+    <script language="JavaScript">
+        var tiPageName;
+        tiPageName = "sug cc2640 oad-easylink oad_overview";
+
+        if (location.protocol == "file:"){
+            var ci_analytics_poc_load = true;
+        }
+    </script>
+
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../proprietary-rf-guide/index-cc2640.html" class="icon icon-home"> 
+SimpleLink™ CC2640R2 SDK
+Proprietary RF User's Guide
+
+          </a>
+              <div class="version">
+                2.70.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../proprietary-rf-guide/quickstart-cc2640.html">Proprietary RF Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../proprietary-rf-guide/index-platform-cc2640.html">The SimpleLink CC2640R2 SDK Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../proprietary-rf-guide/examples-cc2640.html">Examples User’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../proprietary-rf-guide/custom-hardware.html">Custom Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../proprietary-rf-guide/tirtos-index.html">TI-RTOS (RTOS Kernel) Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../proprietary-rf-guide/nortos-index.html">noRTOS Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../proprietary-rf-guide/rf-core-index.html">RF Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../proprietary-rf-guide/proprietary-rf-index-cc2640.html">Proprietary Physical Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../proprietary-rf-guide/easylink-index.html">EasyLink Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../proprietary-rf-guide/debugging-index.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../proprietary-rf-guide/memory-index.html">Memory overview</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="oad.html">Over the Air Download (OAD)</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#oad-types">OAD Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#boot-image-manager-bim">Boot Image Manager (BIM)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#halt-in-boot-hib">Halt In Boot (HIB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-projects">Example Projects</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="oad_process.html">Firmware update process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oad_image_header.html">Image Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oad_offchip.html">Off-Chip OAD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oad_onchip.html">On-Chip OAD</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../proprietary-rf-guide/migration-cc2640.html">Migration Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../proprietary-rf-guide/reference-cc2640.html">API References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../proprietary-rf-guide/glossary-cc2640.html">Terms and acronyms</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../proprietary-rf-guide/index-cc2640.html">
+SimpleLink™ CC2640R2 SDK
+Proprietary RF User's Guide
+</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../proprietary-rf-guide/index-cc2640.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="oad.html">Over the Air Download (OAD)</a> &raquo;</li>
+      <li>Overview</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="overview">
+<span id="sec-oad-overview"></span><h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<p>This section explains the major concepts involved in the OAD process from a
+high level. The concepts here will be expanded upon further in the following
+sections. Some concepts, such as the Boot Image Manager (<a class="reference internal" href="../../proprietary-rf-guide/glossary-cc2640.html#term-1"><span class="xref std std-term">BIM</span></a>), may
+vary in their implementation details. Wherever possible, the concepts will be
+covered in this chapter with their implementation details covered in the
+following chapters.</p>
+<div class="section" id="oad-types">
+<h2>OAD Types<a class="headerlink" href="#oad-types" title="Permalink to this headline">¶</a></h2>
+<p>There are two methods of implementing a firmware update using over the air
+download process. The key difference between the two methods is the location
+of the downloaded image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">On-chip</dt>
+<dd class="field-odd"><p>During <a class="reference internal" href="oad_onchip.html#sect-on-chip-oad"><span class="std std-ref">On-Chip OAD</span></a>, the downloaded image is written to internal
+flash, allowing for a single chip OAD solution.</p>
+</dd>
+<dt class="field-even">Off-chip</dt>
+<dd class="field-even"><p><a class="reference internal" href="oad_offchip.html#sect-off-chip-oad"><span class="std std-ref">Off-Chip OAD</span></a> stores the downloaded image in an external flash
+part, requiring a two chip OAD solution. The below figure shows a comparison
+of different OAD methods. Each type of OAD has associated trade offs and
+benefits which will be discussed in their respective sections.</p>
+</dd>
+</dl>
+<img alt="../../_images/aafig-d044b74d01212e2900815585631af38f5bb8ec74.png" class="align-center" src="../../_images/aafig-d044b74d01212e2900815585631af38f5bb8ec74.png" />
+<p>Despite their differences, both OAD methods share the same firmware image
+header format.</p>
+<span id="oad-types-overview"></span><table class="docutils align-default" id="id3">
+<caption><span class="caption-number">Table 13. </span><span class="caption-text">OAD Types Overview.</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 50%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>OAD Type</p></th>
+<th class="head"><p>Advantages</p></th>
+<th class="head"><p>Limitations</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>On-chip</p></td>
+<td><ul class="simple">
+<li><p>No external flash required</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Application size restriction</p></li>
+<li><p>Stack image cannot be upgraded</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Off-chip</p></td>
+<td><ul class="simple">
+<li><p>Ability to store multiple / backup images</p></li>
+<li><p>Full application + stack upgrade</p></li>
+<li><p>Maximum application size</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Low power external flash required</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="boot-image-manager-bim">
+<h2>Boot Image Manager (BIM)<a class="headerlink" href="#boot-image-manager-bim" title="Permalink to this headline">¶</a></h2>
+<p>The boot image manager (BIM) is a bootloader that runs after reset and copies
+a new application image either from internal or external flash to the
+destionation location. The <a class="reference internal" href="../../proprietary-rf-guide/glossary-cc2640.html#term-1"><span class="xref std std-term">BIM</span></a> is a very simple application. It only
+checks whether a new image has been copied to the system. It is the
+application’s responsibility to receive the new image and to store it using
+the OAD service.</p>
+<p><a class="reference internal" href="../../proprietary-rf-guide/glossary-cc2640.html#term-1"><span class="xref std std-term">BIM</span></a>’s implementation varies slightly for On-chip and Off-chip OAD
+solutions, thus there is a separate <a class="reference internal" href="../../proprietary-rf-guide/glossary-cc2640.html#term-1"><span class="xref std std-term">BIM</span></a> example project for each.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">bim_oad_onchip</span></code> See <a class="reference internal" href="oad_onchip.html#sect-bim-for-on-chip-oad"><span class="std std-ref">BIM for On-chip OAD</span></a></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">bim_oad_offchip</span></code> See <a class="reference internal" href="oad_offchip.html#sect-bim-for-off-chip-oad"><span class="std std-ref">BIM for Off-chip OAD</span></a></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="halt-in-boot-hib">
+<span id="sec-oad-bim-hib"></span><h2>Halt In Boot (HIB)<a class="headerlink" href="#halt-in-boot-hib" title="Permalink to this headline">¶</a></h2>
+<p>There is a bug with the emulation software package that would cause the
+processor to enter Halt In Boot (<a class="reference internal" href="../../quickstart-guide/index-cc2640.html#term-HIB"><span class="xref std std-term">HIB</span></a>) on the next bootup when
+previously connected to JTAG. In the case of OAD, that is when a system reset
+is invoked at the end of an OAD procedure.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This only affects devices connected to JTAG, such as the XDS110 on
+LaunchPads. This issue should not appear in field devices or devices that
+are not connected to JTAG in general.</p>
+</div>
+<p>The reason why the bug occurs is that the TCK pin (which powers up the JTAG
+power domain) is left in tri-state. When a system reset occurs after an
+active debug connection, the TCK pin could potentially experience unwanted
+toggling from noise. HIB erroneously detects this as debug activity, and
+subsequently halts the processor.</p>
+<div class="figure align-center" id="id4">
+<img alt="../../_images/oad_hib.png" src="../../_images/oad_hib.png" />
+<p class="caption"><span class="caption-number">Figure 73. </span><span class="caption-text">Reset problems after programming with JTAG</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<p>A symptom of this bug occurring is that OAD does not reboot into BIM after a
+successful OAD. A temporary workaround is to simply unplug/replug or hard
+reset the device, and the device will boot as normal.</p>
+<p>However, a permanent fix is available. As of version 8.0.27.9 of the emulation
+software package, the XDS110 emulator now drives the TCK pin high instead of
+leaving it in tri-state. This removes any unwanted toggling on the TCK pin
+after a system reset, which no longer triggers HIB.</p>
+<p>To update the emulation software packages, start by downloading the latest
+<a class="reference external" href="https://software-dl.ti.com/ccs/esd/documents/xdsdebugprobes/emu_xds_software_package_download.html">XDS Emulation Software Package</a>. Then, depending on which tool you are
+using, follow the corresponding step-by-step guide below.</p>
+<ul class="simple">
+<li><p><strong>For Flash Programmer 2</strong>:</p>
+<ol class="arabic simple">
+<li><p>Run the above installer</p></li>
+<li><p>Copy the contents of the emulation software package to <code class="docutils literal notranslate"><span class="pre">&lt;Flash</span> <span class="pre">Programmer</span> <span class="pre">2&gt;/config/xds/*</span></code></p></li>
+</ol>
+</li>
+<li><p><strong>For Code Composer Studio</strong>:</p>
+<ol class="arabic simple">
+<li><p>Run the above installer</p></li>
+<li><p>Follow the steps described in Section <em>Manual CCS Installation</em> from the <a class="reference external" href="https://software-dl.ti.com/ccs/esd/documents/xdsdebugprobes/emu_xds_software_package_download.html">XDS Emulation Software Package</a> page</p></li>
+</ol>
+</li>
+<li><p><strong>For IAR</strong>:</p>
+<ol class="arabic simple">
+<li><p>Run the above installer</p></li>
+<li><p>Change the debugger options of the project to point to the newly installed package</p></li>
+</ol>
+</li>
+</ul>
+<div class="figure align-center" id="id5">
+<a class="reference internal image-reference" href="../../_images/oad_hib_update_xds.png"><img alt="../../_images/oad_hib_update_xds.png" src="../../_images/oad_hib_update_xds.png" style="width: 520.1999999999999px; height: 431.8px;" /></a>
+<p class="caption"><span class="caption-number">Figure 74. </span><span class="caption-text">Update XDS emulation software package in IAR</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="example-projects">
+<h2>Example Projects<a class="headerlink" href="#example-projects" title="Permalink to this headline">¶</a></h2>
+<p>The SDK provides example projects that show the OAD concept in action.</p>
+<span id="oad-projects-overview"></span><table class="docutils align-default" id="id6">
+<caption><span class="caption-number">Table 14. </span><span class="caption-text">OAD example projects in the <a class="reference external" href="http://www.ti.com/tool/SIMPLELINK-CC2640R2-SDK">SimpleLink CC2640R2 SDK</a> for EasyLink.</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 36%" />
+<col style="width: 52%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>OAD Type</p></td>
+<td><p>BIM Project</p></td>
+<td><p>Application Project</p></td>
+</tr>
+<tr class="row-even"><td><p>On-chip</p></td>
+<td><p>bim</p></td>
+<td><p>rfWsnNodeIntFlashOadClient</p></td>
+</tr>
+<tr class="row-odd"><td><p>Off-chip</p></td>
+<td><p>bim_extflash</p></td>
+<td><p>rfWsnNodeExtFlashOadClient</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="oad.html" class="btn btn-neutral float-left" title="Over the Air Download (OAD)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="oad_process.html" class="btn btn-neutral float-right" title="Firmware update process" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2024, Texas Instruments.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

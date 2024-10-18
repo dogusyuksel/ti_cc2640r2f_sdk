@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-Vendor: %providerName
+Fragment-Host: gnu.io.rxtx;bundle-version="[2.1.8,2.2.0)"
+Bundle-Version: 2.1.8.0_201606281300
+Eclipse-PlatformFilter: (& (osgi.os=linux) (osgi.arch=x86_64))
+Bundle-Name: %fragmentName
+Bundle-Localization: fragment
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: gnu.io.rxtx.linux.x86_64
+

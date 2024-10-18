@@ -1,0 +1,50 @@
+Manifest-Version: 1.0
+Export-Package: xdc.services.global,xdc.services.spec,xdc.services.spe
+ c.views,xdc.services.mapping,xdc.services.intern.gen,config,org.mozil
+ la.javascript,org.mozilla.javascript.ast,org.mozilla.javascript.tools
+ ,org.mozilla.javascript.json
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.rt
+ sc.xdctools.server;visibility:=reexport,org.eclipse.rtsc.xdctools.rta
+ ;visibility:=reexport,com.ti.targets.omf;visibility:=reexport;resolut
+ ion:=optional
+Bundle-Vendor: Texas Instruments
+Eclipse-LazyStart: true
+Bundle-ClassPath: packages/xdc/services/spec/java/package.jar,packages
+ /xdc/shelf/java/antlr.jar,packages/xdc/services/global/java/package.j
+ ar,packages/xdc/services/mapping/java/package.jar,packages/xdc/servic
+ es/intern/gen/java/package.jar,config.jar,packages/xdc/shelf/java/js.
+ jar,packages/xdc/services/spec/views/java/package.jar,bin
+Bundle-Version: 3.51.3.28
+Bundle-Name: XDCtools core
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.rtsc.xdctools.core.CorePlugin
+Created-By: 1.7.0_60 (Oracle Corporation)
+Bundle-SymbolicName: org.eclipse.rtsc.xdctools.core;singleton:=true
+
+Name: packages/xdc/services/intern/gen/java/package.jar
+SHA-256-Digest: L3oigsnlmCcsfHwv0SbSIq+WYeH6yPjHrh8VA8Bu1Ys=
+
+Name: packages/xdc/services/mapping/java/package.jar
+SHA-256-Digest: 9+86W0bzS4HsGsyapz/CpJh/8ig5JQxR+wnvxLF4IV0=
+
+Name: bin/org/eclipse/rtsc/xdctools/core/CorePlugin.class
+SHA-256-Digest: fOvQPO9ZJkRGpCZtgT2t1qCy1yMjwtH3GSBz9MUvYlE=
+
+Name: packages/xdc/shelf/java/antlr.jar
+SHA-256-Digest: OmzKOWmyOvvhMZD6EI1rdtKKvaPecAhg43b9Xvz3E90=
+
+Name: config.jar
+SHA-256-Digest: pGHetjlhHLzqEsXN3h59mOR8iAJr3dY1UXeHOnnDmZQ=
+
+Name: packages/xdc/shelf/java/js.jar
+SHA-256-Digest: N2xsqyVhmYHNd2QCaTjwCjLE0uzQtTwW64BvyOF/9cs=
+
+Name: packages/xdc/services/global/java/package.jar
+SHA-256-Digest: k6TN06rliWQJtFmzeoHDS7JwzWHYBukt6tMOqZSn/r8=
+
+Name: packages/xdc/services/spec/java/package.jar
+SHA-256-Digest: PC8HeSoSErJcNnaqWCUKs0xMpiYWVcUL90h1Qx5OOSg=
+
+Name: packages/xdc/services/spec/views/java/package.jar
+SHA-256-Digest: AXoYzQcKT3U7TJdtzzGU3X+X/hOEeRxLCxVB8Kso2g0=
+

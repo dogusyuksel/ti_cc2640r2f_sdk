@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="This page contains details about running Code Compoer Studio version 7 on Linux, including installation details, device support and debug probe support"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Composer Studio Product Page">
+<meta name="product-link" content="https://www.ti.com/tool/CCStudio">
+
+<!-- Change the title text for your page -->
+<title>Linux Host Support CCSv7</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+<!-- Add your markdown source here! -->
+<img src="./images/tux.jpg" alt="Tux" width="100" length="100" align="right">
+# Overview #
+This page contains information regarding Code Composer Studio v7 running on Linux. It includes installation instructions, device support and debug probe support.
+
+Due to the wide variety of Linux distributions and versions available, it is impossible to support all of them. CCS is officially tested on a small subset ordered by popularity.
+
+Please note that Code Composer Studio is a 64-bit application and will not run on 32-bit distributions.
+
+# Devices  #
+
+## Supported  ##
+- <b>Microcontrollers</b>: MSP430, MSP432, C2000, TM4, Hercules
+- <b>Wireless Connectivity</b>: CC13xx, CC2538, CC26xx, CC32xx
+- <b>Processors</b>: Sitara (AMxxxx), Keystone / Keystone II, OMAPL
+- <b>DSP</b>: C64x+, C674x, C66x, C55x, C641x
+
+## Not Supported  ##
+- <b>Microcontrollers</b>: C/F24x
+- <b>DSP</b>: C3x/C4x/C5x/C8x, C54x, C62x, C670x/C671x/C672x
+
+# Debug Probes #
+
+## Supported  ##
+- MSP430: MSP-FET, MSP-FET430UIF, Launchpads with built-in MSP-FET and eZ-FET technology
+   - For a complete list, check the document [SLAU647](https://www.ti.com/lit/slau647)
+- XDS110: Standalone XDS110 [TMDSEMU110-U](https://www.ti.com/tool/TMDSEMU110-U), LaunchPads with built-in XDS110 technology
+   - The XDS110 EnergyTrace HDR Add-on [TMDSEMU110-ETH](https://www.ti.com/tool/TMDSEMU110-ETH) is also supported
+- XDS100: v1, v2 and v3
+- XDS200: USB [TMDSEMU200-U](https://www.ti.com/tool/TMDSEMU200-U), LAN [XDS220](http://www.spectrumdigital.com/xds220-usb-ethernet-jtag-emulator/)
+- TM4C/Tiva/Stellaris ICDI as well as CC3200 LaunchPad
+- Spectrum Digital: XDS560v2 [TMDSEMU560V2STM-UE](https://www.ti.com/tool/TMDSEMU560V2STM-UE), XDS ProTrace [TMDSEMUPROTRACE](https://www.ti.com/tool/TMDSEMUPROTRACE)
+- Blackhawk: XDS560v2 USB [TMDSEMU560V2STM-U](https://www.ti.com/tool/TMDSEMU560V2STM-U), XDS560v2 Ethernet, USB560, USB560m, USB560bp
+- SEGGER J-Link
+   - Not all TI devices are supported. Check [Segger's device list](https://www.segger.com/products/debug-probes/j-link/technology/cpus-and-devices/overview-of-supported-cpus-and-devices/)
+
+## Not Supported ##
+- MSP430: MSP-FET430PIF (Parallel port), Launchpads and Experimenters kits that use eZ430 technology such as Chronos, [MSP-EXP430G2](https://www.ti.com/tool/MSP-EXP430G2) and [MSP-EXP430FR4133](https://www.ti.com/tool/MSP-EXP430FR4133) LaunchPads. 
+   - **Note:** the [MSP-EXP430G2ET](https://www.ti.com/tool/MSP-EXP430G2ET) is supported.
+   - For a complete list, check the document [SLAU647](https://www.ti.com/lit/slau647)
+- Stellaris ICDI based on FTDI
+- Blackhawk: USB2.0, XDS560 PCI, XDS560T, XDS510
+- Spectrum Digital: XDS510, XDS560R, Parallel Port emulators
+- Texas Instruments: XDS560 PCI, XDS510 ISA
+- In general vendors are not supporting PCI, ISA or parallel port emulators on Linux
+
+For information on a specific debug probe please contact the manufacturer.
+
+# Distribution Validation #
+
+CCS is validated on a defined set of Linux distributions.  Typically this is the latest Ubuntu LTS, the previous Ubuntu LTS and a CentOS distribution (to represent RedHat).
+
+# Installation Instructions  #
+
+CCS requires a 64-bit distribution of Linux. 32-bit distributions are not supported with current versions of CCS.
+
+There is one 32-bit library required to support the compilers.
+From a terminal prompt, issue the following command to install it: <tt>sudo apt install libc6:i386</tt>. Please note that certain versions of Ubuntu require to use <tt>libc6-i386</tt> instead. 
+
+<font color="#FF0000"><b>IMPORTANT!</b></font> TI performs testing on Ubuntu LTS distributions and one CentOS distribution <b>only</b> and provides instructions for other distributions as a reference - sometimes these instructions are kindly provided by other developers with the intention to help others. In this case, consider these releases as <b>unsupported</b> and <b>untested</b>.
+<br>
+
+<font color="#FF0000"><b>NOTE</b></font>: Certain older SDKs and Compiler installers could hang when installing on a system with glibc2.26 and greater. While the component is installed correctly, the installer doesn't exit. In order to complete your installation of the component, kill off the hanging installer and remove the downloads folder from the <installdir>/eclipse directory, if it exists.
+
+<font color="#FF0000"><b>NOTE</b></font>: it is possible to install CCS as a superuser using sudo (gksu is not recommended), which automatically adds all the required driver udev rules at the end of the process. However this requires extra steps for regular operation of CCS as a regular user. Check the application note [Configuring CCS for multiuser](./application_notes/appnote-configuring_ccs_for_multiuser.html) for details.
+   - When installed as superuser using sudo, CCS must be run at the same privilege level to install updates.
+
+## Ubuntu 18.04 LTS ##
+- Tested on 18.04.4 bionic (with canonical partners repository enabled)
+- update system: <tt>sudo apt-get update</tt>
+- install dependent libraries: <tt>sudo apt-get install libc6:i386 libusb-0.1-4 build-essential</tt>
+- install CCS
+- if CCS was installed as user then run the driver install script
+  - go to &lt;CCS_INSTALL_DIR&gt;/ccsv7/install_scripts
+  - <tt>sudo ./install_drivers.sh</tt>
+
+## Ubuntu 16.04 LTS ##
+- Tested on 16.04.1 
+- update system: <tt>sudo apt-get update</tt>
+- install dependent libraries: <tt>sudo apt-get install libc6:i386</tt>
+- install CCS
+- if CCS was installed as user then run the driver install script
+   - go to &lt;CCS_INSTALL_DIR&gt;/ccsv7/install_scripts<br>
+   - <tt>sudo ./install_drivers.sh</tt>  
+
+## Ubuntu 12.04 LTS ##
+- Tested on 12.04.5 
+- update system: <tt>sudo apt-get update</tt>
+- install dependent libraries: <tt>sudo apt-get install libc6:i386 libXss1</tt>
+- install CCS
+- if CCS was installed as user then run the driver install script
+   - go to &lt;CCS_INSTALL_DIR&gt;/ccsv7/install_scripts<br>
+   - <tt>sudo ./install_drivers.sh</tt>  
+
+<font color="#FF0000"><b>NOTE</b></font>: When running CCS, there may be issues displaying content in the Getting Started view, App Center view and Resource Explorer. In such cases. go to 'Window -> Preferences -> Code Composer Studio' and change the browser type to "JavaFX WebKit". Apply the changes and restart CCS.      
+   
+## Linux Mint 18 ##
+- Tested on Linux 18 Xfce
+- update system: <tt>sudo apt-get update</tt>
+- install CCS
+- if CCS was installed as user then run the driver install script
+  - go to &lt;CCS_INSTALL_DIR&gt;/ccsv7/install_scripts<br>
+  - <tt>sudo ./install_drivers.sh</tt>
+
+## Debian GNU/Linux 9 (stretch) 64-bit ##
+- If you get a message about glibc try the following:
+   - From a terminal window, enter: <tt>$ software-properties-gtk</tt>
+   - Select the Developer Options tab. Check the Proposed updates (stretch-proposed-updates)
+   - Close the dialog.
+   - Once again, from a terminal window: <tt>$ sudo apt install libc6-i386</tt>
+   - Should work correctly now
+   - Now install CCS
+   - Go back and uncheck the Proposed updates (stretch-proposed-updates) option in the Developer Options Tab.   
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

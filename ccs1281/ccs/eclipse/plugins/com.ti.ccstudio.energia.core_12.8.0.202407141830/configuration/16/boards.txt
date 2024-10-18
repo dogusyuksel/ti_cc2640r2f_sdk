@@ -1,0 +1,171 @@
+#
+# This file augments Energia's .../hardware/<platform>/boards.txt properties files with 
+# 	additional information needed for CCS integration. All additional properties are prefixed
+#	with 'ccs.' to avoid conflicting with Energia's properties. 
+#
+# 	ccs.device_id				- Maps Energia's board-ids to CCS device-ids. 
+#									Overridden by board-specific property with same name.
+#
+#	ccs.connection				- Default connection XML file-name. Only used when device XML file doesn't specify
+#									a connection. Overridden by board-specific property with same name.
+#
+# 	ccs.platform_class			- Platform class-id, used for localizing common properties for multiple platforms. 
+#									Defaults to class 'default' when not specified.
+#
+#	ccs.board_id_override		- Overrides Energia's board-id. Energia's boards.txt files are out-dated 
+#									in some cases, and associate boards with wrong MCU.
+#
+#	ccs.framework_source_dir	- Wiring framework source directory (EMT).
+#									Overridden by board-specific property with same name.
+#
+#	ccs.main_template_file		- Template for the main.cpp file (EMT).
+#									Overridden by board-specific property with same name.
+#
+#	ccs.physical_board			- TODO
+#
+# ============================================================================================
+
+
+
+# Default platform-class -------------------------------------------------------------------------------------------
+
+default.ccs.compiler_flags						= -I"{ccs.platform_root}/variants/{build.variant}" \
+													-I"{ccs.platform_root}/cores/{build.core}" \
+													-DF_CPU={build.f_cpu}
+
+
+
+# EMT platform-class -------------------------------------------------------------------------------------------
+
+emt.ccs.framework_source_dir					= {ccs.energia_root}/hardware/common
+emt.ccs.main_template_file						= {ccs.platform_root}/cores/{build.core}/main.template
+
+emt.ccs.compiler_flags							= @"{ccs.platform_root}/variants/{build.variant}/compiler.opt" \
+													-I"{ccs.platform_root}/variants/{build.variant}" \
+													-I"{ccs.platform_root}/variants/{build.variant}/*" \
+													-I"{ccs.energia_root}/hardware/common" \
+													-I"{ccs.platform_root}/cores/{build.core}" \
+													-I"{ccs.platform_root}/cores/{build.core}/*"
+
+emt.ccs.linker_flags							= -T"{ccs.platform_root}/variants/{build.variant}/linker.cmd" \
+													-L"{ccs.platform_root}/variants/{build.hardware}" \
+													-L"{ccs.energia_root}/hardware/common" \
+													-L"{ccs.energia_root}/hardware/common/libs" \
+													-L"{ccs.platform_root}/cores/{build.core}/driverlib"
+
+
+
+# Platform c2000 -------------------------------------------------------------------------------
+
+c2000.ccs.connection							= TIXDS100v2_Connection.xml
+
+c2000.ccs.compiler_flags						= --asm_extension=S -ml -mt --gcc -v28 --gen_func_subsections=on \
+													-D{build.mcu}
+									
+c2000.ccs.linker_flags							= --stack_size=0x300 --entry_point=code_start \
+													-i"{ccs.platform_root}/variants/{build.variant}" \
+													-i"{ccs.platform_root}/cores/{build.core}"
+									
+c2000.ccs.hex_flags								= -boot -sci8 -a -o "${BuildArtifactFileBaseName}.txt"
+
+c2000.lptms320f28027.ccs.device_id				= TMS320C28XX.TMS320F28027
+c2000.lptms320f28027.ccs.linker_flags			= -l"{ccs.platform_root}/cores/{build.core}/f2802x_common/cmd/F28027.cmd" \
+													-l"{ccs.platform_root}/cores/{build.core}/f2802x_headers/cmd/F2802x_Headers_nonBIOS.cmd"
+
+c2000.lptms320f28069.ccs.device_id				= TMS320C28XX.TMS320F28069
+c2000.lptms320f28069.ccs.linker_flags			= -l"{ccs.platform_root}/cores/{build.core}/F2806x_common/cmd/F28069.cmd" \
+													-l"{ccs.platform_root}/cores/{build.core}/F2806x_headers/cmd/F2806x_Headers_nonBIOS.cmd"
+
+
+
+# Platform cc3200 ------------------------------------------------------------------------------
+
+cc3200.ccs.device_id							= Cortex M.CC3200
+cc3200.ccs.connection							= Stellaris_ICDI_Connection.xml
+
+cc3200.ccs.compiler_flags						= -Os -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions \
+													-mthumb -march=armv7e-m -mcpu=cortex-m4
+
+cc3200.ccs.linker_flags							= -nostartfiles -nostdlib --gc-sections --entry=ResetISR \
+													-L"{ccs.platform_root}/cores/{build.core}/driverlib" \
+													-ldriverlib -lm -lc -lgcc
+									
+cc3200.ccs.hex_flags							= -O binary
+
+
+
+# Platform cc3200emt ---------------------------------------------------------------------------
+
+cc3200emt.ccs.platform_class					= emt
+cc3200emt.ccs.device_id							= Cortex M.CC3200
+cc3200emt.ccs.connection						= Stellaris_ICDI_Connection.xml
+
+cc3200emt.ccs.compiler_flags					= -Os -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions \
+													-march=armv7e-m -mcpu=cortex-m4 -mfloat-abi=soft \
+													-DBOARD_{build.hardware} -DTARGET_IS_CC3200 -Dxdc__nolocalstring=1
+								
+cc3200emt.ccs.linker_flags						= -nostartfiles -static --gc-sections -Wl,--no-wchar-size-warning \
+													-ldriverlib -lstdc++ -lm -lc -lgcc -lnosys
+									
+cc3200emt.ccs.hex_flags							= -O binary
+
+cc3200emt.lpcc3200EMT.ccs.physical_board		= lpcc3200
+cc3200emt.RBLcc3200EMT.ccs.physical_board		= RBLcc3200
+cc3200emt.RBLWiFiMiniEMT.ccs.physical_board		= RBLWiFiMini
+
+
+
+# Platform lm4f --------------------------------------------------------------------------------
+
+lm4f.ccs.connection								= Stellaris_ICDI_Connection.xml
+
+lm4f.ccs.compiler_flags							= -Os -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions \
+													-mthumb -march=armv7e-m -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -fsingle-precision-constant
+
+lm4f.ccs.linker_flags							= -nostartfiles -nostdlib --gc-sections --entry=ResetISR \
+													-L"{ccs.platform_root}/cores/{build.core}/driverlib" \
+													-ldriverlib -lm -lc -lgcc
+									
+lm4f.ccs.hex_flags								= -O binary
+
+lm4f.lptm4c1230c3pm.ccs.board_id_override		= lptm4c123gh6pm
+
+lm4f.lplm4f120h5qr.ccs.device_id				= Cortex M.LM4F120H5QR
+lm4f.lptm4c123gh6pm.ccs.device_id				= Cortex M.TM4C123GH6PM
+lm4f.lptm4c1294ncpdt.ccs.device_id				= Cortex M.TM4C1294NCPDT
+
+
+
+# Platform msp430 ------------------------------------------------------------------------------
+
+msp430.ccs.compiler_flags						= -Os -ffunction-sections -fdata-sections -mmcu={build.mcu}
+msp430.ccs.linker_flags							= --gc-sections -u main -lm
+msp430.ccs.hex_flags							= -O ihex -R .eeprom
+					
+msp430.lpmsp430f5529.ccs.device_id				= MSP430F5529
+msp430.lpmsp430f5529_25.ccs.device_id			= MSP430F5529
+msp430.lpmsp430fr4133.ccs.device_id				= MSP430FR4133
+msp430.lpmsp430fr5739.ccs.device_id				= MSP430FR5739
+msp430.lpmsp430fr5969.ccs.device_id				= MSP430FR5969
+msp430.lpmsp430fr6989.ccs.device_id				= MSP430FR6989
+msp430.lpmsp430g2231.ccs.device_id				= MSP430G2231
+msp430.lpmsp430g2452.ccs.device_id				= MSP430G2452
+msp430.lpmsp430g2553.ccs.device_id				= MSP430G2553
+
+
+
+# Platform msp432 ------------------------------------------------------------------------------
+
+msp432.ccs.platform_class						= emt
+msp432.ccs.device_id							= MSP432P401R
+
+msp432.ccs.compiler_flags						= -Os -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions \
+													-mfloat-abi=hard -mfpu=fpv4-sp-d16 -fsingle-precision-constant \
+													-DBOARD_{build.hardware} -D__MSP432P401R__ -DTARGET_IS_MSP432P4XX -Dxdc__nolocalstring=1 \
+													-I"{ccs.platform_root}/cores/{build.core}/inc/CMSIS" \
+													-I"{ccs.platform_root}/cores/{build.core}/driverlib/MSP432P4xx"
+								
+msp432.ccs.linker_flags							= -nostartfiles -static --gc-sections -Wl,--no-wchar-size-warning \
+													-ldriverlib -lstdc++ -lm -lc -lgcc -lnosys
+
+

@@ -1,0 +1,40 @@
+GEL_PatchAssembly()
+-------------------
+
+Patches the memory with assembly patch string.
+
+**Syntax**
+
+**GEL_PatchAssembly(**\ address\ **,** page\ **, "**\ patchString\ **"
+);**
+
+**Parameters**
+
+addressis the address to which to patch an assembly instruction.
+
+pageidentifies the type of memory to fill: 0 (Program memory), 1 (Data
+memory) or 2 (I/O space)
+
+For processors that do not have more than one type of memory, use 0 for
+this Parameters.
+
+patchStringis the assembly string to patch into memory. The simulator
+allows you to access a data file through a memory address. This function
+connects a data file to a memory (port) address.
+
+**Description**
+
+This function loads an assembly string patchString at address on page.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: Yes
+
+**Example**
+
+GEL_PatchAssembly(0x1000,1, "LAR AR4,#01h");
+
+**Note:**\ Patch assembly is not supported for C6000 targets (actual or
+simulated).

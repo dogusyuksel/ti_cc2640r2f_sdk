@@ -1,0 +1,756 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8.1. General &mdash; Code Composer Studio 12.8.0 Documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Code Composer Studio 12.8.0 Documentation" href="index.html"/>
+        <link rel="up" title="8. Frequently Asked Questions" href="index_faqs.html"/>
+        <link rel="next" title="9. Troubleshooting" href="index_troubleshooting.html"/>
+        <link rel="prev" title="8. Frequently Asked Questions" href="index_faqs.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="https://www.ti.com">
+            <img src="_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Code Composer Studio
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                12.8.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ccs_glossary.html">1. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_overview.html">2. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_installation.html">3. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_updates.html">4. Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_getting-started.html">5. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_project-management.html">6. Projects and Build</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index_debug.html">7. Debug</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index_faqs.html">8. Frequently Asked Questions</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8.1. General</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#does-ccs-still-support-32-bit-windows-systems">8.1.1. Does CCS still support 32-bit Windows systems?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-can-i-use-my-xds510usb-debug-probe-with-ccs">8.1.2. How can I use my XDS510USB debug probe with CCS?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#are-simulators-no-longer-included-with-ccs">8.1.3. Are simulators no longer included with CCS?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#are-c54x-devices-supported-in-ccs">8.1.4. Are C54x devices supported in CCS?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-i-use-dsp-bios-with-current-releases-of-ccs">8.1.5. Can I use DSP/BIOS with current releases of CCS?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#which-operating-systems-are-supported-by-ccs">8.1.6. Which operating systems are supported by CCS?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-i-modify-the-maximum-java-heap-size-for-eclipse">8.1.7. How do I modify the maximum Java heap size for Eclipse?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-do-i-need-to-avoid-non-alphanumeric-unicode-characters-in-my-paths">8.1.8. Why do I need to avoid non-alphanumeric (unicode) characters in my paths?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-the-best-way-to-look-up-a-bug">8.1.9. What is the best way to look up a bug?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#is-this-the-last-ccs-version-based-on-the-eclipse-ide">8.1.10. Is this the last CCS version based on the Eclipse IDE?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">8.2. Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-i-troubleshoot-ccs-installation-errors">8.2.1. How do I troubleshoot CCS Installation Errors?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-i-install-multiple-versions-of-ccs-on-my-computer">8.2.2. Can I install multiple versions of CCS on my computer?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-the-difference-between-the-web-installer-and-the-offline-installer">8.2.3. What is the difference between the web installer and the offline installer?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#my-username-has-unicode-characters-and-ccs-fails-to-install-how-do-i-resolve-this">8.2.4. My username has Unicode characters and CCS fails to install. How do I resolve this?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-does-the-linux-installer-just-exit-without-doing-anything">8.2.5. Why does the Linux installer just exit without doing anything?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-does-the-windows-installer-just-exit-without-doing-anything">8.2.6. Why does the Windows installer just exit without doing anything?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#after-installing-on-linux-why-does-ccs-refuse-to-open">8.2.7. After installing on Linux, why does CCS refuse to open?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#after-installing-ccs-i-found-out-some-features-such-as-certain-processor-families-or-debug-probes-are-missing-is-there-a-way-to-add-these-features">8.2.8. After installing CCS, I found out some features (such as certain processor families or debug probes) are missing. Is there a way to add these features?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#when-installing-ccs-it-says-an-error-occured-cant-read-update-no-such-variable-how-do-i-resolve-this">8.2.9. When installing CCS it says <em>An error occured: can’t read ”update“: no such variable</em>. How do I resolve this?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#when-trying-to-install-compiler-tools-ccs-says-it-is-already-installed-but-it-is-actually-not-how-do-i-fix-it">8.2.10. When trying to install compiler tools, CCS says it is already installed but it is actually not. How do I fix it?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-can-i-perform-a-silent-or-unattended-installation-of-ccs">8.2.11. How can I perform a silent or unattended installation of CCS?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-i-install-ccs-inside-c-program-files">8.2.12. Can I install CCS inside <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files</span></code>?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#licensing">8.3. Licensing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-the-licensing-policy-for-ccs">8.3.1. What is the licensing policy for CCS?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#updates">8.4. Updates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-i-get-updates-to-ccs">8.4.1. How do I get updates to CCS?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-i-search-for-new-features-for-ccs">8.4.2. How do I search for new features for CCS?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#when-installing-ccs-updates-i-get-a-dialog-box-that-warns-me-that-the-feature-is-unsigned-is-this-a-problem">8.4.3. When installing CCS updates I get a dialog box that warns me that the feature is unsigned. Is this a problem?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#general-ide">8.5. General IDE</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#certain-views-like-the-getting-started-view-app-center-resource-explorer-and-code-analysis-views-are-blank-in-ccs-linux-how-do-i-fix-this">8.5.1. Certain views like the Getting Started view, App Center, Resource Explorer, and Code Analysis views are blank in CCS Linux. How do I fix this?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-does-moving-the-mouse-in-the-sysconfig-resource-explorer-or-rov-views-cause-ccs-linux-to-flicker-rapidly">8.5.2. Why does moving the mouse in the SysConfig, Resource Explorer, or ROV views cause CCS Linux to flicker rapidly?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-is-the-data-for-the-inclusive-size-column-in-the-stack-usage-view-blank">8.5.3. Why is the data for the Inclusive Size column in the Stack Usage view blank?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#projects">8.6. Projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-i-override-the-temp-and-tmp-environment-variables-that-are-used-to-determine-where-temporary-files-are-placed-during-ccs-build-process">8.6.1. How do I override the TEMP and TMP environment variables that are used to determine where temporary files are placed during CCS build process?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#is-it-possible-to-convert-a-non-rtsc-ccs-project-to-a-rtsc-project-and-vice-versa">8.6.2. Is it possible to convert a non-RTSC CCS project to a RTSC project, and vice-versa?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#during-project-build-a-ccslinker-opt-file-sometimes-gets-passed-to-the-linker-instead-of-the-list-of-object-files-what-is-this-file-and-when-is-it-used">8.6.3. During project build, a ccsLinker.opt file sometimes gets passed to the linker instead of the list of object files . What is this file and when is it used?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-can-i-resolve-build-error-10234-d-unresolved-symbols-remain">8.6.4. How can I resolve <em>build error #10234-D: unresolved symbols remain</em>?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-resolve-project-build-error-xdc-cfg-sourcedir-build-of-generated-source-libraries-failed-exit-status-2-when-building-a-ti-rtos-based-project">8.6.5. How to resolve <em>Project build error: xdc.cfg.SourceDir : Build of generated source libraries failed: exit status = 2:</em> when building a TI-RTOS based project?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-i-convert-an-executable-project-to-a-library-project">8.6.6. Can I convert an Executable Project to a Library Project?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#debug">8.7. Debug</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#i-get-data-verification-errors-when-loading-my-program-what-does-it-mean">8.7.1. I get Data Verification errors when loading my program. What does it mean?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-does-the-debugger-message-can-t-find-a-source-file-at-or-no-source-available-mean">8.7.2. What does the debugger message <em>Can't find a source file at</em> or <em>No source available</em> mean?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-is-the-difference-between-run-resume-and-free-run">8.7.3. What is the difference between Run/Resume and Free Run?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-can-i-view-non-debuggable-devices-and-routers-in-the-debug-view">8.7.4. How can I view non debuggable devices and routers in the Debug view?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#in-multi-core-devices-the-cio-console-prints-out-the-cpu-core-name-after-every-output-character-is-there-a-way-to-prevent-this">8.7.5. In multi-core devices, the CIO console prints out the CPU-core name after every output character. Is there a way to prevent this?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-i-debug-two-boards-using-two-separate-emulators-at-the-same-time">8.7.6. Can I debug two boards using two separate emulators at the same time?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#when-debugging-a-program-in-cache-why-do-cache-lines-get-invalidated">8.7.7. When debugging a program in cache, why do cache lines get invalidated?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#after-connecting-to-target-and-loading-the-program-why-are-the-menus-icons-for-target-execution-resume-suspend-step-etc-not-available-greyed-out">8.7.8. After connecting to target and loading the program why are the menus/icons for target execution (resume, suspend, step, etc) not available (greyed out)?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-i-resolve-this-error-when-launching-a-debug-session-could-not-fetch-next-record-for-sql-statement-and-running-fsclean-does-not-help">8.7.9. How do I resolve this error when launching a debug session “Could not fetch next record for SQL statement” and running fsclean does not help.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-i-resolve-error-cannot-read-system-setup-data-from-xml-file-file-path-name-ccxml-xml-configuration-file-has-no-configurations-root-node">8.7.10. How do I resolve error <em>Cannot read System Setup data from XML file &lt;file path/name&gt;.ccxml. XML configuration file has no &lt;configurations&gt; root node</em>?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#is-it-possible-for-the-graphs-view-and-properties-to-carry-over-from-one-ccs-session-to-another-so-when-ccs-is-restarted-the-graphs-come-up-again">8.7.11. Is it possible for the <strong>Graphs</strong> view and properties to carry over from one CCS session to another, so when CCS is restarted the graphs come up again?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-i-resolve-these-com-ti-dvt-energytrace-errors-when-i-start-up-ccs">8.7.12. How to I resolve these &quot;com/ti/dvt/energytrace&quot; errors when I start up CCS?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-isn-t-printf-working-when-running-code-in-ccs">8.7.13. Why isn't printf working when running code in CCS?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-do-i-use-printf-to-debug-my-application-running-on-simplelink-device">8.7.14. How do I use printf to debug my application running on SimpleLink device?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-can-i-use-system-analyzer-rtos-analyzer-to-debug-a-ti-rtos-sys-bios-application">8.7.15. How can I use System Analyzer/RTOS Analyzer to debug a TI-RTOS (SYS/BIOS) application?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index_troubleshooting.html">9. Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ccs_legal.html">10. License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Code Composer Studio</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index_faqs.html">8. Frequently Asked Questions</a> &raquo;</li>
+      
+    <li>8.1. General</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="https://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="general">
+<h1>8.1. General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="does-ccs-still-support-32-bit-windows-systems">
+<h2>8.1.1. Does CCS still support 32-bit Windows systems?<a class="headerlink" href="#does-ccs-still-support-32-bit-windows-systems" title="Permalink to this headline">¶</a></h2>
+<p>The last release to support 32-bit Windows is CCSv8.3.</p>
+</div>
+<div class="section" id="how-can-i-use-my-xds510usb-debug-probe-with-ccs">
+<h2>8.1.2. How can I use my XDS510USB debug probe with CCS?<a class="headerlink" href="#how-can-i-use-my-xds510usb-debug-probe-with-ccs" title="Permalink to this headline">¶</a></h2>
+<p>The last release to support the XDS510USB debug probe is CCSv8.3.</p>
+</div>
+<div class="section" id="are-simulators-no-longer-included-with-ccs">
+<h2>8.1.3. Are simulators no longer included with CCS?<a class="headerlink" href="#are-simulators-no-longer-included-with-ccs" title="Permalink to this headline">¶</a></h2>
+<p>The last release to support simulation is CCSv5.5.</p>
+</div>
+<div class="section" id="are-c54x-devices-supported-in-ccs">
+<h2>8.1.4. Are C54x devices supported in CCS?<a class="headerlink" href="#are-c54x-devices-supported-in-ccs" title="Permalink to this headline">¶</a></h2>
+<p>The last release to support C54x is CCSv5.5.</p>
+</div>
+<div class="section" id="can-i-use-dsp-bios-with-current-releases-of-ccs">
+<h2>8.1.5. Can I use DSP/BIOS with current releases of CCS?<a class="headerlink" href="#can-i-use-dsp-bios-with-current-releases-of-ccs" title="Permalink to this headline">¶</a></h2>
+<p>It is still possible to use DSP/BIOS with current releases of CCS and build
+projects. However, note that DSP/BIOS has been greatly deprecated in support and many advanced features like RTA are no longer available with current CCS versions.</p>
+</div>
+<div class="section" id="which-operating-systems-are-supported-by-ccs">
+<h2>8.1.6. Which operating systems are supported by CCS?<a class="headerlink" href="#which-operating-systems-are-supported-by-ccs" title="Permalink to this headline">¶</a></h2>
+<p>Please see the <a class="reference external" href="./ccs_overview.html#operating-system">related section in the Overview chapter</a>.</p>
+</div>
+<div class="section" id="how-do-i-modify-the-maximum-java-heap-size-for-eclipse">
+<h2>8.1.7. How do I modify the maximum Java heap size for Eclipse?<a class="headerlink" href="#how-do-i-modify-the-maximum-java-heap-size-for-eclipse" title="Permalink to this headline">¶</a></h2>
+<p>Information on the Heap and Java Virtual Machine (JVM) memory settings can be found in the <a class="reference external" href="ccs_troubleshooting.html#heap-and-jvm-settings">related section in the Troubleshooting chapter</a>.</p>
+</div>
+<div class="section" id="why-do-i-need-to-avoid-non-alphanumeric-unicode-characters-in-my-paths">
+<h2>8.1.8. Why do I need to avoid non-alphanumeric (unicode) characters in my paths?<a class="headerlink" href="#why-do-i-need-to-avoid-non-alphanumeric-unicode-characters-in-my-paths" title="Permalink to this headline">¶</a></h2>
+<p>Paths with non-alphanumeric characters can potentially cause various project management and build issues. In some cases, the build may go fine but clicking the <strong>Debug</strong> button may not start up the debugger. Or going to <strong>Project Properties → Debug</strong> may result in <em>error: Error reading Debug Properties</em>. Any of these symptoms could occur when using paths with non-alphanumeric characters.</p>
+<p>Examples of non-alphanumeric characters are <strong>&amp;</strong>, <strong>!</strong>, <strong>(</strong>, <strong>#</strong>, etc. It is recommended to avoid such characters in project names, source/header files/folders, CCS workspace folder names, system temp folder, etc. One exception is the underscore character <strong>_</strong>, which is normally accepted. A space/whitespace character, while acceptable in most cases, can cause issues with project builds (especially with SYS/BIOS projects) and the GUI Composer runtime. Hence it is recommended to also avoid it.</p>
+<p>Note that many CCS files are cached in the user's home folder. The default workspace location is also in the home folder. If the user's username has non-alphanumeric characters, then this would cause issues since the path to there user's home folder is often a folder named the same as the username.</p>
+</div>
+<div class="section" id="what-is-the-best-way-to-look-up-a-bug">
+<h2>8.1.9. What is the best way to look up a bug?<a class="headerlink" href="#what-is-the-best-way-to-look-up-a-bug" title="Permalink to this headline">¶</a></h2>
+<p>Visit the <a class="reference external" href="https://sir.ext.ti.com/">TI Bug and Enhancement System</a>. Enter the bug ID in the search box on the upper right. If the search fails, please surround the bug ID with &quot;quotes&quot; and try again.</p>
+<p>Note that the system TI uses to maintain reports on bugs and enhancements made a transition in early 2020. The identifiers of the newer entries all begin with EXT (ex: EXT_EP-9524). The identifiers of the older entries begin with something else. As of this writing, finding an older entry requires surrounding the identifier with &quot;quotes&quot;.</p>
+</div>
+<div class="section" id="is-this-the-last-ccs-version-based-on-the-eclipse-ide">
+<h2>8.1.10. Is this the last CCS version based on the Eclipse IDE?<a class="headerlink" href="#is-this-the-last-ccs-version-based-on-the-eclipse-ide" title="Permalink to this headline">¶</a></h2>
+<p>Yes. Future versions of CCS will be based on the <a class="reference external" href="https://theia-ide.org/">Theia IDE</a>.</p>
+</div>
+</div>
+<div class="section" id="installation">
+<h1>8.2. Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="how-do-i-troubleshoot-ccs-installation-errors">
+<h2>8.2.1. How do I troubleshoot CCS Installation Errors?<a class="headerlink" href="#how-do-i-troubleshoot-ccs-installation-errors" title="Permalink to this headline">¶</a></h2>
+<p>CCS installation errors may be caused by a variety of reasons.</p>
+<ul class="simple">
+<li>Please review the <a class="reference external" href="./ccs_troubleshooting.html#installation">related section in the Troubleshooting chapter</a>.</li>
+<li>If you are using the web installer, try the offline installer.</li>
+<li>Search the <a class="reference external" href="https://e2e.ti.com/">E2E forums</a> if a similar issue has been previously reported.</li>
+</ul>
+<p>If the above recommendations do not help resolve the issue, post a new question to the E2E forums.</p>
+</div>
+<div class="section" id="can-i-install-multiple-versions-of-ccs-on-my-computer">
+<h2>8.2.2. Can I install multiple versions of CCS on my computer?<a class="headerlink" href="#can-i-install-multiple-versions-of-ccs-on-my-computer" title="Permalink to this headline">¶</a></h2>
+<p>Yes. Multiple versions of CCS can be installed on the same machine as
+long as they are installed in different directories. It is also recommend not to share workspaces between different versions of CCS.</p>
+</div>
+<div class="section" id="what-is-the-difference-between-the-web-installer-and-the-offline-installer">
+<h2>8.2.3. What is the difference between the web installer and the offline installer?<a class="headerlink" href="#what-is-the-difference-between-the-web-installer-and-the-offline-installer" title="Permalink to this headline">¶</a></h2>
+<p>The web installer is a lightweight installation program. The initial
+download is very small and enables the selection of features and device
+support to install. Once the selections are made the installer will then
+download the appropriate packages to complete the desired selection.</p>
+<p>The offline installer, or full installer, is a larger installation
+program. The download contains all of the available installation
+options. This installer does not require internet connectivity to run.
+This installer is recommended if your firewall or anti-virus software is
+blocking the web installer.</p>
+</div>
+<div class="section" id="my-username-has-unicode-characters-and-ccs-fails-to-install-how-do-i-resolve-this">
+<h2>8.2.4. My username has Unicode characters and CCS fails to install. How do I resolve this?<a class="headerlink" href="#my-username-has-unicode-characters-and-ccs-fails-to-install-how-do-i-resolve-this" title="Permalink to this headline">¶</a></h2>
+<p>Please see <a class="reference external" href="ccs_faqs.html#why-do-i-need-to-avoid-non-alphanumeric-unicode-characters-in-my-paths">this FAQ</a>.</p>
+</div>
+<div class="section" id="why-does-the-linux-installer-just-exit-without-doing-anything">
+<h2>8.2.5. Why does the Linux installer just exit without doing anything?<a class="headerlink" href="#why-does-the-linux-installer-just-exit-without-doing-anything" title="Permalink to this headline">¶</a></h2>
+<p>The installer requires some packages to be installed in order to run.
+You are likely missing one or more of these packages. Please refer to
+<a class="reference external" href="../ccs_linux_host_support.html">Linux Host Support</a> for more
+information on installing on Linux.</p>
+</div>
+<div class="section" id="why-does-the-windows-installer-just-exit-without-doing-anything">
+<h2>8.2.6. Why does the Windows installer just exit without doing anything?<a class="headerlink" href="#why-does-the-windows-installer-just-exit-without-doing-anything" title="Permalink to this headline">¶</a></h2>
+<p>There is some software that sets up the TCL_LIBRARY environment variable
+which is interfering with the CCS installer. Please unset this variable
+temporarily, before trying the install.</p>
+</div>
+<div class="section" id="after-installing-on-linux-why-does-ccs-refuse-to-open">
+<h2>8.2.7. After installing on Linux, why does CCS refuse to open?<a class="headerlink" href="#after-installing-on-linux-why-does-ccs-refuse-to-open" title="Permalink to this headline">¶</a></h2>
+<p>When double-clicking the desktop icon nothing happens, and if launching
+from a command line, the following error is shown:</p>
+<pre>
+user@host:<tt>/opt/ti/ccsv6/eclipse$ ./ccstudio </tt>
+Permission denied
+If this continues, please run fsclean or set TI_APPDATA_DIR to directory you have permissions to access
+</pre><p>This may happen when updating or installing a newer version of the same
+stream of CCS (8.0.0 to 8.1.0, for example). The cause is that, if CCS
+was previously launched as root, the temporary directory in the user
+area may have become tainted and its ownership was set to root. In other
+words, the temporary CCS directory would look similar to:</p>
+<pre>
+user@host:~/.ti$ ls -al
+total 20
+drwxr-xr-x   3 root     root      4096 Jan 24  2014 .
+drwxr-xr-x 135 user     user      12288 Jan 26 11:25 ..
+drwxr-xr-x   3 root     root      4096 Jan 24  2014 CCSv6
+-rw-r--r--   1 root     root         0 Jan 24  2014 .lock
+</pre><p>To fix this, use chown to change the ownership of all the directories
+and the .lock file back to the user</p>
+<pre>
+user@host:~/.ti$ sudo chown -hR user:user * .lock
+</pre></div>
+<div class="section" id="after-installing-ccs-i-found-out-some-features-such-as-certain-processor-families-or-debug-probes-are-missing-is-there-a-way-to-add-these-features">
+<h2>8.2.8. After installing CCS, I found out some features (such as certain processor families or debug probes) are missing. Is there a way to add these features?<a class="headerlink" href="#after-installing-ccs-i-found-out-some-features-such-as-certain-processor-families-or-debug-probes-are-missing-is-there-a-way-to-add-these-features" title="Permalink to this headline">¶</a></h2>
+<p>Yes. Simply re-run the installer executable (either online or offline).
+Follow the installer screens and select the same directory as the
+original install. Keep following the installer screens and select the
+missing components.</p>
+<p>Certain features (such as code generation tools updates) can be
+installed from inside CCS (using menu <strong>Help → Install New Software</strong>),
+however this method cannot be used to add support for additional
+processsor families and debug probes. You would need to re-run the
+installer to add this support. Check the <a class="reference external" href="./ccs_updates.html#changing-the-code-composer-studio-installation">CCS
+Updates</a>
+page for more details.</p>
+</div>
+<div class="section" id="when-installing-ccs-it-says-an-error-occured-cant-read-update-no-such-variable-how-do-i-resolve-this">
+<h2>8.2.9. When installing CCS it says <em>An error occured: can’t read ”update“: no such variable</em>. How do I resolve this?<a class="headerlink" href="#when-installing-ccs-it-says-an-error-occured-cant-read-update-no-such-variable-how-do-i-resolve-this" title="Permalink to this headline">¶</a></h2>
+<p>Make sure you are installing CCS to a clean directory where a previous
+installation does not exist.</p>
+</div>
+<div class="section" id="when-trying-to-install-compiler-tools-ccs-says-it-is-already-installed-but-it-is-actually-not-how-do-i-fix-it">
+<h2>8.2.10. When trying to install compiler tools, CCS says it is already installed but it is actually not. How do I fix it?<a class="headerlink" href="#when-trying-to-install-compiler-tools-ccs-says-it-is-already-installed-but-it-is-actually-not-how-do-i-fix-it" title="Permalink to this headline">¶</a></h2>
+<p>This could happen if a prior attempt at installing the compiler tools
+did not complete properly. In such cases, the menu <strong>Help → Installation
+Details → Installed Software</strong> will list that version of compiler tools
+as installed, however the files will really not be in the file system
+and the compiler version will not be in the list of Discovered Tools
+under menu <strong>Window → Preferences → Code Composer Studio → Build →
+Compilers</strong>.</p>
+<p>To resolve the issue, look for the compiler installer executable in the
+folder &lt;ccs_install_dir&gt;/ccsv[x]/eclipse/downloads. It will be named
+something like ti_cgt_tms470_5.0.11_windows_installer.exe, for example.
+Run the installer manually as administrator and tell it to install into
+the &lt;ccs_install_dir&gt;/ccsv[x]/tools/compiler/arm_&lt;version&gt; directory.</p>
+</div>
+<div class="section" id="how-can-i-perform-a-silent-or-unattended-installation-of-ccs">
+<h2>8.2.11. How can I perform a silent or unattended installation of CCS?<a class="headerlink" href="#how-can-i-perform-a-silent-or-unattended-installation-of-ccs" title="Permalink to this headline">¶</a></h2>
+<p>CCS can be installed from command line interface with several options, including unattended installation. Please refer to the <a class="reference external" href="../ccs_installer-cli.html">CCS Installer Usage article</a> for more details.</p>
+</div>
+<div class="section" id="can-i-install-ccs-inside-c-program-files">
+<h2>8.2.12. Can I install CCS inside <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files</span></code>?<a class="headerlink" href="#can-i-install-ccs-inside-c-program-files" title="Permalink to this headline">¶</a></h2>
+<p>It is not recommended to install in <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files</span></code> since it can block CCS updates. Also, <a class="reference external" href="./ccs_faqs.html#why-do-i-need-to-avoid-non-alphanumeric-unicode-characters-in-my-paths">directories with whitespaces can also potentially cause issues</a> in specific cases.</p>
+<p>If it is still desired to install inside <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files</span></code>, please follow the below steps:</p>
+<ul class="simple">
+<li>Install CCS as usual into <code class="docutils literal notranslate"><span class="pre">C:\ti\ccs&lt;version&gt;</span></code>.</li>
+<li>Navigate to <code class="docutils literal notranslate"><span class="pre">C:\ti\ccs&lt;version&gt;\ccs\eclipse\plugins\com.ti.ccstudio.base_*\</span></code></li>
+<li>In the properties file, change all occurrences of the current path to the new intended path.</li>
+<li>Copy the the entire CCS install folder (<code class="docutils literal notranslate"><span class="pre">C:\ti\ccs&lt;version&gt;</span></code>) to <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files</span></code></li>
+<li>Only required if xdctools is being used (but you might want to do this anyway to ensure a cleaner install)</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>Start <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\ccs&lt;version&gt;\ccs\eclipse\ccstudio.exe</span></code> as an administrator</li>
+<li>Once CCS is running, open the <strong>Window → Preferences → Code Composer Studio → Products</strong> page</li>
+<li>Press the <strong>Refresh</strong> button and install/save any changes being proposed</li>
+<li>Allow CCS to restart, and then exit</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li>From a Windows command prompt (as a user, not administrator), browse to <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\ccs&lt;version&gt;\ccs\eclipse\ccstudio.exe</span></code> and run <code class="docutils literal notranslate"><span class="pre">ccstudio.exe</span> <span class="pre">-clean</span></code>.</li>
+</ul>
+<p>Known limitations:</p>
+<ul class="simple">
+<li>Autodetect doesn’t work and will prompt with an error message.</li>
+<li>Updating, installing new compilers, etc can potentially require a set of steps derived from the above procedure (IE, running as admin, running <code class="docutils literal notranslate"><span class="pre">-clean</span></code>, etc)</li>
+</ul>
+</div>
+</div>
+<div class="section" id="licensing">
+<h1>8.3. Licensing<a class="headerlink" href="#licensing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-the-licensing-policy-for-ccs">
+<h2>8.3.1. What is the licensing policy for CCS?<a class="headerlink" href="#what-is-the-licensing-policy-for-ccs" title="Permalink to this headline">¶</a></h2>
+<p>There is no license fee associated with CCS. Users are free to download
+and install Code Composer Studio without having to purchase a license.</p>
+<p>For more details on the license, please refer to <a class="reference external" href="./ccs_legal.html">Licensing chapter</a>.</p>
+</div>
+</div>
+<div class="section" id="updates">
+<h1>8.4. Updates<a class="headerlink" href="#updates" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="how-do-i-get-updates-to-ccs">
+<h2>8.4.1. How do I get updates to CCS?<a class="headerlink" href="#how-do-i-get-updates-to-ccs" title="Permalink to this headline">¶</a></h2>
+<p>By default CCS automatically checks for updates each time it starts.
+This update check will find updates to features that are already
+installed. For example, it will find updates to the CCS IDE, compiler
+bug fix release, and device support. It will not find new features
+including new feature revisions of the compiler. See the <a class="reference external" href="./ccs_updates.html">CCS
+Updates</a> page for more details.</p>
+</div>
+<div class="section" id="how-do-i-search-for-new-features-for-ccs">
+<h2>8.4.2. How do I search for new features for CCS?<a class="headerlink" href="#how-do-i-search-for-new-features-for-ccs" title="Permalink to this headline">¶</a></h2>
+<p>The CCS App Center which is accessible from the View menu is useful for
+finding new features. The App Center will highlight a selection of new
+features that are relevant to the device families that you have
+installed.</p>
+<p>There are a few other ways to find and install new compiler tools. Refer
+to the procedures described in the <a class="reference external" href="../ccs_compiler-updates.html">Compiler
+Updates</a> article.</p>
+</div>
+<div class="section" id="when-installing-ccs-updates-i-get-a-dialog-box-that-warns-me-that-the-feature-is-unsigned-is-this-a-problem">
+<h2>8.4.3. When installing CCS updates I get a dialog box that warns me that the feature is unsigned. Is this a problem?<a class="headerlink" href="#when-installing-ccs-updates-i-get-a-dialog-box-that-warns-me-that-the-feature-is-unsigned-is-this-a-problem" title="Permalink to this headline">¶</a></h2>
+<p>Most updates released by TI are signed, however not all of them are.
+Similarly an update or feature from a partner may not be digitally
+signed. When this happens CCS produces a warning noting that the feature
+has not been signed. In general these are safe to ignore but it is best
+to always make sure you know where the update is coming from before
+installing it.</p>
+</div>
+</div>
+<div class="section" id="general-ide">
+<h1>8.5. General IDE<a class="headerlink" href="#general-ide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="certain-views-like-the-getting-started-view-app-center-resource-explorer-and-code-analysis-views-are-blank-in-ccs-linux-how-do-i-fix-this">
+<h2>8.5.1. Certain views like the Getting Started view, App Center, Resource Explorer, and Code Analysis views are blank in CCS Linux. How do I fix this?<a class="headerlink" href="#certain-views-like-the-getting-started-view-app-center-resource-explorer-and-code-analysis-views-are-blank-in-ccs-linux-how-do-i-fix-this" title="Permalink to this headline">¶</a></h2>
+<p>Please see the <a class="reference external" href="./ccs_troubleshooting.html#gtk3-for-ccs-linux">related section in the Troubleshooting chapter</a>.</p>
+</div>
+<div class="section" id="why-does-moving-the-mouse-in-the-sysconfig-resource-explorer-or-rov-views-cause-ccs-linux-to-flicker-rapidly">
+<h2>8.5.2. Why does moving the mouse in the SysConfig, Resource Explorer, or ROV views cause CCS Linux to flicker rapidly?<a class="headerlink" href="#why-does-moving-the-mouse-in-the-sysconfig-resource-explorer-or-rov-views-cause-ccs-linux-to-flicker-rapidly" title="Permalink to this headline">¶</a></h2>
+<p>Please see the <a class="reference external" href="./ccs_troubleshooting.html#gtk3-for-ccs-linux">related section in the Troubleshooting chapter</a>.</p>
+</div>
+<div class="section" id="why-is-the-data-for-the-inclusive-size-column-in-the-stack-usage-view-blank">
+<h2>8.5.3. Why is the data for the Inclusive Size column in the Stack Usage view blank?<a class="headerlink" href="#why-is-the-data-for-the-inclusive-size-column-in-the-stack-usage-view-blank" title="Permalink to this headline">¶</a></h2>
+<p>Please see the <a class="reference external" href="./ccs_troubleshooting.html#gtk3-for-ccs-linux">related section in the Troubleshooting chapter</a>.</p>
+</div>
+</div>
+<div class="section" id="projects">
+<h1>8.6. Projects<a class="headerlink" href="#projects" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="how-do-i-override-the-temp-and-tmp-environment-variables-that-are-used-to-determine-where-temporary-files-are-placed-during-ccs-build-process">
+<h2>8.6.1. How do I override the TEMP and TMP environment variables that are used to determine where temporary files are placed during CCS build process?<a class="headerlink" href="#how-do-i-override-the-temp-and-tmp-environment-variables-that-are-used-to-determine-where-temporary-files-are-placed-during-ccs-build-process" title="Permalink to this headline">¶</a></h2>
+<p>During the CCS build process, gmake creates temporary batch files in the
+directory that corresponds to the user’s TEMP and TMP System Environment
+Variables. The compiler also uses this directory for temporary files
+during compilation. CCS has the ability to let the user override these
+environment variables within the scope of CCS, so you don’t have to
+modify your global System variables.</p>
+<p>In CCS, open the menu <strong>Window → Preferences → C/C++ → Build →
+Environment</strong>, and use the Add button to add the two variables:</p>
+<p><img alt="image0" src="_images/temp_env_variables.png" /></p>
+<p>Set the appropriate button to either “Append” or “Replace” variables to
+native environment. On Windows, make sure to use backslashes (not
+forward slashes) in the paths. Also make sure the directory specified
+for the variables exists before running the build.</p>
+</div>
+<div class="section" id="is-it-possible-to-convert-a-non-rtsc-ccs-project-to-a-rtsc-project-and-vice-versa">
+<h2>8.6.2. Is it possible to convert a non-RTSC CCS project to a RTSC project, and vice-versa?<a class="headerlink" href="#is-it-possible-to-convert-a-non-rtsc-ccs-project-to-a-rtsc-project-and-vice-versa" title="Permalink to this headline">¶</a></h2>
+<p>To convert a non-RTSC project to a RTSC project, simply add a RTSC
+configuration file (.cfg) to the project. CCS will ask if you want to
+enable RTSC support for the project and if you click <strong>Yes</strong>, will
+convert it to a RTSC project.</p>
+<p>It is not possible to convert a RTSC project to a non-RTSC project. In
+this case, you would need to start over by creating a new project.</p>
+</div>
+<div class="section" id="during-project-build-a-ccslinker-opt-file-sometimes-gets-passed-to-the-linker-instead-of-the-list-of-object-files-what-is-this-file-and-when-is-it-used">
+<h2>8.6.3. During project build, a ccsLinker.opt file sometimes gets passed to the linker instead of the list of object files . What is this file and when is it used?<a class="headerlink" href="#during-project-build-a-ccslinker-opt-file-sometimes-gets-passed-to-the-linker-instead-of-the-list-of-object-files-what-is-this-file-and-when-is-it-used" title="Permalink to this headline">¶</a></h2>
+<p>The ccsLinker.opt file is generated by CCS and passed to the linker if
+the list of linker options and input files on the linker command line
+exceeds the maximum command line length of the host operating system. A
+project with a large number of object files (.obj) may pass the linker
+options and input files to the linker via the ccsLinker.opt file rather
+than directly on the command line.</p>
+</div>
+<div class="section" id="how-can-i-resolve-build-error-10234-d-unresolved-symbols-remain">
+<h2>8.6.4. How can I resolve <em>build error #10234-D: unresolved symbols remain</em>?<a class="headerlink" href="#how-can-i-resolve-build-error-10234-d-unresolved-symbols-remain" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="../sdto_ccs_build-errors.html#error-10234-d-unresolved-symbols-remain">This article</a> contains more information about the error and how to resolve it.</p>
+<p>In summary, the error is generated by the linker when it is unable to find the definition for the symbol. This typically happens if an object file or library containing the definition for the symbol was not provided to the linker. The build output in the CCS build console should provide information on which object files and libraries are passed to the linker.</p>
+<p>To resolve the error, locate the source file or library that contains the definition for the symbol and make sure that it is part of the project.</p>
+</div>
+<div class="section" id="how-to-resolve-project-build-error-xdc-cfg-sourcedir-build-of-generated-source-libraries-failed-exit-status-2-when-building-a-ti-rtos-based-project">
+<h2>8.6.5. How to resolve <em>Project build error: xdc.cfg.SourceDir : Build of generated source libraries failed: exit status = 2:</em> when building a TI-RTOS based project?<a class="headerlink" href="#how-to-resolve-project-build-error-xdc-cfg-sourcedir-build-of-generated-source-libraries-failed-exit-status-2-when-building-a-ti-rtos-based-project" title="Permalink to this headline">¶</a></h2>
+<p>A couple of different reasons could trigger this type of error.</p>
+<p><strong>Whitespaces or non-ASCII characters in paths referenced by the build tools</strong></p>
+<p>This was known to happen with older SYS/BIOS and TI-RTOS versions.</p>
+<p>To avoid the error, make sure that all software packages are installed in paths without spaces, and workspace and project names also do not have spaces or non-ASCII characters.</p>
+<p><strong>Cygwin related errors</strong></p>
+<p>Take a look at the CCS build console for errors prior to the above diagnostic. If the errors are coming from the shell, the problem is likely related to Cygwin (which is supplied with CCS and XDCtools).</p>
+<p>The types of shell errors that could occur are:</p>
+<p>unable to remap somedll to same address as parent</p>
+<ul class="simple">
+<li>couldn't allocate heap</li>
+<li>can't reserve memory for stack</li>
+<li>died waiting for dll loading</li>
+<li>child -1 - died waiting for longjmp before initialization</li>
+<li>child state waiting for longjmp</li>
+<li>STATUS_ACCESS_VIOLATION</li>
+<li>Resource temporarily unavailable</li>
+</ul>
+<p>To avoid the error, try the solutions described in this <a class="reference external" href="../sdto_ccs_build-errors.html#rtsc-diagnostics">CCS Build errors page</a>.</p>
+<p>The Cygwin type of errors may also manifest during the automatic library build step. The same solutions described above should help in this situation as well.</p>
+</div>
+<div class="section" id="can-i-convert-an-executable-project-to-a-library-project">
+<h2>8.6.6. Can I convert an Executable Project to a Library Project?<a class="headerlink" href="#can-i-convert-an-executable-project-to-a-library-project" title="Permalink to this headline">¶</a></h2>
+<p>It is still not possible to change the project type from executable to static library.</p>
+<p>However, one thing you could do to make it easier to move over the settings is to copy the entire list of options from the existing project and paste them into the new project.</p>
+<p>See <a class="reference external" href="https://e2e.ti.com/support/tools/code-composer-studio-group/ccs/f/code-composer-studio-forum/753375/faq-ccs-am5728-changing-an-exe-project-to-a-static-library/2782763#2782763">this E2E forum post</a> for more details.</p>
+</div>
+</div>
+<div class="section" id="debug">
+<h1>8.7. Debug<a class="headerlink" href="#debug" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="i-get-data-verification-errors-when-loading-my-program-what-does-it-mean">
+<h2>8.7.1. I get Data Verification errors when loading my program. What does it mean?<a class="headerlink" href="#i-get-data-verification-errors-when-loading-my-program-what-does-it-mean" title="Permalink to this headline">¶</a></h2>
+<p>See this article on <a class="reference external" href="../troubleshooting-data_verification_errors.html">Data Verification
+Errors</a></p>
+</div>
+<div class="section" id="what-does-the-debugger-message-can-t-find-a-source-file-at-or-no-source-available-mean">
+<h2>8.7.2. What does the debugger message <em>Can't find a source file at</em> or <em>No source available</em> mean?<a class="headerlink" href="#what-does-the-debugger-message-can-t-find-a-source-file-at-or-no-source-available-mean" title="Permalink to this headline">¶</a></h2>
+<p>The message means that the debugger is unable to find the specified source file for source level debug. This is common when the debugger is halted within a library, like the C runtime library, driverlib, etc. The message itself is harmless but please take look at <a class="reference external" href="./ccs_debug-main.html#debugging-library-code">this related section in the Debug chapter</a> for more details about the message and how to avoid it.</p>
+</div>
+<div class="section" id="what-is-the-difference-between-run-resume-and-free-run">
+<h2>8.7.3. What is the difference between Run/Resume and Free Run?<a class="headerlink" href="#what-is-the-difference-between-run-resume-and-free-run" title="Permalink to this headline">¶</a></h2>
+<p><strong>Free Run</strong> disables breakpoints before executing code on the target.
+Essentially you are running free of the debugger. You will not see
+updates to any views or printfs when performing a <strong>Free Run</strong>.</p>
+</div>
+<div class="section" id="how-can-i-view-non-debuggable-devices-and-routers-in-the-debug-view">
+<h2>8.7.4. How can I view non debuggable devices and routers in the Debug view?<a class="headerlink" href="#how-can-i-view-non-debuggable-devices-and-routers-in-the-debug-view" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>Debug</strong> view hides non-debuggable devices by default. If you wish
+to view these devices:</p>
+<p>Right-click in the <strong>Debug</strong> view and select <strong>Show All Cores</strong> in the
+context menu. A node called <strong>Non Debuggable Devices</strong> will appear which
+you can then expand to see the devices.</p>
+<p>You can also set this within a given debug configuration so every time a
+debug session is launched with that debug configuration (with or without
+associated project), the settings will take effect. To do this, go to
+CCS menu <strong>Run → Debug Configurations</strong>, and enable <strong>Non Debuggable
+Devices</strong> and <strong>Routers</strong> for the desired debug configuration.</p>
+<p><img alt="image1" src="_images/debug_config_nondebuggable_devices.png" /></p>
+</div>
+<div class="section" id="in-multi-core-devices-the-cio-console-prints-out-the-cpu-core-name-after-every-output-character-is-there-a-way-to-prevent-this">
+<h2>8.7.5. In multi-core devices, the CIO console prints out the CPU-core name after every output character. Is there a way to prevent this?<a class="headerlink" href="#in-multi-core-devices-the-cio-console-prints-out-the-cpu-core-name-after-every-output-character-is-there-a-way-to-prevent-this" title="Permalink to this headline">¶</a></h2>
+<p>In CCS all the CIO output goes to a single console by default, so CCS
+inserts the CPU-core name in front so that you can tell which core it is
+coming from. For assert() statements, the CPU-core name is added
+whenever a given CPU flushes its CIO buffer, making the output very
+difficult to read.</p>
+<p>There is an option to control this. Go to menu <strong>Run → Debug
+Configurations</strong>, select your debug configuration and uncheck the option
+<strong>Use the same console for the CIO of all CPUs</strong>.</p>
+<p><img alt="image2" src="_images/cio_multicore.png" /></p>
+</div>
+<div class="section" id="can-i-debug-two-boards-using-two-separate-emulators-at-the-same-time">
+<h2>8.7.6. Can I debug two boards using two separate emulators at the same time?<a class="headerlink" href="#can-i-debug-two-boards-using-two-separate-emulators-at-the-same-time" title="Permalink to this headline">¶</a></h2>
+<p>Yes, this is possible. See this article for more details: <a class="reference external" href="../sdto_ccs_multi-probe-debug.html">Debugging
+with Multiple Debug Probes</a>.</p>
+</div>
+<div class="section" id="when-debugging-a-program-in-cache-why-do-cache-lines-get-invalidated">
+<h2>8.7.7. When debugging a program in cache, why do cache lines get invalidated?<a class="headerlink" href="#when-debugging-a-program-in-cache-why-do-cache-lines-get-invalidated" title="Permalink to this headline">¶</a></h2>
+<p>For any kind of action that involves setting software breakpoints (this
+also includes single-stepping or running to an address) on C6x, the
+corresponding cache line is invalidated. This is expected behavior since
+software breakpoints require the breakpoint opcode being written to the
+program memory at that address.</p>
+</div>
+<div class="section" id="after-connecting-to-target-and-loading-the-program-why-are-the-menus-icons-for-target-execution-resume-suspend-step-etc-not-available-greyed-out">
+<h2>8.7.8. After connecting to target and loading the program why are the menus/icons for target execution (resume, suspend, step, etc) not available (greyed out)?<a class="headerlink" href="#after-connecting-to-target-and-loading-the-program-why-are-the-menus-icons-for-target-execution-resume-suspend-step-etc-not-available-greyed-out" title="Permalink to this headline">¶</a></h2>
+<p>Make sure that the <strong>Debug</strong> view was not inadvertently closed during
+the debug session. If it was closed, you can bring it back by going to
+the CCS menu <strong>View → Debug</strong>.</p>
+</div>
+<div class="section" id="how-do-i-resolve-this-error-when-launching-a-debug-session-could-not-fetch-next-record-for-sql-statement-and-running-fsclean-does-not-help">
+<h2>8.7.9. How do I resolve this error when launching a debug session “Could not fetch next record for SQL statement” and running fsclean does not help.<a class="headerlink" href="#how-do-i-resolve-this-error-when-launching-a-debug-session-could-not-fetch-next-record-for-sql-statement-and-running-fsclean-does-not-help" title="Permalink to this headline">¶</a></h2>
+<p>Try deleting the target cache files as described in the <a class="reference external" href="./ccs_troubleshooting.html#delete-target-cache-files">Troubleshooting
+chapter</a></p>
+</div>
+<div class="section" id="how-do-i-resolve-error-cannot-read-system-setup-data-from-xml-file-file-path-name-ccxml-xml-configuration-file-has-no-configurations-root-node">
+<h2>8.7.10. How do I resolve error <em>Cannot read System Setup data from XML file &lt;file path/name&gt;.ccxml. XML configuration file has no &lt;configurations&gt; root node</em>?<a class="headerlink" href="#how-do-i-resolve-error-cannot-read-system-setup-data-from-xml-file-file-path-name-ccxml-xml-configuration-file-has-no-configurations-root-node" title="Permalink to this headline">¶</a></h2>
+<p>Try creating and using a new target configuration file.</p>
+</div>
+<div class="section" id="is-it-possible-for-the-graphs-view-and-properties-to-carry-over-from-one-ccs-session-to-another-so-when-ccs-is-restarted-the-graphs-come-up-again">
+<h2>8.7.11. Is it possible for the <strong>Graphs</strong> view and properties to carry over from one CCS session to another, so when CCS is restarted the graphs come up again?<a class="headerlink" href="#is-it-possible-for-the-graphs-view-and-properties-to-carry-over-from-one-ccs-session-to-another-so-when-ccs-is-restarted-the-graphs-come-up-again" title="Permalink to this headline">¶</a></h2>
+<p>CCS saves the arrangement and contents of graph views when a debug
+session is terminated and restarted, but not when CCS itself is shut
+down and restarted. The solution to help streamline the input of
+graphing properties is the <strong>Export</strong> and <strong>Import</strong> buttons at the
+bottom of the graph properties. You could export the graph properties to
+a file and then import it back when you restart CCS.</p>
+</div>
+<div class="section" id="how-to-i-resolve-these-com-ti-dvt-energytrace-errors-when-i-start-up-ccs">
+<h2>8.7.12. How to I resolve these &quot;com/ti/dvt/energytrace&quot; errors when I start up CCS?<a class="headerlink" href="#how-to-i-resolve-these-com-ti-dvt-energytrace-errors-when-i-start-up-ccs" title="Permalink to this headline">¶</a></h2>
+<p>Please see <a class="reference external" href="./ccs_troubleshooting.html#com-ti-dvt-energytrace-errors">this related section in the Troubleshooting chapter</a>.</p>
+</div>
+<div class="section" id="why-isn-t-printf-working-when-running-code-in-ccs">
+<h2>8.7.13. Why isn't printf working when running code in CCS?<a class="headerlink" href="#why-isn-t-printf-working-when-running-code-in-ccs" title="Permalink to this headline">¶</a></h2>
+<p>Two common errors are running out of heap, and running out of stack.  For other errors that cause printf to fail, and how to address them, please see the article <a class="reference external" href="../sdto_cgt_tips_for_using_printf.html">Tips For Using Printf</a>.</p>
+</div>
+<div class="section" id="how-do-i-use-printf-to-debug-my-application-running-on-simplelink-device">
+<h2>8.7.14. How do I use printf to debug my application running on SimpleLink device?<a class="headerlink" href="#how-do-i-use-printf-to-debug-my-application-running-on-simplelink-device" title="Permalink to this headline">¶</a></h2>
+<p>Although printf is one of the first things that comes to mind when you think of debugging an application, it is not the best API to use to debug on embedded devices due to its impact on real-time performance and code footprint size. In SimpleLink SDKs the Display middle-ware driver is the recommended strategy for providing &quot;printf&quot; style debugging. For TI-RTOS applications, System_printf is another option.</p>
+<p>Please see the <strong>Debugging Output</strong> section of the SimpleLink MCU SDK User's Guide for more information. Also refer to the SimpleLink Academy that accompanies your version of SDK. The section on <strong>Debug Printing</strong> in SimpleLink Academy explores the different options available in the SDK.</p>
+<p>Although these documents focus on TI CCS compiler tools, the concepts also are applicable for other toolchains like GCC.</p>
+<p>Specifically for the MSP432 SimpleLink SDK, this <a class="reference external" href="https://e2e.ti.com/support/microcontrollers/msp-low-power-microcontrollers-group/msp430/f/msp-low-power-microcontroller-forum/822520/ccs-msp432p401r-printf-doesn-t-work">forum thread</a> shows the steps to get printf working with a no-RTOS gcc example project. Please note that this is intended as a guideline to demonstrate general concepts and these steps alone may not be sufficient for other SDK projects. As noted above, the preferred and recommended strategy is to use the Display module for debugging output.</p>
+</div>
+<div class="section" id="how-can-i-use-system-analyzer-rtos-analyzer-to-debug-a-ti-rtos-sys-bios-application">
+<h2>8.7.15. How can I use System Analyzer/RTOS Analyzer to debug a TI-RTOS (SYS/BIOS) application?<a class="headerlink" href="#how-can-i-use-system-analyzer-rtos-analyzer-to-debug-a-ti-rtos-sys-bios-application" title="Permalink to this headline">¶</a></h2>
+<p>See the below presentation that goes into the practical details of logging with TI-RTOS. It shows how to enable logging and debug an exception both when connected to CCS and when not connected (i.e. save log records to non-volatile memory and then import the saved records into CCS):</p>
+<p><a class="reference external" href="../ccs_tirtos_debugging-with-system-analyzer.pdf">Debugging TI-RTOS Programs with System Analyzer</a></p>
+<p>Below is the zip that contains example CCS projects that are discussed in the above presentation:</p>
+<p><a class="reference external" href="../TIRTOSExceptionLoggingExamples.zip">TI-RTOS Exception Logging Examples</a></p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="index_troubleshooting.html" class="btn btn-neutral float-right" title="9. Troubleshooting" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index_faqs.html" class="btn btn-neutral" title="8. Frequently Asked Questions" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyight 1995-2019</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'12.8.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script src="https://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

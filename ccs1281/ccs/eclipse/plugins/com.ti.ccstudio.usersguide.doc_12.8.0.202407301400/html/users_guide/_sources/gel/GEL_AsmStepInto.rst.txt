@@ -1,0 +1,39 @@
+GEL_AsmStepInto()
+-----------------
+
+Executes the next assembly instruction.
+
+**Syntax**
+
+**GEL_AsmStepInto(**\ [count] **);**
+
+**Parameters**
+
+count(optional) specifies the number of times the command is to be
+repeated. If no count is specified, GEL_ASMStepInto executes a single
+assembly instruction.
+
+**Description**
+
+Executes the next assembly instruction, whether source is available or
+not. Repeats count times. Optionally, you can enable/disable automatic
+focus change to a Disassembly window, in assembly or mixed mode, to show
+the current assembly instruction.
+
+**Synchronous**
+
+Synchronous from GEL: No
+
+Completely synchronous: No
+
+**Example**
+
+GEL_AsmStepInto();
+
+**Related Topics**
+
+`GEL_SrcStepInto <GEL_SrcStepInto.html>`__
+
+`GEL_SrcStepOver <GEL_SrcStepOver.html>`__
+
+`GEL_AsmStepOver <GEL_AsmStepOver.html>`__

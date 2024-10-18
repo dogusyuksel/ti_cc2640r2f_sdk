@@ -1,0 +1,21 @@
+Loading and Unloading GEL Files
+-------------------------------
+
+Startup GEL files defined in the target configuration file will be automatically loaded when a debug session is started.
+
+Additional GEL files can be loaded in the Debug Session using the **GEL Files** dialog accessible via the menu **Tools → GEL Files**.
+
+.. image:: ./images/gel_files_menu.png
+
+This will open the **GEL Files** view. From this view, users can see all loaded GEL files for that debug session and have the option to open them in the editor, reload the GEL file, remove/unload the GEL file, and load additional GEL files. Right-click in the view and select **Load GEL** to load a GEL file:
+
+.. image:: ./images/gel_load_gel.png
+
+When a new GEL file is loaded, it will appear in the **GEL Files** view. If the load was successful, the status will be listed as **Success**.
+
+.. image:: ./images/gel_file_success.png
+
+Right clicking on the view or on a file shows several self-explainable options:
+
+.. image:: ./images/gel_options_rclk.png
+

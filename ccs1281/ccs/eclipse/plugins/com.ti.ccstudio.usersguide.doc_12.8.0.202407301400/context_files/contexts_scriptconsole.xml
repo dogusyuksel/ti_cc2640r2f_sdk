@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.contexts"?>
+
+<!-- Workbench: Actions, Dialogs, Editors, Preference Pages, Property Pages, Views               -->
+<!-- Workbench: Resource Properties, Windows, Wizard Pages, Wizards, Help Menu, Browser Support  -->
+	
+
+<!-- Actions -->
+    
+<!--
+<context id="scriptingConsole_help" title="About Scripting Console View">
+        <description>The Scripting Console View allows you to enter JavaScript commands, such as Debug Server Script and GUI Script. </description>
+        <topic label="Scripting Console View" href="html/views_and_editors/scripting_console_view/scripting_console_overview.htm"/>
+</context>
+-->
+
+<!-- [12/4/2019 - Modifying paths to new CCS User Guide Help plugin] -->
+<contexts>
+<context id="scriptingConsole_help" title="About Scripting Console View">
+        <description>The Scripting Console View allows you to enter JavaScript commands, such as Debug Server Script and GUI Script. </description>
+        <topic label="CCS - Scripting Console View" href="html/ccs_scripting_console_view.html"/>
+</context>
+
+</contexts>

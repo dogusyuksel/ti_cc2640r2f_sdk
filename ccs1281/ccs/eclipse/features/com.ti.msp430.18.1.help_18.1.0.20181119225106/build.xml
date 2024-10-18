@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="P2buildRepo" default="build" basedir=".">
+
+	<property name="featuredir" value="/tmp/BcT9UjG8Kx/src/features/com.ti.msp430.18.1.help_18.1.0.20181119225106"/>
+	<property name="updateJar.omitRootfiles" value="false"/>
+	<property name="repolocation" value="/tmp/BcT9UjG8Kx/temp" />
+	<property name="tempLogFile" value="${java.io.tmpdir}/gatherfeaturelog.txt" />
+
+	<!-- Check whether the feature.xml has a plugin. If it does, assume there are no root files
+	     and generate the metadata using eclipse.publish.featuresAndBundles (which does not process root files). gatherFeature doesn't process plugins. -->
+	<condition property="build_featureAndPlugin" value="true" >
+		<resourcecontains resource="${featuredir}/feature.xml" substring="&lt;plugin" />
+	</condition>
+
+	<condition property="eclipse_exe" value="eclipse.exe" else="eclipse">
+		<os family="windows"/>
+	</condition>
+	
+	<target name="build">
+		<antcall target="build_feature" />
+		<antcall target="build_featuresAndPlugins" />
+	</target>
+	
+	<target name="build_feature" unless="build_featureAndPlugin">
+		<echo level="verbose" message="feature dir is ${featuredir}"/>
+		<echo level="verbose" message="repolocation dir is ${repolocation}"/>
+
+		<record action="start"  name="${tempLogFile}" />		
+			<eclipse.gatherFeature
+				metadataRepository="file:${repolocation}"
+				artifactRepository="file:${repolocation}"
+				buildResultFolder="${featuredir}"
+				baseDirectory="${featuredir}"
+			/>
+		<record action="stop"  name="${tempLogFile}" />
+		<!-- Check whether an error string appears in the gatherFeature output. I don't see any other way to detect an exception from this app. -->
+		<fail message="gatherFeature error return for ${featuredir}">
+			<condition>
+				<resourcecontains resource="${tempLogFile}" substring="Status ERROR"/>
+			</condition>
+		</fail>		
+		<delete file="${tempLogFile}" />
+		
+		<exec executable="${eclipseInstall}/${eclipse_exe}" failonerror="true" >
+			<arg value="-nosplash"/>
+			<arg value="-vm"/>
+			<arg value="${java.home}/bin"/>  <!-- Use the same VM as what we were launched with -->
+			<arg value="-application"/>
+			<arg value="org.eclipse.equinox.p2.publisher.CategoryPublisher"/>
+			<arg value="-metadataRepository"/>
+			<arg value="file:/${repolocation}"/>
+			<arg value="-categoryDefinition"/>
+			<arg value="file:/${featuredir}/category.xml"/>
+		</exec>
+	</target>
+	
+	<target name="build_featuresAndPlugins" if="build_featureAndPlugin">
+		<echo level="verbose" message="Publishing feature with plugin ..."/>		 
+		<!-- since featuresAndBundles publisher assumes the feature has already been built,
+		     the extra files in the template need to be deleted. -->
+		<delete includeEmptyDirs="true">
+			<fileset dir="${featuredir}" excludes="feature.xml,category.xml,build.xml" />
+			<fileset dir="${featuredir}" includes="**/rootfiles" />
+		</delete>
+		<eclipse.publish.featuresAndBundles
+			metadataRepository="file:${repolocation}"
+			artifactRepository="file:${repolocation}"
+			category="file:${featuredir}/category.xml" 
+		>
+			<features dir="${featuredir}" />
+			<bundles dir="${featuredir}/../../plugins" includes="*" />
+		</eclipse.publish.featuresAndBundles>
+
+	</target>
+	
+</project>

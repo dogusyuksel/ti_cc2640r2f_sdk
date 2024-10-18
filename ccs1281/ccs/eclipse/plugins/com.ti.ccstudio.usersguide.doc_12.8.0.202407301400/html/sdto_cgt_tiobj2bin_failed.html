@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+
+<meta name="description" content="Describes what happened when tiobj2bin failed "> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="TI Code Generation Tools">
+<meta name="product-link" content="https://www.ti.com/tool/TI-CGT">
+
+<!-- Change the title text for your page -->
+<title>Tiobj2bin Failed</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+# Introduction
+
+You are here because are seeing a diagnostic similar to:
+
+```
+tiobj2bin.bat failed on \some\path\bin\ofd470.exe
+Please see http://processors.wiki.ti.com/index.php/Tiobj2bin_Failed
+```
+
+This page gives the full context of this diagnostic.
+
+# Background
+
+This section presumes you aren't even aware you ran the DOS batch file
+tiobj2bin.bat, or the Linux shell script tiobj2bin. Such is often the case.
+
+Some systems require that the executable be programmed into flash memory. The
+software which does this programming does not accept the executable object
+file (the .out file) produced by the linker. Instead, it expects a much
+simpler binary file. The utility tiobj2bin converts the executable object file
+into the binary file. A post-build step in the CCS project invokes tiobj2bin
+with the proper arguments.
+
+The details of how tiobj2bin works are best learned by reading the file. For
+now, it is enough to know that important steps in the process are carried out
+by these tools:
+
+- OFD
+    - Object File Display utility
+    - Typical name: armofd.exe
+    - Found in the \bin directory of the compiler tools
+- HEX
+    - Hex conversion utility
+    - Typical name: armhex.exe
+    - Found in the \bin directory of the compiler tools
+- MKHEX
+    - Auto-generates a hex command file
+    - Name: mkhex4bin.exe
+    - Comes from the [Code Generation Tools XML Processing Scripts](http://software-dl.ti.com/ccs/esd/documents/sdto_cgt_cg_xml_overview.html)
+    - Found in _ccs install root_\utils\tiobj2bin
+
+As for tiobj2bin itself ...
+
+- TIOBJ2BIN
+    - Converts executable object file to simple binary file
+    - Name: tiobj2bin.bat (Windows) or tiobj2bin (Linux)
+    - Comes from the [Code Generation Tools XML Processing Scripts](http://software-dl.ti.com/ccs/esd/documents/sdto_cgt_cg_xml_overview.html)
+    - Found in _ccs install root_\utils\tiobj2bin
+
+# What Failed
+
+The TI ARM compiler tools changed the names of the executables starting with
+release version 5.0.0. Among other changes, ofd470.exe changed to armofd.exe,
+and hex470.exe changed to armhex.exe. Consider what happens with an older CCS
+project which has a post-build step that uses tiobj2bin. That post build
+step still invokes ofd470.exe and hex470.exe by name. Fortunately,
+tiobj2bin detects when this happens, and automatically changes the name
+ofd470.exe to armofd.exe. The same is done for hex470.exe and armhex.exe.
+
+If you see the diagnostic above, then the part of the script which changes
+these executable names has failed. The command name shown in the diagnostic is
+the original form of that command before any change. For reasons unknown,
+neither of ofd470.exe or armofd.exe can be found. Or, perhaps neither of
+hex470.exe or armhex.exe can be found. If a full directory path to the
+executable is supplied, then that directory is searched. If no directory path
+is supplied, then the system path is searched.
+
+## One Use Case: Change from TI ARM Compiler to GCC ARM Compiler
+
+Here is one way this circumstance may occur. A CCS project is started using
+the TI ARM compiler. At some later point, the compiler is changed to the GCC
+ARM compiler. This change may be applied to an existing build configuration,
+or by adding a build configuration. Either way, the updated or new build
+configuration inherits many properties from the initial build configuration.
+One of these properties is referring to armofd with something like
+${CG_TOOL_ROOT}/bin/armofd . When the build configuration changes, the
+variable CG_TOOL_ROOT changes from a TI compiler location to a GCC compiler
+location. The GCC compiler location has neither armofd or armhex. Thus, you
+see the diagnostic.
+
+The solution in this case is to change how the binary file is created. No
+longer use tiobj2bin, but use GCC objcopy instead. Delete the post-build step,
+and instead use the GNU tool's objcopy utility to convert the .out to binary.
+You can do this in CCS by going into Project Properties->Build->GNU Objcopy
+Utility. Enable the utility and then set the option to convert to binary.
+
+![](./images/sdto_cgt_gcc_arm_objcopy.png)
+
+
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+</xmp>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Creating and Managing Projects">
+	<topic label="Projects Overview" href="html/users_guide/ccs_project-management.html#projects-overview">
+    	<topic label="Workspaces" href="html/users_guide/ccs_project-management.html#workspaces"/>
+    	<topic label="Projects" href="html/users_guide/ccs_project-management.html#projects"/>
+		<topic label="Project Explorer View" href="html/users_guide/ccs_project-management.html#project-explorer-view"/>
+		<topic label="Types of Projects" href="html/users_guide/ccs_project-management.html#types-of-projects"/>
+    </topic>	
+	
+	<topic label="Working with Projects" href="html/users_guide/ccs_project-management.html#working-with-projects">
+    	<topic label="Creating New Projects" href="html/users_guide/ccs_project-management.html#creating-new-projects"/>
+    	<topic label="Adding or Linking Source Files to Project" href="html/users_guide/ccs_project-management.html#adding-or-linking-source-files-to-project"/>
+		<topic label="Importing Projects" href="html/users_guide/ccs_project-management.html#importing-projects"/>
+		<topic label="Renaming Projects" href="html/users_guide/ccs_project-management.html#renaming-projects"/>
+		<topic label="Copying Projects" href="html/users_guide/ccs_project-management.html#copying-projects"/>
+		<topic label="Deleting Projects" href="html/users_guide/ccs_project-management.html#deleting-projects"/>
+		<topic label="Sharing Projects" href="html/users_guide/ccs_project-management.html#sharing-projects"/>
+		<topic label="Organizing Projects" href="html/users_guide/ccs_project-management.html#organizing-projects"/>
+    </topic>	
+	
+	<topic label="Configuring Projects" href="html/users_guide/ccs_project-management.html#configuring-projects">
+    	<topic label="Project Properties" href="html/users_guide/ccs_project-management.html#project-properties"/>
+    	<topic label="Advanced Project Settings" href="html/users_guide/ccs_project-management.html#advanced-project-settings"/>
+		<topic label="Parallel Builds" href="html/users_guide/ccs_project-management.html#parallel-builds"/>
+		<topic label="Pre and Post Build Steps" href="html/users_guide/ccs_project-management.html#pre-and-post-build-steps"/>
+		<topic label="Changing the Make Utility" href="html/users_guide/ccs_project-management.html#changing-the-make-utility"/>
+		<topic label="Project Dependencies" href="html/users_guide/ccs_project-management.html#project-dependencies"/>
+		<topic label="File Specific Options" href="html/users_guide/ccs_project-management.html#file-specific-options"/>
+		<topic label="Changing Compiler Versions" href="html/users_guide/ccs_project-management.html#changing-compiler-versions"/>
+		<topic label="Changing SYSBIOS/XDCtools and Product Versions" href="html/users_guide/ccs_project-management.html#changing-sysbios-xdctools-and-product-versions"/>
+		<topic label="Build Configurations" href="html/users_guide/ccs_project-management.html#build-configurations"/>
+    </topic>	
+</toc>

@@ -1,0 +1,16 @@
+GEL return Statement
+--------------------
+
+GEL supports the standard C return statement within a function. The general form is:
+
+``return [expression];``
+
+A function does not need to return a value; a return statement with no expression causes control, but no useful value, to be returned to the caller. The same thing happens when the end of a function is reached without encountering a return statement. The calling function can ignore a value returned by a function.
+
+Unlike C, GEL function definitions do not specify their return type. The return type is determined during run-time.
+
+___
+
+**See also:**
+
+`GEL Functions: Alphabetical List <functions_list.html>`__

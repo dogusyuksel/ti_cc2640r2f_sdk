@@ -1,0 +1,24 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: b+j8UugW2+5H06rfHUS0yUjoYV7xL
+ +w5ilGQgq61Tyw=
+SHA-256-Digest-Manifest: YtrObMJUYop11YeL7KMRLLC/k6vpSDrV0QO4X4UN2UU=
+Created-By: 1.8.0_102 (Oracle Corporation)
+
+Name: dvt.zip
+SHA-256-Digest: RdT1uTVgiyc4AGZjxbUIuJYUNNgkb/adXq4J73xNTAc=
+
+Name: META-INF/p2.inf
+SHA-256-Digest: ODZzxUv8QquQ2jEZszTVdBIQb3fbD8oS8Jij6774nIg=
+
+Name: uninstall.xml
+SHA-256-Digest: bxmu/JfM3vtaFFiT9EBC+mIwQBk6/Xzr3oAE+NeEfVk=
+
+Name: install.xml
+SHA-256-Digest: cFfnVhpYhnNKlNVFp4ggx8XVpyOlLA1ht/JqIDf89oo=
+
+Name: com.ti.util.diskspacemonitor.jar
+SHA-256-Digest: FcY97z59kCUTC9DRLC53f+sD4AobQOaiKoDOQ9K3TbE=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: ak2bzOGDjLurhLXRsFA/N7TRhvaP+YA1QdnivLjcXtk=
+

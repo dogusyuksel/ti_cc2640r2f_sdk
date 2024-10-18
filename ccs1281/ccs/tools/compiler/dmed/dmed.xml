@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<problem_view_map version="1.0">
+    <problem_view_map_entry>
+        <regexp>(INTERNAL ERROR|internal error):</regexp>
+        <url priority="2" external="false">/home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/${TARGET}/internal_error.html</url> 
+        <url priority="0" external="false">/home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/internal_error.html</url> 
+    </problem_view_map_entry>
+    <problem_view_map_entry>
+        <regexp>(remark|warning|error|advice|debug|usage) #([0-9]*)\b</regexp>
+        <url priority="2" external="false">/home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/${TARGET}/\2.html</url> 
+        <url priority="0" external="false">/home/spire/ti/ccs1281/ccs/tools/compiler/dmed/HTML/\2.html</url> 
+    </problem_view_map_entry>
+</problem_view_map>

@@ -1,0 +1,35 @@
+GEL_PinDisconnect()
+-------------------
+
+For simulator only, disconnects a data file from an external interrupt
+pin.
+
+**Syntax**
+
+**GEL_PinDisconnect( "**\ pinName\ **" );**
+
+**Parameters**
+
+pinNamenames the external interrupt pin. The pinName must be enclosed in
+quotation marks.
+
+**Description**
+
+The simulator allows you to simulate external interrupt signals by
+connecting a data file that specifies interrupt intervals to an external
+interrupt pin. This function disconnects the currently connected data
+file from the specified pin.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: Yes
+
+**Example**
+
+GEL_PinDisconnect("INT0");
+
+**Related Topics**
+
+`GEL_PinConnect() <GEL_PinConnect.html>`__

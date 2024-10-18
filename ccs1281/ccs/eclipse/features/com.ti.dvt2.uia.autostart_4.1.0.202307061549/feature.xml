@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.dvt2.uia.autostart"
+      label="UIA Autostart"
+      version="4.1.0.202307061549"
+      provider-name="Texas Instruments">
+
+   <license>
+      Provided under the terms of the original DVT or Code Composer Studio License Agreement.
+   </license>
+
+   <includes
+         id="com.ti.dvt2.core"
+         version="4.1.0.202307061549"
+         optional="true"/>
+
+   <includes
+         id="com.ti.dvt2.core.ccstudio"
+         version="4.1.0.202307061549"
+         optional="true"/>
+
+   <requires>
+      <import feature="com.ti.dvt2.core" version="4.1.0.202307061549" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="com.ti.uia.autostart"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.uia.autostart.view"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.uia.transport.jtag"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.uia.transport.monitor"
+         download-size="0"
+         install-size="0"
+         version="4.1.0.202307061549"
+         unpack="false"/>
+
+</feature>

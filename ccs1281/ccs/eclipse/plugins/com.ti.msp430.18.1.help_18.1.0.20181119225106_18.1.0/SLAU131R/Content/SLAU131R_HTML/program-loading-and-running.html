@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-toc-path="">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset="utf-8" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>3 Program Loading and Running</title>
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../Resources/Stylesheets/headerfooter.css" rel="stylesheet" />
+        <script src="../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <div class="content">
+            <div id="contentBody">
+                <div class="row collapse">
+                    <div class="sideContent">
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                    <div id="loadContentArea">
+                        <div class="c12 docHeader">
+                            <div class="c4 docTitle">
+                                <p>
+                                    <strong>MSP430 Assembly
+							Language Tools
+			v18.1.0.LTS User's Guide</strong>
+                                    <br />
+                                    <span id="litnumber">SLAU131R</span> - REVISED JANUARY 2018</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="odsHeader">
+                        <p class="pdf">
+                            <a class="downloadPDF" href="http://www.ti.com/litv/SLAU131R" target="_new">Download PDF</a>
+                        </p>
+                    </div>
+                    <div id="loadContentArea1">
+                        <div class="subsection">
+                            <h2 id="SLAU1311006">
+                                <a MadCap:generatedBookmark="TOC" name="3_Program_Loading_and_Running">
+                                </a>
+                                <span class="section-label">3 </span>Program Loading and Running</h2>
+                            <div class="subsection">
+                                <p>Even after a program is written, compiled, and linked into an executable object file, there are still many tasks that need to be performed before the program does its job. The program must be loaded onto the target, memory and registers must be initialized, and the program must be set to running. </p>
+                                <p>Some of these tasks need to be built into the program itself. <i>Bootstrapping</i> is the process of a program performing some of its own initialization. Many of the necessary tasks are handled for you by the compiler and linker, but if you need more control over these tasks, it helps to understand how the pieces are expected to fit together. </p>
+                                <p>This chapter will introduce you to the concepts involved in program loading, initialization, and startup. </p>
+                                <p>This chapter does not cover <i>dynamic loading</i>.</p>
+                                <p>This chapter currently provides examples for the C6000 device family. Refer to your device documentation for various device-specific aspects of bootstrapping.</p>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="SLAU1314677">
+                                    <a MadCap:generatedBookmark="TOC" name="3.1_Loading">
+                                    </a>
+                                    <span class="section-label">3.1 </span>Loading</h3>
+                                <p>A program needs to be placed into the target device's memory before it may be executed. <i>Loading</i> is the process of preparing a program for execution by initializing device memory with the program's code and data. A <i>loader</i> might be another program on the device, an external agent (for example, a debugger), or the device might initialize itself after power-on, which is known as <i>bootstrap loading</i>, or <i>bootloading</i>.</p>
+                                <p>The loader is responsible for constructing the <i>load image</i> in memory before the program starts. The load image is the program's code and data in memory before execution. What exactly constitutes loading depends on the environment, such as whether an operating system is present. This section describes several loading schemes for bare-metal devices. This section is not exhaustive.</p>
+                                <p>A program may be loaded in the following ways:</p>
+                                <ul>
+                                    <li value="1">
+                                        <b>A debugger running on a connected host workstation.</b> In a typical embedded development setup, the device is subordinate to a host running a debugger such as Code Composer Studio (CCS). The device is connected with a communication channel such as a JTAG interface. CCS reads the program and writes the load image directly to target memory through the communications interface. </li>
+                                    <li value="2">
+                                        <b>Another program running on the device.</b> The running program can create the load image and transfer control to the loaded program. If an operating system is present, it may have the ability to load and run programs. </li>
+                                    <li value="3">
+                                        <b>"Burning" the load image onto an EPROM module.</b> The hex converter (<span>hex430</span>) can assist with this by converting the executable object file into a format suitable for input to an EPROM programmer. The EPROM is placed onto the device itself and becomes a part of the device's memory. See <span class="crossreference"><a href="hex-conversion-utility-description.html#STDZ0790730">Section 12</a></span> for details.</li>
+                                    <li value="4">
+                                        <b>Bootstrap loading from a dedicated peripheral, such as an I<sup>2</sup>C peripheral.</b> The device may require a small program called a bootloader to perform the loading from the peripheral. The hex converter can assist in creating a bootloader.</li>
+                                </ul>
+                                <div class="subsection">
+                                    <h4 id="SLAU1317366">
+                                        <a MadCap:generatedBookmark="TOC" name="3.1.1_Load_and_Run_Addresses">
+                                        </a>
+                                        <span class="section-label">3.1.1 </span>Load and Run Addresses</h4>
+                                    <p>Consider an embedded device for which the program's load image is burned onto EPROM/ROM. Variable data in the program must be writable, and so must be located in writable memory, typically RAM. However, RAM is <i>volatile</i>, meaning it will lose its contents when the power goes out. If this data must have an initial value, that initial value must be stored somewhere else in the load image, or it would be lost when power is cycled. The initial value must be copied from the non-volatile ROM to its run-time location in RAM before it is used. See <span class="crossreference"><a href="linker-description.html#STDZ0754560">Section 8.8</a></span> for ways this is done. </p>
+                                    <p>The <i>load address</i> is the location of an object in the load image. </p>
+                                    <p>The <i>run address</i> is the location of the object as it exists during program execution. </p>
+                                    <p>An <i>object</i> is a chunk of memory. It represents a section, segment, function, or data.</p>
+                                    <p>
+                                        <i>The load and run addresses for an object may be the same.</i> This is commonly the case for program code and read-only data, such as the <span>.const</span> section. In this case, the program can read the data directly from the load address. Sections that have no initial value, such as the <span>.bss</span> section, do not have load data and are considered to have load and run addresses that are the same. If you specify different load and run addresses for an uninitialized section, the linker provides a warning and ignores the load address.</p>
+                                    <p>
+                                        <i> The load and run addresses for an object may be different.</i> This is commonly the case for writable data, such as the .data section. The .data section's starting contents are placed in ROM and copied to RAM. This often occurs during program startup, but depending on the needs of the object, it may be deferred to sometime later in the program as described in <span class="crossreference"><a href="#STDZ0694629">Section 3.5</a></span>.</p>
+                                    <p>Symbols in assembly code and object files almost always refer to the run address. When you look at an address in the program, you are almost always looking at the run address. The load address is rarely used for anything but initialization.</p>
+                                    <p>The load and run addresses for a section are controlled by the linker command file and are recorded in the object file metadata.</p>
+                                    <p>The load address determines where a loader places the raw data for the section. Any references to the section (such as references to labels in it) refer to its run address. The application must copy the section from its load address to its run address before the first reference of the symbol is encountered at run time; this does <i>not</i> happen automatically simply because you specify a separate run address. For examples that specify load and run addresses, see <span class="crossreference"><a href="linker-description.html#STDZ075237">Section 8.5.6.1</a></span>.</p>
+                                    <p>For an example that illustrates how to move a block of code at run time, see <span class="crossreference"><a href="linker-description.html#STDZ0755089">Example 8-10</a></span>. To create a symbol that lets you refer to the load-time address, rather than the run-time address, see the <span class="crossreference"><a href="assembler-directives.html#IDlabeldesc">.label directive</a></span>. To use copy tables to copy objects from load-space to run-space at boot time, see <span class="crossreference"><a href="linker-description.html#STDZ0754560">Section 8.8</a></span>.</p>
+                                    <p>
+                                        <span>ELF format executable object files contain <i>segments</i>. See <span class="crossreference"><a href="introduction-to-object-modules.html#STDZ0691509">Section 2.3</a></span> for information about sections and segments. </span>
+                                    </p>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="SLAU1313538">
+                                        <a MadCap:generatedBookmark="TOC" name="3.1.2_Bootstrap_Loading">
+                                        </a>
+                                        <span class="section-label">3.1.2 </span>Bootstrap Loading</h4>
+                                    <p>The details of bootstrap loading (bootloading) vary a great deal between devices. Not every device supports every bootloading mode, and using the bootloader is optional. This section discusses various bootloading schemes to help you understand how they work. Refer to your device's data sheet to see which bootloading schemes are available and how to use them.</p>
+                                    <p>A typical embedded system uses bootloading to initialize the device. The program code and data may be stored in ROM or FLASH memory. At power-on, an on-chip bootloader (the <i>primary bootloader</i>) built into the device hardware starts automatically.</p>
+                                    <div class="figure">
+                                        <span class="caption" id="SLAU1314845">
+                                            <span class="figure-label">Figure 3-1 </span>Bootloading Sequence (Simplified)</span>
+                                        <img alt="bootprim_lau131.png" itemprop="image" src="ods/images/SLAU131R/bootprim_lau131.png" title="Bootloading Sequence (Simplified)" /> </div>
+                                    <p>The primary bootloader is typically very small and copies a limited amount of memory from a dedicated location in ROM to a dedicated location in RAM. (Some bootloaders support copying the program from an I/O peripheral.) After the copy is completed, it transfers control to the program. </p>
+                                    <p>For many programs, the primary bootloader is not capable of loading the entire program, so these programs supply a more capable secondary bootloader. The primary bootloader loads the secondary bootloader and transfers control to it. Then, the secondary bootloader loads the rest of the program and transfers control to it. There can be any number of layers of bootloaders, each loading a more capable bootloader to which it transfers control. </p>
+                                    <div class="figure">
+                                        <span class="caption" id="SLAU1312233">
+                                            <span class="figure-label">Figure 3-2 </span>Bootloading Sequence with Secondary Bootloader</span>
+                                        <img alt="bootsec_lau131.png" itemprop="image" src="ods/images/SLAU131R/bootsec_lau131.png" title="Bootloading Sequence with Secondary&#xA;    Bootloader" /> </div>
+                                    <div class="subsection">
+                                        <h4 id="SLAU1315894">
+                                            <a MadCap:generatedBookmark="TOC" name="3.1.2.1_Boot,_Load,_and_Run_Addresses">
+                                            </a>
+                                            <span class="section-label">3.1.2.1 </span>Boot, Load, and Run Addresses</h4>
+                                        <p>The <i>boot address</i> of a bootloaded object is where its raw data exists in ROM before power-on.</p>
+                                        <p> The boot, load, and run addresses for an object may all be the same; this is commonly the case for <span>.const</span> data. If they are different, the object's contents must be copied to the correct location before the object may be used. </p>
+                                        <p>The boot address may be different than the load address. The bootloader is responsible for copying the raw data to the load address.</p>
+                                        <p>The boot address is not controlled by the linker command file or recorded in the object file; it is strictly a convention shared by the bootloader and the program.</p>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="SLAU1317863">
+                                            <a MadCap:generatedBookmark="TOC" name="3.1.2.2_Primary_Bootloader">
+                                            </a>
+                                            <span class="section-label">3.1.2.2 </span>Primary Bootloader</h4>
+                                        <p>The detailed operation of the primary bootloader is device-specific. Some devices have complex capabilities such as booting from an I/O peripheral or configuring memory controller parameters. </p>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="SLAU1316356">
+                                            <a MadCap:generatedBookmark="TOC" name="3.1.2.3_Secondary_Bootloader">
+                                            </a>
+                                            <span class="section-label">3.1.2.3 </span>Secondary Bootloader</h4>
+                                        <p>The hex converter assumes the secondary bootloader is of a particular format. The hex converter's model bootloader uses a <i>boot table</i>. You can use whatever format you want, but if you follow this model, the hex converter can create the boot table automatically.</p>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="SLAU1317572">
+                                            <a MadCap:generatedBookmark="TOC" name="3.1.2.4_Boot_Table">
+                                            </a>
+                                            <span class="section-label">3.1.2.4 </span>Boot Table</h4>
+                                        <p>The input for the model secondary bootloader is the <i>boot table</i>. The boot table contains records that instruct the secondary bootloader to copy blocks of data contained in the table to specified destination addresses. The hex conversion utility automatically builds the boot table for the secondary bootloader. Using the utility, you specify the sections you want to initialize, the boot table location, and the name of the section containing the secondary bootloader routine and where it should be located. The hex conversion utility builds a complete image of the table and adds it to the program. </p>
+                                        <p>The boot table is target-specific. For C6000, the format of the boot table is simple. A header record contains a 4-byte field that indicates where the boot loader should branch after it has completed copying data. After the header, each section that is to be included in the boot table has the following contents: </p>
+                                        <ul>
+                                            <li value="1">4-byte field containing the size of the section </li>
+                                            <li value="2"> 4-byte field containing the destination address for the copy </li>
+                                            <li value="3">the raw data </li>
+                                            <li value="4">0 to 3 bytes of trailing padding to make the next field aligned to 4 bytes</li>
+                                        </ul>
+                                        <p>More than one section can be entered; a termination block containing an all-zero 4-byte field follows the last section. </p>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="SLAU1315433">
+                                            <a MadCap:generatedBookmark="TOC" name="3.1.2.5_Bootloader_Routine">
+                                            </a>
+                                            <span class="section-label">3.1.2.5 </span>Bootloader Routine</h4>
+                                        <p>The bootloader routine is a normal function, except that it executes before the C environment is set up. For this reason, it can't use the C stack, and it can't call any functions that have yet to be loaded!</p>
+                                        <p>The following sample code is for C6000 and is from <i>Creating a Second-Level Bootloader for FLASH Bootloading on TMS320C6000 Platform With Code Composer Studio</i> (<a href="http://www.ti.com/lit/pdf/SPRA999" target="_blank">SPRA999</a>).</p>
+                                        <div class="example">
+                                            <h4 id="SPRU186983">
+                                                <a MadCap:generatedBookmark="TOC" name="Example_3-1_Sample_Secondary_Bootloader_Routine">
+                                                </a>
+                                                <span class="example-label">Example 3-1 </span>Sample Secondary Bootloader Routine</h4>
+                                            <code>; ======== boot_c671x.s62 ========
+
+; global EMIF symbols defined for the c671x family
+ .include boot_c671x.h62
+ .sect ".boot_load" .global _boot
+_boot:
+;************************************************************************
+;* DEBUG LOOP − COMMENT OUT B FOR NORMAL OPERATION
+;************************************************************************
+zero B1
+_myloop: ; [!B1] B _myloop
+ nop 5
+_myloopend: nop
+;************************************************************************
+;* CONFIGURE EMIF
+;************************************************************************
+ ;****************************************************************
+ ; *EMIF_GCTL = EMIF_GCTL_V;
+ ;****************************************************************
+ mvkl EMIF_GCTL,A4
+ || mvkl EMIF_GCTL_V,B4
+ mvkh EMIF_GCTL,A4
+ || mvkh EMIF_GCTL_V,B4
+ stw B4,*A4
+ ;****************************************************************
+ ; *EMIF_CE0 = EMIF_CE0_V
+ ;****************************************************************
+ mvkl EMIF_CE0,A4
+ || mvkl EMIF_CE0_V,B4
+ mvkh EMIF_CE0,A4
+ || mvkh EMIF_CE0_V,B4
+ stw B4,*A4
+ ;****************************************************************
+ ; *EMIF_CE1 = EMIF_CE1_V (setup for 8−bit async)
+ ;****************************************************************
+ mvkl EMIF_CE1,A4
+ || mvkl EMIF_CE1_V,B4
+ mvkh EMIF_CE1,A4
+ || mvkh EMIF_CE1_V,B4
+ stw B4,*A4
+ ;****************************************************************
+ ; *EMIF_CE2 = EMIF_CE2_V (setup for 32−bit async)
+ ;****************************************************************
+ mvkl EMIF_CE2,A4
+ || mvkl EMIF_CE2_V,B4
+ mvkh EMIF_CE2,A4
+ || mvkh EMIF_CE2_V,B4
+ stw B4,*A4
+ ;****************************************************************
+ ; *EMIF_CE3 = EMIF_CE3_V (setup for 32−bit async)
+ ;****************************************************************
+ || mvkl EMIF_CE3,A4
+ || mvkl EMIF_CE3_V,B4 ;
+ mvkh EMIF_CE3,A4
+ || mvkh EMIF_CE3_V,B4
+ stw B4,*A4
+ ;****************************************************************
+ ; *EMIF_SDRAMCTL = EMIF_SDRAMCTL_V
+ ;****************************************************************
+ || mvkl EMIF_SDRAMCTL,A4
+ || mvkl EMIF_SDRAMCTL_V,B4 ;
+ mvkh EMIF_SDRAMCTL,A4
+ || mvkh EMIF_SDRAMCTL_V,B4
+ stw B4,*A4
+ ;****************************************************************
+ ; *EMIF_SDRAMTIM = EMIF_SDRAMTIM_V
+ ;****************************************************************
+ || mvkl EMIF_SDRAMTIM,A4
+ || mvkl EMIF_SDRAMTIM_V,B4 ;
+ mvkh EMIF_SDRAMTIM,A4
+ || mvkh EMIF_SDRAMTIM_V,B4
+ stw B4,*A4
+ ;****************************************************************
+ ; *EMIF_SDRAMEXT = EMIF_SDRAMEXT_V
+ ;****************************************************************
+ || mvkl EMIF_SDRAMEXT,A4
+ || mvkl EMIF_SDRAMEXT_V,B4 ;
+ mvkh EMIF_SDRAMEXT,A4
+ || mvkh EMIF_SDRAMEXT_V,B4
+ stw B4,*A4
+;****************************************************************************
+; copy sections
+;****************************************************************************
+ mvkl COPY_TABLE, a3 ; load table pointer
+ mvkh COPY_TABLE, a3
+ ldw *a3++, b1 ; Load entry point
+copy_section_top:
+ ldw *a3++, b0 ; byte count
+ ldw *a3++, a4 ; ram start address
+ nop 3
+[!b0] b copy_done ; have we copied all sections?
+ nop 5
+copy_loop:
+ ldb *a3++,b5
+ sub b0,1,b0 ; decrement counter
+[ b0] b copy_loop ; setup branch if not done
+[!b0] b copy_section_top
+ zero a1
+[!b0] and 3,a3,a1
+ stb b5,*a4++
+[!b0] and −4,a3,a5 ; round address up to next multiple of 4
+[ a1] add 4,a5,a3 ; round address up to next multiple of 4
+;****************************************************************************
+; jump to entry point
+;****************************************************************************
+copy_done:
+ b .S2 b1
+ nop 5</code>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="SLAU1316958">
+                                    <a MadCap:generatedBookmark="TOC" name="3.2_Entry_Point">
+                                    </a>
+                                    <span class="section-label">3.2 </span>Entry Point</h3>
+                                <p>The entry point is the address at which the execution of the program begins. This is the address of the startup routine. The startup routine is responsible for initializing and calling the rest of the program. For a C/C++ program, the startup routine is usually named _c_int00 (see <span class="crossreference"><a href="#SLAU1312470">Section 3.3.1</a></span>). After the program is loaded, the value of the entry point is placed in the PC register and the CPU is allowed to run. </p>
+                                <p>The object file has an entry point field. For a C/C++ program, the linker will fill in _c_int00 by default. You can select a custom entry point; see <span class="crossreference"><a href="linker-description.html#STDZ0753845">Section 8.4.10</a></span>. The device itself cannot read the entry point field from the object file, so it has to be encoded in the program somewhere. </p>
+                                <ul>
+                                    <li value="1">If you are using a bootloader, the boot table includes an entry point field. When it finishes running, the bootloader branches to the entry point. </li>
+                                    <li value="2">If you are using an interrupt vector, the entry point is installed as the RESET interrupt handler. When RESET is applied, the startup routine will be invoked. </li>
+                                    <li value="3">If you are using a hosted debugger, such as CCS, the debugger may explicitly set the program counter (PC) to the value of the entry point. </li>
+                                </ul>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="SLAU1316977">
+                                    <a MadCap:generatedBookmark="TOC" name="3.3_Run-Time_Initialization">
+                                    </a>
+                                    <span class="section-label">3.3 </span>Run-Time Initialization</h3>
+                                <p>After the load image is in place, the program can run. The subsections that follow describe bootstrap initialization of a C/C++ program. An assembly-only program may not need to perform all of these steps.</p>
+                                <div class="subsection">
+                                    <h4 id="SLAU1312470">
+                                        <a MadCap:generatedBookmark="TOC" name="3.3.1___c_int00">
+                                        </a>
+                                        <span class="section-label">3.3.1 </span> _c_int00</h4>
+                                    <p>The function _c_int00 is the <i>startup routine</i> (also called the <i>boot routine</i>) for C/C++ programs. It performs all the steps necessary for a C/C++ program to initialize itself. </p>
+                                    <p>The name _c_int00 means that it is the interrupt handler for interrupt number 0, RESET, and that it sets up the C environment. Its name need not be exactly _c_int00, but the linker sets _c_int00 as the entry point for C programs by default. The compiler's run-time-support library provides a default implementation of _c_int00. </p>
+                                    <p>The startup routine is responsible for performing the following actions:</p>
+                                    <ol>
+                                        <li value="1">Set up the stack</li>
+                                        <li value="2">Process the .cinit run-time initialization table to autoinitialize global variables (when using the --rom_model option)</li>
+                                        <li value="3">Call all global constructors (in .init_array) for C++</li>
+                                        <li value="4">Call the function main</li>
+                                        <li value="5">Call exit when main returns</li>
+                                    </ol>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="SPRU186516">
+                                        <a MadCap:generatedBookmark="TOC" name="3.3.2_RAM_Model_vs._ROM_Model">
+                                        </a>
+                                        <span class="section-label">3.3.2 </span>RAM Model vs. ROM Model</h4>
+                                    <p>
+                                        <span>In the EABI ROM model, the</span> .cinit section is loaded into memory along with other initialized sections. The linker defines a "cinit" symbol that points to the beginning of the initialization tables in memory. When the program begins running, the C boot routine copies data from these tables into the <span>.bss</span> section.</p>
+                                    <p>In the EABI RAM model, no .cinit records are generated at startup.</p>
+                                    <div class="subsection">
+                                        <h4 id="STDZ0756527">
+                                            <a MadCap:generatedBookmark="TOC" name="3.3.2.1_Autoinitializing_Variables_at_Run_Time_(--rom_model)">
+                                            </a>
+                                            <span class="section-label">3.3.2.1 </span>Autoinitializing Variables at Run Time (--rom_model)</h4>
+                                        <p> Autoinitializing variables at run time is the default method of autoinitialization. To use this method, invoke the linker with the --rom_model option.</p>
+                                        <p>Using this method, the .cinit section is loaded into memory along with all the other initialized sections. The linker defines a special symbol called cinit that points to the beginning of the initialization tables in memory. When the program begins running, the C boot routine copies data from the tables (pointed to by .cinit) into the specified variables in the <span>.bss</span> section. This allows initialization data to be stored in slow non-volatile memory and copied to fast memory each time the program is reset.</p>
+                                        <p>
+                                            <span class="crossreference">
+                                                <a href="#SPRU1863347">Figure 3-3</a>
+                                            </span> illustrates autoinitialization at run time. Use this method in any system where your application runs from code burned into slow memory or needs to survive a reset.</p>
+                                        <div class="figure">
+                                            <span class="caption" id="SPRU1863347">
+                                                <span class="figure-label">Figure 3-3 </span>Autoinitialization at Run Time</span> <img alt="runtime_init_tdz054.gif" itemprop="image" src="ods/images/SLAU131R/runtime_init_tdz054.gif" title="Autoinitialization at Run&#xA;    Time" /> </div>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="STDZ0754023">
+                                            <a MadCap:generatedBookmark="TOC" name="3.3.2.2_Initializing_Variables_at_Load_Time_(--ram_model)">
+                                            </a>
+                                            <span class="section-label">3.3.2.2 </span>Initializing Variables at Load Time (--ram_model)</h4>
+                                        <p> Initialization of variables at load time enhances performance by reducing boot time and by saving the memory used by the initialization tables. To use this method, invoke the linker with the --ram_model option.</p>
+                                        <p>When you use the --ram_model linker option, the linker sets the STYP_COPY bit in the .cinit section's header. This tells the loader not to load the .cinit section into memory. (The .cinit section occupies no space in the memory map.) The linker also sets the cinit symbol to -1 (normally, cinit points to the beginning of the initialization tables). This indicates to the boot routine that the initialization tables are not present in memory; accordingly, no run-time initialization is performed at boot time.</p>
+                                        <p>A loader must be able to perform the following tasks to use initialization at load time:</p>
+                                        <ul>
+                                            <li value="1">Detect the presence of the .cinit section in the object file.</li>
+                                            <li value="2">Determine that STYP_COPY is set in the .cinit section header, so that it knows not to copy the .cinit section into memory.</li>
+                                            <li value="3">Understand the format of the initialization tables.</li>
+                                        </ul>
+                                        <p>
+                                            <span class="crossreference">
+                                                <a href="#SPRU1868870">Figure 3-4</a>
+                                            </span> illustrates the initialization of variables at load time.</p>
+                                        <div class="figure">
+                                            <span class="caption" id="SPRU1868870">
+                                                <span class="figure-label">Figure 3-4 </span>Initialization at Load Time</span> <img alt="init_load_tdz054.gif" itemprop="image" src="ods/images/SLAU131R/init_load_tdz054.gif" title="Initialization at Load&#xA;    Time" /> </div>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="STDZ0751018">
+                                            <a MadCap:generatedBookmark="TOC" name="3.3.2.3_The_--rom_model_and_--ram_model_Linker_Options">
+                                            </a>
+                                            <span class="section-label">3.3.2.3 </span>The --rom_model and --ram_model Linker Options</h4>
+                                        <p> The following list outlines what happens when you invoke the linker with the --ram_model or --rom_model option.</p>
+                                        <ul>
+                                            <li value="1">The symbol _c_int00 is defined as the program entry point. The _c_int00 symbol is the start of the C boot routine in boot.obj; referencing _c_int00 ensures that boot.obj is automatically linked in from the appropriate run-time-support library. </li>
+                                            <li value="2">The .cinit output section is padded with a termination record to tell the boot routine (autoinitialize at run time) or the loader (initialize at load time) when to stop reading initialization tables.</li>
+                                            <li value="3">When you initialize at load time (--ram_model option): <ul><li value="1">The linker sets cinit to -1. This indicates that the initialization tables are not in memory, so no initialization is performed at run time.</li><li value="2">The STYP_COPY flag (0010h) is set in the .cinit section header. STYP_COPY is the special attribute that tells the loader to perform initialization directly and not to load the .cinit section into memory. The linker does not allocate space in memory for the .cinit section.</li></ul></li>
+                                            <li value="4">When you autoinitialize at run time (--rom_model option), the linker defines cinit as the starting address of the .cinit section. The C boot routine uses this symbol as the starting point for autoinitialization.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="subsection">
+                                    <h4 id="SLAU1319646">
+                                        <a MadCap:generatedBookmark="TOC" name="3.3.3_Copy_Tables">
+                                        </a>
+                                        <span class="section-label">3.3.3 </span>Copy Tables</h4>
+                                    <p>The RTS function copy_in can be used at run-time to move code and data around, usually from its load address to its run address. This function reads size and location information from copy tables. The linker automatically generates several kinds of copy tables. Refer to <span class="crossreference"><a href="linker-description.html#STDZ0754560">Section 8.8</a></span>.</p>
+                                    <p>You can create and control code overlays with copy tables. See <span class="crossreference"><a href="linker-description.html#STDZ0750716">Section 8.8.4</a></span> for details and examples.</p>
+                                    <p>Using copy tables is similar to performing run-time relocations as described in <span class="crossreference"><a href="#STDZ0694629">Section 3.5</a></span>, however copy tables require a specific table format.</p>
+                                    <div class="subsection">
+                                        <h4 id="SLAU1316688">
+                                            <a MadCap:generatedBookmark="TOC" name="3.3.3.1_BINIT">
+                                            </a>
+                                            <span class="section-label">3.3.3.1 </span>BINIT</h4>
+                                        <p>The BINIT (boot-time initialization) copy table is special in that the target will automatically perform the copying at auto-initialization time. Refer to <span class="crossreference"><a href="linker-description.html#STDZ0754157">Section 8.8.4.2</a></span> for more about the BINIT copy table name. The BINIT copy table is copied before .cinit processing.</p>
+                                    </div>
+                                    <div class="subsection">
+                                        <h4 id="SLAU1314725">
+                                            <a MadCap:generatedBookmark="TOC" name="3.3.3.2_CINIT">
+                                            </a>
+                                            <span class="section-label">3.3.3.2 </span>CINIT</h4>
+                                        <p>
+                                            <span>EABI .cinit tables are special kinds of copy tables. </span>
+                                            <span>Refer to <span class="crossreference"><a href="#STDZ0756527">Section 3.3.2.1</a></span> for more about using the .cinit section with the ROM model and <span class="crossreference"><a href="#STDZ0754023">Section 3.3.2.2</a></span> for more using it with the RAM model.</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="SLAU1318231">
+                                    <a MadCap:generatedBookmark="TOC" name="3.4_Arguments_to_main">
+                                    </a>
+                                    <span class="section-label">3.4 </span>Arguments to main</h3>
+                                <p>Some programs expect arguments to main (argc, argv) to be valid. Normally this isn't possible for an embedded program, but the TI runtime does provide a way to do it. The user must allocate an .args section of an appropriate size using the --args linker option. It is the responsibility of the loader to populate the .args section. It is not specified how the loader determines which arguments to pass to the target. The format of the arguments is the same as an array of pointers to char on the target.</p>
+                                <p>See <span class="crossreference"><a href="linker-description.html#STDZ0759076">Section 8.4.4</a></span> for information about allocating memory for argument passing.</p>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="STDZ0694629">
+                                    <a MadCap:generatedBookmark="TOC" name="3.5_Run-Time_Relocation">
+                                    </a>
+                                    <span class="section-label">3.5 </span>Run-Time Relocation</h3>
+                                <p>At times you may want to load code into one area of memory and move it to another area before running it. For example, you may have performance-critical code in an external-memory-based system. The code must be loaded into external memory, but it would run faster in internal memory. Because internal memory is limited, you might swap in different speed-critical functions at different times.</p>
+                                <p>The linker provides a way to handle this. Using the SECTIONS directive, you can optionally direct the linker to allocate a section twice: first to set its load address and again to set its run address. Use the <i>load</i> keyword for the load address and the <i>run</i> keyword for the run address. See <span class="crossreference"><a href="#SLAU1317366">Section 3.1.1</a></span> for more about load and run addresses. If a section is assigned two addresses at link time, all labels defined in the section are relocated to refer to the run-time address so that references to the section (such as branches) are correct when the code runs.</p>
+                                <p>If you provide only one allocation (either load or run) for a section, the section is allocated only once and loads and runs at the same address. If you provide both allocations, the section is actually allocated as if it were two separate sections of the same size.</p>
+                                <p>Uninitialized sections (such as <span>.bss</span>) are not loaded, so the only significant address is the run address. The linker allocates uninitialized sections only once; if you specify both run and load addresses, the linker warns you and ignores the load address.</p>
+                                <p>For a complete description of run-time relocation, see <span class="crossreference"><a href="linker-description.html#STDZ0756565">Section 8.5.6</a></span>.</p>
+                            </div>
+                            <div class="subsection">
+                                <h3 id="SLAU1316965">
+                                    <a MadCap:generatedBookmark="TOC" name="3.6_Additional_Information">
+                                    </a>
+                                    <span class="section-label">3.6 </span>Additional Information</h3>
+                                <p>See the following sections and documents for additional information:</p>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="linker-description.html#STDZ0759076">Section 8.4.4</a>
+                                    </span>, "Allocate Memory for Use by the Loader to Pass Arguments (--arg_size Option)"</p>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="linker-description.html#STDZ0753845">Section 8.4.10</a>
+                                    </span>, "Define an Entry Point (--entry_point Option)"</p>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="linker-description.html#STDZ075237">Section 8.5.6.1</a>
+                                    </span> ,"Specifying Load and Run Addresses"</p>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="linker-description.html#STDZ0754560">Section 8.8</a>
+                                    </span>, "Linker-Generated Copy Tables"</p>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="linker-description.html#STDZ0752677">Section 8.11.1</a>
+                                    </span>, "Run-Time Initialization"</p>
+                                <p>
+                                    <span class="crossreference">
+                                        <a href="hex-conversion-utility-description.html#STDZ0790730">Section 12</a>
+                                    </span>, "Hex Conversion Utility Description"</p>
+                                <p>"Run-Time Initialization," "Initialization by the Interrupt Vector," and "System Initialization" sections in the <i><span>MSP430</span> Optimizing C/C++ Compiler User's Guide </i></p>
+                                <p>
+                                    <i>Creating a Second-Level Bootloader for FLASH Bootloading on TMS320C6000 Platform With Code Composer Studio</i> (<a href="http://www.ti.com/lit/pdf/SPRA999" target="_blank">SPRA999</a>).</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="abstract.html">Back to Top</a>
+                    <p />
+                    <a href="http://www.go-dsp.com/forms/techdoc/doc_feedback.htm?litnum=SLAU131R&amp;partnum=MSP430">Submit Documentation Feedback</a>
+                    <p>Copyright© 2018, Texas Instruments Incorporated. An <a href="includes/important_notice.html">IMPORTANT NOTICE</a> for this document addresses availability, warranty, changes, use in safety-critical applications, intellectual property matters and other important disclaimers.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

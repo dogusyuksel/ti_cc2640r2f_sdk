@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ti.tools.common"
+      label="CCS and SAT Common Components Feature"
+      version="12.8.0.202407141830"
+      provider-name="Texas Instruments">
+
+   <description>
+      CCS and SAT Common Components Feature
+   </description>
+
+   <copyright>
+      Copyright Texas Instruments 2013-2014
+   </copyright>
+
+   <license>
+      See Code Composer Studio license for special terms and conditions.
+   </license>
+
+   <plugin
+         id="com.ti.browser"
+         download-size="0"
+         install-size="0"
+         version="8.0.0.202407141830"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.ccstudio.resource.explorer"
+         download-size="0"
+         install-size="0"
+         version="8.0.0.202407141830"/>
+
+   <plugin
+         id="com.ti.ccstudio.swt"
+         download-size="0"
+         install-size="0"
+         version="5.3.0.202407141830"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.common.core"
+         download-size="0"
+         install-size="0"
+         version="12.6.0.202407141830"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.common.core.utils.local"
+         download-size="0"
+         install-size="0"
+         version="8.0.0.202407141830"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.jna"
+         download-size="0"
+         install-size="0"
+         version="8.0.0.202407141830"
+         unpack="false"/>
+
+   <plugin
+         id="org.json"
+         download-size="0"
+         install-size="0"
+         version="8.0.0.202407141830"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.commons.io"
+         download-size="0"
+         install-size="0"
+         version="8.0.0.202407141830"
+         unpack="false"/>
+
+   <plugin
+         id="com.ti.common.ui"
+         download-size="0"
+         install-size="0"
+         version="11.0.0.202407141830"
+         unpack="false"/>
+
+</feature>

@@ -1,0 +1,42 @@
+GEL_SetTimer
+------------
+
+Scheduals a gel command to run periodically.
+
+**Format**
+
+**GEL_SetTimer(**\ milliseconds\ **,** timer_id\ **,
+"**\ callback\ **");**
+
+**Parameters**
+
+millisecondsspecifies the amount of time in milliseconds that should
+elapse between callbacks.
+
+timer_idspecifies a number to uniquely identify this timer.
+
+callbackis a string representing the GEL expression to evaluate every
+time the timer fires.
+
+**Description**
+
+Sets a timer that repeatedly fires every milliseconds. Every time the
+timer fires, the GEL expression defined in callback is executed. The
+timer keeps firing until GEL_CancelTimer is called. If a timer is
+already set with the specified id, no action is taken.
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: Yes
+
+**Example**
+
+GEL_SetTimer(2000, 1, "\*0x8010 = 0");
+
+GEL_SetTimer(5000, 2, "MyCallback()");
+
+**Related Topics**
+
+`GEL_CancelTimer <GEL_CancelTimer.html>`__

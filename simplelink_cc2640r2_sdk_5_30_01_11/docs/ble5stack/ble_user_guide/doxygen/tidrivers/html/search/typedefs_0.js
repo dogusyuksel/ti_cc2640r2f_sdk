@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['adc_5fconfig',['ADC_Config',['../_a_d_c_8h.html#af334849657f87b79a31392f89828299a',1,'ADC.h']]],
+  ['adc_5fhandle',['ADC_Handle',['../_a_d_c_8h.html#ac98b1222559c172df43505d672e1376c',1,'ADC.h']]],
+  ['adcbuf_5fcallback',['ADCBuf_Callback',['../_a_d_c_buf_8h.html#a477c377c65f8de04aa67ff7eefa0a4cf',1,'ADCBuf.h']]],
+  ['adcbuf_5fconfig',['ADCBuf_Config',['../_a_d_c_buf_8h.html#a630c696a789e6c298dc97b960f72e3d1',1,'ADCBuf.h']]],
+  ['adcbuf_5fhandle',['ADCBuf_Handle',['../_a_d_c_buf_8h.html#a9b9646efcf7a7fd38a2935abd940cf96',1,'ADCBuf.h']]],
+  ['adcbufcc26xx_5fadcchannellutentry',['ADCBufCC26XX_AdcChannelLutEntry',['../_a_d_c_buf_c_c26_x_x_8h.html#a99e197fd4f1d0021a0737f74f80d2643',1,'ADCBufCC26XX.h']]],
+  ['adcbufcc26xx_5fhwattrs',['ADCBufCC26XX_HWAttrs',['../_a_d_c_buf_c_c26_x_x_8h.html#a22b04734af9e7cbaa1915f92942918fc',1,'ADCBufCC26XX.h']]],
+  ['adcbufcc26xx_5fobject',['ADCBufCC26XX_Object',['../_a_d_c_buf_c_c26_x_x_8h.html#a7963f859847ffe0853c06219b63ceb42',1,'ADCBufCC26XX.h']]],
+  ['adcbufcc26xx_5fparamsextension',['ADCBufCC26XX_ParamsExtension',['../_a_d_c_buf_c_c26_x_x_8h.html#afac55b5d59cd880fecafb9a71f73162b',1,'ADCBufCC26XX.h']]],
+  ['adcbufcc26xx_5freference_5fsource',['ADCBufCC26XX_Reference_Source',['../_a_d_c_buf_c_c26_x_x_8h.html#a55267edc4a4440dd55b97f3384474f80',1,'ADCBufCC26XX.h']]],
+  ['adcbufcc26xx_5fsampling_5fduration',['ADCBufCC26XX_Sampling_Duration',['../_a_d_c_buf_c_c26_x_x_8h.html#aeccab39075ab39a107100cfbbc473c47',1,'ADCBufCC26XX.h']]],
+  ['adcbufcc26xx_5fsampling_5fmode',['ADCBufCC26XX_Sampling_Mode',['../_a_d_c_buf_c_c26_x_x_8h.html#a49a153bb66450bc16c5e2ac674fad698',1,'ADCBufCC26XX.h']]],
+  ['adccc26xx_5fhwattrs',['ADCCC26XX_HWAttrs',['../_a_d_c_c_c26_x_x_8h.html#a02974734e3c626de2dfe586e4498addf',1,'ADCCC26XX.h']]],
+  ['adccc26xx_5fobject',['ADCCC26XX_Object',['../_a_d_c_c_c26_x_x_8h.html#a2aca732c47705fd1004c9fa5d031620d',1,'ADCCC26XX.h']]],
+  ['adccc26xx_5freference_5fsource',['ADCCC26XX_Reference_Source',['../_a_d_c_c_c26_x_x_8h.html#a3690de700d303a304c078243b30df922',1,'ADCCC26XX.h']]],
+  ['adccc26xx_5fsampling_5fduration',['ADCCC26XX_Sampling_Duration',['../_a_d_c_c_c26_x_x_8h.html#a267282cd7cedc4f9562dd5ed3e112b7b',1,'ADCCC26XX.h']]],
+  ['adccc26xx_5ftrigger_5fsource',['ADCCC26XX_Trigger_Source',['../_a_d_c_c_c26_x_x_8h.html#a09a1c4f09a9c71437616da95458b10ea',1,'ADCCC26XX.h']]]
+];

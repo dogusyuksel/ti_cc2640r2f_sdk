@@ -1,0 +1,127 @@
+Defining Shared Memory
+----------------------
+
+Multiple cores on a single processor can share a block of memory. The GEL function *GEL_MapAddStr()* is used to add a range of shared memory to the memory map. The attributes of shared memory are specified as parameters to the function. For example, the access to shared memory may be RAM or ROM.
+
+Options can be used to control debugger functionality when debugging shared memory.
+
+**To Specify Shared Memory Attributes**
+
+Shared memory attributes are specified in the GEL_MapAddStr() function.
+
+``GEL_MapAddStr(address, page, length, attribute,  waitstate);``
+
+The function parameters *address*, *page*, *length*, and *waitstate* are specified as described in `GEL_MapAddStr() <GEL_MapAddStr.html>`__. However, the *attribute* parameter accepts additional attributes that specify shared memory. For example:
+
+``RAM|SHnC|CACHE``
+
+``ROM|SHnC|CACHE``
+
++-----------------------------------+-----------------------------------+
+| **String**                        | **Description**                   |
++-----------------------------------+-----------------------------------+
+| RAM                               | Specifies that access to memory   |
+|                                   | is Read and Write.                |
++-----------------------------------+-----------------------------------+
+| ROM                               | Specifies that access to memory   |
+|                                   | is Read-only.                     |
++-----------------------------------+-----------------------------------+
+| SHnC                              | The string *SH* specifies shared  |
+|                                   | memory.                           |
+|                                   |                                   |
+|                                   | The number *n* identifies the     |
+|                                   | block of memory being shared. The |
+|                                   | number can never be zero or       |
+|                                   | negative.                         |
+|                                   |                                   |
+|                                   | If a block of shared memory is    |
+|                                   | specified on core A as "RAM|SH2"  |
+|                                   | and then a block is specified on  |
+|                                   | core B as "ROM|SH2", then that    |
+|                                   | block is shared between cores A   |
+|                                   | and B with Read and Write access  |
+|                                   | on A and Read-only access on B.   |
+|                                   |                                   |
+|                                   | Blocks may be in different        |
+|                                   | addressable regions for different |
+|                                   | cores. That is, on core A the     |
+|                                   | block might start at 0x8000 and   |
+|                                   | on core B the same block could    |
+|                                   | start at 0x4000.                  |
+|                                   |                                   |
+|                                   | The string *C* causes the         |
+|                                   | debugger to:                      |
+|                                   |                                   |
+|                                   | a. Halt all cores when writing to |
+|                                   |    shared memory that contains    |
+|                                   |    executable code                |
+|                                   | b. Halt all cores when stepping   |
+|                                   |    over a breakpoint set in       |
+|                                   |    shared memory                  |
+|                                   |                                   |
+|                                   | When writing to a block of shared |
+|                                   | memory, the breakpoints in that   |
+|                                   | block have to be cleared for a    |
+|                                   | short time by the driver. In      |
+|                                   | addition, the data in that        |
+|                                   | location may be incorrect if the  |
+|                                   | processor was executing. When "C" |
+|                                   | is specified, all cores with      |
+|                                   | executable code on that block are |
+|                                   | halted to ensure that no          |
+|                                   | breakpoints are missed and        |
+|                                   | invalid code is not executed.     |
+|                                   |                                   |
+|                                   | When stepping over a software     |
+|                                   | breakpoint that is set in a       |
+|                                   | shared memory block, the          |
+|                                   | breakpoint is first cleared, then |
+|                                   | the code is stepped, and finally  |
+|                                   | the breakpoint is reset. If other |
+|                                   | cores execute code in that memory |
+|                                   | block during this time, they will |
+|                                   | miss the breakpoint. When "C" is  |
+|                                   | specified, all cores with         |
+|                                   | executable code on that block are |
+|                                   | halted until the breakpoint has   |
+|                                   | been stepped over.                |
+|                                   |                                   |
+|                                   | *C* is optional, but should       |
+|                                   | always be appended as the default |
+|                                   | setting. The default settings for |
+|                                   | these actions can be overridden   |
+|                                   | by setting shared memory options. |
++-----------------------------------+-----------------------------------+
+| CACHE                             | Causes the driver to invalidate   |
+|                                   | the cache when any processor      |
+|                                   | writes to the shared memory       |
+|                                   | block.                            |
+|                                   |                                   |
+|                                   | This action is necessary because  |
+|                                   | core A could write to block 2 and |
+|                                   | core B could have block 2 stored  |
+|                                   | in cache. The cache would need to |
+|                                   | be invalidated on core B so that  |
+|                                   | core B could have the most recent |
+|                                   | data.                             |
++-----------------------------------+-----------------------------------+
+
+The first attribute must identify the type of access: RAM or ROM. The rest of the attributes can be specified in any order. The vertical bar "|" character is used to separate multiple attributes. For example, ``RAM|SH4C|CACHE`` and ``RAM|CACHE|SH4C`` are both valid.
+
+The access type (RAM vs. ROM) is from the debug probe's perspective, not the CPU.
+
+**To Debug Shared Memory**
+
+There are two basic debugger actions that you should keep in mind when debugging shared memory.
+
+When writing to shared memory or reading from shared memory, the debugger knows what read/write access is allowed for each of the different processors and will choose a correct processor to do the write or read. For example, if core A has Read and Write access to shared memory and core B has Read-only access, you may still write to the shared memory using core B. The debugger will automatically switch to core A to do the actual write.
+
+Any software breakpoint set in shared memory will be set on every accessible processor. Software breakpoints can even be set on processors with Read-only access provided that there is at least one processor with Read and Write access to the shared memory. For example, if a breakpoint is set in a source file, that breakpoint will be set on the other processors as well. The only known restriction is that breakpoints can only be connected to one source on one processor.
+If a breakpoint must also be connected to something on a second processor, a second breakpoint (at the same address) must be added. This second breakpoint can then be connected to the second processor.
+
+___
+
+**See also:**
+
+`GEL_MapAddStr() <GEL_MapAddStr.html>`__
+`GEL Functions: Alphabetical List <functions_list.html>`__

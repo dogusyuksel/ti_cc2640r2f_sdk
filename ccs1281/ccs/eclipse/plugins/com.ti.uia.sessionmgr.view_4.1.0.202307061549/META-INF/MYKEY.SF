@@ -1,0 +1,108 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: gMUiLejGZ49RHHyeDnb8NcCnPRG9g
+ eUXu597+REmQqs=
+SHA-256-Digest-Manifest: 5r5BV7P6hiJ5mhYREFfFk0Sdsn03/eFZ4r2YfY7JT6c=
+Created-By: 1.8.0_102 (Oracle Corporation)
+
+Name: plugin.xml
+SHA-256-Digest: Qvjt9py0l11XBJJn/X5eCynyExySRgtX4tTUh1u4EOU=
+
+Name: icons/view16/terminate_all_co.gif
+SHA-256-Digest: NSHMSc+QTxFvIg3FM/PRl8qPpOtgbXrZExDFy09YL84=
+
+Name: icons/view16/tcf.gif
+SHA-256-Digest: KgY78OTRyIUhVz5LTEOCdwJnuSKCt/BwkYA1gTRicB8=
+
+Name: icons/view16/add_connection.gif
+SHA-256-Digest: 158Xr81j3EAqRdC9+XmaUP8M+S5QGTq0UtAR3WJGrww=
+
+Name: icons/view16/add_event.png
+SHA-256-Digest: vU9RPg6HM7LKika32+yZybyqCBjWqbMCpYLW32lLf3o=
+
+Name: icons/view16/add_endpoint.gif
+SHA-256-Digest: 6KLUgWfCXzCtJwxs9YqUs68EgMxEzYm4isjOX8ys5/c=
+
+Name: icons/elcl16/refresh.gif
+SHA-256-Digest: Gdyy9pvG9AdPLhUESuuJtE11A3Ra1msEp7TYISZ8Dr8=
+
+Name: icons/view16/endpoint.gif
+SHA-256-Digest: m9SogPwJ5/H4BTxJsHznNHj7OKpUGT8JqDIUmkTllnU=
+
+Name: icons/view16/cmbo.gif
+SHA-256-Digest: 1+ya7i+ZXHOrzHsxaKrYqs9bfp4mDvIWJvCMlwLwnzk=
+
+Name: icons/view16/bargraph.gif
+SHA-256-Digest: yjkTq0ROFTuC/mTyBvvaA9JCgrRmhH9Ye7ANXudTAIw=
+
+Name: icons/view16/connect.gif
+SHA-256-Digest: ddv3OCNVeTnR4To7gdpYPbr98okcu04PpxFl92fqRU4=
+
+Name: icons/dlcl16/pin.gif
+SHA-256-Digest: WTpS/i/O8R2yYpKDOuwqwtz4rKW1Q5820jZpqLJmzSk=
+
+Name: icons/elcl16/pin.gif
+SHA-256-Digest: fNeuuSz53TekZHFRItLOFs3cMmruh4SrwHrmSADMkFU=
+
+Name: icons/view16/control_item.gif
+SHA-256-Digest: LDk+JJ/ZbS8D9Whsjr6jzNq+2qyNgB6ydDFqhxGCJBE=
+
+Name: icons/view16/sessionmgrview.gif
+SHA-256-Digest: TAbyOCarbWzUiOydZNHjTh5tdfRn1Tjf7x6NqBYpEoc=
+
+Name: plugin.properties
+SHA-256-Digest: iYLIfVNjcCtFXf14O1+CD6Aw3B9gmajIVIBgwTY+OX0=
+
+Name: icons/dlcl16/refresh.gif
+SHA-256-Digest: NHwbOkDUqicj+gp3e0fcsfDzL2LYrV0myQ0xDaEmc5s=
+
+Name: icons/dlcl16/connect.gif
+SHA-256-Digest: hXh3qpp9p+yw23+wkJcO66Bw3WhT9pT4QFVKhAx52fM=
+
+Name: icons/view16/terminate.gif
+SHA-256-Digest: ze2DqfpblkyfTCMsLU9NDWLH3pjEj4PH9J+o8untgk0=
+
+Name: icons/elcl16/connect.gif
+SHA-256-Digest: GoABBh2dhGgkf4epy7WTGiYYwZcELbC6eoRex3J6cqU=
+
+Name: icons/view16/add_control.png
+SHA-256-Digest: NSrNcdx936ppjx4fGiYBLXbC8yHIa8OR1C4HsLhVPyE=
+
+Name: icons/view16/run.gif
+SHA-256-Digest: q9Ex2tNPogTM+Fd6+VBAduS+w0hhFYk5Dv9+iRsyGqM=
+
+Name: com.ti.uia.sessionmgr.view.jar
+SHA-256-Digest: xe3GkDhSD1rgG1Tej7qmdJvgxK7ohPhpBWsC0sP+iUE=
+
+Name: icons/view16/refresh.gif
+SHA-256-Digest: 81DgqEo0IkVsl8sKThFA/Fo4rYlv4bV3nA5BYD3BYe0=
+
+Name: icons/view16/connection_error.gif
+SHA-256-Digest: N53YEvaIOBn3UdyWR0Rl4DEI/Qz0e1P2ZPpUUYAKN+M=
+
+Name: icons/view16/prop_edt.gif
+SHA-256-Digest: byjoi+0t5Nm9bFmCnHPNSnB4Y2+n+huDEzHupW/112g=
+
+Name: icons/view16/openfile.gif
+SHA-256-Digest: mWEknINxlqbtAbZarmBdh7PCh/yWNgTKvj9V7sAcR9s=
+
+Name: META-INF/eclipse.inf
+SHA-256-Digest: ak2bzOGDjLurhLXRsFA/N7TRhvaP+YA1QdnivLjcXtk=
+
+Name: icons/view16/remove.gif
+SHA-256-Digest: SqY7xMVNJtwufa++8D03VveCvU4cUDw4zJrPuJEfm0s=
+
+Name: icons/view16/save_edit.gif
+SHA-256-Digest: auFJBs10zkP5b8QwiySjBQCCFB4YbJzp/I+Lux7bsb8=
+
+Name: icons/view16/disconnect.gif
+SHA-256-Digest: VVPc7SfTSmEGqLIFr3h0vocZ9H6MYZ3ixAmUeK2yAnU=
+
+Name: icons/view16/endpoint_error.gif
+SHA-256-Digest: 7DSoGXYw1PqJU6E3DNDHHFuhGRBU5jdyG80BZT/Zfpc=
+
+Name: icons/view16/connection.gif
+SHA-256-Digest: aLLabUO16eS0MkJvTshxVMClQy598upfukxF4meFrPU=
+
+Name: icons/dlcl16/tcf.gif
+SHA-256-Digest: 4XIdO0ij4ayElBJ0K0qMgVmu6bTg3/qAuCYMYZn+mo0=
+

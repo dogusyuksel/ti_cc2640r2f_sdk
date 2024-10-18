@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- OPTIONAL BUT RECOMMENDED: Add a summary for your page below, then remove the comments. The summary should inform users what the page is about (within 160 chars). It will appear in Google search results below the Title and can have a huge effect on click-through rate -->
+<meta name="description" content="How to debug a Debug Server Scripting (DSS) JavaScript by using the Rhino Javascript debugger to step through the script code while using Code Composer Studio (CCS) to inspect what is happening with the target"> 
+
+<!-- Change the product name and link if desired -->
+<meta name="product-name" content="Code Composer Studio">
+<meta name="product-link" content="https://www.ti.com/tool/CCSTUDIO">
+
+<!-- Change the title text for your page -->
+<title>Launching Code Composer Studio from DSS</title>
+
+<script src='https://software-dl.ti.com/ccs/esd/documents/web_support_v2/loader.js'></script>
+
+</head>
+
+<xmp theme="united2" style="display:none;" class="col-xs-6">
+
+<!-- Start of markdown source -->
+
+Overview
+---
+[Debug Server Scripting](https://software-dl.ti.com/ccs/esd/documents/users_guide/sdto_dss_handbook.html) and Code Composer Studio are both built upon the same Debug Server foundation. It is possible, within the same instance of a Java Runtime, to invoke both DSS and CCS and have both tools share the same Debug Server instance. Hence, it is possible to attach CCS to a running debug session created by DSS. The result is that the target's state is reflected in both tools. This is useful if target debug visibility (via GUI) is needed when running a DSS script.
+
+The steps below leverage this fact and show an example of an easy way to debug a DSS JavaScript by using the [Rhino Javascript debugger](https://www.mozilla.org/rhino/debugger.html) to step through the script code while using CCS to inspect what is happening with the target.
+
+[[b Version differences:
+There are several differences in behavior if you are using a version of CCS earlier than 5.3 or 5.2. Please take note of the collapsible boxes for version specific steps.]]
+
+
+Setup
+---
+Open the script you wish to debug in a text editor and add a call to open a "CCSSession". Opening a "CCSSession" will launch an instance of CCS, which will be used to provide visibility into the target being debugged by the DSS script and have it share the same debug context. The call to do this is:
+```javascript
+script.getServer("CCSServer.1").openSession(".*");
+```
+
+This call can be added anywhere **after** the `ScriptingEnvironment` is created:
+```javascript
+...
+
+// Create our scripting environment object - which is the main entry point into any script and
+// the factory for creating other Scriptable servers and Sessions
+var script = ScriptingEnvironment.instance()
+
+// Open a CCS Session to bring up the CCS GUI which will share the same debug context
+script.getServer("CCSServer.1").openSession(".*");
+
+...
+```
+
+[[+b Additional steps for CCS v5.2 and earlier (expand)
+If you are using a CCS version greater than 5.2, then skip this subsection.
+
+In addition to adding a call to open a "CCSSession" as described above, you must make a small change to the <tt>dss.bat</tt> file. If you have your own batch file or shell script you need to make a similar change.
+1.  Open <tt>dss.bat</tt> in a text editor and locate the section labeled **LAUNCH_SCRIPT**.
+2.  In this section, replace `%RHINO_SHELL%` with `%RHINO_DEBUGGER%`.
+
+See [this section of the DSS topic](https://software-dl.ti.com/ccs/esd/documents/users_guide/sdto_dss_handbook.html#for-ccsv5-1-and-earlier) for more information.+]]
+
+
+Debugging
+---
+1.  To launch the Rhino Debugger, run the dss script with the `-dss.debug` option:
+    ```diff
+    > dss -dss.debug <scriptname>.js
+    ```
+
+    [[+b For CCS v5.2 and earlier (expand)
+    If you are using CCS version 5.2 or earlier, omit the `-dss.debug` option
+    ```diff
+    > dss <scriptname>.js
+    ```
+    +]]
+
+2.  Set a breakpoint on the line which follows the call to open a "CCSSession". This is necessary because CCS is launched within the same JVM, but on a separate thread and the calling script has no way of knowing when the IDE is loaded.
+
+    ![A breakpoint is set in the Rhino Debugger on the line immediately following the call to open a "CCSSession".](images/ccs_from_dss_rhino_breakpoint.png)
+
+3.  Run to the breakpoint by clicking **Go** or hitting F5. Within a few seconds, the CCS IDE should appear.
+
+    ![The Rhino debugger is stopped at the breakpoint and CCS is opened.](images/ccs_from_dss_rhino_ccs_opened.png)
+
+    [[+b Additional steps for CCS v5.1 and earlier (expand)
+    If you are using a CCS version greater than 5.1, then skip this subsection.
+
+    When CCS is opened by the Rhino Debugger, launch a Debug Session for the **same exact target** that is currently being used by DSS. It is important that the target specified in the <tt>\*.ccxml</tt> file used by CCS is the same as the target specified by the <tt>\*.ccxml</tt> file used by DSS.
+
+    If there is a mismatch between the target configurations, and error will be reported stating "An internal error occurred during 'Initializing Debug Targets'. If there is no mismatch, then CCS will be able to connect to the current debug session created by DSS and you should now be able to step through your Javascript code in the Rhino Debugger (using Rhino's buttons or keyboard shortcuts), and after each step CCS will be updated to reflect the current state of the target/development environment. +]]
+
+4.  Wait until the CCS IDE is *fully launched*. Once it is, you can now step through your Javascript code in the Rhino Debugger (using Rhino's buttons or keyboard shortcuts) and after each step CCS will be updated to reflect the current state of the target/development environment.
+
+    ![Rhino Debugger and CCS open side-by-side](images/ccs_from_dss_step_through_script.png)
+
+    [[y Note:
+    It is possible that CCS will not launch in the *CCS Debug* perspective. In this case, you will need to manually open the *CCS Debug* perspective to see action in the CCS GUI as your script executes. To open the perspective, go to **Window &rarr; Perspective &rarr; Open perspective &rarr; CCS Debug**.]]
+
+
+Examples
+---
+CCS versions 5.2 and greater come with an example script showing how to launch CCS from a DSS script. The example script is called <tt>CCSSession.js</tt> and is located in
+
+<tt>&lt;CCS_DIR&gt;/ccs_base/scripting/examples/DebugServerExamples/</tt>
+
+where &lt;CCS_DIR&gt; is the location of your CCS installation (for example, for CCS 8 on Windows it might be <tt>C:\ti\ccsv8</tt>).
+
+To run the example:
+1.  Open Command Prompt/Terminal.
+2.  Change directory to the location of the <tt>CCSSession.js</tt> script.
+3.  Run the script in debug mode to launch the Rhino Debugger.
+
+    ```diff
+    > ../../bin/dss -dss.debug CCSSession.js
+    ```
+4.  Set a breakpoint at line 27, the line which follows
+
+    ```diff
+    ccsSession = ccsServer.openSession(".*")
+    ```
+5.  Run the script (press the **Go** button or hit F5) in the debugger until it reaches the breakpoint.
+6.  Wait until the CCS IDE appears. Make sure it is in the *CCS Debug* perspective (see the note at the end of [this section](#debugging)).
+7.  Continue to single step through the script and watch as CCS is reflects the current debugger state.
+   
+<!-- End of markdown source -->
+
+<div id="footer"></div>
+
+</xmp>
+</html>

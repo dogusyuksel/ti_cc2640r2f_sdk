@@ -1,0 +1,21 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: tEWn/TrkonkSdpVGDsXy/Wdew1ZlB
+ mtarZL9m+cogwk=
+SHA-256-Digest-Manifest: HCgnGoncFFtIqpgmS/LlaJYkm9WMNfuex7gtm12M3gI=
+Created-By: 1.8.0_74 (Oracle Corporation)
+
+Name: p2.inf
+SHA-256-Digest: 6McOoAskFmyO9eqAPWLPhECih+WiDhNAMmyBhHO2OJM=
+
+Name: com.ti.msp432.build_debug.properties
+SHA-256-Digest: GyGXRPDIvyY3RiBmXEdeoAsyJi2GynCT7UczgF/IWq8=
+
+Name: build.properties
+SHA-256-Digest: CUa1KEZrE3ztxxDsI86Pe7d+vr+aFOsPCVSYiOTDRBU=
+
+Name: feature.xml
+SHA-256-Digest: RZVOu5F25hJR3VpVpUhDpkojeZj/ITQhWCd4uzSlWsQ=
+
+Name: MANIFEST/MANIFEST.MF
+SHA-256-Digest: 1YE5/uQH2UoucwpnqfxFKpqT2h6HQANeU84YkCaxZfs=
+

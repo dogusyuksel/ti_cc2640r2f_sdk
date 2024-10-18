@@ -1,0 +1,63 @@
+GEL_MemoryListSupportedTypes()
+------------------------------
+
+List supported memory data display formats.
+
+**Syntax**
+
+**GEL_MemoryListSupportedTypes(** page **)**
+
+**Parameters**
+
+page identifies the type of memory to fill: 0 (Program memory), 1 (Data
+memory) or 2 (I/O space)
+
+**Description**
+
+This API can be used to list all possible memory data display formats
+for the targets. The format index could be used with GEL_MemorySaveData
+and GEL_MemoryLoadData to save and load data to a file in the specified
+format
+
+**Synchronous**
+
+Synchronous from GEL: Yes
+
+Completely synchronous: Yes
+
+**Examples**
+
+GEL_MemoryListSupportedTypes( 0 )
+
+| The list of supported formats will differ depending on the target. The
+  example output on a 64xx is
+| 0 - 32-Bit Hex - C Style
+| 1 - 32-Bit Hex - TI Style
+| 2 - 32-Bit Signed Int
+| 3 - 32-Bit UnSigned Int
+| 4 - 32-Bit Binary
+| 5 - 32-Bit Floating Point
+| 6 - 32-Bit Exponential Float
+| 7 - 16-Bit Hex - C Style
+| 8 - 16-Bit Hex - TI Style
+| 9 - 16-Bit Signed Int
+| 10 - 16-Bit UnSigned Int
+| 11 - 16-Bit Binary
+| 12 - 8-Bit Hex - C Style
+| 13 - 8-Bit Hex - TI Style
+| 14 - 8-Bit Signed Int
+| 15 - 8-Bit UnSigned Int
+| 16 - 8-Bit Binary
+| 17 - Character
+| 18 - 40-Bit Signed Int
+| 19 - 40-Bit UnSigned Int
+| 20 - 64-Bit Hex - C Style
+| 21 - 64-Bit Hex - TI Style
+| 22 - 64-Bit Floating Point
+| 23 - 64-Bit Exponential Float
+
+**Related Topics**
+
+`GEL_MemorySaveData <GEL_MemorySaveData.html>`__
+
+`GEL_MemoryLoadData <GEL_MemoryLoadData.html>`__

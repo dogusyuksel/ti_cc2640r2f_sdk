@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.contexts"?>
+
+<contexts>
+    <!--
+	<context id="variables_view_context" title="About Variables View">
+        <description>This view displays the variables associated with the stack frame selected in the Debug View.</description>
+        <topic label="Variables View" href="html/views_and_editors/local_view/ref-variables_view.htm"/>        
+        <topic label="Tracking a Variable's Value" href="html/getting_started_quickly/track_value.htm#tracking_variable_value"/>
+    </context>
+	-->
+	
+<!-- [12/4/2019 - Modifying paths to new CCS User Guide Help plugin] -->
+
+	<context id="variable_view_context" title="About Variables View">
+        <description>This view displays the variables associated with the stack frame selected in the Debug View.</description>
+        <topic label="CCS - Variables View" href="html/users_guide/ccs_debug-main.html#variables-view"/>        
+    </context>
+	
+</contexts>
