@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: TI Target Content
-Bundle-SymbolicName: com.ti.targetcontent
-Bundle-Version: 1.0.0.202108240846
-Bundle-Vendor: Texas Instruments

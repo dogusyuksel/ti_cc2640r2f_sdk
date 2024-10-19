@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: GCC MSP430 tool-chain
-Bundle-SymbolicName: com.ti.msp430.gcc_support
-Bundle-Version: 11.1.0
-Bundle-Vendor: Texas Instruments

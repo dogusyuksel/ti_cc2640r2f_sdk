@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Created-By: 1.8.0_102 (Oracle Corporation)
-
-Name: feature.xml
-SHA-256-Digest: D7/zXyhXQutKCDziEwQ0/grYl/jw08Yr2tB6Z1zNU5A=
-
-Name: META-INF/eclipse.inf
-SHA-256-Digest: G2hFTVPngfh5NUf96Pyy87A7XIE083udjEBFy4pUc/M=
-

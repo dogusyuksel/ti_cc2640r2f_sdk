@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<site>
-   <feature url="features/com.ti.msp430.18.1.help_18.1.0.20181119225106.jar" id="com.ti.msp430.18.1.help" version="18.1.0.20181119225106">
-      <category name="TI_Compiler_Help"/>
-   </feature>
-   <category-def name="TI_Compiler_Help" label="TI Compiler Help">
-	<description>TI Compiler Help</description>
-	</category-def>
-</site>

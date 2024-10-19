@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: XDCtools Core Install Plugin
-Bundle-SymbolicName: com.ti.xdctools_3_62.base
-Bundle-Version: 3.62.1.16
-Bundle-Vendor: Texas Instruments

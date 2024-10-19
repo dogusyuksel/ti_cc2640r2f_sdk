@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: CCS Base Components
-Bundle-SymbolicName: com.ti.ccstudio.base;singleton:=true
-Bundle-Version: 12.8.0.03471
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: Texas Instruments
-

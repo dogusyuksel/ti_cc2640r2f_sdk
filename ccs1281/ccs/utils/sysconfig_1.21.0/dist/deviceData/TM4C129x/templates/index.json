@@ -1,9 +1,0 @@
-{
-    "csv": [
-        "csv/summary.csv.xdt"
-    ],
-    "driverlib": [
-        "driverlib/pinout.c.xdt",
-		"driverlib/pinout.h.xdt"
-    ]
-}

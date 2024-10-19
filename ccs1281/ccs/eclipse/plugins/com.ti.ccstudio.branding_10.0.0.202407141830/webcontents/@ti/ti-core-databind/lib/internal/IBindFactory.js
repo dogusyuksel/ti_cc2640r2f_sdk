@@ -1,2 +1,0 @@
-;
-//# sourceMappingURL=IBindFactory.js.map

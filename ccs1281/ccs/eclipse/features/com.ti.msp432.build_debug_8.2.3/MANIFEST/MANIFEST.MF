@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: MSP432 tool-chain
-Bundle-SymbolicName: com.ti.msp432.build_debug
-Bundle-Version: 8.2.3
-Bundle-Vendor: Texas Instruments

@@ -1,6 +1,0 @@
-#####################################################################################
-# These are the set of public API that we supported for external HTML client pages. #
-#####################################################################################
-
-- ImportProjectAction(path)
-- DebugProjectAction(projectName)

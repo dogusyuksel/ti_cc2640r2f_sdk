@@ -1,1 +1,0 @@
-{"version":3,"file":"ConstantBindValue.js","sourceRoot":"","sources":["../../../../src/ti-core-databind/lib/internal/ConstantBindValue.ts"],"names":[],"mappings":"AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;GA2BG;AACH,OAAO,EAAE,iBAAiB,EAAE,MAAM,qBAAqB,CAAC;AAIxD;;;;;GAKG;AACH,MAAM,OAAO,iBAAkB,SAAQ,iBAAiB;IACpD,YAAY,WAA2B;QACnC,KAAK,CAAC,WAAW,EAAE,IAAI,CAAC,CAAC;IAC7B,CAAC;CACJ;AAAA,CAAC"}

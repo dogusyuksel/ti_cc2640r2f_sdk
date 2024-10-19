@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Version=0.9.4
-Name=Code Composer Studio 12.8.1
-Comment=Code Composer Studio 12.8.1.00005
-Icon=/home/spire/ti/ccs1281/ccs/doc/ccs.ico
-Exec=/home/spire/ti/ccs1281/ccs/eclipse/ccstudio
-Terminal=false

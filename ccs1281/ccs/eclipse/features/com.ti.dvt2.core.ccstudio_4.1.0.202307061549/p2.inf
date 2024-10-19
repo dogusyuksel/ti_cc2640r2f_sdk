@@ -1,3 +1,0 @@
-instructions.configure =\
-org.eclipse.equinox.p2.touchpoint.eclipse.addRepository(type:0,location:https${#58}//software-dl.ti.com/ccs/non-esd/dvt/ccs6.0,name:DVT Updates,enabled:true);\
-org.eclipse.equinox.p2.touchpoint.eclipse.addRepository(type:1,location:https${#58}//software-dl.ti.com/ccs/non-esd/dvt/ccs6.0,name:DVT Updates,enabled:true);

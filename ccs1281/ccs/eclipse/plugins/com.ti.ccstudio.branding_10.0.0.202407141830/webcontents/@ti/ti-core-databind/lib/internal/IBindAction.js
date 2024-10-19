@@ -1,2 +1,0 @@
-;
-//# sourceMappingURL=IBindAction.js.map
