@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<drivers id="TMS320C29XX">
-	<isa Type="TMS320C29XX" ProcID="0x5000a7f8">
-		<driver file="../../DebugServer/bin/libDataSnapshotDecoder.so">
-			<connectionType Type="DataSnapshotViewer"/>
-		</driver>
-	</isa>
-</drivers>
